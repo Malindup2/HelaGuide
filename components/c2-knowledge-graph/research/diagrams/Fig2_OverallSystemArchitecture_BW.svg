@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1740" height="964" viewBox="0 0 1740 964" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#000000"/></marker><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#000000"/></marker></defs>
+<rect width="1740" height="964" fill="#ffffff"/>
+<rect x="24" y="56" width="246" height="660" rx="8" fill="#fafafa" stroke="#000000" stroke-width="1.4"/>
+<rect x="85" y="24" width="124" height="34" rx="6" fill="#2b2b2b" stroke="#000000" stroke-width="1.4"/>
+<text x="147" y="47" font-size="15" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">INPUT</text>
+<rect x="320" y="56" width="1110" height="884" rx="8" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+<rect x="1452" y="56" width="264" height="884" rx="8" fill="#fafafa" stroke="#000000" stroke-width="1.4"/>
+<rect x="1522" y="24" width="124" height="34" rx="6" fill="#2b2b2b" stroke="#000000" stroke-width="1.4"/>
+<text x="1584" y="47" font-size="15" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">OUTPUT</text>
+<text x="875" y="100" font-size="21" text-anchor="middle" font-weight="bold" fill="#000000" font-style="normal">AI-Driven Citizen-Service Orchestrator</text>
+<rect x="40" y="80" width="214" height="100" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.4"/>
+<circle cx="86" cy="118" r="15" fill="none" stroke="#000000" stroke-width="1.4"/>
+<path d="M68,150 a18,18 0 0 1 36,0" fill="none" stroke="#000000" stroke-width="1.4"/>
+<text x="147" y="172" font-size="15" text-anchor="middle" font-weight="bold" fill="#000000" font-style="normal">Citizen / User</text>
+<rect x="40" y="204" width="214" height="58" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<text x="56" y="230" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Service or life-event</text>
+<text x="56" y="249" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">request</text>
+<rect x="40" y="278" width="214" height="58" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<text x="56" y="311" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Text or voice input</text>
+<rect x="40" y="352" width="214" height="70" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<text x="56" y="378" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Sinhala / Tamil / English /</text>
+<text x="56" y="397" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">code-switched</text>
+<rect x="40" y="452" width="214" height="66" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<text x="56" y="478" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Behavioural interaction</text>
+<text x="56" y="497" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">signals</text>
+<rect x="40" y="538" width="214" height="66" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<text x="56" y="564" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Post-service citizen</text>
+<text x="56" y="583" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">feedback</text>
+<rect x="350" y="140" width="300" height="210" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.6"/>
+<circle cx="378" cy="168" r="13" fill="#000000"/>
+<text x="378" y="173" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">1</text>
+<text x="402" y="166" font-size="16" text-anchor="start" font-weight="bold" fill="#000000" font-style="normal">Multilingual</text>
+<text x="402" y="187" font-size="16" text-anchor="start" font-weight="bold" fill="#000000" font-style="normal">Conversational Engine</text>
+<text x="378" y="226" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Intent extraction</text>
+<text x="378" y="251" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Entity recognition</text>
+<text x="378" y="276" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Context understanding</text>
+<rect x="690" y="140" width="300" height="210" rx="6" fill="#d6d6d6" stroke="#000000" stroke-width="3.0"/>
+<circle cx="718" cy="168" r="13" fill="#000000"/>
+<text x="718" y="173" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">2</text>
+<text x="742" y="166" font-size="16" text-anchor="start" font-weight="bold" fill="#000000" font-style="normal">Graph-Based Service</text>
+<text x="742" y="187" font-size="16" text-anchor="start" font-weight="bold" fill="#000000" font-style="normal">Orchestration Engine</text>
+<text x="718" y="226" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Government service</text>
+<text x="718" y="247" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">    knowledge graph</text>
+<text x="718" y="268" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Cross-agency mapping</text>
+<text x="718" y="289" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Workflow generation</text>
+<text x="840" y="337" font-size="12" text-anchor="middle" font-weight="normal" fill="#3d3d3d" font-style="italic">individual component</text>
+<rect x="1030" y="140" width="370" height="210" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.6"/>
+<circle cx="1058" cy="168" r="13" fill="#000000"/>
+<text x="1058" y="173" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">4</text>
+<text x="1082" y="166" font-size="16" text-anchor="start" font-weight="bold" fill="#000000" font-style="normal">Context-Aware Adaptive</text>
+<text x="1082" y="187" font-size="16" text-anchor="start" font-weight="bold" fill="#000000" font-style="normal">Guidance Presentation Engine</text>
+<text x="1058" y="226" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Analyse citizen and procedure context</text>
+<text x="1058" y="247" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Select suitable presentation support</text>
+<text x="1058" y="268" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Personalise explanation and detail</text>
+<text x="1058" y="289" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Learn from interaction feedback</text>
+<path d="M370,600 a130,22 0 0 1 260,0 v48 a130,22 0 0 1 -260,0 z" fill="#f2f2f2" stroke="#000000" stroke-width="1.5"/>
+<path d="M370,600 a130,22 0 0 0 260,0" fill="none" stroke="#000000" stroke-width="1.5"/>
+<text x="500" y="634" font-size="13.5" text-anchor="middle" font-weight="normal" fill="#000000" font-style="normal">Public government information</text>
+<text x="500" y="653" font-size="13.5" text-anchor="middle" font-weight="normal" fill="#000000" font-style="normal">(websites, gazettes, circulars)</text>
+<rect x="910" y="580" width="380" height="270" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.6"/>
+<circle cx="938" cy="608" r="13" fill="#000000"/>
+<text x="938" y="613" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">3</text>
+<text x="962" y="606" font-size="16" text-anchor="start" font-weight="bold" fill="#000000" font-style="normal">Knowledge</text>
+<text x="962" y="627" font-size="16" text-anchor="start" font-weight="bold" fill="#000000" font-style="normal">Trust-Verification Engine</text>
+<text x="938" y="668" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Analyse citizen feedback</text>
+<text x="938" y="692" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Confidence scoring</text>
+<text x="938" y="716" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Detect outdated or incorrect facts</text>
+<text x="938" y="740" font-size="14" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">•  Correct or update knowledge graph</text>
+<rect x="1470" y="96" width="228" height="118" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<circle cx="1500" cy="128" r="12" fill="#000000"/>
+<text x="1500" y="133" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">1</text>
+<text x="1488" y="168" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Personalised</text>
+<text x="1488" y="187" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">step-by-step guidance</text>
+<rect x="1470" y="232" width="228" height="118" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<circle cx="1500" cy="264" r="12" fill="#000000"/>
+<text x="1500" y="269" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">2</text>
+<text x="1488" y="304" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Responsible agencies</text>
+<rect x="1470" y="368" width="228" height="118" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<circle cx="1500" cy="400" r="12" fill="#000000"/>
+<text x="1500" y="405" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">3</text>
+<text x="1488" y="440" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Required documents</text>
+<rect x="1470" y="504" width="228" height="118" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<circle cx="1500" cy="536" r="12" fill="#000000"/>
+<text x="1500" y="541" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">4</text>
+<text x="1488" y="576" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Fees and prerequisites</text>
+<rect x="1470" y="640" width="228" height="118" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<circle cx="1500" cy="672" r="12" fill="#000000"/>
+<text x="1500" y="677" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">5</text>
+<text x="1488" y="712" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Presentation support</text>
+<text x="1488" y="731" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">cues</text>
+<rect x="1470" y="776" width="228" height="118" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.2"/>
+<circle cx="1500" cy="808" r="12" fill="#000000"/>
+<text x="1500" y="813" font-size="14" text-anchor="middle" font-weight="bold" fill="#ffffff" font-style="normal">6</text>
+<text x="1488" y="848" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">Confidence and warning</text>
+<text x="1488" y="867" font-size="13.5" text-anchor="start" font-weight="normal" fill="#000000" font-style="normal">indicators</text>
+<path d="M270,245 H344" fill="none" stroke="#000000" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M650,245 H684" fill="none" stroke="#000000" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M990,245 H1024" fill="none" stroke="#000000" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M1400,245 H1446" fill="none" stroke="#000000" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M630,624 H840 V356" fill="none" stroke="#000000" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M930,580 V356" fill="none" stroke="#000000" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M968,350 V574" fill="none" stroke="#000000" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M254,571 H292 V884 H1100 V856" fill="none" stroke="#000000" stroke-width="1.6" marker-end="url(#ar)"/>
+<path d="M254,485 H276 V922 H1345 V356" fill="none" stroke="#000000" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="830" y="400" font-size="12.5" text-anchor="end" font-weight="normal" fill="#3d3d3d" font-style="italic">acquisition and</text>
+<text x="830" y="416" font-size="12.5" text-anchor="end" font-weight="normal" fill="#3d3d3d" font-style="italic">change detection</text>
+<text x="920" y="452" font-size="12.5" text-anchor="end" font-weight="normal" fill="#3d3d3d" font-style="italic">verified</text>
+<text x="920" y="468" font-size="12.5" text-anchor="end" font-weight="normal" fill="#3d3d3d" font-style="italic">corrections</text>
+<text x="978" y="452" font-size="12.5" text-anchor="start" font-weight="normal" fill="#3d3d3d" font-style="italic">fact identifiers</text>
+<text x="978" y="468" font-size="12.5" text-anchor="start" font-weight="normal" fill="#3d3d3d" font-style="italic">and versions</text>
+<text x="660" y="876" font-size="12.5" text-anchor="start" font-weight="normal" fill="#3d3d3d" font-style="italic">post-service citizen feedback</text>
+<text x="660" y="914" font-size="12.5" text-anchor="start" font-weight="normal" fill="#3d3d3d" font-style="italic">behavioural interaction signals</text>
+</svg>
