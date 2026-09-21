@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://helaguide.local/contracts/v1/render.schema.json",
+  "title": "Render",
+  "description": "C4 -> gateway -> frontend. The plan adapted for this citizen.",
+  "type": "object",
+  "required": [
+    "session_id",
+    "plan_id",
+    "mode",
+    "detail_level",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "session_id": {
+      "type": "string"
+    },
+    "plan_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "simplified",
+        "voice"
+      ]
+    },
+    "detail_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "order",
+          "title",
+          "body",
+          "fee_display",
+          "documents"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "fee_display": {
+            "type": "string"
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "warning": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Set when C3 reports the fact as disputed."
+          }
+        }
+      }
+    }
+  }
+}

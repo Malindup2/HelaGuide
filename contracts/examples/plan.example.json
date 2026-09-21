@@ -1,0 +1,59 @@
+{
+  "plan_id": "plan-0001",
+  "requested_service_id": "svc:passport",
+  "generated_at": "2026-09-16T04:20:11Z",
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:nic",
+      "name": "National Identity Card",
+      "agency": "Department for Registration of Persons",
+      "fee": {
+        "value": 0,
+        "currency": "LKR",
+        "fact_id": "svc:nic:fee:first_issue"
+      },
+      "documents": [
+        {
+          "name": "Birth certificate",
+          "fact_id": "svc:nic:document:birth_certificate"
+        }
+      ],
+      "depends_on": []
+    },
+    {
+      "order": 2,
+      "service_id": "svc:passport",
+      "name": "Issue of Passport",
+      "agency": "Department of Immigration and Emigration",
+      "fee": {
+        "value": 11000,
+        "currency": "LKR",
+        "fact_id": "svc:passport:fee:normal"
+      },
+      "documents": [
+        {
+          "name": "National Identity Card",
+          "fact_id": "svc:passport:document:nic"
+        },
+        {
+          "name": "Two passport photographs",
+          "fact_id": "svc:passport:document:photographs"
+        }
+      ],
+      "depends_on": [
+        "svc:nic"
+      ]
+    }
+  ],
+  "provenance": {
+    "svc:nic:fee:first_issue": {
+      "source_url": "https://www.drp.gov.lk/",
+      "retrieved_at": "2026-09-16T04:20:11Z"
+    },
+    "svc:passport:fee:normal": {
+      "source_url": "https://www.immigration.gov.lk/pages_e.php?id=8",
+      "retrieved_at": "2026-09-16T04:20:11Z"
+    }
+  }
+}

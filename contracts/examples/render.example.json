@@ -1,0 +1,29 @@
+{
+  "session_id": "anon-7f3c",
+  "plan_id": "plan-0001",
+  "mode": "simplified",
+  "detail_level": "medium",
+  "steps": [
+    {
+      "order": 1,
+      "title": "Get your National Identity Card",
+      "body": "Go to the Department for Registration of Persons first. You need this before a passport.",
+      "fee_display": "Free",
+      "documents": [
+        "Birth certificate"
+      ],
+      "warning": null
+    },
+    {
+      "order": 2,
+      "title": "Apply for your passport",
+      "body": "Take your NIC and two photographs to the Department of Immigration and Emigration.",
+      "fee_display": "LKR 11,000",
+      "documents": [
+        "National Identity Card",
+        "Two passport photographs"
+      ],
+      "warning": "Some citizens have reported this fee may have changed."
+    }
+  ]
+}

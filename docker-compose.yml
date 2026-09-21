@@ -1,0 +1,97 @@
+# HelaGuide · local development stack
+#   cp .env.example .env
+#   docker compose up --build
+#   open http://localhost:8000/health/all
+
+name: helaguide
+
+services:
+  neo4j:
+    image: neo4j:5-community
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD}
+      NEO4J_PLUGINS: '["apoc"]'
+    ports: ["7474:7474", "7687:7687"]
+    volumes:
+      - neo4j-data:/data
+      - ./infra/neo4j:/infra:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:7474 >/dev/null || exit 1"]
+      interval: 10s
+      retries: 10
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports: ["5432:5432"]
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./infra/postgres:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      retries: 10
+
+  c1-intent:
+    build:
+      context: .
+      dockerfile: components/c1-intent/service/Dockerfile
+    env_file: .env
+    environment:
+      SERVICE_NAME: c1-intent
+    ports: ["8001:8001"]
+    depends_on: { postgres: { condition: service_healthy } }
+
+  c2-knowledge-graph:
+    build:
+      context: .
+      dockerfile: components/c2-knowledge-graph/service/Dockerfile
+    env_file: .env
+    environment:
+      SERVICE_NAME: c2-knowledge-graph
+    ports: ["8002:8002"]
+    depends_on: { neo4j: { condition: service_healthy } }
+
+  c3-trust:
+    build:
+      context: .
+      dockerfile: components/c3-trust/service/Dockerfile
+    env_file: .env
+    environment:
+      SERVICE_NAME: c3-trust
+    ports: ["8003:8003"]
+    depends_on: { postgres: { condition: service_healthy } }
+
+  c4-presentation:
+    build:
+      context: .
+      dockerfile: components/c4-presentation/service/Dockerfile
+    env_file: .env
+    environment:
+      SERVICE_NAME: c4-presentation
+    ports: ["8004:8004"]
+    depends_on: { postgres: { condition: service_healthy } }
+
+  gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+    env_file: .env
+    environment:
+      SERVICE_NAME: gateway
+    ports: ["8000:8000"]
+    depends_on: [c1-intent, c2-knowledge-graph, c3-trust, c4-presentation]
+
+  frontend:
+    build: ./frontend
+    environment:
+      VITE_GATEWAY_URL: ${VITE_GATEWAY_URL}
+    ports: ["5173:5173"]
+    depends_on: [gateway]
+
+volumes:
+  neo4j-data:
+  postgres-data:

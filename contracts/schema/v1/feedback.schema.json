@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://helaguide.local/contracts/v1/feedback.schema.json",
+  "title": "Feedback",
+  "description": "C4 -> C3. A citizen report about a specific fact.",
+  "type": "object",
+  "required": [
+    "feedback_id",
+    "session_id",
+    "fact_id",
+    "text",
+    "submitted_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "feedback_id": {
+      "type": "string"
+    },
+    "session_id": {
+      "type": "string"
+    },
+    "fact_id": {
+      "type": "string",
+      "pattern": "^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$"
+    },
+    "plan_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "proposed_value": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://helaguide.local/contracts/v1/trust.schema.json",
+  "title": "TrustScore",
+  "description": "C3 -> C4. Current confidence in one fact, used to show a warning in the interface.",
+  "type": "object",
+  "required": [
+    "fact_id",
+    "confidence",
+    "status",
+    "report_count",
+    "updated_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "fact_id": {
+      "type": "string",
+      "pattern": "^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "disputed",
+        "verified_correction"
+      ]
+    },
+    "report_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

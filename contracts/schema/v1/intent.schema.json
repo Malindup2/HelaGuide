@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://helaguide.local/contracts/v1/intent.schema.json",
+  "title": "Intent",
+  "description": "C1 -> C2. A citizen's request resolved from raw text into an identified service.",
+  "type": "object",
+  "required": [
+    "session_id",
+    "turn_id",
+    "language",
+    "intent",
+    "entities",
+    "confidence"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Anonymous session identifier. Never a name or NIC."
+    },
+    "turn_id": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "si",
+        "en",
+        "ta",
+        "mixed"
+      ]
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "apply_service",
+        "service_info",
+        "check_requirements",
+        "unknown"
+      ]
+    },
+    "entities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "service_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^svc:[a-z0-9_]+$"
+        },
+        "district": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

@@ -1,0 +1,18 @@
+# Replace the placeholders with each member's GitHub username.
+# The last matching line wins.
+
+*                              @REPLACE-c2-malindu
+
+/contracts/                    @REPLACE-c1-dabarera @REPLACE-c2-malindu @REPLACE-c3-minuli @REPLACE-c4-dias
+/shared/                       @REPLACE-c1-dabarera @REPLACE-c2-malindu @REPLACE-c3-minuli @REPLACE-c4-dias
+/docs/                         @REPLACE-c1-dabarera @REPLACE-c2-malindu @REPLACE-c3-minuli @REPLACE-c4-dias
+
+/components/c1-intent/          @REPLACE-c1-dabarera
+/components/c2-knowledge-graph/ @REPLACE-c2-malindu
+/components/c3-trust/           @REPLACE-c3-minuli
+/components/c4-presentation/    @REPLACE-c4-dias
+
+/frontend/                     @REPLACE-c4-dias
+/gateway/                      @REPLACE-c2-malindu
+/infra/neo4j/                  @REPLACE-c2-malindu
+/infra/postgres/               @REPLACE-c1-dabarera @REPLACE-c3-minuli @REPLACE-c4-dias

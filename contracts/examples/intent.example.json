@@ -1,0 +1,11 @@
+{
+  "session_id": "anon-7f3c",
+  "turn_id": 1,
+  "language": "mixed",
+  "intent": "apply_service",
+  "entities": {
+    "service_id": "svc:passport",
+    "district": "Colombo"
+  },
+  "confidence": 0.91
+}

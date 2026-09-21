@@ -1,0 +1,55 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install jsonschema
+      - run: python scripts/validate_contracts.py
+
+  services:
+    needs: contracts
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        path:
+          - components/c1-intent/service
+          - components/c2-knowledge-graph/service
+          - components/c3-trust/service
+          - components/c4-presentation/service
+          - gateway
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Install
+        working-directory: ${{ matrix.path }}
+        run: |
+          pip install -e ${{ github.workspace }}/shared
+          pip install -e ".[dev]"
+      - name: Test
+        working-directory: ${{ matrix.path }}
+        env:
+          CONTRACTS_DIR: ${{ github.workspace }}/contracts
+          STUB_MODE: "true"
+        run: pytest -q
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run: { working-directory: frontend }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: npm install
+      - run: npm run build

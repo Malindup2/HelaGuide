@@ -1,0 +1,35 @@
+# secrets
+.env
+*.pem
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# node
+node_modules/
+dist/
+
+# data and models: keep out of git, document the location in research/data/README.md
+**/research/data/raw/
+**/research/data/large/
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+*.parquet
+crawl_snapshots/
+
+# editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*

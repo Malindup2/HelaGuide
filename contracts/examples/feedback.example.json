@@ -1,0 +1,9 @@
+{
+  "feedback_id": "fb-0001",
+  "session_id": "anon-7f3c",
+  "fact_id": "svc:passport:fee:normal",
+  "plan_id": "plan-0001",
+  "text": "The counter said the fee is 12,000 now.",
+  "proposed_value": 12000,
+  "submitted_at": "2026-09-18T09:12:00Z"
+}

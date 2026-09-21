@@ -1,0 +1,8 @@
+{
+  "correction_id": "corr-0001",
+  "fact_id": "svc:passport:fee:normal",
+  "proposed_value": 12000,
+  "confidence": 0.87,
+  "report_count": 6,
+  "verified_at": "2026-09-19T10:00:00Z"
+}

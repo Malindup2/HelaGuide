@@ -1,0 +1,18 @@
+{
+  "fact_id": "svc:passport:fee:normal",
+  "service_id": "svc:passport",
+  "predicate": "fee",
+  "value": 11000,
+  "unit": "LKR",
+  "source_url": "https://www.immigration.gov.lk/pages_e.php?id=8",
+  "retrieved_at": "2026-09-16T04:20:11Z",
+  "valid_from": "2026-08-02T00:00:00Z",
+  "valid_to": null,
+  "history": [
+    {
+      "value": 10000,
+      "valid_from": "2026-06-11T00:00:00Z",
+      "valid_to": "2026-08-02T00:00:00Z"
+    }
+  ]
+}
