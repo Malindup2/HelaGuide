@@ -34,6 +34,7 @@ class PageResult:
     tls_relaxed: bool = False
     duration_ms: int = 0
     fetched_at: str = ""
+    source_type: str = "html"
 
     @property
     def needs_extraction(self) -> bool:
@@ -81,6 +82,7 @@ class JsonlRunLog:
             "ts": r.fetched_at, "run_id": r.run_id, "url": r.url, "service": r.service,
             "agency": r.agency, "change": r.kind.value, "status": r.status,
             "tls_relaxed": r.tls_relaxed, "duration_ms": r.duration_ms,
+            "source_type": r.source_type,
             **({"error": r.error} if r.error else {}), **r.detail,
         })
 
@@ -120,7 +122,8 @@ async def run_pass(
         fetched = await fetcher.fetch(seed.url)
         base = dict(run_id=run_id, url=seed.url, service=seed.service, agency=seed.agency,
                     status=fetched.status, tls_relaxed=fetched.tls_relaxed,
-                    duration_ms=fetched.duration_ms, fetched_at=fetched.fetched_at or _now())
+                    duration_ms=fetched.duration_ms, fetched_at=fetched.fetched_at or _now(),
+                    source_type=fetched.source_type)
 
         if not fetched.ok:
             result = PageResult(kind=ChangeKind.UNREACHABLE, error=fetched.error, **base)
@@ -140,6 +143,7 @@ async def run_pass(
                          result.tls_relaxed),
                 fetched.html, fetched.text,
                 archive=result.kind is not ChangeKind.UNCHANGED,
+                pdf=fetched.content if fetched.source_type == "pdf" else None,
             )
         counts[result.kind.value] = counts.get(result.kind.value, 0) + 1
         pages.append(result)
