@@ -22,6 +22,28 @@ Acquires government service pages, detects what changed, maintains a versioned k
 
 Interactive docs at <http://localhost:8002/docs> when running.
 
+## Stage 1: run a crawl
+
+Needs Python 3.11 or newer. From `service/`:
+
+```bash
+pip install -e ../../../shared
+pip install -e ".[dev,crawl]"
+crawl4ai-setup                                  # one-time browser install, only needed for --browser
+
+python -m app.core.acquisition --check-seeds    # validate research/data/seed_urls.yaml
+python -m app.core.acquisition                  # one monitoring pass (plain HTTP)
+python -m app.core.acquisition --report         # measured change profile across runs
+pytest tests/acquisition
+```
+
+Each pass fetches politely (robots.txt, 2 s between requests to one host), fingerprints every
+page and classifies it NEW, UNCHANGED, CONTENT_CHANGED, STRUCTURE_CHANGED or UNREACHABLE.
+Only NEW and changed pages are marked for extraction. Output goes to `research/data/crawl/`
+(`state/`, `archive/<date>/`, `changes.jsonl`, `runs.jsonl`) and stays out of git.
+
+Run it from your own machine: some `.gov.lk` hosts are not reachable from cloud sandboxes.
+
 ## Layout
 
 ```

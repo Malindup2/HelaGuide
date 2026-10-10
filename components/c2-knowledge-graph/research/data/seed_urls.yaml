@@ -1,0 +1,50 @@
+# Seed pages for the PP2 milestone: five linked services, about 25 pages.
+#
+# Rules for this file
+#   * One entry per page. `service` uses the contract id (svc:<slug>, see contracts/naming.md).
+#   * Seed individual SERVICE pages, not homepages. A page worth crawling states a fee, a
+#     document list or a prerequisite. Open each URL in a browser and check before setting
+#     verified: true.
+#   * The seed set is frozen at these five services until after 26 Oct.
+#   * gic.gov.lk is deliberately not seeded: the catalogue was observed to list no services.
+#   * motortraffic.gov.lk and ird.gov.lk are parked (outside the five services). motortraffic
+#     also has broken TLS, handled by RELAXED_TLS_HOSTS in fetch.py.
+#
+# STATUS: 6 of about 25. Homepages below are starting points to be replaced by the specific
+# service pages. Pages marked verified: true were read and confirmed in the Round 1 audit.
+
+seeds:
+  # ---- svc:birth_certificate: Registrar General's Department
+  - url: https://www.rgd.gov.lk/
+    service: svc:birth_certificate
+    agency: Registrar General's Department
+    note: Homepage. The Round 1 audit found the useful content sits in a downloadable form (B 150) rather than HTML. Find the service page and decide the PDF question.
+
+  # ---- svc:nic: Department for Registration of Persons
+  - url: https://www.drp.gov.lk/
+    service: svc:nic
+    agency: Department for Registration of Persons
+    note: Homepage. Replace with the NIC application and fee pages.
+
+  # ---- svc:police_clearance: Sri Lanka Police
+  - url: https://www.police.lk/
+    service: svc:police_clearance
+    agency: Sri Lanka Police
+    note: Homepage, not yet checked. Find the police clearance report page.
+
+  # ---- svc:passport: Department of Immigration and Emigration
+  - url: https://www.immigration.gov.lk/pages_e.php?id=8
+    service: svc:passport
+    agency: Department of Immigration and Emigration
+    verified: true
+    note: Round 1 audit - about 2,500 words with fees, documents and prerequisites in plain HTML. Four fee formats on one page.
+  - url: https://www.immigration.gov.lk/
+    service: svc:passport
+    agency: Department of Immigration and Emigration
+    note: Homepage. Add the lost-passport and minor-passport pages.
+
+  # ---- svc:business_registration: Registrar of Companies
+  - url: https://www.drc.gov.lk/
+    service: svc:business_registration
+    agency: Department of the Registrar of Companies
+    note: Homepage. Replace with the business name and company registration pages.
