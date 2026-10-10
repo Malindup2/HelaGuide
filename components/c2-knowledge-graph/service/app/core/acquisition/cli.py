@@ -18,6 +18,7 @@ from pathlib import Path
 from app.core.acquisition import report as report_mod
 from app.core.acquisition.fetch import USER_AGENT, Crawl4AIFetcher, PoliteFetcher
 from app.core.acquisition.monitor import JsonlRunLog, PageResult, run_pass
+from app.core.acquisition.pdf import PdfAwareFetcher
 from app.core.acquisition.ratelimit import HostRateLimiter
 from app.core.acquisition.robots import RobotsPolicy
 from app.core.acquisition.seeds import load_seeds, summarise
@@ -44,7 +45,7 @@ async def _run(args: argparse.Namespace) -> int:
     if not seeds:
         print(f"no seeds in {args.seeds}")
         return 1
-    inner = Crawl4AIFetcher(http_only=not args.browser)
+    inner = PdfAwareFetcher(Crawl4AIFetcher(http_only=not args.browser))
     fetcher = PoliteFetcher(inner, RobotsPolicy(USER_AGENT), HostRateLimiter(args.min_interval))
     store, log = SnapshotStore(args.root), JsonlRunLog(args.root)
     print(f"monitoring {len(seeds)} pages [{'browser' if args.browser else 'http-only'}]\n")
