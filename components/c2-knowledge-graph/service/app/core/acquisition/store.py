@@ -4,7 +4,7 @@ Layout under the root directory:
 
     state/<url-hash>.json                latest fingerprint and metadata, used to classify the next run
     archive/<YYYY-MM-DD>/<url-hash>.html raw page, kept for extraction and for audit
-    archive/<YYYY-MM-DD>/<url-hash>.txt  extracted text
+    archive/<YYYY-MM-DD>/<url-hash>.md   extracted text (Markdown)
 
 Nothing here is committed to git: crawls are data, and data stays out of the repository.
 """
@@ -68,4 +68,4 @@ class SnapshotStore:
         day_dir = self.archive_dir / snap.fetched_at[:10]
         day_dir.mkdir(parents=True, exist_ok=True)
         (day_dir / f"{key}.html").write_text(html, encoding="utf-8")
-        (day_dir / f"{key}.txt").write_text(text, encoding="utf-8")
+        (day_dir / f"{key}.md").write_text(text, encoding="utf-8")
