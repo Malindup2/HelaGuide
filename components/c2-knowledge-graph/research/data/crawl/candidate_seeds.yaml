@@ -1,0 +1,180 @@
+# Candidate pages found by --discover. Signals: F=fee D=documents P=prerequisite.
+# Nothing here is monitored. Open a page, and if it states a fee, a document list or a
+# prerequisite, copy it into seed_urls.yaml with its service and agency.
+start: https://www.immigration.gov.lk/pages_e.php?id=8
+candidates:
+- url: https://www.immigration.gov.lk/pages_e.php?id=2
+  label: Department History
+  signals: FDP
+  score: 3
+  chars: 33601
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=4
+  label: Dual Citizenship
+  signals: FDP
+  score: 3
+  chars: 16666
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=60
+  label: Free Visa
+  signals: FDP
+  score: 3
+  chars: 8979
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=18
+  label: Residence Visa
+  signals: FDP
+  score: 3
+  chars: 37160
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=20
+  label: Resident Guest Scheme
+  signals: FDP
+  score: 3
+  chars: 13901
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/index_e.php
+  label: Home
+  signals: FD-
+  score: 2
+  chars: 19306
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=5
+  label: Overseas Birth Registration
+  signals: FD-
+  score: 2
+  chars: 10414
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=7
+  label: General Information
+  signals: -DP
+  score: 2
+  chars: 14417
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=9
+  label: Overseas Applications
+  signals: FD-
+  score: 2
+  chars: 11346
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=10
+  label: Amendments
+  signals: FD-
+  score: 2
+  chars: 8625
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=11
+  label: Passport Support Services
+  signals: FD-
+  score: 2
+  chars: 7603
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=14
+  label: General Information
+  signals: FD-
+  score: 2
+  chars: 14743
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=69
+  label: Permanent Residence Visa
+  signals: FD-
+  score: 2
+  chars: 18981
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=62
+  label: Business Visa
+  signals: -DP
+  score: 2
+  chars: 7792
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=15
+  label: Extension of Tourist Visa
+  signals: FD-
+  score: 2
+  chars: 10897
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=19
+  label: My Dream Home
+  signals: FD-
+  score: 2
+  chars: 11842
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=63
+  label: Transit Visa
+  signals: FD-
+  score: 2
+  chars: 7704
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=1
+  label: Our Vision & Mission
+  signals: -D-
+  score: 1
+  chars: 10445
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=3
+  label: General Information
+  signals: -D-
+  score: 1
+  chars: 8660
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=6
+  label: Special Provisions
+  signals: -D-
+  score: 1
+  chars: 11626
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=33
+  label: Renunciation of Citizenship
+  signals: -D-
+  score: 1
+  chars: 7322
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=12
+  label: Lost / stolen passport
+  signals: -D-
+  score: 1
+  chars: 9919
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/studio_e.php
+  label: Authorized Photo Studios
+  signals: -D-
+  score: 1
+  chars: 6977
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=61
+  label: Tourist Visa
+  signals: -D-
+  score: 1
+  chars: 7901
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+- url: https://www.immigration.gov.lk/pages_e.php?id=58
+  label: Online Tourist Visa Extension
+  signals: -D-
+  score: 1
+  chars: 7305
+  source_type: html
+  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8

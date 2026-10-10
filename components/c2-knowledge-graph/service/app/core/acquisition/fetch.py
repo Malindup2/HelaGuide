@@ -35,6 +35,8 @@ class FetchResult:
     tls_relaxed: bool = False
     duration_ms: int = 0
     fetched_at: str = ""
+    source_type: str = "html"  # "html" or "pdf"
+    content: bytes = b""  # original file bytes, set for PDFs
 
 
 class Fetcher(Protocol):

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <script language="Javascript" src="https://www.bw2021.lk/stats.php?page=2021"/></script>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Registrar General's Department</title>
+      <style type="text/css" media="screen">
+
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  /* background:rgb(255, 255, 255); */
+ background: linear-gradient(135deg, #a8deffc4 0%, #FFFFFF 50%, #EDA757 100%);
+ 
+  margin: 0;
+  padding: 0;
+  color: #333;
+   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rgd-side1::before {
+ content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('images/bg-image.png') no-repeat center bottom / contain;
+  opacity: 0.2;
+  z-index: -1;
+  width: 100%;
+}
+.rgd-container {
+ max-width: 1080px;
+  margin: auto;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  padding: 40px;
+}
+.rgd-side1 {
+  width: 50%;
+}
+.rgd-side2 {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.rgd-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.rgd-logo {
+  width: 95%;
+  height: auto;
+}
+
+.rgd-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.rgd-intro {
+  margin-bottom: 30px;
+     max-width: 500px;
+      text-align: left;
+}
+
+.rgd-intro-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.rgd-intro-desc,
+.rgd-intro-text {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.rgd-language-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.rgd-lang-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2a2e96, #3f4fd2);
+  color: #fff;
+  border-radius: 6px;
+  padding: 15px 25px;
+  flex-wrap: wrap;
+}
+
+.rgd-lang-content {
+  max-width: 75%;
+}
+
+.rgd-lang-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.rgd-lang-description {
+  margin: 5px 0 0;
+  font-size: 14px;
+ 
+}
+
+.rgd-lang-button {
+  background: #fff;
+  color: #2a2e96;
+  padding: 8px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 10px;
+      transition: all 0.2s ; 
+         border: solid 2px white;
+         font-size: 16px !important;
+         width: 60px;
+    text-align: center;
+}
+.rgd-lang-button:hover {
+   background: linear-gradient(135deg, #0180af, #022CA2) !important;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: solid 2px white;
+    color:white;
+
+}
+/* ========== Responsive Media Queries ========== */
+
+@media (max-width: 768px) {
+  .rgd-lang-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rgd-lang-content {
+    max-width: 100%;
+  }
+
+  .rgd-lang-button {
+    align-self: flex-end;
+  }
+
+  .rgd-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rgd-title {
+    font-size: 20px;
+  }
+
+  .rgd-intro-title {
+    font-size: 18px;
+  }
+
+  .rgd-lang-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rgd-container {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .rgd-title {
+    font-size: 18px;
+  }
+
+  .rgd-lang-box {
+    padding: 12px 15px;
+  }
+
+  .rgd-lang-button {
+    padding: 6px 16px;
+    font-size: 14px;
+  }
+}
+
+/* ANIMATIONS */
+
+/* Container fade-in */
+.rgd-container {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Side sliding effect */
+.rgd-side1,
+.rgd-side2 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 1s ease-out forwards;
+}
+
+.rgd-side1 {
+  animation-delay: 0.3s;
+}
+
+.rgd-side2 {
+  animation-delay: 0.6s;
+}
+
+/* Language boxes delay for staggered effect */
+.rgd-lang-box {
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.rgd-lang-box:nth-child(1) { animation-delay: 1s; }
+.rgd-lang-box:nth-child(2) { animation-delay: 1.2s; }
+.rgd-lang-box:nth-child(3) { animation-delay: 1.4s; }
+
+/* Keyframes */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (min-width:320px) and (max-width: 768px) {
+    .rgd-container {
+        padding: 15px;
+        margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    max-width: max-content;
+    width: 100%;
+}
+
+.rgd-side1 {
+    width: 100%;
+}
+
+.rgd-side2 {
+    width: 100%;
+}
+
+body {
+    height: auto;
+    width: auto !important;
+}
+
+body::before{
+    width:100%;
+    position: fixed;
+}
+
+img.rgd-logo {
+    width: 100%;
+}
+
+p.rgd-intro-desc, p.rgd-intro-text  {
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+}
+.rgd-intro {
+    margin-bottom: 0px;
+}
+.rgd-lang-description {
+    margin: 5px 0 0;
+    font-size: 13px;
+}
+}
+
+      </style>
+   </head>
+   <body>
+     <div class="rgd-container">
+       <div class="rgd-side1">
+            <div class="rgd-header">
+               <img src="images/logo-b.png" alt="Registrar General's Logo" class="rgd-logo"/>
+            </div>
+
+            <div class="rgd-intro">
+               <!-- <h2 class="rgd-intro-title">Welcome to the Registrar General’s Department – Sri Lanka</h2> -->
+                <p class="rgd-intro-text" style="text-align: justify;">
+             අපගේ සේවාවන් සහ තොරතුරු පහසුවෙන් ලබා ගැනීමට සිංහල, දෙමළ හෝ ඉංග්‍රීසි භාෂා මාධ්‍යයක් තෝරා ගන්න.</p>
+        
+    <p class="rgd-intro-text" style="font-size:14px;">எமது சேவைகள் மற்றும் தகவல்களை எளிதாக பெற்றுக்கொள்ள சிங்களம், தமிழ் அல்லது ஆங்கில மொழி ஊடகத்தைத் தெரிவு செய்யவும்.</p>
+            
+                <p class="rgd-intro-text" style="text-align: justify;">
+Please select your preferred language Sinhala, Tamil, or English to access our services and information easily.
+               </p>
+               </div>
+  </div>
+  <div class="rgd-side2">
+    <div class="rgd-language-section">
+
+      <div class="rgd-lang-box">
+        <div class="rgd-lang-content">
+          <h3 class="rgd-lang-title">ආයුබෝවන්</h3>
+          <p class="rgd-lang-description">රෙජිස්ට්‍රාර් ජනරාල් දෙපාර්තමේන්තුවේ නිල වෙබ් අඩවිය වෙත පිවිසෙන ඔබ සාදරයෙන් පිලිගනිමු.</p>
+        </div>
+        <a href="./web/index.php?lang=si" class="rgd-lang-button">සිංහල</a>
+      </div>
+
+      <div class="rgd-lang-box">
+        <div class="rgd-lang-content">
+          <h3 class="rgd-lang-title">வணக்கம்</h3>
+          <p class="rgd-lang-description" style="font-size:12px;">பதிவாளர் நாயகம் திணைக்களத்தின் உத்தியோகபூர்வ இணையதளத்திற்கு வருகைதரும் உங்களை அன்புடன் வரவேற்கின்றோம்.
+        </p>
+        </div>
+        <a href="./web/index.php?lang=ta" class="rgd-lang-button">தமிழ்</a>
+      </div>
+
+      <div class="rgd-lang-box">
+        <div class="rgd-lang-content">
+          <h3 class="rgd-lang-title">WELCOME</h3>
+          <p class="rgd-lang-description" >Welcome to the official website of the Registrar General’s Department.</p>
+        </div>
+        <a href="./web/index.php?lang=en" class="rgd-lang-button">English</a>
+      </div>
+
+    </div>
+  </div>
+  </div>
+   </body>
+</html>

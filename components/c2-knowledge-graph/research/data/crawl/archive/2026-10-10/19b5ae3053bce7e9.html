@@ -1,0 +1,215 @@
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/css/bootstrap.min.css">
+
+     <script type="text/javascript">
+    function changelang(lang){
+      
+     location.href=lang+'/home.php';
+
+    }
+  </script>
+  <style>
+  body {
+    background-image: url('bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .logo {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .box {
+    padding: 20px;
+    text-align: center;
+    border: 3px solid #362419;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 350px;
+    height: 200px;
+    margin: 10px;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 29px 0 rgba(68, 88, 144, 0.12);
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    z-index: 1;
+    position: relative;
+  }
+
+  .box::before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(to bottom, grey, white);
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 100%;
+    transition: all 0.3s;
+    z-index: -1;
+  }
+
+  .box:hover::before {
+    top: 0;
+  }
+
+  .box:hover {
+    background-color: transparent;
+  }
+
+  .box button {
+    background:  #362419;
+    color: white;
+    font-size: 20px;
+    border: none;
+    height: 40px;
+  }
+
+  .box h4 {
+    font-weight: 700;
+    margin-bottom: 0px;
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .box p {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  @media screen and (max-width: 576px) {
+    .box {
+      width: 300px;
+      height: 175px;
+      margin: 5px;
+      padding: 15px;
+    }
+
+    .box h4 {
+      font-weight: 700;
+      margin-bottom: 0px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .box p {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .box-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+  }
+
+  @media screen and (min-width: 1468px) {
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin-top: 80px;
+    }
+  }
+
+  @media screen and (min-width: 1700px) {
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin-top: 120px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .box button {
+      background: #362419;
+      color: white;
+      font-size: 18px;
+      border: none;
+      height: 40px;
+    }
+
+    .box h4 {
+      font-weight: 700;
+      margin-bottom: 0px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .box p {
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+</style>
+
+    <title>Department for Registration of Persons</title>
+  </head>
+
+  <body>
+    <div class="logo-container">
+      <img src="logo5.png" alt="drp Logo" class="logo">
+    </div>
+
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="box-container"> 
+            <div class="box">
+              <h4>ආයුබෝවන් </h4>
+              <p>පුද්ගලයන් ලියාපදිංචි කිරීමේ දෙපාර්තමේන්තුව වෙත සාදරයෙන් පිළිගනිමු. </p>
+              <button class="btn btn-primary" id="silang" onclick="changelang('si')"> සිංහල </button>
+            </div>
+            <div class="box">
+              <h4>Welcome </h4>
+              <p> Welcome to The Department for Registration of Persons</p>
+              <button class="btn btn-primary" id="enlang" onclick="changelang('en')">English </button>
+            </div>
+            <div class="box">
+              <h4>வணக்கம்</h4>
+              <p>ஆட்களைப் பதிவு செய்யும் திணைக்களம்.</p>
+              <button class="btn btn-primary" id="talang" onclick="changelang('ta')" >தமிழ்</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+
+  </html>

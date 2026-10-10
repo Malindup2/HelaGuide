@@ -4,7 +4,8 @@ Layout under the root directory:
 
     state/<url-hash>.json                latest fingerprint and metadata, used to classify the next run
     archive/<YYYY-MM-DD>/<url-hash>.html raw page, kept for extraction and for audit
-    archive/<YYYY-MM-DD>/<url-hash>.txt  extracted text
+    archive/<YYYY-MM-DD>/<url-hash>.pdf  original file, for PDF sources (instead of .html)
+    archive/<YYYY-MM-DD>/<url-hash>.md   extracted text (Markdown)
 
 Nothing here is committed to git: crawls are data, and data stays out of the repository.
 """
@@ -37,6 +38,11 @@ class SnapshotStore:
         self.state_dir = self.root / "state"
         self.archive_dir = self.root / "archive"
 
+    @staticmethod
+    def archive_key(url: str, fetched_at: str) -> str:
+        """Where the Markdown of this fetch is archived, relative to the root."""
+        return f"archive/{fetched_at[:10]}/{url_key(url)}.md"
+
     def latest(self, url: str) -> Snapshot | None:
         path = self.state_dir / f"{url_key(url)}.json"
         if not path.exists():
@@ -45,11 +51,13 @@ class SnapshotStore:
         return Snapshot(d["url"], Fingerprint.from_dict(d["fingerprint"]), d["fetched_at"],
                         d.get("status"), bool(d.get("tls_relaxed", False)))
 
-    def save(self, snap: Snapshot, html: str, text: str, archive: bool = True) -> None:
+    def save(self, snap: Snapshot, html: str, text: str, archive: bool = True,
+             pdf: bytes | None = None) -> None:
         """Record the latest fingerprint; archive the raw page only when asked.
 
         An UNCHANGED page updates its state (so freshness is known) but is not archived
-        again: there is nothing new to keep.
+        again: there is nothing new to keep. A PDF is archived as <url-hash>.pdf in place
+        of the .html.
         """
         self.state_dir.mkdir(parents=True, exist_ok=True)
         key = url_key(snap.url)
@@ -67,5 +75,8 @@ class SnapshotStore:
             return
         day_dir = self.archive_dir / snap.fetched_at[:10]
         day_dir.mkdir(parents=True, exist_ok=True)
-        (day_dir / f"{key}.html").write_text(html, encoding="utf-8")
-        (day_dir / f"{key}.txt").write_text(text, encoding="utf-8")
+        if pdf is not None:
+            (day_dir / f"{key}.pdf").write_bytes(pdf)
+        else:
+            (day_dir / f"{key}.html").write_text(html, encoding="utf-8")
+        (day_dir / f"{key}.md").write_text(text, encoding="utf-8")
