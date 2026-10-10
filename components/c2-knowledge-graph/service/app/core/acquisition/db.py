@@ -15,20 +15,28 @@ from app.core.acquisition.monitor import PageResult, RunSummary
 from app.core.acquisition.seeds import Seed
 
 
-def dsn_from_dotenv(path: Path) -> str | None:
-    """Build a host-side DSN from the repo .env (the container DSN points at host 'postgres').
-
-    Postgres is published on POSTGRES_HOST_PORT (5433 on a machine where 5432 is taken).
-    """
+def read_dotenv(path: Path) -> dict[str, str]:
+    """KEY=value lines of a .env file. Empty when the file does not exist."""
     path = Path(path)
-    if not path.exists():
-        return None
     env: dict[str, str] = {}
+    if not path.exists():
+        return env
     for line in path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if line and not line.startswith("#") and "=" in line:
             key, _, value = line.partition("=")
             env[key.strip()] = value.strip()
+    return env
+
+
+def dsn_from_dotenv(path: Path) -> str | None:
+    """Build a host-side DSN from the repo .env (the container DSN points at host 'postgres').
+
+    Postgres is published on POSTGRES_HOST_PORT (5433 on a machine where 5432 is taken).
+    """
+    env = read_dotenv(path)
+    if not env:
+        return None
     try:
         user, password, db = env["POSTGRES_USER"], env["POSTGRES_PASSWORD"], env["POSTGRES_DB"]
     except KeyError:
