@@ -74,11 +74,13 @@ def test_a_pass_is_logged_to_postgres_beside_the_jsonl(dsn, tag, tmp_path):
                        (summary.run_id,)).fetchone()
     assert run[0] == 1 and run[1] == {"NEW": 1} and run[2] == 1
 
-    row = conn.execute("""SELECT r.change_class, r.char_count, p.status, p.service_id
+    row = conn.execute("""SELECT r.change_class, r.char_count, p.status, p.service_id, r.file_path
                           FROM c2.page_results r JOIN c2.pages p USING (page_id)
                           WHERE r.run_id = %s""", (summary.run_id,)).fetchone()
     assert row[0] == "NEW" and row[1] > 0
     assert row[2] == "monitored" and row[3] == "svc:passport"
+    assert row[4].startswith("archive/") and row[4].endswith(".md")
+    assert (tmp_path / row[4]).exists()  # the row really points at the saved file
     assert (tmp_path / "changes.jsonl").exists()  # the file log still works
     pg.close()
 

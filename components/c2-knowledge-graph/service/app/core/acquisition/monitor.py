@@ -35,6 +35,7 @@ class PageResult:
     duration_ms: int = 0
     fetched_at: str = ""
     source_type: str = "html"
+    file_path: str = ""  # archived Markdown for this fetch; empty when nothing was archived
 
     @property
     def needs_extraction(self) -> bool:
@@ -83,6 +84,7 @@ class JsonlRunLog:
             "agency": r.agency, "change": r.kind.value, "status": r.status,
             "tls_relaxed": r.tls_relaxed, "duration_ms": r.duration_ms,
             "source_type": r.source_type,
+            **({"file_path": r.file_path} if r.file_path else {}),
             **({"error": r.error} if r.error else {}), **r.detail,
         })
 
@@ -135,6 +137,8 @@ async def run_pass(
             if cur.char_count < THIN_CONTENT_CHARS:
                 detail["thin_content"] = True
             result = PageResult(kind=verdict.kind, detail=detail, fingerprint=cur, **base)
+            if result.kind is not ChangeKind.UNCHANGED:  # unchanged pages are not archived again
+                result.file_path = store.archive_key(seed.url, result.fetched_at)
 
         log.page(result)  # durable first
         if result.fingerprint is not None:

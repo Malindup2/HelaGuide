@@ -146,12 +146,13 @@ class PgRunLog:
         self.conn.execute(
             """INSERT INTO c2.page_results
                    (run_id, page_id, url, change_class, http_status, source_type, tls_relaxed,
-                    duration_ms, content_hash, structure_hash, char_count, error, detail, fetched_at)
-               VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+                    duration_ms, content_hash, structure_hash, char_count, error, detail, fetched_at,
+                    file_path)
+               VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
             (r.run_id, pid, r.url, r.kind.value, r.status, r.source_type, r.tls_relaxed,
              r.duration_ms, fp.content_hash if fp else None, fp.structure_hash if fp else None,
              fp.char_count if fp else None, r.error or None, json.dumps(r.detail),
-             _ts(r.fetched_at)),
+             _ts(r.fetched_at), r.file_path or None),
         )
 
     def finish(self, s: RunSummary) -> None:

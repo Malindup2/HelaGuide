@@ -70,7 +70,10 @@ CREATE TABLE IF NOT EXISTS c2.page_results (
     char_count     INTEGER,
     error          TEXT,
     detail         JSONB,
-    fetched_at     TIMESTAMPTZ NOT NULL
+    fetched_at     TIMESTAMPTZ NOT NULL,
+    file_path      TEXT                            -- archived Markdown, relative to the crawl root
 );
+-- For databases created before file_path existed.
+ALTER TABLE c2.page_results ADD COLUMN IF NOT EXISTS file_path TEXT;
 CREATE INDEX IF NOT EXISTS page_results_run_idx  ON c2.page_results (run_id);
 CREATE INDEX IF NOT EXISTS page_results_page_idx ON c2.page_results (page_id, fetched_at DESC);
