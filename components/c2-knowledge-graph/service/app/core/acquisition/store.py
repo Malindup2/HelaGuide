@@ -38,6 +38,11 @@ class SnapshotStore:
         self.state_dir = self.root / "state"
         self.archive_dir = self.root / "archive"
 
+    @staticmethod
+    def archive_key(url: str, fetched_at: str) -> str:
+        """Where the Markdown of this fetch is archived, relative to the root."""
+        return f"archive/{fetched_at[:10]}/{url_key(url)}.md"
+
     def latest(self, url: str) -> Snapshot | None:
         path = self.state_dir / f"{url_key(url)}.json"
         if not path.exists():
