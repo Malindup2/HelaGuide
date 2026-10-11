@@ -173,7 +173,8 @@ def _extract(args: argparse.Namespace) -> int:
         print("no LLM_API_KEY: set it in .env (or the environment). Use --show-prompt to "
               "check the input without a model.")
         return 1
-    llm = OpenAICompatClient(key, args.model, args.llm_base_url)
+    llm = OpenAICompatClient(key, args.model, args.llm_base_url,
+                             reasoning_effort=args.reasoning_effort)
     result = extract_page(text, service_id=args.service, agency=args.agency or "",
                           source_url=args.source_url,
                           retrieved_at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -188,7 +189,9 @@ def _extract(args: argparse.Namespace) -> int:
         num = f"  = {f.value_num:g}{unit}" if f.value_num is not None else ""
         print(f"  {f.fact_id:<46} {f.value_text[:50]}{num}")
     for d in result.dropped:
-        print(f"  DROPPED {d['fact_id']}: {d['reason']}")
+        print(f"  DROPPED {d['fact_id']} = {d.get('value', '')[:40]!r}: {d['reason']}")
+        if d.get("evidence"):
+            print(f"          quoted: {d['evidence'][:110]!r}")
     print(f"\n{len(result.facts)} fact(s), {len(result.dropped)} dropped")
 
     if args.dry_run:
@@ -232,6 +235,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--model", default="gpt-4o-mini", help="model name for --extract-file")
     ap.add_argument("--llm-base-url", default="https://api.openai.com/v1",
                     help="OpenAI-compatible endpoint (OpenAI, Groq, Ollama, a gateway)")
+    ap.add_argument("--reasoning-effort", choices=["none", "low", "medium", "high"],
+                    help="how much the model may think first (fewer output tokens when low or none)")
     ap.add_argument("--show-prompt", action="store_true", help="print the extraction input; no model call")
     ap.add_argument("--dry-run", action="store_true", help="extract and print, but do not save")
     args = ap.parse_args(argv)
