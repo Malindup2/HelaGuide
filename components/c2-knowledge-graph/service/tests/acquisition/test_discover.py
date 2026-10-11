@@ -145,3 +145,36 @@ def test_depth_two_follows_one_more_level():
     two = run(discover(START, FakeSite(dict(pages)), depth=2))
     assert len(one) == 1 and len(two) == 2
     assert two[1].discovered_from == child
+
+
+# ================================ lessons from the first real runs on DRP and RGD
+def test_language_folders_and_the_sites_own_gallery_spelling_are_skipped():
+    home = "https://www.drp.gov.lk/en/home.php"
+    for url in ("https://www.drp.gov.lk/si/home.php", "https://www.drp.gov.lk/ta/home.php",
+                "https://www.rgd.gov.lk/web/index.php/si/", "https://www.drp.gov.lk/en/gallary5.php",
+                "https://www.drp.gov.lk/en/testgallary.php"):
+        assert wanted(Link(url), home) is False, url
+    assert wanted(Link("https://www.drp.gov.lk/en/normal.php"), home) is True
+
+
+def test_backslashes_and_spaces_in_a_path_become_a_fetchable_url():
+    links = extract_links(r'<a href="assets\formats\Purawesi Eng.pdf">Charter</a>',
+                          "https://www.drp.gov.lk/en/home.php")
+    assert links[0].url == "https://www.drp.gov.lk/en/assets/formats/Purawesi%20Eng.pdf"
+
+
+def test_a_page_whose_text_repeats_an_earlier_candidate_is_marked_a_duplicate():
+    start = "https://www.rgd.gov.lk/web/index.php?lang=en"
+    html = '<a href="/web/">a</a><a href="/web/index.php/en/">b</a><a href="/web/index.php/en/about">c</a>'
+    same = "Registrar General's Department. Birth certificate fee Rs. 100."
+    site = FakeSite({
+        start: (html, ""),
+        "https://www.rgd.gov.lk/web/": ("<p>x</p>", same),
+        "https://www.rgd.gov.lk/web/index.php/en/": ("<p>x</p>", same),
+        "https://www.rgd.gov.lk/web/index.php/en/about": ("<p>x</p>", "About us"),
+    })
+    found = run(discover(start, site))
+    dup = next(c for c in found if c.duplicate_of)
+    assert dup.url == "https://www.rgd.gov.lk/web/index.php/en/"
+    assert dup.duplicate_of == "https://www.rgd.gov.lk/web/"
+    assert all(c.duplicate_of == "" for c in found if c.url.endswith("/about"))

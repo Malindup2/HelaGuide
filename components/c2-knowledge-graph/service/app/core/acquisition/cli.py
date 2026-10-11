@@ -99,6 +99,7 @@ def _write_candidates(path: Path, start: str, found: list[Candidate]) -> None:
         "url": c.url, "label": c.label, "signals": c.signals.flags, "score": c.signals.score,
         "chars": c.chars, "source_type": c.source_type, "discovered_from": c.discovered_from,
         **({"error": c.error} if c.error else {}),
+        **({"duplicate_of": c.duplicate_of} if c.duplicate_of else {}),
     } for c in sorted(found, key=lambda c: -c.signals.score)]
     header = (
         "# Candidate pages found by --discover. Signals: F=fee D=documents P=prerequisite.\n"
@@ -130,7 +131,8 @@ async def _discover(args: argparse.Namespace) -> int:
 
     for c in found:
         mark = c.signals.flags if c.ok else ("ERR" if not args.no_screen else "...")
-        print(f"  [{mark}] {c.source_type:<4} {c.chars:>6}ch  {c.url}  {c.label[:40]}")
+        dup = f"  (same text as {c.duplicate_of})" if c.duplicate_of else ""
+        print(f"  [{mark}] {c.source_type:<4} {c.chars:>6}ch  {c.url}  {c.label[:40]}{dup}")
         if registry:
             registry.record_candidate(c.url, c.discovered_from, c.source_type,
                                       has_fee=c.signals.has_fee, has_docs=c.signals.has_docs,
