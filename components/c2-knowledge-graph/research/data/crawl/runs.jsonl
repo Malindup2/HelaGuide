@@ -1,0 +1,2 @@
+{"run_id": "f611218d4732", "started_at": "2026-10-10T09:29:47+00:00", "finished_at": "2026-10-10T09:30:02+00:00", "pages": 6, "counts": {"NEW": 4, "UNREACHABLE": 2}, "to_extract": 4}
+{"run_id": "ced1864288e6", "started_at": "2026-10-10T14:59:19+00:00", "finished_at": "2026-10-10T14:59:37+00:00", "pages": 6, "counts": {"UNCHANGED": 4, "UNREACHABLE": 2}, "to_extract": 0}
