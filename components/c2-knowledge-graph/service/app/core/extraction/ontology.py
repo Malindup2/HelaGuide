@@ -10,7 +10,9 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
-from pydantic import BaseModel, Field
+from typing import Annotated
+
+from pydantic import BaseModel, BeforeValidator, Field
 
 PREDICATES = ("fee", "document", "agency", "prerequisite", "processing_time", "eligibility")
 SERVICE_ID = re.compile(r"^svc:[a-z0-9_]+$")
@@ -18,38 +20,47 @@ FACT_ID = re.compile(r"^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$")
 
 
 # ------------------------------------------------------- what the model is asked to return
+# A model that thinks less sometimes sends null for a label or a quote. That is a missing
+# label, not a broken item: it becomes "" and is handled (a quote of "" is never grounded).
+Text = Annotated[str, BeforeValidator(lambda v: "" if v is None else v)]
+
+
 VARIANT_HELP = ("Which case of the service this applies to, such as ordinary, minor, lost, "
                 "replacement, diplomatic. Null when it applies to every case.")
 
 
 class FeeItem(BaseModel):
-    qualifier: str = Field(description="Short label for which fee this is, such as normal or urgent")
+    qualifier: Text = Field("", description="Short label for which fee this is, such as normal or urgent")
     variant: str | None = Field(None, description=VARIANT_HELP)
+    condition: str | None = Field(None, description="What distinguishes this amount from the same fee "
+                                 "in another situation: a validity period ('3 years'), a time window "
+                                 "('within one year of issue'). Null when there is none.")
     kind: str = Field("base", description="'base' for the fee itself, 'surcharge' for an amount "
                                           "added to another fee ('in addition to the passport fee')")
     amount_text: str = Field(description="The fee exactly as written on the page, with currency")
-    evidence: str = Field(description="The sentence or line from the page that states it, copied verbatim")
+    evidence: Text = Field("", description="The sentence or line from the page that states it, copied verbatim")
 
 
 class DocumentItem(BaseModel):
     name: str = Field(description="The document the citizen must bring, as written")
     variant: str | None = Field(None, description=VARIANT_HELP)
     condition: str | None = Field(None, description="When it is needed, if the page limits it")
-    evidence: str
+    evidence: Text = ""
 
 
 class PrerequisiteItem(BaseModel):
     description: str = Field(description="A service or step that must be completed FIRST")
     variant: str | None = Field(None, description=VARIANT_HELP)
     provided_by: str | None = Field(None, description="Agency that provides it, if named")
-    evidence: str
+    evidence: Text = ""
 
 
 class TimeItem(BaseModel):
-    qualifier: str
+    qualifier: Text = ""
     variant: str | None = Field(None, description=VARIANT_HELP)
+    condition: str | None = Field(None, description="A validity period or time window that distinguishes it")
     text: str = Field(description="The processing or delivery time as written")
-    evidence: str
+    evidence: Text = ""
 
 
 class PageExtraction(BaseModel):
