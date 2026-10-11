@@ -18,26 +18,36 @@ FACT_ID = re.compile(r"^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$")
 
 
 # ------------------------------------------------------- what the model is asked to return
+VARIANT_HELP = ("Which case of the service this applies to, such as ordinary, minor, lost, "
+                "replacement, diplomatic. Null when it applies to every case.")
+
+
 class FeeItem(BaseModel):
-    qualifier: str = Field(description="Short label for which fee this is, e.g. normal, urgent, minor_normal")
+    qualifier: str = Field(description="Short label for which fee this is, such as normal or urgent")
+    variant: str | None = Field(None, description=VARIANT_HELP)
+    kind: str = Field("base", description="'base' for the fee itself, 'surcharge' for an amount "
+                                          "added to another fee ('in addition to the passport fee')")
     amount_text: str = Field(description="The fee exactly as written on the page, with currency")
     evidence: str = Field(description="The sentence or line from the page that states it, copied verbatim")
 
 
 class DocumentItem(BaseModel):
     name: str = Field(description="The document the citizen must bring, as written")
+    variant: str | None = Field(None, description=VARIANT_HELP)
     condition: str | None = Field(None, description="When it is needed, if the page limits it")
     evidence: str
 
 
 class PrerequisiteItem(BaseModel):
     description: str = Field(description="A service or step that must be completed FIRST")
+    variant: str | None = Field(None, description=VARIANT_HELP)
     provided_by: str | None = Field(None, description="Agency that provides it, if named")
     evidence: str
 
 
 class TimeItem(BaseModel):
     qualifier: str
+    variant: str | None = Field(None, description=VARIANT_HELP)
     text: str = Field(description="The processing or delivery time as written")
     evidence: str
 
