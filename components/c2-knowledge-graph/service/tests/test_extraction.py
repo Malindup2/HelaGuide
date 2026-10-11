@@ -372,3 +372,174 @@ def test_ids_do_not_depend_on_how_the_model_words_a_label():
     ids_a = {f.fact_id for f in run_variants(a).facts}
     ids_b = {f.fact_id for f in run_variants(b).facts}
     assert ids_a == ids_b
+
+
+# ============================== conditions: validity periods and time windows (real page)
+from app.core.extraction.vocabulary import canonical_condition  # noqa: E402
+
+CONDITION_PAGE = """
+What are the processing fees for All-Countries Passport (below 16 years of age) ?
+Validity period for 3 years
+Normal Basis - LKR. 3,000.00
+Urgent Basis - LKR. 9,000.00
+Validity period for 10 years
+Normal Basis - LKR. 10,000.00
+Urgent Basis - LKR. 20,000.00
+Passports lost within one year of issue - A fine of Rs. 20,000 in addition to the passport fee.
+Passports lost after one year of issue - A fine of Rs. 15,000 in addition to the passport fee.
+"""
+
+
+def fee(q, variant, cond, amount, evidence, kind="base"):
+    return {"qualifier": q, "variant": variant, "condition": cond, "kind": kind,
+            "amount_text": amount, "evidence": evidence}
+
+
+def condition_payload():
+    minor = "All-Countries Passport (below 16 years of age)"
+    return {"fees": [
+        fee("Normal Basis", minor, "Validity period for 3 years", "LKR. 3,000.00",
+            "Normal Basis - LKR. 3,000.00"),
+        fee("Urgent Basis", minor, "Validity period for 3 years", "LKR. 9,000.00",
+            "Urgent Basis - LKR. 9,000.00"),
+        fee("Normal Basis", minor, "Validity period for 10 years", "LKR. 10,000.00",
+            "Normal Basis - LKR. 10,000.00"),
+        fee("Urgent Basis", minor, "Validity period for 10 years", "LKR. 20,000.00",
+            "Urgent Basis - LKR. 20,000.00"),
+        fee("fine", "lost passport", "within one year of issue", "Rs. 20,000",
+            "Passports lost within one year of issue - A fine of Rs. 20,000 in addition to the passport fee.",
+            "surcharge"),
+        fee("fine", "lost passport", "after one year of issue", "Rs. 15,000",
+            "Passports lost after one year of issue - A fine of Rs. 15,000 in addition to the passport fee.",
+            "surcharge"),
+    ]}
+
+
+@pytest.mark.parametrize("label,expected", [
+    ("Validity period for 3 years", "3y"),
+    ("Validity period for 10 years", "10y"),
+    ("Passports lost within one year of issue", "within_1y"),
+    ("lost after one year of issue", "after_1y"),
+    ("valid for six months", "6m"),
+    (None, None),
+])
+def test_conditions_become_short_stable_tokens(label, expected):
+    assert canonical_condition(label) == expected
+
+
+def test_page_wording_for_minors_and_all_countries_maps_to_known_variants():
+    assert canonical_variant("All-Countries Passport (below 16 years of age)") == "minor"
+    assert canonical_variant("All-Countries Passport") == "ordinary"
+
+
+def test_fees_that_differ_only_by_validity_or_window_are_all_kept():
+    r = run(FakeLLM(condition_payload()), text=CONDITION_PAGE)
+    ids = {f.fact_id: f for f in r.facts if f.predicate == "fee"}
+    assert ids["svc:passport:fee:minor_normal_3y"].value_num == 3000.0
+    assert ids["svc:passport:fee:minor_normal_10y"].value_num == 10000.0
+    assert ids["svc:passport:fee:minor_urgent_3y"].value_num == 9000.0
+    assert ids["svc:passport:fee:minor_urgent_10y"].value_num == 20000.0
+    assert ids["svc:passport:fee:lost_fine_within_1y"].value_num == 20000.0
+    assert ids["svc:passport:fee:lost_fine_after_1y"].value_num == 15000.0
+    assert not any("already holds" in d["reason"] for d in r.dropped)
+
+
+def test_unlisted_ordination_and_authorisation_documents_are_canonical():
+    assert canonical_document("Samanera certificate or Higher Ordination certificate").key == "ordination_certificate"
+    assert canonical_document("acceptable authorization letter given by the parents").key == "authorization_letter"
+    assert canonical_document("A letter from the Commissioner of Probation").key == "probation_commissioner_letter"
+
+
+# ================================= tolerance: one bad item must not cost the page
+def test_a_malformed_item_is_dropped_and_the_rest_of_the_page_is_kept():
+    p = good_payload()
+    p["fees"].insert(1, {"qualifier": "urgent", "amount_text": None, "evidence": "x"})  # no amount
+    p["documents"].append("not an object at all")
+    r = run(FakeLLM(p))
+    assert r.error == ""
+    ids = {f.fact_id for f in r.facts}
+    assert "svc:passport:fee:normal" in ids and "svc:passport:fee:urgent" in ids
+    reasons = " ".join(d["reason"] for d in r.dropped)
+    assert "did not match the schema" in reasons and "fees[1]" in str(r.dropped)
+
+
+def test_a_missing_or_null_label_does_not_invalidate_the_item():
+    p = good_payload()
+    p["fees"][0]["qualifier"] = None
+    p["fees"][0].pop("variant", None)
+    r = run(FakeLLM({"fees": [{"qualifier": None, "amount_text": "LKR. 10,000.00",
+                               "evidence": "Normal Basis - LKR. 10,000.00"}]}))
+    assert [f.fact_id for f in r.facts if f.predicate == "fee"] == ["svc:passport:fee:standard"]
+
+
+def test_a_non_object_reply_is_an_error():
+    r = run(FakeLLM(text="[1, 2, 3]"))
+    assert r.facts == [] and "schema" in r.error
+
+
+# ================================================ the client waits out a provider spike
+def test_client_retries_a_busy_provider_then_succeeds(monkeypatch):
+    import httpx
+
+    from app.core.extraction import llm as llm_mod
+
+    calls, sleeps = [], []
+
+    def fake_post(url, **kw):
+        calls.append(url)
+        if len(calls) < 3:
+            return httpx.Response(503, text="high demand", request=httpx.Request("POST", url))
+        return httpx.Response(200, request=httpx.Request("POST", url), json={
+            "choices": [{"message": {"content": "{}"}}],
+            "usage": {"prompt_tokens": 5, "completion_tokens": 2}, "model": "m"})
+
+    monkeypatch.setattr(llm_mod.httpx, "post", fake_post)
+    monkeypatch.setattr(llm_mod.time, "sleep", lambda s: sleeps.append(s))
+    reply = llm_mod.OpenAICompatClient("k", "m", "https://x.test/v1").complete("s", "u")
+    assert reply.text == "{}" and len(calls) == 3
+    assert sleeps == [5, 15]  # long enough to outlast a spike, not a one-second blip
+
+
+def test_client_does_not_retry_a_bad_key(monkeypatch):
+    import httpx
+
+    from app.core.extraction import llm as llm_mod
+
+    calls = []
+
+    def fake_post(url, **kw):
+        calls.append(url)
+        return httpx.Response(401, text="bad key", request=httpx.Request("POST", url))
+
+    monkeypatch.setattr(llm_mod.httpx, "post", fake_post)
+    monkeypatch.setattr(llm_mod.time, "sleep", lambda s: None)
+    with pytest.raises(LLMError, match="401"):
+        llm_mod.OpenAICompatClient("k", "m", "https://x.test/v1").complete("s", "u")
+    assert len(calls) == 1
+
+
+# ==================== the same item gets the same id whether or not the model labels it
+def test_variant_is_read_from_the_quote_when_the_model_leaves_it_empty():
+    quote = "Passports lost after one year of issue - A fine of Rs. 15,000 in addition to the passport fee."
+    labelled = {"fees": [fee("fine", "lost passport", "after one year of issue", "Rs. 15,000", quote,
+                              "surcharge")]}
+    unlabelled = {"fees": [fee("fine", None, "after one year of issue", "Rs. 15,000", quote,
+                                "surcharge")]}
+    a = run(FakeLLM(labelled), text=CONDITION_PAGE)
+    b = run(FakeLLM(unlabelled), text=CONDITION_PAGE)
+    ids_a = [f.fact_id for f in a.facts if f.predicate == "fee"]
+    ids_b = [f.fact_id for f in b.facts if f.predicate == "fee"]
+    assert ids_a == ids_b == ["svc:passport:fee:lost_fine_after_1y"]
+
+
+def test_an_unlabelled_plain_fee_is_not_given_an_invented_variant():
+    quote = "Normal Basis - LKR. 3,000.00"
+    r = run(FakeLLM({"fees": [fee("Normal Basis", None, None, "LKR. 3,000.00", quote)]}),
+            text=CONDITION_PAGE)
+    assert [f.fact_id for f in r.facts if f.predicate == "fee"] == ["svc:passport:fee:normal"]
+
+
+def test_a_dropped_item_keeps_the_quote_the_model_gave():
+    r = run(FakeLLM({"fees": [fee("normal", None, None, "LKR 1", "Express Basis - LKR 1")]}),
+            text=CONDITION_PAGE)
+    assert r.dropped and r.dropped[0]["evidence"] == "Express Basis - LKR 1"

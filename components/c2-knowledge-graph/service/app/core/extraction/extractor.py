@@ -20,15 +20,21 @@ from app.core.acquisition.discover import strip_menus
 from app.core.extraction.llm import LLM, LLMError
 from app.core.extraction.ontology import (
     SERVICE_ID,
+    DocumentItem,
+    FeeItem,
     PageExtraction,
+    PrerequisiteItem,
     StagedFact,
+    TimeItem,
     is_grounded,
     parse_amount,
 )
 from app.core.extraction.vocabulary import (
+    canonical_condition,
     canonical_document,
     canonical_qualifier,
     canonical_variant,
+    known_variant,
 )
 
 # Characters of page text sent to the model. Pages seen so far are about 18k including the
@@ -40,10 +46,10 @@ SYSTEM = """You extract facts about ONE Sri Lankan government service from a web
 Return a single JSON object with exactly these keys:
   agency            string or null
   agency_evidence   string or null
-  fees              list of {qualifier, variant, kind, amount_text, evidence}
+  fees              list of {qualifier, variant, condition, kind, amount_text, evidence}
   documents         list of {name, variant, condition, evidence}
   prerequisites     list of {description, variant, provided_by, evidence}
-  processing_times  list of {qualifier, variant, text, evidence}
+  processing_times  list of {qualifier, variant, condition, text, evidence}
   eligibility       string or null
   eligibility_evidence string or null
 
@@ -58,11 +64,16 @@ Rules:
   belongs to, using the same label every time for the same case. Use null only when the item
   applies to every case.
 - qualifier is a short label for which amount this is, such as normal or urgent.
+- condition separates amounts that differ only by a validity period or a time window, for
+  example "3 years" and "10 years", or "within one year of issue" and "after one year".
+  Give every such amount its own item with its own condition; never merge them.
 - kind is "surcharge" when the page says an amount is added to another fee ("in addition
   to"), otherwise "base".
 - prerequisites are services or steps that must be COMPLETED FIRST, before this one can
   begin (for example "obtain a police report before applying"). Required documents are NOT
   prerequisites; put them in documents.
+- Who must apply, sign or consent (for example "both parents or the legal guardian") is
+  eligibility, not a prerequisite.
 - If the page does not describe the requested service, return empty lists.
 """
 
@@ -76,6 +87,52 @@ class ExtractionResult:
     model: str = ""
     truncated: bool = False
     error: str = ""
+
+
+_LISTS = {"fees": FeeItem, "documents": DocumentItem, "prerequisites": PrerequisiteItem,
+          "processing_times": TimeItem}
+
+
+def parse_extraction(raw) -> tuple[PageExtraction, list[dict]]:
+    """Read the model's JSON item by item. A malformed item is dropped and reported; the
+    rest of the page is kept. Models that think less make more small slips of this kind."""
+    if not isinstance(raw, dict):
+        raise ValueError("model output is not a JSON object")
+    problems: list[dict] = []
+    clean: dict = {}
+    for key in ("agency", "agency_evidence", "eligibility", "eligibility_evidence"):
+        v = raw.get(key)
+        clean[key] = v.strip() if isinstance(v, str) and v.strip() else None
+    for key, model in _LISTS.items():
+        value = raw.get(key) or []
+        if not isinstance(value, list):
+            problems.append({"fact_id": key, "value": str(value)[:60],
+                             "reason": "expected a list from the model"})
+            value = []
+        items = []
+        for i, item in enumerate(value):
+            try:
+                items.append(model.model_validate(item))
+            except ValidationError as e:
+                err = e.errors()[0]
+                where = ".".join(str(p) for p in err["loc"])
+                problems.append({"fact_id": f"{key}[{i}]", "value": str(item)[:60],
+                                 "reason": f"item did not match the schema: {where}: {err['msg']}"})
+        clean[key] = items
+    return PageExtraction(**clean), problems
+
+
+def _variant(label: str | None, *fallbacks: str | None) -> str | None:
+    """The model's variant, or one the quote itself names. Without this, an item the model
+    left unlabelled gets a different fact_id from the same item on another run."""
+    found = canonical_variant(label)
+    if found:
+        return found
+    for text in fallbacks:
+        found = known_variant(text)
+        if found:
+            return found
+    return None
 
 
 def _join(*parts: str | None) -> str:
@@ -96,7 +153,8 @@ def build_facts(data: PageExtraction, page_text: str, service_id: str, source_ur
     def grounded(fact_id: str, value: str, evidence: str) -> bool:
         if is_grounded(evidence, page_text):
             return True
-        dropped.append({"fact_id": fact_id, "value": value, "reason": "evidence is not on the page"})
+        dropped.append({"fact_id": fact_id, "value": value, "evidence": evidence,
+                        "reason": "evidence is not on the page"})
         return False
 
     if data.agency and grounded(f"{service_id}:agency", data.agency, data.agency_evidence or ""):
@@ -104,21 +162,25 @@ def build_facts(data: PageExtraction, page_text: str, service_id: str, source_ur
 
     for f in data.fees:
         num, unit = parse_amount(f.amount_text)
-        variant = canonical_variant(f.variant)
-        q = _join(variant, canonical_qualifier(f.qualifier))
+        variant = _variant(f.variant, f.qualifier, f.evidence)
+        condition = canonical_condition(f.condition)
+        q = _join(variant, canonical_qualifier(f.qualifier), condition)
         detail = {"kind": "surcharge" if f.kind == "surcharge" else "base"}
         if variant:
             detail["variant"] = variant
+        if condition:
+            detail["condition"] = f.condition
         if grounded(f"{service_id}:fee:{q}", f.amount_text, f.evidence):
             facts.append(make("fee", q, f.amount_text, f.evidence, value_num=num, unit=unit,
                               detail=detail))
 
     for t in data.processing_times:
-        variant = canonical_variant(t.variant)
-        q = _join(variant, canonical_qualifier(t.qualifier))
+        variant = _variant(t.variant, t.qualifier, t.evidence)
+        condition = canonical_condition(t.condition)
+        q = _join(variant, canonical_qualifier(t.qualifier), condition)
+        detail = {k: v for k, v in (("variant", variant), ("condition", t.condition)) if v}
         if grounded(f"{service_id}:processing_time:{q}", t.text, t.evidence):
-            facts.append(make("processing_time", q, t.text, t.evidence,
-                              detail={"variant": variant} if variant else {}))
+            facts.append(make("processing_time", q, t.text, t.evidence, detail=detail))
 
     # A document named on several cases of the page is ONE fact that lists the cases it
     # applies to, so the same paper is not stored once per case.
@@ -207,10 +269,11 @@ def extract_page(text: str, *, service_id: str, agency: str, source_url: str,
     result.model = reply.model
 
     try:
-        data = PageExtraction.model_validate(json.loads(reply.text))
-    except (json.JSONDecodeError, ValidationError) as e:
-        result.error = f"model output did not match the schema: {type(e).__name__}"
+        data, malformed = parse_extraction(json.loads(reply.text))
+    except (json.JSONDecodeError, ValueError) as e:
+        result.error = f"model output did not match the schema: {type(e).__name__}: {str(e)[:120]}"
         return result
 
     result.facts, result.dropped = build_facts(data, body, service_id, source_url, retrieved_at)
+    result.dropped = malformed + result.dropped
     return result

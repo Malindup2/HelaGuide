@@ -49,6 +49,12 @@ _DOCUMENTS: tuple[tuple[str, Canonical], ...] = (
     ("court order", Canonical("court_order")),
     ("affidavit", Canonical("affidavit")),
     ("grama niladhari", Canonical("grama_niladhari_letter")),
+    ("ordination certificate", Canonical("ordination_certificate")),
+    ("samanera certificate", Canonical("ordination_certificate")),
+    ("commissioner of probation", Canonical("probation_commissioner_letter")),
+    ("authorization letter", Canonical("authorization_letter")),
+    ("authorisation letter", Canonical("authorization_letter")),
+    ("temporary travel document", Canonical("temporary_travel_document")),
     ("passport", Canonical("passport", "svc:passport")),
 )
 
@@ -59,6 +65,7 @@ _VARIANTS: tuple[tuple[str, str], ...] = (
     ("minor", "minor"),
     ("underage", "minor"),
     ("child", "minor"),
+    ("below", "minor"),  # "below 16 years of age" is how the pages say minor
     ("lost", "lost"),
     ("stolen", "lost"),
     ("replacement", "replacement"),
@@ -66,6 +73,7 @@ _VARIANTS: tuple[tuple[str, str], ...] = (
     ("identification", "identification_certificate"),
     ("dual", "dual_citizen"),
     ("ordinary", "ordinary"),
+    ("all_countries", "ordinary"),  # "valid for all countries" is the ordinary passport
 )
 _NO_VARIANT = {"", "all", "general", "any", "none", "standard", "common"}
 
@@ -79,14 +87,20 @@ def canonical_document(name: str) -> Canonical:
     return Canonical(slug(" ".join(normalise_for_match(name).split()[:5]), 40) or "other")
 
 
+def known_variant(text: str | None) -> str | None:
+    """A variant only if the text names one we know. Safe to run over a whole quote."""
+    s = slug(text or "", 200)
+    for needle, variant in _VARIANTS:
+        if needle in s:
+            return variant
+    return None
+
+
 def canonical_variant(label: str | None) -> str | None:
     s = slug(label or "", 60)
     if s in _NO_VARIANT:
         return None
-    for needle, variant in _VARIANTS:
-        if needle in s:
-            return variant
-    return slug(s.replace("_", " "), 30) or None
+    return known_variant(s) or slug(s.replace("_", " "), 30) or None
 
 
 def canonical_qualifier(label: str | None) -> str:
@@ -98,3 +112,26 @@ def canonical_qualifier(label: str | None) -> str:
         return "normal"
     s = re.sub(r"_(basis|fee|fees|charge|charges)$", "", s)
     return slug(s.replace("_", " "), 30) or "standard"
+
+
+_WORD_NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7,
+                 "eight": 8, "nine": 9, "ten": 10, "twelve": 12}
+_AMOUNT_UNIT = re.compile(
+    r"(?P<n>\d+|" + "|".join(_WORD_NUMBERS) + r")\s*(?P<u>year|month|day|week)s?")
+
+
+def canonical_condition(label: str | None) -> str | None:
+    """'Validity period for 3 years' -> '3y'; 'within one year of issue' -> 'within_1y'."""
+    text = normalise_for_match(label or "")
+    if not text or text in _NO_VARIANT:
+        return None
+    m = _AMOUNT_UNIT.search(text)
+    if m:
+        n = m.group("n")
+        span = f"{_WORD_NUMBERS.get(n, n)}{m.group('u')[0]}"
+        if re.search(r"\b(within|before|less than|under)\b", text):
+            return f"within_{span}"
+        if re.search(r"\b(after|more than|over|beyond)\b", text):
+            return f"after_{span}"
+        return span
+    return slug(" ".join(text.split()[:3]), 30) or None
