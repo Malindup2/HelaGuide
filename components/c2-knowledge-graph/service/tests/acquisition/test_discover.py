@@ -178,3 +178,35 @@ def test_a_page_whose_text_repeats_an_earlier_candidate_is_marked_a_duplicate():
     assert dup.url == "https://www.rgd.gov.lk/web/index.php/en/"
     assert dup.duplicate_of == "https://www.rgd.gov.lk/web/"
     assert all(c.duplicate_of == "" for c in found if c.url.endswith("/about"))
+
+
+def test_a_page_that_is_already_a_seed_still_has_its_links_read():
+    seed = "https://www.immigration.gov.lk/pages_e.php?id=7"
+    form = "https://www.immigration.gov.lk/assets/fees.pdf"
+    pages = {
+        START: ('<a href="pages_e.php?id=7">Passport</a>', ""),
+        seed: (f'<a href="{form}">Fees</a>', "Passport information"),
+        form: ("", "Fee LKR 1,000"),
+    }
+    found = run(discover(START, FakeSite(dict(pages)), depth=2, known={seed}))
+    assert [c.url for c in found] == [form]          # the seed itself is not a new candidate
+    assert found[0].discovered_from == seed          # but its links were followed
+
+
+def test_same_site_http_links_are_followed_over_https():
+    from app.core.acquisition.discover import _upgrade_scheme
+
+    page = "https://www.immigration.gov.lk/index_e.php"
+    got = _upgrade_scheme([Link("http://www.immigration.gov.lk/pages_e.php?id=38", "Appointment"),
+                           Link("https://www.immigration.gov.lk/pages_e.php?id=38", "Appointment"),
+                           Link("http://other.gov.lk/x", "elsewhere")], page)
+    assert [l.url for l in got] == ["https://www.immigration.gov.lk/pages_e.php?id=38",
+                                    "http://other.gov.lk/x"]
+
+
+@pytest.mark.parametrize("url,keep", [
+    ("https://www.rgd.gov.lk/web/index.php/en/faqs", True),
+    ("https://www.rgd.gov.lk/web/index.php/en/department-report/web/web/web/index.php?lang=en", False),
+])
+def test_a_repeating_path_is_a_crawler_trap(url, keep):
+    assert wanted(Link(url, ""), "https://www.rgd.gov.lk/web/index.php/en/") is keep

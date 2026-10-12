@@ -29,6 +29,9 @@ SKIP_PATTERNS = (
     re.compile(r"(?i)gall?[ae]ry|imagegal|videogal|photo_?gal"),
     re.compile(r"(?i)vacanc|tender|procure|recruit|circular|result"),
     re.compile(r"(?i)facebook\.|twitter\.|youtube\.|instagram\.|linkedin\."),
+    # a path that repeats a folder (/web/web/web/...) is a relative link the site keeps
+    # extending, a crawler trap, not a page
+    re.compile(r"(?i)/([^/?#]+)/\1(/|$|\?)"),
 )
 
 # A page is worth monitoring if it states at least one of these (ported from the research
@@ -121,6 +124,23 @@ def extract_links(html: str, base_url: str) -> list[Link]:
     return out
 
 
+def _upgrade_scheme(links: list[Link], page_url: str) -> list[Link]:
+    """A page served over https often links to its own pages with http://. The site answers on
+    https, and its robots.txt is read there, so use that. Other hosts are left alone."""
+    if urlparse(page_url).scheme != "https":
+        return links
+    host = _site(urlparse(page_url).hostname)
+    out, seen = [], set()
+    for l in links:
+        u = l.url
+        if u.startswith("http://") and _site(urlparse(u).hostname) == host:
+            u = "https://" + u[len("http://"):]
+        if u not in seen:
+            seen.add(u)
+            out.append(Link(u, l.text))
+    return out
+
+
 def _site(host: str | None) -> str:
     host = (host or "").lower()
     return host[4:] if host.startswith("www.") else host
@@ -176,6 +196,7 @@ async def discover(
     """
     known = set(known or ())
     seen = {start_url} | known
+    expanded: set[str] = set()  # known pages whose links have been read
     found: list[Candidate] = []
     queue: deque[tuple[str, int]] = deque([(start_url, 0)])
     fetched: dict[str, object] = {}  # one request per URL within a discovery call
@@ -192,7 +213,14 @@ async def discover(
             if level == 0:
                 raise RuntimeError(f"could not fetch the start page: {page.error}")
             continue
-        for link in extract_links(page.html, page_url):
+        for link in _upgrade_scheme(extract_links(page.html, page_url), page_url):
+            if link.url in known and link.url not in expanded and wanted(link, page_url, extra_skip):
+                # Already a seed, so not a new candidate, but its own links still have to be
+                # read: the main service pages are exactly the ones that link to the forms.
+                expanded.add(link.url)
+                if level + 1 < depth and not is_pdf_url(link.url):
+                    queue.append((link.url, level + 1))
+                continue
             if link.url in seen or not wanted(link, page_url, extra_skip):
                 continue
             seen.add(link.url)
