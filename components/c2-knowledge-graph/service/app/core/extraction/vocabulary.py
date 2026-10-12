@@ -69,6 +69,10 @@ _VARIANTS: tuple[tuple[str, str], ...] = (
     ("lost", "lost"),
     ("stolen", "lost"),
     ("replacement", "replacement"),
+    ("first_time", "first_issue"),
+    ("first_issue", "first_issue"),
+    ("amend", "amended"),
+    ("correction", "amended"),
     ("damaged", "replacement"),
     ("identification", "identification_certificate"),
     ("dual", "dual_citizen"),
@@ -106,6 +110,8 @@ def canonical_variant(label: str | None) -> str | None:
 def canonical_qualifier(label: str | None) -> str:
     """Fee and time labels: normal, urgent, or the page's own short word."""
     s = slug(label or "", 60)
+    if "one_day" in s or "oneday" in s:
+        return "one_day"  # a service mode of its own, not the same as urgent
     if "urgent" in s or "same_day" in s or "express" in s:
         return "urgent"
     if "normal" in s:
@@ -128,10 +134,21 @@ def canonical_condition(label: str | None) -> str | None:
     m = _AMOUNT_UNIT.search(text)
     if m:
         n = m.group("n")
-        span = f"{_WORD_NUMBERS.get(n, n)}{m.group('u')[0]}"
+        n = str(_WORD_NUMBERS.get(n, int(n) if n.isdigit() else n))  # "06" and "6" are one number
+        span = f"{n}{m.group('u')[0]}"
+        # "has exceeded 06 months" and "does not obtain within six months" both mean: late.
+        late = re.search(r"\b(exceed\w*|after|more than|over|beyond|late|fail\w*)\b", text) or \
+            re.search(r"\b(not|never|without)\b.*\b(within|before)\b", text)
+        if late:
+            return f"after_{span}"
         if re.search(r"\b(within|before|less than|under)\b", text):
             return f"within_{span}"
-        if re.search(r"\b(after|more than|over|beyond)\b", text):
-            return f"after_{span}"
         return span
+    # Why a penalty is charged: a few reasons recur across agencies.
+    if re.search(r"\b(failure|fail\w*|not obtain\w*|did not apply|late|prescribed time)\b", text):
+        return "late_application"
+    if re.search(r"\b(false|forged|fake|incorrect|misleading)\b", text):
+        return "false_information"
+    if re.search(r"\b(two occasions|twice|repeated|second time|more than once)\b", text):
+        return "repeat_submission"
     return slug(" ".join(text.split()[:3]), 30) or None

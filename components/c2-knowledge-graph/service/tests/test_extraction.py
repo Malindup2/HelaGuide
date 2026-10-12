@@ -543,3 +543,247 @@ def test_a_dropped_item_keeps_the_quote_the_model_gave():
     r = run(FakeLLM({"fees": [fee("normal", None, None, "LKR 1", "Express Basis - LKR 1")]}),
             text=CONDITION_PAGE)
     assert r.dropped and r.dropped[0]["evidence"] == "Express Basis - LKR 1"
+
+
+# ===== a real sentence run on into the next line is still grounded; an invention is not
+REAL_PAGE = """
+  * Passports lost within one year of issue - A fine of Rs. 20,000 in addition to the passport fee.
+  * Passports lost after one year of issue - A fine of Rs. 15,000 in addition to the passport fee.
+(This fine is charged only if the relevant validity period of the passport has not lapsed.)
+These passports are valid for all countries and the validity period is 10 years unless otherwise specified in the passport. This passport is issued to VVIPs.
+"""
+
+
+def test_a_quote_that_runs_on_past_a_real_sentence_is_grounded_by_that_sentence():
+    quote = ("Passports lost within one year of issue - A fine of Rs. 20,000 in addition to the "
+             "passport fee. This fine is charged only if the validity period has not lapsed.")
+    assert is_grounded(quote, REAL_PAGE, value="Rs. 20,000")
+
+
+def test_the_real_sentence_must_actually_hold_the_value():
+    quote = "Passports lost within one year of issue - A fine of Rs. 20,000 in addition to the passport fee."
+    assert not is_grounded(quote, REAL_PAGE, value="Rs. 25,000")  # a number the sentence lacks
+
+
+def test_an_invented_sentence_is_never_grounded_even_with_a_matching_value():
+    quote = "Passports lost within two years of issue - A fine of Rs. 20,000 in addition to the passport fee."
+    assert not is_grounded(quote, REAL_PAGE, value="Rs. 20,000")
+
+
+def test_without_a_value_only_the_whole_quote_counts():
+    quote = "Passports lost within one year of issue - A fine of Rs. 20,000 in addition to the passport fee. Extra tail."
+    assert not is_grounded(quote, REAL_PAGE)
+
+
+def test_extraction_keeps_a_real_fee_whose_quote_ran_into_the_next_line():
+    quote = ("Passports lost within one year of issue - A fine of Rs. 20,000 in addition to the "
+             "passport fee. This fine is charged only if it has not lapsed.")
+    p = {"fees": [fee("fine", "lost passport", "within one year of issue", "Rs. 20,000", quote,
+                      "surcharge")]}
+    r = run(FakeLLM(p), text=REAL_PAGE)
+    assert [f.fact_id for f in r.facts] == ["svc:passport:fee:lost_fine_within_1y"]
+    assert r.dropped == []
+
+
+# ================= lessons from the NIC page: table rows, short values, self-links
+NIC_PAGE = """
+| 1  | Fee for issuance of a new National Identity card in place of a lost National Identity card. [(Notice on revision of fees charged) ](https://drp.gov.lk/en/assets/downloads/fees-english.pdf).   | Rs.1000.00  |
+| 1. Fee for issuance of amended National Identity card [(Notice on revision of fees charged) ](https://drp.gov.lk/en/assets/downloads/fees-english.pdf)  | Rs.500.00  |
+Under the One day service, National Identity cards are issued for people who need to obtain the National Identity cards urgently.
+Forward the application for the National Identity card through the Grama Niladhari.
+Birth certificate or extract of the birth registry
+"""
+
+
+def test_a_table_row_with_a_link_between_label_and_price_is_grounded():
+    quote = ("Fee for issuance of a new National Identity card in place of a lost National "
+             "Identity card. Rs.1000.00")
+    assert is_grounded(quote, NIC_PAGE, value="Rs.1000.00")
+
+
+def test_a_table_row_quote_still_needs_the_right_price():
+    quote = ("Fee for issuance of a new National Identity card in place of a lost National "
+             "Identity card. Rs.1500.00")
+    assert not is_grounded(quote, NIC_PAGE, value="Rs.1500.00")
+
+
+def test_an_invented_part_of_a_table_row_quote_is_not_grounded():
+    quote = "Fee for issuance of a brand new Smart card in place of a lost card. Rs.1000.00"
+    assert not is_grounded(quote, NIC_PAGE, value="Rs.1000.00")
+
+
+def test_a_short_value_is_grounded_when_every_word_is_in_the_quote():
+    quote = "Under the One day service, National Identity cards are issued for people who need to obtain the National Identity cards urgently."
+    assert is_grounded(quote, NIC_PAGE, value="One day")
+    assert not is_grounded(quote, NIC_PAGE, value="Two weeks")
+
+
+def test_a_service_is_never_its_own_stated_prerequisite():
+    p = {"prerequisites": [{"description": "Forward the application for the National Identity card through the Grama Niladhari",
+                            "evidence": "Forward the application for the National Identity card through the Grama Niladhari."}],
+         "documents": [{"name": "Birth certificate or extract of the birth registry",
+                        "evidence": "Birth certificate or extract of the birth registry"}]}
+    r = run(FakeLLM(p), text=NIC_PAGE, service="svc:nic")
+    pre = {f.fact_id: f for f in r.facts if f.predicate == "prerequisite"}
+    own = pre["svc:nic:prerequisite:national_identity_card"]
+    assert "requires_service" not in own.detail            # no link to itself
+    assert pre["svc:nic:prerequisite:birth_certificate"].detail["requires_service"] == "svc:birth_certificate"
+
+
+def test_nic_service_modes_and_variants_get_stable_ids():
+    from app.core.extraction.vocabulary import canonical_qualifier, canonical_variant
+
+    assert canonical_variant("First time applicants") == "first_issue"
+    assert canonical_variant("Amending a National Identity card") == "amended"
+    assert canonical_variant("Dual citizen") == "dual_citizen"
+    assert canonical_qualifier("One day service") == "one_day"
+    assert canonical_qualifier("Normal service") == "normal"
+
+
+# ============ NIC page, second run: postage, duplicate conditions, one-line table rows
+NIC_PAGE_2 = """
+| 1. Fee for issuance of amended National Identity card [(Notice on revision of fees charged) ](https://drp.gov.lk/en/assets/downloads/fees-english.pdf)  | Rs.500.00  |
+| 2. Fee for sending National Identity card by registered post under normal service.   | Rs.120.00  |
+| 3. If the period between date of obtaining dual citizenship and the date of applying for the National Identity card has exceeded 06 months   | Rs.2500.00  |
+| 6  |  Under Section 19(2) of the Citizenship Act, penalty for an applicant who does not obtain a National Identity card within six months from the date of issue of the Dual Citizenship certificate.   |  Rs.2500/-  |
+"""
+
+
+def test_a_one_line_quote_with_a_link_in_the_table_row_is_grounded():
+    quote = "Fee for issuance of amended National Identity card Rs.500.00"
+    assert is_grounded(quote, NIC_PAGE_2, value="Rs.500.00")
+    assert not is_grounded("Fee for issuance of amended National Identity card Rs.900.00",
+                           NIC_PAGE_2, value="Rs.900.00")
+
+
+def test_tokens_cannot_be_stitched_from_far_apart_parts_of_a_page():
+    far = NIC_PAGE_2 + ("\nfiller words here " * 40) + "\nRs.777.00 is the sum"
+    assert not is_grounded("Fee for issuance of amended National Identity card Rs.777.00",
+                           far, value="Rs.777.00")
+
+
+def test_a_postage_row_is_postage_whatever_the_model_called_it():
+    q = "Fee for sending National Identity card by registered post under normal service. Rs.120.00"
+    p = {"fees": [{"qualifier": "normal", "variant": "lost", "amount_text": "Rs.120.00", "evidence": q}]}
+    r = run(FakeLLM(p), text=NIC_PAGE_2, service="svc:nic")
+    assert [f.fact_id for f in r.facts if f.predicate == "fee"] == ["svc:nic:fee:lost_postage"]
+
+
+@pytest.mark.parametrize("wording", [
+    "has exceeded 06 months",
+    "does not obtain a National Identity card within six months",
+    "applies after 6 months",
+])
+def test_one_late_penalty_has_one_condition_however_it_is_worded(wording):
+    assert canonical_condition(wording) == "after_6m"
+
+
+def test_a_list_returned_where_text_is_expected_is_accepted():
+    p = {"processing_times": [{"qualifier": "normal", "text": ["3 days", "within the province"],
+                               "evidence": "Normal Basis - 30 working days"}]}
+    r = run(FakeLLM(p))
+    items = [d for d in r.dropped if "did not match the schema" in d["reason"]]
+    assert items == []  # coerced, not rejected for its shape
+
+
+def test_the_model_reply_is_kept_on_the_result():
+    r = run(FakeLLM(good_payload()))
+    assert r.raw_reply.startswith("{") and "fees" in r.raw_reply
+
+
+# ================= second NIC run: empty values, paraphrased eligibility, same amount twice
+def test_a_time_with_no_stated_duration_is_dropped_with_an_honest_reason():
+    p = {"processing_times": [{"qualifier": "normal", "text": None,
+                               "evidence": "Normal Basis - 30 working days"}]}
+    r = run(FakeLLM(p))
+    assert r.facts == [] or all(f.predicate != "processing_time" for f in r.facts)
+    assert "states no value" in r.dropped[0]["reason"]
+
+
+def test_eligibility_is_stored_as_the_pages_own_sentence_not_the_models_paraphrase():
+    sentence = "Every person who is a citizen of Sri Lanka and who has attained the age of 15 years shall apply for a card."
+    page = f"Notes\n{sentence} Other text follows here.\n"
+    p = {"eligibility": "This service is for citizens aged 15 or over",
+         "eligibility_evidence": sentence + " Other text follows here."}
+    r = run(FakeLLM(p), text=page)
+    elig = next(f for f in r.facts if f.predicate == "eligibility")
+    assert elig.value_text == sentence
+
+
+def test_the_same_amount_in_two_formats_is_one_fact_not_a_conflict():
+    quote1, quote2 = "Fee for a lost card. Rs.2500.00", "Fee for a lost card. Rs.2500/-"
+    page = f"{quote1}\n{quote2}\n"
+    p = {"fees": [fee("standard", None, None, "Rs.2500.00", quote1),
+                  fee("standard", None, None, "Rs.2500/-", quote2)]}
+    r = run(FakeLLM(p), text=page)
+    # "lost" is read from the quote, so the id carries it; the two formats collapse to one fact
+    assert [f.fact_id for f in r.facts if f.predicate == "fee"] == ["svc:passport:fee:lost_standard"]
+    assert not any("already holds" in d["reason"] for d in r.dropped)
+
+
+def test_a_different_amount_in_the_same_position_is_still_a_conflict():
+    page = "Fee for a lost card. Rs.2500.00\nFee for a lost card. Rs.3000.00\n"
+    p = {"fees": [fee("standard", None, None, "Rs.2500.00", "Fee for a lost card. Rs.2500.00"),
+                  fee("standard", None, None, "Rs.3000.00", "Fee for a lost card. Rs.3000.00")]}
+    r = run(FakeLLM(p), text=page)
+    assert any("already holds" in d["reason"] for d in r.dropped)
+
+
+@pytest.mark.parametrize("reason,token", [
+    ("failure to obtain a National Identity Card within the prescribed time limit", "late_application"),
+    ("Submission of false information", "false_information"),
+    ("Submission of original applications on two occasions", "repeat_submission"),
+])
+def test_penalty_reasons_become_named_conditions(reason, token):
+    assert canonical_condition(reason) == token
+
+
+def test_a_penalty_fee_gets_a_penalty_id():
+    quote = "Submission of false information Rs.2500.00"
+    p = {"fees": [{"qualifier": None, "variant": None, "condition": "Submission of false information",
+                   "kind": "penalty", "amount_text": "Rs.2500.00", "evidence": quote}]}
+    r = run(FakeLLM(p), text=quote + "\n", service="svc:nic")
+    assert [f.fact_id for f in r.facts if f.predicate == "fee"] == ["svc:nic:fee:penalty_false_information"]
+    assert r.facts[0].detail["kind"] == "penalty"
+
+
+# ===================================== form links: read from the page, never from the model
+FORM_PAGE = r"""
+| 1 | Duly completed application [(Form D.R.P/1,7,8)](https://drp.gov.lk/en/assets\formats\application.pdf) |
+| 2 | Citizenship certificate [(specimen of a citizenship certificate)](https://drp.gov.lk/en/assets\downloads\citizenship.pdf) |
+| 3 | Birth certificate or extract of the birth registry |
+"""
+
+
+def forms_for(quote, name):
+    p = {"documents": [{"name": name, "evidence": quote}]}
+    r = run(FakeLLM(p), text=FORM_PAGE, service="svc:nic")
+    return next(f for f in r.facts if f.predicate == "document")
+
+
+def test_the_form_link_is_read_from_the_page_beside_the_quote():
+    f = forms_for("Duly completed application (Form D.R.P/1,7,8)", "Duly completed application")
+    forms = f.detail["forms"]
+    assert [x["label"] for x in forms] == ["Form D.R.P/1,7,8"]
+    assert forms[0]["url"] == "https://drp.gov.lk/en/assets/formats/application.pdf"  # no backslashes, no //
+    assert forms[0]["kind"] == "form"
+
+
+def test_a_specimen_is_marked_as_such_and_is_not_a_form_to_fill():
+    f = forms_for("Citizenship certificate (specimen of a citizenship certificate)",
+                  "Citizenship certificate")
+    assert f.detail["forms"][0]["kind"] == "specimen"
+
+
+def test_a_document_with_no_link_on_its_line_has_no_forms():
+    f = forms_for("Birth certificate or extract of the birth registry",
+                  "Birth certificate or extract of the birth registry")
+    assert "forms" not in f.detail
+
+
+def test_the_model_cannot_invent_a_form_address():
+    p = {"documents": [{"name": "Birth certificate", "forms": [{"url": "https://evil.example/x.pdf"}],
+                        "evidence": "Birth certificate or extract of the birth registry"}]}
+    f = next(x for x in run(FakeLLM(p), text=FORM_PAGE, service="svc:nic").facts
+             if x.predicate == "document")
+    assert "forms" not in f.detail
