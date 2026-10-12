@@ -17,3 +17,11 @@ FOR (f:Fact) ON (f.fact_id, f.valid_to);
 
 CREATE CONSTRAINT page_url IF NOT EXISTS
 FOR (p:SourcePage) REQUIRE p.url IS UNIQUE;
+
+// A downloadable form (PDF or Word) a service asks the citizen to fill in.
+CREATE CONSTRAINT form_url IF NOT EXISTS
+FOR (f:Form) REQUIRE f.url IS UNIQUE;
+
+// A canonical document (birth_certificate, national_identity_card ...) shared by many services.
+CREATE CONSTRAINT document_key IF NOT EXISTS
+FOR (d:Document) REQUIRE d.document_key IS UNIQUE;
