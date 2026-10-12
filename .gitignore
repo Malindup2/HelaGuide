@@ -33,3 +33,8 @@ crawl_snapshots/
 .DS_Store
 Thumbs.db
 ~$*
+
+# C2 raw crawl output: saved pages and per-page state. Regenerable, large, kept on disk and shared as a zip.
+# The run logs (changes.jsonl, runs.jsonl) and tree.json stay tracked.
+components/c2-knowledge-graph/research/data/crawl/archive/
+components/c2-knowledge-graph/research/data/crawl/state/

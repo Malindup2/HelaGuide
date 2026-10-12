@@ -10,7 +10,9 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
-from pydantic import BaseModel, Field
+from typing import Annotated
+
+from pydantic import BaseModel, BeforeValidator, Field
 
 PREDICATES = ("fee", "document", "agency", "prerequisite", "processing_time", "eligibility")
 SERVICE_ID = re.compile(r"^svc:[a-z0-9_]+$")
@@ -18,28 +20,55 @@ FACT_ID = re.compile(r"^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$")
 
 
 # ------------------------------------------------------- what the model is asked to return
+# A model that thinks less sometimes sends null for a label or a quote. That is a missing
+# label, not a broken item: it becomes "" and is handled (a quote of "" is never grounded).
+def _as_text(v):
+    if v is None:
+        return ""
+    if isinstance(v, (list, tuple)):
+        return "; ".join(str(x) for x in v if x is not None)
+    return v
+
+
+Text = Annotated[str, BeforeValidator(_as_text)]
+
+
+VARIANT_HELP = ("Which case of the service this applies to, such as ordinary, minor, lost, "
+                "replacement, diplomatic. Null when it applies to every case.")
+
+
 class FeeItem(BaseModel):
-    qualifier: str = Field(description="Short label for which fee this is, e.g. normal, urgent, minor_normal")
+    qualifier: Text = Field("", description="Short label for which fee this is, such as normal or urgent")
+    variant: str | None = Field(None, description=VARIANT_HELP)
+    condition: str | None = Field(None, description="What distinguishes this amount from the same fee "
+                                 "in another situation: a validity period ('3 years'), a time window "
+                                 "('within one year of issue'). Null when there is none.")
+    kind: str = Field("base", description="'base' for the fee itself, 'surcharge' for an amount "
+                                          "added to another fee ('in addition to the passport fee')")
     amount_text: str = Field(description="The fee exactly as written on the page, with currency")
-    evidence: str = Field(description="The sentence or line from the page that states it, copied verbatim")
+    evidence: Text = Field("", description="The sentence or line from the page that states it, copied verbatim")
 
 
 class DocumentItem(BaseModel):
     name: str = Field(description="The document the citizen must bring, as written")
+    variant: str | None = Field(None, description=VARIANT_HELP)
     condition: str | None = Field(None, description="When it is needed, if the page limits it")
-    evidence: str
+    evidence: Text = ""
 
 
 class PrerequisiteItem(BaseModel):
     description: str = Field(description="A service or step that must be completed FIRST")
+    variant: str | None = Field(None, description=VARIANT_HELP)
     provided_by: str | None = Field(None, description="Agency that provides it, if named")
-    evidence: str
+    evidence: Text = ""
 
 
 class TimeItem(BaseModel):
-    qualifier: str
-    text: str = Field(description="The processing or delivery time as written")
-    evidence: str
+    qualifier: Text = ""
+    variant: str | None = Field(None, description=VARIANT_HELP)
+    condition: str | None = Field(None, description="A validity period or time window that distinguishes it")
+    text: Text = Field("", description="The processing or delivery time as written")
+    evidence: Text = ""
 
 
 class PageExtraction(BaseModel):
@@ -110,7 +139,93 @@ def normalise_for_match(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", (text or "").lower()).strip()
 
 
-def is_grounded(evidence: str, page_text: str) -> bool:
-    """The quoted evidence must really be on the page. This is the guard against invention."""
+def _sentences(text: str) -> list[str]:
+    """Split at a full stop that ends a sentence: after a letter or digit, before a capital.
+
+    "Rs. 20,000" is not split ("Rs." is followed by a digit), so an abbreviation can never
+    cut a quote into pieces that each look like a real, shorter sentence.
+    """
+    parts = re.split(r"(?<=[a-z0-9\)][.!?])\s+(?=[A-Z(\"'])|\n+|\s*;\s*|\s*\|\s*", text or "")
+    return [x for x in parts if x.strip()]
+
+
+def _contains_value(sentence: str, value: str) -> bool:
+    """Every number in the value, and most of its longer words, appear in the sentence."""
+    s_tokens = set(normalise_for_match(sentence).split())
+    v_tokens = normalise_for_match(value).split()
+    digits = [t for t in v_tokens if t.isdigit()]
+    words = [t for t in v_tokens if not t.isdigit() and len(t) >= 4]
+    if not v_tokens:
+        return False
+    if not digits and not words:  # a short value such as "One day": every word must be there
+        return all(t in s_tokens for t in v_tokens)
+    if any(d not in s_tokens for d in digits):
+        return False
+    return not words or sum(w in s_tokens for w in words) / len(words) >= 0.6
+
+
+def _tokens_in_order_on_page(ev: str, page: str, max_extra: int = 14) -> bool:
+    """Every word of the quote is on the page in the quoted order, within a short stretch.
+
+    A table row puts a link or a column between its label and its price, so the quote is
+    not one unbroken run. Allowing at most `max_extra` words of gap in total keeps a quote
+    from being stitched together out of unrelated parts of a page.
+    """
+    q = ev.split()
+    if len(q) < 4:
+        return False
+    p = page.split()
+    first = q[0]
+    for start in (i for i, w in enumerate(p) if w == first):
+        at, ok = start, True
+        for tok in q[1:]:
+            try:
+                at = p.index(tok, at + 1, at + 2 + max_extra)
+            except ValueError:
+                ok = False
+                break
+        if ok and (at - start + 1) - len(q) <= max_extra:
+            return True
+    return False
+
+
+def is_grounded(evidence: str, page_text: str, value: str | None = None) -> bool:
+    """The quoted evidence must really be on the page. This is the guard against invention.
+
+    The whole quote, as one run of the page, grounds it (and, when a value is given, the quote
+    must hold that value too). Models often run a real sentence on
+    into the next line, so otherwise a single sentence of the quote that is on the page grounds
+    it, provided that sentence itself contains the value being claimed. A quote with no real
+    sentence in it, or whose real sentence does not hold the value, is not grounded.
+    """
+    page = normalise_for_match(page_text)
     ev = normalise_for_match(evidence)
-    return len(ev) >= 6 and ev in normalise_for_match(page_text)
+    if len(ev) >= 6 and ev in page:
+        # A real line quoted next to a different value is the dangerous case: the quote must
+        # also hold the value being claimed.
+        return value is None or _contains_value(evidence, value)
+    if value is None:
+        return False
+    segments = [normalise_for_match(x) for x in _sentences(evidence)]
+    segments = [x for x in segments if x]
+    for sentence in _sentences(evidence):
+        norm = normalise_for_match(sentence)
+        if len(norm) >= 25 and norm in page and _contains_value(sentence, value):
+            return True
+    # A table row: the label and the price sit apart on the page, with a link or a column
+    # between them. Every part of the quote must be on the page, in the order quoted, and the
+    # quote as a whole must hold the value.
+    holds_value = _contains_value(evidence, value)
+    # A link's address is not reading text; drop it so it does not count towards the gap.
+    page_no_urls = normalise_for_match(re.sub(r"\]\([^)]*\)", "]", page_text or ""))
+    if holds_value and _tokens_in_order_on_page(ev, page_no_urls):
+        return True
+    if len(segments) >= 2 and holds_value:
+        at = 0
+        for seg in segments:
+            found = page.find(seg, at)
+            if found < 0:
+                return False
+            at = found + len(seg)
+        return True
+    return False

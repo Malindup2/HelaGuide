@@ -1,0 +1,769 @@
+{
+ "agency": "Department of Immigration and Emigration",
+ "contacts": [
+  {
+   "kind": "email",
+   "label": "Email",
+   "value": "controller@immigration.gov.lk",
+   "evidence": "E-Mail : controller@immigration.gov.lk",
+   "scope": "department",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Hotline",
+   "value": "1962",
+   "evidence": "Hotline : 1962",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Department of Immigration and Emigration",
+   "value": "+94 112 101 500",
+   "evidence": "Phone : +94 112 101 500",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "fax",
+   "label": "Department of Immigration and Emigration",
+   "value": "+94 11 2885358",
+   "evidence": "Fax : +94 11 2885358",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "email",
+   "label": "Department of Immigration and Emigration",
+   "value": "controller@immigration.gov.lk",
+   "evidence": "E-Mail : controller@immigration.gov.lk",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Controller General of Immigration and Emigration",
+   "value": "+94 11 2 101550",
+   "evidence": "**Telephone** : +94 11 2 101550",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "fax",
+   "label": "Controller General of Immigration and Emigration",
+   "value": "+94 11 2885358",
+   "evidence": "**Fax :** +94 11 2885358",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "email",
+   "label": "Controller General of Immigration and Emigration",
+   "value": "controller@immigration.gov.lk",
+   "evidence": "**Email :** controller@immigration.gov.lk",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Additional Controller General",
+   "value": "+94 11 2 101552",
+   "evidence": "**Telephone** : +94 11 2 101552",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "email",
+   "label": "Additional Controller General",
+   "value": "addcg@immigration.gov.lk",
+   "evidence": "**Email :** addcg@immigration.gov.lk",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Additional Controller General",
+   "value": "+94 11 2 101584",
+   "evidence": "**Telephone** : +94 11 2 101584",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "email",
+   "label": "Additional Controller General",
+   "value": "adcg@immigration.gov.lk",
+   "evidence": "**Email :** adcg@immigration.gov.lk",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Liaison Officer (Internal Affairs Unit)",
+   "value": "011 2 101520",
+   "evidence": "**Telephone No**. - 011 2 101520",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "email",
+   "label": "Liaison Officer (Internal Affairs Unit)",
+   "value": "emigrationiau@gmail.com",
+   "evidence": "**Email** - emigrationiau@gmail.com",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Integrity Officer",
+   "value": "+94 11 2 101569",
+   "evidence": "**Telephone** : +94 11 2 101569",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "email",
+   "label": "Integrity Officer",
+   "value": "legal@immigration.gov.lk",
+   "evidence": "Email : legal@immigration.gov.lk",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Media Spokesman",
+   "value": "0772641101",
+   "evidence": "**Telephone** : 0772641101",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Inquiries regarding Sri Lankan citizenship",
+   "value": "0707101030",
+   "evidence": "Inquiries regarding Sri Lankan citizenship | 0707101030",
+   "scope": "topic",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Inquiries regarding passports of Overseas Missions",
+   "value": "0112101524",
+   "evidence": "Inquiries regarding passports of Overseas Missions | 0112101524",
+   "scope": "topic",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Visa related inquiries regarding entry to Sri Lanka and stay in Sri Lanka",
+   "value": "0112101540",
+   "evidence": "Visa related inquiries regarding entry to Sri Lanka and stay in Sri Lanka | 0112101540 / 0112101545",
+   "scope": "topic",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Visa related inquiries regarding entry to Sri Lanka and stay in Sri Lanka",
+   "value": "0112101545",
+   "evidence": "Visa related inquiries regarding entry to Sri Lanka and stay in Sri Lanka | 0112101540 / 0112101545",
+   "scope": "topic",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Inquiries regarding passport delays",
+   "value": "0112777634",
+   "evidence": "Inquiries regarding passport delays | 0112777634",
+   "scope": "topic",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Inquiries regarding the other passport-related matters",
+   "value": "0112101520",
+   "evidence": "Inquiries regarding the other passport-related matters | 0112101520",
+   "scope": "topic",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Inquiries regarding Indian citizenship",
+   "value": "0112101567",
+   "evidence": "Inquiries regarding Indian citizenship | 0112101567",
+   "scope": "topic",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Inquiries regarding establishment and administrative matters",
+   "value": "0112101553",
+   "evidence": "Inquiries regarding establishment and administrative matters | 0112101553 / 0112101557",
+   "scope": "topic",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  },
+  {
+   "kind": "phone",
+   "label": "Inquiries regarding establishment and administrative matters",
+   "value": "0112101557",
+   "evidence": "Inquiries regarding establishment and administrative matters | 0112101553 / 0112101557",
+   "scope": "topic",
+   "page_url": null,
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=32"
+  }
+ ],
+ "forms": [
+  {
+   "label": "1993_no_16_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/1993_no_16_english.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=28"
+  },
+  {
+   "label": "1998_no_42_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/1998_no_42_english.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=28"
+  },
+  {
+   "label": "2006_no_31_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/2006_no_31_english.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=28"
+  },
+  {
+   "label": "2015_no_7_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/2015_no_7_english.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=28"
+  },
+  {
+   "label": "2021_no_27_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/2021_no_27_english.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=28"
+  },
+  {
+   "label": "2383-17_E_1784565893.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/PRV/2383-17_E_1784565893.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=69"
+  },
+  {
+   "label": "APPLICATION FOR THE GRANT, ISSUANCE OR EXTENSION OF A PERMANENT RESIDENCE VISA (APPLICATION FOR PRV.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/PRV/APPLICATION%20FOR%20PRV.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=69"
+  },
+  {
+   "label": "Permanent Residence Visa (Guideline for PRV.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/PRV/Guideline%20for%20PRV.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=69"
+  },
+  {
+   "label": "PERSONAL PARTICULAR FORM FOR THE SECURITY CLEARANCE (personal_particular_form.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/PRV/personal_particular_form.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=69"
+  },
+  {
+   "label": "chapter_351_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/chapter_351_english.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=28"
+  },
+  {
+   "label": "immigrants_and_emigrants_act.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/immigrants_and_emigrants_act.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=28"
+  },
+  {
+   "label": "regulation_with_amendments.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/acts/regulation_with_amendments.pdf",
+   "section": "acts",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=28"
+  },
+  {
+   "label": "CourierSriLankanPassports.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/CourierSriLankanPassports.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "E.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/E.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "S.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/S.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "T.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/T.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "amendment.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/amendment.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=10"
+  },
+  {
+   "label": "application.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/application.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "child_deletion_application.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/child_deletion_application.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "complaint form (complaint_form _stolen_and_lost_sri lankan_passport.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/complaint_form%20_stolen_and_lost_sri%20lankan_passport.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "Instructions (instructions_english_td.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/instructions_english_td.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=7"
+  },
+  {
+   "label": "Form ‘K’- 35 A (new_om_application_form.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/new_om_application_form.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=9"
+  },
+  {
+   "label": "Form K 35 A (passport_application.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/passport_application.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=8"
+  },
+  {
+   "label": "request_letter.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/applications/request_letter.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "C/P/I/O/2003/01 (2003-35_application.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/2003-35_application.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=6"
+  },
+  {
+   "label": "No 2003/01 (2003-35_instructions.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/2003-35_instructions.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=6"
+  },
+  {
+   "label": "IC/C/SPA (88-39_application.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/88-39_application.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=6"
+  },
+  {
+   "label": "No 1988/01 (88-39_instructions.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/88-39_instructions.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=6"
+  },
+  {
+   "label": "DualCIT_Application.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/DualCIT_Application.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "birthregistration.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/birthregistration.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=5"
+  },
+  {
+   "label": "checklist.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/checklist.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "chinese_citizenship.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/chinese_citizenship.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "schedule_c.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/schedule_c.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "C/P/I/O/2003/02 (special_decleration.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/special_decleration.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=6"
+  },
+  {
+   "label": "special_note.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/citizenship/special_note.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "form_k_citizenship.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/downloads/form_k_citizenship.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "Act, No 18 of 1948 (Citizenship_Act.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/dualcitizenship/Citizenship_Act.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=4"
+  },
+  {
+   "label": "declaration_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/dualcitizenship/declaration_english.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "dual_instructions_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/dualcitizenship/dual_instructions_english.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "Instructions for Online TD - Local Applicants -english_3.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/guidelines/Instructions%20for%20Online%20TD%20-%20Local%20Applicants%20-english_3.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/index_e.php"
+  },
+  {
+   "label": "Health measure to be followed in repatriation of human remains to Sri Lanka - 15-02-2023 (health_measures_to_be_followed_in_repetration_of_human_remains_to_sri_lanka_15_02_2023.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/guidelines/health_measures_to_be_followed_in_repetration_of_human_remains_to_sri_lanka_15_02_2023.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=105"
+  },
+  {
+   "label": "Landing Requirements to Sri Lanka for Tourists/Foreign Passport Holders / Sri Lankans issued by the Civil Aviation Authority of Sri Lanka - 23.04.2022 (landing_requirments_to_sri_lanka_for_tourists_foreign_passport_holders_sri_lankans.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/guidelines/landing_requirments_to_sri_lanka_for_tourists_foreign_passport_holders_sri_lankans.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=105"
+  },
+  {
+   "label": "Preventive measures for persons arriving from overseas during the pandemic of Covid-19 issued by the Ministry of Health- 18.04.2022 (preventive_measures_for_persons_arriving_from_overseas_during_the_pandemic_of covid_19_2022_04_18.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/guidelines/preventive_measures_for_persons_arriving_from_overseas_during_the_pandemic_of%20covid_19_2022_04_18.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=105"
+  },
+  {
+   "label": "Notice - Extension of Russian and Ukraine tourist visa - 22-01-2024 (notice_e_22_01_2024.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/media_notice/Notice/notice_e_22_01_2024.pdf",
+   "section": "notices",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=104"
+  },
+  {
+   "label": "Media Notice - 16 - 28/08/2021 (media_notice_28_08_2021_e.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/media_notice/media_notice_28_08_2021_e.pdf",
+   "section": "notices",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=104"
+  },
+  {
+   "label": "Media Notice - 33 - 15/09/2022 (media_notice_33_e.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/media_notice/media_notice_33_e.pdf",
+   "section": "notices",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=104"
+  },
+  {
+   "label": "Media Notice - 26 - 16/05/2022 (media_notice_e26.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/media_notice/media_notice_e26.pdf",
+   "section": "notices",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=104"
+  },
+  {
+   "label": "Media Notice - 20 - 05/10/2021 (media_notice_e_05_10_2021.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/media_notice/media_notice_e_05_10_2021.pdf",
+   "section": "notices",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=104"
+  },
+  {
+   "label": "Media Notice - 38 - Visa & Citizenship Revised Charges - 25-11-2022 (media_release_38_e.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/media_notice/media_release_38_e.pdf",
+   "section": "notices",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=104"
+  },
+  {
+   "label": "Media Notice - 54 - Free Tourist Visa for Seven Nationals - 27-11-2023 (MR 54 -English.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/media_notice/visa/MR%2054%20-English.pdf",
+   "section": "notices",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=104"
+  },
+  {
+   "label": "Media Notice - 19 - 05/10/2021 (visa_extension_e_05_10_2021.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/media_notice/visa_extension_e_05_10_2021.pdf",
+   "section": "notices",
+   "source_url": "https://www.immigration.gov.lk/projectDetails_e.php?proid=104"
+  },
+  {
+   "label": "annex_i.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/om/annex_i.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "annex_ii.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/om/annex_ii.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "annex_iii.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/om/annex_iii.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "annex_iv.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/om/annex_iv.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "annex_v.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/om/annex_v.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "facilities (requirements_for_photo_studio.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/passport/requirements_for_photo_studio.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=48"
+  },
+  {
+   "label": "2024_performance_report_e.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/2024_performance_report_e.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "D_of Immigration_E_PR-2025.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/2025_performance/D_of%20Immigration_E_PR-2025.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "D_of Immigration_S_PR-2025.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/2025_performance/D_of%20Immigration_S_PR-2025.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "D_of Immigration_T_PR-2025.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/2025_performance/D_of%20Immigration_T_PR-2025.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "perfomance_report_2019_e.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/perfomance_report_2019_e.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "perfomance_report_2020_e.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/perfomance_report_2020_e.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "perfomance_report_2021_e.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/perfomance_report_2021_e.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "performance_report_2018_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/performance_report_2018_english.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "performance_report_2022_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/performance_report_2022_english.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "performance_report_2023_english.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/reports/performance_report_2023_english.pdf",
+   "section": "reports",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=36"
+  },
+  {
+   "label": "Investor Visa Category (Guideline Investor Visa Category doc 2.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/Guideline%20Investor%20Visa%20Category%20doc%202.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=18"
+  },
+  {
+   "label": "ResidentGuestScheme.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/ResidentGuestScheme.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=20"
+  },
+  {
+   "label": "TransitVisa.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/TransitVisa.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "affidavit_english_foreign_spouse.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/affidavit_english_foreign_spouse.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "affidavit_englsh_sri_lankan_spouse.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/affidavit_englsh_sri_lankan_spouse.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "application_english_foreign_spouse.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/application_english_foreign_spouse.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "application_englsh_sri_lankan_spouse.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/application_englsh_sri_lankan_spouse.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "Digital Nomad (Digital Nomad Visa Category.pdf)",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/digital_nomad/Digital%20Nomad%20Visa%20Category.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=18"
+  },
+  {
+   "label": "entry_visit_visa.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/entry_visit_visa.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "eta_application.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/eta_application.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "golden_paradise_application.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/golden_paradise_application.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "multiple_entry_visa.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/multiple_entry_visa.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "personal_particular_form_security_clearance.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/personal_particular_form_security_clearance.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "recommendation_application_maldivian.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/recommendation_application_maldivian.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "recommendation_application_non_maldivian.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/recommendation_application_non_maldivian.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "residence_visa.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/residence_visa.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=18"
+  },
+  {
+   "label": "visa_exemption_5_2.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/visa_exemption_5_2.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "vistvisaext.pdf",
+   "form_url": "https://www.immigration.gov.lk/content/files/visa/vistvisaext.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=24"
+  },
+  {
+   "label": "RTI_01_e.pdf",
+   "form_url": "https://www.immigration.gov.lk/documents/downloads/RTI_01_e.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=34"
+  },
+  {
+   "label": "RTI_10_e.pdf",
+   "form_url": "https://www.immigration.gov.lk/documents/downloads/RTI_10_e.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=34"
+  },
+  {
+   "label": "Form “K” (form_k_citizenship.pdf)",
+   "form_url": "https://www.immigration.gov.lk/documents/downloads/form_k_citizenship.pdf",
+   "section": "forms",
+   "source_url": "https://www.immigration.gov.lk/pages_e.php?id=33"
+  }
+ ]
+}

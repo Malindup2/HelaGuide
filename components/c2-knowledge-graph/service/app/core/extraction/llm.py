@@ -25,14 +25,20 @@ class LLM(Protocol):
     def complete(self, system: str, user: str) -> LLMReply: ...
 
 
+# Waits between attempts. A "high demand" 503 from a provider lasts seconds to minutes.
+BACKOFF_SECONDS = (5, 15, 40, 60)
+
+
 class LLMError(RuntimeError):
     pass
 
 
 class OpenAICompatClient:
     def __init__(self, api_key: str, model: str, base_url: str = "https://api.openai.com/v1",
-                 timeout: float = 120.0, retries: int = 3) -> None:
+                 timeout: float = 120.0, retries: int = 4,
+                 reasoning_effort: str | None = None) -> None:
         self.api_key, self.model = api_key, model
+        self.reasoning_effort = reasoning_effort
         self.base_url = base_url.rstrip("/")
         self.timeout, self.retries = timeout, retries
 
@@ -43,6 +49,8 @@ class OpenAICompatClient:
             "response_format": {"type": "json_object"},
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
         }
+        if self.reasoning_effort:  # "none", "low", "medium" or "high", where the provider has it
+            body["reasoning_effort"] = self.reasoning_effort
         headers = {"Authorization": f"Bearer {self.api_key}"}
         last = ""
         for attempt in range(self.retries):
@@ -64,5 +72,5 @@ class OpenAICompatClient:
                 last = f"HTTP {r.status_code}: {r.text[:200]}"
                 if r.status_code not in (429, 500, 502, 503, 504):
                     break  # a bad key or bad request will not get better by retrying
-            time.sleep(2 ** attempt)
+            time.sleep(BACKOFF_SECONDS[min(attempt, len(BACKOFF_SECONDS) - 1)])
         raise LLMError(last)

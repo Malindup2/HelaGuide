@@ -1,0 +1,1042 @@
+{
+ "agency": "Department for Registration of Persons",
+ "contacts": [
+  {
+   "kind": "hours",
+   "label": "Call centre hours",
+   "value": "8.30 a.m. to 4.15 p.m., weekdays",
+   "evidence": "between 8.30 a.m. and 4.15 p.m. on weekdays",
+   "scope": "department",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "for inquiries regarding National Identity Card details",
+   "value": "(011)5226126",
+   "evidence": "* for inquiries regarding National Identity Card details : (011)5226126",
+   "scope": "department",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "for inquiries on other details",
+   "value": "(011)5226100",
+   "evidence": "* for inquiries on other details : (011)5226100",
+   "scope": "department",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Fax",
+   "value": "(011) 2862290",
+   "evidence": "Fax : (011) 2862290",
+   "scope": "department",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Email",
+   "value": "info@drp.lk",
+   "evidence": "email : info@drp.lk",
+   "scope": "department",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "address",
+   "label": "Head office address",
+   "value": "Department for Registration of Persons, Suhurupaya, Subuthipura rd, Battaramulla.",
+   "evidence": "Department for Registration of Persons, Suhurupaya, Subuthipura rd, Battaramulla.",
+   "scope": "department",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Commissioner General of Registration of Persons",
+   "value": "011 286 2 255",
+   "evidence": "Commissioner General of Registration of Persons | 011 286 2 255 | 011 286 2 198 | com.general.drp@gmail.com",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Commissioner General of Registration of Persons",
+   "value": "011 286 2 198",
+   "evidence": "Commissioner General of Registration of Persons | 011 286 2 255 | 011 286 2 198 | com.general.drp@gmail.com",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Commissioner General of Registration of Persons",
+   "value": "com.general.drp@gmail.com",
+   "evidence": "Commissioner General of Registration of Persons | 011 286 2 255 | 011 286 2 198 | com.general.drp@gmail.com",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Additional Comissioner General",
+   "value": "011 522 6 103",
+   "evidence": "Additional Comissioner General | 011 522 6 103 | 011 286 2 201 | adcg@drp.lk",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Additional Comissioner General",
+   "value": "011 286 2 201",
+   "evidence": "Additional Comissioner General | 011 522 6 103 | 011 286 2 201 | adcg@drp.lk",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Additional Comissioner General",
+   "value": "adcg@drp.lk",
+   "evidence": "Additional Comissioner General | 011 522 6 103 | 011 286 2 201 | adcg@drp.lk",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Chief Accountatnt (Accounts Branch)",
+   "value": "0112862259",
+   "evidence": "Chief Accountatnt (Accounts Branch) | 0112862259 0115226107 | 0112862267 | ca@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Chief Accountatnt (Accounts Branch)",
+   "value": "0115226107",
+   "evidence": "Chief Accountatnt (Accounts Branch) | 0112862259 0115226107 | 0112862267 | ca@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Chief Accountatnt (Accounts Branch)",
+   "value": "0112862267",
+   "evidence": "Chief Accountatnt (Accounts Branch) | 0112862259 0115226107 | 0112862267 | ca@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Chief Accountatnt (Accounts Branch)",
+   "value": "ca@drp.lk",
+   "evidence": "Chief Accountatnt (Accounts Branch) | 0112862259 0115226107 | 0112862267 | ca@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Chief Internal Auditor (Internal Audit Branch)",
+   "value": "0115226120",
+   "evidence": "Chief Internal Auditor (Internal Audit Branch) | 0115226120 | 0112862156 | cia@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Chief Internal Auditor (Internal Audit Branch)",
+   "value": "0112862156",
+   "evidence": "Chief Internal Auditor (Internal Audit Branch) | 0115226120 | 0112862156 | cia@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Chief Internal Auditor (Internal Audit Branch)",
+   "value": "cia@drp.lk",
+   "evidence": "Chief Internal Auditor (Internal Audit Branch) | 0115226120 | 0112862156 | cia@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Commissioner(Administration) (Admin Branch)",
+   "value": "0112862202",
+   "evidence": "Commissioner(Administration) (Admin Branch) | 0112862202 0115226105 | 0112862363 | com_adm@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Commissioner(Administration) (Admin Branch)",
+   "value": "0115226105",
+   "evidence": "Commissioner(Administration) (Admin Branch) | 0112862202 0115226105 | 0112862363 | com_adm@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Commissioner(Administration) (Admin Branch)",
+   "value": "0112862363",
+   "evidence": "Commissioner(Administration) (Admin Branch) | 0112862202 0115226105 | 0112862363 | com_adm@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Commissioner(Administration) (Admin Branch)",
+   "value": "com_adm@drp.lk",
+   "evidence": "Commissioner(Administration) (Admin Branch) | 0112862202 0115226105 | 0112862363 | com_adm@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Commissioner(Operation) (Operation Branch)",
+   "value": "0115226106",
+   "evidence": "Commissioner(Operation) (Operation Branch) | 0115226106 | 0112862228 | com_op@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Commissioner(Operation) (Operation Branch)",
+   "value": "0112862228",
+   "evidence": "Commissioner(Operation) (Operation Branch) | 0115226106 | 0112862228 | com_op@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Commissioner(Operation) (Operation Branch)",
+   "value": "com_op@drp.lk",
+   "evidence": "Commissioner(Operation) (Operation Branch) | 0115226106 | 0112862228 | com_op@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Commissioner(Research & Development Branch) (Research & Development Branch)",
+   "value": "0115226104",
+   "evidence": "Commissioner(Research & Development Branch) (Research & Development Branch) | 0115226104 | 0112862231 | com_rd@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Commissioner(Research & Development Branch) (Research & Development Branch)",
+   "value": "0112862231",
+   "evidence": "Commissioner(Research & Development Branch) (Research & Development Branch) | 0115226104 | 0112862231 | com_rd@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Commissioner(Research & Development Branch) (Research & Development Branch)",
+   "value": "com_rd@drp.lk",
+   "evidence": "Commissioner(Research & Development Branch) (Research & Development Branch) | 0115226104 | 0112862231 | com_rd@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Operation Branch)",
+   "value": "0115226112",
+   "evidence": "Deputy Commissioner (Operation Branch) | 0115226112 | 0112862290 | ac_op@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Deputy Commissioner (Operation Branch)",
+   "value": "0112862290",
+   "evidence": "Deputy Commissioner (Operation Branch) | 0115226112 | 0112862290 | ac_op@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Operation Branch)",
+   "value": "ac_op@drp.lk",
+   "evidence": "Deputy Commissioner (Operation Branch) | 0115226112 | 0112862290 | ac_op@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Numbering division, Number confirmation division)",
+   "value": "0115226163",
+   "evidence": "Deputy Commissioner (Numbering division, Number confirmation division) | 0115226163 | 0112862223 | ac_ccu@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/numbering.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Deputy Commissioner (Numbering division, Number confirmation division)",
+   "value": "0112862223",
+   "evidence": "Deputy Commissioner (Numbering division, Number confirmation division) | 0115226163 | 0112862223 | ac_ccu@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/numbering.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Numbering division, Number confirmation division)",
+   "value": "ac_ccu@drp.lk",
+   "evidence": "Deputy Commissioner (Numbering division, Number confirmation division) | 0115226163 | 0112862223 | ac_ccu@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/numbering.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (IT Branch)",
+   "value": "0115226127",
+   "evidence": "Deputy Commissioner (IT Branch) | 0115226127 | | dc_it@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (IT Branch)",
+   "value": "dc_it@drp.lk",
+   "evidence": "Deputy Commissioner (IT Branch) | 0115226127 | | dc_it@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Registration Branch)",
+   "value": "0115226130",
+   "evidence": "Deputy Commissioner (Registration Branch) | 0115226130 | | ac_reg@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/registration.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Registration Branch)",
+   "value": "ac_reg@drp.lk",
+   "evidence": "Deputy Commissioner (Registration Branch) | 0115226130 | | ac_reg@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/registration.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Assistant Commissioner (Identity card issuing & Postal-out branch)",
+   "value": "0115226144",
+   "evidence": "Assistant Commissioner (Identity card issuing & Postal-out branch) | 0115226144 0115226145 | | ac_print@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/postalout.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Assistant Commissioner (Identity card issuing & Postal-out branch)",
+   "value": "0115226145",
+   "evidence": "Assistant Commissioner (Identity card issuing & Postal-out branch) | 0115226144 0115226145 | | ac_print@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/postalout.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Assistant Commissioner (Identity card issuing & Postal-out branch)",
+   "value": "ac_print@drp.lk",
+   "evidence": "Assistant Commissioner (Identity card issuing & Postal-out branch) | 0115226144 0115226145 | | ac_print@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/postalout.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Leagal branch)",
+   "value": "0115226167",
+   "evidence": "Deputy Commissioner (Leagal branch) | 0115226167 | 011286237 | ac_legal@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/leagal_branch.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Deputy Commissioner (Leagal branch)",
+   "value": "011286237",
+   "evidence": "Deputy Commissioner (Leagal branch) | 0115226167 | 011286237 | ac_legal@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/leagal_branch.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Leagal branch)",
+   "value": "ac_legal@drp.lk",
+   "evidence": "Deputy Commissioner (Leagal branch) | 0115226167 | 011286237 | ac_legal@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/leagal_branch.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Leagal branch)",
+   "value": "0115226118",
+   "evidence": "Deputy Commissioner (Leagal branch) | 0115226118 | - | ac_legal2@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/leagal_branch.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Leagal branch)",
+   "value": "ac_legal2@drp.lk",
+   "evidence": "Deputy Commissioner (Leagal branch) | 0115226118 | - | ac_legal2@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/leagal_branch.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch)",
+   "value": "0115226146",
+   "evidence": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch) | 0115226146 0115226143 | 011287462 | ac_dscu@drp.lk ac_authorize@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/ds.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch)",
+   "value": "0115226143",
+   "evidence": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch) | 0115226146 0115226143 | 011287462 | ac_dscu@drp.lk ac_authorize@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/ds.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch)",
+   "value": "011287462",
+   "evidence": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch) | 0115226146 0115226143 | 011287462 | ac_dscu@drp.lk ac_authorize@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/ds.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch)",
+   "value": "ac_dscu@drp.lk",
+   "evidence": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch) | 0115226146 0115226143 | 011287462 | ac_dscu@drp.lk ac_authorize@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/ds.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch)",
+   "value": "ac_authorize@drp.lk",
+   "evidence": "Deputy Commissioner (Provincial & Divisional secretariat Coordination Branch, Media unit, Authorization branch) | 0115226146 0115226143 | 011287462 | ac_dscu@drp.lk ac_authorize@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/ds.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Postal-in and Scaning branch, Document Examination Branch(EQD))",
+   "value": "0115226156",
+   "evidence": "Deputy Commissioner (Postal-in and Scaning branch, Document Examination Branch(EQD)) | 0115226156 0115226119 | | ac_post.in@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/postalin.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Postal-in and Scaning branch, Document Examination Branch(EQD))",
+   "value": "0115226119",
+   "evidence": "Deputy Commissioner (Postal-in and Scaning branch, Document Examination Branch(EQD)) | 0115226156 0115226119 | | ac_post.in@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/postalin.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Postal-in and Scaning branch, Document Examination Branch(EQD))",
+   "value": "ac_post.in@drp.lk",
+   "evidence": "Deputy Commissioner (Postal-in and Scaning branch, Document Examination Branch(EQD)) | 0115226156 0115226119 | | ac_post.in@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/postalin.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Oneday service branch, Front office)",
+   "value": "0115226113",
+   "evidence": "Deputy Commissioner (Oneday service branch, Front office) | 0115226113 0115226108 | | ac_ods@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/oneday_branch.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Oneday service branch, Front office)",
+   "value": "0115226108",
+   "evidence": "Deputy Commissioner (Oneday service branch, Front office) | 0115226113 0115226108 | | ac_ods@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/oneday_branch.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Oneday service branch, Front office)",
+   "value": "ac_ods@drp.lk",
+   "evidence": "Deputy Commissioner (Oneday service branch, Front office) | 0115226113 0115226108 | | ac_ods@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/oneday_branch.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Data entry & Sinhala Tamil Transliteration branch, Incomplete application return branch)",
+   "value": "0115226128",
+   "evidence": "Deputy Commissioner (Data entry & Sinhala Tamil Transliteration branch, Incomplete application return branch) | 0115226128 0115226129 | | ac_dpu@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/dataentry.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Deputy Commissioner (Data entry & Sinhala Tamil Transliteration branch, Incomplete application return branch)",
+   "value": "0115226129",
+   "evidence": "Deputy Commissioner (Data entry & Sinhala Tamil Transliteration branch, Incomplete application return branch) | 0115226128 0115226129 | | ac_dpu@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/dataentry.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Deputy Commissioner (Data entry & Sinhala Tamil Transliteration branch, Incomplete application return branch)",
+   "value": "ac_dpu@drp.lk",
+   "evidence": "Deputy Commissioner (Data entry & Sinhala Tamil Transliteration branch, Incomplete application return branch) | 0115226128 0115226129 | | ac_dpu@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/dataentry.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Accountatnt(Payments) (Accounts Branch)",
+   "value": "0115226137",
+   "evidence": "Accountatnt(Payments) (Accounts Branch) | 0115226137 | 011217793 | accnt2@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Accountatnt(Payments) (Accounts Branch)",
+   "value": "011217793",
+   "evidence": "Accountatnt(Payments) (Accounts Branch) | 0115226137 | 011217793 | accnt2@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Accountatnt(Payments) (Accounts Branch)",
+   "value": "accnt2@drp.lk",
+   "evidence": "Accountatnt(Payments) (Accounts Branch) | 0115226137 | 011217793 | accnt2@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Accountatnt (Procument) (Accounts Branch)",
+   "value": "011 5226172",
+   "evidence": "Accountatnt (Procument) (Accounts Branch) | 011 5226172 | | accnt1@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Accountatnt (Procument) (Accounts Branch)",
+   "value": "accnt1@drp.lk",
+   "evidence": "Accountatnt (Procument) (Accounts Branch) | 011 5226172 | | accnt1@drp.lk",
+   "scope": "branch",
+   "page_url": "https://www.drp.gov.lk/en/divisions.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Provincial office - North West",
+   "value": "037 222 4337",
+   "evidence": "Provincial office - North West | 037 222 4337 | 037 222 4337 | ac_kur@drp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/kurunegala.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Provincial office - North West",
+   "value": "037 222 4337",
+   "evidence": "Provincial office - North West | 037 222 4337 | 037 222 4337 | ac_kur@drp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/kurunegala.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Provincial office - North West",
+   "value": "ac_kur@drp.lk",
+   "evidence": "Provincial office - North West | 037 222 4337 | 037 222 4337 | ac_kur@drp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/kurunegala.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Provincial Office - East",
+   "value": "0652229449",
+   "evidence": "Provincial Office - East | 0652229449 | 0652229448 | info.bat@drp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/baticoloa.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Provincial Office - East",
+   "value": "0652229448",
+   "evidence": "Provincial Office - East | 0652229449 | 0652229448 | info.bat@drp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/baticoloa.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Provincial Office - East",
+   "value": "info.bat@drp.lk",
+   "evidence": "Provincial Office - East | 0652229449 | 0652229448 | info.bat@drp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/baticoloa.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Provincial Office - North",
+   "value": "0242 227 201",
+   "evidence": "Provincial Office - North | 0242 227 201 | 0242 227 202 | ac_vavuniya@grp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/vauniya.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Provincial Office - North",
+   "value": "0242 227 202",
+   "evidence": "Provincial Office - North | 0242 227 201 | 0242 227 202 | ac_vavuniya@grp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/vauniya.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Provincial Office - North",
+   "value": "ac_vavuniya@grp.lk",
+   "evidence": "Provincial Office - North | 0242 227 201 | 0242 227 202 | ac_vavuniya@grp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/vauniya.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Provincial Office - Southern",
+   "value": "091 2228348",
+   "evidence": "Provincial Office - Southern | 091 2228348 | 091 2228349 | ac_galle@drp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/southern.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "fax",
+   "label": "Provincial Office - Southern",
+   "value": "091 2228349",
+   "evidence": "Provincial Office - Southern | 091 2228348 | 091 2228349 | ac_galle@drp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/southern.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "email",
+   "label": "Provincial Office - Southern",
+   "value": "ac_galle@drp.lk",
+   "evidence": "Provincial Office - Southern | 091 2228348 | 091 2228349 | ac_galle@drp.lk",
+   "scope": "provincial",
+   "page_url": "https://drp.gov.lk/en/southern.php",
+   "source_url": "https://www.drp.gov.lk/en/contact.php"
+  },
+  {
+   "kind": "phone",
+   "label": "Provincial Office - Central",
+   "value": "0115226175",
+   "evidence": "Deputy Commissioner | Tel No: 0115226175",
+   "scope": "provincial",
+   "page_url": "https://www.drp.gov.lk/en/nuwaraeliya.php",
+   "source_url": "https://www.drp.gov.lk/en/nuwaraeliya.php"
+  }
+ ],
+ "forms": [
+  {
+   "label": "Application for a National Identity card",
+   "form_url": "https://drp.gov.lk/en/assets/formats/application.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Application form to be filled for translation of National Identity card into English",
+   "form_url": "https://drp.gov.lk/en/assets/formats/english_translation.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Authorization to obtain an English translation of the National Identity Card",
+   "form_url": "https://drp.gov.lk/en/assets/formats/engtranseng.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Verification of Temporary Residential Address",
+   "form_url": "https://drp.gov.lk/en/assets/formats/0207.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Form (DRP/OP/01/3) to be filled when handing over the national Identity card of a deceased person to DRP",
+   "form_url": "https://drp.gov.lk/en/assets/formats/D%20format/annexure.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Form to be filled by a dual citizen applying for a new National Identity card (under 19(2)) when handing over the previous National Identity card to the department.",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/0007.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Declaration that an Identity card has not been obtained within the prescribed period, and that an application has not been submitted for the same.",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/D.R.POP023.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Verification of address of non-resident National Identity card applicants who have obtained dual citizenship",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/104.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Form and general instructions on confirmation of National Identity card numbers of deceased persons",
+   "form_url": "https://drp.gov.lk/en/assets/formats/0008.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Applicant’s declaration about the delay",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/23.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Certificate issued at the registration of a person born outside Sri Lanka",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/24.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Declaration at the renouncing of Sri Lankan citizenship",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/25.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Citizenship certificate issued after registration of Indian and Pakistani residents",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/7.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Citizenship certificate issued under Awarding Citizenship to Substitutes Act",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/9.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Affidavit on the citizenship by registration of persons of Indian origin",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/10.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Citizenship certificate issued (upon awarding of citizenship) to persons of Indian origin",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/11.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Citizenship certificate issued (upon awarding of citizenship) to persons of Chinese origin",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/12.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Specimens of Birth certificate",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/13.png",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Extract of the Birth Registry",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/14.png",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Probable Age Certificate",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/15.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Certificate of Adoption",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/16.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Results of search of registers",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/17.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Specimens of Marriage certificate",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/19.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Specimens of Death certificate",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/20.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Registration of Persons Act No.32 of 1968",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/rules/RPD%20ACT%20NO%2032%20OF%201968.pdf",
+   "section": "acts",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Registration of Persons Amendment Act No 8 of 2016",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/rules/08-2016_E.pdf",
+   "section": "acts",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Regulations dated 22.12.2015 published in gazette notification dated No.1946/31 dated 22.12.2015",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/rules/2015%20english.pdf",
+   "section": "acts",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "Regulations of 30.05.2017 published in gazette notification no 2021/28 dated 31.05.2017",
+   "form_url": "https://drp.gov.lk/en/assets/downloads/rules/2017%20english.pdf",
+   "section": "acts",
+   "source_url": "https://www.drp.gov.lk/en/downloads.php"
+  },
+  {
+   "label": "RTI-01E.pdf",
+   "form_url": "https://www.drp.gov.lk/en/assets/downloads/RTI-01E.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/rif.php"
+  },
+  {
+   "label": "RTI-10E.pdf",
+   "form_url": "https://www.drp.gov.lk/en/assets/downloads/RTI-10E.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/rif.php"
+  },
+  {
+   "label": "accessing informations english.pdf",
+   "form_url": "https://www.drp.gov.lk/en/assets/downloads/accessing%20informations%20english.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/rif.php"
+  },
+  {
+   "label": "Form D.R.P/OP/02/03 (application 02_3english.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/downloads/application%2002_3english.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/normal.php"
+  },
+  {
+   "label": "attachment english.pdf",
+   "form_url": "https://www.drp.gov.lk/en/assets/downloads/attachment%20english.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/rif.php"
+  },
+  {
+   "label": "specimen of a citizenship certificate (citizenship.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/downloads/citizenship.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/normal.php"
+  },
+  {
+   "label": "Dual citizenship certificate (dual_certificate.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/downloads/dual_certificate.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/normal.php"
+  },
+  {
+   "label": "Notice on revision of fees charged (fees-english.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/downloads/fees-english.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/normal.php"
+  },
+  {
+   "label": "rti-act-en.pdf",
+   "form_url": "https://www.drp.gov.lk/en/assets/downloads/rti-act-en.pdf",
+   "section": "acts",
+   "source_url": "https://www.drp.gov.lk/en/rif.php"
+  },
+  {
+   "label": "Letter (1960 english.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/1960%20english.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/GN.php"
+  },
+  {
+   "label": "Annexure 01 form (Annexure1.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/E%20format/Annexure1.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/other_service.php"
+  },
+  {
+   "label": "Annexure Form 02 (annexure2.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/F%20format/annexure2.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/other_service.php"
+  },
+  {
+   "label": "Letter (ODS.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/ODS.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/GN.php"
+  },
+  {
+   "label": "CITIZEN CHARTER (Purawesi Eng.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/Purawesi%20Eng.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/home.php"
+  },
+  {
+   "label": "Letter (address.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/address.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/GN.php"
+  },
+  {
+   "label": "Download the form (ag_office23.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/ag_office23.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/normal.php"
+  },
+  {
+   "label": "Letter (application 3.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/application%203.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/GN.php"
+  },
+  {
+   "label": "Letter (bikshu eng.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/bikshu%20eng.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/GN.php"
+  },
+  {
+   "label": "D.R.P./OP/01/04 (dual.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/dual.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/normal.php"
+  },
+  {
+   "label": "Minimum requirement List for ICAO studio (minimum-requirement.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/minimum-requirement.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/icao.php"
+  },
+  {
+   "label": "Letter (no bc.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/no%20bc.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/GN.php"
+  },
+  {
+   "label": "notice to the public.pdf",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/notice%20to%20the%20public.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/home.php"
+  },
+  {
+   "label": "Letter (police report.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/police%20report.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/GN.php"
+  },
+  {
+   "label": "Letter (stamp - english.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/stamp%20-%20english.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/GN.php"
+  },
+  {
+   "label": "The application form (studio-app.pdf)",
+   "form_url": "https://www.drp.gov.lk/en/assets/formats/studio-app.pdf",
+   "section": "forms",
+   "source_url": "https://www.drp.gov.lk/en/icao.php"
+  },
+  {
+   "label": "Online verification for details of confirmation letter (NIC portal)",
+   "form_url": "http://203.115.11.154:8083/nic-portal/",
+   "section": "online",
+   "source_url": "https://www.drp.gov.lk/en/nicverification.php"
+  }
+ ]
+}

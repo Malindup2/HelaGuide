@@ -1,0 +1,37 @@
+# What the knowledge base does NOT keep. Edit this file; no code change is needed.
+#
+# Every pattern is a case-insensitive regular expression. It is tried against the page address
+# and the link text it was found under. A page that matches is not followed and not read.
+# Anything that matches nothing here is kept: the rule is "keep everything useful to a citizen
+# except what is listed".
+#
+# The Sinhala and Tamil copies of a page, media files, social sites, and "tender / vacancy /
+# gallery" style pages are already excluded in code (discover.py). This file adds to that.
+
+link_patterns:
+  - "vacanc"
+  - "recruit"
+  - "tender|procurement|procument|bid\\b"
+  - "circular"
+  - "gall?ery|photo[ _-]?gal|video[ _-]?gal|photo ?album"
+  - "greeting|message (from|of) the|welcome message|chairman'?s? message|minister'?s? message"
+  - "\\bmission\\b|\\bvision\\b|\\bgoals?\\b|\\bobjectives?\\b|vision[ _&-]*mission"
+  - "\\bhistory\\b|history of the|past (commissioner|director|secretar)"
+  - "\\bcadre\\b|\\bstaff (list|details|directory)\\b|staff\\d*\\.php"
+  - "news|press release|events?\\b"
+  - "sitemap|site map|privacy policy|terms (of use|and conditions)|disclaimer|copyright"
+
+# A page is dropped after it is fetched if its readable text is shorter than this.
+min_text_chars: 150
+
+# A page whose headings are all of these, and that states no fee, document or prerequisite,
+# is a mission / vision page and is dropped.
+about_headings:
+  - "mission"
+  - "vision"
+  - "goal"
+  - "objective"
+  - "history"
+  - "overview"
+  - "welcome"
+  - "greeting"
