@@ -1,180 +1,2878 @@
 # Candidate pages found by --discover. Signals: F=fee D=documents P=prerequisite.
 # Nothing here is monitored. Open a page, and if it states a fee, a document list or a
 # prerequisite, copy it into seed_urls.yaml with its service and agency.
-start: https://www.immigration.gov.lk/pages_e.php?id=8
+start: https://www.rgd.gov.lk/web/index.php/en/
 candidates:
-- url: https://www.immigration.gov.lk/pages_e.php?id=2
-  label: Department History
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations
+  label: ''
   signals: FDP
   score: 3
-  chars: 33601
+  chars: 9882
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=4
-  label: Dual Citizenship
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/marriage-registration
+  label: ''
   signals: FDP
   score: 3
-  chars: 16666
+  chars: 25431
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=60
-  label: Free Visa
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/death-registration
+  label: ''
   signals: FDP
   score: 3
-  chars: 8979
+  chars: 14331
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=18
-  label: Residence Visa
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/obtain-copies-translations
+  label: ''
   signals: FDP
   score: 3
-  chars: 37160
+  chars: 9640
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=20
-  label: Resident Guest Scheme
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death
+- url: https://www.rgd.gov.lk/web/images/RTI/Right_to_Information_Acte.pdf
+  label: Right to Information Act No. 12 of 2016
   signals: FDP
   score: 3
-  chars: 13901
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/index_e.php
-  label: Home
+  chars: 53903
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/rti-1
+- url: https://www.rgd.gov.lk/web/images/RTI/2004-66_E%20-%20Regulations%20promulagated%20under%20the%20RTI.pdf
+  label: Gazette Extra Ordinary No. 2004/66 dated 3rd February 2017
+  signals: FDP
+  score: 3
+  chars: 74092
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/rti-1
+- url: https://www.rgd.gov.lk/web/images/ebmd/UserManual/User%20Manual_eBMD%20Local%20Online%20Portal.pdf
+  label: User Manual (PDF)
+  signals: FDP
+  score: 3
+  chars: 29202
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage
+  label: Marriage
   signals: FD-
   score: 2
-  chars: 19306
+  chars: 9024
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=5
-  label: Overseas Birth Registration
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title
+  label: Title
   signals: FD-
   score: 2
-  chars: 10414
+  chars: 6615
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=7
-  label: General Information
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary
+  label: Notary
+  signals: FD-
+  score: 2
+  chars: 8142
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney
+  label: Power of Attorney
+  signals: FD-
+  score: 2
+  chars: 6676
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/birth-registration
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 14970
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/registration-of-unregistered-birth
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 14238
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/charges
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 5750
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/obtain-certified-copies-translations
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 9925
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/charges
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 8067
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 10391
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/charges
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 5763
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/translate-certificate-of-birth
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 7029
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/translate-certificate-of-marriage
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 7173
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/translate-certificate-of-death
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 7128
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-registration1
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 9299
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/obtaining-a-certified-copy-of-a-land-record-extract-copies1
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 8378
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/obtaining-a-certified-copy-of-a-deed1
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 8336
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-search1
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 6941
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/transactions
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 16424
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/charges
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 7124
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/obtaining-license-at-first-time
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 6446
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/obtaining-license-for-additional-languages-closed
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 7349
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/changing-of-jurisdiction-zone-of-a-notary-public
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 6765
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/charges
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 7628
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney/charges
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 5793
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney
+- url: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd
+  label: ''
+  signals: FD-
+  score: 2
+  chars: 8744
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services
+- url: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online
+  label: visit
   signals: -DP
   score: 2
-  chars: 14417
+  chars: 9298
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=9
-  label: Overseas Applications
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations
+- url: https://www.rgd.gov.lk/web/images/2025/Notary/First_Lisence-Application_with_instruction_e_and_s.pdf
+  label: Application.
   signals: FD-
   score: 2
-  chars: 11346
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=10
-  label: Amendments
-  signals: FD-
+  chars: 4295
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/obtaining-license-at-first-time
+- url: https://www.rgd.gov.lk/web/images/2023/vitalStat/VITAL-STATISTICS-REPORT-2008-2017.pdf
+  label: Vital Statistics Report (2008-2017)
+  signals: F-P
   score: 2
-  chars: 8625
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=11
-  label: Passport Support Services
-  signals: FD-
-  score: 2
-  chars: 7603
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=14
-  label: General Information
-  signals: FD-
-  score: 2
-  chars: 14743
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=69
-  label: Permanent Residence Visa
-  signals: FD-
-  score: 2
-  chars: 18981
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=62
-  label: Business Visa
+  chars: 1429984
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/ebmd/UserManual/User%20Manual_eBMD%20Foreign%20Missions%20Online%20Portal.pdf
+  label: User Manual (PDF)
   signals: -DP
   score: 2
-  chars: 7792
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=15
-  label: Extension of Tourist Visa
-  signals: FD-
-  score: 2
-  chars: 10897
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=19
-  label: My Dream Home
-  signals: FD-
-  score: 2
-  chars: 11842
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=63
-  label: Transit Visa
-  signals: FD-
-  score: 2
-  chars: 7704
-  source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=1
-  label: Our Vision & Mission
+  chars: 22331
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online
+- url: https://www.rgd.gov.lk/web/index.php/en/search
+  label: ''
   signals: -D-
   score: 1
-  chars: 10445
+  chars: 5328
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=3
-  label: General Information
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/
+  label: ''
   signals: -D-
   score: 1
-  chars: 8660
+  chars: 16673
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=6
-  label: Special Provisions
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death
+  label: Death
+  signals: F--
+  score: 1
+  chars: 8349
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation
+  label: Translation
   signals: -D-
   score: 1
-  chars: 11626
+  chars: 6908
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=33
-  label: Renunciation of Citizenship
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties
+  label: Movable & Immovable Properties Registration
   signals: -D-
   score: 1
-  chars: 7322
+  chars: 9551
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=12
-  label: Lost / stolen passport
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/e-services
+  label: E-SERVICES
   signals: -D-
   score: 1
-  chars: 9919
+  chars: 6482
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/studio_e.php
-  label: Authorized Photo Studios
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/information-center
+  label: ''
   signals: -D-
   score: 1
-  chars: 6977
+  chars: 5471
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=61
-  label: Tourist Visa
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/application-form1
+  label: APPLICATION FORM
   signals: -D-
   score: 1
-  chars: 7901
+  chars: 6685
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
-- url: https://www.immigration.gov.lk/pages_e.php?id=58
-  label: Online Tourist Visa Extension
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/statistics
+  label: STATISTICS
   signals: -D-
   score: 1
-  chars: 7305
+  chars: 5014
   source_type: html
-  discovered_from: https://www.immigration.gov.lk/pages_e.php?id=8
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/faqs
+  label: FAQS
+  signals: -D-
+  score: 1
+  chars: 14549
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office/central-record-room
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 6390
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office/land-registries
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 5775
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/correction-of-errors-in-certificates
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 7506
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/obtain-certificate-of-divorce
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 8714
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/correction-of-incorrectly-registered-document1
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 6791
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/appeals-for-rejected-documents1
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 6493
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/title-registration
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 10274
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/title-registration-statistics
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 5821
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/notary-directory
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 5268
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney/registration-of-power-of-attorney
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 7855
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney
+- url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney/cancellation-of-registered-power-of-attorney
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 7107
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney
+- url: https://www.rgd.gov.lk/web/index.php/en/e-services/epopulation
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 8863
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services
+- url: https://www.rgd.gov.lk/web/index.php/en/e-services/titleregistration
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 6137
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services
+- url: https://www.rgd.gov.lk/web/index.php?lang=en
+  label: English
+  signals: -D-
+  score: 1
+  chars: 16709
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=114&Itemid=146&lang=en
+- url: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 12031
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics
+- url: https://www.rgd.gov.lk/web/index.php/en/component/arg_office/master_arg_offices?Itemid=101
+  label: ''
+  signals: -D-
+  score: 1
+  chars: 18237
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/obtaining-a-certified-copy-of-a-land-record-extract-copies1
+- url: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-deed-and-extract-copies-via-online-platform
+  label: More Details
+  signals: -D-
+  score: 1
+  chars: 6521
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd
+- url: https://www.rgd.gov.lk/web/index.php/en/staff-portal
+  label: Staff Portal
+  signals: '---'
+  score: 0
+  chars: 4504
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office
+  label: Head Office
+  signals: '---'
+  score: 0
+  chars: 7633
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office
+  label: Branch Office
+  signals: '---'
+  score: 0
+  chars: 6483
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/online-services
+  label: Online Services
+  signals: '---'
+  score: 0
+  chars: 4889
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details
+  label: Contact Details
+  signals: '---'
+  score: 0
+  chars: 22928
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/component/complaints/?view=complaint&Itemid=234
+  label: Inquiry, Complaints, Suggestions
+  signals: '---'
+  score: 0
+  chars: 4953
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=114&Itemid=146&lang=en
+  label: ONLINE SERVICES
+  signals: '---'
+  score: 0
+  chars: 855
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/rti-1
+  label: RTI / IAU
+  signals: '---'
+  score: 0
+  chars: 5901
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/department-report
+  label: DEPARTMENT REPORTS
+  signals: '---'
+  score: 0
+  chars: 4879
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/pledge-of-clean-sri-lanka-2
+  label: Pledge of Clean Sri Lanka
+  signals: '---'
+  score: 0
+  chars: 5108
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/national-environment-week-and-world-environment-day-commemoration-2026
+  label: National Environment Week and World Environment Day Commemoration - 2026
+  signals: '---'
+  score: 0
+  chars: 7567
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/national-tree-planting-and-world-environment-day-commemoration-2026
+  label: National Tree Planting and World Environment Day Commemoration - 2026
+  signals: '---'
+  score: 0
+  chars: 6152
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/training-program-on-the-anti-corruption-act-conducted-by-the-departments-training-division-on-april-21-2026
+  label: Training program on the 'Anti-Corruption Act conducted by the Department's
+    Training Division on April 21, 2026
+  signals: '---'
+  score: 0
+  chars: 7009
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/sinhala-and-tamil-new-year-2027
+  label: Sinhala and Tamil New Year 2026
+  signals: '---'
+  score: 0
+  chars: 5753
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/launch-of-the-new-website-and-1930-call-center-for-the-registrar-generals-department
+  label: Launch of the New Website and 1930 Call Center for the Registrar General’s
+    Department
+  signals: '---'
+  score: 0
+  chars: 6985
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php?option=com_districts&view=districts&Itemid=335&lang=en
+  label: Find Notary Information Access verified information on licensed notaries.
+  signals: '---'
+  score: 0
+  chars: 5220
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php?option=com_arg_office&view=master_arg_offices&Itemid=341&lang=en
+  label: Find Land Registries Information Find contact information on Land Registrars
+    (LR).
+  signals: '---'
+  score: 0
+  chars: 5893
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/index.php?option=com_provinces&view=provinces&Itemid=342&lang=en
+  label: Find Title Registration Offices Information Find contact information on Title
+    Registration Offices.
+  signals: '---'
+  score: 0
+  chars: 855
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+  duplicate_of: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=114&Itemid=146&lang=en
+- url: https://www.rgd.gov.lk/web/index.php?option=com_land_registry&view=master_land_registries&Itemid=339&lang=en
+  label: Find Land Registrar Information Search for official land registrars offices.
+  signals: '---'
+  score: 0
+  chars: 5210
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php?option=com_other_registrar&view=other_registrars&Itemid=336&lang=en
+  label: Find Registrar Information Find registrars for the information of births,
+    marriages, and deaths.
+  signals: '---'
+  score: 0
+  chars: 5131
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php?option=com_translator&view=translators&Itemid=340&lang=en
+  label: Find Translator Information Search for certified translators.
+  signals: '---'
+  score: 0
+  chars: 5363
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php?option=com_tell_registrar&view=tell_registrars&Itemid=364&lang=en
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5083
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php?option=com_feedback&view=feedbacks&Itemid=361&lang=en
+  label: FEEDBACK
+  signals: '---'
+  score: 0
+  chars: 5019
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/
+- url: https://www.rgd.gov.lk/web/index.php/en/form?view=reset
+  label: Forgot your password?
+  signals: '---'
+  score: 0
+  chars: 4597
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/staff-portal
+- url: https://www.rgd.gov.lk/web/index.php/en/form?view=remind
+  label: Forgot your username?
+  signals: '---'
+  score: 0
+  chars: 4538
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/staff-portal
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/administrative-division
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6255
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/civil-registration-division
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6579
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/finance-division
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5818
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/internal-audit-division
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5983
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/it-division
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6413
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/notaries-division
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5888
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/statistic-division
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6075
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office/adr-division-in-divisional-secretariat
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5821
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office
+- url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office/zonal-offices
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5440
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6571
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/list-of-bmd-registrars
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5351
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6985
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/list-of-bmd-registrars
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5409
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/downloads
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5996
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/list-of-bmd-registrars
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5361
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death
+- url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/download-translation-application
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5607
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation
+- url: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online
+  label: For more information
+  signals: '---'
+  score: 0
+  chars: 975
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/online-services
+- url: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/request-deed-and-extract-copies-via-online-platform
+  label: For more information
+  signals: '---'
+  score: 0
+  chars: 975
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/online-services
+  duplicate_of: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online
+- url: https://www.rgd.gov.lk/web/images/2025/information_officer/english_infor_1-compressed.pdf
+  label: Land Registry Offices - Information Officers
+  signals: '---'
+  score: 0
+  chars: 50
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details
+- url: https://www.rgd.gov.lk/web/images/2025/information_officer/english_informa_2.pdf
+  label: Officers from whom information regarding the duties of the Registrar General's
+    Department can be obtained
+  signals: '---'
+  score: 0
+  chars: 11
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details
+- url: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 12802
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services
+- url: https://www.rgd.gov.lk/web/index.php/en/application-form1/birth
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6122
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1
+- url: https://www.rgd.gov.lk/web/index.php/en/application-form1/marriage
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6214
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1
+- url: https://www.rgd.gov.lk/web/index.php/en/application-form1/death
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5548
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1
+- url: https://www.rgd.gov.lk/web/index.php/en/application-form1/translations
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4831
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1
+- url: https://www.rgd.gov.lk/web/index.php/en/application-form1/notary
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5257
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1
+- url: https://www.rgd.gov.lk/web/index.php/en/application-form1/land
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5253
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1
+- url: https://www.rgd.gov.lk/web/index.php/en/application-form1/other
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4635
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1
+- url: https://www.rgd.gov.lk/images/RTI/acts/rti_request_information-3%20English.pdf
+  label: Right to Information Application form – RTI1
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/rti-1
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/RTI/orders/rti_appeal-3%20English.pdf
+  label: Right to Information Appeal Form
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/rti-1
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 38717
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics
+- url: https://www.rgd.gov.lk/index.php/en/department-report/performance-report
+  label: Performance Report
+  signals: '---'
+  score: 0
+  chars: 979
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/department-report
+- url: https://www.rgd.gov.lk/index.php/en/department-report/financial-statement
+  label: Financial Statement
+  signals: '---'
+  score: 0
+  chars: 979
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/department-report
+  duplicate_of: https://www.rgd.gov.lk/index.php/en/department-report/performance-report
+- url: https://www.rgd.gov.lk/index.php/en/department-report/entriprenurial-plan
+  label: Business Plan
+  signals: '---'
+  score: 0
+  chars: 979
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/department-report
+  duplicate_of: https://www.rgd.gov.lk/index.php/en/department-report/performance-report
+- url: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=64:notary-directory&catid=16&Itemid=204&lang=en
+  label: Notary Directory 🔗
+  signals: '---'
+  score: 0
+  chars: 855
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php?option=com_districts&view=districts&Itemid=335&lang=en
+  duplicate_of: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=114&Itemid=146&lang=en
+- url: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+  label: Form B23
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/birth-registration
+- url: https://www.rgd.gov.lk/web/images/application/civil/Birth--Death-Registrar-pdf.pdf
+  label: Births and Deaths Registrar
+  signals: '---'
+  score: 0
+  chars: 129264
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/birth-registration
+- url: https://www.rgd.gov.lk/web/images/application/civil/CR01.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 50
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/birth-registration
+  duplicate_of: https://www.rgd.gov.lk/web/images/2025/information_officer/english_infor_1-compressed.pdf
+- url: https://www.rgd.gov.lk/images/pdf/birth/b37a.pdf
+  label: declaration
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/registration-of-unregistered-birth
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/pdf/birth/Application_for_birth_certificate_or_search_registeres_2017-04-25.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/index.php/en/component/translator/?view=translators&Itemid=340
+  label: offices of the Department where translators
+  signals: '---'
+  score: 0
+  chars: 5295
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations
+- url: https://www.rgd.gov.lk/images/pdf/bmd-translation.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/birth/Particulars_for_registration_of_a_birth_2017-04-25.pdf
+  label: Particulars for registration of a birth - (Form CR1)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/birth/Declaration_of_a_birth_after_3_months_2017-04-25.pdf
+  label: Declaration to be made for a Birth Registration after three months - (Form
+    B6)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/birth/Declaration_for_the_alterationommision_or_insertion_of_a_birth_registration_2017-04-25_.pdf
+  label: Declaration to be made for the Amendment of Particulars in a Births Registration
+    (Form B 37A )
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/birth/Application_for_birth_certificate_or_search_registeres_2017-04-25.pdf
+  label: Obtaining a Birth Certificate and/or Search of registers - (Form B 63)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/birth/Declaration_of_alteration_of_name_2017-04-25_english.pdf
+  label: Declaration of Change of Name [English] - (Form B9)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/birth/Declaration_of_a_name_2017-04-25_english.pdf
+  label: Declaration of a Name [English] - (Form B7)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/birth/Declaration_of_name_by_the_person_himself_2017-04-25_english.pdf
+  label: Declaration of Name by the Person Bearing the Name [English] - (Form B8)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/birth/Declaration_of_alteration_of_name_by_the_person_himself_english_2017-04-25.pdf
+  label: Declaration of Change of Name by the Person Bearing the Name [English] -
+    (Form B10)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/index.php/en/component/other_registrar/?view=other_registrars&Itemid=336
+  label: Directory of Birth, Death and Marriage Registrars
+  signals: '---'
+  score: 0
+  chars: 5064
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/list-of-bmd-registrars
+- url: https://www.rgd.gov.lk/web/images/pdf/marriage/b100.pdf
+  label: Notice of Marriage
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/marriage-registration
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/application/civil/B103.pdf
+  label: B103
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/marriage-registration
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/pdf/marriage/b121.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/obtain-certified-copies-translations
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/pdf/bmd-translation.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/obtain-certified-copies-translations
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/images/application_forms/marriage/Notice_of_marriage_2017-04-25.pdf
+  label: Notice of Marriage - ( Format B100 )
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/images/pdf/marriage/eastern_marriage_appication_2017-04-25.pdf
+  label: Notice of Kandyan Marriage - (Format C3)
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/images/application_forms/marriage/Application_for_certificate_of_marriage_2017-04-25.pdf
+  label: Application for Obtaining a General/Kandyan Marriage Certificate or for Search
+    of Registers - (Format B121)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/images/pdf/marriage/Application_for_certificate_according_to_marriage_registration_act_Sinhala_2017-04-25.pdf
+  label: Application for a Certificate under the Marriage Registration Act - (Format
+    B117)
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/images/application_forms/marriage/Declaration_by_wali_of_bride.pdf
+  label: Declaration by a Wali of a Bride under Section 18(1) - (Format E2/3)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/marriage/declaration_for_divorce_2017-04-25_english.pdf
+  label: Declaration for Divorce - (Format B17)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/marriage/muslim_marriage_or_divorsetion_form_2017-04-25.pdf
+  label: Application for a Muslim Marriage or Divorce Certificate and/or Search of
+    Registers - (Format E41)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/marriage/Petition_of_apeal_Against_an_order_english_2017-04-25.pdf
+  label: Petition of Appeal against an Order made by a District Registrar regarding
+    an Application for Dissolution of a Marriage - (Format C10)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/marriage/Second_or_subseguent_marriage_of_muslims_2017-04-25.pdf
+  label: Notice of Intention to Contract a Second or Subsequent Marriage - (Format
+    E8)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/marriage/Application_for_divorce_according_to_eastern_marriage_Tamil_2017-04-25.pdf
+  label: Application for Divorce according to Kandyan Marriage - (Form C16)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/images/application/civil/deathCR2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 50
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/death-registration
+  duplicate_of: https://www.rgd.gov.lk/web/images/2025/information_officer/english_infor_1-compressed.pdf
+- url: https://www.rgd.gov.lk/web/images/pdf/death/b15.pdf
+  label: declaration
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/pdf/death/b61.pdf
+  label: Declaration
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/ActsPDF/2010-19-2.pdf
+  label: Registration of Deaths (Temporary Provisions) Act No.19 of 2010
+  signals: '---'
+  score: 0
+  chars: 213
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death
+- url: https://www.rgd.gov.lk/web/images/ActsPDF/2016---Copy.pdf
+  label: Registration of Deaths (Temporary Provisions) (Amendment) Act, No. 16 of
+    2016
+  signals: '---'
+  score: 0
+  chars: 27929
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death
+- url: https://www.rgd.gov.lk/web/images/pdf/NO-11-2016.pdf
+  label: Affidavit (Annexure 02)
+  signals: '---'
+  score: 0
+  chars: 129
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death
+- url: https://www.rgd.gov.lk/web/images/pdf/b63a.pdf
+  label: death certificate
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/obtain-copies-translations
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/pdf/death/b63a.pdf
+  label: application form
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/obtain-copies-translations
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/images/application_forms/death/Declaration_of_a_Normal__sudden_Death_2017-04-25.pdf
+  label: Declaration of Death-Normal and Sudden Deaths - (Form CR2)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/death/Declaration_under_53_of_the_births_and_deaths_registration_act_2017-04-25.pdf
+  label: Declaration under Section 53 of the Births and Deaths Registration Act -
+    (Form B62)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/death/Declaration_of_births__death_registration_2017-04-25.pdf
+  label: Declaration for Registration of Births and Deaths - (Form B61)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/death/Application_for_death_certificate_or_search_registeres_2017-04-25.pdf
+  label: Application for Obtaining a Death Certificate and/or Search of Registers
+    - (Form B63 a)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application_forms/death/Schedule__inquirers_certificate_of_death_2017-04-25.pdf
+  label: Schedule & Certificate of the Inquirer into Deaths - (Form B18)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/downloads
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/images/amendement_2023/Translators-list-2033-07-22.pdf
+  label: the offices where translators are serving
+  signals: '---'
+  score: 0
+  chars: 3650
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/translate-certificate-of-death
+- url: https://www.rgd.gov.lk/images/application_forms/translations/bmd-translation.pdf
+  label: Application for Obtaining Translated Copies of Marriage, Birth, and Death
+    Certificates - (Form B 150)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/download-translation-application
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/index.php?lang=en&Itemid=341
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5479
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-registration1
+- url: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=63:charges&catid=16&Itemid=204&lang=en
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 855
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-registration1
+  duplicate_of: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=114&Itemid=146&lang=en
+- url: https://www.rgd.gov.lk/web/images/2025/A32A_application.pdf
+  label: '"Aplication A32(A)"'
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/obtaining-a-certified-copy-of-a-land-record-extract-copies1
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/images/pdf/Application_for_copy_of_land_registration_2017-04-25.pdf
+  label: '''Application A32(B)'''
+  signals: '---'
+  score: 0
+  chars: 37
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/obtaining-a-certified-copy-of-a-deed1
+- url: https://www.rgd.gov.lk/index.php?option=com_arg_office&view=master_arg_offices&lang=en
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 855
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/obtaining-a-certified-copy-of-a-deed1
+  duplicate_of: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=114&Itemid=146&lang=en
+- url: https://www.rgd.gov.lk/web/images/pdf/Land_registration/Application_for_search_of_land_registeres_2017-04-25.pdf
+  label: A33(A)
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-search1
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/pdf/Land_registration/Application_for_search_duplicates_of_deed_2017-04-25.pdf
+  label: A33(B)
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-search1
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/images/2025/title_regis._statis._1.pdf
+  label: Number of claim Schedules received from claims settlement offices
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/title-registration-statistics
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2025/title_regis._statis._2.pdf
+  label: Number of registered title scheduled
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/title-registration-statistics
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2025/title_regis._statis.3.pdf
+  label: Registration of post-title traction proofs
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/title-registration-statistics
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/ActsPDF/2308-27/2308-27_S.pdf
+  label: in the Gazette
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/transactions
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application/title/TR31.pdf
+  label: Application Ti.Re. 31
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/transactions
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/application/title/TR30.pdf
+  label: (Application Ti.Re. 30)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/transactions
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=26&Itemid=244&lang=en
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 855
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/transactions
+  duplicate_of: https://www.rgd.gov.lk/index.php?option=com_content&view=article&id=114&Itemid=146&lang=en
+- url: https://www.rgd.gov.lk/web/images/ActsPDF/2308-27/2308-27_S.pdf
+  label: Gazette Extraordinary No. 2308/27
+  signals: '---'
+  score: 0
+  chars: 147363
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/transactions
+- url: https://www.rgd.gov.lk/web/images/application/title/TR5.pdf
+  label: (Ti.Re. 05)
+  signals: '---'
+  score: 0
+  chars: 11
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/transactions
+  duplicate_of: https://www.rgd.gov.lk/web/images/2025/information_officer/english_informa_2.pdf
+- url: https://www.rgd.gov.lk/web/images/Notary/additional_language_application_and_instrutions_with_english_format.pdf
+  label: application
+  signals: '---'
+  score: 0
+  chars: 37
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/obtaining-license-for-additional-languages-closed
+  duplicate_of: https://www.rgd.gov.lk/web/images/pdf/Application_for_copy_of_land_registration_2017-04-25.pdf
+- url: https://www.rgd.gov.lk/web/images/2025/Notary/application-merged_compressed_1.pdf
+  label: application
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/changing-of-jurisdiction-zone-of-a-notary-public
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/2025/Notary/Judicial_Zone_land_registrar_app_with_sinhala.pdf
+  label: the recommendation of the Land Registrar
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/changing-of-jurisdiction-zone-of-a-notary-public
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/web/index.php?lang=en
+  label: English
+  signals: '---'
+  score: 0
+  chars: 991
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Ampara.pdf
+  label: Ampara
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Anuradhapura.pdf
+  label: Anuradhapura
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Attanagalle.pdf
+  label: Attanagalle
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Awissawella.pdf
+  label: Awissawella
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Badulla.pdf
+  label: Badulla
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Balapitiya.pdf
+  label: Balapitiya
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Batticaloa-.pdf
+  label: Batticaloa
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Chilaw.pdf
+  label: Chilaw
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Colombo.pdf
+  label: Colombo
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Delkada.pdf
+  label: Delkada
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Elpitiya.pdf
+  label: Elpitiya
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Embilipitiya.pdf
+  label: Embilipitiya
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Galle.pdf
+  label: Galle
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Gampaha.pdf
+  label: Gampaha
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Gampolapdf.pdf
+  label: Gampola
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Hambantota.pdf
+  label: Hambantota
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Homagama.pdf
+  label: Homagama
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Horana-.pdf
+  label: Horana
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Jaffna.pdf
+  label: Jaffna
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/kaduwelafrom-colombo.pdf
+  label: Kaduwela (From Colombo)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Kaduwelafrom-Homagama.pdf
+  label: Kaduwela (From Homagama)
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/kalmunai.pdf
+  label: Kalmunai
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Kalutara.pdf
+  label: Kalutara
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Kandy-.pdf
+  label: Kandy
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Kegalle.pdf
+  label: Kegalle
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Kilinochchiya.pdf
+  label: Kilinochchiya
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Kotapola.pdf
+  label: Kotapola
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Kuliyapitiya.pdf
+  label: Kuliyapitiya
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Kundasale.pdf
+  label: Kundasale
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Kurunegala.pdf
+  label: Kurunegala
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Mahara.pdf
+  label: Mahara
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Mannar.pdf
+  label: Mannar
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Marawila.pdf
+  label: Marawila
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Matale.pdf
+  label: Matale
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Matara.pdf
+  label: Matara
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Mathugama.pdf
+  label: Mathugama
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Monaragala.pdf
+  label: Monaragala
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Mullativu.pdf
+  label: Mullativu
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Narammala.pdf
+  label: Narammala
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Negombo.pdf
+  label: Negambo
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Nikawaratiya.pdf
+  label: Nikawaratiya
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Nuwara-Eliya.pdf
+  label: Nuwara Eliya
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Panadura.pdf
+  label: Panadura
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Point-Pedro.pdf
+  label: Point Pedro
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Polonnaruwa.pdf
+  label: Polonnaruwa
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Puttalama.pdf
+  label: Puttalama
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Rathnapura.pdf
+  label: Rathnapura
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Thangalla.pdf
+  label: Thangalle
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Trincomalee.pdf
+  label: Trincomalee
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Vauniyava.pdf
+  label: Vavuniya
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/notary_directory/2023/Walasmulla.pdf
+  label: Walasmulla
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/images/application_forms/death/Declaration_of_a_Normal__sudden_Death_2017-04-25.pdf
+  label: Declaration of Death-Normal & sudden death - (CR2 Format )
+  signals: '---'
+  score: 0
+  chars: 50
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1/death
+  duplicate_of: https://www.rgd.gov.lk/web/images/2025/information_officer/english_infor_1-compressed.pdf
+- url: https://www.rgd.gov.lk/web/images/application_forms/death/Declaration_under_53_of_the_births_and_deaths_registration_act_2017-04-25.pdf
+  label: Declaration under 53 of the births and deaths registration act - (B62 Format)
+  signals: '---'
+  score: 0
+  chars: 11
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1/death
+  duplicate_of: https://www.rgd.gov.lk/web/images/2025/information_officer/english_informa_2.pdf
+- url: https://www.rgd.gov.lk/web/images/application_forms/death/Declaration_of_births__death_registration_2017-04-25.pdf
+  label: Declaration of the Births & deaths Registration - (B61 Format)
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1/death
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/application_forms/death/Application_for_death_certificate_or_search_registeres_2017-04-25.pdf
+  label: Death Certificate and/or Search of registers - (B63 a Format)
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1/death
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/application_forms/death/Schedule__inquirers_certificate_of_death_2017-04-25.pdf
+  label: Schedule & Sudden inquirer's certificate of death - (B18 Format)
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1/death
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/web/images/2025/Notary/Judicial_Zone_land_registrar_app_ith_english.pdf
+  label: Application for recommendation of the Land Registrar for Changing the Judicial
+    Zone of the Notaries
+  signals: '---'
+  score: 0
+  chars: 24
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/application-form1/notary
+  duplicate_of: https://www.rgd.gov.lk/web/images/application/civil/B23.pdf
+- url: https://www.rgd.gov.lk/images/2021/Stat/November.pdf
+  label: November
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2021/Stat/December.pdf
+  label: December
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/January.pdf
+  label: January
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/February.pdf
+  label: February
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/MARCH.pdf
+  label: March
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/April.pdf
+  label: April
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/May.pdf
+  label: May
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/June.pdf
+  label: June
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/JULY-REPORT.pdf
+  label: July
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/August-2022.pdf
+  label: August
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/spetember.pdf
+  label: September
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/october-2022.pdf
+  label: October
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/November-2022.pdf
+  label: November
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/2022/landStatistics/december-2022.pdf
+  label: December
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/January---2023.pdf
+  label: January
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/February---2023.pdf
+  label: February
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/March---2023.pdf
+  label: March
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/April---2023.pdf
+  label: April
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/May.pdf
+  label: May
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/June.pdf
+  label: June
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/July.pdf
+  label: July
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/August.pdf
+  label: August
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/Septemder.pdf
+  label: September
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/October-2023.pdf
+  label: October
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2023/November.pdf
+  label: November
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2024/January-2024.pdf
+  label: January
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2024/Feb-2024.pdf
+  label: February
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2024/March-2024.pdf
+  label: March
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2024/April.pdf
+  label: April
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2024/May.pdf
+  label: May
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/images/statistic/2024/June.pdf
+  label: June
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Mid%20Population.%20Review.english%202026_RGO%20Revised.pdf
+  label: Web release - September 2026
+  signals: '---'
+  score: 0
+  chars: 2767
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Mid_Pop_Review_to_web_RGO_English2025.pdf
+  label: Web release - October 2025
+  signals: '---'
+  score: 0
+  chars: 2513
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Mid%20Year%20Population%20by%20Age%20Group%20%20Sex%202025%20-%202026.pdf
+  label: By Age and Sex
+  signals: '---'
+  score: 0
+  chars: 2536
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Mid-year%20population%20by%20district%20%20Sex%202025-2026.pdf
+  label: By District and Sex
+  signals: '---'
+  score: 0
+  chars: 3568
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/images/2023/vitalStat/indicators/To_Web_-BMDRATES-2024-english3.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+  error: 'HTTPError: HTTP Error 404: Not Found'
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Age%20Specific%20Death%20Rate.pdf
+  label: Age Specific Death Rate (ASDR), 2019 - 2022
+  signals: '---'
+  score: 0
+  chars: 1260
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2023/vitalStat/indicators/To_Web_-BMDRATES-2024-english1.pdf
+  label: Crude Birth Rate & Crude Death Rate by province, District & Sex, 2019 - 2024
+  signals: '---'
+  score: 0
+  chars: 7710
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2023/vitalStat/indicators/Crude-Birth-Rates--Crude-Death-Rates-by-Province-District--Sex-2017---2018.pdf
+  label: Crude Birth Rate & Crude Death Rate by Province, District & Sex, 2017 - 2018
+  signals: '---'
+  score: 0
+  chars: 2680
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2023/vitalStat/indicators/Neonatal%20Mortality%20Rate%20by%20Province%20and%20District%202012%20-%202022.pdf
+  label: NeoNatal Mortality Rate by Province and District, 2012 - 2022
+  signals: '---'
+  score: 0
+  chars: 1866
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Infant%20Mortality%20Rate%20by%20District%202012-2022xlsx.pdf
+  label: Infant Mortality Rate by Province and District, 2012 - 2022
+  signals: '---'
+  score: 0
+  chars: 1894
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Under%205%20Mortality%20Rate%20by%20Distric%202012-2022.pdf
+  label: Under-five Mortality Rate by Province and District, 2012 - 2022
+  signals: '---'
+  score: 0
+  chars: 1942
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Maternal%20Mortality%20Ratio%20by%20Province%20and%20District%202012%20-%202022.pdf
+  label: Maternal Mortality Rate by Province and District, 2012 - 2022
+  signals: '---'
+  score: 0
+  chars: 2186
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2104
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 888
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.1%20.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2435
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.2%20.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1819
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.3%20.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2242
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.4%20.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2641
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.5%20.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1799
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.4.1%20.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1897
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.4.2%20.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2005
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.4.3%20.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 924
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.6.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2031
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.6.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1590
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1514
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2026/Table%20%203.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1514
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+  duplicate_of: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.1.pdf
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.2.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1607
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.2.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1003
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.3.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1705
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.3.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1332
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.4.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1683
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.4.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1376
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.4.3.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1398
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.5a.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 11285
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.5b.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 15693
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.2.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 3565
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.2.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5436
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.3.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 13764
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.4.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5521
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.4.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5651
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.5.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1937
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.5.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2216
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.6.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 19006
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.7.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6312
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.8.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5486
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.8.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5462
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.9.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2346
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.10.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 40865
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.11.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6291
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.11.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 6127
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.12.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 59714
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.13.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4843
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.14.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4235
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.15.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5435
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.16.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5093
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/english/2.17.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4230
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1269
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2462
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.3.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2512
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.4.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4189
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.5a.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 10235
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.5b.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 13840
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2025
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 904
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.3.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 9337
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.4.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4128
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.6.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 3506
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.1_Marr_2020_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5582
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.2_Marr_2020_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5656
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.3_Marr_2020_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2971
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.4_Marr_2020_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5542
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.5_Marr_2020_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5096
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.6_Marr_2020_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 3300
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.7_Marr_2020_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 3359
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.8_Marr_2020_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 3875
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.9_Marr_2020_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 3770
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020enddeath/%E0%B7%80%E0%B6%9C%E0%B7%94%E0%B7%80_1.1_%E0%B7%80%E0%B7%92%E0%B7%80%E0%B7%8F%E0%B7%84_2020_%E0%B7%83%E0%B7%92%E0%B6%82%E0%B7%84%E0%B6%BD_.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5714
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2478
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.3.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 3030
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.4.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4260
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.5a.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 10347
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.5b.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 13722
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1960
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 895
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.3.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 9323
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.4.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4072
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.6.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 3674
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 0
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+  error: 'Blocked by anti-bot protection: Near-empty content (30 bytes) with HTTP
+    200'
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 1363
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2618
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.3.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2744
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.4.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 4251
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.5a.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 10232
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.5b.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 13777
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.1.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 2006
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.2.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 904
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.3.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 9395
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.4.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 5009
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.6.pdf
+  label: ''
+  signals: '---'
+  score: 0
+  chars: 3507
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/web/images/2023/vitalStat/Annual-bulletine-2017-10-new.pdf
+  label: Annual Bulletine 2017
+  signals: '---'
+  score: 0
+  chars: 15445
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+- url: https://www.rgd.gov.lk/index.php/en/department-report/web/index.php?lang=en
+  label: English
+  signals: '---'
+  score: 0
+  chars: 995
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/index.php/en/department-report/performance-report
+- url: https://www.rgd.gov.lk/web/images/online/DS_-_ADR-list.pdf
+  label: View Contact List (PDF)
+  signals: '---'
+  score: 0
+  chars: 18206
+  source_type: pdf
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online
+- url: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/web/web/index.php?lang=en
+  label: English
+  signals: '---'
+  score: 0
+  chars: 1007
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/web/index.php?lang=en
+- url: https://www.rgd.gov.lk/web/index.php/en/component/arg_office/?view=master_arg_offices&Itemid=341
+  label: Land Registry Office Directory
+  signals: '---'
+  score: 0
+  chars: 5834
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-deed-and-extract-copies-via-online-platform
+- url: https://www.rgd.gov.lk/index.php/en/department-report/web/web/index.php?lang=en
+  label: English
+  signals: '---'
+  score: 0
+  chars: 1011
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/index.php/en/department-report/web/index.php?lang=en
+- url: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/web/web/web/index.php?lang=en
+  label: English
+  signals: '---'
+  score: 0
+  chars: 1023
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/web/web/index.php?lang=en
+- url: https://www.rgd.gov.lk/index.php/en/department-report/web/web/web/index.php?lang=en
+  label: English
+  signals: '---'
+  score: 0
+  chars: 1027
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/index.php/en/department-report/web/web/index.php?lang=en
+- url: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/web/web/web/web/index.php?lang=en
+  label: English
+  signals: '---'
+  score: 0
+  chars: 1039
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/index.php/en/e-services/e-bmd/web/web/web/index.php?lang=en
+- url: https://www.rgd.gov.lk/index.php/en/department-report/web/web/web/web/index.php?lang=en
+  label: English
+  signals: '---'
+  score: 0
+  chars: 1043
+  source_type: html
+  discovered_from: https://www.rgd.gov.lk/index.php/en/department-report/web/web/web/index.php?lang=en
