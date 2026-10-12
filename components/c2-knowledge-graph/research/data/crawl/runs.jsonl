@@ -1,2 +1,9 @@
 {"run_id": "f611218d4732", "started_at": "2026-10-10T09:29:47+00:00", "finished_at": "2026-10-10T09:30:02+00:00", "pages": 6, "counts": {"NEW": 4, "UNREACHABLE": 2}, "to_extract": 4}
 {"run_id": "ced1864288e6", "started_at": "2026-10-10T14:59:19+00:00", "finished_at": "2026-10-10T14:59:37+00:00", "pages": 6, "counts": {"UNCHANGED": 4, "UNREACHABLE": 2}, "to_extract": 0}
+{"run_id": "fe0e1285ece4", "started_at": "2026-10-11T08:35:56+00:00", "finished_at": "2026-10-11T08:36:21+00:00", "pages": 10, "counts": {"UNCHANGED": 4, "UNREACHABLE": 2, "NEW": 4}, "to_extract": 4}
+{"run_id": "1be388aedc92", "started_at": "2026-10-11T11:39:15+00:00", "finished_at": "2026-10-11T11:40:23+00:00", "pages": 26, "counts": {"UNCHANGED": 8, "UNREACHABLE": 2, "NEW": 16}, "to_extract": 16}
+{"run_id": "74c09bece800", "started_at": "2026-10-11T11:51:13+00:00", "finished_at": "2026-10-11T11:52:29+00:00", "pages": 29, "counts": {"UNCHANGED": 24, "UNREACHABLE": 2, "NEW": 3}, "to_extract": 3}
+{"run_id": "a586f3ff6ca7", "started_at": "2026-10-11T12:58:02+00:00", "finished_at": "2026-10-11T12:59:31+00:00", "pages": 30, "counts": {"UNCHANGED": 27, "UNREACHABLE": 2, "NEW": 1}, "to_extract": 1}
+{"run_id": "ee8e344450e3", "started_at": "2026-10-11T13:03:25+00:00", "finished_at": "2026-10-11T13:06:18+00:00", "pages": 63, "counts": {"UNCHANGED": 28, "UNREACHABLE": 3, "NEW": 32}, "to_extract": 32}
+{"run_id": "e1950230ecc3", "started_at": "2026-10-11T14:33:49+00:00", "finished_at": "2026-10-11T14:44:20+00:00", "pages": 137, "counts": {"UNCHANGED": 60, "UNREACHABLE": 3, "NEW": 74}, "to_extract": 74}
+{"run_id": "67a7606f9c7b", "started_at": "2026-10-11T15:02:32+00:00", "finished_at": "2026-10-11T15:16:44+00:00", "pages": 236, "counts": {"UNCHANGED": 134, "UNREACHABLE": 3, "NEW": 99}, "to_extract": 99}

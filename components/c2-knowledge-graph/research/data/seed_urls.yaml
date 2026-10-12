@@ -16,35 +16,736 @@
 seeds:
   # ---- svc:birth_certificate: Registrar General's Department
   - url: https://www.rgd.gov.lk/
-    service: svc:birth_certificate
     agency: Registrar General's Department
     note: Homepage. The Round 1 audit found the useful content sits in a downloadable form (B 150) rather than HTML. Find the service page and decide the PDF question.
 
   # ---- svc:nic: Department for Registration of Persons
   - url: https://www.drp.gov.lk/
-    service: svc:nic
     agency: Department for Registration of Persons
     note: Homepage. Replace with the NIC application and fee pages.
 
   # ---- svc:police_clearance: Sri Lanka Police
   - url: https://www.police.lk/
-    service: svc:police_clearance
     agency: Sri Lanka Police
     note: Homepage, not yet checked. Find the police clearance report page.
 
   # ---- svc:passport: Department of Immigration and Emigration
   - url: https://www.immigration.gov.lk/pages_e.php?id=8
-    service: svc:passport
     agency: Department of Immigration and Emigration
     verified: true
     note: Round 1 audit - about 2,500 words with fees, documents and prerequisites in plain HTML. Four fee formats on one page.
   - url: https://www.immigration.gov.lk/
-    service: svc:passport
     agency: Department of Immigration and Emigration
     note: Homepage. Add the lost-passport and minor-passport pages.
 
   # ---- svc:business_registration: Registrar of Companies
   - url: https://www.drc.gov.lk/
-    service: svc:business_registration
     agency: Department of the Registrar of Companies
     note: Homepage. Replace with the business name and company registration pages.
+
+  # ---- found by discovery on 11 Oct 2026. Not verified by hand yet: open each page and check
+  # ---- it states a fee, documents or a prerequisite before setting verified: true.
+
+  # svc:nic: Department for Registration of Persons (the site's English pages are under /en/)
+  - url: https://www.drp.gov.lk/en/normal.php
+    agency: Department for Registration of Persons
+    note: "Obtaining NIC. Discovery signals: fee, documents. About 24,000 characters."
+  - url: https://www.drp.gov.lk/en/GN.php
+    agency: Department for Registration of Persons
+    note: "Ad. Grama Niladhari. Discovery signals: documents, prerequisite."
+  - url: https://www.drp.gov.lk/en/other_service.php
+    agency: Department for Registration of Persons
+    note: "Other services. Discovery signals: fee, documents."
+
+  # svc:birth_certificate: Registrar General's Department
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth
+    agency: Registrar General's Department
+    note: "Civil registration, birth. Discovery signal: fee. Check whether the forms are PDFs."
+
+  # ---- Department for Registration of Persons: found by discovery from /en/home.php on 2026-10-11
+  - url: https://www.drp.gov.lk/en/nicverification.php
+    agency: Department for Registration of Persons
+    note: NIC information verification
+  - url: https://www.drp.gov.lk/en/icao.php
+    agency: Department for Registration of Persons
+    note: Obtaining ICAO photograph
+  - url: https://www.drp.gov.lk/en/oneday_branch.php
+    agency: Department for Registration of Persons
+    note: One-day service branch
+  - url: https://www.drp.gov.lk/en/faq.php
+    agency: Department for Registration of Persons
+    note: FAQs
+  - url: https://www.drp.gov.lk/en/divisions.php
+    agency: Department for Registration of Persons
+    note: Divisions
+  - url: https://www.drp.gov.lk/en/divisional_office.php
+    agency: Department for Registration of Persons
+    note: Divisional office
+  - url: https://www.drp.gov.lk/en/downloads.php
+    agency: Department for Registration of Persons
+    note: Downloads (forms)
+  - url: https://www.drp.gov.lk/en/return_application.php
+    agency: Department for Registration of Persons
+    note: Incomplete application return
+  - url: https://www.drp.gov.lk/en/slu.php
+    agency: Department for Registration of Persons
+    note: e-NIC project
+  - url: https://www.drp.gov.lk/en/assets/formats/Purawesi%20Eng.pdf
+    agency: Department for Registration of Persons
+    note: Citizen charter (PDF)
+  - url: https://www.drp.gov.lk/en/assets/formats/application.pdf
+    agency: Department for Registration of Persons
+    note: Application (PDF)
+  - url: https://www.drp.gov.lk/en/assets/downloads/D.R.POP023.pdf
+    agency: Department for Registration of Persons
+    note: Form D.R.POP023 (PDF)
+  - url: https://www.drp.gov.lk/en/assets/formats/0008.pdf
+    agency: Department for Registration of Persons
+    note: Form 0008 (PDF)
+  - url: https://www.drp.gov.lk/en/assets/formats/minimum-requirement.pdf
+    agency: Department for Registration of Persons
+    note: ICAO studio minimum requirements (PDF)
+  - url: https://www.drp.gov.lk/en/assets/formats/studio-app.pdf
+    agency: Department for Registration of Persons
+    note: ICAO studio application (PDF)
+  - url: https://www.drp.gov.lk/en/assets/formats/english_translation.pdf
+    agency: Department for Registration of Persons
+    note: English translation form (PDF)
+  - url: https://www.drp.gov.lk/en/assets/downloads/rules/08-2016_E.pdf
+    agency: Department for Registration of Persons
+    note: Gazette (2016). May hold the official fee schedule.
+  - url: https://www.drp.gov.lk/en/assets/downloads/rules/2015%20english.pdf
+    agency: Department for Registration of Persons
+    note: Gazette (2015). May hold the official fee schedule.
+  - url: https://www.drp.gov.lk/en/assets/downloads/rules/2017%20english.pdf
+    agency: Department for Registration of Persons
+    note: Gazette (2017). May hold the official fee schedule.
+  - url: https://www.drp.gov.lk/en/contact.php
+    agency: Department for Registration of Persons
+    note: Contact details (phone, address, email). Kept as agency contact, not as a service.
+
+  # ---- DRP: knowledge-base scope (everything except the exclusion list), 2026-10-11
+  - url: https://www.drp.gov.lk/en/assets/downloads/0007.pdf
+    agency: Department for Registration of Persons
+    note: 0007.pdf
+  - url: https://www.drp.gov.lk/en/assets/downloads/104.pdf
+    agency: Department for Registration of Persons
+    note: 104.pdf
+  - url: https://www.drp.gov.lk/en/assets/downloads/RTI-01E.pdf
+    agency: Department for Registration of Persons
+    note: E
+  - url: https://www.drp.gov.lk/en/assets/downloads/RTI-10E.pdf
+    agency: Department for Registration of Persons
+    note: E
+  - url: https://www.drp.gov.lk/en/assets/downloads/accessing%20informations%20english.pdf
+    agency: Department for Registration of Persons
+    note: E
+  - url: https://www.drp.gov.lk/en/assets/downloads/attachment%20english.pdf
+    agency: Department for Registration of Persons
+    note: E
+  - url: https://www.drp.gov.lk/en/assets/downloads/rti-act-en.pdf
+    agency: Department for Registration of Persons
+    note: E
+  - url: https://www.drp.gov.lk/en/assets/formats/0207.pdf
+    agency: Department for Registration of Persons
+    note: 0207.pdf
+  - url: https://www.drp.gov.lk/en/assets/formats/D%20format/annexure.pdf
+    agency: Department for Registration of Persons
+    note: annexure.pdf
+  - url: https://www.drp.gov.lk/en/assets/formats/engtranseng.pdf
+    agency: Department for Registration of Persons
+    note: engtranseng.pdf
+  - url: https://www.drp.gov.lk/en/assets/formats/notice%20to%20the%20public.pdf
+    agency: Department for Registration of Persons
+    note: notice%20to%20the%20public.pdf
+  - url: https://www.drp.gov.lk/en/authorization.php
+    agency: Department for Registration of Persons
+    note: Authorization branch
+  - url: https://www.drp.gov.lk/en/baticoloa.php
+    agency: Department for Registration of Persons
+    note: Provincial Office - East,
+  - url: https://www.drp.gov.lk/en/dataentry.php
+    agency: Department for Registration of Persons
+    note: Data entry & Sinhala Tamil Transliteration branch
+  - url: https://www.drp.gov.lk/en/ds.php
+    agency: Department for Registration of Persons
+    note: Provincial & Divisional secretariat Coordination Branch
+  - url: https://www.drp.gov.lk/en/eqd.php
+    agency: Department for Registration of Persons
+    note: Document Examination Branch(EQD)
+  - url: https://www.drp.gov.lk/en/front_office.php
+    agency: Department for Registration of Persons
+    note: Front Office
+  - url: https://www.drp.gov.lk/en/iau.php
+    agency: Department for Registration of Persons
+    note: I.A.U
+  - url: https://www.drp.gov.lk/en/inquire.php
+    agency: Department for Registration of Persons
+    note: Suggesions
+  - url: https://www.drp.gov.lk/en/kurunegala.php
+    agency: Department for Registration of Persons
+    note: Provincial Office-North West,
+  - url: https://www.drp.gov.lk/en/leagal_branch.php
+    agency: Department for Registration of Persons
+    note: Leagal branch
+  - url: https://www.drp.gov.lk/en/media.php
+    agency: Department for Registration of Persons
+    note: Media unit
+  - url: https://www.drp.gov.lk/en/number_verification.php
+    agency: Department for Registration of Persons
+    note: Number confirmation division
+  - url: https://www.drp.gov.lk/en/numbering.php
+    agency: Department for Registration of Persons
+    note: Numbering division
+  - url: https://www.drp.gov.lk/en/nuwaraeliya.php
+    agency: Department for Registration of Persons
+    note: Provincial Office - Central,
+  - url: https://www.drp.gov.lk/en/postalin.php
+    agency: Department for Registration of Persons
+    note: Postal-in and Scaning branch
+  - url: https://www.drp.gov.lk/en/postalout.php
+    agency: Department for Registration of Persons
+    note: Identity card issuing & Postal-out branch
+  - url: https://www.drp.gov.lk/en/print.php
+    agency: Department for Registration of Persons
+    note: Identity Card Printing and Quality Assurance Branch
+  - url: https://www.drp.gov.lk/en/registration.php
+    agency: Department for Registration of Persons
+    note: Registration Branch
+  - url: https://www.drp.gov.lk/en/rif.php
+    agency: Department for Registration of Persons
+    note: R.T.I
+  - url: https://www.drp.gov.lk/en/southern.php
+    agency: Department for Registration of Persons
+    note: Provincial Office - Southern,
+  - url: https://www.drp.gov.lk/en/structure.php
+    agency: Department for Registration of Persons
+    note: Organization Structure
+  - url: https://www.drp.gov.lk/en/vauniya.php
+    agency: Department for Registration of Persons
+    note: Provincial Office - North,
+
+  # ---- DRP: found by following links from the main service pages, 2026-10-11
+  - url: https://www.drp.gov.lk/en/assets/downloads/fees-english.pdf
+    agency: Department for Registration of Persons
+    note: ( Notice on revision of fees charged)
+  - url: https://www.drp.gov.lk/en/assets/downloads/application%2002_3english.pdf
+    agency: Department for Registration of Persons
+    note: (Form D.R.P/OP/02/03)
+  - url: https://www.drp.gov.lk/en/assets/formats/stamp%20-%20english.pdf
+    agency: Department for Registration of Persons
+    note: (Letter)
+  - url: https://www.drp.gov.lk/en/assets/formats/1960%20english.pdf
+    agency: Department for Registration of Persons
+    note: (Letter)
+  - url: https://www.drp.gov.lk/en/assets/formats/dual.pdf
+    agency: Department for Registration of Persons
+    note: D.R.P./OP/01/04
+  - url: https://www.drp.gov.lk/en/assets/formats/no%20bc.pdf
+    agency: Department for Registration of Persons
+    note: (Letter)
+  - url: https://www.drp.gov.lk/en/assets/formats/%E0%B6%89%E0%B6%82%E0%B6%9C%E0%B7%8A%E2%80%8D%E0%B6%BB%E0%B7%93%E0%B7%83%E0%B7%92%20%E0%B6%B7%E0%B7%8F%E0%B7%82%E0%B7%8F%E0%B7%80%E0%B7%99%E0%B6%B1%E0%B7%8A%20%E0%B6%BD%E0%B7%92%E0%B6%B4%E0%B7%92%E0%B6%B1%E0%B6%BA%20%E0%B6%BD%E0%B6%B6%E0%B7%8F%20%E0%B6%AF%E0%B7%93%E0%B6%B8.pdf
+    agency: Department for Registration of Persons
+    note: (Letter)
+  - url: https://www.drp.gov.lk/en/assets/formats/bikshu%20eng.pdf
+    agency: Department for Registration of Persons
+    note: (Letter)
+  - url: https://www.drp.gov.lk/en/assets/formats/ODS.pdf
+    agency: Department for Registration of Persons
+    note: (Letter)
+  - url: https://www.drp.gov.lk/en/assets/formats/police%20report.pdf
+    agency: Department for Registration of Persons
+    note: (Letter)
+  - url: https://www.drp.gov.lk/en/assets/formats/application%203.pdf
+    agency: Department for Registration of Persons
+    note: (Letter)
+  - url: https://www.drp.gov.lk/en/assets/formats/address.pdf
+    agency: Department for Registration of Persons
+    note: (Letter)
+  - url: https://www.drp.gov.lk/en/past%20commissionors.php
+    agency: Department for Registration of Persons
+    note: Former Commissioners and Commissioner Generals
+  - url: https://www.drp.gov.lk/en/assets/formats/ag_office23.pdf
+    agency: Department for Registration of Persons
+    note: (Download the form)
+  - url: https://www.drp.gov.lk/en/assets/downloads/23.pdf
+    agency: Department for Registration of Persons
+    note: form
+  - url: https://www.drp.gov.lk/en/assets/formats/%E0%B6%8B%E0%B6%B4%E0%B6%BD%E0%B7%9A%E0%B6%9B%E0%B6%AB%20.pdf
+    agency: Department for Registration of Persons
+    note: (Table)
+
+  # ---- Immigration: found by following links from the English home page, 2026-10-11
+  - url: https://www.immigration.gov.lk/con_head_e.php
+    agency: Department of Immigration and Emigration
+    note: Enquiries and Comments
+  - url: https://www.immigration.gov.lk/index_e.php
+    agency: Department of Immigration and Emigration
+    note: English
+  - url: https://www.immigration.gov.lk/pages_e.php?id=10
+    agency: Department of Immigration and Emigration
+    note: Amendments
+  - url: https://www.immigration.gov.lk/pages_e.php?id=11
+    agency: Department of Immigration and Emigration
+    note: Passport Support Services
+  - url: https://www.immigration.gov.lk/pages_e.php?id=12
+    agency: Department of Immigration and Emigration
+    note: Lost / stolen passport
+  - url: https://www.immigration.gov.lk/pages_e.php?id=13
+    agency: Department of Immigration and Emigration
+    note: Ports
+  - url: https://www.immigration.gov.lk/pages_e.php?id=14
+    agency: Department of Immigration and Emigration
+    note: General Information
+  - url: https://www.immigration.gov.lk/pages_e.php?id=15
+    agency: Department of Immigration and Emigration
+    note: Extension of Tourist Visa
+  - url: https://www.immigration.gov.lk/pages_e.php?id=16
+    agency: Department of Immigration and Emigration
+    note: Investigations
+  - url: https://www.immigration.gov.lk/pages_e.php?id=18
+    agency: Department of Immigration and Emigration
+    note: Residence Visa
+  - url: https://www.immigration.gov.lk/pages_e.php?id=19
+    agency: Department of Immigration and Emigration
+    note: My Dream Home
+  - url: https://www.immigration.gov.lk/pages_e.php?id=20
+    agency: Department of Immigration and Emigration
+    note: Resident Guest Scheme
+  - url: https://www.immigration.gov.lk/pages_e.php?id=22
+    agency: Department of Immigration and Emigration
+    note: Yellow fever vaccination certificate
+  - url: https://www.immigration.gov.lk/pages_e.php?id=24
+    agency: Department of Immigration and Emigration
+    note: Applications
+  - url: https://www.immigration.gov.lk/pages_e.php?id=28
+    agency: Department of Immigration and Emigration
+    note: Immigrants and Emigrants Act and Amendments
+  - url: https://www.immigration.gov.lk/pages_e.php?id=29
+    agency: Department of Immigration and Emigration
+    note: Location
+  - url: https://www.immigration.gov.lk/pages_e.php?id=3
+    agency: Department of Immigration and Emigration
+    note: General Information
+  - url: https://www.immigration.gov.lk/pages_e.php?id=32
+    agency: Department of Immigration and Emigration
+    note: Contact Information
+  - url: https://www.immigration.gov.lk/pages_e.php?id=33
+    agency: Department of Immigration and Emigration
+    note: Renunciation of Citizenship
+  - url: https://www.immigration.gov.lk/pages_e.php?id=34
+    agency: Department of Immigration and Emigration
+    note: RTI Forms
+  - url: https://www.immigration.gov.lk/pages_e.php?id=35
+    agency: Department of Immigration and Emigration
+    note: RTI Officer
+  - url: https://www.immigration.gov.lk/pages_e.php?id=36
+    agency: Department of Immigration and Emigration
+    note: Performance Reports
+  - url: https://www.immigration.gov.lk/pages_e.php?id=38
+    agency: Department of Immigration and Emigration
+    note: Appointment
+  - url: https://www.immigration.gov.lk/pages_e.php?id=4
+    agency: Department of Immigration and Emigration
+    note: Dual Citizenship
+  - url: https://www.immigration.gov.lk/pages_e.php?id=45
+    agency: Department of Immigration and Emigration
+    note: Visa Fees
+  - url: https://www.immigration.gov.lk/pages_e.php?id=47
+    agency: Department of Immigration and Emigration
+    note: CONTACT INFORMATION FOR TECHNICAL ERRORS AND NON-TECHNICAL E
+  - url: https://www.immigration.gov.lk/pages_e.php?id=48
+    agency: Department of Immigration and Emigration
+    note: IMPORTANT NOTICE TO OWNERS OF REGISTERED PHOTO STUDIOS
+  - url: https://www.immigration.gov.lk/pages_e.php?id=49
+    agency: Department of Immigration and Emigration
+    note: Instructions to Registered Photo Studio Owners when sending 
+  - url: https://www.immigration.gov.lk/pages_e.php?id=5
+    agency: Department of Immigration and Emigration
+    note: Overseas Birth Registration
+  - url: https://www.immigration.gov.lk/pages_e.php?id=57
+    agency: Department of Immigration and Emigration
+    note: Examinations
+  - url: https://www.immigration.gov.lk/pages_e.php?id=58
+    agency: Department of Immigration and Emigration
+    note: Online Tourist Visa Extension
+  - url: https://www.immigration.gov.lk/pages_e.php?id=59
+    agency: Department of Immigration and Emigration
+    note: RTI Fees
+  - url: https://www.immigration.gov.lk/pages_e.php?id=6
+    agency: Department of Immigration and Emigration
+    note: Special Provisions
+  - url: https://www.immigration.gov.lk/pages_e.php?id=60
+    agency: Department of Immigration and Emigration
+    note: Free Visa
+  - url: https://www.immigration.gov.lk/pages_e.php?id=61
+    agency: Department of Immigration and Emigration
+    note: Tourist Visa
+  - url: https://www.immigration.gov.lk/pages_e.php?id=62
+    agency: Department of Immigration and Emigration
+    note: Business Visa
+  - url: https://www.immigration.gov.lk/pages_e.php?id=63
+    agency: Department of Immigration and Emigration
+    note: Transit Visa
+  - url: https://www.immigration.gov.lk/pages_e.php?id=64
+    agency: Department of Immigration and Emigration
+    note: Diplomatic & Official Visits
+  - url: https://www.immigration.gov.lk/pages_e.php?id=65
+    agency: Department of Immigration and Emigration
+    note: pages_e.php?id=65
+  - url: https://www.immigration.gov.lk/pages_e.php?id=66
+    agency: Department of Immigration and Emigration
+    note: pages_e.php?id=66
+  - url: https://www.immigration.gov.lk/pages_e.php?id=69
+    agency: Department of Immigration and Emigration
+    note: Permanent Residence Visa
+  - url: https://www.immigration.gov.lk/pages_e.php?id=7
+    agency: Department of Immigration and Emigration
+    note: General Information
+  - url: https://www.immigration.gov.lk/pages_e.php?id=9
+    agency: Department of Immigration and Emigration
+    note: Overseas Applications
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?id=1
+    agency: Department of Immigration and Emigration
+    note: PREVIOUS
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?id=2
+    agency: Department of Immigration and Emigration
+    note: NEXT
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?id=3
+    agency: Department of Immigration and Emigration
+    note: 3
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=100
+    agency: Department of Immigration and Emigration
+    note: Guidelines
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=100&id=2
+    agency: Department of Immigration and Emigration
+    note: Guidelines
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=104
+    agency: Department of Immigration and Emigration
+    note: Media and Public Notice
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=104&id=1
+    agency: Department of Immigration and Emigration
+    note: Media and Public Notice
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=105
+    agency: Department of Immigration and Emigration
+    note: Guidelines for Overseas
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=105&id=1
+    agency: Department of Immigration and Emigration
+    note: Guidelines for Overseas
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=106
+    agency: Department of Immigration and Emigration
+    note: Important Links
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=106&id=1
+    agency: Department of Immigration and Emigration
+    note: Important Links
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=107
+    agency: Department of Immigration and Emigration
+    note: NOTICE TO OWNERS OF REGISTERED PHOTO
+  - url: https://www.immigration.gov.lk/projectDetails_e.php?proid=107&id=1
+    agency: Department of Immigration and Emigration
+    note: NOTICE TO OWNERS OF REGISTERED PHOTO STUDIOS
+  - url: https://www.immigration.gov.lk/rtiForm_e.php
+    agency: Department of Immigration and Emigration
+    note: Online RTI Form
+  - url: https://www.immigration.gov.lk/studio_e.php
+    agency: Department of Immigration and Emigration
+    note: Authorized Photo Studios
+
+  # ---- RGD: found by following links from the English home page, 2026-10-11
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office
+    agency: Registrar General's Department
+    note: "Branch Office"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office/adr-division-in-divisional-secretariat
+    agency: Registrar General's Department
+    note: "adr-division-in-divisional-secretariat"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office/central-record-room
+    agency: Registrar General's Department
+    note: "central-record-room"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office/land-registries
+    agency: Registrar General's Department
+    note: "land-registries"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/branch-office/zonal-offices
+    agency: Registrar General's Department
+    note: "zonal-offices"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office
+    agency: Registrar General's Department
+    note: "Head Office"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/administrative-division
+    agency: Registrar General's Department
+    note: "administrative-division"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/civil-registration-division
+    agency: Registrar General's Department
+    note: "civil-registration-division"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/finance-division
+    agency: Registrar General's Department
+    note: "finance-division"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/internal-audit-division
+    agency: Registrar General's Department
+    note: "internal-audit-division"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/it-division
+    agency: Registrar General's Department
+    note: "it-division"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/notaries-division
+    agency: Registrar General's Department
+    note: "notaries-division"
+  - url: https://www.rgd.gov.lk/web/index.php/en/about-us/structure1/head-office/statistic-division
+    agency: Registrar General's Department
+    note: "statistic-division"
+  - url: https://www.rgd.gov.lk/web/index.php/en/application-form1
+    agency: Registrar General's Department
+    note: "APPLICATION FORM"
+  - url: https://www.rgd.gov.lk/web/index.php/en/application-form1/birth
+    agency: Registrar General's Department
+    note: "birth"
+  - url: https://www.rgd.gov.lk/web/index.php/en/application-form1/death
+    agency: Registrar General's Department
+    note: "death"
+  - url: https://www.rgd.gov.lk/web/index.php/en/application-form1/land
+    agency: Registrar General's Department
+    note: "land"
+  - url: https://www.rgd.gov.lk/web/index.php/en/application-form1/marriage
+    agency: Registrar General's Department
+    note: "marriage"
+  - url: https://www.rgd.gov.lk/web/index.php/en/application-form1/notary
+    agency: Registrar General's Department
+    note: "notary"
+  - url: https://www.rgd.gov.lk/web/index.php/en/application-form1/other
+    agency: Registrar General's Department
+    note: "other"
+  - url: https://www.rgd.gov.lk/web/index.php/en/application-form1/translations
+    agency: Registrar General's Department
+    note: "translations"
+  - url: https://www.rgd.gov.lk/web/index.php/en/component/arg_office/?view=master_arg_offices&Itemid=341
+    agency: Registrar General's Department
+    note: "Land Registry Office Directory"
+  - url: https://www.rgd.gov.lk/web/index.php/en/component/arg_office/master_arg_offices?Itemid=101
+    agency: Registrar General's Department
+    note: "master_arg_offices?Itemid=101"
+  - url: https://www.rgd.gov.lk/web/index.php/en/component/complaints/?view=complaint&Itemid=234
+    agency: Registrar General's Department
+    note: "Inquiry, Complaints, Suggestions"
+  - url: https://www.rgd.gov.lk/web/index.php/en/component/other_registrar/?view=other_registrars&Itemid=336
+    agency: Registrar General's Department
+    note: "Directory of Birth, Death and Marriage Registrars"
+  - url: https://www.rgd.gov.lk/web/index.php/en/component/translator/?view=translators&Itemid=340
+    agency: Registrar General's Department
+    note: "offices of the Department where translators"
+  - url: https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details
+    agency: Registrar General's Department
+    note: "Contact Details"
+  - url: https://www.rgd.gov.lk/web/index.php/en/department-report
+    agency: Registrar General's Department
+    note: "DEPARTMENT REPORTS"
+  - url: https://www.rgd.gov.lk/web/index.php/en/e-services
+    agency: Registrar General's Department
+    note: "E-SERVICES"
+  - url: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd
+    agency: Registrar General's Department
+    note: "e-bmd"
+  - url: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online
+    agency: Registrar General's Department
+    note: "visit"
+  - url: https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-deed-and-extract-copies-via-online-platform
+    agency: Registrar General's Department
+    note: "More Details"
+  - url: https://www.rgd.gov.lk/web/index.php/en/e-services/eland
+    agency: Registrar General's Department
+    note: "eland"
+  - url: https://www.rgd.gov.lk/web/index.php/en/e-services/epopulation
+    agency: Registrar General's Department
+    note: "epopulation"
+  - url: https://www.rgd.gov.lk/web/index.php/en/e-services/titleregistration
+    agency: Registrar General's Department
+    note: "titleregistration"
+  - url: https://www.rgd.gov.lk/web/index.php/en/faqs
+    agency: Registrar General's Department
+    note: "FAQS"
+  - url: https://www.rgd.gov.lk/web/index.php/en/form?view=remind
+    agency: Registrar General's Department
+    note: "Forgot your username?"
+  - url: https://www.rgd.gov.lk/web/index.php/en/form?view=reset
+    agency: Registrar General's Department
+    note: "Forgot your password?"
+  - url: https://www.rgd.gov.lk/web/index.php/en/information-center
+    agency: Registrar General's Department
+    note: "information-center"
+  - url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/launch-of-the-new-website-and-1930-call-center-for-the-registrar-generals-department
+    agency: Registrar General's Department
+    note: "Launch of the New Website and 1930 Call Center for the Regis"
+  - url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/national-environment-week-and-world-environment-day-commemoration-2026
+    agency: Registrar General's Department
+    note: "National Environment Week and World Environment Day Commemor"
+  - url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/national-tree-planting-and-world-environment-day-commemoration-2026
+    agency: Registrar General's Department
+    note: "National Tree Planting and World Environment Day Commemorati"
+  - url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/pledge-of-clean-sri-lanka-2
+    agency: Registrar General's Department
+    note: "Pledge of Clean Sri Lanka"
+  - url: https://www.rgd.gov.lk/web/index.php/en/media-1/latest-articles/training-program-on-the-anti-corruption-act-conducted-by-the-departments-training-division-on-april-21-2026
+    agency: Registrar General's Department
+    note: "Training program on the 'Anti-Corruption Act conducted by th"
+  - url: https://www.rgd.gov.lk/web/index.php/en/online-services
+    agency: Registrar General's Department
+    note: "Online Services"
+  - url: https://www.rgd.gov.lk/web/index.php/en/rti-1
+    agency: Registrar General's Department
+    note: "RTI / IAU"
+  - url: https://www.rgd.gov.lk/web/index.php/en/search
+    agency: Registrar General's Department
+    note: "search"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/birth-registration
+    agency: Registrar General's Department
+    note: "birth-registration"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/charges
+    agency: Registrar General's Department
+    note: "charges"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/downloads
+    agency: Registrar General's Department
+    note: "downloads"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/list-of-bmd-registrars
+    agency: Registrar General's Department
+    note: "list-of-bmd-registrars"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations
+    agency: Registrar General's Department
+    note: "obtain-certified-copies-translations"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/registration-of-unregistered-birth
+    agency: Registrar General's Department
+    note: "registration-of-unregistered-birth"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death
+    agency: Registrar General's Department
+    note: "Death"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/charges
+    agency: Registrar General's Department
+    note: "charges"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/death-registration
+    agency: Registrar General's Department
+    note: "death-registration"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/downloads
+    agency: Registrar General's Department
+    note: "downloads"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/list-of-bmd-registrars
+    agency: Registrar General's Department
+    note: "list-of-bmd-registrars"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/obtain-copies-translations
+    agency: Registrar General's Department
+    note: "obtain-copies-translations"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death
+    agency: Registrar General's Department
+    note: "registration-of-unregistered-death"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage
+    agency: Registrar General's Department
+    note: "Marriage"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/charges
+    agency: Registrar General's Department
+    note: "charges"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/correction-of-errors-in-certificates
+    agency: Registrar General's Department
+    note: "correction-of-errors-in-certificates"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads
+    agency: Registrar General's Department
+    note: "downloads"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/list-of-bmd-registrars
+    agency: Registrar General's Department
+    note: "list-of-bmd-registrars"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/marriage-registration
+    agency: Registrar General's Department
+    note: "marriage-registration"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/obtain-certificate-of-divorce
+    agency: Registrar General's Department
+    note: "obtain-certificate-of-divorce"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/obtain-certified-copies-translations
+    agency: Registrar General's Department
+    note: "obtain-certified-copies-translations"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation
+    agency: Registrar General's Department
+    note: "Translation"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/download-translation-application
+    agency: Registrar General's Department
+    note: "download-translation-application"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/translate-certificate-of-birth
+    agency: Registrar General's Department
+    note: "translate-certificate-of-birth"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/translate-certificate-of-death
+    agency: Registrar General's Department
+    note: "translate-certificate-of-death"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/translate-certificate-of-marriage
+    agency: Registrar General's Department
+    note: "translate-certificate-of-marriage"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties
+    agency: Registrar General's Department
+    note: "Movable & Immovable Properties Registration"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/appeals-for-rejected-documents1
+    agency: Registrar General's Department
+    note: "appeals-for-rejected-documents1"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/correction-of-incorrectly-registered-document1
+    agency: Registrar General's Department
+    note: "correction-of-incorrectly-registered-document1"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-registration1
+    agency: Registrar General's Department
+    note: "document-registration1"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-search1
+    agency: Registrar General's Department
+    note: "document-search1"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/obtaining-a-certified-copy-of-a-deed1
+    agency: Registrar General's Department
+    note: "obtaining-a-certified-copy-of-a-deed1"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/obtaining-a-certified-copy-of-a-land-record-extract-copies1
+    agency: Registrar General's Department
+    note: "obtaining-a-certified-copy-of-a-land-record-extract-copies1"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary
+    agency: Registrar General's Department
+    note: "Notary"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/changing-of-jurisdiction-zone-of-a-notary-public
+    agency: Registrar General's Department
+    note: "changing-of-jurisdiction-zone-of-a-notary-public"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/charges
+    agency: Registrar General's Department
+    note: "charges"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/notary-directory
+    agency: Registrar General's Department
+    note: "notary-directory"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/obtaining-license-at-first-time
+    agency: Registrar General's Department
+    note: "obtaining-license-at-first-time"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/obtaining-license-for-additional-languages-closed
+    agency: Registrar General's Department
+    note: "obtaining-license-for-additional-languages-closed"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney
+    agency: Registrar General's Department
+    note: "Power of Attorney"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney/cancellation-of-registered-power-of-attorney
+    agency: Registrar General's Department
+    note: "cancellation-of-registered-power-of-attorney"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney/charges
+    agency: Registrar General's Department
+    note: "charges"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/power-of-attorney/registration-of-power-of-attorney
+    agency: Registrar General's Department
+    note: "registration-of-power-of-attorney"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title
+    agency: Registrar General's Department
+    note: "Title"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/charges
+    agency: Registrar General's Department
+    note: "charges"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/title-registration
+    agency: Registrar General's Department
+    note: "title-registration"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/title-registration-statistics
+    agency: Registrar General's Department
+    note: "title-registration-statistics"
+  - url: https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/transactions
+    agency: Registrar General's Department
+    note: "transactions"
+  - url: https://www.rgd.gov.lk/web/index.php/en/staff-portal
+    agency: Registrar General's Department
+    note: "Staff Portal"
+  - url: https://www.rgd.gov.lk/web/index.php/en/statistics
+    agency: Registrar General's Department
+    note: "STATISTICS"
+  - url: https://www.rgd.gov.lk/web/index.php/en/statistics/document-registration
+    agency: Registrar General's Department
+    note: "document-registration"
+  - url: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
+    agency: Registrar General's Department
+    note: "vital-statistics"
