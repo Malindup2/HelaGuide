@@ -1,0 +1,1009 @@
+{
+ "agency": "Registrar General's Department",
+ "contacts": [
+  {
+   "kind": "phone",
+   "label": "General Lines",
+   "value": "+94 11 2889488",
+   "evidence": "General Lines: +94 11 2889488",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "General Lines",
+   "value": "+94 11 2889489",
+   "evidence": "General Lines: +94 11 2889489",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "General Lines",
+   "value": "+94 11 2072017",
+   "evidence": "General Lines: +94 11 2072017",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "General Lines",
+   "value": "+94 11 2072018",
+   "evidence": "General Lines: +94 11 2072018",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "fax",
+   "label": "Fax",
+   "value": "+94 11 2889493",
+   "evidence": "Fax: +94 11 2889493",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Registrar General",
+   "value": "+94 11 2889490",
+   "evidence": "Registrar General: +94 11 2889490",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Additional Registrar General",
+   "value": "+94 71 7569034",
+   "evidence": "Additional Registrar General: +94 71 7569034",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2072038",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2072038",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 3601432",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 3601432",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2091636",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2091636",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2889499",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2889499",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 3070871",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 3070871",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2889515",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2889515",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2860651",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2860651",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2889498",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2889498",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2889540",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2889540",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2889024",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2889024",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2072039",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2072039",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2889517",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2889517",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2889516",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2889516",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2889127",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2889127",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "kind": "phone",
+   "label": "Key Service Branches - Registrar General's Department Head Office",
+   "value": "+94 11 2889518",
+   "evidence": "Key Service Branches - Registrar General's Department Head Office: +94 11 2889518",
+   "scope": "branch",
+   "page_url": null,
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  }
+ ],
+ "forms": [
+  {
+   "label": "Annual Bulletine 2017 (Annual-bulletine-2017-10-new.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2023/vitalStat/Annual-bulletine-2017-10-new.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Vital Statistics Report (2008-2017) (VITAL-STATISTICS-REPORT-2008-2017.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2023/vitalStat/VITAL-STATISTICS-REPORT-2008-2017.pdf",
+   "section": "reports",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Crude Birth Rate & Crude Death Rate by Province, District & Sex, 2017 - 2018 (Crude-Birth-Rates--Crude-Death-Rates-by-Province-District--Sex-2017---2018.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2023/vitalStat/indicators/Crude-Birth-Rates--Crude-Death-Rates-by-Province-District--Sex-2017---2018.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "NeoNatal Mortality Rate by Province and District, 2012 - 2022 (Neonatal Mortality Rate by Province and District 2012 - 2022.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2023/vitalStat/indicators/Neonatal%20Mortality%20Rate%20by%20Province%20and%20District%202012%20-%202022.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Crude Birth Rate & Crude Death Rate by province, District & Sex, 2019 - 2024 (To_Web_-BMDRATES-2024-english1.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2023/vitalStat/indicators/To_Web_-BMDRATES-2024-english1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Application for recommendation of the Land Registrar for Changing the Judicial Zone of the Notaries (Judicial_Zone_land_registrar_app_ith_english.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2025/Notary/Judicial_Zone_land_registrar_app_ith_english.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/application-form1/notary"
+  },
+  {
+   "label": "application (application-merged_compressed_1.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2025/Notary/application-merged_compressed_1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/changing-of-jurisdiction-zone-of-a-notary-public"
+  },
+  {
+   "label": "Land Registry Offices - Information Officers (english_infor_1-compressed.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2025/information_officer/english_infor_1-compressed.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "label": "Officers from whom information regarding the duties of the Registrar General's Department can be obtained (english_informa_2.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2025/information_officer/english_informa_2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/contact-us/contact-details"
+  },
+  {
+   "label": "3.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.3.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.3.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.4.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.4.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.5a.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.5a.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.5b.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/3.5b.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.3.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.3.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.4.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.4.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.6.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2019death/4.6.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.3.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.3.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.4.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.4.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.5a.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.5a.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.5b.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/3.5b.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.3.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.3.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.4.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.4.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.6.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2020_death/4.6.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.3.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.3.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.4.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.4.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.5a.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.5a.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "3.5b.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/3.5b.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.3.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.3.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.4.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.4.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "4.6.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2021/4.6.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/2026/Table%20%203.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Age Specific Death Rate (ASDR), 2019 - 2022 (Age Specific Death Rate.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Age%20Specific%20Death%20Rate.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Infant Mortality Rate by Province and District, 2012 - 2022 (Infant Mortality Rate by District 2012-2022xlsx.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Infant%20Mortality%20Rate%20by%20District%202012-2022xlsx.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Maternal Mortality Rate by Province and District, 2012 - 2022 (Maternal Mortality Ratio by Province and District 2012 - 2022.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Maternal%20Mortality%20Ratio%20by%20Province%20and%20District%202012%20-%202022.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Web release - September 2026 (Mid Population. Review.english 2026_RGO Revised.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Mid%20Population.%20Review.english%202026_RGO%20Revised.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "By Age and Sex (Mid Year Population by Age Group  Sex 2025 - 2026.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Mid%20Year%20Population%20by%20Age%20Group%20%20Sex%202025%20-%202026.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "By District and Sex (Mid-year population by district  Sex 2025-2026.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Mid-year%20population%20by%20district%20%20Sex%202025-2026.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Web release - October 2025 (Mid_Pop_Review_to_web_RGO_English2025.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Mid_Pop_Review_to_web_RGO_English2025.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.2.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.2.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.2.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.2.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.3.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.3.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.3.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.3.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.4.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.4.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.4.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.4.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.4.3.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.4.3.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.5a.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.5a.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  3.5b.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%203.5b.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.3.1 .pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.1%20.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.3.2 .pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.2%20.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.3.3 .pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.3%20.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.3.4 .pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.4%20.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.3.5 .pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.3.5%20.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.4.1 .pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.4.1%20.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.4.2 .pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.4.2%20.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.4.3 .pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.4.3%20.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.6.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.6.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Table  4.6.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Table%20%204.6.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Under-five Mortality Rate by Province and District, 2012 - 2022 (Under 5 Mortality Rate by Distric 2012-2022.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/Under%205%20Mortality%20Rate%20by%20Distric%202012-2022.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.10.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.10.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.11.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.11.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.11.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.11.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.12.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.12.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.13.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.13.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.14.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.14.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.15.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.15.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.16.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.16.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.17.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.17.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.2.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.2.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.2.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.2.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.3.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.3.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.4.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.4.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.4.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.4.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.5.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.5.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.5.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.5.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.6.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.6.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.7.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.7.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.8.1.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.8.1.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.8.2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.8.2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "2.9.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/english/2.9.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "TABLE_1.1_Marr_2020_.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.1_Marr_2020_.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "TABLE_1.2_Marr_2020_.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.2_Marr_2020_.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "TABLE_1.3_Marr_2020_.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.3_Marr_2020_.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "TABLE_1.4_Marr_2020_.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.4_Marr_2020_.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "TABLE_1.5_Marr_2020_.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.5_Marr_2020_.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "TABLE_1.6_Marr_2020_.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.6_Marr_2020_.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "TABLE_1.7_Marr_2020_.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.7_Marr_2020_.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "TABLE_1.8_Marr_2020_.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.8_Marr_2020_.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "TABLE_1.9_Marr_2020_.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/2026/statistics/marriages_eng/TABLE_1.9_Marr_2020_.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics"
+  },
+  {
+   "label": "Registration of Deaths (Temporary Provisions) Act No.19 of 2010 (2010-19-2.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/ActsPDF/2010-19-2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death"
+  },
+  {
+   "label": "Registration of Deaths (Temporary Provisions) (Amendment) Act, No. 16 of 2016 (2016---Copy.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/ActsPDF/2016---Copy.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death"
+  },
+  {
+   "label": "application (additional_language_application_and_instrutions_with_english_format.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/Notary/additional_language_application_and_instrutions_with_english_format.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/notary/obtaining-license-for-additional-languages-closed"
+  },
+  {
+   "label": "Gazette Extra Ordinary No. 2004/66 dated 3rd February 2017 (2004-66_E - Regulations promulagated under the RTI.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/RTI/2004-66_E%20-%20Regulations%20promulagated%20under%20the%20RTI.pdf",
+   "section": "rti",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/rti-1"
+  },
+  {
+   "label": "Right to Information Act No. 12 of 2016 (Right_to_Information_Acte.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/RTI/Right_to_Information_Acte.pdf",
+   "section": "rti",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/rti-1"
+  },
+  {
+   "label": "the offices where translators are serving (Translators-list-2033-07-22.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/amendement_2023/Translators-list-2033-07-22.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/translation/translate-certificate-of-death"
+  },
+  {
+   "label": "B103 (B103.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/application/civil/B103.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/marriage-registration"
+  },
+  {
+   "label": "Form B23 (B23.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/application/civil/B23.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/birth-registration"
+  },
+  {
+   "label": "Births and Deaths Registrar (Birth--Death-Registrar-pdf.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/application/civil/Birth--Death-Registrar-pdf.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/birth-registration"
+  },
+  {
+   "label": "CR01.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/application/civil/CR01.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/birth-registration"
+  },
+  {
+   "label": "deathCR2.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/application/civil/deathCR2.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/death-registration"
+  },
+  {
+   "label": "(Ti.Re. 05) (TR5.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/application/title/TR5.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/title/transactions"
+  },
+  {
+   "label": "Death Certificate and/or Search of registers - (B63 a Format) (Application_for_death_certificate_or_search_registeres_2017-04-25.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/application_forms/death/Application_for_death_certificate_or_search_registeres_2017-04-25.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/application-form1/death"
+  },
+  {
+   "label": "Declaration of Death-Normal & sudden death - (CR2 Format ) (Declaration_of_a_Normal__sudden_Death_2017-04-25.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/application_forms/death/Declaration_of_a_Normal__sudden_Death_2017-04-25.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/application-form1/death"
+  },
+  {
+   "label": "Declaration of the Births & deaths Registration - (B61 Format) (Declaration_of_births__death_registration_2017-04-25.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/application_forms/death/Declaration_of_births__death_registration_2017-04-25.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/application-form1/death"
+  },
+  {
+   "label": "Declaration under 53 of the births and deaths registration act - (B62 Format) (Declaration_under_53_of_the_births_and_deaths_registration_act_2017-04-25.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/application_forms/death/Declaration_under_53_of_the_births_and_deaths_registration_act_2017-04-25.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/application-form1/death"
+  },
+  {
+   "label": "Schedule & Sudden inquirer's certificate of death - (B18 Format) (Schedule__inquirers_certificate_of_death_2017-04-25.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/application_forms/death/Schedule__inquirers_certificate_of_death_2017-04-25.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/application-form1/death"
+  },
+  {
+   "label": "User Manual (PDF) (User Manual_eBMD Foreign Missions Online Portal.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/ebmd/UserManual/User%20Manual_eBMD%20Foreign%20Missions%20Online%20Portal.pdf",
+   "section": "guides",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online"
+  },
+  {
+   "label": "User Manual (PDF) (User Manual_eBMD Local Online Portal.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/ebmd/UserManual/User%20Manual_eBMD%20Local%20Online%20Portal.pdf",
+   "section": "guides",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online"
+  },
+  {
+   "label": "View Contact List (PDF) (DS_-_ADR-list.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/online/DS_-_ADR-list.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online"
+  },
+  {
+   "label": "'Application A32(B)' (Application_for_copy_of_land_registration_2017-04-25.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/Application_for_copy_of_land_registration_2017-04-25.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/obtaining-a-certified-copy-of-a-deed1"
+  },
+  {
+   "label": "A33(B) (Application_for_search_duplicates_of_deed_2017-04-25.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/Land_registration/Application_for_search_duplicates_of_deed_2017-04-25.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-search1"
+  },
+  {
+   "label": "A33(A) (Application_for_search_of_land_registeres_2017-04-25.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/Land_registration/Application_for_search_of_land_registeres_2017-04-25.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/document-land-registration/movable-and-immovable-properties/document-search1"
+  },
+  {
+   "label": "Affidavit (Annexure 02) (NO-11-2016.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/NO-11-2016.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death"
+  },
+  {
+   "label": "death certificate (b63a.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/b63a.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/obtain-copies-translations"
+  },
+  {
+   "label": "bmd-translation.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/bmd-translation.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/obtain-certified-copies-translations"
+  },
+  {
+   "label": "declaration (b15.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/death/b15.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death"
+  },
+  {
+   "label": "Declaration (b61.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/death/b61.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/registration-of-unregistered-death"
+  },
+  {
+   "label": "application form (b63a.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/death/b63a.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/obtain-copies-translations"
+  },
+  {
+   "label": "Notice of Marriage (b100.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/marriage/b100.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/marriage-registration"
+  },
+  {
+   "label": "b121.pdf",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/marriage/b121.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/obtain-certified-copies-translations"
+  },
+  {
+   "label": "Notice of Kandyan Marriage - (Format C3) (eastern_marriage_appication_2017-04-25.pdf)",
+   "form_url": "https://www.rgd.gov.lk/web/images/pdf/marriage/eastern_marriage_appication_2017-04-25.pdf",
+   "section": "forms",
+   "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/downloads"
+  }
+ ]
+}

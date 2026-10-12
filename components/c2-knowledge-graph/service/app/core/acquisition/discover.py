@@ -8,11 +8,12 @@ same robots.txt and rate-limit wrapper as a monitoring pass.
 
 from __future__ import annotations
 
+import hashlib
 import re
 from collections import deque
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
-from urllib.parse import urldefrag, urljoin, urlparse
+from urllib.parse import quote, urldefrag, urljoin, urlparse
 
 from app.core.acquisition.fetch import Fetcher
 from app.core.acquisition.pdf import is_pdf_url
@@ -24,9 +25,13 @@ SKIP_EXTENSIONS = (".jpg", ".jpeg", ".png", ".gif", ".svg", ".ico", ".css", ".js
 SKIP_PATTERNS = (
     re.compile(r"(?i)[_/-](s|t|si|ta|sinhala|tamil)\.(php|html?|aspx?)(\?|$)"),
     re.compile(r"(?i)[?&]lang=(si|ta|sin|tam)\b"),
-    re.compile(r"(?i)gallery|imagegal|videogal|photo_?gal"),
+    re.compile(r"(?i)/(si|ta|sin|tam|sinhala|tamil)(/|$|\?)"),  # a language folder
+    re.compile(r"(?i)gall?[ae]ry|imagegal|videogal|photo_?gal"),
     re.compile(r"(?i)vacanc|tender|procure|recruit|circular|result"),
     re.compile(r"(?i)facebook\.|twitter\.|youtube\.|instagram\.|linkedin\."),
+    # a path that repeats a folder (/web/web/web/...) is a relative link the site keeps
+    # extending, a crawler trap, not a page
+    re.compile(r"(?i)/([^/?#]+)/\1(/|$|\?)"),
 )
 
 # A page is worth monitoring if it states at least one of these (ported from the research
@@ -74,6 +79,7 @@ class Candidate:
     chars: int = 0
     signals: Signals = field(default_factory=Signals)
     error: str = ""
+    duplicate_of: str = ""  # the earlier candidate whose text this page repeats
 
 
 class _Anchors(HTMLParser):
@@ -107,11 +113,31 @@ def extract_links(html: str, base_url: str) -> list[Link]:
     for href, text in parser.links:
         if not href or href.startswith(("#", "mailto:", "tel:", "javascript:")):
             continue
-        url = urldefrag(urljoin(base_url, href.strip()))[0]
+        # Some sites write paths with backslashes and spaces ("assets\\formats\\Form Eng.pdf").
+        href = href.strip().replace("\\", "/")
+        url = urldefrag(urljoin(base_url, href))[0]
+        url = quote(url, safe=":/?&=%#+,;@!$'()*~[]-._")
         if urlparse(url).scheme not in ("http", "https") or url in seen:
             continue
         seen.add(url)
         out.append(Link(url, text))
+    return out
+
+
+def _upgrade_scheme(links: list[Link], page_url: str) -> list[Link]:
+    """A page served over https often links to its own pages with http://. The site answers on
+    https, and its robots.txt is read there, so use that. Other hosts are left alone."""
+    if urlparse(page_url).scheme != "https":
+        return links
+    host = _site(urlparse(page_url).hostname)
+    out, seen = [], set()
+    for l in links:
+        u = l.url
+        if u.startswith("http://") and _site(urlparse(u).hostname) == host:
+            u = "https://" + u[len("http://"):]
+        if u not in seen:
+            seen.add(u)
+            out.append(Link(u, l.text))
     return out
 
 
@@ -170,6 +196,7 @@ async def discover(
     """
     known = set(known or ())
     seen = {start_url} | known
+    expanded: set[str] = set()  # known pages whose links have been read
     found: list[Candidate] = []
     queue: deque[tuple[str, int]] = deque([(start_url, 0)])
     fetched: dict[str, object] = {}  # one request per URL within a discovery call
@@ -186,7 +213,14 @@ async def discover(
             if level == 0:
                 raise RuntimeError(f"could not fetch the start page: {page.error}")
             continue
-        for link in extract_links(page.html, page_url):
+        for link in _upgrade_scheme(extract_links(page.html, page_url), page_url):
+            if link.url in known and link.url not in expanded and wanted(link, page_url, extra_skip):
+                # Already a seed, so not a new candidate, but its own links still have to be
+                # read: the main service pages are exactly the ones that link to the forms.
+                expanded.add(link.url)
+                if level + 1 < depth and not is_pdf_url(link.url):
+                    queue.append((link.url, level + 1))
+                continue
             if link.url in seen or not wanted(link, page_url, extra_skip):
                 continue
             seen.add(link.url)
@@ -199,10 +233,16 @@ async def discover(
                 break
 
     if screen:
+        seen_text: dict[str, str] = {}
         for cand in found:
             got = await get(cand.url)
             cand.ok, cand.error = got.ok, got.error
             if got.ok:
                 cand.chars = len(got.text)
                 cand.signals = score_text(got.text)
+                digest = hashlib.sha256(got.text.encode("utf-8", "ignore")).hexdigest()
+                if got.text.strip() and digest in seen_text:
+                    cand.duplicate_of = seen_text[digest]
+                else:
+                    seen_text.setdefault(digest, cand.url)
     return found

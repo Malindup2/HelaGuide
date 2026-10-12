@@ -18,7 +18,7 @@ class StagingStore:
         self.registry.close()
 
     def save(self, source_url: str, result: ExtractionResult, service_id: str | None = None,
-             agency: str | None = None) -> tuple[int, int]:
+             agency: str | None = None, source_file: str | None = None) -> tuple[int, int]:
         """Record one extraction and its facts. Returns (extraction_id, new facts staged).
 
         A fact already staged with the same id, value and source is skipped, so extracting an
@@ -28,11 +28,11 @@ class StagingStore:
         extraction_id = self.conn.execute(
             """INSERT INTO c2.extractions
                    (page_id, source_url, model, prompt_tokens, completion_tokens, facts, dropped,
-                    truncated, error)
-               VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING extraction_id""",
+                    truncated, error, raw_reply, source_file, service_id, agency)
+               VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING extraction_id""",
             (page_id, source_url, result.model or None, result.prompt_tokens,
              result.completion_tokens, len(result.facts), len(result.dropped), result.truncated,
-             result.error or None),
+             result.error or None, result.raw_reply or None, source_file, service_id, agency),
         ).fetchone()[0]
 
         staged = 0
