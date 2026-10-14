@@ -1,6 +1,7 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "changes_from_v0": "Scope narrowed to the three departments in the Knowledge Graph (Registration of Persons, Immigration & Emigration, Registrar General). The six services outside that scope are merged into 'unsupported_service'.",
+  "changes_from_v1_0": "kg_service_id and kg_variant filled from kg_service_map.json (map 0.1, 2026-10-14). service_type enum changed from [normal, one_day] to [normal, urgent] to match C2's passport vocabulary; seed dialogues d002 and d018 updated. open_questions_for_kg replaced by open_questions_for_c2 from the map.",
 
   "kg_scope": {
     "registration_of_persons":  ["nic_new", "nic_update", "nic_replace_lost"],
@@ -9,16 +10,19 @@
   },
 
   "intents": {
-    "nic_new":               { "route": "orchestration", "department": "registration_of_persons", "kg_service_id": "TBD", "slots": ["applicant_for", "district", "date_of_birth"] },
-    "nic_update":            { "route": "orchestration", "department": "registration_of_persons", "kg_service_id": "TBD", "slots": ["change_field", "new_value", "district"] },
-    "nic_replace_lost":      { "route": "orchestration", "department": "registration_of_persons", "kg_service_id": "TBD", "slots": ["district", "urgency"] },
+    "nic_new":               { "route": "orchestration", "department": "registration_of_persons", "kg_service_id": "svc:nic", "kg_variant": "first_issue", "slots": ["applicant_for", "district", "date_of_birth"] },
+    "nic_update":            { "route": "orchestration", "department": "registration_of_persons", "kg_service_id": "svc:nic", "kg_variant": "amended", "slots": ["change_field", "new_value", "district"] },
+    "nic_replace_lost":      { "route": "orchestration", "department": "registration_of_persons", "kg_service_id": "svc:nic", "kg_variant": "lost", "slots": ["district", "urgency"] },
 
-    "passport_new":          { "route": "orchestration", "department": "immigration_emigration", "kg_service_id": "TBD", "slots": ["applicant_for", "service_type", "travel_date"] },
-    "passport_renew":        { "route": "orchestration", "department": "immigration_emigration", "kg_service_id": "TBD", "slots": ["service_type", "travel_date"] },
+    "passport_new":          { "route": "orchestration", "department": "immigration_emigration", "kg_service_id": "svc:passport", "kg_variant": "ordinary", "slots": ["applicant_for", "service_type", "travel_date"],
+                               "note": "The KG also has minor, diplomatic and official passport variants." },
+    "passport_renew":        { "route": "orchestration", "department": "immigration_emigration", "kg_service_id": "svc:passport", "kg_variant": "replacement", "slots": ["service_type", "travel_date"] },
 
-    "birth_cert_copy":       { "route": "orchestration", "department": "registrar_general", "kg_service_id": "TBD", "slots": ["applicant_for", "district", "purpose"] },
-    "marriage_registration": { "route": "orchestration", "department": "registrar_general", "kg_service_id": "TBD", "slots": ["district", "date"] },
-    "death_cert_copy":       { "route": "orchestration", "department": "registrar_general", "kg_service_id": "TBD", "slots": ["district", "purpose"] },
+    "birth_cert_copy":       { "route": "orchestration", "department": "registrar_general", "kg_service_id": "svc:birth_certificate", "kg_variant": null, "slots": ["applicant_for", "district", "purpose"] },
+    "marriage_registration": { "route": "orchestration", "department": "registrar_general", "kg_service_id": "svc:marriage_registration", "kg_variant": null, "slots": ["district", "date"],
+                               "note": "id_status: proposed. Not yet in the KG; must be agreed with C2." },
+    "death_cert_copy":       { "route": "orchestration", "department": "registrar_general", "kg_service_id": "svc:death_certificate", "kg_variant": null, "slots": ["district", "purpose"],
+                               "note": "id_status: proposed. Not yet in the KG; must be agreed with C2." },
 
     "unsupported_service":   { "route": "fallback", "department": null, "slots": ["service_mentioned"],
                                "note": "A real government service the KG does not cover yet (driving licence, police clearance, business registration, building permit, utilities, GN/residence certificate). System says it is not supported instead of guessing." },
@@ -36,7 +40,8 @@
     "change_field":      { "type": "enum", "values": ["address", "name", "civil_status", "photo", "other"] },
     "new_value":         { "type": "text" },
     "urgency":           { "type": "enum", "values": ["normal", "urgent"] },
-    "service_type":      { "type": "enum", "values": ["normal", "one_day"] },
+    "service_type":      { "type": "enum", "values": ["normal", "urgent"],
+                           "note": "Passport service type, matching C2's passport vocabulary. 'One day service' in user text maps to 'urgent'." },
     "purpose":           { "type": "text" },
     "service_mentioned": { "type": "text" },
     "issue":             { "type": "text" }
@@ -44,11 +49,13 @@
 
   "token_language_tags": ["SI", "EN", "MIXED", "NE", "OTHER"],
 
-  "open_questions_for_kg": [
-    "Exact service IDs for each intent (fill kg_service_id)",
-    "Is NIC replacement a separate service from NIC update in the KG?",
-    "Passport service types in the KG (normal / one-day / others?)",
-    "Is dual citizenship being scraped? If yes, add a 'dual_citizenship' intent"
+  "open_questions_for_c2": [
+    "Confirm or assign ids: svc:marriage_registration, svc:death_certificate (proposed here).",
+    "Is the 'one id for registration and copy' rule (svc:birth_certificate) intended? If so, death and marriage should follow the same pattern.",
+    "Passports use normal/urgent in the KG and now in schema 1.1. Which label does C4 show to users?",
+    "Settle svc:surrender_nic_deceased vs svc:nic_deceased_card_handover.",
+    "Plan to crawl the Sinhala pages, so that official Sinhala service names can be added?",
+    "Export the current service list (Neo4j Service nodes) to a file in git, so C1 can check its ids against it in CI."
   ],
 
   "output_example": {
