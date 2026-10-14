@@ -8,15 +8,16 @@ Small files only (under a few MB). Large datasets, raw crawls and model weights 
 | fastText language-ID model `lid.176.bin` (~126 MB) | `research/models/lid.176.bin` on the local machine; not in git (`*.bin` is ignored) | Dabarera | Download from <https://fasttext.cc/docs/en/language-identification.html>. Needed only by `baseline_fasttext.py` |
 | Label Studio project "CS-Intent Seed" (142 tasks) | Local Label Studio instance (conda env `label`) | Dabarera | `ls_export.json` below is the committed snapshot of it |
 | Pre-migration dialogue backups | `research/data/backup_v0/` on the local machine; not in git | Dabarera | Written by `migrate_schema_v1.py` before it edits files in place |
+| Schema 1.0 backups | `research/data/backup_v1_0/` on the local machine; not in git | Dabarera | `schema_v1.json` and `seed_dialogues_*.json` as they were before the 1.1 update (2026-10-14) |
 
 ## Files in this folder
 
 | File | What it is | Produced by |
 |---|---|---|
 | `schema_v0.json` | First intent/slot draft: 17 intents, including six services outside the KG. Kept as a record | Hand-written |
-| `schema_v1.json` | **Current schema.** 12 intents scoped to the three KG departments, slot types, routes, token language tags, open questions for C2 | Hand-written |
-| `seed_dialogues_v0.json` | 10 dialogues `d001`–`d010` (8 romanized, 2 Sinhala script), 25 user turns | Hand-written, migrated to v1 |
-| `seed_dialogues_v1.json` | 40 dialogues `d011`–`d050` (28 romanized, 12 Sinhala script), 77 user turns | Hand-written, migrated to v1 |
+| `schema_v1.json` | **Current schema, version 1.1.** 12 intents scoped to the three KG departments, each core intent with its C2 `kg_service_id` and `kg_variant`; slot types, routes, token language tags, open questions for C2 | Hand-written; KG ids from `kg_service_map.json` |
+| `seed_dialogues_v0.json` | 10 dialogues `d001`–`d010` (8 romanized, 2 Sinhala script), 25 user turns | Hand-written, migrated to v1.1 |
+| `seed_dialogues_v1.json` | 40 dialogues `d011`–`d050` (28 romanized, 12 Sinhala script), 77 user turns | Hand-written, migrated to v1.1 |
 | `seed_dialogues_v2_pure_si.json` | 20 dialogues `d051`–`d070`, pure Sinhala script (`code_mix: "pure_si"`), 40 user turns | Hand-written against v1 |
 | `labelstudio_config.xml` | Label Studio interface: one language tag per word, plus entity spans | Hand-written |
 | `ls_export.json` | Label Studio JSON export, 142 tasks (one per user turn), all annotated | Label Studio → Export → JSON |
@@ -25,7 +26,25 @@ Small files only (under a few MB). Large datasets, raw crawls and model weights 
 
 All files are UTF-8. Sinhala text is stored in Sinhala script, not escaped.
 
-## Current dataset (schema v1)
+## Schema 1.1 and the KG
+
+Schema 1.1 (2026-10-14) links each core intent to a C2 service using `kg_service_map.json`:
+
+| Intent | `kg_service_id` | `kg_variant` | Status |
+|---|---|---|---|
+| `nic_new` · `nic_update` · `nic_replace_lost` | `svc:nic` | `first_issue` · `amended` · `lost` | confirmed |
+| `passport_new` · `passport_renew` | `svc:passport` | `ordinary` · `replacement` | confirmed |
+| `birth_cert_copy` | `svc:birth_certificate` | none | confirmed, no facts yet |
+| `marriage_registration` | `svc:marriage_registration` | none | **proposed**, to agree with C2 |
+| `death_cert_copy` | `svc:death_certificate` | none | **proposed**, to agree with C2 |
+
+The passport `service_type` slot is now `normal` / `urgent`, matching C2's passport
+vocabulary; "one day service" in user text maps to `urgent`. The two seed dialogues that
+used `one_day` (`d002`, `d018`) were updated; only state values changed, never user text.
+NIC speed stays in the separate `urgency` slot, since C2 keeps NIC `one_day` as its own
+qualifier.
+
+## Current dataset (schema v1.1)
 
 70 dialogues, 142 user turns, 788 tokens.
 
