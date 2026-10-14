@@ -1,0 +1,715 @@
+[
+  {
+    "dialogue_id": "d051",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ දුවට ජාතික හැඳුනුම්පතක් ගන්න ඕනේ",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඔබ පදිංචි දිස්ත්‍රික්කය කුමක්ද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ගම්පහ",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child",
+            "district": "Gampaha"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d052",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "හැඳුනුම්පතේ ලිපිනය වෙනස් කරන්න ඕනේ",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "අලුත් ලිපිනය මොකක්ද?"
+      },
+      {
+        "speaker": "user",
+        "text": "අංක 22, පන්සල පාර, පානදුර",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address",
+            "new_value": "අංක 22, පන්සල පාර, පානදුර"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "දිස්ත්‍රික්කය කළුතර නේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ඔව්",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address",
+            "new_value": "අංක 22, පන්සල පාර, පානදුර",
+            "district": "Kalutara"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d053",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ හැඳුනුම්පත නැති වුණා, ඉක්මනින් අලුත් එකක් ගන්න ඕනේ",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "urgency": "urgent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කුමන දිස්ත්‍රික්කයේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "රත්නපුර",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "urgency": "urgent",
+            "district": "Ratnapura"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d054",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මට අලුතින් ගමන් බලපත්‍රයක් ගන්න ඕනේ",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "self"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඉක්මනින්ම අවශ්‍යද?"
+      },
+      {
+        "speaker": "user",
+        "text": "නැහැ, සාමාන්‍ය සේවය ප්‍රමාණවත්",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "self",
+            "service_type": "normal"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d055",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ගමන් බලපත්‍රය අලුත් කරන්න ඕනේ",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ගමන් කරන්නේ කවදද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ලබන සතියේ... නැහැ, ලබන මාසයේ",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "next month"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d056",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "අම්මාගේ උප්පැන්න සහතිකයේ පිටපතක් ගන්නේ කොහොමද?",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "parent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "උපත ලියාපදිංචි කළේ කුමන දිස්ත්‍රික්කයේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "නුවරඑළිය",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "parent",
+            "district": "Nuwara Eliya"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d057",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "අපි ලබන මාසයේ විවාහ වෙනවා, ලියාපදිංචි කරන්නේ කොහොමද?",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "next month"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කුමන දිස්ත්‍රික්කයේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "මහනුවර",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "next month",
+            "district": "Kandy"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d058",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "සීයාගේ මරණ සහතිකයේ පිටපතක් ඕනේ, ඉඩම් පැවරීමකට",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "purpose": "land transfer"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "මරණය ලියාපදිංචි කළේ කුමන දිස්ත්‍රික්කයේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "කෑගල්ල",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "purpose": "land transfer",
+            "district": "Kegalle"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d059",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "බැංකු ගිණුමක් විවෘත කරන්න ග්‍රාම නිලධාරී සහතිකයක් ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "residence certificate"
+          },
+          "original_intent": "residence_certificate",
+          "original_slots": {
+            "purpose": "bank account"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඔබ පදිංචි කොහෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "කඩුවෙල, කොළඹ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "residence certificate"
+          },
+          "original_intent": "residence_certificate",
+          "original_slots": {
+            "purpose": "bank account",
+            "address": "Kaduwela",
+            "district": "Colombo"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d060",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "විදේශ රැකියාවකට පොලිස් වාර්තාවක් ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "police clearance"
+          },
+          "original_intent": "police_clearance",
+          "original_slots": {
+            "purpose": "foreign employment"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඉක්මනින් අවශ්‍යද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ඔව්, සති දෙකක් ඇතුළත",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "police clearance"
+          },
+          "original_intent": "police_clearance",
+          "original_slots": {
+            "purpose": "foreign employment",
+            "urgency": "urgent"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d061",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "රියදුරු බලපත්‍රය කල් ඉකුත් වෙලා, අලුත් කරන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "driving license"
+          },
+          "original_intent": "driving_license",
+          "original_slots": {
+            "license_action": "renew"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කුමන දිස්ත්‍රික්කයේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "මාතලේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "driving license"
+          },
+          "original_intent": "driving_license",
+          "original_slots": {
+            "license_action": "renew",
+            "district": "Matale"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d062",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "තනියම කුඩා ව්‍යාපාරයක් ලියාපදිංචි කරන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "business registration"
+          },
+          "original_intent": "business_register",
+          "original_slots": {
+            "business_type": "sole_proprietor"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කුමන දිස්ත්‍රික්කයේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ගාල්ල",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "business registration"
+          },
+          "original_intent": "business_register",
+          "original_slots": {
+            "business_type": "sole_proprietor",
+            "district": "Galle"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d063",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ගෙදරට අමතර කාමරයක් හදන්න ගොඩනැගිලි අවසරයක් ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "building permit"
+          },
+          "original_intent": "building_permit",
+          "original_slots": {
+            "building_type": "extension"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඉඩම තියෙන්නේ කොහෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "හෝමාගම",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "building permit"
+          },
+          "original_intent": "building_permit",
+          "original_slots": {
+            "building_type": "extension",
+            "address": "Homagama"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d064",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "අලුත් ගෙදරට විදුලිය ගන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {
+            "utility_type": "electricity"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ගෙදර තියෙන්නේ කොහෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "තංගල්ල, හම්බන්තොට",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {
+            "utility_type": "electricity",
+            "address": "Tangalle",
+            "district": "Hambantota"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d065",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ගෙදරට අලුත් සම්බන්ධතාවයක් ගන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "විදුලි සම්බන්ධතාවයක්ද?"
+      },
+      {
+        "speaker": "user",
+        "text": "නැහැ නැහැ, ජලය. විදුලිය දැනටමත් තියෙනවා",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {
+            "utility_type": "water"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d066",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "route": "trust_verification",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔබ කියපු ලේඛන අරගෙන ගියාම කාර්යාලයේ කිව්වා තව ලේඛනයක් ඕනේ කියලා",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "extra document required"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කුමන සේවාවටද?"
+      },
+      {
+        "speaker": "user",
+        "text": "රියදුරු බලපත්‍රයට",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "extra document required",
+            "service_mentioned": "driving license"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d067",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ජාතික හැඳුනුම්පතක් ගන්න කීයක් වැය වෙනවද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d068",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "අද කොළඹ වහිනවද?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d069",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "පුතාගේ උප්පැන්න සහතිකයේ පිටපතක් ඕනේ",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "මොකටද ඕනේ?"
+      },
+      {
+        "speaker": "user",
+        "text": "එයාට හැඳුනුම්පත ගන්න. හැඳුනුම්පතට අයදුම් කරන්නේ කොහොමද?",
+        "state": {
+          "intent": "nic_new",
+          "previous_intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d070",
+    "script": "sinhala",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction",
+      "long_dialogue"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "හැඳුනුම්පතේ ලිපිනය යාවත්කාලීන කරන්න ඕනේ",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "අලුත් ලිපිනය මොකක්ද?"
+      },
+      {
+        "speaker": "user",
+        "text": "අංක 8, වැව පාර, කුරුණෑගල",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address",
+            "new_value": "අංක 8, වැව පාර, කුරුණෑගල"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "දිස්ත්‍රික්කය කුරුණෑගල නේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ඔව්. අනේ ඉන්න, අංක 18, 8 නෙවෙයි",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address",
+            "new_value": "අංක 18, වැව පාර, කුරුණෑගල",
+            "district": "Kurunegala"
+          }
+        }
+      }
+    ]
+  }
+]

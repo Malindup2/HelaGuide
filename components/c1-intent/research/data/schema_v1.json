@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "changes_from_v0": "Scope narrowed to the three departments in the Knowledge Graph (Registration of Persons, Immigration & Emigration, Registrar General). The six services outside that scope are merged into 'unsupported_service'.",
+
+  "kg_scope": {
+    "registration_of_persons":  ["nic_new", "nic_update", "nic_replace_lost"],
+    "immigration_emigration":   ["passport_new", "passport_renew"],
+    "registrar_general":        ["birth_cert_copy", "marriage_registration", "death_cert_copy"]
+  },
+
+  "intents": {
+    "nic_new":               { "route": "orchestration", "department": "registration_of_persons", "kg_service_id": "TBD", "slots": ["applicant_for", "district", "date_of_birth"] },
+    "nic_update":            { "route": "orchestration", "department": "registration_of_persons", "kg_service_id": "TBD", "slots": ["change_field", "new_value", "district"] },
+    "nic_replace_lost":      { "route": "orchestration", "department": "registration_of_persons", "kg_service_id": "TBD", "slots": ["district", "urgency"] },
+
+    "passport_new":          { "route": "orchestration", "department": "immigration_emigration", "kg_service_id": "TBD", "slots": ["applicant_for", "service_type", "travel_date"] },
+    "passport_renew":        { "route": "orchestration", "department": "immigration_emigration", "kg_service_id": "TBD", "slots": ["service_type", "travel_date"] },
+
+    "birth_cert_copy":       { "route": "orchestration", "department": "registrar_general", "kg_service_id": "TBD", "slots": ["applicant_for", "district", "purpose"] },
+    "marriage_registration": { "route": "orchestration", "department": "registrar_general", "kg_service_id": "TBD", "slots": ["district", "date"] },
+    "death_cert_copy":       { "route": "orchestration", "department": "registrar_general", "kg_service_id": "TBD", "slots": ["district", "purpose"] },
+
+    "unsupported_service":   { "route": "fallback", "department": null, "slots": ["service_mentioned"],
+                               "note": "A real government service the KG does not cover yet (driving licence, police clearance, business registration, building permit, utilities, GN/residence certificate). System says it is not supported instead of guessing." },
+    "feedback_complaint":    { "route": "trust_verification", "department": null, "slots": ["service_mentioned", "issue"] },
+    "general_question":      { "route": "orchestration", "department": null, "slots": ["service_mentioned"] },
+    "out_of_scope":          { "route": "none", "department": null, "slots": [] }
+  },
+
+  "slots": {
+    "applicant_for":     { "type": "enum", "values": ["self", "child", "parent", "spouse", "other"] },
+    "district":          { "type": "enum", "values": "25 districts of Sri Lanka" },
+    "date_of_birth":     { "type": "date" },
+    "date":              { "type": "date" },
+    "travel_date":       { "type": "date" },
+    "change_field":      { "type": "enum", "values": ["address", "name", "civil_status", "photo", "other"] },
+    "new_value":         { "type": "text" },
+    "urgency":           { "type": "enum", "values": ["normal", "urgent"] },
+    "service_type":      { "type": "enum", "values": ["normal", "one_day"] },
+    "purpose":           { "type": "text" },
+    "service_mentioned": { "type": "text" },
+    "issue":             { "type": "text" }
+  },
+
+  "token_language_tags": ["SI", "EN", "MIXED", "NE", "OTHER"],
+
+  "open_questions_for_kg": [
+    "Exact service IDs for each intent (fill kg_service_id)",
+    "Is NIC replacement a separate service from NIC update in the KG?",
+    "Passport service types in the KG (normal / one-day / others?)",
+    "Is dual citizenship being scraped? If yes, add a 'dual_citizenship' intent"
+  ],
+
+  "output_example": {
+    "turn": 2,
+    "intent": "nic_update",
+    "route": "orchestration",
+    "slots": { "change_field": "address", "new_value": "Colombo 7", "district": null },
+    "missing_slots": ["district"]
+  }
+}
