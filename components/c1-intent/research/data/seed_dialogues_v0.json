@@ -83,7 +83,7 @@
           "intent": "passport_new",
           "slots": {
             "applicant_for": "child",
-            "service_type": "one_day",
+            "service_type": "urgent",
             "travel_date": "next month"
           }
         }

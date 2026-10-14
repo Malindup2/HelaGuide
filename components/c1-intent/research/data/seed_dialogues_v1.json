@@ -241,7 +241,7 @@
         "state": {
           "intent": "passport_renew",
           "slots": {
-            "service_type": "one_day"
+            "service_type": "urgent"
           }
         }
       },
@@ -255,7 +255,7 @@
         "state": {
           "intent": "passport_renew",
           "slots": {
-            "service_type": "one_day",
+            "service_type": "urgent",
             "travel_date": "mid December"
           }
         }
