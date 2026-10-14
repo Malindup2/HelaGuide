@@ -95,17 +95,20 @@ def main():
     with open(export, encoding="utf-8") as fh:
         tasks = json.load(fh)
 
-    # Intents come from the current dialogue files (Label Studio tasks may predate schema v1)
+    # Intents come from the current dialogue files (Label Studio tasks may predate schema v1).
+    # Without them the gold set would silently carry the old intents from the export.
     current = {}
     seed_all = DATA / "seed_all.json"
-    if seed_all.exists():
-        with open(seed_all, encoding="utf-8") as fh:
-            for d in json.load(fh):
-                for i, turn in enumerate(d["turns"]):
-                    if "state" in turn:
-                        current[(d["dialogue_id"], i)] = turn["state"].get("intent")
+    if not seed_all.exists():
+        sys.exit("data/seed_all.json not found. Run prepare_labelstudio.py first so intents "
+                 "come from the current dialogue files, not the Label Studio export.")
+    with open(seed_all, encoding="utf-8") as fh:
+        for d in json.load(fh):
+            for i, turn in enumerate(d["turns"]):
+                if "state" in turn:
+                    current[(d["dialogue_id"], i)] = turn["state"].get("intent")
 
-    examples, missing = [], 0
+    examples, missing, stale_intent = [], 0, 0
     heur_pairs = []
     for t in tasks:
         res = submitted_result(t)
@@ -113,7 +116,11 @@ def main():
             missing += 1
             continue
         ex = to_example(t, res)
-        ex["intent"] = current.get((ex["dialogue_id"], ex["turn"]), ex["intent"])
+        key = (ex["dialogue_id"], ex["turn"])
+        if key in current:
+            ex["intent"] = current[key]
+        else:
+            stale_intent += 1
         examples.append(ex)
         heur_pairs += [(g, guess_lang(w)) for w, g in zip(ex["tokens"], ex["lang_tags"])]
 
@@ -131,6 +138,9 @@ def main():
     print(f"Entities: {dict(ent_tags)}")
     print(f"Pre-label corrections: {changed} of {len(heur_pairs)} language tags changed by you "
           f"(heuristic accuracy {accuracy(heur_pairs)})")
+    if stale_intent:
+        print(f"WARNING: {stale_intent} turns not found in data/seed_all.json; "
+              "their intent is taken from the Label Studio export and may be out of date.")
     if all_tags.get("UNLABELLED"):
         print(f"WARNING: {all_tags['UNLABELLED']} tokens have no language tag. Check those tasks.")
 
