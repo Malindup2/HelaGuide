@@ -1,0 +1,533 @@
+{
+  "_note": "C3-PRIVATE proposed message C1 would forward for free-text feedback. MOCK. Not part of contracts/.",
+  "messages": [
+    {
+      "message_id": "ft-A1",
+      "session_id": "anon-0001",
+      "timestamp": "2026-10-20T10:15:00Z",
+      "language": "en",
+      "raw_text": "I went to the Department of Immigration yesterday and the normal passport fee at the counter was Rs. 12,000, not 11,000 as your guide said.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": "svc:passport",
+        "predicate_hint": "fee",
+        "mentioned_value": 12000,
+        "visit_date": "2026-10-19",
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-A3",
+      "session_id": "anon-0003",
+      "timestamp": "2026-10-22T08:40:00Z",
+      "language": "mixed",
+      "raw_text": "passport eke normal fee eka 12000 kiyala kiwwa, oyala kiwwe 11000 kiyala",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": "svc:passport",
+        "predicate_hint": "fee",
+        "mentioned_value": 12000,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-A5",
+      "session_id": "anon-0005",
+      "timestamp": "2026-10-24T14:00:00Z",
+      "language": "si",
+      "raw_text": "ගමන් බලපත්‍රයේ සාමාන්‍ය ගාස්තුව රුපියල් 11,000ක් ලෙසම අය කළා, ඒක හරි.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": "svc:passport",
+        "predicate_hint": "fee",
+        "mentioned_value": 11000,
+        "visit_date": "2026-10-22",
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-A6",
+      "session_id": "anon-0006",
+      "timestamp": "2026-10-25T15:30:00Z",
+      "language": "en",
+      "raw_text": "Paid 12,000 rupees for my ordinary passport at the Battaramulla office today. The guide says 11,000.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": "svc:passport",
+        "predicate_hint": "fee",
+        "mentioned_value": 12000,
+        "visit_date": "2026-10-25",
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-B1",
+      "session_id": "anon-0006",
+      "timestamp": "2026-10-21T09:00:00Z",
+      "language": "en",
+      "raw_text": "I applied for a replacement NIC for my lost card and they charged me Rs. 1,500.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-B2",
+      "session_id": "anon-0007",
+      "timestamp": "2026-10-22T10:00:00Z",
+      "language": "mixed",
+      "raw_text": "lost una NIC eka aluth karanna gaanuwa 2000k gaththa",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-B3",
+      "session_id": "anon-0008",
+      "timestamp": "2026-10-23T09:30:00Z",
+      "language": "si",
+      "raw_text": "නැතිවූ හැඳුනුම්පතක් සඳහා රුපියල් 1,500ක් ගත්තා.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-B4",
+      "session_id": "anon-0009",
+      "timestamp": "2026-10-23T15:10:00Z",
+      "language": "en",
+      "raw_text": "Replacement ID card cost me 2,000 rupees at the Colombo office.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C1",
+      "session_id": "anon-0010",
+      "timestamp": "2026-10-20T12:00:00Z",
+      "language": "en",
+      "raw_text": "They charged me Rs. 400 for a certified copy of my birth certificate.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C2",
+      "session_id": "anon-0011",
+      "timestamp": "2026-10-20T13:00:00Z",
+      "language": "mixed",
+      "raw_text": "death certificate eke certified copy ekata rupees 300k gaththa",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C3",
+      "session_id": "anon-0012",
+      "timestamp": "2026-10-20T14:00:00Z",
+      "language": "si",
+      "raw_text": "විවාහ සහතිකයේ සහතික කළ පිටපතකට රුපියල් 350ක් ගත්තා.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C4",
+      "session_id": "anon-0006",
+      "timestamp": "2026-10-22T16:00:00Z",
+      "language": "en",
+      "raw_text": "The one day passport service cost me Rs. 25,000 and not 22,000.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C5",
+      "session_id": "anon-0011",
+      "timestamp": "2026-10-23T11:00:00Z",
+      "language": "mixed",
+      "raw_text": "daruwage passport ekata fee eka 5000k wuna",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C6",
+      "session_id": "anon-0008",
+      "timestamp": "2026-10-24T10:30:00Z",
+      "language": "en",
+      "raw_text": "My passport took 30 days to be issued, but your guide says 14 days.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C7",
+      "session_id": "anon-0009",
+      "timestamp": "2026-10-24T12:00:00Z",
+      "language": "en",
+      "raw_text": "The one day NIC service charge was Rs. 3,500.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C8",
+      "session_id": "anon-0010",
+      "timestamp": "2026-10-24T13:00:00Z",
+      "language": "en",
+      "raw_text": "They did not ask for a birth certificate for my passport application.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": "svc:passport",
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C9",
+      "session_id": "anon-0012",
+      "timestamp": "2026-10-25T09:00:00Z",
+      "language": "mixed",
+      "raw_text": "birth certificate eka ganna hospital eken letter ekak ayeth ilwwa",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": "svc:birth_certificate",
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C10",
+      "session_id": "anon-0010",
+      "timestamp": "2026-10-25T10:00:00Z",
+      "language": "en",
+      "raw_text": "At the NIC office they also asked for a medical certificate which your guide does not mention.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": "svc:nic",
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C11",
+      "session_id": "anon-0013",
+      "timestamp": "2026-10-25T11:00:00Z",
+      "language": "en",
+      "raw_text": "I need to report a problem about the death certificate fee.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-C12",
+      "session_id": "anon-0013",
+      "timestamp": "2026-10-25T11:02:00Z",
+      "language": "en",
+      "raw_text": "They asked me to pay Rs. 300.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-D1",
+      "session_id": "anon-0014",
+      "timestamp": "2026-10-25T12:00:00Z",
+      "language": "en",
+      "raw_text": "The office charged me more than what you said.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-D2",
+      "session_id": "anon-0015",
+      "timestamp": "2026-10-25T12:30:00Z",
+      "language": "mixed",
+      "raw_text": "fee eka wenas",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-G1",
+      "session_id": "anon-0010",
+      "timestamp": "2026-10-26T09:00:00Z",
+      "language": "en",
+      "raw_text": "The first tourist visa extension fee was USD 100 at the Immigration office.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-G2",
+      "session_id": "anon-0006",
+      "timestamp": "2026-10-26T10:00:00Z",
+      "language": "mixed",
+      "raw_text": "dual citizenship application ekata fee eka 200000k kiwwa",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-G3",
+      "session_id": "anon-0012",
+      "timestamp": "2026-10-26T11:00:00Z",
+      "language": "si",
+      "raw_text": "සහතිකයක් පරිවර්තනය කිරීමට රුපියල් 800ක් ගත්තා.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-H1",
+      "session_id": "anon-0009",
+      "timestamp": "2026-10-26T12:00:00Z",
+      "language": "en",
+      "raw_text": "For my first NIC they did not ask me for any ICAO photograph.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-H2",
+      "session_id": "anon-0013",
+      "timestamp": "2026-10-26T13:00:00Z",
+      "language": "mixed",
+      "raw_text": "wayasa 14k wunath NIC ekata apply karanna puluwan kiwwa",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-I1",
+      "session_id": "anon-0008",
+      "timestamp": "2026-10-26T15:00:00Z",
+      "language": "en",
+      "raw_text": "My marriage certificate copy was ready in 5 days, the guide says 2 days.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-I3",
+      "session_id": "anon-0006",
+      "timestamp": "2026-10-27T09:00:00Z",
+      "language": "si",
+      "raw_text": "උප්පැන්න සහතිකයේ සහතික කළ පිටපතක් සඳහා රුපියල් 200ක්ම ගත්තා.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-I4",
+      "session_id": "anon-0013",
+      "timestamp": "2026-10-27T10:00:00Z",
+      "language": "en",
+      "raw_text": "For a lost passport I paid Rs. 30,000 for the replacement.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-I5",
+      "session_id": "anon-0009",
+      "timestamp": "2026-10-27T11:00:00Z",
+      "language": "mixed",
+      "raw_text": "passport eke one day fee eka 24000k gaththa",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-J1",
+      "session_id": "anon-0012",
+      "timestamp": "2026-10-27T13:00:00Z",
+      "language": "en",
+      "raw_text": "The NIC for first time applicants was free, but they charged me Rs. 500.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-J2",
+      "session_id": "anon-0010",
+      "timestamp": "2026-10-27T14:00:00Z",
+      "language": "si",
+      "raw_text": "ගමන් බලපත්‍රය ලබාගන්න දින 30ක් ගියා.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": null,
+        "reporter_token": null
+      }
+    }
+  ]
+}
