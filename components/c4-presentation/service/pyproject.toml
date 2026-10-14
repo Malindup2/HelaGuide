@@ -12,6 +12,8 @@ dependencies = [
     "uvicorn[standard]>=0.29",
     "pydantic>=2.6",
     "pydantic-settings>=2.2",
+    "numpy>=1.26,<3",
+    "scipy>=1.11,<2",
     # helaguide-common is installed from ../../../shared (see README)
 ]
 
