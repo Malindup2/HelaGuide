@@ -42,12 +42,13 @@ registration of an unregistered birth have their own RGD pages
 
 C1 treats new birth registration as `unsupported_service` until this is decided.
 
-### 3. Passport basis: urgent or one-day
+### 3. Passport basis: normal / urgent
 Passport facts use `normal` / `urgent` (e.g. `svc:passport:fee:ordinary_normal`,
-`minor_urgent_3y`). C1's schema has `service_type: [normal, one_day]`.
+`minor_urgent_3y`). C1's schema 1.1 now matches this: the passport `service_type` slot is
+`[normal, urgent]`, and "one day service" in user text maps to `urgent`. NIC one-day
+service (`oneday_branch.php`) stays separate, in C1's `urgency` slot.
 
-- Is `one_day` used only for NIC (`oneday_branch.php`)?
-- C1 proposes adding `urgent` to `service_type` to match the graph. Any objection?
+- Are you happy with this?
 
 ### 4. NIC and passport variants
 Please confirm that these cases are **variants of one service**, not separate services:
