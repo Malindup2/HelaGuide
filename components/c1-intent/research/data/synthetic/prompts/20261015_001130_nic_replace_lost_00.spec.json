@@ -1,0 +1,33 @@
+[
+ {
+  "intent": "nic_replace_lost",
+  "style": "sinhala_mixed",
+  "phenomenon": "intent_switch",
+  "user_turns": 4,
+  "switch_to": "nic_new"
+ },
+ {
+  "intent": "nic_replace_lost",
+  "style": "singlish",
+  "phenomenon": "multi_slot",
+  "user_turns": 4
+ },
+ {
+  "intent": "nic_replace_lost",
+  "style": "sinhala_mixed",
+  "phenomenon": "none",
+  "user_turns": 3
+ },
+ {
+  "intent": "nic_replace_lost",
+  "style": "sinhala_mixed",
+  "phenomenon": "correction",
+  "user_turns": 2
+ },
+ {
+  "intent": "nic_replace_lost",
+  "style": "pure_si",
+  "phenomenon": "correction",
+  "user_turns": 2
+ }
+]
