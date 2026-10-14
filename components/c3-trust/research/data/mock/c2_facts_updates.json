@@ -1,0 +1,46 @@
+{
+  "_note": "MOCK: new versions C2 would publish on 28 Oct 2026. Used by the demo to show the version reset and the reputation verdicts.",
+  "facts": [
+    {
+      "fact_id": "svc:passport:fee:normal",
+      "service_id": "svc:passport",
+      "predicate": "fee",
+      "value": 12000,
+      "unit": "LKR",
+      "source_url": "https://www.immigration.gov.lk/pages_e.php?id=8",
+      "retrieved_at": "2026-10-28T06:00:00Z",
+      "valid_from": "2026-10-28T00:00:00Z",
+      "valid_to": null,
+      "history": [
+        {
+          "value": 11000,
+          "valid_from": "2026-08-02T00:00:00Z",
+          "valid_to": "2026-10-28T00:00:00Z"
+        },
+        {
+          "value": 10000,
+          "valid_from": "2026-06-11T00:00:00Z",
+          "valid_to": "2026-08-02T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "fact_id": "svc:nic:fee:replacement",
+      "service_id": "svc:nic",
+      "predicate": "fee",
+      "value": 1500,
+      "unit": "LKR",
+      "source_url": "https://www.drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-28T06:00:00Z",
+      "valid_from": "2026-10-28T00:00:00Z",
+      "valid_to": null,
+      "history": [
+        {
+          "value": 1000,
+          "valid_from": "2026-09-01T00:00:00Z",
+          "valid_to": "2026-10-28T00:00:00Z"
+        }
+      ]
+    }
+  ]
+}
