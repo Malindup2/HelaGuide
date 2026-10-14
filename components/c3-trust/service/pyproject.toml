@@ -12,15 +12,24 @@ dependencies = [
     "uvicorn[standard]>=0.29",
     "pydantic>=2.6",
     "pydantic-settings>=2.2",
+    "sqlalchemy>=2.0",
+    "numpy>=1.26",
+    "httpx>=0.27",
+    "psycopg[binary]>=3.1",
     # helaguide-common is installed from ../../../shared (see README)
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "httpx>=0.27"]
-# heavy research libraries: uncomment as you need them, install with .[research]
+dev = ["pytest>=8", "httpx>=0.27", "jsonschema>=4.20"]
+# The pretrained sentence-embedding model (large download). Needed for the real demo,
+# not for the unit tests: pip install -e ".[research]"
 research = [
-    # "sentence-transformers>=3.0",
-    # "scikit-learn>=1.5",
+    "sentence-transformers>=3.0",
+]
+# Plots and notebook support for the PP1 demo: pip install -e ".[demo]"
+demo = [
+    "matplotlib>=3.8",
+    "ipykernel>=6.29",
 ]
 
 [tool.setuptools.packages.find]

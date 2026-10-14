@@ -1,0 +1,415 @@
+{
+  "_note": "The answer key: for each mock message, the correct outcome of grounding and the kind of report.",
+  "labels": [
+    {
+      "message_id": "ft-A1",
+      "path": "freetext",
+      "style": "english",
+      "story": "A",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:normal",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-A3",
+      "path": "freetext",
+      "style": "singlish",
+      "story": "A",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:normal",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-A5",
+      "path": "freetext",
+      "style": "sinhala",
+      "story": "A",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:normal",
+      "expected_kind": "support",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-A6",
+      "path": "freetext",
+      "style": "english",
+      "story": "A",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:normal",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-B1",
+      "path": "freetext",
+      "style": "english",
+      "story": "B",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:nic:fee:replacement",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-B2",
+      "path": "freetext",
+      "style": "singlish",
+      "story": "B",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:nic:fee:replacement",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-B3",
+      "path": "freetext",
+      "style": "sinhala",
+      "story": "B",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:nic:fee:replacement",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-B4",
+      "path": "freetext",
+      "style": "english",
+      "story": "B",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:nic:fee:replacement",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-C1",
+      "path": "freetext",
+      "style": "english",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:birth_certificate:fee:certified_copy",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-C2",
+      "path": "freetext",
+      "style": "singlish",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:death_certificate:fee:certified_copy",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-C3",
+      "path": "freetext",
+      "style": "sinhala",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:marriage_certificate:fee:certified_copy",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-C4",
+      "path": "freetext",
+      "style": "english",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:one_day",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-C5",
+      "path": "freetext",
+      "style": "singlish",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:minor_normal",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-C6",
+      "path": "freetext",
+      "style": "english",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:processing_time:normal",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-C7",
+      "path": "freetext",
+      "style": "english",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:nic:fee:one_day",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-C8",
+      "path": "freetext",
+      "style": "english",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:document:birth_certificate",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-C9",
+      "path": "freetext",
+      "style": "singlish",
+      "story": "C",
+      "expected_state": "no_matching_fact",
+      "expected_fact_id": null,
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-C10",
+      "path": "freetext",
+      "style": "english",
+      "story": "C",
+      "expected_state": "no_matching_fact",
+      "expected_fact_id": null,
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-C11",
+      "path": "freetext",
+      "style": "english",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:death_certificate:fee:certified_copy",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-C12",
+      "path": "freetext",
+      "style": "english",
+      "story": "C",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:death_certificate:fee:certified_copy",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-D1",
+      "path": "freetext",
+      "style": "english",
+      "story": "D",
+      "expected_state": "clarification_needed",
+      "expected_fact_id": null,
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-D2",
+      "path": "freetext",
+      "style": "singlish",
+      "story": "D",
+      "expected_state": "clarification_needed",
+      "expected_fact_id": null,
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-G1",
+      "path": "freetext",
+      "style": "english",
+      "story": "G",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:tourist_visa_extension:fee:first_extension",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-G2",
+      "path": "freetext",
+      "style": "singlish",
+      "story": "G",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:dual_citizenship:fee:application",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-G3",
+      "path": "freetext",
+      "style": "sinhala",
+      "story": "G",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:certificate_translation:fee:per_certificate",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-H1",
+      "path": "freetext",
+      "style": "english",
+      "story": "H",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:nic:document:icao_photograph",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-H2",
+      "path": "freetext",
+      "style": "singlish",
+      "story": "H",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:nic:eligibility:age",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-I1",
+      "path": "freetext",
+      "style": "english",
+      "story": "I",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:marriage_certificate:processing_time:certified_copy",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-I3",
+      "path": "freetext",
+      "style": "sinhala",
+      "story": "I",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:birth_certificate:fee:certified_copy",
+      "expected_kind": "support",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-I4",
+      "path": "freetext",
+      "style": "english",
+      "story": "I",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:lost_replacement",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "ft-I5",
+      "path": "freetext",
+      "style": "singlish",
+      "story": "I",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:one_day",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-J1",
+      "path": "freetext",
+      "style": "english",
+      "story": "J",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:nic:fee:first_issue",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "ft-J2",
+      "path": "freetext",
+      "style": "sinhala",
+      "story": "J",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:processing_time:normal",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "fb-A2",
+      "path": "structured",
+      "style": "english",
+      "story": "A",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:normal",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "fb-A4",
+      "path": "structured",
+      "style": "english",
+      "story": "A",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:normal",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "fb-S1",
+      "path": "structured",
+      "style": "english",
+      "story": "S",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:birth_certificate:fee:certified_copy",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "fb-S2",
+      "path": "structured",
+      "style": "english",
+      "story": "S",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:processing_time:normal",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "fb-S3",
+      "path": "structured",
+      "style": "sinhala",
+      "story": "S",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:marriage_certificate:fee:certified_copy",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "fb-S4",
+      "path": "structured",
+      "style": "singlish",
+      "story": "S",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:nic:fee:one_day",
+      "expected_kind": "dispute",
+      "split": "test"
+    },
+    {
+      "message_id": "fb-S5",
+      "path": "structured",
+      "style": "english",
+      "story": "S",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:dual_citizenship:processing_time:standard",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
+      "message_id": "fb-S6",
+      "path": "structured",
+      "style": "english",
+      "story": "S",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:tourist_visa_extension:fee:first_extension",
+      "expected_kind": "dispute",
+      "split": "test"
+    }
+  ]
+}
