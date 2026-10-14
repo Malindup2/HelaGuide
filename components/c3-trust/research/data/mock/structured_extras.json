@@ -1,0 +1,11 @@
+{
+  "_note": "C3-private demo scaffolding: visit dates the contract `feedback` cannot carry (keyed by feedback_id).",
+  "extras": {
+    "fb-A2": {
+      "visit_date": "2026-10-18"
+    },
+    "fb-A4": {
+      "visit_date": "2026-10-22"
+    }
+  }
+}

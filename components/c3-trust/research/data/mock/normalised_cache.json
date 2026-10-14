@@ -1,0 +1,138 @@
+{
+  "05683eed67ff949f": {
+    "raw_text": "death certificate eke certified copy ekata rupees 300k gaththa",
+    "text_en": "They charged 300 rupees for a certified copy of the death certificate.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "23b2e62685c9a0d5": {
+    "raw_text": "සහතිකයක් පරිවර්තනය කිරීමට රුපියල් 800ක් ගත්තා.",
+    "text_en": "They charged 800 rupees to translate a certificate.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "3aa5a75da508c878": {
+    "raw_text": "fee eka wenas",
+    "text_en": "The fee was different.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "430479f175c4a3c6": {
+    "raw_text": "daruwage passport ekata fee eka 5000k wuna",
+    "text_en": "For my child's passport the fee was 5000.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "4655949a353c83f4": {
+    "raw_text": "නැතිවූ හැඳුනුම්පතක් සඳහා රුපියල් 1,500ක් ගත්තා.",
+    "text_en": "They charged 1,500 rupees for a lost identity card.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "492a353ec36c0799": {
+    "raw_text": "wayasa 14k wunath NIC ekata apply karanna puluwan kiwwa",
+    "text_en": "They said I can apply for an NIC even at age 14.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "5b40b80a1122eb26": {
+    "raw_text": "සහතික කළ පිටපතක් සඳහා රුපියල් 400ක් අය කළා.",
+    "text_en": "They charged 400 rupees for a certified copy.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "5d13c4f76be031d2": {
+    "raw_text": "dual citizenship application ekata fee eka 200000k kiwwa",
+    "text_en": "They said the dual citizenship application fee is 200000.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "7bd837aca9c9873b": {
+    "raw_text": "passport eke one day fee eka 24000k gaththa",
+    "text_en": "For the passport the one day fee they charged was 24000.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "7ebd4341d96da967": {
+    "raw_text": "විවාහ සහතිකයේ සහතික කළ පිටපතකට රුපියල් 350ක් ගත්තා.",
+    "text_en": "They charged 350 rupees for a certified copy of the marriage certificate.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "9ab68d9d3fffaafd": {
+    "raw_text": "one day service ekata 3500k gaththa",
+    "text_en": "They charged 3500 for the one day service.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "9aecc1cf56790fce": {
+    "raw_text": "ගමන් බලපත්‍රය ලබාගන්න දින 30ක් ගියා.",
+    "text_en": "It took 30 days to get the passport.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "a9803da62b336de4": {
+    "raw_text": "passport eke normal fee eka 12000 kiyala kiwwa, oyala kiwwe 11000 kiyala",
+    "text_en": "They said the normal passport fee is 12000, you said it was 11000.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "caa6986dc4489863": {
+    "raw_text": "birth certificate eka ganna hospital eken letter ekak ayeth ilwwa",
+    "text_en": "To get the birth certificate they also asked for a letter from the hospital.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "ce1a71f7cd752fc6": {
+    "raw_text": "උප්පැන්න සහතිකයේ සහතික කළ පිටපතක් සඳහා රුපියල් 200ක්ම ගත්තා.",
+    "text_en": "They charged 200 rupees for a certified copy of the birth certificate.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "f4bfa26ff393dcf4": {
+    "raw_text": "ගමන් බලපත්‍රයේ සාමාන්‍ය ගාස්තුව රුපියල් 11,000ක් ලෙසම අය කළා, ඒක හරි.",
+    "text_en": "The normal passport fee was charged as 11,000 rupees, that was correct.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  },
+  "fad40be36773f631": {
+    "raw_text": "lost una NIC eka aluth karanna gaanuwa 2000k gaththa",
+    "text_en": "For re-issuing the lost NIC they charged 2000.",
+    "source": "authored",
+    "model": null,
+    "reviewed": true,
+    "created_at": "2026-10-18T00:00:00+00:00"
+  }
+}
