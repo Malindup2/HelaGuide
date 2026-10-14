@@ -1,0 +1,167 @@
+{
+  "_note": "C3-private. Names and aliases used to recognise which service a citizen means. MOCK data.",
+  "services": [
+    {
+      "service_id": "svc:nic",
+      "name_en": "National Identity Card (NIC)",
+      "agency": "Department for Registration of Persons",
+      "aliases_en": [
+        "NIC",
+        "national identity card",
+        "identity card",
+        "ID card"
+      ],
+      "aliases_si": [
+        "හැඳුනුම්පත"
+      ],
+      "aliases_singlish": [
+        "handunumpatha",
+        "handuruma pathraya"
+      ],
+      "default_qualifiers": {
+        "fee": "first_issue",
+        "processing_time": "normal"
+      }
+    },
+    {
+      "service_id": "svc:passport",
+      "name_en": "Passport",
+      "agency": "Department of Immigration and Emigration",
+      "aliases_en": [
+        "passport",
+        "travel document"
+      ],
+      "aliases_si": [
+        "ගමන් බලපත්‍ර"
+      ],
+      "aliases_singlish": [
+        "gaman balapatraya",
+        "gaman balapathraya"
+      ],
+      "default_qualifiers": {
+        "fee": "normal",
+        "processing_time": "normal"
+      }
+    },
+    {
+      "service_id": "svc:birth_certificate",
+      "name_en": "Birth Certificate",
+      "agency": "Registrar General's Department",
+      "aliases_en": [
+        "birth certificate",
+        "birth cert"
+      ],
+      "aliases_si": [
+        "උප්පැන්න සහතික"
+      ],
+      "aliases_singlish": [
+        "uppanna sahathikaya",
+        "upanna sahathikaya"
+      ],
+      "default_qualifiers": {
+        "fee": "certified_copy",
+        "processing_time": "certified_copy"
+      }
+    },
+    {
+      "service_id": "svc:death_certificate",
+      "name_en": "Death Certificate",
+      "agency": "Registrar General's Department",
+      "aliases_en": [
+        "death certificate",
+        "death cert"
+      ],
+      "aliases_si": [
+        "මරණ සහතික"
+      ],
+      "aliases_singlish": [
+        "marana sahathikaya"
+      ],
+      "default_qualifiers": {
+        "fee": "certified_copy",
+        "processing_time": "certified_copy"
+      }
+    },
+    {
+      "service_id": "svc:marriage_certificate",
+      "name_en": "Marriage Certificate",
+      "agency": "Registrar General's Department",
+      "aliases_en": [
+        "marriage certificate",
+        "marriage cert"
+      ],
+      "aliases_si": [
+        "විවාහ සහතික"
+      ],
+      "aliases_singlish": [
+        "wiwaha sahathikaya",
+        "vivaha sahathikaya"
+      ],
+      "default_qualifiers": {
+        "fee": "certified_copy",
+        "processing_time": "certified_copy"
+      }
+    },
+    {
+      "service_id": "svc:certificate_translation",
+      "name_en": "Certificate Translation",
+      "agency": "Registrar General's Department",
+      "aliases_en": [
+        "translation",
+        "translate",
+        "translating",
+        "translated"
+      ],
+      "aliases_si": [
+        "පරිවර්තන"
+      ],
+      "aliases_singlish": [
+        "pariwarthanaya"
+      ],
+      "default_qualifiers": {
+        "fee": "per_certificate",
+        "processing_time": "standard"
+      }
+    },
+    {
+      "service_id": "svc:dual_citizenship",
+      "name_en": "Dual Citizenship",
+      "agency": "Department of Immigration and Emigration",
+      "aliases_en": [
+        "dual citizenship",
+        "dual citizen"
+      ],
+      "aliases_si": [
+        "ද්විත්ව පුරවැසි"
+      ],
+      "aliases_singlish": [
+        "dwithwa purawasi"
+      ],
+      "default_qualifiers": {
+        "fee": "application",
+        "processing_time": "standard"
+      }
+    },
+    {
+      "service_id": "svc:tourist_visa_extension",
+      "name_en": "Tourist Visa Extension",
+      "agency": "Department of Immigration and Emigration",
+      "aliases_en": [
+        "tourist visa extension",
+        "visa extension",
+        "tourist visa",
+        "extension of tourist visa"
+      ],
+      "aliases_si": [
+        "වීසා"
+      ],
+      "aliases_singlish": [
+        "visa extension"
+      ],
+      "default_qualifiers": {
+        "fee": "first_extension",
+        "processing_time": "online"
+      }
+    }
+  ]
+}
