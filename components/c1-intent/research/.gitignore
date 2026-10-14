@@ -2,5 +2,6 @@
 models/
 results/
 data/backup_v0/
+data/backup_v1_0/
 data/seed_all.json
 data/ls_tasks.json
