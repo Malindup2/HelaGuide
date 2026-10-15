@@ -2,8 +2,9 @@
 
 **Component:** Multilingual Conversational Intent & Entity Understanding Engine
 **Project:** AI-Driven Citizen-Service Orchestrator (J26-SE-354)
-**Project folder:** `D:\Research\cs-intent-engine`
+**Project folder:** `HelaGuide\components\c1-intent\research\` in the team repo (`data\`, `experiments\`, `docs\`; local-only `models\` and `results\`). Originally `D:\Research\cs-intent-engine`.
 **Next milestone:** PP1 — due 20 Oct 2026
+**Last updated:** 15 Oct 2026
 
 Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 
@@ -24,8 +25,8 @@ Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 | 9. Context optimization & trade-off evaluation | ⬜ (PP2) | PP2 – Context optimization & evaluation |
 
 **Current blockers**
-- ⚠️ Service IDs and attributes from Thilakumara (needed to fill `kg_service_id`)
-- ⚠️ Class imbalance: `unsupported_service` has 26 dialogues, core intents only 3–6 each
+- ⚠️ C2 confirmation of the two proposed service IDs (`svc:marriage_registration`, `svc:death_certificate`) and the other questions in `docs\c2_open_questions.md` (ready to send)
+- ⚠️ Class imbalance: `unsupported_service` has 26 dialogues (54 of 142 user turns), core intents only 3–6 each
 
 ---
 
@@ -54,8 +55,9 @@ Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 ### Daily commands
 ```bash
 conda activate nlp
-cd /d D:\Research\cs-intent-engine
+cd /d D:\ResearchRepo\HelaGuide\components\c1-intent\research
 ```
+Scripts use paths relative to `research\` (`data\`, `models\`, `results\`), so always run them from there: `python experiments\<script>.py`.
 ```bash
 conda activate label
 label-studio
@@ -69,38 +71,42 @@ label-studio
 
 - ✅ `schema_v0.json` — first draft, 17 intents across many services
 - ✅ `schema_v1.json` — narrowed to the three departments in the Knowledge Graph
+- ✅ `kg_service_map.json` (14 Oct) — maps the 8 core intents to C2 service IDs, built from C2's committed files (agency profiles, crawl tree and logs, vocabulary, completion log). Also lists which attributes the KG holds per service, source pages, KG services no intent covers, and Sinhala coverage
+- ✅ `schema_v1.json` updated to **version 1.1** (14 Oct) from the map: `kg_service_id` + `kg_variant` filled, `service_type` enum changed, `open_questions_for_kg` replaced by `open_questions_for_c2`. Pre-1.1 files backed up to `data\backup_v1_0\`
+- ✅ `docs\c2_open_questions.md` — 9 questions for C2 (IDs, registration vs copy, passport basis, variants, deceased NIC, dual citizenship, RGD extraction status, service list export, Sinhala names)
 
 **Why the change:** the Knowledge Graph component (Thilakumara) only scrapes three departments. If the engine predicts an intent the KG can't serve, orchestration fails. Intents must map one-to-one to KG services.
 
-**Schema v1 — 12 intents**
+**Schema v1.1 — 12 intents**
 
-| Intent | Department | Route | Slots |
-|---|---|---|---|
-| `nic_new` | Registration of Persons | orchestration | applicant_for, district, date_of_birth |
-| `nic_update` | Registration of Persons | orchestration | change_field, new_value, district |
-| `nic_replace_lost` | Registration of Persons | orchestration | district, urgency |
-| `passport_new` | Immigration & Emigration | orchestration | applicant_for, service_type, travel_date |
-| `passport_renew` | Immigration & Emigration | orchestration | service_type, travel_date |
-| `birth_cert_copy` | Registrar General | orchestration | applicant_for, district, purpose |
-| `marriage_registration` | Registrar General | orchestration | district, date |
-| `death_cert_copy` | Registrar General | orchestration | district, purpose |
-| `unsupported_service` | — | fallback | service_mentioned |
-| `feedback_complaint` | — | Trust Verification | — |
-| `general_question` | — | — | — |
-| `out_of_scope` | — | — | — |
+| Intent | Department | Route | KG service (variant) | Slots |
+|---|---|---|---|---|
+| `nic_new` | Registration of Persons | orchestration | `svc:nic` (`first_issue`) | applicant_for, district, date_of_birth |
+| `nic_update` | Registration of Persons | orchestration | `svc:nic` (`amended`) | change_field, new_value, district |
+| `nic_replace_lost` | Registration of Persons | orchestration | `svc:nic` (`lost`) | district, urgency |
+| `passport_new` | Immigration & Emigration | orchestration | `svc:passport` (`ordinary`) | applicant_for, service_type, travel_date |
+| `passport_renew` | Immigration & Emigration | orchestration | `svc:passport` (`replacement`) | service_type, travel_date |
+| `birth_cert_copy` | Registrar General | orchestration | `svc:birth_certificate` (ID exists, no facts yet) | applicant_for, district, purpose |
+| `marriage_registration` | Registrar General | orchestration | `svc:marriage_registration` (**proposed**) | district, date |
+| `death_cert_copy` | Registrar General | orchestration | `svc:death_certificate` (**proposed**) | district, purpose |
+| `unsupported_service` | — | fallback | — | service_mentioned |
+| `feedback_complaint` | — | Trust Verification | — | — |
+| `general_question` | — | — | — | — |
+| `out_of_scope` | — | — | — | — |
 
 - `unsupported_service` covers real services the KG doesn't have yet (driving licence, police clearance, business registration, building permit, utilities, GN/residence certificate). The system says "not supported yet" instead of guessing.
 - Slots dropped in v1 (only used by removed services): `address`, `vehicle_class`, `license_action`, `business_type`, `building_type`, `utility_type`.
-- Every core intent has `kg_service_id: "TBD"`.
+- **Answers found in C2's files** (closing the old `open_questions_for_kg`):
+  - NIC update and NIC replacement are **not** separate KG services; they are variants of `svc:nic`. Passport renewal is a variant of `svc:passport`.
+  - Passports use `normal` / `urgent` in the KG, so the `service_type` slot is now `[normal, urgent]`; "one day service" in user text maps to `urgent`. NIC one-day stays in the separate `urgency` slot, because C2 keeps NIC `one_day` as its own qualifier.
+  - Dual citizenship **is** crawled (fee, documents, prerequisites) but has no service ID yet.
+  - No official Sinhala service names were scraped: discovery drops the Sinhala and Tamil pages by design.
 
 **To do**
-- ⬜ Send the 4 `open_questions_for_kg` (in the schema) to Thilakumara:
-  1. His exact service list and IDs (e.g. is NIC replacement its own service?)
-  2. The attributes each service has (e.g. normal vs one-day passport) — slots should match these
-  3. Whether he's scraping citizenship services (Immigration handles dual citizenship; no intent for it yet)
-  4. Whether he can share scraped pages, especially the Sinhala versions
-- ⬜ Fill every `kg_service_id`
-- ⬜ Decide whether to add a citizenship intent
+- ⬜ Send `docs\c2_open_questions.md` to C2 and record the answers
+- ⬜ Change the two proposed IDs if C2 assigns different ones; update `kg_service_map.json` statuses
+- ⬜ Decide whether to add a `dual_citizenship` intent (depends on C2 giving it an ID)
+- ⬜ Collect official Sinhala service names (C2 crawl of Sinhala pages, or by hand)
 
 ### 2.2 Seed dialogues
 
@@ -115,6 +121,8 @@ label-studio
   - Backed up originals to `data\backup_v0\`
   - Kept old labels as `original_intent` / `original_slots` so they can be restored if the KG grows
   - Safe to run twice (idempotent)
+- ✅ Schema 1.1 update (14 Oct): `service_type` `one_day` → `urgent` in `d002` and `d018` (3 state values; user text unchanged)
+- ✅ Dataset stats (v1.1): 70 dialogues, 142 user turns, 788 tokens; 102 turns code-mixed, 40 pure Sinhala. Full breakdown in `data\README.md`
 
 **Why three styles:** citizens type in Sinhala script, in romanized Sinhala, and in a mix. Results must be reportable per style, because the baseline already shows huge differences between them (see §4).
 
@@ -122,7 +130,7 @@ label-studio
 - ⬜ Write ~45 more dialogues covering **only the 8 core intents** (target ~10 per intent)
   - Why: fixes the imbalance; otherwise the model learns to over-predict `unsupported_service`
 - ⬜ Use scraped Sinhala pages for official terms (ජාතික හැඳුනුම්පත, උප්පැන්න සහතිකය, etc.) and real required documents
-- ⬜ Generate a synthetic batch with an LLM (Claude/GPT)
+- 🔄 Generate a synthetic batch with an LLM (Claude/GPT) — started: `data\synthetic\`, `experiments\generate_synthetic.py`, `experiments\tag_synthetic.py`
   - Seed only with public service descriptions, never real citizen data
   - Filter out unnatural or wrongly labelled samples by hand
   - Keep synthetic data in a separate file so it can be evaluated separately from manual data
@@ -139,6 +147,12 @@ label-studio
   - Entity spans from the slot values
 - ✅ `labelstudio_config.xml` — labelling interface config
 - ✅ Project **"CS-Intent Seed"** created with 142 tasks
+- ✅ All 142 tasks reviewed and submitted; exported to `data\ls_export.json`
+  - Pre-labels were 98.9% right: 9 of 788 language tags corrected by hand
+- ✅ `experiments\baseline_fasttext.py` converts the export into the token-level gold set `data\gold_tokens.jsonl` (one line per user turn: tokens, language tags, BIO entity tags, intent)
+  - Fixed: `d001` turn 0 `change karanna` was wrongly tagged `new_value`
+  - Fixed: the gold set had silently taken **v0 intents** from the Label Studio export because `seed_all.json` was missing. Regenerated with v1 intents; only the `intent` field changed (54 turns). The script now **stops** if `seed_all.json` is missing and warns if any turn is not found in it
+- ✅ Gold set final: 788 tokens — SI 513 · EN 198 · NE 65 · OTHER 11 · MIXED 1; entities: district 37 · issue 10 · service_mentioned 6 · new_value 5 · travel_date 5 · purpose 4 · date 3
 
 ### Why
 - **Pre-labelling:** correcting labels is much faster than labelling from scratch.
@@ -149,13 +163,16 @@ label-studio
 - Entity = a value that fills a slot (district, date, document type, etc.)
 - `NE` = a name or proper noun that isn't clearly Sinhala or English (place names, department names)
 - If information appears only in a bot question, the user's answer is labelled, not the bot turn
+- Entities are labelled only where the value literally appears in the user turn. Enum slots (`applicant_for`, `urgency`, `service_type`, `change_field`) are turn-level labels in the dialogue JSON, never spans
+- In Singlish, `one` usually means ඕනේ (need) → `SI`
+- `MIXED` = one word combining both languages (e.g. `16i`); `OTHER` = numbers and symbols
 
 ### To do
-- 🔄 Review language tags on all 142 tasks
-- 🔄 Review entity spans
+- ✅ Review language tags on all 142 tasks
+- ✅ Review entity spans
 - ⬜ Write a short annotation guideline doc (rules above + edge cases) — useful for the thesis and for consistency
-- ⬜ Re-run `prepare_labelstudio.py` and re-import after the new dialogue batch
-- ⬜ Export labelled data (JSON)
+- ⬜ After the new dialogue batch: run `prepare_labelstudio.py` and import `ls_tasks.json` into a **new** Label Studio project, or only the new tasks. Re-importing everything into "CS-Intent Seed" would duplicate 142 tasks without the corrections
+- ✅ Export labelled data (JSON)
 - ⬜ Create held-out test set
   - Manual data only, never synthetic
   - Split by **dialogue**, not by turn, so turns from one conversation don't leak across train and test
@@ -172,11 +189,30 @@ label-studio
   - Romanized Sinhala → 21% confidence, misclassified as English
 - ✅ **XLM-RoBERTa tokenizer:** fragments Singlish words into many meaningless subword pieces
 - ✅ Findings recorded in `notes.md`
+- ✅ **fastText baseline on the full gold set** (`experiments\baseline_fasttext.py` → `results\baseline_fasttext.json`)
 
-**Why this matters:** it's direct evidence that off-the-shelf language ID fails on how Sri Lankans actually type, which justifies fine-tuning a token-level model.
+  | Token level (SI/EN gold tokens) | Accuracy | n |
+  |---|---|---|
+  | All | 57.4% | 711 |
+  | Gold EN | 86.9% | 198 |
+  | Gold SI | 46.0% | 513 |
+  | Code-mixed, romanized | **35.2%** | 421 |
+  | Code-mixed, Sinhala script | 90.4% | 125 |
+  | Pure Sinhala, Sinhala script | 89.1% | 165 |
+
+  | Sentence level (vs majority tag) | Accuracy | n |
+  |---|---|---|
+  | All | 60.2% | 113 |
+  | Code-mixed, romanized | **27.4%** | 62 |
+  | Code-mixed, Sinhala script | 100% | 21 |
+  | Pure Sinhala, Sinhala script | 100% | 30 |
+
+  - 69 of 142 turns contain both SI and EN words, so a single sentence label is wrong for part of every one of them.
+
+**Why this matters:** it's direct evidence that off-the-shelf language ID fails on how Sri Lankans actually type, which justifies fine-tuning a token-level model. Romanized Sinhala is the failure case: on a two-way SI/EN choice, fastText is worse than a coin flip at both token and sentence level.
 
 ### To do
-- ⬜ Build token-level LID training data from the Label Studio export
+- ✅ Build token-level LID training data from the Label Studio export (`data\gold_tokens.jsonl`)
 - ⬜ Set up Colab GPU + Weights & Biases (log every run: config, metrics, model version)
 - ⬜ Fine-tune XLM-RoBERTa for token classification (`SI` / `EN` / `MIXED` / `NE` / `OTHER`)
   - Why XLM-R: already pretrained on Sinhala and English; fine-tuning needs far less data than training from scratch
@@ -206,7 +242,7 @@ label-studio
 
 ## 6. Entity extraction + multi-turn tracking ⬜
 
-- ⬜ Set up Rasa Open Source project inside `cs-intent-engine`
+- ⬜ Set up Rasa Open Source project inside `components\c1-intent\`
   - Why Rasa: ready-made intent/entity/slot tracking, so effort goes into the code-switching work, not dialogue plumbing
 - ⬜ Generate `domain.yml` from `schema_v1.json` (intents, entities, slots)
 - ⬜ Configure NLU pipeline (tokenizer, featurizer with XLM-R, DIET classifier)
@@ -243,8 +279,8 @@ Why FastAPI: fast, async, auto-generates API docs, and the team already uses it 
 - ⬜ Test full demo flow end to end
 - ⬜ Record a backup demo video
 - ⬜ Slides
-  - Baseline findings (fastText 99.6% vs 21%; XLM-R fragmentation)
-  - Dataset & schema stats (intents, dialogues, styles, tasks labelled)
+  - Baseline findings (fastText 99.6% vs 21% on single sentences; on the gold set, 35.2% token / 27.4% sentence accuracy on romanized Sinhala; XLM-R fragmentation)
+  - Dataset & schema stats (70 dialogues, 142 labelled turns, 788 tokens, 12 intents, 3 styles; schema 1.1 mapped to KG service IDs)
   - Model results (metrics, confusion matrix)
   - Progress vs TAF objectives
   - PP2 plan
@@ -271,16 +307,32 @@ Why: no existing work measures this trade-off for Sinhala-English code-switched 
 
 ## Files in the project
 
+Paths are relative to `components\c1-intent\`. Full data file descriptions are in `research\data\README.md`.
+
 | File | Purpose | Status |
 |---|---|---|
-| `data\schema_v0.json` | First intent schema (kept as record) | ✅ |
-| `data\schema_v1.json` | Current schema, 12 intents | ✅ |
-| `data\seed_dialogues_*.json` | 70 seed dialogues, 3 styles | ✅ |
-| `data\backup_v0\` | Pre-migration backups | ✅ |
-| `src\migrate_schema_v1.py` | v0 → v1 label migration | ✅ |
-| `src\prepare_labelstudio.py` | Merge + pre-label for Label Studio | ✅ |
-| `labelstudio_config.xml` | Labelling interface | ✅ |
-| `notes.md` | Research observations | 🔄 |
+| `CLAUDE.md` | Working rules for Claude Code in this folder | ✅ |
+| `research\.gitignore` | Keeps `models\`, `results\`, backups and regenerated files out of git | ✅ |
+| `research\data\README.md` | What every data file is, formats, stats, labelling rules, how to regenerate | ✅ |
+| `research\data\schema_v0.json` | First intent schema (kept as record) | ✅ |
+| `research\data\schema_v1.json` | Current schema, version 1.1, 12 intents with KG service IDs | ✅ |
+| `research\data\kg_service_map.json` | Intent → C2 service ID map, KG attributes, unmapped services | ✅ |
+| `research\data\seed_dialogues_*.json` | 70 seed dialogues, 3 styles | ✅ |
+| `research\data\labelstudio_config.xml` | Labelling interface | ✅ |
+| `research\data\ls_export.json` | Label Studio export, 142 annotated tasks | ✅ |
+| `research\data\gold_tokens.jsonl` | Token-level gold set (language + BIO entity tags) | ✅ |
+| `research\data\synthetic\` | Synthetic dialogue batch | 🔄 |
+| `research\data\backup_v0\`, `backup_v1_0\` | Backups before the v1 migration and the 1.1 update (local only) | ✅ |
+| `research\data\seed_all.json`, `ls_tasks.json` | Regenerated by `prepare_labelstudio.py` (local only) | — |
+| `research\models\lid.176.bin` | fastText language-ID model (local only) | ✅ |
+| `research\results\baseline_fasttext.json` | fastText baseline numbers (local only) | ✅ |
+| `research\experiments\migrate_schema_v1.py` | v0 → v1 label migration | ✅ |
+| `research\experiments\prepare_labelstudio.py` | Merge + pre-label for Label Studio | ✅ |
+| `research\experiments\baseline_fasttext.py` | Export → gold set + fastText baseline | ✅ |
+| `research\experiments\check_fixes.py` | Spot-check language tags on English loanwords | ✅ |
+| `research\experiments\generate_synthetic.py`, `tag_synthetic.py` | Synthetic data generation and tagging | 🔄 |
+| `research\docs\notes.md` | Research observations | 🔄 |
+| `research\docs\c2_open_questions.md` | Questions for C2 on service IDs | ✅ ready to send |
 
 ## Decision log
 
@@ -291,3 +343,8 @@ Why: no existing work measures this trade-off for Sinhala-English code-switched 
 | Oct 2026 | Scope intents to 3 KG departments | Intents must map to services the KG can serve |
 | Oct 2026 | Out-of-scope services → `unsupported_service` | Honest fallback instead of guessing; originals preserved |
 | Oct 2026 | Next dialogue batch: core intents only | Fix class imbalance |
+| 14 Oct 2026 | Gold-set intents always come from the dialogue files (`seed_all.json`), never the Label Studio export; the script stops without it | The export predates schema v1, and the gold set had silently picked up v0 intents |
+| 14 Oct 2026 | Service IDs taken from C2's committed files (`kg_service_map.json`); two IDs proposed | Graph and crawl archive not available locally; C2 owns the vocabulary, so proposals go to C2 for confirmation |
+| 14 Oct 2026 | NIC update / replacement and passport renewal stay separate intents but map to **variants** of one KG service | The KG has one service per document (`svc:nic`, `svc:passport`) with variants |
+| 14 Oct 2026 | Passport `service_type` = `normal` / `urgent` (was `normal` / `one_day`) | Match C2's passport vocabulary; NIC one-day stays in the `urgency` slot |
+| 14 Oct 2026 | Models, results, backups and regenerated files kept out of git (`research\.gitignore`) | Size, and they can be rebuilt from the scripts |
