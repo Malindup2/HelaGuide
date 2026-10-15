@@ -44,6 +44,18 @@ Output: `['▁mata', '▁', 'NIC', '▁e', 'ka', '▁gan', 'na', '▁one']` (8 s
 
 ---
 
+## Observation 4: Synthetic data and tag quality (2026-10-15)
+- 233 synthetic dialogues (Claude Code 145+40, Gemini 3.5 Flash Lite 48 minus 2 removed for
+  leaked field names / merged tokens); ~30 per core intent.
+- Generator acceptance: Claude Code 92–100% (rejections only duplicates); Gemini Lite 78%
+  (invalid JSON, out-of-schema slots, duplicates).
+- Word-level language tags by Claude Code; 80 turns (418 tokens) hand-reviewed:
+  LLM tags 100% agreement; heuristic 88.7% on mixed, 100% on pure Sinhala.
+- Heuristic accuracy on gold (98.5%) is inflated by pre-label anchoring; 88.7% is the fairer estimate.
+- Training file: `data/synthetic/silver_tokens.jsonl` (618 turns). Test set stays `data/gold_tokens.jsonl`.
+
+---
+
 ## Next steps
 - [ ] Install Label Studio (env `label`)
 - [ ] Define intent list and slots per intent (align with Knowledge Graph ontology)

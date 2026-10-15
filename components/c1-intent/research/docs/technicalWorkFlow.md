@@ -20,7 +20,7 @@ Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 | 4. Language segmentation layer | 🔄 | Language segmentation layer |
 | 5. Intent classifier | ⬜ | Intent classifier |
 | 6. Entity extraction + multi-turn tracking | ⬜ | Entity extractor + multi-turn tracking |
-| 7. FastAPI service + routing | ⬜ | FastAPI endpoint + routing |
+| 7. FastAPI service + routing | 🔄 (skeleton + stub) | FastAPI endpoint + routing |
 | 8. PP1 demo & slides | ⬜ | PP1 demo & slides |
 | 9. Context optimization & trade-off evaluation | ⬜ (PP2) | PP2 – Context optimization & evaluation |
 
@@ -38,7 +38,7 @@ Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
   - `nlp` — research, modelling, scripts
   - `label` — Label Studio only
 - ✅ Installed core packages in `nlp`: `torch`, `transformers`, `fasttext-wheel`, `seqeval`, and supporting libraries
-- ✅ Created project folder `D:\Research\cs-intent-engine` with `data\` and `src\`
+- ✅ Created project folder `D:\Research\cs-intent-engine` with `data\` and `src\` (since moved into the team repo; scripts now live in `research\experiments\`)
 
 ### Why
 - **Python 3.10:** the most compatible version across Rasa, transformers, and fastText; newer versions break some of these packages.
@@ -116,7 +116,7 @@ label-studio
   - Mixed Singlish (romanized Sinhala)
 - ✅ Dialogues include corrections, missing-slot follow-ups, and intent switches, each tagged
 - ✅ Fixed Singlish spelling across bot turns ("kohenda" → "koheda")
-- ✅ `src\migrate_schema_v1.py` converted v0 labels to v1
+- ✅ `experiments\migrate_schema_v1.py` converted v0 labels to v1
   - Updated 54 user turns across 3 files
   - Backed up originals to `data\backup_v0\`
   - Kept old labels as `original_intent` / `original_slots` so they can be restored if the KG grows
@@ -129,7 +129,8 @@ label-studio
 **To do**
 - ⬜ Write ~45 more dialogues covering **only the 8 core intents** (target ~10 per intent)
   - Why: fixes the imbalance; otherwise the model learns to over-predict `unsupported_service`
-- ⬜ Use scraped Sinhala pages for official terms (ජාතික හැඳුනුම්පත, උප්පැන්න සහතිකය, etc.) and real required documents
+- ⬜ Use official Sinhala terms (ජාතික හැඳුනුම්පත, උප්පැන්න සහතිකය, etc.) once they are available. C2 has **not** scraped the Sinhala pages (see §2.1), so this waits on C2 crawling them or a manual pass over the agencies' Sinhala sites
+- ⬜ Use the English pages C2 has crawled (`kg_service_map.json` → `source_pages`) for real required documents
 - 🔄 Generate a synthetic batch with an LLM (Claude/GPT) — started: `data\synthetic\`, `experiments\generate_synthetic.py`, `experiments\tag_synthetic.py`
   - Seed only with public service descriptions, never real citizen data
   - Filter out unnatural or wrongly labelled samples by hand
@@ -142,7 +143,7 @@ label-studio
 
 ### What was done
 - ✅ Label Studio installed in the `label` env
-- ✅ `src\prepare_labelstudio.py` — merges the dialogue files and pre-labels:
+- ✅ `experiments\prepare_labelstudio.py` — merges the dialogue files and pre-labels:
   - Word-level language tags: `SI`, `EN`, `MIXED`, `NE` (named entity), `OTHER`
   - Entity spans from the slot values
 - ✅ `labelstudio_config.xml` — labelling interface config
@@ -153,6 +154,7 @@ label-studio
   - Fixed: `d001` turn 0 `change karanna` was wrongly tagged `new_value`
   - Fixed: the gold set had silently taken **v0 intents** from the Label Studio export because `seed_all.json` was missing. Regenerated with v1 intents; only the `intent` field changed (54 turns). The script now **stops** if `seed_all.json` is missing and warns if any turn is not found in it
 - ✅ Gold set final: 788 tokens — SI 513 · EN 198 · NE 65 · OTHER 11 · MIXED 1; entities: district 37 · issue 10 · service_mentioned 6 · new_value 5 · travel_date 5 · purpose 4 · date 3
+  - ⚠️ `MIXED` has only **1** example (`16i`), and `OTHER` only 11. A classifier cannot learn `MIXED` from one token, and per-class F1 for it is meaningless at this size
 
 ### Why
 - **Pre-labelling:** correcting labels is much faster than labelling from scratch.
@@ -217,6 +219,7 @@ label-studio
 - ⬜ Fine-tune XLM-RoBERTa for token classification (`SI` / `EN` / `MIXED` / `NE` / `OTHER`)
   - Why XLM-R: already pretrained on Sinhala and English; fine-tuning needs far less data than training from scratch
   - Why not fastText alone: it's sentence-level and fails on romanized Sinhala
+  - `MIXED` has 1 gold example. Before training, either add dialogues with mixed words (numbers with Sinhala suffixes like `16i` / `16යි`, English stems with Sinhala inflection), or fold `MIXED` into `SI` for training and report it separately. Record the choice in the decision log
 - ⬜ Evaluate token-level F1 vs the fastText baseline, broken down by style
 - ⬜ Error analysis at switch points (where the language changes mid-sentence)
 - ⬜ Wrap as a module: `segment(text) -> [(token, lang)]`
@@ -254,20 +257,59 @@ label-studio
 
 ---
 
-## 7. FastAPI service + routing ⬜
+## 7. FastAPI service + routing 🔄
 
-- ⬜ Agree on the shared JSON schema with the whole team (interface contract for all four engines)
-- ⬜ Build `POST /parse`
-  - Input: `session_id`, `message`
-  - Output: `intent`, `confidence`, `entities`, `dialogue_state`, `language_tags`, `route`
-- ⬜ Routing logic
-  - Core intents → Orchestration engine
-  - `unsupported_service` → fallback message
-  - `feedback_complaint` → Trust Verification engine
-- ⬜ Mock downstream services so testing doesn't wait on teammates
+### What already exists (team skeleton)
+- ✅ Service in `components\c1-intent\service\` (FastAPI, port 8001), Dockerfile, CI job running `pytest` in stub mode
+- ✅ `GET /health` and `POST /v1/intent` (`app\api\routes.py`, kept thin)
+  - Input: `UtteranceRequest` — `session_id`, `text` (1–2000 chars)
+  - Output: `Intent` — validated against `contracts\schema\v1\intent.schema.json` (Pydantic model in `shared\helaguide_common\contracts.py`)
+- ✅ `app\core\pipeline.py` → `resolve(req)`: in stub mode returns `contracts\examples\intent.example.json`; otherwise raises `NotImplementedError`. **All C1 logic goes behind this function**
+- ✅ Shared contract agreed by the team (`contracts\schema\v1\`); the gateway calls C1 → C2 → C3 → C4
+- ✅ Tests: `tests\test_health.py`, `tests\test_routes.py` (stub returns `svc:passport`)
+
+### The contract is narrower than our schema
+`intent.schema.json` (v1, `additionalProperties: false`) allows only:
+
+| Field | Allowed values |
+|---|---|
+| `intent` | `apply_service`, `service_info`, `check_requirements`, `unknown` |
+| `entities` | `service_id` (`^svc:[a-z0-9_]+$` or null), `district` (or null) — nothing else |
+| `language` | `si`, `en`, `ta`, `mixed` |
+| `turn_id`, `confidence`, `session_id` | integer ≥ 0, 0–1, string |
+
+So C1 keeps its full 12-intent state internally (PostgreSQL schema `c1`: sessions, turns) and **projects** it onto the contract:
+
+| Our intent (schema 1.1) | Contract `intent` | `entities.service_id` | Gateway result |
+|---|---|---|---|
+| `nic_new`, `nic_update`, `nic_replace_lost` | `apply_service` | `svc:nic` | plan from C2 |
+| `passport_new`, `passport_renew` | `apply_service` | `svc:passport` | plan from C2 |
+| `birth_cert_copy` | `apply_service` | `svc:birth_certificate` | plan from C2 |
+| `marriage_registration` | `apply_service` | `svc:marriage_registration` (proposed) | plan from C2 once the ID exists |
+| `death_cert_copy` | `apply_service` | `svc:death_certificate` (proposed) | plan from C2 once the ID exists |
+| `general_question` | `service_info` (or `check_requirements` when it asks about documents/fees) | the mentioned service's ID if it is one of the above, else null | plan if ID set, else 422 |
+| `unsupported_service` | `unknown` | null | 422 "Could not identify a service" |
+| `feedback_complaint` | `unknown` | null | 422 (see gaps) |
+| `out_of_scope` | `unknown` | null | 422 |
+
+- `language`: from the token tags of the turn — only `SI` → `si`, only `EN` → `en`, both → `mixed` (`NE`, `OTHER`, `MIXED` ignored; `MIXED` alone → `mixed`). `ta` is never produced (Tamil is future work).
+- `district`: our `district` slot, carried across turns. All other slots stay internal.
+- `turn_id`: counts the user's turns in the session (0, 1, 2 …), unlike the seed files, where `turn` counts bot turns too.
+
+**What the contract loses (gaps to raise with the team)**
+- **Variant:** `nic_new` / `nic_update` / `nic_replace_lost` all become `svc:nic`, and both passport intents become `svc:passport`. C2 needs `kg_variant` (`first_issue`, `amended`, `lost`, `ordinary`, `replacement`) to pick the right fee and documents, but the contract has no field for it
+- **Slots:** `applicant_for`, `service_type`, `urgency`, `travel_date` etc. cannot be sent, although some decide the fee (passport normal/urgent)
+- **Fallbacks:** `unsupported_service`, `out_of_scope` and `feedback_complaint` all arrive as `unknown` + null and the gateway answers 422. There is no way to tell the citizen "not supported yet" vs "send this to C3"
+- Any fix (e.g. optional `entities.variant`, `entities.service_type`) is a contract change: a PR touching only `contracts\` + `shared\…\contracts.py`, approved by all four owners; breaking changes go in `schema\v2\` (CONTRIBUTING.md)
+
+### To do
+- ⬜ `app\core\`: language segmentation → intent + entity extraction → dialogue state → projection to `Intent` (table above), called from `pipeline.resolve()`
+- ⬜ Keep stub mode working; the other components and CI test against it
+- ⬜ Store sessions and turns in PostgreSQL schema `c1`
+- ⬜ Unit tests for the projection: one per row of the table, validated against `intent.schema.json`
+- ⬜ Propose the contract additions above (variant, service type, fallback reason) to the team
 - ⬜ Log latency per request (needed later for the trade-off curve)
-- ⬜ Basic API tests
-- ⬜ Dockerize (shared team infrastructure)
+- ⬜ Heavy libraries go in the `research` extra in `pyproject.toml`, not the base dependencies (CI installs `.[dev]` only)
 
 Why FastAPI: fast, async, auto-generates API docs, and the team already uses it as the common serving layer.
 
@@ -305,6 +347,24 @@ Why: no existing work measures this trade-off for Sinhala-English code-switched 
 
 ---
 
+## Git
+
+Team repo: `github.com/Malindup2/HelaGuide`. Rules from `CONTRIBUTING.md`:
+
+- `main` is protected: no direct pushes. One branch per piece of work (`c1/<topic>`), merged by PR once CI passes
+- Only change `components\c1-intent\` without approval (CODEOWNERS). `contracts\`, `shared\` and `docs\` are shared; a contract change is its own PR approved by all four owners
+- Commit messages: short, present tense, prefixed `c1:` (e.g. `c1: add fastText baseline results`)
+- Never commit `.env`, keys, model weights (`*.bin`, `*.safetensors`, `*.ckpt`) or datasets over a few MB; record their location in `research\data\README.md`
+- PDFs, Office files and images go through Git LFS (`git lfs install` once per machine)
+- No names, NIC numbers, phone numbers or addresses anywhere, including test data and logs
+- No Claude co-author lines in commits or PRs
+
+**Current branch: `c1/seed-dataset`** (as of 15 Oct 2026)
+- 14 commits ahead of `main`, pushed to `origin/c1/seed-dataset`
+- **PR #20 "C1/seed dataset"** → `main`: open, review requested from Malindup2, no reviews yet
+- CI on the PR head (`e1414a5`): contracts, c1, c3, c4, gateway and frontend pass; **c2-knowledge-graph service fails** (C2's job, not caused by this branch), so the PR shows as unstable
+- Not yet committed: this doc, `c2_open_questions.md` edits, `research\.gitignore` (now allows `results\baseline_fasttext.json`), docstring path fixes, and in-progress synthetic-data changes
+
 ## Files in the project
 
 Paths are relative to `components\c1-intent\`. Full data file descriptions are in `research\data\README.md`.
@@ -325,7 +385,7 @@ Paths are relative to `components\c1-intent\`. Full data file descriptions are i
 | `research\data\backup_v0\`, `backup_v1_0\` | Backups before the v1 migration and the 1.1 update (local only) | ✅ |
 | `research\data\seed_all.json`, `ls_tasks.json` | Regenerated by `prepare_labelstudio.py` (local only) | — |
 | `research\models\lid.176.bin` | fastText language-ID model (local only) | ✅ |
-| `research\results\baseline_fasttext.json` | fastText baseline numbers (local only) | ✅ |
+| `research\results\baseline_fasttext.json` | fastText baseline numbers (committed; other `results\` files stay local) | ✅ |
 | `research\experiments\migrate_schema_v1.py` | v0 → v1 label migration | ✅ |
 | `research\experiments\prepare_labelstudio.py` | Merge + pre-label for Label Studio | ✅ |
 | `research\experiments\baseline_fasttext.py` | Export → gold set + fastText baseline | ✅ |
@@ -348,3 +408,5 @@ Paths are relative to `components\c1-intent\`. Full data file descriptions are i
 | 14 Oct 2026 | NIC update / replacement and passport renewal stay separate intents but map to **variants** of one KG service | The KG has one service per document (`svc:nic`, `svc:passport`) with variants |
 | 14 Oct 2026 | Passport `service_type` = `normal` / `urgent` (was `normal` / `one_day`) | Match C2's passport vocabulary; NIC one-day stays in the `urgency` slot |
 | 14 Oct 2026 | Models, results, backups and regenerated files kept out of git (`research\.gitignore`) | Size, and they can be rebuilt from the scripts |
+| 15 Oct 2026 | Exception: `results\baseline_fasttext.json` is committed | It is small and holds the numbers reported in PP1, so they are traceable in git |
+| 15 Oct 2026 | C1 keeps its 12-intent state internally and projects it onto the 4-intent `intent` contract | The shared contract v1 allows only `apply_service` / `service_info` / `check_requirements` / `unknown` and `service_id` + `district`; changing it needs all four owners |
