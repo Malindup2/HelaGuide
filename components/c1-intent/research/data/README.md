@@ -110,6 +110,25 @@ so it always follows the latest schema.
 - Intents are not labelled in Label Studio; they live in the dialogue JSON, so a schema
   change does not require relabelling.
 
+## Language tagging guidelines
+
+Decisions for cases the tag definitions above leave open. They were applied to the
+synthetic tags in `synthetic/synthetic_lang_tags.json` (`prompt_version: "tag-v1"`,
+2026-10-15).
+
+| Case | Tag | Examples |
+|---|---|---|
+| Any word in Sinhala script, including English loanwords and month names | `SI` | විසා, ලේක්, ජූනි, දෙසැම්බර් |
+| `one` meaning ඕනේ ("need") | `SI` | mata NIC eka ganna **one** |
+| `one` in "one day (service)" | `EN` | **one** day service eken |
+| Place names, in either script, also with a Sinhala case ending | `NE` | ගාල්ලේ, වවුනියාවේ, නුවරඑළියේදී, lankawe |
+| People's names, including initials | `NE` | S M Nadeesha Perera, එච් එම් සඳමාලි කුමාරි |
+| A number with a Sinhala suffix | `MIXED` | 16i, 17i, 16යි |
+| Grama Niladhari (an official's title, not a name) | `SI` `SI` | |
+
+English words written in Latin letters stay `EN`, including month names (`march`, `dec`)
+and generic place words (`district`, `road`, `hospital`).
+
 ## Regenerating
 
 Run from `components/c1-intent/research/`. The scripts use paths relative to that folder
