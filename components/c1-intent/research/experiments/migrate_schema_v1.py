@@ -6,9 +6,9 @@ Merges the six services outside the Knowledge Graph's scope into
 so any fixes you already made (e.g. kohenda -> koheda) are kept.
 A backup of each file is saved to data/backup_v0/ first.
 
-Run from the project folder:
+Run from components/c1-intent/research/:
     conda activate nlp
-    python src\migrate_schema_v1.py
+    python experiments\migrate_schema_v1.py
 """
 import glob
 import json

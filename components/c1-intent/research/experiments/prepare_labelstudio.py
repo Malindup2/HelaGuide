@@ -1,9 +1,9 @@
 r"""
 Merge seed dialogues and build a Label Studio import file with pre-annotations.
 
-Run from the project folder:
+Run from components/c1-intent/research/:
     conda activate nlp
-    python src\prepare_labelstudio.py
+    python experiments\prepare_labelstudio.py
 
 Inputs : data/seed_dialogues_*.json
 Outputs: data/seed_all.json   (all dialogues merged, code_mix filled in)

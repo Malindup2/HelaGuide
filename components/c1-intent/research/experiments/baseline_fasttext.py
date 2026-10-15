@@ -5,9 +5,9 @@ fastText language-ID baseline on it.
 Before running:
     Label Studio -> project -> Export -> JSON -> save as data\ls_export.json
 
-Run from the project folder:
+Run from components/c1-intent/research/:
     conda activate nlp
-    python src\baseline_fasttext.py
+    python experiments\baseline_fasttext.py
 
 Outputs:
     data/gold_tokens.jsonl            one line per user turn: tokens, language tags, BIO entity tags
