@@ -1,0 +1,237 @@
+You are generating realistic training data for a Sri Lankan government-service assistant.
+Citizens chat in Sinhala, English and code-mixed Singlish. Write 5 dialogues, one per spec below.
+
+## Specs
+1. intent=birth_cert_copy, style=sinhala_mixed, phenomenon=none, user turns=4
+2. intent=birth_cert_copy, style=sinhala_mixed, phenomenon=none, user turns=4
+3. intent=birth_cert_copy, style=singlish, phenomenon=none, user turns=2
+4. intent=birth_cert_copy, style=singlish, phenomenon=correction, user turns=2
+5. intent=birth_cert_copy, style=singlish, phenomenon=multi_slot, user turns=2
+
+## Styles
+- singlish: User writes romanized Sinhala (Singlish) mixed with English words, e.g. 'mata NIC eka ganna one'.
+- sinhala_mixed: User writes in Sinhala script with some English words left in Latin letters, e.g. 'මට passport එකක් ඕනේ'.
+- pure_si: User writes only Sinhala script, no English words at all, e.g. 'මට ගමන් බලපත්‍රයක් ඕනේ'.
+
+## What citizens typically mention (use naturally and vary it; not every dialogue)
+- birth_cert_copy: certified copy of a birth certificate, own or a family member's; for NIC, passport, school, visa or a job abroad; can be requested online through e-BMD; may need an English translation
+
+## Intents and their slots
+{
+ "nic_new": [
+  "applicant_for",
+  "district",
+  "date_of_birth"
+ ],
+ "nic_update": [
+  "change_field",
+  "new_value",
+  "district"
+ ],
+ "nic_replace_lost": [
+  "district",
+  "urgency"
+ ],
+ "passport_new": [
+  "applicant_for",
+  "service_type",
+  "travel_date"
+ ],
+ "passport_renew": [
+  "service_type",
+  "travel_date"
+ ],
+ "birth_cert_copy": [
+  "applicant_for",
+  "district",
+  "purpose"
+ ],
+ "marriage_registration": [
+  "district",
+  "date"
+ ],
+ "death_cert_copy": [
+  "district",
+  "purpose"
+ ]
+}
+
+## Slot definitions
+{
+ "applicant_for": {
+  "type": "enum",
+  "values": [
+   "self",
+   "child",
+   "parent",
+   "spouse",
+   "other"
+  ]
+ },
+ "change_field": {
+  "type": "enum",
+  "values": [
+   "address",
+   "name",
+   "civil_status",
+   "photo",
+   "other"
+  ]
+ },
+ "date": {
+  "type": "date"
+ },
+ "date_of_birth": {
+  "type": "date"
+ },
+ "district": {
+  "type": "enum",
+  "values": "25 districts of Sri Lanka"
+ },
+ "new_value": {
+  "type": "text"
+ },
+ "purpose": {
+  "type": "text"
+ },
+ "service_type": {
+  "type": "enum",
+  "values": [
+   "normal",
+   "urgent"
+  ],
+  "note": "Passport service type, matching C2's passport vocabulary. 'One day service' in user text maps to 'urgent'."
+ },
+ "travel_date": {
+  "type": "date"
+ },
+ "urgency": {
+  "type": "enum",
+  "values": [
+   "normal",
+   "urgent"
+  ]
+ }
+}
+district must be one of: Ampara, Anuradhapura, Badulla, Batticaloa, Colombo, Galle, Gampaha, Hambantota, Jaffna, Kalutara, Kandy, Kegalle, Kilinochchi, Kurunegala, Mannar, Matale, Matara, Monaragala, Mullaitivu, Nuwara Eliya, Polonnaruwa, Puttalam, Ratnapura, Trincomalee, Vavuniya (always written in English in the state, whatever the user wrote).
+
+## Labelling rules (strict)
+1. Every user turn has a "state" with the intent and ALL slots filled so far (cumulative), not just new ones.
+2. Only fill a slot when the user actually said it. Never infer or guess.
+3. These slots must be an EXACT substring of the user's own words, in the script they used: date, date_of_birth, issue, new_value, purpose, service_mentioned, travel_date.
+   Example: user wrote "ලබන මාසේ" -> travel_date is "ලබන මාසේ", not "next month".
+4. Enum slots must use the exact listed values.
+5. Correction: the new value replaces the old one. Intent switch: add "previous_intent" to that turn's state.
+6. Bot turns have no state. Bot asks short, natural follow-up questions in the user's style.
+7. Use fake but realistic details. Never real NIC numbers. Vary names, places, dates and wording;
+   do not copy the examples. Write the way real people type: short, casual, sometimes misspelled.
+8. For nic_new, include date_of_birth in some dialogues (e.g. "1998.05.12", "2008 march 3").
+
+## Examples of the format
+[
+ {
+  "turns": [
+   {
+    "speaker": "user",
+    "text": "පුතාගේ උප්පැන්න සහතිකයේ පිටපතක් ඕනේ",
+    "state": {
+     "intent": "birth_cert_copy",
+     "slots": {
+      "applicant_for": "child"
+     }
+    }
+   },
+   {
+    "speaker": "bot",
+    "text": "මොකටද ඕනේ?"
+   },
+   {
+    "speaker": "user",
+    "text": "එයාට හැඳුනුම්පත ගන්න. හැඳුනුම්පතට අයදුම් කරන්නේ කොහොමද?",
+    "state": {
+     "intent": "nic_new",
+     "previous_intent": "birth_cert_copy",
+     "slots": {
+      "applicant_for": "child"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "turns": [
+   {
+    "speaker": "user",
+    "text": "අපි ලබන මාසේ කසාද බඳිනවා, register කරන්නේ කොහොමද?",
+    "state": {
+     "intent": "marriage_registration",
+     "slots": {
+      "date": "next month"
+     }
+    }
+   },
+   {
+    "speaker": "bot",
+    "text": "කොයි district එකේද?"
+   },
+   {
+    "speaker": "user",
+    "text": "කොළඹ",
+    "state": {
+     "intent": "marriage_registration",
+     "slots": {
+      "date": "next month",
+      "district": "Colombo"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "turns": [
+   {
+    "speaker": "user",
+    "text": "හැඳුනුම්පතේ ලිපිනය වෙනස් කරන්න ඕනේ",
+    "state": {
+     "intent": "nic_update",
+     "slots": {
+      "change_field": "address"
+     }
+    }
+   },
+   {
+    "speaker": "bot",
+    "text": "අලුත් ලිපිනය මොකක්ද?"
+   },
+   {
+    "speaker": "user",
+    "text": "අංක 22, පන්සල පාර, පානදුර",
+    "state": {
+     "intent": "nic_update",
+     "slots": {
+      "change_field": "address",
+      "new_value": "අංක 22, පන්සල පාර, පානදුර"
+     }
+    }
+   },
+   {
+    "speaker": "bot",
+    "text": "දිස්ත්‍රික්කය කළුතර නේද?"
+   },
+   {
+    "speaker": "user",
+    "text": "ඔව්",
+    "state": {
+     "intent": "nic_update",
+     "slots": {
+      "change_field": "address",
+      "new_value": "අංක 22, පන්සල පාර, පානදුර",
+      "district": "Kalutara"
+     }
+    }
+   }
+  ]
+ }
+]
+
+Return ONLY a JSON array of 5 objects, each {"turns": [...]}, in spec order. No commentary.

@@ -1,0 +1,32 @@
+[
+ {
+  "intent": "birth_cert_copy",
+  "style": "sinhala_mixed",
+  "phenomenon": "none",
+  "user_turns": 4
+ },
+ {
+  "intent": "birth_cert_copy",
+  "style": "sinhala_mixed",
+  "phenomenon": "none",
+  "user_turns": 4
+ },
+ {
+  "intent": "birth_cert_copy",
+  "style": "singlish",
+  "phenomenon": "none",
+  "user_turns": 2
+ },
+ {
+  "intent": "birth_cert_copy",
+  "style": "singlish",
+  "phenomenon": "correction",
+  "user_turns": 2
+ },
+ {
+  "intent": "birth_cert_copy",
+  "style": "singlish",
+  "phenomenon": "multi_slot",
+  "user_turns": 2
+ }
+]
