@@ -36,6 +36,7 @@ from app.models.user_context import (
     UserSettings,
 )
 
+from app.models.runtime_state import SessionState
 
 class ContextError(ValueError):
     """Invalid context operation."""
@@ -420,3 +421,131 @@ class InMemoryContextService:
             state.acknowledgments[exposure_id] = event
             state.session = session
             return event
+
+
+    def registered_offer(
+        self,
+        session_id: str,
+        exposure_id: str,
+    ) -> PresentationOffer:
+        """Read an existing offer without acknowledging it."""
+        with self._lock:
+            state = self._state(session_id)
+            try:
+                return state.offers[exposure_id]
+            except KeyError:
+                raise UnknownExposureError("unknown registered offer") from None
+
+    def export_state(self) -> tuple[SessionState, ...]:
+        """Export immutable records without clocks, locks or credentials."""
+        with self._lock:
+            return tuple(
+                SessionState(
+                    session=state.session,
+                    events=tuple(state.events),
+                    offers=tuple(
+                        state.offers[key] for key in sorted(state.offers)
+                    ),
+                )
+                for _, state in sorted(self._sessions.items())
+            )
+
+    @classmethod
+    def from_state(
+        cls,
+        records: tuple[SessionState, ...],
+    ) -> "InMemoryContextService":
+        """Restore a trusted local snapshot and verify its event chains."""
+        service = cls()
+        all_event_ids = set()
+        all_exposure_ids = set()
+
+        for record in records:
+            session = record.session
+            session_id = session.session_id
+            if session_id in service._sessions:
+                raise ContextError("duplicate persisted session")
+
+            offers = {}
+            for offer in record.offers:
+                if (
+                    offer.session_id != session_id
+                    or offer.context_snapshot.session_id != session_id
+                    or offer.exposure_id in all_exposure_ids
+                    or offer.context_snapshot.revision > session.revision
+                    or offer.offered_at < session.created_at
+                    or offer.graph_fingerprint
+                    != offer.context_snapshot.graph_fingerprint
+                ):
+                    raise ContextError("invalid persisted presentation offer")
+                all_exposure_ids.add(offer.exposure_id)
+                offers[offer.exposure_id] = offer
+
+            settings = UserSettings()
+            settings_at_revision = {0: settings}
+            previous_time = session.created_at
+            acknowledgments = {}
+
+            for sequence, event in enumerate(record.events, start=1):
+                if (
+                    event.session_id != session_id
+                    or event.sequence != sequence
+                    or event.event_id in all_event_ids
+                ):
+                    raise ContextError("invalid persisted event identity or sequence")
+                all_event_ids.add(event.event_id)
+
+                if isinstance(event, PreferenceChange):
+                    occurred_at = event.occurred_at
+                    expected_changed = tuple(
+                        name
+                        for name in type(settings).model_fields
+                        if getattr(event.before, name) != getattr(event.after, name)
+                    )
+                    if (
+                        event.before != settings
+                        or event.before == event.after
+                        or event.changed_fields != expected_changed
+                    ):
+                        raise ContextError("broken persisted preference history")
+                    settings = event.after
+                else:
+                    occurred_at = event.acknowledged_at
+                    offer = offers.get(event.offer.exposure_id)
+                    if (
+                        offer != event.offer
+                        or event.offer.exposure_id in acknowledgments
+                        or occurred_at < event.offer.offered_at
+                    ):
+                        raise ContextError("invalid persisted acknowledgment")
+                    _validate_action_ids(
+                        event.displayed_action_ids,
+                        set(event.offer.intended_action_ids),
+                    )
+                    acknowledgments[event.offer.exposure_id] = event
+
+                if occurred_at < previous_time:
+                    raise ContextError("persisted event chronology is invalid")
+                previous_time = occurred_at
+                settings_at_revision[sequence] = settings
+
+            if (
+                session.revision != len(record.events)
+                or session.settings != settings
+                or session.updated_at != previous_time
+            ):
+                raise ContextError("session differs from its persisted history")
+
+            for offer in offers.values():
+                snapshot = offer.context_snapshot
+                if snapshot.settings != settings_at_revision[snapshot.revision]:
+                    raise ContextError("offer context differs from historical settings")
+
+            service._sessions[session_id] = _SessionState(
+                session=session,
+                events=list(record.events),
+                offers=offers,
+                acknowledgments=acknowledgments,
+            )
+
+        return service

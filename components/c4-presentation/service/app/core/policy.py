@@ -47,6 +47,7 @@ from app.models.procedure_features import (
 from app.models.procedure_graph import CanonicalProcedureGraph
 from app.models.scaffolds import ContentSafety, ScaffoldConfiguration
 from app.models.user_context import ContextSnapshot, PresentationExposure
+from app.models.runtime_state import PolicyState
 
 
 FEATURE_SCHEMA_VERSION = "c4-context-action-1.0"
@@ -634,3 +635,153 @@ class SharedLinTSPolicy:
             )
             self._receipts[feedback.exposure_id] = receipt
             return receipt
+
+
+
+    def posterior_fingerprint(self) -> str:
+        """Fingerprint actual numerical state for recovery verification."""
+        with self._lock:
+            digest = hashlib.sha256()
+            digest.update(str(self._posterior.revision).encode("ascii"))
+            digest.update(
+                np.asarray(
+                    self._posterior._precision, dtype="<f8"
+                ).tobytes(order="C")
+            )
+            digest.update(
+                np.asarray(self._posterior._b, dtype="<f8").tobytes(order="C")
+            )
+            return digest.hexdigest()
+
+    def export_state(self) -> PolicyState:
+        with self._lock:
+            return PolicyState(
+                config=self.config,
+                policy_run_id=self.policy_run_id,
+                feature_schema_version=FEATURE_SCHEMA_VERSION,
+                feature_schema_fingerprint=FEATURE_SCHEMA_FINGERPRINT,
+                feature_dimension=FEATURE_DIMENSION,
+                decision_sequence=self._decision_sequence,
+                posterior_revision=self._posterior.revision,
+                posterior_fingerprint=self.posterior_fingerprint(),
+                rng_state_json=json.dumps(
+                    self._rng.bit_generator.state,
+                    sort_keys=True,
+                    allow_nan=False,
+                ),
+                offers=tuple(
+                    sorted(
+                        self._offers.values(),
+                        key=lambda value: value.decision.decision_sequence,
+                    )
+                ),
+                receipts=tuple(
+                    sorted(
+                        self._receipts.values(),
+                        key=lambda value: value.resulting_posterior_revision,
+                    )
+                ),
+            )
+
+    @classmethod
+    def from_state(
+        cls,
+        contexts: InMemoryContextService,
+        state: PolicyState,
+    ) -> "SharedLinTSPolicy":
+        """Recover attribution and replay accepted rewards through apply_feedback."""
+        if (
+            state.feature_schema_version != FEATURE_SCHEMA_VERSION
+            or state.feature_schema_fingerprint != FEATURE_SCHEMA_FINGERPRINT
+            or state.feature_dimension != FEATURE_DIMENSION
+        ):
+            raise PolicyError("persisted policy feature schema is incompatible")
+
+        restored = cls(contexts, config=state.config)
+        restored.policy_run_id = state.policy_run_id
+        decision_ids = set()
+        previous_selection_revision = 0
+
+        for sequence, selected in enumerate(state.offers, start=1):
+            decision = selected.decision
+            offer = selected.offer
+            expected_candidates = tuple(
+                candidate.configuration_id
+                for candidate in decision.evaluation.feasibility.feasible_candidates()
+            )
+
+            if (
+                decision.decision_sequence != sequence
+                or decision.decision_id in decision_ids
+                or offer.exposure_id in restored._offers
+                or decision.policy_run_id != state.policy_run_id
+                or decision.config != state.config
+                or decision.feature_schema_version != FEATURE_SCHEMA_VERSION
+                or decision.feature_schema_fingerprint
+                != FEATURE_SCHEMA_FINGERPRINT
+                or decision.feature_dimension != FEATURE_DIMENSION
+                or decision.posterior_revision < previous_selection_revision
+                or decision.posterior_revision > state.posterior_revision
+                or decision.configuration != offer.configuration
+                or (
+                    decision.evaluation.snapshot.model_dump(
+                        exclude={"captured_at"}
+                    )
+                    != offer.context_snapshot.model_dump(
+                        exclude={"captured_at"}
+                    )
+                )
+                or offer.feasible_configuration_ids != expected_candidates
+                or offer.configuration
+                not in decision.evaluation.feasibility.feasible_candidates()
+                or contexts.registered_offer(
+                    offer.session_id, offer.exposure_id
+                ) != offer
+            ):
+                raise PolicyError("invalid persisted policy attribution")
+
+            expected_vector = feature_vector(
+                decision.structural_features,
+                offer.context_snapshot,
+                offer.configuration,
+            )
+            if not np.array_equal(
+                expected_vector,
+                np.asarray(decision.selected_features, dtype=np.float64),
+            ):
+                raise PolicyError("persisted context-action vector differs from schema")
+
+            decision_ids.add(decision.decision_id)
+            previous_selection_revision = decision.posterior_revision
+            restored._offers[offer.exposure_id] = selected
+
+        if state.decision_sequence != len(state.offers):
+            raise PolicyError("persisted decision sequence is inconsistent")
+        restored._decision_sequence = state.decision_sequence
+
+        for revision, expected_receipt in enumerate(state.receipts, start=1):
+            if (
+                expected_receipt.resulting_posterior_revision != revision
+                or expected_receipt.selection_posterior_revision
+                > restored.posterior_revision
+            ):
+                raise PolicyError("invalid persisted feedback order")
+            actual_receipt = restored.apply_feedback(expected_receipt.feedback)
+            if actual_receipt != expected_receipt:
+                raise PolicyError("persisted feedback attribution failed recovery")
+
+        if (
+            restored.posterior_revision != state.posterior_revision
+            or restored.posterior_fingerprint() != state.posterior_fingerprint
+        ):
+            raise PolicyError("reconstructed posterior differs from saved state")
+
+        try:
+            rng_state = json.loads(state.rng_state_json)
+            if rng_state.get("bit_generator") != "PCG64":
+                raise ValueError("unexpected random generator")
+            restored._rng.bit_generator.state = rng_state
+        except (ValueError, TypeError, KeyError, AttributeError):
+            raise PolicyError("invalid persisted sampler state") from None
+
+        return restored
