@@ -44,7 +44,7 @@ from pathlib import Path
 
 DATA = Path("data")
 OUT = DATA / "synthetic"
-PROMPT_VERSION = "v2-kg-grounded"
+PROMPT_VERSION = "v3-literal-examples"
 DEFAULT_MODEL = "claude-sonnet-5-5"
 PER_CALL = 5
 
@@ -105,7 +105,21 @@ def make_specs(intent, core, n):
     return specs
 
 
+def follows_literal_rule(d):
+    """True if every extractive slot value is the user's exact words (seed examples must obey the prompt's rules)."""
+    said = ""
+    for t in d["turns"]:
+        if t.get("speaker") != "user" or "state" not in t:
+            continue
+        said += " " + t["text"]
+        for k, v in t["state"].get("slots", {}).items():
+            if k in EXTRACTIVE and str(v).lower() not in said.lower():
+                return False
+    return True
+
+
 def pick_examples(seed, intent, core, k=3):
+    seed = [d for d in seed if follows_literal_rule(d)]
     same = [d for d in seed if first_intent(d) == intent]
     other = [d for d in seed if first_intent(d) in core and first_intent(d) != intent]
     ex = random.sample(same, min(1, len(same))) + random.sample(other, k - min(1, len(same)))
@@ -207,6 +221,9 @@ def validate(d, schema, spec):
         prev = st
 
     user_text = " ".join(t["text"] for t in users)
+    leaked = [k for k in list(schema["slots"]) + list(intents) if "_" in k and k in user_text]
+    if leaked:
+        return f"leaked_field_name: {leaked[0]} in user text"
     has_si = bool(re.search(r"[\u0D80-\u0DFF]", user_text))
     if spec["style"] == "pure_si" and re.search(r"[A-Za-z]{3,}", user_text):
         return "style_mismatch: English letters in pure_si"
@@ -253,7 +270,8 @@ def make_caller(provider, model):
         client = genai.Client()
 
         def call(prompt):
-            resp = client.models.generate_content(model=model, contents=prompt)
+            resp = client.models.generate_content(           # JSON mode: forces valid JSON output
+                model=model, contents=prompt, config={"response_mime_type": "application/json"})
             meta = getattr(resp, "usage_metadata", None)
             usage = {"input_tokens": getattr(meta, "prompt_token_count", 0) or 0,
                      "output_tokens": getattr(meta, "candidates_token_count", 0) or 0}
@@ -263,15 +281,36 @@ def make_caller(provider, model):
     sys.exit(f"Unknown provider {provider}")
 
 
+def write_safely(path, text, tries=10):
+    """Write via a temp file and swap it in. On Windows the swap fails while another
+    program (VS Code, antivirus, a second run) has the file open, so retry, then
+    fall back to writing in place."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(text, encoding="utf-8")
+    for i in range(tries):
+        try:
+            tmp.replace(path)
+            return
+        except PermissionError:
+            time.sleep(0.5 * (i + 1))
+    path.write_text(text, encoding="utf-8")
+    tmp.unlink(missing_ok=True)
+    print(f"  note: {path.name} was locked by another program; wrote it directly")
+
+
 # ------------------------------------------------------------------ accept / reject
 class Collector:
     def __init__(self, seed, model):
         OUT.mkdir(parents=True, exist_ok=True)
         self.out_file = OUT / "synthetic_dialogues.json"
-        self.accepted = json.loads(self.out_file.read_text(encoding="utf-8")) if self.out_file.exists() else []
+        self.accepted = self._load()
+        self.new = []                      # dialogues accepted in this run (ids assigned when saving)
         self.seen = {norm(t["text"]) for d in seed + self.accepted for t in d["turns"][:1]}
         self.model = model
         self.stats, self.reasons, self.usage = Counter(), Counter(), Counter()
+
+    def _load(self):
+        return json.loads(self.out_file.read_text(encoding="utf-8")) if self.out_file.exists() else []
 
     def add(self, dialogues, specs, schema):
         """Validate one batch. Returns number accepted."""
@@ -294,8 +333,8 @@ class Collector:
                                         ensure_ascii=False) + "\n")
                 continue
             self.seen.add(key)
-            self.accepted.append({
-                "dialogue_id": f"s{len(self.accepted) + 1:04d}", "source": "synthetic", "model": self.model,
+            self.new.append({
+                "dialogue_id": None, "source": "synthetic", "model": self.model,
                 "prompt_version": PROMPT_VERSION,
                 "script": "romanized" if spec["style"] == "singlish" else "sinhala",
                 "code_mix": "pure_si" if spec["style"] == "pure_si" else "mixed",
@@ -306,9 +345,28 @@ class Collector:
             got += 1
         return got
 
+    def flush(self):
+        """Merge this run's new dialogues into the file as it is NOW, so two runs
+        at the same time (e.g. Gemini + ingest) never overwrite each other."""
+        current = self._load()
+        taken = {norm(d["turns"][0]["text"]) for d in current}
+        added = 0
+        for d in self.new:
+            if norm(d["turns"][0]["text"]) in taken:      # another run added it meanwhile
+                self.stats["accepted"] -= 1
+                self.reasons["duplicate"] += 1
+                continue
+            d["dialogue_id"] = f"s{len(current) + 1:04d}"
+            current.append(d)
+            taken.add(norm(d["turns"][0]["text"]))
+            added += 1
+        if added:
+            write_safely(self.out_file, json.dumps(current, ensure_ascii=False, indent=2))
+        self.accepted, self.new = current, []
+        return added
+
     def save(self, args, mode):
-        with open(self.out_file, "w", encoding="utf-8") as fh:
-            json.dump(self.accepted, fh, ensure_ascii=False, indent=2)
+        self.flush()
         rate = round(self.stats["accepted"] / self.stats["generated"], 3) if self.stats["generated"] else 0
         log = {
             "run_at": datetime.now().isoformat(timespec="seconds"), "mode": mode, "model": self.model,
@@ -319,8 +377,7 @@ class Collector:
         }
         log_file = OUT / "generation_log.json"
         runs = json.loads(log_file.read_text(encoding="utf-8")) if log_file.exists() else []
-        with open(log_file, "w", encoding="utf-8") as fh:
-            json.dump(runs + [log], fh, ensure_ascii=False, indent=2)
+        write_safely(log_file, json.dumps(runs + [log], ensure_ascii=False, indent=2))
         print(f"\nGenerated {self.stats['generated']}, accepted {self.stats['accepted']} ({rate:.0%}). "
               f"Total synthetic dialogues: {len(self.accepted)}")
         if self.reasons:
@@ -343,6 +400,12 @@ def run_api(args, schema, seed, core):
                 dialogues, usage = call(prompt)
                 col.usage.update(usage)
             except Exception as e:  # bad JSON, rate limit, API error: log, wait, retry
+                msg = str(e)
+                if any(x in msg for x in ("404", "NOT_FOUND", "PERMISSION_DENIED", "API key not valid",
+                                          "API_KEY_INVALID", "401", "403")):
+                    col.save(args, f"api:{args.provider}")
+                    sys.exit(f"\nStopped: this will not fix itself by retrying.\n{msg[:300]}\n"
+                             "Check the model name (try another one) and the API key.")
                 col.reasons[f"call_failed_{type(e).__name__}"] += n
                 col.stats["generated"] += n
                 print(f"  call failed ({type(e).__name__}: {str(e)[:120]}), waiting {args.wait}s")
@@ -350,6 +413,7 @@ def run_api(args, schema, seed, core):
                 continue
             got += col.add(dialogues, specs, schema)
             time.sleep(args.wait if args.provider == "gemini" else 0)   # stay inside free-tier rate limits
+        col.flush()
         print(f"  {intent:24s} +{got}")
     col.save(args, f"api:{args.provider}")
 
