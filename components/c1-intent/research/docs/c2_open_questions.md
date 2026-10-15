@@ -101,6 +101,7 @@ service names. C1 needs them to match Sinhala user text.
 
 ## What C1 does after the answers
 
-- Fill `kg_service_id` in `research/data/schema_v1.json` and close its open questions.
+- Change the two proposed IDs in `research/data/schema_v1.json` if C2 assigns different
+  ones, and close its open questions.
 - Update `kg_service_map.json` (statuses, Sinhala names).
-- Add or drop the `dual_citizenship` intent and adjust the `service_type` enum.
+- Add or drop the `dual_citizenship` intent.
