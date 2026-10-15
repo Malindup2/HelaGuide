@@ -55,6 +55,7 @@ from app.models.procedure_graph import CanonicalProcedureGraph
 from app.models.scaffolds import ContentSafety
 from app.models.user_context import (
     ContextEvaluation,
+    ContextEvent,
     ContextUpdate,
     GuestSession,
     PresentationExposure,
@@ -92,6 +93,23 @@ class FeedbackRequest(RequestModel):
 class PresentationResponse(BaseModel):
     spec: PresentationSpec
     stale_for_display: bool
+
+
+
+class SessionHistoryResponse(BaseModel):
+    """Current session and its existing ordered context events.
+
+    Reading this response does not acknowledge display or update learning.
+    Feedback remains available through the existing feedback endpoint.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    schema_version: Literal["c4-session-history-1.0"] = (
+        "c4-session-history-1.0"
+    )
+    session: GuestSession
+    events: tuple[ContextEvent, ...]
 
 
 class DevRuntime:
@@ -509,6 +527,30 @@ def create_app(
                 for fingerprint, (graph, features, safety)
                 in runtime().procedures.items()
             ]
+
+
+    @application.get(
+        "/dev/v1/procedures/{procedure_id}/graph",
+        response_model=CanonicalProcedureGraph,
+    )
+    def procedure_graph(procedure_id: str):
+        current = runtime()
+        with current.lock:
+            graph, _, _ = current.procedure(procedure_id)
+            return graph
+
+    @application.get(
+        "/dev/v1/sessions/{session_id}/history",
+        response_model=SessionHistoryResponse,
+    )
+    def session_history(session_id: str):
+        current = runtime()
+        with current.lock:
+            session = current.session(session_id)
+            return SessionHistoryResponse(
+                session=session,
+                events=current.contexts.event_history(session_id),
+            )
 
     @application.post(
         "/dev/v1/sessions",
