@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "plan_id": "synthetic-conditional-v1",
+  "base_generated_at": "2026-10-15T00:00:00Z",
+  "synthetic": true,
+  "disclaimer": "Entirely fictional C4 research scenario. This is not a government service or official advice. Example-domain URLs and Plan provenance timestamps are illustrative; no government source was retrieved. Completeness describes only this authored scenario.",
+  "actions": [
+    {
+      "action_id": "action:register_collection",
+      "service_id": "svc:demo_registration",
+      "required_content_ids": ["content:register_collection"],
+      "supplementary_content_ids": ["content:collection_comparison"],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:counter_collection",
+      "service_id": "svc:demo_collection",
+      "required_content_ids": ["content:counter_collection"],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:locker_collection",
+      "service_id": "svc:demo_collection",
+      "required_content_ids": ["content:locker_collection"],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    }
+  ],
+  "content": [
+    {
+      "content_id": "content:register_collection",
+      "role": "required",
+      "text": "Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.",
+      "evidence_ids": ["evidence:collection_rules"],
+      "fact_ids": [
+        "svc:demo_registration:fee",
+        "svc:demo_collection:fee",
+        "svc:demo_collection:document:reference"
+      ]
+    },
+    {
+      "content_id": "content:counter_collection",
+      "role": "required",
+      "text": "Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+      "evidence_ids": ["evidence:collection_rules"],
+      "fact_ids": ["svc:demo_collection:document:reference"]
+    },
+    {
+      "content_id": "content:locker_collection",
+      "role": "required",
+      "text": "Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+      "evidence_ids": ["evidence:collection_rules"],
+      "fact_ids": ["svc:demo_collection:document:reference"]
+    },
+    {
+      "content_id": "content:collection_comparison",
+      "role": "supplementary",
+      "text": "The two collection methods are alternatives rather than a sequence. Comparing them side by side may make the choice easier to understand.",
+      "evidence_ids": ["evidence:collection_rules"],
+      "fact_ids": []
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "evidence:collection_rules",
+      "kind": "synthetic_authored",
+      "source_url": "https://example.org/c4/fixtures/conditional",
+      "text": "Authored fictional scenario: the Fictional C4 Demo Office registers a collection request and issues a fictional registration reference. Registration costs LKR 0. Collection costs LKR 0 and requires that reference. Registration must be completed before either collection action. Exactly one collection alternative is chosen: present the reference at the fictional counter, or use it at the fictional locker. Counter collection applies only when the counter method is chosen. Locker collection applies only when the locker method is chosen. The alternatives are not consecutive actions. No other conditions, branches, dependencies or parallel groups exist within this complete fictional scenario.",
+      "retrieved_at": null
+    }
+  ],
+  "conditions": [
+    {
+      "condition_id": "condition:counter_chosen",
+      "text": "The citizen has chosen counter collection.",
+      "evidence_ids": ["evidence:collection_rules"]
+    },
+    {
+      "condition_id": "condition:locker_chosen",
+      "text": "The citizen has chosen locker collection.",
+      "evidence_ids": ["evidence:collection_rules"]
+    }
+  ],
+  "prerequisites": [
+    {
+      "prerequisite_id": "prerequisite:registration_before_counter",
+      "kind": "requires_completion",
+      "required_action_id": "action:register_collection",
+      "dependent_action_id": "action:counter_collection",
+      "evidence_ids": ["evidence:collection_rules"]
+    },
+    {
+      "prerequisite_id": "prerequisite:registration_before_locker",
+      "kind": "requires_completion",
+      "required_action_id": "action:register_collection",
+      "dependent_action_id": "action:locker_collection",
+      "evidence_ids": ["evidence:collection_rules"]
+    }
+  ],
+  "branch_groups": [
+    {
+      "group_id": "branch:collection_method",
+      "service_id": "svc:demo_collection",
+      "selection": "XOR",
+      "options": [
+        {
+          "option_id": "option:counter_collection",
+          "action_ids": ["action:counter_collection"],
+          "condition_ids": ["condition:counter_chosen"]
+        },
+        {
+          "option_id": "option:locker_collection",
+          "action_ids": ["action:locker_collection"],
+          "condition_ids": ["condition:locker_chosen"]
+        }
+      ],
+      "evidence_ids": ["evidence:collection_rules"]
+    }
+  ],
+  "parallel_groups": [],
+  "completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "complete"
+  }
+}

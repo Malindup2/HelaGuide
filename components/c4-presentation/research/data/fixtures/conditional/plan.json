@@ -1,0 +1,52 @@
+{
+  "plan_id": "synthetic-conditional-v1",
+  "requested_service_id": "svc:demo_collection",
+  "generated_at": "2026-10-15T00:00:00Z",
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:demo_registration",
+      "name": "Synthetic demo: register a collection request",
+      "agency": "Fictional C4 Demo Office",
+      "fee": {
+        "value": 0,
+        "currency": "LKR",
+        "fact_id": "svc:demo_registration:fee"
+      },
+      "documents": [],
+      "depends_on": []
+    },
+    {
+      "order": 2,
+      "service_id": "svc:demo_collection",
+      "name": "Synthetic demo: choose a collection method",
+      "agency": "Fictional C4 Demo Office",
+      "fee": {
+        "value": 0,
+        "currency": "LKR",
+        "fact_id": "svc:demo_collection:fee"
+      },
+      "documents": [
+        {
+          "name": "Fictional registration reference",
+          "fact_id": "svc:demo_collection:document:reference"
+        }
+      ],
+      "depends_on": ["svc:demo_registration"]
+    }
+  ],
+  "provenance": {
+    "svc:demo_registration:fee": {
+      "source_url": "https://example.org/c4/fixtures/conditional",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    "svc:demo_collection:fee": {
+      "source_url": "https://example.org/c4/fixtures/conditional",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    "svc:demo_collection:document:reference": {
+      "source_url": "https://example.org/c4/fixtures/conditional",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    }
+  }
+}

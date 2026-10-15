@@ -95,3 +95,35 @@ Do not mutate accepted input and assume it remains validated; revalidate
 changed input.
 
 The existing shared rendering stub does not load these fixtures.
+
+
+## Registered independent demonstration procedures
+
+The independent development API registers these synthetic fixtures:
+
+- `fixtures/linear/`: the original token-to-pack procedure.
+- `fixtures/conditional/`: registration followed by exactly one collection
+  alternative, represented by an XOR group and explicit applicability conditions.
+- `fixtures/parallel/`: registration followed by two independent preparation
+  actions, both required before submission.
+
+Completeness applies only to the authored fictional scenario. It does not assert
+coverage or verification of a real government service.
+
+The catalogue loader is `service/app/core/demo_procedures.py`. It uses the normal
+validated input and canonical graph pipeline. The original linear fixture remains
+unchanged.
+
+Two exact supplementary paragraphs have an explicit author-maintained disclosure
+allowlist in that module. Their underlying requirements and relationships also
+appear in required content. Changed or unrecognized paragraphs receive no
+automatic disclosure approval. Required content, facts, conditions, relationships,
+evidence and provenance remain protected.
+
+Branch conditions describe applicability; the demonstration does not automatically
+decide eligibility or record branch completion. Guided navigation is browsing,
+not execution of every alternative.
+
+Diagram availability, hard feasibility, policy selection and actual exposure are
+separate concepts. A procedure containing a diagram does not force the policy to
+select it.

@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "plan_id": "synthetic-parallel-v1",
+  "base_generated_at": "2026-10-15T00:00:00Z",
+  "synthetic": true,
+  "disclaimer": "Entirely fictional C4 research scenario. This is not a government service or official advice. Example-domain URLs and Plan provenance timestamps are illustrative; no government source was retrieved. Completeness describes only this authored scenario.",
+  "actions": [
+    {
+      "action_id": "action:register_application",
+      "service_id": "svc:demo_application",
+      "required_content_ids": ["content:register_application"],
+      "supplementary_content_ids": ["content:preparation_explanation"],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:prepare_form",
+      "service_id": "svc:demo_preparation",
+      "required_content_ids": ["content:prepare_form"],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:prepare_copy",
+      "service_id": "svc:demo_preparation",
+      "required_content_ids": ["content:prepare_copy"],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:submit_application",
+      "service_id": "svc:demo_submission",
+      "required_content_ids": ["content:submit_application"],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    }
+  ],
+  "content": [
+    {
+      "content_id": "content:register_application",
+      "role": "required",
+      "text": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+      "evidence_ids": ["evidence:application_rules"],
+      "fact_ids": [
+        "svc:demo_application:fee",
+        "svc:demo_preparation:fee",
+        "svc:demo_submission:fee"
+      ]
+    },
+    {
+      "content_id": "content:prepare_form",
+      "role": "required",
+      "text": "After registration, prepare the fictional completed application form. This action does not require the supporting copy to be prepared first. The form is required for submission.",
+      "evidence_ids": ["evidence:application_rules"],
+      "fact_ids": ["svc:demo_submission:document:form"]
+    },
+    {
+      "content_id": "content:prepare_copy",
+      "role": "required",
+      "text": "After registration, prepare the fictional supporting copy. This action does not require the application form to be prepared first. The copy is required for submission.",
+      "evidence_ids": ["evidence:application_rules"],
+      "fact_ids": ["svc:demo_submission:document:copy"]
+    },
+    {
+      "content_id": "content:submit_application",
+      "role": "required",
+      "text": "Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.",
+      "evidence_ids": ["evidence:application_rules"],
+      "fact_ids": [
+        "svc:demo_submission:document:form",
+        "svc:demo_submission:document:copy"
+      ]
+    },
+    {
+      "content_id": "content:preparation_explanation",
+      "role": "supplementary",
+      "text": "Think of preparation as two work areas that come together at submission. This is another way to describe the required preparation relationships.",
+      "evidence_ids": ["evidence:application_rules"],
+      "fact_ids": []
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "evidence:application_rules",
+      "kind": "synthetic_authored",
+      "source_url": "https://example.org/c4/fixtures/parallel",
+      "text": "Authored fictional scenario: the Fictional C4 Demo Office requires application registration, preparation and submission. Each stage costs LKR 0. Registration must finish before preparation starts. The two required preparation actions are preparing a fictional completed application form and preparing a fictional supporting copy. These actions are explicitly independent of each other after registration and may be performed in either order or concurrently. Both must finish before submission, which requires both documents. There are no alternative branches or applicability conditions within this complete fictional scenario. The preparation pair is the only explicit parallel group.",
+      "retrieved_at": null
+    }
+  ],
+  "conditions": [],
+  "prerequisites": [
+    {
+      "prerequisite_id": "prerequisite:registration_before_form",
+      "kind": "requires_completion",
+      "required_action_id": "action:register_application",
+      "dependent_action_id": "action:prepare_form",
+      "evidence_ids": ["evidence:application_rules"]
+    },
+    {
+      "prerequisite_id": "prerequisite:registration_before_copy",
+      "kind": "requires_completion",
+      "required_action_id": "action:register_application",
+      "dependent_action_id": "action:prepare_copy",
+      "evidence_ids": ["evidence:application_rules"]
+    },
+    {
+      "prerequisite_id": "prerequisite:form_before_submission",
+      "kind": "requires_completion",
+      "required_action_id": "action:prepare_form",
+      "dependent_action_id": "action:submit_application",
+      "evidence_ids": ["evidence:application_rules"]
+    },
+    {
+      "prerequisite_id": "prerequisite:copy_before_submission",
+      "kind": "requires_completion",
+      "required_action_id": "action:prepare_copy",
+      "dependent_action_id": "action:submit_application",
+      "evidence_ids": ["evidence:application_rules"]
+    }
+  ],
+  "branch_groups": [],
+  "parallel_groups": [
+    {
+      "group_id": "parallel:application_preparation",
+      "service_id": "svc:demo_preparation",
+      "action_ids": ["action:prepare_form", "action:prepare_copy"],
+      "evidence_ids": ["evidence:application_rules"]
+    }
+  ],
+  "completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "complete"
+  }
+}

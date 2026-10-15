@@ -39,8 +39,7 @@ from app.core.presentation import (
     build_presentation_spec,
 )
 from app.core.procedure_features import extract_structural_features
-from app.core.procedure_graph import build_procedure_graph
-from app.core.procedure_input import load_procedure_input
+from app.core.demo_procedures import load_demo_procedures
 from app.core.scaffolds import graph_fingerprint
 from app.core.user_context import (
     ContextConflictError,
@@ -427,22 +426,6 @@ class DevRuntime:
         self.feedback[exposure_id] = accepted
         return accepted
 
-def _default_graphs():
-    fixture = (
-        Path(__file__).resolve().parents[2]
-        / "research"
-        / "data"
-        / "fixtures"
-        / "linear"
-    )
-    return (
-        build_procedure_graph(
-            load_procedure_input(
-                fixture / "plan.json",
-                fixture / "enrichment.json",
-            )
-        ),
-    )
 
 
 def create_app(
@@ -480,10 +463,22 @@ def create_app(
 
         active_runtime = None
         try:
+            if graphs is None:
+                active_graphs, catalogue_safety = load_demo_procedures()
+            else:
+                active_graphs = graphs
+                catalogue_safety = {}
+
+            active_safety = (
+                catalogue_safety
+                if safety_by_fingerprint is None
+                else safety_by_fingerprint
+            )
+
             active_runtime = DevRuntime(
                 active_provider,
-                _default_graphs() if graphs is None else graphs,
-                safety_by_fingerprint or {},
+                active_graphs,
+                active_safety,
                 database_path=database_path,
                 policy_config=policy_config,
                 postgres_dsn=postgres_dsn,
@@ -495,6 +490,7 @@ def create_app(
                 active_runtime.close()
             if owns_provider:
                 active_provider.close()
+
 
     application = FastAPI(
         title="HelaGuide C4 Independent Research API",
@@ -555,6 +551,11 @@ def create_app(
                 {
                     "procedure_id": fingerprint,
                     "plan_id": graph.plan_id,
+                    "title": next(
+                        stage.name
+                        for stage in graph.stages
+                        if stage.service_id == graph.requested_service_id
+                    ),
                     "requested_service_id": graph.requested_service_id,
                     "synthetic": graph.synthetic,
                     "disclaimer": graph.disclaimer,
