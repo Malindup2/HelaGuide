@@ -1,6 +1,7 @@
 # C1 local research files: large or regenerable. Locations are recorded in data/README.md.
 models/
-results/
+results/*
+!results/baseline_fasttext.json
 data/backup_v0/
 data/backup_v1_0/
 data/seed_all.json

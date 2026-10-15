@@ -132,7 +132,7 @@ and generic place words (`district`, `road`, `hospital`).
 ## Regenerating
 
 Run from `components/c1-intent/research/`. The scripts use paths relative to that folder
-(`data/`, `models/`, `results/`); their docstrings still show the old `src\` location.
+(`data/`, `models/`, `results/`).
 
 ```bash
 conda activate nlp
@@ -143,7 +143,9 @@ python experiments/baseline_fasttext.py     # -> data/gold_tokens.jsonl, results
 python experiments/check_fixes.py           # spot-check language tags on known English loanwords
 ```
 
-`seed_all.json`, `ls_tasks.json` and `results/` are regenerated outputs and are not committed.
+`seed_all.json` and `ls_tasks.json` are regenerated outputs and are not committed. In
+`results/`, only `baseline_fasttext.json` is committed, so the reported baseline numbers
+are in git; other result files stay local.
 Import `ls_tasks.json` into Label Studio only when setting up a new project: the tasks carry
 heuristic pre-labels, not the corrected labels, and importing them into "CS-Intent Seed"
 would add 142 duplicate tasks. `baseline_fasttext.py` stops if `seed_all.json` is missing,
