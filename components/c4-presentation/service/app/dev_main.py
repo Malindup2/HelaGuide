@@ -63,6 +63,21 @@ from app.models.user_context import (
 )
 
 
+
+from app.core.corrections import (
+    apply_correction,
+    correction_options,
+    record_correction,
+    restore_corrections,
+)
+from app.models.corrections import (
+    ApplyCorrectionRequest,
+    CorrectionOptions,
+    CorrectionRecord,
+    CorrectionRequest,
+)
+
+
 class RequestModel(BaseModel):
     model_config = ConfigDict(strict=True, extra="forbid")
 
@@ -173,6 +188,7 @@ class DevRuntime:
 
         self.presentations: dict[str, PresentationSpec] = {}
         self.feedback: dict[str, AcceptedFeedback] = {}
+        self.corrections: dict[str, CorrectionRecord] = {}
         self.store = None
         self.storage_backend = "in_memory"
         self._store_revision = 0
@@ -211,13 +227,20 @@ class DevRuntime:
             sessions=self.contexts.export_state(),
             policy=self.policy.export_state(),
             presentations=tuple(
-                self.presentations[key] for key in sorted(self.presentations)
+                self.presentations[key]
+                for key in sorted(self.presentations)
             ),
             feedback=tuple(
                 sorted(
                     self.feedback.values(),
-                    key=lambda value: value.receipt.resulting_posterior_revision,
+                    key=lambda value: (
+                        value.receipt.resulting_posterior_revision
+                    ),
                 )
+            ),
+            corrections=tuple(
+                self.corrections[key]
+                for key in sorted(self.corrections)
             ),
         )
 
@@ -311,11 +334,19 @@ class DevRuntime:
         if set(feedback) != set(receipts):
             raise StateStoreError("saved feedback and policy receipts differ")
 
+        corrections = restore_corrections(
+            state.corrections,
+            presentations,
+            feedback,
+            contexts,
+        )
+
         # Publish recovered state only after all checks succeed.
         self.contexts = contexts
         self.policy = policy
         self.presentations = presentations
         self.feedback = feedback
+        self.corrections = corrections
 
     def assert_available(self):
         with self.lock:
@@ -890,6 +921,66 @@ def create_app(
             if accepted is None:
                 raise HTTPException(404, "no accepted support-fit feedback")
             return accepted
+
+
+
+    @application.get(
+        "/dev/v1/sessions/{session_id}/presentations/{exposure_id}/correction-options",
+        response_model=CorrectionOptions,
+    )
+    def get_correction_options(
+        session_id: str,
+        exposure_id: str,
+    ):
+        current = runtime()
+        with current.lock:
+            spec = current.presentation(session_id, exposure_id)
+            return correction_options(current, spec)
+
+    @application.post(
+        "/dev/v1/sessions/{session_id}/presentations/{exposure_id}/correction",
+        response_model=CorrectionRecord,
+    )
+    def submit_correction(
+        session_id: str,
+        exposure_id: str,
+        request: CorrectionRequest,
+    ):
+        current = runtime()
+        with current.change():
+            spec = current.presentation(session_id, exposure_id)
+            return record_correction(current, spec, request)
+
+    @application.get(
+        "/dev/v1/sessions/{session_id}/presentations/{exposure_id}/correction",
+        response_model=CorrectionRecord,
+    )
+    def get_correction(
+        session_id: str,
+        exposure_id: str,
+    ):
+        current = runtime()
+        with current.lock:
+            current.presentation(session_id, exposure_id)
+            record = current.corrections.get(exposure_id)
+            if record is None:
+                raise HTTPException(404, "no recorded correction")
+            return record
+
+    @application.post(
+        "/dev/v1/sessions/{session_id}/presentations/{exposure_id}/correction/apply",
+        response_model=CorrectionRecord,
+    )
+    def apply_recorded_correction(
+        session_id: str,
+        exposure_id: str,
+        request: ApplyCorrectionRequest,
+    ):
+        current = runtime()
+        with current.change():
+            spec = current.presentation(session_id, exposure_id)
+            return apply_correction(current, spec, request)
+
 
     @application.get("/dev/v1/policy")
     def policy_status():

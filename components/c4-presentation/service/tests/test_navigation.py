@@ -369,6 +369,7 @@ def install_legacy_snapshot(backend):
     row = backend["read_row"]()
     document = json.loads(row[2])
     document["format_version"] = "c4-runtime-state-1.0"
+    document.pop("corrections", None)
     payload = canonical(document)
     LegacyRuntimeState.model_validate_json(payload)
 
@@ -404,7 +405,8 @@ def test_migration_preserves_learned_state_and_keeps_original_backup(backend):
     assert migrated_row[0] == legacy_row[0] + 1
     old_document = json.loads(legacy_row[2])
     new_document = json.loads(migrated_row[2])
-    old_document["format_version"] = "c4-runtime-state-1.1"
+    old_document["format_version"] = "c4-runtime-state-1.2"
+    old_document["corrections"] = []
     assert new_document == old_document
 
     with TestClient(backend["application"]()) as client:

@@ -4,6 +4,7 @@ from typing import Literal
 
 from pydantic import AwareDatetime, Field
 
+from app.models.corrections import CorrectionRecord
 from app.models.policy import PolicyConfig, PolicyOffer, UpdateReceipt
 from app.models.presentation import PresentationSpec
 from app.models.procedure_graph import GraphRecord
@@ -40,8 +41,11 @@ class AcceptedFeedback(GraphRecord):
 
 
 class RuntimeState(GraphRecord):
-    format_version: Literal["c4-runtime-state-1.1"] = "c4-runtime-state-1.1"
+    format_version: Literal["c4-runtime-state-1.2"] = (
+        "c4-runtime-state-1.2"
+    )
     sessions: tuple[SessionState, ...]
     policy: PolicyState
     presentations: tuple[PresentationSpec, ...]
     feedback: tuple[AcceptedFeedback, ...]
+    corrections: tuple[CorrectionRecord, ...] = ()
