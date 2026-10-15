@@ -105,6 +105,7 @@ class DevRuntime:
         *,
         database_path=None,
         policy_config=None,
+        postgres_dsn=None,
     ):
         self.lock = RLock()
         self.policy_config = policy_config or PolicyConfig()
@@ -133,11 +134,25 @@ class DevRuntime:
         self.presentations: dict[str, PresentationSpec] = {}
         self.feedback: dict[str, AcceptedFeedback] = {}
         self.store = None
+        self.storage_backend = "in_memory"
         self._store_revision = 0
         self._failed = False
 
-        if database_path is not None:
+        if database_path is not None and postgres_dsn is not None:
+            raise ValueError("choose either SQLite or PostgreSQL storage")
+
+        if postgres_dsn is not None:
+            from app.core.postgres_state_store import PostgreSQLStateStore
+
+            self.store = PostgreSQLStateStore(
+                postgres_dsn, self.policy_config
+            )
+            self.storage_backend = "postgresql"
+        elif database_path is not None:
             self.store = SQLiteStateStore(database_path, self.policy_config)
+            self.storage_backend = "sqlite"
+
+        if self.store is not None:
             try:
                 revision, state = self.store.load()
                 if state is None:
@@ -381,6 +396,7 @@ def create_app(
     safety_by_fingerprint: dict[str, ContentSafety] | None = None,
     database_path: str | Path | None = None,
     policy_config: PolicyConfig | None = None,
+    postgres_dsn: str | None = None,
 ) -> FastAPI:
     """Create the independent C4 research application.
 
@@ -414,6 +430,7 @@ def create_app(
                 safety_by_fingerprint or {},
                 database_path=database_path,
                 policy_config=policy_config,
+                postgres_dsn=postgres_dsn,
             )
             application.state.runtime = active_runtime
             yield
@@ -471,7 +488,7 @@ def create_app(
         return {
             "service": "c4-independent-dev",
             "status": "ok",
-            "storage": "sqlite" if runtime().store is not None else "in_memory",
+            "storage": runtime().storage_backend,
             "exposure_requires_acknowledgment": True,
         }
 
@@ -715,9 +732,7 @@ def create_app(
                 "posterior_revision": policy.posterior_revision,
                 "posterior_fingerprint": policy.posterior_fingerprint(),
                 "accepted_feedback_count": len(runtime().feedback),
-                "storage": (
-                    "sqlite" if runtime().store is not None else "in_memory"
-                ),
+                "storage": runtime().storage_backend,
             }
 
     return application
@@ -728,6 +743,23 @@ def _application_from_environment():
     if mode not in {"simulation", "participant"}:
         raise ValueError("C4_FEEDBACK_MODE must be simulation or participant")
 
+    backend = os.getenv("C4_STORAGE_BACKEND", "sqlite").lower()
+    if backend not in {"sqlite", "postgresql"}:
+        raise ValueError("C4_STORAGE_BACKEND must be sqlite or postgresql")
+
+    config = PolicyConfig(feedback_mode=mode)
+
+    if backend == "postgresql":
+        dsn = os.getenv("C4_DATABASE_URL")
+        if not dsn or not dsn.strip():
+            raise ValueError(
+                "C4_DATABASE_URL is required for PostgreSQL storage"
+            )
+        return create_app(
+            postgres_dsn=dsn,
+            policy_config=config,
+        )
+
     default_path = (
         Path(__file__).resolve().parents[1]
         / ".local"
@@ -737,7 +769,7 @@ def _application_from_environment():
 
     return create_app(
         database_path=database_path,
-        policy_config=PolicyConfig(feedback_mode=mode),
+        policy_config=config,
     )
 
 

@@ -20,6 +20,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "httpx>=0.27"]
+postgres = ["psycopg[binary]>=3.1,<4"]
 # heavy research libraries: uncomment as you need them, install with .[research]
 research = [
     # add model and speech libraries here
