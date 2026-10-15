@@ -34,6 +34,7 @@ from app.models.user_context import (
     PresentationExposure,
     PresentationOffer,
     UserSettings,
+    ActionDisplay,
 )
 
 from app.models.runtime_state import SessionState
@@ -239,24 +240,49 @@ class InMemoryContextService:
             and event.offer.graph_fingerprint == fingerprint
         ]
 
+        # The window still counts presentations, not navigation events.
+        recent_acknowledgments = matching[-RECAP_WINDOW:]
+        recent_ids = {
+            event.offer.exposure_id for event in recent_acknowledgments
+        }
+        by_exposure = {
+            exposure_id: {} for exposure_id in recent_ids
+        }
+        last_occurrence = {}
+
+        # Walk actual accepted events to preserve display chronology across
+        # presentations. An initial acknowledgment remains immutable.
+        for event in state.events:
+            if isinstance(event, PresentationExposure):
+                exposure_id = event.offer.exposure_id
+                action_ids = event.displayed_action_ids
+            elif isinstance(event, ActionDisplay):
+                exposure_id = event.exposure_id
+                action_ids = (event.action_id,)
+            else:
+                continue
+
+            if exposure_id not in recent_ids:
+                continue
+
+            for action_id in action_ids:
+                by_exposure[exposure_id].pop(action_id, None)
+                by_exposure[exposure_id][action_id] = None
+                last_occurrence.pop(action_id, None)
+                last_occurrence[action_id] = None
+
         recent = tuple(
             ExposureSummary(
                 exposure_id=event.offer.exposure_id,
                 sequence=event.sequence,
                 acknowledged_at=event.acknowledged_at,
                 configuration_id=event.offer.configuration.configuration_id,
-                displayed_action_ids=event.displayed_action_ids,
+                displayed_action_ids=tuple(
+                    by_exposure[event.offer.exposure_id]
+                ),
             )
-            for event in matching[-RECAP_WINDOW:]
+            for event in recent_acknowledgments
         )
-
-        # Keep each action at its most recent position in the recap window.
-        # Ordering within one acknowledgment is its supplied display order.
-        last_occurrence = {}
-        for event in recent:
-            for action_id in event.displayed_action_ids:
-                last_occurrence.pop(action_id, None)
-                last_occurrence[action_id] = None
 
         return ContextSnapshot(
             session_id=state.session.session_id,
@@ -422,6 +448,113 @@ class InMemoryContextService:
             state.session = session
             return event
 
+    def record_action_display(
+        self,
+        session_id: str,
+        exposure_id: str,
+        *,
+        event_id: str,
+        presentation_id: str,
+        configuration_id: str,
+        action_id: str,
+        expected_revision: int,
+    ) -> ActionDisplay:
+        """Record a later display within an acknowledged presentation.
+
+        The API verifies presentation identity and page membership.
+        This service verifies offer identity, revision, initial exposure,
+        retry identity and current hard settings.
+
+        Soft preference changes can affect future selections without
+        changing the configuration of this existing presentation.
+        """
+        with self._lock:
+            state = self._state(session_id)
+            offer = state.offers.get(exposure_id)
+            if offer is None:
+                raise UnknownExposureError(
+                    "exposure offer does not belong to this guest session"
+                )
+
+            if configuration_id != offer.configuration.configuration_id:
+                raise ContextConflictError(
+                    "displayed configuration differs from the offered configuration"
+                )
+
+            _validate_action_ids(
+                (action_id,),
+                set(offer.intended_action_ids),
+            )
+
+            # IDs are globally unique across this runtime. A retry must
+            # match the original request, including its expected revision.
+            for other_state in self._sessions.values():
+                for previous in other_state.events:
+                    if previous.event_id != event_id:
+                        continue
+                    if (
+                        isinstance(previous, ActionDisplay)
+                        and previous.session_id == session_id
+                        and previous.exposure_id == exposure_id
+                        and previous.presentation_id == presentation_id
+                        and previous.configuration_id == configuration_id
+                        and previous.action_id == action_id
+                        and type(expected_revision) is int
+                        and previous.sequence == expected_revision + 1
+                    ):
+                        return previous
+                    raise ContextConflictError(
+                        "event ID was already used for a different request"
+                    )
+
+            self._check_revision(state, expected_revision)
+
+            acknowledgment = state.acknowledgments.get(exposure_id)
+            if acknowledgment is None or not acknowledgment.displayed_action_ids:
+                raise ContextConflictError(
+                    "acknowledge the initial action before recording navigation"
+                )
+
+            original_settings = offer.context_snapshot.settings
+            current_settings = state.session.settings
+            if (
+                current_settings.locks != original_settings.locks
+                or current_settings.accessibility
+                != original_settings.accessibility
+            ):
+                raise ContextConflictError(
+                    "hard settings changed; request a new presentation"
+                )
+
+            displayed = set(acknowledgment.displayed_action_ids)
+            displayed.update(
+                event.action_id
+                for event in state.events
+                if isinstance(event, ActionDisplay)
+                and event.exposure_id == exposure_id
+            )
+
+            now = self._now(state.session.updated_at)
+            sequence = state.session.revision + 1
+            event = ActionDisplay(
+                event_id=event_id,
+                session_id=session_id,
+                sequence=sequence,
+                occurred_at=now,
+                exposure_id=exposure_id,
+                presentation_id=presentation_id,
+                configuration_id=configuration_id,
+                action_id=action_id,
+                is_revisit=action_id in displayed,
+            )
+
+            state.events.append(event)
+            state.session = _copy_with(
+                state.session,
+                revision=sequence,
+                updated_at=now,
+            )
+            return event
 
     def registered_offer(
         self,
@@ -509,7 +642,7 @@ class InMemoryContextService:
                     ):
                         raise ContextError("broken persisted preference history")
                     settings = event.after
-                else:
+                elif isinstance(event, PresentationExposure):
                     occurred_at = event.acknowledged_at
                     offer = offers.get(event.offer.exposure_id)
                     if (
@@ -523,6 +656,45 @@ class InMemoryContextService:
                         set(event.offer.intended_action_ids),
                     )
                     acknowledgments[event.offer.exposure_id] = event
+
+                elif isinstance(event, ActionDisplay):
+                    occurred_at = event.occurred_at
+                    offer = offers.get(event.exposure_id)
+                    acknowledgment = acknowledgments.get(event.exposure_id)
+                    if (
+                        offer is None
+                        or acknowledgment is None
+                        or not acknowledgment.displayed_action_ids
+                        or event.configuration_id
+                        != offer.configuration.configuration_id
+                        or occurred_at < acknowledgment.acknowledged_at
+                        or settings.locks != offer.context_snapshot.settings.locks
+                        or settings.accessibility
+                        != offer.context_snapshot.settings.accessibility
+                    ):
+                        raise ContextError("invalid persisted action display")
+
+                    _validate_action_ids(
+                        (event.action_id,),
+                        set(offer.intended_action_ids),
+                    )
+
+                    previously_displayed = set(
+                        acknowledgment.displayed_action_ids
+                    )
+                    previously_displayed.update(
+                        earlier.action_id
+                        for earlier in record.events[:sequence - 1]
+                        if isinstance(earlier, ActionDisplay)
+                        and earlier.exposure_id == event.exposure_id
+                    )
+                    if event.is_revisit != (
+                        event.action_id in previously_displayed
+                    ):
+                        raise ContextError("invalid persisted revisit flag")
+
+                else:
+                    raise ContextError("unsupported persisted event type")
 
                 if occurred_at < previous_time:
                     raise ContextError("persisted event chronology is invalid")

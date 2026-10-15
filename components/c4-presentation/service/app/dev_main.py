@@ -59,6 +59,8 @@ from app.models.user_context import (
     ContextUpdate,
     GuestSession,
     PresentationExposure,
+    ActionDisplay,
+    EventId,
 )
 
 
@@ -111,6 +113,27 @@ class SessionHistoryResponse(BaseModel):
     session: GuestSession
     events: tuple[ContextEvent, ...]
 
+class ActionDisplayRequest(RequestModel):
+    event_id: EventId
+    expected_revision: int = Field(ge=0)
+    presentation_id: str = Field(min_length=1)
+    configuration_id: str = Field(min_length=1)
+    action_id: ActionId
+
+
+class NavigationResponse(BaseModel):
+    schema_version: Literal["c4-navigation-1.0"] = "c4-navigation-1.0"
+    presentation_id: str
+    exposure_id: str
+    configuration_id: str
+    graph_fingerprint: str
+    session_revision: int
+    acknowledged: bool
+    current_action_id: ActionId | None
+    displayed_action_ids: tuple[ActionId, ...]
+    events: tuple[ActionDisplay, ...]
+
+    
 
 class DevRuntime:
     """Existing C4 services with optional atomic local persistence."""
@@ -253,6 +276,21 @@ class DevRuntime:
                     ):
                         raise StateStoreError("saved display scope differs")
                     acknowledgments[event.offer.exposure_id] = event
+
+                elif isinstance(event, ActionDisplay):
+                    spec = presentations.get(event.exposure_id)
+                    if (
+                        spec is None
+                        or spec.session_id != event.session_id
+                        or spec.presentation_id != event.presentation_id
+                        or spec.configuration.configuration_id
+                        != event.configuration_id
+                        or event.action_id
+                        not in {page.action_id for page in spec.pages}
+                    ):
+                        raise StateStoreError(
+                            "saved navigation attribution differs"
+                        )
 
         receipts = {
             receipt.feedback.exposure_id: receipt
@@ -726,6 +764,98 @@ def create_app(
                 raise HTTPException(409, str(exc)) from None
             except ContextError as exc:
                 raise HTTPException(422, str(exc)) from None
+    
+
+    @application.get(
+        "/dev/v1/sessions/{session_id}/presentations/{exposure_id}/navigation",
+        response_model=NavigationResponse,
+    )
+    def navigation_state(session_id: str, exposure_id: str):
+        current = runtime()
+        with current.lock:
+            spec = current.presentation(session_id, exposure_id)
+            session = current.session(session_id)
+            history = current.contexts.event_history(session_id)
+
+            acknowledgment = next(
+                (
+                    event
+                    for event in history
+                    if isinstance(event, PresentationExposure)
+                    and event.offer.exposure_id == exposure_id
+                ),
+                None,
+            )
+            events = tuple(
+                event
+                for event in history
+                if isinstance(event, ActionDisplay)
+                and event.exposure_id == exposure_id
+            )
+
+            displayed = {}
+            current_action = None
+            if acknowledgment is not None:
+                for action_id in acknowledgment.displayed_action_ids:
+                    displayed[action_id] = None
+                    current_action = action_id
+
+            for event in events:
+                displayed.pop(event.action_id, None)
+                displayed[event.action_id] = None
+                current_action = event.action_id
+
+            return NavigationResponse(
+                presentation_id=spec.presentation_id,
+                exposure_id=exposure_id,
+                configuration_id=spec.configuration.configuration_id,
+                graph_fingerprint=spec.graph_fingerprint,
+                session_revision=session.revision,
+                acknowledged=acknowledgment is not None,
+                current_action_id=current_action,
+                displayed_action_ids=tuple(displayed),
+                events=events,
+            )
+
+    @application.post(
+        "/dev/v1/sessions/{session_id}/presentations/{exposure_id}/navigation",
+        response_model=ActionDisplay,
+    )
+    def record_navigation(
+        session_id: str,
+        exposure_id: str,
+        request: ActionDisplayRequest,
+    ):
+        current = runtime()
+        with current.change():
+            spec = current.presentation(session_id, exposure_id)
+            if (
+                request.presentation_id != spec.presentation_id
+                or request.configuration_id
+                != spec.configuration.configuration_id
+            ):
+                raise HTTPException(409, "presentation identity mismatch")
+
+            if request.action_id not in {
+                page.action_id for page in spec.pages
+            }:
+                raise HTTPException(422, "action is outside this presentation")
+
+            try:
+                return current.contexts.record_action_display(
+                    session_id,
+                    exposure_id,
+                    event_id=request.event_id,
+                    presentation_id=request.presentation_id,
+                    configuration_id=request.configuration_id,
+                    action_id=request.action_id,
+                    expected_revision=request.expected_revision,
+                )
+            except ContextConflictError as exc:
+                raise HTTPException(409, str(exc)) from None
+            except ContextError as exc:
+                raise HTTPException(422, str(exc)) from None
+
 
     @application.post(
         "/dev/v1/sessions/{session_id}/presentations/{exposure_id}/feedback",

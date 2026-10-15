@@ -40,7 +40,7 @@ class AcceptedFeedback(GraphRecord):
 
 
 class RuntimeState(GraphRecord):
-    format_version: Literal["c4-runtime-state-1.0"] = "c4-runtime-state-1.0"
+    format_version: Literal["c4-runtime-state-1.1"] = "c4-runtime-state-1.1"
     sessions: tuple[SessionState, ...]
     policy: PolicyState
     presentations: tuple[PresentationSpec, ...]
