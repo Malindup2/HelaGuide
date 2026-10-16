@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { API_BASE } from "../api/client";
 import type { ActiveIdentity, ProcedureSummary } from "../api/types";
 import { browserStorage } from "../session/continuity";
 import { guidanceApi } from "./api";
 import { GuidanceEpisode } from "./episode";
-import { ActionSection, SelectedAids, SourceItems } from "./rendering";
+import { ActionSection, SelectedAids, SourceItems, SourceRegister } from "./rendering";
+import { actionDomId, actionTitle } from "./scaffoldModel";
 import { actionLabel, documentOf } from "./types";
 import type { Standard } from "./types";
 
@@ -16,7 +17,6 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
   const [episode] = useState(() => new GuidanceEpisode(guidanceApi, active, procedure.procedure_id, browserStorage(), API_BASE));
   const state = useSyncExternalStore(episode.subscribe, episode.getSnapshot);
   const [writingStyle, setWritingStyle] = useState<Standard["writing_style"]>("plain");
-  const output = useRef<HTMLDivElement>(null);
   const enabled = active.kind === "profile" && active.profile.personalization_enabled;
   const { result, navigation } = state;
   const doc = result ? documentOf(result) : null;
@@ -25,6 +25,9 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
   const index = doc?.pages.findIndex((page) => page.action_id === state.focus) ?? -1;
   const current = doc?.pages[index];
   const blocked = disabled || state.loading || state.busy || state.pending !== null;
+  const disclaimerInNotices = doc ? doc.global_items.some((ref) => ref.kind === "notice" &&
+    doc.cards.some((card) => card.source.kind === "notice" && card.source.identifier === ref.identifier &&
+      card.lines.includes(doc.explanation.source.graph.disclaimer))) : false;
 
   useEffect(() => { void episode.initialize(); }, [episode]);
   useEffect(() => {
@@ -34,7 +37,11 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
   const onVisible = useCallback((id: string) => { void episode.visible(id); }, [episode]);
   function move(id: string) {
     episode.move(id);
-    output.current?.scrollIntoView({ block: "start", behavior: "auto" });
+    requestAnimationFrame(() => {
+      const action = document.getElementById(actionDomId(id));
+      action?.scrollIntoView({ block: "start", behavior: "auto" });
+      action?.focus({ preventScroll: true });
+    });
   }
 
   return <section className="panel guidance-panel" aria-labelledby="guidance-title">
@@ -61,18 +68,18 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
       <p className="helper-text">Leaving does not undo records already accepted by the backend.</p>
     </div>}
     {state.notice && <p className="guidance-status" role="status">{state.notice}</p>}
-    {doc && <div ref={output} className="guidance-output">
+    {doc && <div className="guidance-output">
       <div className="guidance-metadata">
         <span className="tag">{guided ? "Guided" : "Overview"}</span>
         <span className="tag">{doc.explanation.origin === "fallback" ? "Source-preserving fallback" : "Generated explanation · original sources retained"}</span>
         <span className="tag">{doc.explanation.source.graph.synthetic ? "Synthetic demonstration" : "Supplied sources · verification status below"}</span>
       </div>
-      <p className="guidance-disclaimer">{doc.explanation.source.graph.disclaimer}</p>
+      {!disclaimerInNotices && <p className="guidance-disclaimer">{doc.explanation.source.graph.disclaimer}</p>}
       <p className="helper-text">Browsing order is not a completion checklist or eligibility decision. Viewing guidance never means an action was completed.</p>
       <div className="source-notices">
         <SourceItems doc={doc} refs={doc.global_items.filter((ref) => ref.kind === "notice")} />
       </div>
-      {spec && <SelectedAids spec={spec} />}
+      {spec && <SelectedAids spec={spec} currentActionId={guided ? state.focus : null} />}
       {guided && spec && current ? <>
         <nav className="guided-step-list" aria-label="Browse procedure actions">
           {doc.pages.map((page, pageIndex) => <button key={page.action_id}
@@ -80,11 +87,12 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
             className={page.action_id === state.focus ? "active" : ""}
             aria-current={page.action_id === state.focus ? "step" : undefined}
             onClick={() => move(page.action_id)}>
-            <span>{pageIndex + 1}</span>{actionLabel(doc, page.action_id)}
+            <span className="guided-position">Action {pageIndex + 1}</span>
+            <strong className="guided-short-label" title={actionLabel(doc, page.action_id)}>{actionTitle(doc, page.action_id)}</strong>
             {navigation?.displayed_action_ids.includes(page.action_id) && <small>Previously displayed</small>}
           </button>)}
         </nav>
-        <p className="helper-text">Action {index + 1} of {doc.pages.length}. Alternative actions remain available for inspection.</p>
+        <p className="helper-text">Action {index + 1} of {doc.pages.length}. {doc.explanation.source.graph.branch_groups.length > 0 ? "Alternative actions remain available for inspection." : "Browsing does not mark completion."}</p>
         <ActionSection key={current.action_id} doc={doc} page={current} index={index}
           disabled={blocked} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />
         <nav className="guided-navigation" aria-label="Previous and next guidance">
@@ -98,11 +106,7 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
         {doc.pages.map((page, pageIndex) => <ActionSection key={page.action_id} doc={doc} page={page} index={pageIndex}
           disabled={blocked || !spec} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />)}
       </div>}
-      <section className="source-register" aria-label="Procedure-wide requirements and source information">
-        <div className="section-heading"><div><p className="eyebrow">Kept available throughout</p><h3>Requirements, relationships and sources</h3></div></div>
-        <p className="helper-text">All supplied information remains available here, including facts that apply across actions. Only reviewed supplementary content may be collapsed.</p>
-        <div className="source-register-grid"><SourceItems doc={doc} refs={doc.global_items.filter((ref) => ref.kind !== "notice")} /></div>
-      </section>
+      <SourceRegister doc={doc} />
       <div className="exposure-status" role="status">
         {spec ? <><strong>{navigation?.acknowledged ? "Display acknowledgment recorded" : "Awaiting a visible action"}</strong>
           <p>{navigation?.displayed_action_ids.length ?? 0} of {doc.pages.length} actions recorded as displayed. This does not measure comprehension or completion.</p>
