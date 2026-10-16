@@ -263,7 +263,7 @@ export class C4Api {
     private readonly fetcher: typeof fetch = globalThis.fetch.bind(globalThis),
   ) {}
 
-  private async request(
+  async request(
     path: string,
     method: "GET" | "POST" | "PATCH",
     signal?: AbortSignal,
