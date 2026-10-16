@@ -79,7 +79,7 @@ export default function ContextSummary({
             <div><dt>Demo profile</dt><dd><code>{active.profile.profile_id}</code></dd></div>
           )}
           <div><dt>Context session</dt><dd><code>{active.session.session_id}</code></dd></div>
-          <div><dt>Context revision</dt><dd>{active.session.revision}</dd></div>
+          <div><dt>Context revision when workspace loaded</dt><dd>{active.session.revision}</dd></div>
           {active.kind === "profile" && (
             <div><dt>Personalization-setting revision</dt><dd>{active.profile.revision}</dd></div>
           )}

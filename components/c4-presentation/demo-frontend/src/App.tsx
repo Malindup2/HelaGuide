@@ -1,4 +1,5 @@
 import { useState } from "react";
+import GuidanceWorkspace from "./guidance/GuidanceWorkspace";
 import { API_BASE } from "./api/client";
 import { useWorkspace } from "./app/useWorkspace";
 import ContextSummary from "./profiles/ContextSummary";
@@ -12,11 +13,12 @@ export default function App() {
   const workspace = useWorkspace();
   const { state } = workspace;
   const [search, setSearch] = useState("");
+  const [guidanceLocked, setGuidanceLocked] = useState(false);
   const selected = state.procedures.find((item) => item.procedure_id === state.selectedId);
   const active = state.active;
   const enabled = active?.kind === "profile" && active.profile.personalization_enabled;
   const locked = state.busy !== null || state.loading;
-  const identityLocked = locked || state.pendingMode !== null;
+  const identityLocked = locked || guidanceLocked || state.pendingMode !== null;
   const visibleProcedures = state.procedures.filter((item) =>
     item.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase()),
   );
@@ -130,7 +132,7 @@ export default function App() {
                 </label>
                 <div className="procedure-grid">
                   {visibleProcedures.map((procedure, index) => (
-                    <button key={procedure.procedure_id} disabled={locked}
+                    <button key={procedure.procedure_id} disabled={identityLocked}
                       className={"procedure-choice " + (selected?.procedure_id === procedure.procedure_id ? "selected" : "")}
                       aria-pressed={selected?.procedure_id === procedure.procedure_id}
                       onClick={() => workspace.selectProcedure(procedure.procedure_id)}>
@@ -160,7 +162,7 @@ export default function App() {
                     <button type="button" role="switch" aria-checked={enabled}
                       aria-label="Personalized guidance"
                       className={"switch-button " + (enabled ? "on" : "")}
-                      disabled={locked || state.pendingMode !== null}
+                      disabled={identityLocked}
                       onClick={() => void workspace.togglePersonalization()}>
                       <span className="switch-track" aria-hidden="true"><span /></span>
                       <strong>{enabled ? "On" : "Off"}</strong>
@@ -175,14 +177,17 @@ export default function App() {
                 ) : <span className="mode-badge">Standard guidance</span>}
               </section>
 
-              {active && <div className="panel"><ContextSummary active={active} procedures={state.procedures} /></div>}
+              {active && selected && (
+                <GuidanceWorkspace
+                  key={JSON.stringify([active.session.session_id, selected.procedure_id, active.kind === "profile" ? active.profile.revision : null])}
+                  active={active} procedure={selected}
+                  disabled={locked || state.pendingMode !== null}
+                  onActivityChange={setGuidanceLocked}
+                />
+              )}
+              {!active || !selected ? <p className="helper-text">Select a procedure and open a guest workspace or demo profile to show guidance.</p> : null}
 
-              <section className="guidance-ready" aria-label="Guidance preparation">
-                <div className="readiness-mark" aria-hidden="true">{active && selected ? "✓" : "…"}</div>
-                <div><strong>{active && selected ? "Your workspace is prepared." : "Your guidance starts here."}</strong>
-                  <p>{selected ? selected.title : "Select a procedure above."}{!active && " Then continue as guest or choose a demo profile."}</p>
-                  <span className="helper-text">This slice saves context only. The next slice connects actual guidance rendering and display acknowledgment.</span></div>
-              </section>
+              {active && <div className="panel"><ContextSummary active={active} procedures={state.procedures} /></div>}
 
               <div className="source-note"><span aria-hidden="true">◇</span><div><strong>Research examples, not official instructions</strong><p>{selected?.disclaimer ?? "The registered procedures are synthetic. No government transaction, eligibility decision or application submission occurs here."}</p></div></div>
             </>
