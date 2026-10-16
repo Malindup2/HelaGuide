@@ -50,11 +50,32 @@ PLACES = {
 }
 
 # District values are stored in English; this lets us find them in Sinhala-script text.
+# Each district maps to a list of spellings (official and common typed forms).
 DISTRICT_SI = {
-    "Colombo": "කොළඹ", "Galle": "ගාල්ල", "Kandy": "මහනුවර", "Matale": "මාතලේ",
-    "Gampaha": "ගම්පහ", "Kalutara": "කළුතර", "Kurunegala": "කුරුණෑගල",
-    "Anuradhapura": "අනුරාධපුර", "Matara": "මාතර", "Ratnapura": "රත්නපුර",
-    "Nuwara Eliya": "නුවරඑළිය", "Kegalle": "කෑගල්ල", "Hambantota": "හම්බන්තොට",
+    "Colombo": ["කොළඹ"], "Galle": ["ගාල්ල"], "Kandy": ["මහනුවර"], "Matale": ["මාතලේ"],
+    "Gampaha": ["ගම්පහ"], "Kalutara": ["කළුතර"], "Kurunegala": ["කුරුණෑගල"],
+    "Anuradhapura": ["අනුරාධපුර"], "Matara": ["මාතර"], "Ratnapura": ["රත්නපුර"],
+    "Nuwara Eliya": ["නුවරඑළිය"], "Kegalle": ["කෑගල්ල"], "Hambantota": ["හම්බන්තොට"],
+    "Ampara": ["අම්පාර"], "Badulla": ["බදුල්ල"], "Batticaloa": ["මඩකලපුව"], "Jaffna": ["යාපනය"],
+    "Kilinochchi": ["කිලිනොච්චිය", "කිලිනොච්චි"], "Mannar": ["මන්නාරම"], "Monaragala": ["මොණරාගල", "මොනරාගල"],
+    "Mullaitivu": ["මුලතිව්"], "Polonnaruwa": ["පොළොන්නරුව"], "Puttalam": ["පුත්තලම"],
+    "Trincomalee": ["ත්‍රිකුණාමලය"], "Vavuniya": ["වවුනියාව"],
+}
+# ...and in romanized Sinhala (Singlish) text, where people use the Sinhala name or spelling.
+DISTRICT_ROMANIZED = {
+    "Ampara": ["Ampare"], "Anuradhapura": ["Anuradapura", "Anuradhapuraya"],
+    "Badulla": ["Badula"], "Batticaloa": ["Madakalapuwa", "Madakalapuva"],
+    "Colombo": ["Kolamba", "Kolomba"], "Galle": ["Galla", "Gaalla"],
+    "Gampaha": ["Gampah"], "Hambantota": ["Hambanthota", "Hambanthote"],
+    "Jaffna": ["Yapanaya", "Yaapanaya", "Yapane"], "Kalutara": ["Kaluthara", "Kaluthare"],
+    "Kandy": ["Mahanuwara", "Maha Nuwara"], "Kegalle": ["Kegalla", "Kaegalla"],
+    "Kilinochchi": ["Kilinochi", "Kilinochchiya"], "Kurunegala": ["Kurunagala", "Kurunegale"],
+    "Mannar": ["Mannarama", "Mannaram"], "Matale": ["Mathale", "Maathale"],
+    "Matara": ["Mathara", "Maathara"], "Monaragala": ["Moneragala", "Monaragale"],
+    "Mullaitivu": ["Mulathivu", "Mullathivu", "Mulativu"], "Nuwara Eliya": ["Nuwaraeliya", "Nuwara Eliye"],
+    "Polonnaruwa": ["Polonnaruva", "Polonaruwa"], "Puttalam": ["Puththalama", "Puttalama", "Puthalama"],
+    "Ratnapura": ["Rathnapura", "Rathnapuraya"], "Trincomalee": ["Trikunamalaya", "Thrikunamalaya"],
+    "Vavuniya": ["Vavuniyawa", "Wawuniyawa", "Vavuniyava"],
 }
 ADDRESS_SI = {
     "Tangalle": "තංගල්ල", "Homagama": "හෝමාගම", "Kaduwela": "කඩුවෙල",
@@ -106,8 +127,10 @@ def slot_spans(text: str, slots: dict):
         if slot not in EXTRACTIVE_SLOTS or not isinstance(value, str):
             continue
         candidates = [value]
-        if slot == "district" and value in DISTRICT_SI:
-            candidates.append(DISTRICT_SI[value])
+        if slot == "district":
+            candidates.extend(DISTRICT_SI.get(value, []))
+        if slot == "district":
+            candidates.extend(DISTRICT_ROMANIZED.get(value, []))
         if slot == "address" and value in ADDRESS_SI:
             candidates.append(ADDRESS_SI[value])
         for cand in candidates:
