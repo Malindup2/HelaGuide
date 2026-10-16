@@ -127,3 +127,24 @@ class ExplanationResult(GraphRecord):
     source: SourceBundle
     explanations: tuple[DisplayExplanation, ...]
     artifact: CachedExplanation | None
+
+class StandardExplanationResult(GraphRecord):
+    """Neutral explanation output without a policy decision or exposure."""
+
+    schema_version: Literal["c4-standard-explanations-1.0"] = (
+        "c4-standard-explanations-1.0"
+    )
+    request_key: str
+    graph_fingerprint: str
+    source_status: Literal["synthetic", "supplied_sources_unverified"]
+    origin: Literal["generated", "fallback"]
+    assurance: Literal[
+        "automated_checks_only",
+        "human_reviewed_against_supplied_sources",
+        "source_preserving_copy",
+    ]
+    cache_hit: bool
+    diagnostics: tuple[str, ...]
+    source: SourceBundle
+    explanations: tuple[DisplayExplanation, ...]
+    artifact: CachedExplanation | None
