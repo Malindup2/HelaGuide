@@ -1,0 +1,29 @@
+# C4-only PostgreSQL for independent development and simulation.
+# Run with the explicit project name shown in the setup instructions.
+# These credentials are for this local development database.
+
+name: helaguide-c4
+
+services:
+  c4-postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: c4
+      POSTGRES_PASSWORD: c4_local_demo_password
+      POSTGRES_DB: c4_pp1_simulation
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8"
+    ports:
+      - "127.0.0.1:5434:5432"
+    volumes:
+      - c4-pg-data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U c4 -d c4_pp1_simulation
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  c4-pg-data:

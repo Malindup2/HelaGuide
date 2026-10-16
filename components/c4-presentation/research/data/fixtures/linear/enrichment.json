@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "plan_id": "synthetic-linear-v1",
+  "base_generated_at": "2026-10-14T00:00:00Z",
+  "synthetic": true,
+  "disclaimer": "Authored C4 research fixture. Not official guidance. Services, evidence, fees and relationships are fictional. Plan provenance timestamps are illustrative; no real source retrieval occurred.",
+  "actions": [
+    {
+      "action_id": "action:request_token",
+      "service_id": "svc:demo_token",
+      "required_content_ids": [
+        "content:request_token"
+      ],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:collect_pack",
+      "service_id": "svc:demo_pack",
+      "required_content_ids": [
+        "content:collect_pack"
+      ],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    }
+  ],
+  "content": [
+    {
+      "content_id": "content:request_token",
+      "role": "required",
+      "text": "Request a fictional demo token.",
+      "evidence_ids": [
+        "evidence:request_token"
+      ],
+      "fact_ids": []
+    },
+    {
+      "content_id": "content:collect_pack",
+      "role": "required",
+      "text": "After the token request is complete, present the fictional demo token to collect the demo pack.",
+      "evidence_ids": [
+        "evidence:collect_pack"
+      ],
+      "fact_ids": [
+        "svc:demo_pack:document:token"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "evidence:request_token",
+      "kind": "synthetic_authored",
+      "source_url": "https://example.org/c4/fixtures/linear/token",
+      "text": "In this fictional scenario, request a demo token from the Fictional C4 Demo Office. The token service is free and requires no documents.",
+      "retrieved_at": null
+    },
+    {
+      "evidence_id": "evidence:collect_pack",
+      "kind": "synthetic_authored",
+      "source_url": "https://example.org/c4/fixtures/linear/pack",
+      "text": "In this fictional scenario, present the demo token to collect a demo pack from the Fictional C4 Demo Office. Pack collection is free. The token request must be completed before pack collection.",
+      "retrieved_at": null
+    }
+  ],
+  "conditions": [],
+  "prerequisites": [
+    {
+      "prerequisite_id": "prerequisite:token_before_pack",
+      "kind": "requires_completion",
+      "required_action_id": "action:request_token",
+      "dependent_action_id": "action:collect_pack",
+      "evidence_ids": [
+        "evidence:collect_pack"
+      ]
+    }
+  ],
+  "branch_groups": [],
+  "parallel_groups": [],
+  "completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "complete"
+  }
+}
