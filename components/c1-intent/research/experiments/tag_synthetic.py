@@ -278,6 +278,12 @@ def step_compare(args):
 
 
 def step_build(args):
+    # Tags are keyed by dialogue_id|turn, so a reused id would give one dialogue another's tags.
+    ids = Counter(d["dialogue_id"] for d in load_json(SYN / "synthetic_dialogues.json", []))
+    dups = sorted(k for k, v in ids.items() if v > 1)
+    if dups:
+        sys.exit(f"ERROR: dialogue_id used more than once in synthetic_dialogues.json: {', '.join(dups)}. "
+                 "Renumber the newer dialogues before building.")
     store, checked = load_json(TAGS_FILE, {}), human_checked()
     src_count, n = Counter(), 0
     with open(SYN / "silver_tokens.jsonl", "w", encoding="utf-8") as fh:

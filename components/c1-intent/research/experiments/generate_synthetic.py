@@ -44,7 +44,7 @@ from pathlib import Path
 
 DATA = Path("data")
 OUT = DATA / "synthetic"
-PROMPT_VERSION = "v3-literal-examples"
+PROMPT_VERSION = "v4-five-styles"
 DEFAULT_MODEL = "claude-sonnet-5-5"
 PER_CALL = 5
 
@@ -58,10 +58,19 @@ DISTRICTS = [
 EXTRACTIVE = {"new_value", "purpose", "service_mentioned", "issue", "travel_date", "date", "date_of_birth"}
 
 STYLES = {  # style -> (weight, instruction)
-    "singlish": (0.50, "User writes romanized Sinhala (Singlish) mixed with English words, e.g. 'mata NIC eka ganna one'."),
-    "sinhala_mixed": (0.25, "User writes in Sinhala script with some English words left in Latin letters, e.g. 'මට passport එකක් ඕනේ'."),
-    "pure_si": (0.25, "User writes only Sinhala script, no English words at all, e.g. 'මට ගමන් බලපත්‍රයක් ඕනේ'."),
+    "singlish": (0.40, "User writes romanized Sinhala (Singlish) mixed with English words, e.g. 'mata NIC eka ganna one'."),
+    "sinhala_mixed": (0.20, "User writes in Sinhala script with some English words left in Latin letters, e.g. 'මට passport එකක් ඕනේ'."),
+    "pure_si": (0.20, "User writes only Sinhala script, no English words at all, e.g. 'මට ගමන් බලපත්‍රයක් ඕනේ'."),
+    "english": (0.10, "User writes only English, casually, the way Sri Lankans type English, e.g. 'hi, how do I renew my passport? its expiring next month'. No Sinhala words."),
+    "romanized_si": (0.10, "User writes Sinhala in Latin letters with NO English words at all; use Sinhala words even for "
+                           "service names, e.g. 'mata hadunumpathak ganna one', 'gaman balapathraya aluth karanna one'."),
 }
+# For each style: (code_mix label, script label) stored on every dialogue
+STYLE_META = {
+    "singlish": ("mixed", "romanized"), "sinhala_mixed": ("mixed", "sinhala"), "pure_si": ("pure_si", "sinhala"),
+    "english": ("pure_en", "romanized"), "romanized_si": ("pure_si", "romanized"),
+}
+ACTIVE_STYLES = dict(STYLES)   # narrowed by --styles
 PHENOMENA = {
     "none": 0.45,
     "correction": 0.25,       # user corrects a value they gave earlier
@@ -95,7 +104,7 @@ def make_specs(intent, core, n):
         ph = weighted(PHENOMENA)
         spec = {
             "intent": intent,
-            "style": weighted(STYLES),
+            "style": weighted(ACTIVE_STYLES),
             "phenomenon": ph,
             "user_turns": random.choice([1, 2, 3, 3, 4]) if ph == "none" else random.choice([2, 3, 4]),
         }
@@ -135,7 +144,7 @@ def build_prompt(schema, intent, specs, examples):
         + f", user turns={s['user_turns']}"
         for i, s in enumerate(specs)
     )
-    style_rules = "\n".join(f"- {k}: {v[1]}" for k, v in STYLES.items())
+    style_rules = "\n".join(f"- {k}: {v[1]}" for k, v in STYLES.items() if k in {x["style"] for x in specs})
     used = [intent] + [x["switch_to"] for x in specs if x.get("switch_to")]
     hint_lines = "\n".join(f"- {i}: {DOMAIN_HINTS[i]}" for i in dict.fromkeys(used) if i in DOMAIN_HINTS)
     return f"""You are generating realistic training data for a Sri Lankan government-service assistant.
@@ -227,8 +236,8 @@ def validate(d, schema, spec):
     has_si = bool(re.search(r"[\u0D80-\u0DFF]", user_text))
     if spec["style"] == "pure_si" and re.search(r"[A-Za-z]{3,}", user_text):
         return "style_mismatch: English letters in pure_si"
-    if spec["style"] == "singlish" and has_si:
-        return "style_mismatch: Sinhala script in singlish"
+    if spec["style"] in ("singlish", "english", "romanized_si") and has_si:
+        return f"style_mismatch: Sinhala script in {spec['style']}"
     if spec["style"] in ("sinhala_mixed", "pure_si") and not has_si:
         return "style_mismatch: no Sinhala script"
     if spec["phenomenon"] == "intent_switch" and not any("previous_intent" in t["state"] for t in users):
@@ -336,8 +345,8 @@ class Collector:
             self.new.append({
                 "dialogue_id": None, "source": "synthetic", "model": self.model,
                 "prompt_version": PROMPT_VERSION,
-                "script": "romanized" if spec["style"] == "singlish" else "sinhala",
-                "code_mix": "pure_si" if spec["style"] == "pure_si" else "mixed",
+                "script": STYLE_META[spec["style"]][1], "style": spec["style"],
+                "code_mix": STYLE_META[spec["style"]][0],
                 "phenomena": [] if spec["phenomenon"] == "none" else [spec["phenomenon"]],
                 "turns": d["turns"],
             })
@@ -350,13 +359,17 @@ class Collector:
         at the same time (e.g. Gemini + ingest) never overwrite each other."""
         current = self._load()
         taken = {norm(d["turns"][0]["text"]) for d in current}
+        # next id = highest existing number + 1 (never the count: removed dialogues leave gaps)
+        next_num = max((int(d["dialogue_id"][1:]) for d in current
+                        if str(d.get("dialogue_id", "")).startswith("s") and d["dialogue_id"][1:].isdigit()), default=0) + 1
         added = 0
         for d in self.new:
             if norm(d["turns"][0]["text"]) in taken:      # another run added it meanwhile
                 self.stats["accepted"] -= 1
                 self.reasons["duplicate"] += 1
                 continue
-            d["dialogue_id"] = f"s{len(current) + 1:04d}"
+            d["dialogue_id"] = f"s{next_num:04d}"
+            next_num += 1
             current.append(d)
             taken.add(norm(d["turns"][0]["text"]))
             added += 1
@@ -476,9 +489,17 @@ def main():
     ap.add_argument("--model", help="API model name, or who wrote the answers in --ingest mode")
     ap.add_argument("--wait", type=int, default=15, help="seconds between Gemini calls / after errors")
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--styles", help=f"only these styles, comma-separated: {','.join(STYLES)}")
     ap.add_argument("--dry-run", action="store_true", help="print one prompt and exit")
     args = ap.parse_args()
     random.seed(args.seed)
+    if args.styles:
+        chosen = [x.strip() for x in args.styles.split(",")]
+        bad = [x for x in chosen if x not in STYLES]
+        if bad:
+            sys.exit(f"Unknown style(s) {bad}. Choose from: {', '.join(STYLES)}")
+        ACTIVE_STYLES.clear()
+        ACTIVE_STYLES.update({k: STYLES[k] for k in chosen})
 
     with open(DATA / "schema_v1.json", encoding="utf-8") as fh:
         schema = json.load(fh)
