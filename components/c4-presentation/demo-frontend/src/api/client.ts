@@ -1,6 +1,10 @@
 import type {
   BackendHealth,
+  CreateDemoProfileRequest,
+  DemoProfile,
+  DemoProfileResponse,
   GuestSession,
+  PersonalizationRequest,
   ProcedureSummary,
 } from "./types";
 
@@ -159,6 +163,84 @@ export function parseSession(value: unknown): GuestSession {
   return value as unknown as GuestSession;
 }
 
+
+export function parseProfile(value: unknown): DemoProfile {
+  requireContract(isObject(value), "Invalid demo-profile response.");
+  const validDate = (date: unknown) =>
+    typeof date === "string" && Number.isFinite(Date.parse(date));
+  requireContract(
+    value.schema_version === "c4-demo-profile-1.0" &&
+      typeof value.profile_id === "string" &&
+      /^profile:[0-9a-f]{32}$/.test(value.profile_id) &&
+      typeof value.session_id === "string" &&
+      /^guest:[0-9a-f]{32}$/.test(value.session_id) &&
+      typeof value.display_name === "string" &&
+      value.display_name.trim().length > 0 &&
+      value.display_name === value.display_name.trim() &&
+      value.display_name.length <= 60 &&
+      validDate(value.created_at) &&
+      validDate(value.updated_at) &&
+      typeof value.revision === "number" &&
+      Number.isInteger(value.revision) &&
+      value.revision >= 0 &&
+      typeof value.personalization_enabled === "boolean" &&
+      typeof value.initial_personalization_enabled === "boolean" &&
+      typeof value.creation_fingerprint === "string" &&
+      /^[0-9a-f]{64}$/.test(value.creation_fingerprint) &&
+      Array.isArray(value.personalization_changes),
+    "The backend returned an unsupported demo-profile contract.",
+  );
+
+  let time = Date.parse(value.created_at as string);
+  let enabled = value.initial_personalization_enabled;
+  const requests = new Set<string>();
+  for (const [index, event] of value.personalization_changes.entries()) {
+    requireContract(
+      isObject(event) &&
+        typeof event.request_id === "string" &&
+        /^event:[0-9a-f]{32}$/.test(event.request_id) &&
+        !requests.has(event.request_id) &&
+        event.expected_revision === index &&
+        typeof event.enabled === "boolean" &&
+        validDate(event.occurred_at) &&
+        Date.parse(event.occurred_at as string) >= time,
+      "The demo profile contains inconsistent personalization history.",
+    );
+    requests.add(event.request_id);
+    time = Date.parse(event.occurred_at as string);
+    enabled = event.enabled;
+  }
+  requireContract(
+    value.revision === value.personalization_changes.length &&
+      value.personalization_enabled === enabled &&
+      Date.parse(value.updated_at as string) === time,
+    "The demo profile state differs from its history.",
+  );
+  return value as unknown as DemoProfile;
+}
+
+export function parseProfiles(value: unknown): DemoProfile[] {
+  requireContract(Array.isArray(value), "Invalid demo-profile list response.");
+  const profiles = value.map(parseProfile);
+  requireContract(
+    new Set(profiles.map((profile) => profile.profile_id)).size === profiles.length &&
+      new Set(profiles.map((profile) => profile.session_id)).size === profiles.length,
+    "The backend returned duplicate profile or session associations.",
+  );
+  return profiles;
+}
+
+export function parseProfileResponse(value: unknown): DemoProfileResponse {
+  requireContract(isObject(value), "Invalid profile/context response.");
+  const profile = parseProfile(value.profile);
+  const session = parseSession(value.session);
+  requireContract(
+    profile.session_id === session.session_id,
+    "The profile refers to a different context session.",
+  );
+  return { profile, session };
+}
+
 function responseMessage(body: unknown, status: number): string {
   if (isObject(body)) {
     if (typeof body.detail === "string") return body.detail;
@@ -183,8 +265,9 @@ export class C4Api {
 
   private async request(
     path: string,
-    method: "GET" | "POST",
+    method: "GET" | "POST" | "PATCH",
     signal?: AbortSignal,
+    requestBody?: unknown,
   ): Promise<unknown> {
     let response: Response;
 
@@ -192,7 +275,11 @@ export class C4Api {
       response = await this.fetcher(`${this.baseUrl}${path}`, {
         method,
         signal,
-        headers: { Accept: "application/json" },
+        headers: {
+          Accept: "application/json",
+          ...(requestBody === undefined ? {} : { "Content-Type": "application/json" }),
+        },
+        ...(requestBody === undefined ? {} : { body: JSON.stringify(requestBody) }),
         cache: "no-store",
       });
     } catch (error) {
@@ -266,6 +353,61 @@ export class C4Api {
 
     return session;
   }
+
+  async profiles(signal?: AbortSignal): Promise<DemoProfile[]> {
+    return parseProfiles(
+      await this.request("/dev/v1/demo-profiles", "GET", signal),
+    );
+  }
+
+  async getProfile(
+    profileId: string,
+    signal?: AbortSignal,
+  ): Promise<DemoProfileResponse> {
+    const result = parseProfileResponse(
+      await this.request(
+        "/dev/v1/demo-profiles/" + encodeURIComponent(profileId),
+        "GET",
+        signal,
+      ),
+    );
+    requireContract(
+      result.profile.profile_id === profileId,
+      "The backend returned a different demo profile.",
+    );
+    return result;
+  }
+
+  async createProfile(request: CreateDemoProfileRequest): Promise<DemoProfileResponse> {
+    const result = parseProfileResponse(
+      await this.request("/dev/v1/demo-profiles", "POST", undefined, request),
+    );
+    requireContract(
+      result.profile.profile_id === request.profile_id,
+      "Profile creation returned a different identity.",
+    );
+    return result;
+  }
+
+  async setPersonalization(
+    profileId: string,
+    request: PersonalizationRequest,
+  ): Promise<DemoProfileResponse> {
+    const result = parseProfileResponse(
+      await this.request(
+        "/dev/v1/demo-profiles/" + encodeURIComponent(profileId) + "/personalization",
+        "PATCH",
+        undefined,
+        request,
+      ),
+    );
+    requireContract(
+      result.profile.profile_id === profileId,
+      "The personalization update returned a different profile.",
+    );
+    return result;
+  }
+
 }
 
 export const api = new C4Api();
