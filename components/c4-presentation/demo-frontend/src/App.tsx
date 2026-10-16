@@ -1,388 +1,197 @@
-import { useEffect, useRef, useState } from "react";
-import { API_BASE, api, errorMessage } from "./api/client";
-import type {
-  BackendHealth,
-  GuestSession,
-  ProcedureSummary,
-} from "./api/types";
-import {
-  browserStorage,
-  readStored,
-  resumeGuest,
-  storageKey,
-  writeStored,
-} from "./session/continuity";
+import { useState } from "react";
+import { API_BASE } from "./api/client";
+import { useWorkspace } from "./app/useWorkspace";
+import ContextSummary from "./profiles/ContextSummary";
+import ProfileOnboarding from "./profiles/ProfileOnboarding";
 
-type LoadState =
-  | { status: "loading" }
-  | { status: "error"; message: string }
-  | { status: "ready"; health: BackendHealth; procedures: ProcedureSummary[] };
-
-const sessionKey = storageKey(API_BASE, "session");
-const procedureKey = storageKey(API_BASE, "procedure");
-
-function ProcedureCard({
-  procedure,
-  selected,
-  onSelect,
-}: {
-  procedure: ProcedureSummary;
-  selected: boolean;
-  onSelect: () => void;
-}) {
-  const actionCount = procedure.action_ids.length;
-
-  return (
-    <button
-      type="button"
-      className={`procedure-card ${selected ? "is-selected" : ""}`}
-      aria-pressed={selected}
-      onClick={onSelect}
-    >
-      <span className="card-top">
-        <span className="eyebrow">
-          {procedure.synthetic ? "Synthetic example" : "Supplied procedure"}
-        </span>
-        <span className="selection-marker" aria-hidden="true">
-          {selected ? "✓" : "↗"}
-        </span>
-      </span>
-
-      <span className="procedure-title">{procedure.title}</span>
-
-      <span className="procedure-description">
-        {procedure.disclaimer ||
-          "Explore the procedural information registered by the C4 backend."}
-      </span>
-
-      <span className="card-bottom">
-        <span>
-          {actionCount} {actionCount === 1 ? "action" : "actions"}
-        </span>
-        <span>{selected ? "Selected" : "Select procedure"}</span>
-      </span>
-    </button>
-  );
-}
-
-function ConnectionBadge({ state }: { state: LoadState }) {
-  const label =
-    state.status === "ready"
-      ? "Backend connected"
-      : state.status === "loading"
-        ? "Connecting"
-        : "Connection needs attention";
-
-  return (
-    <span className={`connection-badge connection-${state.status}`}>
-      <span className="status-dot" aria-hidden="true" />
-      {label}
-    </span>
-  );
+function Mark({ small = false }: { small?: boolean }) {
+  return <span className={small ? "brand-mark brand-mark-small" : "brand-mark"} aria-hidden="true">H</span>;
 }
 
 export default function App() {
-  const [load, setLoad] = useState<LoadState>({ status: "loading" });
-  const [attempt, setAttempt] = useState(0);
-  const [session, setSession] = useState<GuestSession | null>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [notice, setNotice] = useState<string | null>(null);
-  const [sessionError, setSessionError] = useState<string | null>(null);
-  const [creating, setCreating] = useState(false);
-  const creatingRef = useRef(false);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    setLoad({ status: "loading" });
-    setSessionError(null);
-
-    async function initialize() {
-      try {
-        const health = await api.health(controller.signal);
-        const procedures = await api.procedures(controller.signal);
-        const storage = browserStorage();
-        const resumed = await resumeGuest(
-          api,
-          storage,
-          sessionKey,
-          controller.signal,
-        );
-
-        if (controller.signal.aborted) return;
-
-        const storedProcedure = readStored(storage, procedureKey);
-        const validSelection = procedures.some(
-          (procedure) => procedure.procedure_id === storedProcedure,
-        );
-
-        setSelectedId(validSelection ? storedProcedure : null);
-        setSession(resumed.session);
-        setNotice(
-          resumed.notice ??
-            (storage
-              ? null
-              : "Browser storage is unavailable. This session may not survive a reload."),
-        );
-        setLoad({ status: "ready", health, procedures });
-      } catch (error) {
-        if (!controller.signal.aborted) {
-          setLoad({ status: "error", message: errorMessage(error) });
-        }
-      }
-    }
-
-    void initialize();
-    return () => controller.abort();
-  }, [attempt]);
-
-  const procedures = load.status === "ready" ? load.procedures : [];
-  const selected =
-    procedures.find((procedure) => procedure.procedure_id === selectedId) ??
-    null;
-
-  function selectProcedure(procedure: ProcedureSummary) {
-    setSelectedId(procedure.procedure_id);
-
-    if (
-      !writeStored(
-        browserStorage(),
-        procedureKey,
-        procedure.procedure_id,
-      )
-    ) {
-      setNotice(
-        "Your selection is available now, but browser storage could not save it for reload.",
-      );
-    }
-  }
-
-  async function startGuestSession() {
-    if (creatingRef.current || !selected || load.status !== "ready") return;
-
-    creatingRef.current = true;
-    setCreating(true);
-    setSessionError(null);
-
-    try {
-      const created = await api.createSession();
-      setSession(created);
-
-      const saved = writeStored(
-        browserStorage(),
-        sessionKey,
-        created.session_id,
-      );
-
-      setNotice(
-        saved
-          ? "Guest session created. Reloading this tab will resume it."
-          : "Guest session created, but browser storage is unavailable. Reload continuity is not guaranteed.",
-      );
-    } catch (error) {
-      setSessionError(
-        `${errorMessage(error)} If the connection failed after submission, the server may have created a session. No automatic retry was made.`,
-      );
-    } finally {
-      creatingRef.current = false;
-      setCreating(false);
-    }
-  }
+  const workspace = useWorkspace();
+  const { state } = workspace;
+  const [search, setSearch] = useState("");
+  const selected = state.procedures.find((item) => item.procedure_id === state.selectedId);
+  const active = state.active;
+  const enabled = active?.kind === "profile" && active.profile.personalization_enabled;
+  const locked = state.busy !== null || state.loading;
+  const identityLocked = locked || state.pendingMode !== null;
+  const visibleProcedures = state.procedures.filter((item) =>
+    item.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase()),
+  );
 
   return (
-    <div className="app-shell">
-      <a className="skip-link" href="#main-content">
-        Skip to main content
-      </a>
-
-      <header className="site-header">
-        <div className="brand" aria-label="HelaGuide C4">
-          <span className="brand-mark" aria-hidden="true">
-            H
+    <div className="demo-app">
+      <a className="skip-link" href="#workspace-main">Skip to workspace</a>
+      <header className="app-header">
+        <div className="brand"><Mark /><div><strong>HelaGuide</strong><span>Adaptive guidance workspace</span></div></div>
+        <div className="header-status">
+          <span className="tag">C4 Research Demo</span>
+          <span className={"connection " + (state.health ? "connected" : "")}>
+            <i aria-hidden="true" />
+            {state.loading ? "Connecting" : state.health ? "Backend connected" : "Backend unavailable"}
           </span>
-          <div>
-            <span className="brand-name">HelaGuide</span>
-            <span className="brand-caption">Adaptive guidance</span>
-          </div>
-        </div>
-
-        <div className="header-meta">
-          <span className="research-label">C4 Research Prototype</span>
-          <ConnectionBadge state={load} />
         </div>
       </header>
 
-      <main id="main-content" className="main-content">
-        <section className="hero" aria-labelledby="page-title">
-          <div>
-            <p className="eyebrow">Guidance, at your pace</p>
-            <h1 id="page-title">
-              A clearer way
-              <br />
-              through the process.
-            </h1>
-            <p className="hero-description">
-              Choose a procedure to begin. HelaGuide explores how procedural
-              information can be presented with the right level of support.
-            </p>
+      <div className="workspace-layout">
+        <aside className="identity-sidebar" aria-label="Guest and demonstration profiles">
+          <div className="sidebar-heading"><span className="eyebrow">Your workspace</span><span className="sidebar-index">01</span></div>
+          <button className={"identity-choice " + (active?.kind === "guest" ? "active" : "")}
+            aria-pressed={active?.kind === "guest"} disabled={identityLocked || !state.health}
+            onClick={() => void workspace.continueGuest()}>
+            <span className="identity-avatar" aria-hidden="true">G</span>
+            <span><strong>Continue as guest</strong><small>Standard guidance · no profile</small></span>
+            <span className="choice-arrow" aria-hidden="true">{active?.kind === "guest" ? "✓" : "↗"}</span>
+          </button>
+
+          <div className="saved-heading">
+            <span className="eyebrow">Saved demo profiles</span>
+            <button className="text-button" disabled={locked || !state.health}
+              onClick={() => void workspace.refreshProfiles()}>Refresh</button>
           </div>
-
-          <aside className="research-note" aria-label="Research demonstration">
-            <span className="note-symbol" aria-hidden="true">
-              ◇
-            </span>
-            <h2>A research space</h2>
-            <p>
-              Registered synthetic examples support this demonstration.
-              They are not official application instructions.
-            </p>
-            <span className="small-label">No account required</span>
-          </aside>
-        </section>
-
-        {notice && (
-          <div className="notice" role="status">
-            {notice}
+          <div className="saved-profiles">
+            {!state.loading && state.profiles.length === 0 && (
+              <p className="sidebar-empty">No saved profiles yet. Create one to explore returning-user personalization.</p>
+            )}
+            {state.profiles.map((profile) => {
+              const isActive = active?.kind === "profile" && active.profile.profile_id === profile.profile_id;
+              return (
+                <button key={profile.profile_id}
+                  className={"profile-choice " + (isActive ? "active" : "")}
+                  disabled={identityLocked} aria-pressed={isActive}
+                  onClick={() => void workspace.chooseProfile(profile.profile_id)}>
+                  <span className="identity-avatar" aria-hidden="true">{profile.display_name[0].toUpperCase()}</span>
+                  <span className="profile-choice-copy">
+                    <strong>{profile.display_name}</strong>
+                    <small>{profile.personalization_enabled ? "Personalization on" : "Standard guidance"} · {profile.profile_id.slice(-6)}</small>
+                  </span>
+                  {isActive && <span aria-hidden="true">✓</span>}
+                </button>
+              );
+            })}
           </div>
-        )}
-
-        {load.status === "loading" && (
-          <section className="state-panel" role="status" aria-live="polite">
-            <span className="loading-line" />
-            <h2>Connecting to your guidance workspace</h2>
-            <p>Loading registered procedures and checking your saved session.</p>
-          </section>
-        )}
-
-        {load.status === "error" && (
-          <section className="state-panel error-panel" role="alert">
-            <p className="eyebrow">Connection unavailable</p>
-            <h2>Your guidance workspace could not load</h2>
-            <p>{load.message}</p>
-            <p className="technical-address">{API_BASE}</p>
-            <button
-              className="button button-primary"
-              onClick={() => setAttempt((value) => value + 1)}
-              type="button"
-            >
-              Retry connection
+          <button className="button button-outline new-profile" disabled={identityLocked || !state.health}
+            onClick={workspace.openCreation}>
+            <span aria-hidden="true">+</span> Create demo profile
+          </button>
+          {state.pendingCreation && state.view !== "create" && (
+            <button className="text-button pending-link" disabled={identityLocked} onClick={workspace.openCreation}>
+              Resume unconfirmed profile request
             </button>
-          </section>
-        )}
+          )}
+          <div className="sidebar-footnote">
+            <span className="eyebrow">Local demonstration</span>
+            <p>Demo profiles restore saved context. They are not secure accounts or verified identities.</p>
+          </div>
+        </aside>
 
-        {load.status === "ready" && (
-          <>
-            <section aria-labelledby="procedures-heading">
-              <div className="section-heading">
-                <div>
-                  <p className="eyebrow">01 / Choose a procedure</p>
-                  <h2 id="procedures-heading">Where would you like to begin?</h2>
-                </div>
-                <span className="count-label">
-                  {procedures.length} registered{" "}
-                  {procedures.length === 1 ? "procedure" : "procedures"}
-                </span>
-              </div>
+        <main id="workspace-main" className="workspace-main" tabIndex={-1}>
+          <div className="workspace-heading">
+            <div><p className="eyebrow">Guidance, at your pace</p><h1>A clearer next step.</h1>
+              <p className="muted">Choose a procedure and the support experience you want to explore.</p></div>
+            <span className="tag source-tag">Synthetic procedures</span>
+          </div>
 
-              {procedures.length === 0 ? (
-                <div className="state-panel">
-                  <h3>No procedures are registered</h3>
-                  <p>
-                    The backend is connected, but its procedure catalogue is
-                    empty.
-                  </p>
+          {state.error && (
+            <div className="alert alert-error" role="alert">
+              <strong>We could not complete that action.</strong><p>{state.error}</p>
+              {!state.health && <button className="button button-outline" disabled={state.loading} onClick={workspace.retryConnection}>Retry connection</button>}
+            </div>
+          )}
+          {state.notice && <div className="notice" role="status">{state.notice}</div>}
+          {state.busy && <div className="busy-status" role="status"><i className="status-pulse" aria-hidden="true" />{state.busy}…</div>}
+          {state.pendingMode && (
+            <div className="alert" role="status">
+              <strong>A personalization change needs confirmation.</strong>
+              <p>Retry the original request before switching workspaces. Retrying preserves its identity.</p>
+              <button className="button button-outline" disabled={locked} onClick={() => void workspace.retryPendingMode()}>Retry original setting request</button>
+            </div>
+          )}
+
+          {state.loading ? (
+            <div className="panel loading-panel" role="status"><div className="skeleton" /><h2>Opening your workspace</h2><p className="muted">Connecting to C4 and retrieving available procedures and saved profiles.</p></div>
+          ) : state.health && state.view === "create" ? (
+            <ProfileOnboarding key={state.pendingCreation?.profile_id ?? "new-profile"}
+              procedures={state.procedures} pending={state.pendingCreation} busy={locked}
+              onSubmit={(draft) => void workspace.submitProfile(draft)}
+              onCancel={workspace.closeCreation} onDiscard={workspace.discardPendingCreation} />
+          ) : state.health ? (
+            <>
+              <section className="panel procedure-panel" aria-labelledby="procedure-title">
+                <div className="section-heading">
+                  <div><p className="eyebrow">Procedure</p><h2 id="procedure-title">What would you like guidance with?</h2></div>
+                  <span className="count-label">{state.procedures.length} registered</span>
                 </div>
-              ) : (
+                <label className="search-field">
+                  <span aria-hidden="true">⌕</span><span className="sr-only">Search registered demo procedures</span>
+                  <input type="search" placeholder="Find a demo procedure…" value={search} onChange={(event) => setSearch(event.target.value)} />
+                </label>
                 <div className="procedure-grid">
-                  {procedures.map((procedure) => (
-                    <ProcedureCard
-                      key={procedure.procedure_id}
-                      procedure={procedure}
-                      selected={procedure.procedure_id === selectedId}
-                      onSelect={() => selectProcedure(procedure)}
-                    />
+                  {visibleProcedures.map((procedure, index) => (
+                    <button key={procedure.procedure_id} disabled={locked}
+                      className={"procedure-choice " + (selected?.procedure_id === procedure.procedure_id ? "selected" : "")}
+                      aria-pressed={selected?.procedure_id === procedure.procedure_id}
+                      onClick={() => workspace.selectProcedure(procedure.procedure_id)}>
+                      <span className="procedure-top"><span className="eyebrow">Demo procedure</span><span aria-hidden="true">{selected?.procedure_id === procedure.procedure_id ? "✓" : String(index + 1).padStart(2, "0")}</span></span>
+                      <strong>{procedure.title}</strong>
+                      <span className="procedure-meta">{procedure.action_ids.length} actions<span aria-hidden="true">↗</span></span>
+                    </button>
                   ))}
                 </div>
-              )}
-            </section>
+                {visibleProcedures.length === 0 && <p className="empty-state">{state.procedures.length ? "No registered procedures match that search." : "No procedures are registered in this backend."}</p>}
+                <p className="helper-text">Search selects supplied demo procedures. Free-text government-service intent is not connected here.</p>
+              </section>
 
-            <section className="session-panel" aria-labelledby="session-heading">
-              <div className="session-copy">
-                <p className="eyebrow">02 / Your guest workspace</p>
-                <h2 id="session-heading">
-                  {session ? "Your session is ready." : "Start without an account."}
-                </h2>
-                <p>
-                  {session
-                    ? "Your existing backend session is available. Choosing a procedure here does not generate a presentation or record exposure."
-                    : "A guest session keeps your context together. No name, email address or account is required."}
-                </p>
-
-                {selected && (
-                  <p className="selected-summary">
-                    <span>Selected procedure</span>
-                    <strong>{selected.title}</strong>
-                  </p>
-                )}
-
-                {session && (
-                  <div className="session-details">
-                    <span className="session-pill">Guest session active</span>
-                    <span>Context revision {session.revision}</span>
-                    <details>
-                      <summary>Session reference</summary>
-                      <code>{session.session_id}</code>
-                    </details>
-                  </div>
-                )}
-              </div>
-
-              <div className="session-action">
-                {!session ? (
-                  <>
-                    <button
-                      type="button"
-                      className="button button-primary"
-                      disabled={!selected || creating}
-                      onClick={() => void startGuestSession()}
-                    >
-                      {creating ? "Creating session…" : "Start guest session"}
-                      {!creating && <span aria-hidden="true">→</span>}
-                    </button>
-                    <p className="helper-text">
-                      {selected
-                        ? "This creates a real session in the C4 backend."
-                        : "Select a procedure above first."}
-                    </p>
-                  </>
-                ) : (
-                  <div className="next-stage">
-                    <span className="small-label">Foundation connected</span>
-                    <p>
-                      Onboarding and adaptive guidance will be connected in the
-                      next implementation slice.
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {sessionError && (
-                <div className="inline-error" role="alert">
-                  {sessionError}
+              <section className="panel entry-panel" aria-labelledby="entry-title">
+                <div className="entry-copy">
+                  <p className="eyebrow">Guidance experience</p>
+                  <h2 id="entry-title">{active ? active.kind === "profile" ? active.profile.display_name : "Guest workspace" : "Choose how to continue"}</h2>
+                  <p className="muted">{active
+                    ? enabled
+                      ? "Your saved context is available to the adaptive engine. Preferences inform the selection; they do not guarantee a particular layout."
+                      : "Personalization is off. Future requests use a standard presentation of the supplied procedure."
+                    : "Use standard guidance as a guest, or create a demo profile to explore personalized support over time."}</p>
                 </div>
-              )}
-            </section>
-          </>
-        )}
-      </main>
+                {active?.kind === "profile" ? (
+                  <div className="personalization-control">
+                    <span className="field-label">Personalization</span>
+                    <button type="button" role="switch" aria-checked={enabled}
+                      aria-label="Personalized guidance"
+                      className={"switch-button " + (enabled ? "on" : "")}
+                      disabled={locked || state.pendingMode !== null}
+                      onClick={() => void workspace.togglePersonalization()}>
+                      <span className="switch-track" aria-hidden="true"><span /></span>
+                      <strong>{enabled ? "On" : "Off"}</strong>
+                    </button>
+                    <span className="helper-text">Applies to future guidance requests.</span>
+                  </div>
+                ) : !active ? (
+                  <div className="button-stack">
+                    <button className="button button-primary" disabled={identityLocked} onClick={() => void workspace.continueGuest()}>Continue as guest <span aria-hidden="true">↗</span></button>
+                    <button className="button button-outline" disabled={identityLocked} onClick={workspace.openCreation}>Create demo profile</button>
+                  </div>
+                ) : <span className="mode-badge">Standard guidance</span>}
+              </section>
 
-      <footer className="site-footer">
-        <span>HelaGuide · Context-Aware Adaptive Guidance</span>
-        <span>
-          {load.status === "ready"
-            ? `Connected · ${load.health.storage} storage`
-            : "Independent C4 demonstration"}
-        </span>
-      </footer>
+              {active && <div className="panel"><ContextSummary active={active} procedures={state.procedures} /></div>}
+
+              <section className="guidance-ready" aria-label="Guidance preparation">
+                <div className="readiness-mark" aria-hidden="true">{active && selected ? "✓" : "…"}</div>
+                <div><strong>{active && selected ? "Your workspace is prepared." : "Your guidance starts here."}</strong>
+                  <p>{selected ? selected.title : "Select a procedure above."}{!active && " Then continue as guest or choose a demo profile."}</p>
+                  <span className="helper-text">This slice saves context only. The next slice connects actual guidance rendering and display acknowledgment.</span></div>
+              </section>
+
+              <div className="source-note"><span aria-hidden="true">◇</span><div><strong>Research examples, not official instructions</strong><p>{selected?.disclaimer ?? "The registered procedures are synthetic. No government transaction, eligibility decision or application submission occurs here."}</p></div></div>
+            </>
+          ) : (
+            <div className="panel"><h2>Start the C4 development backend</h2><p className="muted">The workspace needs its independent API to load real procedures and saved profiles.</p><code>{API_BASE}</code></div>
+          )}
+        </main>
+      </div>
+      <footer className="app-footer"><span>HelaGuide C4 · Independent research prototype</span><span>{state.health ? state.health.storage + " storage · Real backend records" : API_BASE}</span></footer>
     </div>
   );
 }
