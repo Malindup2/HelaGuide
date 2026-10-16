@@ -252,6 +252,23 @@ def _preservation_contract(
     )
 
 
+
+def prepare_source_preservation(
+    graph: CanonicalProcedureGraph,
+    safety: ContentSafety | None = None,
+) -> tuple[tuple[Notice, ...], PreservationContract]:
+    """Preserve source records without measuring or selecting scaffolds."""
+    if not isinstance(graph, CanonicalProcedureGraph):
+        raise TypeError("graph must be CanonicalProcedureGraph")
+    safety = safety if safety is not None else ContentSafety()
+    fingerprint = graph_fingerprint(graph)
+    notices = _notices(graph, safety)
+    preservation = _preservation_contract(
+        graph, safety, fingerprint, notices
+    )
+    return notices, preservation
+
+
 def _recap_actions(context, fingerprint, graph) -> tuple[str, ...]:
     """Retain matching exposure only; never infer completed actions."""
     if context.session_id is None:

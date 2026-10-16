@@ -356,6 +356,7 @@ def test_runtime_1_1_migration_preserves_policy_and_history(backend):
     document = json.loads(row[2])
     document["format_version"] = "c4-runtime-state-1.1"
     document.pop("corrections")
+    document.pop("profiles", None)
     payload = canonical(document)
     NavigationRuntimeState.model_validate_json(payload)
 
@@ -378,7 +379,7 @@ def test_runtime_1_1_migration_preserves_policy_and_history(backend):
 
     result = backend["migrate"](backend["backup"])
     assert result["migrated"] is True
-    assert result["runtime_format"] == "c4-runtime-state-1.2"
+    assert result["runtime_format"] == "c4-runtime-state-1.3"
     assert result["feature_dimension"] == 656
 
     backup = json.loads(backend["backup"].read_text(encoding="utf-8"))
@@ -387,8 +388,9 @@ def test_runtime_1_1_migration_preserves_policy_and_history(backend):
 
     migrated_document = json.loads(backend["read_row"]()[2])
     expected = dict(document)
-    expected["format_version"] = "c4-runtime-state-1.2"
+    expected["format_version"] = "c4-runtime-state-1.3"
     expected["corrections"] = []
+    expected["profiles"] = []
     assert migrated_document == expected
 
     with TestClient(backend["application"]()) as client:

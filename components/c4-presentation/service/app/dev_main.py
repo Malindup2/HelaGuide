@@ -78,6 +78,17 @@ from app.models.corrections import (
 )
 
 
+from app.api.demo_profiles import register_demo_profile_routes
+from app.api.guidance import register_guidance_routes
+from app.core.guidance_access import (
+    episode_is_active,
+    require_active_episode,
+    require_personalization,
+)
+from app.core.demo_profiles import restore_profiles
+from app.models.demo_profiles import DemoProfile
+
+
 class RequestModel(BaseModel):
     model_config = ConfigDict(strict=True, extra="forbid")
 
@@ -161,8 +172,10 @@ class DevRuntime:
         database_path=None,
         policy_config=None,
         postgres_dsn=None,
+        allow_legacy_adaptive_sessions=True,
     ):
         self.lock = RLock()
+        self.allow_legacy_adaptive_sessions = allow_legacy_adaptive_sessions
         self.policy_config = policy_config or PolicyConfig()
         self.contexts = InMemoryContextService()
         self.policy = SharedLinTSPolicy(
@@ -189,6 +202,7 @@ class DevRuntime:
         self.presentations: dict[str, PresentationSpec] = {}
         self.feedback: dict[str, AcceptedFeedback] = {}
         self.corrections: dict[str, CorrectionRecord] = {}
+        self.profiles: dict[str, DemoProfile] = {}
         self.store = None
         self.storage_backend = "in_memory"
         self._store_revision = 0
@@ -241,6 +255,10 @@ class DevRuntime:
             corrections=tuple(
                 self.corrections[key]
                 for key in sorted(self.corrections)
+            ),
+            profiles=tuple(
+                self.profiles[key]
+                for key in sorted(self.profiles)
             ),
         )
 
@@ -341,12 +359,18 @@ class DevRuntime:
             contexts,
         )
 
+        profiles = restore_profiles(
+            state.profiles,
+            contexts,
+        )
+
         # Publish recovered state only after all checks succeed.
         self.contexts = contexts
         self.policy = policy
         self.presentations = presentations
         self.feedback = feedback
         self.corrections = corrections
+        self.profiles = profiles
 
     def assert_available(self):
         with self.lock:
@@ -419,6 +443,11 @@ class DevRuntime:
             spec=spec,
             stale_for_display=(
                 session.settings != selected.offer.context_snapshot.settings
+                or not episode_is_active(
+                    self,
+                    selected.offer,
+                    allow_legacy=self.allow_legacy_adaptive_sessions,
+                )
             ),
         )
 
@@ -467,6 +496,7 @@ def create_app(
     database_path: str | Path | None = None,
     policy_config: PolicyConfig | None = None,
     postgres_dsn: str | None = None,
+    allow_legacy_adaptive_sessions: bool = True,
 ) -> FastAPI:
     """Create the independent C4 research application.
 
@@ -474,7 +504,14 @@ def create_app(
     The module-level application below explicitly enables SQLite.
 
     LLM calls remain disabled unless C4_DEV_LLM_ENABLED=true.
+
+    The factory retains legacy unprofiled research sessions for existing
+    experiments/tests. The environment-created server explicitly sets
+    allow_legacy_adaptive_sessions=False. Disabled profiles are rejected
+    regardless of this compatibility option.
     """
+    if type(allow_legacy_adaptive_sessions) is not bool:
+        raise TypeError("allow_legacy_adaptive_sessions must be bool")
 
     @asynccontextmanager
     async def lifespan(application):
@@ -513,6 +550,7 @@ def create_app(
                 database_path=database_path,
                 policy_config=policy_config,
                 postgres_dsn=postgres_dsn,
+                allow_legacy_adaptive_sessions=allow_legacy_adaptive_sessions,
             )
             application.state.runtime = active_runtime
             yield
@@ -550,6 +588,8 @@ def create_app(
         value = application.state.runtime
         value.assert_available()
         return value
+
+    register_demo_profile_routes(application, runtime)
 
     @application.exception_handler(StateStoreError)
     async def storage_failure(request, exc):
@@ -677,6 +717,11 @@ def create_app(
     )
     def create_presentation(session_id: str, request: PresentationRequest):
         with runtime().change():
+            require_personalization(
+                runtime(),
+                session_id,
+                allow_legacy=runtime().allow_legacy_adaptive_sessions,
+            )
             session = runtime().session(session_id)
             if request.expected_revision != session.revision:
                 raise HTTPException(409, "session revision changed")
@@ -785,6 +830,19 @@ def create_app(
                     "acknowledgment scope",
                 )
 
+            already_acknowledged = any(
+                isinstance(event, PresentationExposure)
+                and event.offer.exposure_id == exposure_id
+                for event in runtime().contexts.event_history(session_id)
+            )
+            if not already_acknowledged:
+                selected = runtime().policy.get_offer(exposure_id)
+                require_active_episode(
+                    runtime(),
+                    selected.offer,
+                    allow_legacy=runtime().allow_legacy_adaptive_sessions,
+                )
+
             try:
                 return runtime().contexts.acknowledge_exposure(
                     session_id,
@@ -872,6 +930,19 @@ def create_app(
                 page.action_id for page in spec.pages
             }:
                 raise HTTPException(422, "action is outside this presentation")
+
+            existing_event = any(
+                isinstance(event, ActionDisplay)
+                and event.event_id == request.event_id
+                for event in current.contexts.event_history(session_id)
+            )
+            if not existing_event:
+                selected = current.policy.get_offer(exposure_id)
+                require_active_episode(
+                    current,
+                    selected.offer,
+                    allow_legacy=current.allow_legacy_adaptive_sessions,
+                )
 
             try:
                 return current.contexts.record_action_display(
@@ -999,6 +1070,7 @@ def create_app(
                 "storage": runtime().storage_backend,
             }
 
+    register_guidance_routes(application, runtime, create_presentation)
     return application
 
 
@@ -1022,6 +1094,7 @@ def _application_from_environment():
         return create_app(
             postgres_dsn=dsn,
             policy_config=config,
+            allow_legacy_adaptive_sessions=False,
         )
 
     default_path = (
@@ -1034,6 +1107,7 @@ def _application_from_environment():
     return create_app(
         database_path=database_path,
         policy_config=config,
+        allow_legacy_adaptive_sessions=False,
     )
 
 
