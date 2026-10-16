@@ -18,7 +18,7 @@ export interface ResumeResult {
 
 export function storageKey(
   apiBase: string,
-  kind: "session" | "procedure",
+  kind: "session" | "procedure" | "identity" | "pending-profile" | "pending-mode",
 ): string {
   return `helaguide:c4:v1:${apiBase}:${kind}`;
 }
@@ -57,7 +57,7 @@ export function writeStored(
   }
 }
 
-function removeStored(storage: StoragePort | null, key: string): void {
+export function removeStored(storage: StoragePort | null, key: string): void {
   try {
     storage?.removeItem(key);
   } catch {
