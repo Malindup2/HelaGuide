@@ -10875,5 +10875,1960 @@
         }
       }
     ]
+  },
+  {
+    "dialogue_id": "s0274",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mage upan sahathikaye pitapathak ganna one",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "self"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "mokatada ona?"
+      },
+      {
+        "speaker": "user",
+        "text": "pitarata rakiyawakata yanna",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "self",
+            "purpose": "pitarata rakiyawakata"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0275",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "need a certified copy of my son's birth certificate for school admission, he was born in Matara",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "child",
+            "purpose": "school admission",
+            "district": "Matara"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Was the birth registered in Matara district?"
+      },
+      {
+        "speaker": "user",
+        "text": "oh wait no, he was born at the Galle hospital, so its Galle",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "child",
+            "purpose": "school admission",
+            "district": "Galle"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0236",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "multi_slot"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "hi, how can i get a copy of my birth certificate?",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "self"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Which district was your birth registered in, and what do you need it for?"
+      },
+      {
+        "speaker": "user",
+        "text": "Trincomalee, i need it for my visa application",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "self",
+            "district": "Trincomalee",
+            "purpose": "visa application"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0237",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "can i get my birth certificate copy online? i need it for my passport",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "self",
+            "purpose": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Yes, you can request it online through e-BMD. Which district was it registered in?"
+      },
+      {
+        "speaker": "user",
+        "text": "Vavuniya. also can you tell me how to apply for the passport itself, its my first one",
+        "state": {
+          "intent": "passport_new",
+          "previous_intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "self",
+            "purpose": "passport",
+            "district": "Vavuniya"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0238",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "thaththage uppenna sahathikaye pitapathak ganna puluwanda?",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "parent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "upan liyapadinchi kale koyi dishtrikkayeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kurunegala",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "parent",
+            "district": "Kurunegala"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "mokatada ona?"
+      },
+      {
+        "speaker": "user",
+        "text": "eyage wishrama watupa wada walata",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "parent",
+            "district": "Kurunegala",
+            "purpose": "wishrama watupa wada walata"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, ingrisi parivarthanayak onada?"
+      },
+      {
+        "speaker": "user",
+        "text": "naha, sinhalen athi",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "parent",
+            "district": "Kurunegala",
+            "purpose": "wishrama watupa wada walata"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0239",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "i need a copy of my grandmother's death certificate, she passed away in Nuwara Eliya",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Nuwara Eliya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "What do you need it for?"
+      },
+      {
+        "speaker": "user",
+        "text": "for the insurance claim. and sorry, the death was registered in Badulla, not Nuwara Eliya",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Badulla",
+            "purpose": "insurance claim"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0240",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "thaththage marana sahathikaye pitapathak ganna one",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "marana liyapadinchi kale koyi dishtrikkayeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Gampaha",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Gampaha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "mokatada ona?"
+      },
+      {
+        "speaker": "user",
+        "text": "idam wada walata",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Gampaha",
+            "purpose": "idam wada walata"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, Gampaha dishtrikkaye."
+      },
+      {
+        "speaker": "user",
+        "text": "ah samawenna, Kolamba, Gampaha nemei",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Colombo",
+            "purpose": "idam wada walata"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0241",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "multi_slot"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "achchige marana sahathikaya ona, Mulathivu dishtrikkaye, idam pawaradeemata",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Mullaitivu",
+            "purpose": "idam pawaradeemata"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "anthar jalaya haraha illanna puluwan. parivarthanayak onada?"
+      },
+      {
+        "speaker": "user",
+        "text": "ingrisi parivarthanayak one",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Mullaitivu",
+            "purpose": "idam pawaradeemata"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari."
+      },
+      {
+        "speaker": "user",
+        "text": "kochchara kal yanawada?",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Mullaitivu",
+            "purpose": "idam pawaradeemata"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0242",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mage swamiyage marana sahathikaye pitapathak ganne kohomada?",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "liyapadinchi kale koyi dishtrikkayeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Monaragala",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Monaragala"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "mokatada ona?"
+      },
+      {
+        "speaker": "user",
+        "text": "wishrama watupa ganna",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Monaragala",
+            "purpose": "wishrama watupa ganna"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0243",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "hello, my uncle died last year and i need a copy of his death certificate",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Which district was the death registered in?"
+      },
+      {
+        "speaker": "user",
+        "text": "Batticaloa",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Batticaloa"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "What do you need it for?"
+      },
+      {
+        "speaker": "user",
+        "text": "for the bank, to close his account",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Batticaloa",
+            "purpose": "to close his account"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "You can request it online through e-BMD or at the divisional secretariat."
+      },
+      {
+        "speaker": "user",
+        "text": "online is easier, thanks",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Batticaloa",
+            "purpose": "to close his account"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0244",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "multi_slot"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "api labana masaye 18 weni da kasada bandinawa, Mathara dishtrikkaye liyapadinchi karanna one",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "labana masaye 18 weni da",
+            "district": "Matara"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, dennage upan sahathika thiyenawada?"
+      },
+      {
+        "speaker": "user",
+        "text": "ow, dennatama thiyenawa",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "labana masaye 18 weni da",
+            "district": "Matara"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0245",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "vivahaya liyapadinchi karanne kohomada?",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "kawadada vivahaya?"
+      },
+      {
+        "speaker": "user",
+        "text": "sathi dekakin",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "sathi dekakin"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "koyi dishtrikkayeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kegalla. naha samawenna, dinaya sathi thunakin",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "sathi thunakin",
+            "district": "Kegalle"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0246",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "we're getting married on the 22nd of next month, how do we register it?",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "the 22nd of next month"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Which district will you register in?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kandy, its a Kandyan wedding",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "the 22nd of next month",
+            "district": "Kandy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "You need to give notice to the registrar early, with both your birth certificates."
+      },
+      {
+        "speaker": "user",
+        "text": "ok. and my wife to be needs a passport for the honeymoon after, how does she apply?",
+        "state": {
+          "intent": "passport_new",
+          "previous_intent": "marriage_registration",
+          "slots": {
+            "date": "the 22nd of next month",
+            "district": "Kandy",
+            "applicant_for": "spouse"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0247",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "how do i register my marriage? we're in Hambantota",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "district": "Hambantota"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "When is the wedding?"
+      },
+      {
+        "speaker": "user",
+        "text": "december 2",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "district": "Hambantota",
+            "date": "december 2"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Please give notice to the registrar early, and both of you bring your birth certificates."
+      },
+      {
+        "speaker": "user",
+        "text": "got it, thanks",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "district": "Hambantota",
+            "date": "december 2"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0248",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "multi_slot"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mata vivaha liyapadinchiya gana dana ganna one",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "kawadada vivahaya, koyi dishtrikkayeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kilinochchi, labana masaye 5 weni da",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "district": "Kilinochchi",
+            "date": "labana masaye 5 weni da"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, dennage uppenna sahathika genna one."
+      },
+      {
+        "speaker": "user",
+        "text": "upan sahathika dekama thiyenawa",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "district": "Kilinochchi",
+            "date": "labana masaye 5 weni da"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, liyapadinchikaru mahaththayata kalin dannanna."
+      },
+      {
+        "speaker": "user",
+        "text": "hari, sthuthiyi",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "district": "Kilinochchi",
+            "date": "labana masaye 5 weni da"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0249",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "hi, my son just turned 16, how do we get his first NIC?",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Which district do you live in?"
+      },
+      {
+        "speaker": "user",
+        "text": "we're in Kurunegala",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child",
+            "district": "Kurunegala"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Okay. What's his date of birth?"
+      },
+      {
+        "speaker": "user",
+        "text": "2009.04.18. wait sorry, we moved to Puttalam last year so its Puttalam not Kurunegala",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child",
+            "district": "Puttalam",
+            "date_of_birth": "2009.04.18"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0250",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "need to apply for my first ID card, im 19 and living in Galle. born 2007 march 3",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "self",
+            "district": "Galle",
+            "date_of_birth": "2007 march 3"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0251",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mage duwata jathika hadunumpathak ganna one, api inne Mahanuwara",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child",
+            "district": "Kandy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, duwa upan gaththe kawadada?"
+      },
+      {
+        "speaker": "user",
+        "text": "2010.01.09. ah samawenna, api dan inne Mathale, Mahanuwara parana lipinaya",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child",
+            "district": "Matale",
+            "date_of_birth": "2010.01.09"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0252",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "how do i get an NIC for my mother? she never got one, shes from Anuradhapura",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "parent",
+            "district": "Anuradhapura"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Is she living in Anuradhapura now?"
+      },
+      {
+        "speaker": "user",
+        "text": "oh no, she lives with us in Polonnaruwa now, so Polonnaruwa",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "parent",
+            "district": "Polonnaruwa"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0253",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mata awurudu 18i, palaweni para hadunumpatha ganna one. mama upan gaththe 2008.06.25, inne Hambanthota",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "self",
+            "district": "Hambantota",
+            "date_of_birth": "2008.06.25"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0254",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "lost my NIC somewhere yesterday, what do i do now?",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sorry to hear that. Have you made a police complaint yet?"
+      },
+      {
+        "speaker": "user",
+        "text": "not yet. do i need that first?",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Yes, you need a police report first. Which district are you in?"
+      },
+      {
+        "speaker": "user",
+        "text": "Matara",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Matara"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Do you need the new card urgently, or is the normal service fine?"
+      },
+      {
+        "speaker": "user",
+        "text": "normal is fine, no rush",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Matara",
+            "urgency": "normal"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0255",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "multi_slot"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "my wallet got stolen with the NIC inside, i live in Colombo and need a new one asap because of a job interview",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Colombo",
+            "urgency": "urgent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Did you get a police report?"
+      },
+      {
+        "speaker": "user",
+        "text": "yes got it from the Wellawatte police today",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Colombo",
+            "urgency": "urgent"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0256",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "my NIC got damaged in the rain, cant read it anymore. im in Kegalle",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Kegalle"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Do you need it urgently?"
+      },
+      {
+        "speaker": "user",
+        "text": "not really. more important, how can i get a copy of my father's death certificate? need it for the land transfer",
+        "state": {
+          "intent": "death_cert_copy",
+          "previous_intent": "nic_replace_lost",
+          "slots": {
+            "district": "Kegalle",
+            "purpose": "land transfer"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0257",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "hi, i lost my identity card. how long does it take to get a new one?",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Which district are you in?"
+      },
+      {
+        "speaker": "user",
+        "text": "Ampara",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Ampara"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0258",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "multi_slot"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "need to replace my NIC, it was lost",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Which district do you live in, and do you need it quickly?"
+      },
+      {
+        "speaker": "user",
+        "text": "Jaffna, and yes urgently, flying out for work in 2 weeks",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Jaffna",
+            "urgency": "urgent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "You can use the one day service at the head office in Battaramulla. Do you have the police report?"
+      },
+      {
+        "speaker": "user",
+        "text": "yes i have the police entry already",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Jaffna",
+            "urgency": "urgent"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0259",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "hadunumpathe lipinaya wenas karanna one, aluth lipinaya 45/2, pansala para, Ambalangoda, Galla dishtrikkaya",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address",
+            "new_value": "45/2, pansala para, Ambalangoda",
+            "district": "Galle"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0260",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "i got married last month and want to change my surname on my NIC",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "name"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "What is the new name you want on the card?"
+      },
+      {
+        "speaker": "user",
+        "text": "Wickramasinghe, my husbands surname",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "name",
+            "new_value": "Wickramasinghe"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Bring your marriage certificate. Which district do you live in?"
+      },
+      {
+        "speaker": "user",
+        "text": "Gampaha. also after that i want to get my first passport, can i apply with the new name?",
+        "state": {
+          "intent": "passport_new",
+          "previous_intent": "nic_update",
+          "slots": {
+            "change_field": "name",
+            "new_value": "Wickramasinghe",
+            "district": "Gampaha",
+            "applicant_for": "self"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0261",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "how do i change the photo on my NIC? the old one is from when i was 16",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "photo"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Which district are you in?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kalutara",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "photo",
+            "district": "Kalutara"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "You need a new photo from an approved studio. Do you want the one day service?"
+      },
+      {
+        "speaker": "user",
+        "text": "no, normal way is ok. where do i hand it in?",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "photo",
+            "district": "Kalutara"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0262",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "need to update the address on my identity card, we moved",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "What is the new address?"
+      },
+      {
+        "speaker": "user",
+        "text": "12A, Station Road, Kadugannawa",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address",
+            "new_value": "12A, Station Road, Kadugannawa"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Is that in Kandy district?"
+      },
+      {
+        "speaker": "user",
+        "text": "yes Kandy",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address",
+            "new_value": "12A, Station Road, Kadugannawa",
+            "district": "Kandy"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0263",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mage hadunumpathe vivaha thathwaya wenas karanna one",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "civil_status"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "oya inne koyi dishtrikkayeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Rathnapura. eth api thama vivahaya liyapadinchi kale naha, eka karanne kohomada?",
+        "state": {
+          "intent": "marriage_registration",
+          "previous_intent": "nic_update",
+          "slots": {
+            "change_field": "civil_status",
+            "district": "Ratnapura"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0264",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mata palaweni para gaman balapathrayak ganna one, labana masaye rata yanna thiyenawa",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "self",
+            "travel_date": "labana masaye"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0265",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "hi, want to get a passport for my daughter, shes 7",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "When are you planning to travel?"
+      },
+      {
+        "speaker": "user",
+        "text": "around december 20",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "child",
+            "travel_date": "december 20"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Do you need the normal service or the one day service?"
+      },
+      {
+        "speaker": "user",
+        "text": "normal should be fine",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "child",
+            "travel_date": "december 20",
+            "service_type": "normal"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Okay. Both parents need to come with her when you apply."
+      },
+      {
+        "speaker": "user",
+        "text": "actually sorry, the trip got moved to november 5, so we need it urgently",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "child",
+            "travel_date": "november 5",
+            "service_type": "urgent"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0266",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "what do i need to apply for my first passport?",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "self"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Your NIC and a photo from an approved studio. When do you plan to travel?"
+      },
+      {
+        "speaker": "user",
+        "text": "not sure yet, maybe early next year",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "self",
+            "travel_date": "early next year"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Then the normal service should be enough. Is that ok?"
+      },
+      {
+        "speaker": "user",
+        "text": "yes normal service",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "self",
+            "travel_date": "early next year",
+            "service_type": "normal"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0267",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "multi_slot"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mage puthata gaman balapathrayak ganna one",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "kawadada gaman yanne?"
+      },
+      {
+        "speaker": "user",
+        "text": "labana sathiye, e nisa eka dawase sevaya one",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "child",
+            "travel_date": "labana sathiye",
+            "service_type": "urgent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, puthage hadunumpatha thiyenawada?"
+      },
+      {
+        "speaker": "user",
+        "text": "naha, eyata awurudu 12i, upan sahathikaya thiyenawa",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "child",
+            "travel_date": "labana sathiye",
+            "service_type": "urgent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, demawpiyo dennama enna one."
+      },
+      {
+        "speaker": "user",
+        "text": "hari, api dennama ennam",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "child",
+            "travel_date": "labana sathiye",
+            "service_type": "urgent"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0268",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "how do i apply for a passport for my wife? we're going to Dubai on 14th of next month",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "spouse",
+            "travel_date": "14th of next month"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0269",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "my passport expires in march, how do i renew it?",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "When are you travelling next?"
+      },
+      {
+        "speaker": "user",
+        "text": "end of april",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "end of april"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Then the normal service should be okay. Normal or urgent?"
+      },
+      {
+        "speaker": "user",
+        "text": "normal",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "end of april",
+            "service_type": "normal"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Bring your current passport and NIC to the head office or a regional office."
+      },
+      {
+        "speaker": "user",
+        "text": "can i go to the Kandy office or only Colombo?",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "end of april",
+            "service_type": "normal"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0270",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "multi_slot"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport pages are full, need a new one urgently, flying on the 3rd",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "service_type": "urgent",
+            "travel_date": "the 3rd"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Do you have your current passport with you?"
+      },
+      {
+        "speaker": "user",
+        "text": "yes i have it",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "service_type": "urgent",
+            "travel_date": "the 3rd"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "And your NIC?"
+      },
+      {
+        "speaker": "user",
+        "text": "yeah",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "service_type": "urgent",
+            "travel_date": "the 3rd"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Then you can use the one day service at the head office in Battaramulla."
+      },
+      {
+        "speaker": "user",
+        "text": "great, what time does it open?",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "service_type": "urgent",
+            "travel_date": "the 3rd"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0271",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mage gaman balapathraya kal ikuth wela, aluth karanna one",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "kawadada gaman yanne?"
+      },
+      {
+        "speaker": "user",
+        "text": "labana masaye 10 weni da",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "labana masaye 10 weni da"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ikmanata onada, nathnam samanya sevaya athida?"
+      },
+      {
+        "speaker": "user",
+        "text": "samanya sevaya athi",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "labana masaye 10 weni da",
+            "service_type": "normal"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari."
+      },
+      {
+        "speaker": "user",
+        "text": "samawenna, gaman dinaya labana sathiyata maaru una, e nisa ikmanata one",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "labana sathiyata",
+            "service_type": "urgent"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0272",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "need to renew my passport, travelling to Singapore on june 12",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "june 12"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Do you need it urgently?"
+      },
+      {
+        "speaker": "user",
+        "text": "sorry i meant july 12, not june. normal service is ok",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "july 12",
+            "service_type": "normal"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0273",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ammage gaman balapathraya aluth karanna one",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "kawadada gaman yanne?"
+      },
+      {
+        "speaker": "user",
+        "text": "labana awurudde mula",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "labana awurudde mula"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ikmanata onada?"
+      },
+      {
+        "speaker": "user",
+        "text": "naha, samanya sevaya athi",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "labana awurudde mula",
+            "service_type": "normal"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, dan thiyena gaman balapathrayai hadunumpathai genna."
+      },
+      {
+        "speaker": "user",
+        "text": "eka hari. eth ammage uppenna sahathikaye pitapathakuth one, eka ganna puluwanda?",
+        "state": {
+          "intent": "birth_cert_copy",
+          "previous_intent": "passport_renew",
+          "slots": {
+            "travel_date": "labana awurudde mula",
+            "service_type": "normal",
+            "applicant_for": "parent"
+          }
+        }
+      }
+    ]
   }
 ]

@@ -7268,5 +7268,1535 @@
   ],
   "model": "claude-code",
   "prompt_version": "tag-v1"
+ },
+ "s0274|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0274|2": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0275|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0275|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "EN",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0236|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0236|2": {
+  "tags": [
+   "NE",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0237|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0237|2": {
+  "tags": [
+   "NE",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0238|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0238|2": {
+  "tags": [
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0238|4": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0238|6": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0239|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0239|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "NE",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0240|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0240|2": {
+  "tags": [
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0240|4": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0240|6": {
+  "tags": [
+   "SI",
+   "SI",
+   "NE",
+   "NE",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0241|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "NE",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0241|2": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0241|4": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0242|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0242|2": {
+  "tags": [
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0242|4": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0243|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0243|2": {
+  "tags": [
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0243|4": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0243|6": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0244|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "OTHER",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "NE",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0244|2": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0245|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0245|2": {
+  "tags": [
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0245|4": {
+  "tags": [
+   "NE",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0246|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "OTHER",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0246|2": {
+  "tags": [
+   "NE",
+   "EN",
+   "EN",
+   "NE",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0246|4": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0247|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0247|2": {
+  "tags": [
+   "EN",
+   "OTHER"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0247|4": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0248|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0248|2": {
+  "tags": [
+   "NE",
+   "SI",
+   "SI",
+   "OTHER",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0248|4": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0248|6": {
+  "tags": [
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0249|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "OTHER",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0249|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0249|4": {
+  "tags": [
+   "OTHER",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0250|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "OTHER",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "OTHER",
+   "EN",
+   "OTHER"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0251|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0251|2": {
+  "tags": [
+   "OTHER",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "NE",
+   "NE",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0252|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0252|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0253|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "MIXED",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "OTHER",
+   "SI",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0254|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0254|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0254|4": {
+  "tags": [
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0254|6": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0255|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0255|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0256|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0256|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0257|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0257|2": {
+  "tags": [
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0258|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0258|2": {
+  "tags": [
+   "NE",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "OTHER",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0258|4": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0259|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "OTHER",
+   "SI",
+   "SI",
+   "NE",
+   "NE",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0260|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0260|2": {
+  "tags": [
+   "NE",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0260|4": {
+  "tags": [
+   "NE",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0261|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "OTHER"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0261|2": {
+  "tags": [
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0261|4": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0262|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0262|2": {
+  "tags": [
+   "OTHER",
+   "EN",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0262|4": {
+  "tags": [
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0263|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0263|2": {
+  "tags": [
+   "NE",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0264|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0265|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "OTHER"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0265|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "OTHER"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0265|4": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0265|6": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "OTHER",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0266|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0266|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0266|4": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0267|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0267|2": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0267|4": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "MIXED",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0267|6": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0268|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "OTHER",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0269|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0269|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0269|4": {
+  "tags": [
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0269|6": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "EN",
+   "EN",
+   "NE"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0270|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "OTHER"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0270|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0270|4": {
+  "tags": [
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0270|6": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0271|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0271|2": {
+  "tags": [
+   "SI",
+   "SI",
+   "OTHER",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0271|4": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0271|6": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0272|0": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "NE",
+   "EN",
+   "EN",
+   "OTHER"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0272|2": {
+  "tags": [
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "OTHER",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN",
+   "EN"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0273|0": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0273|2": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0273|4": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
+ },
+ "s0273|6": {
+  "tags": [
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI",
+   "SI"
+  ],
+  "model": "claude-code",
+  "prompt_version": "tag-v1"
  }
 }

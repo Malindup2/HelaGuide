@@ -72,5 +72,18 @@
     },
     "token_usage": {},
     "total_synthetic": 235
+  },
+  {
+    "run_at": "2026-10-16T00:09:21",
+    "mode": "ingest",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "random_seed": 42,
+    "generated": 40,
+    "accepted": 40,
+    "acceptance_rate": 1.0,
+    "rejection_reasons": {},
+    "token_usage": {},
+    "total_synthetic": 273
   }
 ]
