@@ -136,9 +136,9 @@ def _check_explanation(
         raise PresentationError("display_explanations_differ_from_validated_result")
 
 
-def _source_cards(graph, result, configuration) -> tuple[SourceCard, ...]:
+def build_source_cards(graph, source, configuration) -> tuple[SourceCard, ...]:
     cards = []
-    collapsible = set(result.source.preservation.collapsible_content_ids)
+    collapsible = set(source.preservation.collapsible_content_ids)
 
     def add(kind, identifier, title, *lines):
         cards.append(
@@ -302,7 +302,7 @@ def _source_cards(graph, result, configuration) -> tuple[SourceCard, ...]:
             "A source URL alone is not an exact supporting quotation.",
         )
 
-    for notice in result.source.notices:
+    for notice in source.notices:
         add("notice", notice.notice_id, "Important source information", notice.text)
 
     return tuple(
@@ -371,7 +371,7 @@ def build_presentation_spec(
 
     configuration = selected.offer.configuration
     feasibility = selected.decision.evaluation.feasibility
-    cards = _source_cards(graph, explanation, configuration)
+    cards = build_source_cards(graph, explanation.source, configuration)
     visibility = VisibilityDeclaration(
         visible=tuple(card.source for card in cards if not card.collapsed),
         collapsed=tuple(card.source for card in cards if card.collapsed),

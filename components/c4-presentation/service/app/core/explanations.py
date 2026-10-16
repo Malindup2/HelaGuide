@@ -20,7 +20,11 @@ from threading import RLock
 from pydantic import ValidationError
 
 from app.core.llm_provider import ExplanationProvider, ProviderFailure
-from app.core.scaffolds import filter_scaffolds, graph_fingerprint
+from app.core.scaffolds import (
+    filter_scaffolds,
+    graph_fingerprint,
+    prepare_source_preservation,
+)
 from app.models.explanations import (
     CachedExplanation,
     DisplayExplanation,
@@ -29,6 +33,7 @@ from app.models.explanations import (
     ExplanationResult,
     HumanReview,
     SourceBundle,
+    StandardExplanationResult,
 )
 from app.models.policy import PolicyOffer
 from app.models.procedure_graph import CanonicalProcedureGraph
@@ -240,15 +245,64 @@ def prepare_source_packet(
             "selection_or_content_safety_changed; supply the original safety context"
         )
 
+    source = SourceBundle(
+        graph=graph,
+        notices=verified.notices,
+        preservation=verified.preservation,
+    )
+    return _prepare_content_packet(
+        graph,
+        offer.intended_action_ids,
+        source,
+        writing_style=_writing_style(snapshot),
+        configuration=offer.configuration.model_dump(mode="json"),
+    )
+
+
+def prepare_standard_source_packet(
+    graph: CanonicalProcedureGraph,
+    *,
+    safety: ContentSafety | None = None,
+    writing_style: str = "plain",
+):
+    """Prepare neutral supplied-source explanations without user context."""
+    if writing_style not in {"plain", "extra_plain", "concise"}:
+        raise ExplanationInputError("unsupported_standard_writing_style")
+    notices, preservation = prepare_source_preservation(graph, safety)
+    source = SourceBundle(
+        graph=graph,
+        notices=notices,
+        preservation=preservation,
+    )
+    payload, source = _prepare_content_packet(
+        graph,
+        tuple(action.action_id for action in graph.actions),
+        source,
+        writing_style=writing_style,
+        configuration=None,
+        required_only=True,
+    )
+    payload["presentation_kind"] = "standard"
+    return payload, source
+
+
+def _prepare_content_packet(
+    graph,
+    intended,
+    source,
+    *,
+    writing_style,
+    configuration,
+    required_only=False,
+):
     actions = {item.action_id: item for item in graph.actions}
     content = {item.content_id: item for item in graph.content}
     evidence = {item.evidence_id: item for item in graph.evidence}
     facts = {item.fact_id: item for item in graph.facts}
     conditions = {item.condition_id: item for item in graph.conditions}
 
-    intended = offer.intended_action_ids
     if (
-        not intended
+        (not intended and bool(graph.actions))
         or len(intended) != len(set(intended))
         or not set(intended) <= actions.keys()
     ):
@@ -279,7 +333,8 @@ def prepare_source_packet(
             )
 
             for content_id in (
-                action.required_content_ids + action.supplementary_content_ids
+                action.required_content_ids
+                + (() if required_only else action.supplementary_content_ids)
             ):
                 block = content[content_id]
                 evidence_ids = set(block.evidence_ids)
@@ -330,8 +385,8 @@ def prepare_source_packet(
         ),
         "disclaimer": graph.disclaimer,
         "language": "en",
-        "writing_style": _writing_style(snapshot),
-        "configuration": offer.configuration.model_dump(mode="json"),
+        "writing_style": writing_style,
+        "configuration": configuration,
         "completeness": graph.completeness.model_dump(mode="json"),
         "stages": [item.model_dump(mode="json") for item in graph.stages],
         "facts": [item.model_dump(mode="json") for item in graph.facts],
@@ -341,15 +396,10 @@ def prepare_source_packet(
         "stage_dependencies": [
             item.model_dump(mode="json") for item in graph.stage_dependencies
         ],
-        "notices": [item.model_dump(mode="json") for item in verified.notices],
+        "notices": [item.model_dump(mode="json") for item in source.notices],
         "units": units,
     }
 
-    source = SourceBundle(
-        graph=graph,
-        notices=verified.notices,
-        preservation=verified.preservation,
-    )
     return payload, source
 
 
@@ -546,7 +596,32 @@ class ExplanationService:
         safety: ContentSafety | None = None,
     ) -> ExplanationResult:
         payload, source = prepare_source_packet(graph, selected, safety=safety)
-        fingerprint = graph_fingerprint(graph)
+        return ExplanationResult(
+            **self._explain_packet(payload, source),
+            decision_id=selected.decision.decision_id,
+            exposure_id=selected.offer.exposure_id,
+            configuration=selected.offer.configuration,
+        )
+
+    def explain_standard(
+        self,
+        graph: CanonicalProcedureGraph,
+        *,
+        safety: ContentSafety | None = None,
+        writing_style: str = "plain",
+    ) -> StandardExplanationResult:
+        payload, source = prepare_standard_source_packet(
+            graph,
+            safety=safety,
+            writing_style=writing_style,
+        )
+        return StandardExplanationResult(
+            **self._explain_packet(payload, source)
+        )
+
+    def _explain_packet(self, payload, source):
+        """Shared generation, checks, cache and fallback for both paths."""
+        fingerprint = graph_fingerprint(source.graph)
         key = self._key(payload, fingerprint)
 
         with self._lock:
@@ -663,12 +738,9 @@ class ExplanationService:
                     else "automated_checks_only"
                 )
 
-            return ExplanationResult(
+            return dict(
                 request_key=key,
                 graph_fingerprint=fingerprint,
-                decision_id=selected.decision.decision_id,
-                exposure_id=selected.offer.exposure_id,
-                configuration=selected.offer.configuration,
                 source_status=payload["source_status"],
                 origin=origin,
                 assurance=assurance,
