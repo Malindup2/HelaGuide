@@ -1,6 +1,7 @@
 import { ContractError } from "../api/client";
 import type { Document, Guidance, GuidanceStatus, Navigation, Spec } from "./types";
 import { documentOf, itemKey } from "./types";
+import { validateSelectedDiagram } from "./scaffoldModel";
 
 function check(value: unknown, message: string): asserts value {
   if (!value) throw new ContractError("Invalid guidance response: " + message);
@@ -135,6 +136,7 @@ export function parseSpec(value: unknown): Spec {
   if (spec.diagram.kind === "DEPENDENCY_MAP") check(spec.diagram.stage_dependencies.length + spec.diagram.action_prerequisites.length > 0 && !spec.diagram.branch_groups.length && !spec.diagram.parallel_groups.length, "invalid dependency map");
   if (spec.diagram.kind === "BRANCH_MAP") check(spec.diagram.branch_groups.length > 0 && !spec.diagram.stage_dependencies.length && !spec.diagram.action_prerequisites.length && !spec.diagram.parallel_groups.length, "invalid branch map");
   if (spec.diagram.kind === "PARALLEL_MAP") check(spec.diagram.parallel_groups.length > 0 && !spec.diagram.stage_dependencies.length && !spec.diagram.action_prerequisites.length && !spec.diagram.branch_groups.length, "invalid parallel map");
+  validateSelectedDiagram(spec);
   if (c.presentation_mode === "GUIDED") {
     check(doc.pages.some((page) => page.action_id === value.initial_action_id) &&
       same(value.acknowledgment_action_ids, [value.initial_action_id]), "invalid guided display scope");
