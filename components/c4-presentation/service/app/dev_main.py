@@ -78,6 +78,11 @@ from app.models.corrections import (
 )
 
 
+from app.api.demo_profiles import register_demo_profile_routes
+from app.core.demo_profiles import restore_profiles
+from app.models.demo_profiles import DemoProfile
+
+
 class RequestModel(BaseModel):
     model_config = ConfigDict(strict=True, extra="forbid")
 
@@ -189,6 +194,7 @@ class DevRuntime:
         self.presentations: dict[str, PresentationSpec] = {}
         self.feedback: dict[str, AcceptedFeedback] = {}
         self.corrections: dict[str, CorrectionRecord] = {}
+        self.profiles: dict[str, DemoProfile] = {}
         self.store = None
         self.storage_backend = "in_memory"
         self._store_revision = 0
@@ -241,6 +247,10 @@ class DevRuntime:
             corrections=tuple(
                 self.corrections[key]
                 for key in sorted(self.corrections)
+            ),
+            profiles=tuple(
+                self.profiles[key]
+                for key in sorted(self.profiles)
             ),
         )
 
@@ -341,12 +351,18 @@ class DevRuntime:
             contexts,
         )
 
+        profiles = restore_profiles(
+            state.profiles,
+            contexts,
+        )
+
         # Publish recovered state only after all checks succeed.
         self.contexts = contexts
         self.policy = policy
         self.presentations = presentations
         self.feedback = feedback
         self.corrections = corrections
+        self.profiles = profiles
 
     def assert_available(self):
         with self.lock:
@@ -550,6 +566,8 @@ def create_app(
         value = application.state.runtime
         value.assert_available()
         return value
+
+    register_demo_profile_routes(application, runtime)
 
     @application.exception_handler(StateStoreError)
     async def storage_failure(request, exc):

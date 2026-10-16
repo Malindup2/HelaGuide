@@ -1,4 +1,4 @@
-"""Explicit, backed-up migration from runtime 1.0/1.1 to runtime 1.2.
+"""Explicit, backed-up migration from runtime 1.0/1.1/1.2 to runtime 1.3.
 
 Run only with the C4 development server stopped.
 No LLM requests or policy learning are performed.
@@ -26,6 +26,11 @@ from app.models.runtime_state_v1_1 import (
 )
 
 
+from app.models.runtime_state_v1_2 import (
+    RuntimeState as CorrectionRuntimeState,
+)
+
+
 def canonical(value):
     return json.dumps(
         value,
@@ -46,22 +51,27 @@ def manifest_for(
     *,
     legacy=False,
     navigation=False,
+    corrections=False,
 ):
     if storage not in {"sqlite", "postgresql"}:
         raise ValueError("unsupported storage backend")
-    if legacy and navigation:
+
+    if sum((legacy, navigation, corrections)) > 1:
         raise ValueError("choose one source schema")
 
     manifest = json.loads(compatibility_manifest(config))
     if storage == "postgresql":
         manifest["storage_version"] = "c4-postgres-snapshot-1.0"
 
-    if legacy or navigation:
-        source_model = (
-            LegacyRuntimeState
-            if legacy
-            else NavigationRuntimeState
-        )
+    source_model = None
+    if legacy:
+        source_model = LegacyRuntimeState
+    elif navigation:
+        source_model = NavigationRuntimeState
+    elif corrections:
+        source_model = CorrectionRuntimeState
+
+    if source_model is not None:
         manifest["runtime_schema_fingerprint"] = checksum(
             canonical(source_model.model_json_schema())
         )
@@ -122,30 +132,43 @@ def prepare_migration(row, storage, mode):
         validate_runtime(state)
         return False, current_manifest, payload, state
 
-    legacy_manifest = manifest_for(
-        config,
-        storage,
-        legacy=True,
-    )
-    navigation_manifest = manifest_for(
-        config,
-        storage,
-        navigation=True,
+    supported_sources = (
+        (
+            manifest_for(config, storage, legacy=True),
+            LegacyRuntimeState,
+        ),
+        (
+            manifest_for(config, storage, navigation=True),
+            NavigationRuntimeState,
+        ),
+        (
+            manifest_for(config, storage, corrections=True),
+            CorrectionRuntimeState,
+        ),
     )
 
-    if manifest == json.loads(legacy_manifest):
-        LegacyRuntimeState.model_validate_json(payload)
-    elif manifest == json.loads(navigation_manifest):
-        NavigationRuntimeState.model_validate_json(payload)
-    else:
+    source_model = next(
+        (
+            model
+            for source_manifest, model in supported_sources
+            if manifest == json.loads(source_manifest)
+        ),
+        None,
+    )
+    if source_model is None:
         raise StateCompatibilityError(
-            "snapshot is not a supported runtime 1.0/1.1 schema "
+            "snapshot is not a supported runtime 1.0/1.1/1.2 schema "
             "with the current policy and numerical environment"
         )
 
+    source_model.model_validate_json(payload)
+
     document = json.loads(payload)
-    document["format_version"] = "c4-runtime-state-1.2"
-    document["corrections"] = []
+    original_policy = document["policy"]
+
+    document["format_version"] = "c4-runtime-state-1.3"
+    document.setdefault("corrections", [])
+    document["profiles"] = []
 
     migrated_payload = canonical(document)
     state = RuntimeState.model_validate_json(migrated_payload)
@@ -155,8 +178,17 @@ def prepare_migration(row, storage, mode):
             "payload and manifest policy differ"
         )
 
+    if state.policy.model_dump(
+        mode="json", round_trip=True
+    ) != original_policy:
+        raise StateCompatibilityError(
+            "migration changed saved policy state"
+        )
+
     validate_runtime(state)
     return True, current_manifest, migrated_payload, state
+
+
 
 def write_backup(path, storage, mode, row):
     path = Path(path)
@@ -289,7 +321,7 @@ def migrate_postgres(dsn, backup_path, mode="simulation"):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Back up and migrate one C4 runtime snapshot to 1.2."
+        description="Back up and migrate one C4 runtime snapshot to 1.3."
     )
     backend = parser.add_mutually_exclusive_group(required=True)
     backend.add_argument("--sqlite", type=Path)

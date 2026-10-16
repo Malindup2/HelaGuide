@@ -14,6 +14,7 @@ from app.models.user_context import (
     PresentationOffer,
 )
 
+from app.models.demo_profiles import DemoProfile
 
 class SessionState(GraphRecord):
     session: GuestSession
@@ -41,11 +42,12 @@ class AcceptedFeedback(GraphRecord):
 
 
 class RuntimeState(GraphRecord):
-    format_version: Literal["c4-runtime-state-1.2"] = (
-        "c4-runtime-state-1.2"
+    format_version: Literal["c4-runtime-state-1.3"] = (
+        "c4-runtime-state-1.3"
     )
     sessions: tuple[SessionState, ...]
     policy: PolicyState
     presentations: tuple[PresentationSpec, ...]
     feedback: tuple[AcceptedFeedback, ...]
     corrections: tuple[CorrectionRecord, ...] = ()
+    profiles: tuple[DemoProfile, ...] = ()
