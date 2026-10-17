@@ -1,0 +1,832 @@
+{
+  "run_at": "2026-10-16 04:53",
+  "model": "xlm-roberta-base",
+  "models_saved_to": "/content/drive/MyDrive/c1_models/run_seed2",
+  "settings": {
+    "epochs": 8,
+    "batch": 16,
+    "lr": 3e-05,
+    "max_len": 128,
+    "seed": 2,
+    "dev_share": 0.1
+  },
+  "data": {
+    "silver_train_turns": 650,
+    "silver_dev_turns": 76,
+    "gold_turns": 142,
+    "fresh_turns": 50
+  },
+  "language_id": {
+    "all_tags_accuracy": 0.9911,
+    "si_en_accuracy": 0.9916,
+    "si_en_by_group": {
+      "gold=EN": {
+        "acc": 0.99,
+        "n": 201
+      },
+      "gold=SI": {
+        "acc": 0.9922,
+        "n": 510
+      },
+      "mixed / romanized": {
+        "acc": 0.9881,
+        "n": 421
+      },
+      "mixed / sinhala_script": {
+        "acc": 0.992,
+        "n": 125
+      },
+      "pure_si / sinhala_script": {
+        "acc": 1.0,
+        "n": 165
+      }
+    },
+    "confusion_gold_to_pred": {
+      "EN->SI": 2,
+      "SI->NE": 2,
+      "SI->EN": 1,
+      "MIXED->OTHER": 1,
+      "SI->OTHER": 1
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 1.1925,
+        "dev": 0.851
+      },
+      {
+        "epoch": 2,
+        "loss": 0.2767,
+        "dev": 0.9568
+      },
+      {
+        "epoch": 3,
+        "loss": 0.1196,
+        "dev": 0.9762
+      },
+      {
+        "epoch": 4,
+        "loss": 0.0722,
+        "dev": 0.9849
+      },
+      {
+        "epoch": 5,
+        "loss": 0.0342,
+        "dev": 0.9892
+      },
+      {
+        "epoch": 6,
+        "loss": 0.0164,
+        "dev": 0.9935
+      },
+      {
+        "epoch": 7,
+        "loss": 0.0118,
+        "dev": 0.9935
+      },
+      {
+        "epoch": 8,
+        "loss": 0.0081,
+        "dev": 0.9935
+      }
+    ],
+    "per_tag": {
+      "SI": {
+        "precision": 0.9961,
+        "recall": 0.9922,
+        "f1": 0.9941,
+        "support": 510
+      },
+      "EN": {
+        "precision": 0.995,
+        "recall": 0.99,
+        "f1": 0.9925,
+        "support": 201
+      },
+      "MIXED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1
+      },
+      "NE": {
+        "precision": 0.9701,
+        "recall": 1.0,
+        "f1": 0.9848,
+        "support": 65
+      },
+      "OTHER": {
+        "precision": 0.8462,
+        "recall": 1.0,
+        "f1": 0.9167,
+        "support": 11
+      },
+      "MACRO_F1": 0.7776
+    },
+    "switch_points": {
+      "at_switch": {
+        "acc": 0.9895,
+        "n": 285
+      },
+      "inside_run": {
+        "acc": 0.993,
+        "n": 426
+      }
+    }
+  },
+  "entities": {
+    "all_types": {
+      "date": {
+        "precision": 0.25,
+        "recall": 0.3333,
+        "f1": 0.2857,
+        "support": 3
+      },
+      "district": {
+        "precision": 0.5068,
+        "recall": 1.0,
+        "f1": 0.6727,
+        "support": 37
+      },
+      "issue": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 10
+      },
+      "new_value": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 5
+      },
+      "purpose": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 4
+      },
+      "service_mentioned": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      },
+      "travel_date": {
+        "precision": 0.2353,
+        "recall": 0.8,
+        "f1": 0.3636,
+        "support": 5
+      },
+      "MICRO": {
+        "precision": 0.3818,
+        "recall": 0.6,
+        "f1": 0.4667,
+        "support": 70
+      }
+    },
+    "learnable_types_only": {
+      "date": {
+        "precision": 0.25,
+        "recall": 0.3333,
+        "f1": 0.2857,
+        "support": 3
+      },
+      "district": {
+        "precision": 0.5068,
+        "recall": 1.0,
+        "f1": 0.6727,
+        "support": 37
+      },
+      "new_value": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 5
+      },
+      "purpose": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 4
+      },
+      "travel_date": {
+        "precision": 0.2353,
+        "recall": 0.8,
+        "f1": 0.3636,
+        "support": 5
+      },
+      "MICRO": {
+        "precision": 0.3818,
+        "recall": 0.7778,
+        "f1": 0.5122,
+        "support": 54
+      }
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 1.9211,
+        "dev": 0.0
+      },
+      {
+        "epoch": 2,
+        "loss": 0.9123,
+        "dev": 0.0
+      },
+      {
+        "epoch": 3,
+        "loss": 0.7314,
+        "dev": 0.4211
+      },
+      {
+        "epoch": 4,
+        "loss": 0.575,
+        "dev": 0.4286
+      },
+      {
+        "epoch": 5,
+        "loss": 0.4572,
+        "dev": 0.4386
+      },
+      {
+        "epoch": 6,
+        "loss": 0.3751,
+        "dev": 0.4909
+      },
+      {
+        "epoch": 7,
+        "loss": 0.3096,
+        "dev": 0.4696
+      },
+      {
+        "epoch": 8,
+        "loss": 0.2728,
+        "dev": 0.4915
+      }
+    ]
+  },
+  "intent": {
+    "accuracy": 0.9,
+    "macro_f1": 0.9082,
+    "by_group": {
+      "mixed / romanized": {
+        "acc": 0.8235,
+        "n": 34
+      },
+      "mixed / sinhala_script": {
+        "acc": 1.0,
+        "n": 14
+      },
+      "pure_si / sinhala_script": {
+        "acc": 0.9545,
+        "n": 22
+      }
+    },
+    "errors": {
+      "nic_update->nic_replace_lost": 3,
+      "nic_new->birth_cert_copy": 2,
+      "nic_replace_lost->nic_new": 1,
+      "passport_renew->passport_new": 1
+    },
+    "gold_turns_scored": 70,
+    "gold_intents_not_covered": {
+      "unsupported_service": 54,
+      "feedback_complaint": 9,
+      "out_of_scope": 4,
+      "general_question": 5
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 2.0903,
+        "dev": 0.1228
+      },
+      {
+        "epoch": 2,
+        "loss": 1.4993,
+        "dev": 0.676
+      },
+      {
+        "epoch": 3,
+        "loss": 0.7233,
+        "dev": 0.9462
+      },
+      {
+        "epoch": 4,
+        "loss": 0.3615,
+        "dev": 0.9747
+      },
+      {
+        "epoch": 5,
+        "loss": 0.2078,
+        "dev": 0.9519
+      },
+      {
+        "epoch": 6,
+        "loss": 0.1063,
+        "dev": 0.9519
+      },
+      {
+        "epoch": 7,
+        "loss": 0.0568,
+        "dev": 0.9362
+      },
+      {
+        "epoch": 8,
+        "loss": 0.0616,
+        "dev": 0.9519
+      }
+    ],
+    "per_intent": {
+      "birth_cert_copy": {
+        "precision": 0.8462,
+        "recall": 1.0,
+        "f1": 0.9167,
+        "support": 11
+      },
+      "death_cert_copy": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 5
+      },
+      "marriage_registration": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 6
+      },
+      "nic_new": {
+        "precision": 0.8571,
+        "recall": 0.75,
+        "f1": 0.8,
+        "support": 8
+      },
+      "nic_replace_lost": {
+        "precision": 0.7,
+        "recall": 0.875,
+        "f1": 0.7778,
+        "support": 8
+      },
+      "nic_update": {
+        "precision": 1.0,
+        "recall": 0.8125,
+        "f1": 0.8966,
+        "support": 16
+      },
+      "passport_new": {
+        "precision": 0.875,
+        "recall": 1.0,
+        "f1": 0.9333,
+        "support": 7
+      },
+      "passport_renew": {
+        "precision": 1.0,
+        "recall": 0.8889,
+        "f1": 0.9412,
+        "support": 9
+      },
+      "MACRO_F1": 0.9082
+    },
+    "confusion": {
+      "birth_cert_copy": {
+        "birth_cert_copy": 11,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "death_cert_copy": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 5,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "marriage_registration": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 6,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "nic_new": {
+        "birth_cert_copy": 2,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 6,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "nic_replace_lost": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 1,
+        "nic_replace_lost": 7,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "nic_update": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 3,
+        "nic_update": 13,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "passport_new": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 7,
+        "passport_renew": 0
+      },
+      "passport_renew": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 1,
+        "passport_renew": 8
+      }
+    },
+    "tfidf_baseline": {
+      "accuracy": 0.9714,
+      "macro_f1": 0.9717
+    }
+  },
+  "fresh_test": {
+    "language_id_si_en": {
+      "heuristic": {
+        "ALL": {
+          "acc": 0.7733,
+          "n": 375
+        },
+        "mixed / romanized": {
+          "acc": 0.8293,
+          "n": 164
+        },
+        "gold=SI": {
+          "acc": 1.0,
+          "n": 194
+        },
+        "gold=EN": {
+          "acc": 0.5304,
+          "n": 181
+        },
+        "mixed / sinhala_script": {
+          "acc": 0.9125,
+          "n": 80
+        },
+        "pure_si / sinhala_script": {
+          "acc": 1.0,
+          "n": 32
+        },
+        "pure_en / romanized": {
+          "acc": 0.4949,
+          "n": 99
+        }
+      },
+      "fastText": {
+        "ALL": {
+          "acc": 0.5947,
+          "n": 375
+        },
+        "mixed / romanized": {
+          "acc": 0.2622,
+          "n": 164
+        },
+        "gold=SI": {
+          "acc": 0.4175,
+          "n": 194
+        },
+        "gold=EN": {
+          "acc": 0.7845,
+          "n": 181
+        },
+        "mixed / sinhala_script": {
+          "acc": 0.8875,
+          "n": 80
+        },
+        "pure_si / sinhala_script": {
+          "acc": 0.9062,
+          "n": 32
+        },
+        "pure_en / romanized": {
+          "acc": 0.8081,
+          "n": 99
+        }
+      },
+      "XLM-R": {
+        "ALL": {
+          "acc": 0.9707,
+          "n": 375
+        },
+        "mixed / romanized": {
+          "acc": 0.9573,
+          "n": 164
+        },
+        "gold=SI": {
+          "acc": 0.9845,
+          "n": 194
+        },
+        "gold=EN": {
+          "acc": 0.9558,
+          "n": 181
+        },
+        "mixed / sinhala_script": {
+          "acc": 0.9625,
+          "n": 80
+        },
+        "pure_si / sinhala_script": {
+          "acc": 1.0,
+          "n": 32
+        },
+        "pure_en / romanized": {
+          "acc": 0.9899,
+          "n": 99
+        }
+      }
+    },
+    "xlmr_all_tags_accuracy": 0.9603,
+    "xlmr_errors": {
+      "EN->SI": 4,
+      "OTHER->SI": 3,
+      "EN->NE": 3,
+      "SI->EN": 2,
+      "SI->NE": 1,
+      "MIXED->OTHER": 1,
+      "EN->OTHER": 1,
+      "NE->SI": 1
+    },
+    "entities": {
+      "date": {
+        "precision": 0.5,
+        "recall": 0.6667,
+        "f1": 0.5714,
+        "support": 3
+      },
+      "date_of_birth": {
+        "precision": 0.25,
+        "recall": 0.5,
+        "f1": 0.3333,
+        "support": 2
+      },
+      "district": {
+        "precision": 0.25,
+        "recall": 1.0,
+        "f1": 0.4,
+        "support": 3
+      },
+      "new_value": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      },
+      "purpose": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "travel_date": {
+        "precision": 0.1667,
+        "recall": 1.0,
+        "f1": 0.2857,
+        "support": 1
+      },
+      "MICRO": {
+        "precision": 0.2258,
+        "recall": 0.5,
+        "f1": 0.3111,
+        "support": 14
+      }
+    },
+    "intent_accuracy": 0.94,
+    "intent_n": 50,
+    "lang_switch_points": {
+      "heuristic": {
+        "at_switch": {
+          "acc": 0.8288,
+          "n": 146
+        },
+        "inside_run": {
+          "acc": 0.738,
+          "n": 229
+        }
+      },
+      "fastText": {
+        "at_switch": {
+          "acc": 0.5068,
+          "n": 146
+        },
+        "inside_run": {
+          "acc": 0.6507,
+          "n": 229
+        }
+      },
+      "XLM-R": {
+        "at_switch": {
+          "acc": 0.9726,
+          "n": 146
+        },
+        "inside_run": {
+          "acc": 0.9694,
+          "n": 229
+        }
+      }
+    },
+    "lang_per_tag": {
+      "SI": {
+        "precision": 0.9598,
+        "recall": 0.9845,
+        "f1": 0.972,
+        "support": 194
+      },
+      "EN": {
+        "precision": 0.9886,
+        "recall": 0.9558,
+        "f1": 0.9719,
+        "support": 181
+      },
+      "MIXED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1
+      },
+      "NE": {
+        "precision": 0.7143,
+        "recall": 0.9091,
+        "f1": 0.8,
+        "support": 11
+      },
+      "OTHER": {
+        "precision": 0.8667,
+        "recall": 0.8125,
+        "f1": 0.8387,
+        "support": 16
+      },
+      "MACRO_F1": 0.7165
+    },
+    "intent_per_intent": {
+      "birth_cert_copy": {
+        "precision": 0.8333,
+        "recall": 1.0,
+        "f1": 0.9091,
+        "support": 5
+      },
+      "death_cert_copy": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 7
+      },
+      "marriage_registration": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 7
+      },
+      "nic_new": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "support": 8
+      },
+      "nic_replace_lost": {
+        "precision": 0.8571,
+        "recall": 1.0,
+        "f1": 0.9231,
+        "support": 6
+      },
+      "nic_update": {
+        "precision": 1.0,
+        "recall": 0.8333,
+        "f1": 0.9091,
+        "support": 6
+      },
+      "passport_new": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "passport_renew": {
+        "precision": 0.875,
+        "recall": 1.0,
+        "f1": 0.9333,
+        "support": 7
+      },
+      "MACRO_F1": 0.9415
+    },
+    "intent_confusion": {
+      "birth_cert_copy": {
+        "birth_cert_copy": 5,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "death_cert_copy": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 7,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "marriage_registration": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 7,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "nic_new": {
+        "birth_cert_copy": 1,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 6,
+        "nic_replace_lost": 1,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "nic_replace_lost": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 6,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 0
+      },
+      "nic_update": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 5,
+        "passport_new": 0,
+        "passport_renew": 1
+      },
+      "passport_new": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 4,
+        "passport_renew": 0
+      },
+      "passport_renew": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "passport_new": 0,
+        "passport_renew": 7
+      }
+    },
+    "intent_tfidf_baseline": {
+      "accuracy": 0.96,
+      "macro_f1": 0.9606
+    }
+  }
+}
