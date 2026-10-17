@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
-import { API_BASE } from "../api/client";
-import type { ActiveIdentity, ProcedureSummary } from "../api/types";
+import { API_BASE, api } from "../api/client";
+import type { ActiveIdentity, GuestSession, ProcedureSummary } from "../api/types";
+import FeedbackPanel from "../feedback/FeedbackPanel";
 import { browserStorage } from "../session/continuity";
 import { guidanceApi } from "./api";
 import { GuidanceEpisode } from "./episode";
@@ -9,14 +10,16 @@ import { actionDomId, actionTitle } from "./scaffoldModel";
 import { actionLabel, documentOf } from "./types";
 import type { Standard } from "./types";
 
-export default function GuidanceWorkspace({ active, procedure, disabled, onActivityChange }: {
+export default function GuidanceWorkspace({ active, procedure, disabled, onActivityChange, onSessionUpdate }: {
   active: ActiveIdentity; procedure: ProcedureSummary; disabled: boolean;
   onActivityChange: (locked: boolean) => void;
+  onSessionUpdate: (session: GuestSession) => void;
 }) {
   // Parent keys this component by session, procedure and personalization revision.
   const [episode] = useState(() => new GuidanceEpisode(guidanceApi, active, procedure.procedure_id, browserStorage(), API_BASE));
   const state = useSyncExternalStore(episode.subscribe, episode.getSnapshot);
   const [writingStyle, setWritingStyle] = useState<Standard["writing_style"]>("plain");
+  const [feedbackLocked, setFeedbackLocked] = useState(false);
   const enabled = active.kind === "profile" && active.profile.personalization_enabled;
   const { result, navigation } = state;
   const doc = result ? documentOf(result) : null;
@@ -24,17 +27,24 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
   const guided = spec?.configuration.presentation_mode === "GUIDED";
   const index = doc?.pages.findIndex((page) => page.action_id === state.focus) ?? -1;
   const current = doc?.pages[index];
-  const blocked = disabled || state.loading || state.busy || state.pending !== null;
+  const blocked = disabled || state.loading || state.busy || state.pending !== null || feedbackLocked;
+  const archived = result?.mode === "adaptive" && result.stale_for_display;
+  const browsingBlocked = blocked || archived;
   const disclaimerInNotices = doc ? doc.global_items.some((ref) => ref.kind === "notice" &&
     doc.cards.some((card) => card.source.kind === "notice" && card.source.identifier === ref.identifier &&
       card.lines.includes(doc.explanation.source.graph.disclaimer))) : false;
 
   useEffect(() => { void episode.initialize(); }, [episode]);
   useEffect(() => {
-    onActivityChange(state.loading || state.busy || state.pending !== null);
+    onActivityChange(state.loading || state.busy || state.pending !== null || feedbackLocked);
     return () => onActivityChange(false);
-  }, [onActivityChange, state.loading, state.busy, state.pending]);
+  }, [onActivityChange, state.loading, state.busy, state.pending, feedbackLocked]);
   const onVisible = useCallback((id: string) => { void episode.visible(id); }, [episode]);
+  const onPreferencesApplied = useCallback(async () => {
+    episode.freezeForPreferences();
+    const session = await api.getSession(active.session.session_id);
+    onSessionUpdate(session);
+  }, [episode, active.session.session_id, onSessionUpdate]);
   function move(id: string) {
     episode.move(id);
     requestAnimationFrame(() => {
@@ -79,11 +89,12 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
       <div className="source-notices">
         <SourceItems doc={doc} refs={doc.global_items.filter((ref) => ref.kind === "notice")} />
       </div>
+      {archived && <p className="guidance-stale" role="status">This is the original acknowledged presentation retained for reference and feedback. Request fresh guidance to use current settings.</p>}
       {spec && <SelectedAids spec={spec} currentActionId={guided ? state.focus : null} />}
       {guided && spec && current ? <>
         <nav className="guided-step-list" aria-label="Browse procedure actions">
           {doc.pages.map((page, pageIndex) => <button key={page.action_id}
-            disabled={blocked || !navigation?.acknowledged}
+            disabled={browsingBlocked || !navigation?.acknowledged}
             className={page.action_id === state.focus ? "active" : ""}
             aria-current={page.action_id === state.focus ? "step" : undefined}
             onClick={() => move(page.action_id)}>
@@ -94,18 +105,21 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
         </nav>
         <p className="helper-text">Action {index + 1} of {doc.pages.length}. {doc.explanation.source.graph.branch_groups.length > 0 ? "Alternative actions remain available for inspection." : "Browsing does not mark completion."}</p>
         <ActionSection key={current.action_id} doc={doc} page={current} index={index}
-          disabled={blocked} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />
+          disabled={browsingBlocked} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />
         <nav className="guided-navigation" aria-label="Previous and next guidance">
-          <button className="button button-outline" disabled={blocked || !navigation?.acknowledged || index <= 0}
+          <button className="button button-outline" disabled={browsingBlocked || !navigation?.acknowledged || index <= 0}
             onClick={() => move(doc.pages[index - 1].action_id)}>← Back</button>
           <span>{index + 1} / {doc.pages.length}</span>
-          <button className="button button-primary" disabled={blocked || !navigation?.acknowledged || index >= doc.pages.length - 1}
+          <button className="button button-primary" disabled={browsingBlocked || !navigation?.acknowledged || index >= doc.pages.length - 1}
             onClick={() => move(doc.pages[index + 1].action_id)}>Next →</button>
         </nav>
       </> : <div className="overview-actions">
         {doc.pages.map((page, pageIndex) => <ActionSection key={page.action_id} doc={doc} page={page} index={pageIndex}
-          disabled={blocked || !spec} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />)}
+          disabled={browsingBlocked || !spec} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />)}
       </div>}
+      {spec && <FeedbackPanel key={spec.exposure_id} spec={spec} navigation={navigation}
+        disabled={disabled || state.loading || state.busy || state.pending !== null}
+        onActivityChange={setFeedbackLocked} onPreferencesApplied={onPreferencesApplied} />}
       <SourceRegister doc={doc} />
       <div className="exposure-status" role="status">
         {spec ? <><strong>{navigation?.acknowledged ? "Display acknowledgment recorded" : "Awaiting a visible action"}</strong>

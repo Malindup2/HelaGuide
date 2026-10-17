@@ -198,6 +198,19 @@ describe("stable adaptive episode", () => {
     await guest.select(); await guest.visible("action:one");
     expect(s.ack).not.toHaveBeenCalled(); expect(s.display).not.toHaveBeenCalled();
   });
+  it("restores an acknowledged stale presentation for feedback without new display events", async () => {
+    const s = setup(); await s.episode.select(); await s.episode.visible("action:one");
+    s.presentation.mockResolvedValue({ spec: s.result.spec, stale_for_display: true });
+    s.select.mockClear(); s.ack.mockClear(); s.display.mockClear();
+    const restored = new GuidanceEpisode(s.api, identity(), fp, s.saved, base);
+    await restored.initialize();
+    restored.move("action:two"); await restored.visible("action:two");
+    const result = restored.getSnapshot().result;
+    expect(result?.mode === "adaptive" && result.stale_for_display).toBe(true);
+    expect(result?.mode === "adaptive" && result.spec.decision_id).toBe(s.result.spec.decision_id);
+    expect(restored.getSnapshot().focus).toBe("action:one");
+    expect(s.select).not.toHaveBeenCalled(); expect(s.ack).not.toHaveBeenCalled(); expect(s.display).not.toHaveBeenCalled();
+  });
   it("fails closed on stale saved episodes and separates sessions/procedures/profile revisions", async () => {
     const s = setup(); await s.episode.select();
     s.presentation.mockResolvedValue({ spec: s.result.spec, stale_for_display: true });

@@ -98,12 +98,12 @@ export class GuidanceEpisode {
       }
       const status = await this.currentStatus();
       const response = await this.api.presentation(status.session_id, saved.exposure_id, this.procedureId);
-      if (response.stale_for_display) {
+      const spec = response.spec;
+      const navigation = await this.api.navigation(spec);
+      if (response.stale_for_display && !navigation.acknowledged) {
         removeStored(this.storage, this.key);
         throw new Error("The saved presentation is no longer current. Request fresh guidance.");
       }
-      const spec = response.spec;
-      const navigation = await this.api.navigation(spec);
       if (saved.pending !== null && !pendingMatches(saved.pending, spec)) {
         removeStored(this.storage, this.key);
         throw new Error("The saved display retry is invalid. Request fresh guidance.");
@@ -111,10 +111,11 @@ export class GuidanceEpisode {
       const pending = saved.pending;
       this.recordedVisit = navigation.acknowledged ? 0 : -1;
       this.update({
-        result: { ...status, mode: "adaptive", spec, stale_for_display: false }, navigation, pending,
+        result: { ...status, mode: "adaptive", spec, stale_for_display: response.stale_for_display }, navigation, pending,
         focus: pending?.kind === "navigation" ? pending.request.action_id :
           navigation.current_action_id ?? spec.initial_action_id,
         notice: pending ? "A display request needs confirmation. Retry it unchanged." :
+          response.stale_for_display ? "The original acknowledged presentation was restored for reference and feedback. Request fresh guidance to use current settings." :
           "The existing presentation was restored without selecting a new configuration.",
       });
     } catch (error) {
@@ -150,9 +151,15 @@ export class GuidanceEpisode {
     this.visit = 0; this.recordedVisit = -1;
     this.update({ ...initial, notice: "Guidance closed. Already accepted backend display records remain stored; no learning update was made." });
   }
+  freezeForPreferences() {
+    const result = this.state.result;
+    if (result?.mode !== "adaptive") return;
+    this.update({ result: { ...result, stale_for_display: true },
+      notice: "Preferences applied. The original presentation is retained for reference and feedback. Request fresh guidance to use current settings." });
+  }
   move(actionId: string) {
     const result = this.state.result;
-    if (this.state.busy || this.state.pending || result?.mode !== "adaptive" ||
+    if (this.state.busy || this.state.pending || result?.mode !== "adaptive" || result.stale_for_display ||
         result.spec.configuration.presentation_mode !== "GUIDED" ||
         !this.state.navigation?.acknowledged || actionId === this.state.focus ||
         !result.spec.pages.some((page) => page.action_id === actionId)) return;
@@ -161,7 +168,7 @@ export class GuidanceEpisode {
   }
   async visible(actionId: string) {
     const result = this.state.result;
-    if (this.state.busy || this.state.pending || result?.mode !== "adaptive" ||
+    if (this.state.busy || this.state.pending || result?.mode !== "adaptive" || result.stale_for_display ||
         !result.spec.pages.some((page) => page.action_id === actionId)) return;
     const spec = result.spec;
     const guided = spec.configuration.presentation_mode === "GUIDED";

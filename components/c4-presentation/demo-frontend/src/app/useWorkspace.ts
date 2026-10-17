@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { API_BASE, ApiError, api, errorMessage } from "../api/client";
 import type {
   ActiveIdentity, BackendHealth, CreateDemoProfileRequest, DemoProfile,
-  DemoProfileResponse, PersonalizationRequest, ProcedureSummary,
+  DemoProfileResponse, GuestSession, PersonalizationRequest, ProcedureSummary,
 } from "../api/types";
 import { browserStorage, readStored, removeStored, storageKey, writeStored } from "../session/continuity";
 import { rememberIdentity, restoreIdentity } from "../session/identity";
@@ -93,6 +93,14 @@ export function useWorkspace() {
     void initialize();
     return () => controller.abort();
   }, [attempt]);
+
+  const updateSession = useCallback((session: GuestSession) => {
+    setState((old) => {
+      if (!old.active || old.active.session.session_id !== session.session_id ||
+          session.revision < old.active.session.revision) return old;
+      return { ...old, active: { ...old.active, session } };
+    });
+  }, []);
 
   function activate(result: ActiveIdentity, notice: string) {
     const remembered = rememberIdentity(browserStorage(), API_BASE, result);
@@ -268,7 +276,7 @@ export function useWorkspace() {
   }
 
   return {
-    state, selectProcedure, retryConnection, continueGuest, chooseProfile,
+    state, updateSession, selectProcedure, retryConnection, continueGuest, chooseProfile,
     openCreation, closeCreation, submitProfile, discardPendingCreation,
     togglePersonalization, refreshProfiles, retryPendingMode,
   };

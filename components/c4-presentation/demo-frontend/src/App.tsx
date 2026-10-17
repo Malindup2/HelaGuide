@@ -183,6 +183,7 @@ export default function App() {
                   active={active} procedure={selected}
                   disabled={locked || state.pendingMode !== null}
                   onActivityChange={setGuidanceLocked}
+                  onSessionUpdate={workspace.updateSession}
                 />
               )}
               {!active || !selected ? <p className="helper-text">Select a procedure and open a guest workspace or demo profile to show guidance.</p> : null}
