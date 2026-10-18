@@ -1,0 +1,77 @@
+{
+  "_note": "MOCK. Each item is exactly the contract `feedback` message (C4 -> C3).",
+  "messages": [
+    {
+      "feedback_id": "fb-A2",
+      "session_id": "anon-0002",
+      "fact_id": "svc:passport:fee:normal",
+      "plan_id": "plan-0001",
+      "text": "Counter staff at the Immigration office in Battaramulla told me the ordinary passport fee is now 12,000 rupees.",
+      "proposed_value": 12000,
+      "submitted_at": "2026-10-21T11:05:00Z"
+    },
+    {
+      "feedback_id": "fb-A4",
+      "session_id": "anon-0004",
+      "fact_id": "svc:passport:fee:normal",
+      "plan_id": "plan-0001",
+      "text": "I went to the Department of Immigration yesterday and the normal passport fee at the counter was Rs. 12,000, not 11,000 as your guide said!",
+      "proposed_value": 12000,
+      "submitted_at": "2026-10-23T09:20:00Z"
+    },
+    {
+      "feedback_id": "fb-S1",
+      "session_id": "anon-0010",
+      "fact_id": "svc:birth_certificate:fee:certified_copy",
+      "plan_id": "plan-0001",
+      "text": "The registrar charged 300 for a certified copy.",
+      "proposed_value": 300,
+      "submitted_at": "2026-10-21T14:00:00Z"
+    },
+    {
+      "feedback_id": "fb-S2",
+      "session_id": "anon-0013",
+      "fact_id": "svc:passport:processing_time:normal",
+      "plan_id": "plan-0001",
+      "text": "Passport collection took three weeks, not two.",
+      "proposed_value": 21,
+      "submitted_at": "2026-10-22T12:00:00Z"
+    },
+    {
+      "feedback_id": "fb-S3",
+      "session_id": "anon-0012",
+      "fact_id": "svc:marriage_certificate:fee:certified_copy",
+      "plan_id": "plan-0001",
+      "text": "සහතික කළ පිටපතක් සඳහා රුපියල් 400ක් අය කළා.",
+      "proposed_value": 400,
+      "submitted_at": "2026-10-23T12:30:00Z"
+    },
+    {
+      "feedback_id": "fb-S4",
+      "session_id": "anon-0009",
+      "fact_id": "svc:nic:fee:one_day",
+      "plan_id": "plan-0001",
+      "text": "one day service ekata 3500k gaththa",
+      "proposed_value": 3500,
+      "submitted_at": "2026-10-24T09:30:00Z"
+    },
+    {
+      "feedback_id": "fb-S5",
+      "session_id": "anon-0013",
+      "fact_id": "svc:dual_citizenship:processing_time:standard",
+      "plan_id": "plan-0001",
+      "text": "It took more than 4 months to get my dual citizenship approval.",
+      "proposed_value": 120,
+      "submitted_at": "2026-10-25T11:30:00Z"
+    },
+    {
+      "feedback_id": "fb-S6",
+      "session_id": "anon-0011",
+      "fact_id": "svc:tourist_visa_extension:fee:first_extension",
+      "plan_id": "plan-0001",
+      "text": "Paid USD 120 for the first extension.",
+      "proposed_value": 120,
+      "submitted_at": "2026-10-26T14:00:00Z"
+    }
+  ]
+}

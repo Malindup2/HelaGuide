@@ -1,0 +1,30 @@
+# C3's OWN PostgreSQL, for development and the PP1 demo. It is completely separate from the team's
+# docker-compose.yml: different project name, different volume, different port (5433), so it can
+# run at the same time as the team stack and can never collide with it.
+#
+#   start :  docker compose -f docker-compose.c3.yml up -d        (run in components/c3-trust)
+#   stop  :  docker compose -f docker-compose.c3.yml down          (keeps your data)
+#   wipe  :  docker compose -f docker-compose.c3.yml down -v       (deletes C3's demo data)
+
+name: helaguide-c3
+
+services:
+  c3-postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: c3
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8"
+      POSTGRES_PASSWORD: c3pass
+      POSTGRES_DB: c3_pp1
+    ports:
+      - "5433:5432"
+    volumes:
+      - c3-pg-data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U c3 -d c3_pp1"]
+      interval: 5s
+      retries: 12
+
+volumes:
+  c3-pg-data:
