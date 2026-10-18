@@ -1,0 +1,17 @@
+{
+  "_comment": "Suggested prompts for the landing screen and the empty composer. The panel picks from this known set, which keeps the demo controlled while staying genuinely interactive. Deliberately mixed in difficulty so the presenter can show a two-step answer and an eight-step, five-agency answer back to back.",
+  "capsules": [
+    { "id": "cap_lc",       "journey": "open_lc",               "label": "How to open an LC",              "lang": "en", "hint": "8 steps · 5 agencies" },
+    { "id": "cap_passport", "journey": "renew_passport",        "label": "Renew the passport",             "lang": "en", "hint": "3 steps" },
+    { "id": "cap_pharmacy", "journey": "open_pharmacy",         "label": "Open a pharmacy",                "lang": "en", "hint": "4 steps · 4 agencies" },
+    { "id": "cap_business", "journey": "register_business",     "label": "Register a business",            "lang": "en", "hint": "5 steps" },
+    { "id": "cap_property", "journey": "build_commercial",      "label": "Build a commercial property",    "lang": "en", "hint": "4 steps" },
+    { "id": "cap_business_si", "journey": "register_business_si", "label": "ව්‍යාපාරයක් ලියාපදිංචි කරන්න",  "lang": "si", "hint": "Sinhala" },
+    { "id": "cap_licence",  "journey": "renew_driving_licence", "label": "Renew driving licence",          "lang": "en", "hint": "2 steps" }
+  ],
+  "placeholders": [
+    { "lang": "en", "text": "Ask about any government service…" },
+    { "lang": "si", "text": "ඕනෑම රාජ්‍ය සේවාවක් ගැන අසන්න…" },
+    { "lang": "ta", "text": "எந்த அரசு சேவை பற்றியும் கேளுங்கள்…" }
+  ]
+}
