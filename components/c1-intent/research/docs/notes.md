@@ -230,3 +230,88 @@ Values are macro-F1, mean ± std over 3 seeds. Raw files: `results/c1_context_re
 - keyword_summary and structured_state read the gold language/entity tags (an oracle). With predicted tags, structured state would be somewhat lower.
 - Only intent is measured; slot tracking (joint goal accuracy) is not yet included.
  
+## Observation 9: multi-turn slot tracking and joint goal accuracy (2026-10-18)
+ 
+**Setup:** `experiments/c1_dst.py` (hybrid slot extractor + dialogue state tracker) and `experiments/dst_eval.py`. No training needed; it runs on CPU in seconds. Raw file: `results/dst_results.json`.
+ 
+- **Hybrid extractor:**
+  - district gazetteer: 25 districts in English, romanized and Sinhala-script spellings
+  - date pattern matcher (English and Sinhala months, relative dates) → canonical form
+  - keyword rules for fixed-choice slots (applicant_for, change_field, urgency, service_type)
+  - service, purpose and complaint-type lists
+  - the bot's last question, so the answer "Matara" to "Koheda?" fills `district`
+- **Tracker:**
+  - carries slots across turns
+  - in-turn corrections ("Kandy... sorry, Matale", "18, 8 nemei")
+  - yes/no answers and confirmations ("District eka Colombo neda?" → "ow")
+  - after an intent switch, keeps only the slots the new intent uses
+- **Metric:** joint goal accuracy (JGA), meaning the intent **and** every slot value are correct at that turn, plus per-slot F1. Free-text values are matched leniently (one contains the other); dates are compared as canonical token sets.
+**Important for honesty:**
+- The rules were written while reading the **gold** dialogues, so gold is a *development* set and its JGA is optimistic.
+- Two sets were never used to write the rules:
+  - the **synthetic** dialogues (726 turns)
+  - the **fresh** dialogues (50 turns, human-written; states proposed by an LLM and checked by the author)
+  These two are the real test.
+### JGA by tracker setting (intent = gold label, so this isolates slot tracking)
+ 
+| Tracker setting | Gold (dev, 142 turns) | Synthetic (held-out, 726) | Fresh (held-out, 50) |
+|---|---|---|---|
+| 1. No memory (current message only) | 0.528 | 0.477 | 0.720 |
+| 2. + carry slots across turns | 0.838 | 0.718 | 0.860 |
+| 3. + the bot's question (answers, yes/no, confirmations) | 0.901 | 0.762 | 0.880 |
+| 4. + corrections, switch handling, negation (**full**) | 0.979 | **0.807** | **0.920** |
+ 
+On turns after the first, the full tracker scores 0.889 on fresh and 0.746 on synthetic, against 0.519 and 0.236 with no memory.
+ 
+### With predicted intent (TF-IDF, last 3 messages, trained on silver)
+ 
+| | Intent accuracy | JGA |
+|---|---|---|
+| Fresh (8 core intents) | 0.96 | **0.88** |
+| Gold, core-intent dialogues | — | 0.924 |
+| Gold, all turns | 0.47 | 0.458 |
+ 
+On gold, all turns score low because more than half the gold turns (72 of 142) are support intents, which have no training data yet.
+ 
+### Entity spans: hybrid vs XLM-R NER
+ 
+Same span-level metric as Observation 7. "Extractive types" are district, dates and new_value, the slots whose value is a piece of the user's text.
+ 
+| | Gold | Fresh |
+|---|---|---|
+| XLM-R NER (3-seed mean, Obs. 7) | 0.655 | 0.481 |
+| Hybrid extractor | **0.750** (P 1.00, R 0.60) | **0.727** |
+ 
+- The hybrid never adds a wrong span on gold (precision 1.0).
+- Most of its missed gold spans are districts typed in `unsupported_service` dialogues. The intent schema doesn't track district there, so the tracker deliberately ignores them.
+### Per-slot F1 (full tracker, held-out sets)
+ 
+| Slot | Synthetic F1 (n) | Fresh F1 (n) |
+|---|---|---|
+| district | 0.971 (333) | 1.000 (4) |
+| urgency | 0.958 (37) | — |
+| purpose | 0.944 (127) | 1.000 (4) |
+| change_field | 0.934 (95) | 1.000 (6) |
+| applicant_for | 0.924 (256) | 0.923 (13) |
+| service_type | 0.890 (80) | 1.000 (1) |
+| date | 0.878 (73) | 1.000 (4) |
+| travel_date | 0.868 (101) | 1.000 (1) |
+| date_of_birth | 0.600 (49) | — |
+| new_value | 0.561 (40) | 0.500 (2) |
+ 
+### Takeaways
+1. **Remembering across turns is the biggest gain.** Carrying slots raises JGA by about 0.14–0.24, and using the bot's question adds a little more. On follow-up turns, memory takes fresh JGA from 0.52 to 0.89.
+2. **The tracker generalises.** On the two sets it was not built from, full JGA is 0.81 (synthetic) and 0.92 (fresh), against 0.98 on the development set. Report the held-out numbers.
+3. **The hybrid extractor beats XLM-R NER** on the extractive slots (fresh 0.73 vs 0.48) and needs no training data. It also fixes the over-prediction problem from Observation 7 (gold precision 1.00).
+4. **The full pipeline works on human-written text.** With *predicted* intent, fresh JGA is 0.88.
+5. **Remaining errors** (found on the held-out sets; to fix after PP1 and re-test on new data):
+   - dates in other formats (`2010.04.18`, `labana avurudde january 15`, "last week" read as a date of birth)
+   - new values given in the first message without a bot question (`new_value` 0.56)
+   - corrections that give only the new number ("ne ne sry 54/2")
+   - a later mention of another person overwriting `applicant_for` ("thaththa abroad")
+6. **Support intents** still have no training data. That limits the predicted-intent JGA on gold, and is the next data task.
+### Caveats
+- The fresh states were LLM-proposed and author-checked, not labelled independently.
+- Fresh is small (50 turns, few examples per slot).
+- The issue categories (fee, documents, office hours, photo) are a small hand-made list.
+- No XLM-R NER + rules combination is reported yet: run `dst_eval.py --xlmr-dir models/c1/run_seed1` to add it.
