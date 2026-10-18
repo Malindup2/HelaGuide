@@ -39,13 +39,16 @@ Tick items here as they finish, then update the Planner card.
 - [ ] Tidy `notes.md`: fill the Observation 6 TODO (how the LLM key was used), fix the missing Observation 3, replace the old "Next steps" list
 
 ### Sun 18 Oct: plug into HelaGuide
-- [ ] Map the 12 internal intents to the contract (`intent` + `service_id`)
-- [ ] Implement `resolve()` in `service/app/core/pipeline.py` behind `POST /v1/intent`, keeping stub mode working (model: `run_seed1` from Drive, window_3 context; heavy libraries in the `research` extra)
-- [ ] Add tests in `service/tests/`
+- [x] Map the 12 internal intents to the contract (`intent` + `service_id`): `service/app/core/projection.py` (branch `c1/api`)
+- [x] Implement `resolve()` in `service/app/core/pipeline.py` behind `POST /v1/intent`, keeping stub mode working (model: `run_v2_seed1` via `C1_MODEL_DIR`, window_3 context, `use_ner=True`; heavy libraries in the `research` extra)
+- [x] C1-only `POST /v1/intent/details` with the route (orchestration / trust_verification / fallback / none) and the full state; in-memory sessions
+- [x] Add tests in `service/tests/` (47, pass in stub mode without torch)
+- [x] Run instructions for the `nlp` env and `service/scripts/demo_conversation.py` (`README.md`)
+- [x] Contract additions written up: `docs/c1_contract_proposal.md`
 - [ ] Run `docker compose up --build` and test one request through the gateway
 
 ### Mon 19 Oct: demo and slides
-- [ ] Pick the demo dialogue (NIC or passport, since `svc:birth_certificate` has no facts yet)
+- [x] Pick the demo dialogue: `demo_conversation.py` sessions A (NIC lost, correction), B (complaint), C (driving licence), Sinhala script, English
 - [ ] Record a backup demo video
 - [ ] Slides: problem, baseline findings, dataset stats, model results (3-seed means), context trade-off chart (`results/context_tradeoff_e15.png`), integration, progress vs TAF, PP2 plan
 
@@ -72,8 +75,14 @@ Tick items here as they finish, then update the Planner card.
 - [ ] Retrain with support intents using c1_xlmr_train_v2.ipynb (seed 1)
 - [ ] Run dst_eval.py --xlmr-dir models/c1/run_v2_seed1
 - [ ] Fix DST errors found on held-out sets after PP1 (date formats, number-only corrections, applicant_for overwrite, new_value in first message), then retest on new data
-- [ ] Log latency per request
-- [ ] Raise a contract change with the team if C2 or C4 need more than `service_id` and `district`
+- [x] Log latency per request (one log line per request, no message text)
+- [ ] Raise a contract change with the team if C2 or C4 need more than `service_id` and `district`: send `docs/c1_contract_proposal.md`
+- [ ] More training data for `feedback_complaint` and `general_question` (only 2 of 6 test complaints recognised; documents questions not recognised), measured on held-out data
+- [ ] Store C1 sessions in PostgreSQL schema `c1` (in memory for now)
+- [ ] Docker for the real engine (after PP1; the image runs in stub mode only today):
+  1. Build arg in `service/Dockerfile` (`ARG C1_EXTRAS=""` → `pip install ".[${C1_EXTRAS}]"`); the default build stays as it is, so the shared compose file and CI are unaffected
+  2. A `docker-compose.override.yml` example documented in `README.md`, not committed as a shared file: build with `C1_EXTRAS=research`, mount `research/models/c1/run_v2_seed1` read-only at `/models/c1`, set `STUB_MODE=false` and `C1_MODEL_DIR=/models/c1`
+  3. Install torch from the CPU wheel index (`--extra-index-url https://download.pytorch.org/whl/cpu`) so the image is about 1 GB larger instead of 2–5 GB with CUDA; build it once to check
 
 ## PP2: context optimization
 First experiment done early (Observation 8, `c1_context_experiment.ipynb`): recommended default is XLM-R + window_3.

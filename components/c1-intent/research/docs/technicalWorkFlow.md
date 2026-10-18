@@ -20,7 +20,7 @@ Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 | 4. Language segmentation layer | 🔄 XLM-R trained, 3 seeds (0.973 ± 0.005 on fresh set); module wrap pending | Language segmentation layer |
 | 5. Intent classifier | 🔄 XLM-R and TF-IDF baselines, 3 seeds (XLM-R macro-F1 0.936 gold / 0.926 fresh; TF-IDF higher) | Intent classifier |
 | 6. Entity extraction + multi-turn tracking | 🔄 Hybrid extractor + state tracker done: JGA 0.807 synthetic / 0.920 fresh (held-out), 0.88 fresh with predicted intent; Rasa pending | Entity extractor + multi-turn tracking |
-| 7. FastAPI service + routing | 🔄 (skeleton + stub) | FastAPI endpoint + routing |
+| 7. FastAPI service + routing | ✅ for PP1: real engine behind `/v1/intent`, C1-only `/v1/intent/details` with routing, 47 tests (branch `c1/api`); PostgreSQL sessions pending | FastAPI endpoint + routing |
 | 8. PP1 demo & slides | ⬜ | PP1 demo & slides |
 | 9. Context optimization & trade-off evaluation | 🔄 first experiment done (Observation 8: XLM-R + window_3 recommended) | PP2 – Context optimization & evaluation |
 
@@ -358,16 +358,38 @@ label-studio
 
 ---
 
-## 7. FastAPI service + routing 🔄
+## 7. FastAPI service + routing ✅ for PP1 (18 Oct, branch `c1/api`)
 
 ### What already exists (team skeleton)
 - ✅ Service in `components\c1-intent\service\` (FastAPI, port 8001), Dockerfile, CI job running `pytest` in stub mode
 - ✅ `GET /health` and `POST /v1/intent` (`app\api\routes.py`, kept thin)
   - Input: `UtteranceRequest` — `session_id`, `text` (1–2000 chars)
   - Output: `Intent` — validated against `contracts\schema\v1\intent.schema.json` (Pydantic model in `shared\helaguide_common\contracts.py`)
-- ✅ `app\core\pipeline.py` → `resolve(req)`: in stub mode returns `contracts\examples\intent.example.json`; otherwise raises `NotImplementedError`. **All C1 logic goes behind this function**
+- ✅ `app\core\pipeline.py` → `resolve(req)`: in stub mode returns `contracts\examples\intent.example.json`. **All C1 logic goes behind this function**
 - ✅ Shared contract agreed by the team (`contracts\schema\v1\`); the gateway calls C1 → C2 → C3 → C4
 - ✅ Tests: `tests\test_health.py`, `tests\test_routes.py` (stub returns `svc:passport`)
+
+### What was built (18 Oct)
+- ✅ `app\core\engine.py` and `app\core\dst.py`: service copies of `research\experiments\c1_engine.py` and `c1_dst.py` (the research copies are the reference; keep them in sync). torch and transformers are imported only when the real engine loads, and live in the `research` extra, so stub mode and CI need neither
+- ✅ `pipeline.resolve()` in real mode (`STUB_MODE=false`): loads `C1Engine` once from `C1_MODEL_DIR` (default `research\models\c1\run_v2_seed1`) with `use_ner=True` (rules + XLM-R entities as fallback, Observation 10); missing models → 503 with a message saying how to set `C1_MODEL_DIR`
+- ✅ Confidence threshold `C1_MIN_CONFIDENCE` (default **0.35**; the research engine uses 0.5). Below it: a mention of an unsupported service from `dst.SERVICES` (driving licence, police clearance, business registration, building permit, utility connection, residence certificate) → `unsupported_service`; otherwise the previous topic is kept, or `unknown` on a first turn. Both cases are logged. No keyword rule for complaints: those wait for more training data after PP1
+- ✅ Sessions: one engine `Session` per `session_id`, in memory (`app\core\sessions.py`), 30 minutes idle, at most 1,000. PostgreSQL schema `c1` is the later replacement
+- ✅ Projection to the contract in `app\core\projection.py` (pure functions, table below)
+- ✅ `POST /v1/intent/details` (C1-only, not in the contract): same input plus optional `bot_text`; returns internal intent and confidence, `intent_source`, route, all slots, missing slots, language tags per word, `code_switched`, `latency_ms` and the projected `Intent`. Shares sessions with `/v1/intent`; in stub mode it returns a canned passport answer
+- ✅ One log line per request: session, turn, internal intent, route, latency. No message text
+- ✅ Tests (47, pass in stub mode without torch): one projection test per table row validated with `jsonschema`, `SERVICE_IDS` = `kg_service_map.json`, session carry-over and isolation with a fake engine, TTL and cap, threshold and fallback, 503, routes, no torch on import
+- ✅ Run instructions for the `nlp` env and `service\scripts\demo_conversation.py` (`README.md`)
+
+### Routing (`/v1/intent/details` → `route`)
+
+| Internal intent | Route | Meaning for the gateway |
+|---|---|---|
+| 8 core intents, `general_question` | `orchestration` | plan from C2 |
+| `feedback_complaint` | `trust_verification` | send to C3 |
+| `unsupported_service` | `fallback` | tell the citizen the service is not covered yet |
+| `out_of_scope`, `unknown` | `none` | nothing to do |
+
+The contract cannot carry the route, so the gateway still sees `intent: unknown` for the last three rows; adding `route` is proposed in `research\docs\c1_contract_proposal.md`.
 
 ### The contract is narrower than our schema
 `intent.schema.json` (v1, `additionalProperties: false`) allows only:
@@ -388,7 +410,7 @@ So C1 keeps its full 12-intent state internally (PostgreSQL schema `c1`: session
 | `birth_cert_copy` | `apply_service` | `svc:birth_certificate` | plan from C2 |
 | `marriage_registration` | `apply_service` | `svc:marriage_registration` (proposed) | plan from C2 once the ID exists |
 | `death_cert_copy` | `apply_service` | `svc:death_certificate` (proposed) | plan from C2 once the ID exists |
-| `general_question` | `service_info` (or `check_requirements` when it asks about documents/fees) | the mentioned service's ID if it is one of the above, else null | plan if ID set, else 422 |
+| `general_question` | `check_requirements` when the text asks about documents (document(s), docs, ලේඛන, mona documents, what do I need, ඕනෙ මොනවද), else `service_info` | `service_mentioned` mapped through `kg_service_map.json` if it is one of the above, else null | plan if ID set, else 422 |
 | `unsupported_service` | `unknown` | null | 422 "Could not identify a service" |
 | `feedback_complaint` | `unknown` | null | 422 (see gaps) |
 | `out_of_scope` | `unknown` | null | 422 |
@@ -402,15 +424,23 @@ So C1 keeps its full 12-intent state internally (PostgreSQL schema `c1`: session
 - **Slots:** `applicant_for`, `service_type`, `urgency`, `travel_date` etc. cannot be sent, although some decide the fee (passport normal/urgent)
 - **Fallbacks:** `unsupported_service`, `out_of_scope` and `feedback_complaint` all arrive as `unknown` + null and the gateway answers 422. There is no way to tell the citizen "not supported yet" vs "send this to C3"
 - Any fix (e.g. optional `entities.variant`, `entities.service_type`) is a contract change: a PR touching only `contracts\` + `shared\…\contracts.py`, approved by all four owners; breaking changes go in `schema\v2\` (CONTRIBUTING.md)
+- ✅ Proposed in `research\docs\c1_contract_proposal.md` (18 Oct): optional `route`, `entities.variant`, `entities.service_type` / `urgency`, and `bot_text` in the request. Not yet sent to the team
 
 ### To do
-- ⬜ `app\core\`: language segmentation → intent + entity extraction → dialogue state → projection to `Intent` (table above), called from `pipeline.resolve()`
-- ⬜ Keep stub mode working; the other components and CI test against it
+- ✅ `app\core\`: language segmentation → intent + entity extraction → dialogue state → projection to `Intent` (table above), called from `pipeline.resolve()`
+- ✅ Keep stub mode working; the other components and CI test against it
 - ⬜ Store sessions and turns in PostgreSQL schema `c1`
-- ⬜ Unit tests for the projection: one per row of the table, validated against `intent.schema.json`
-- ⬜ Propose the contract additions above (variant, service type, fallback reason) to the team
-- ⬜ Log latency per request (needed later for the trade-off curve)
-- ⬜ Heavy libraries go in the `research` extra in `pyproject.toml`, not the base dependencies (CI installs `.[dev]` only)
+- ✅ Unit tests for the projection: one per row of the table, validated against `intent.schema.json`
+- 🔄 Propose the contract additions above to the team (`c1_contract_proposal.md` written, not sent)
+- ✅ Log latency per request (one log line per request; per-turn `latency_ms` in `/v1/intent/details`)
+- ✅ Heavy libraries go in the `research` extra in `pyproject.toml`, not the base dependencies (CI installs `.[dev]` only)
+- ⬜ Docker: the image installs only the base dependencies, so it runs in stub mode; a C1-only override with the `research` extra and the models mounted is not done
+- ⬜ Run through the gateway with `docker compose up --build`
+
+**Known model limits seen in the service (18 Oct, `run_v2_seed1`):**
+- Complaints are weak: of 6 test complaint messages, each in a new session, only 2 were `feedback_complaint` (0.42, 0.44); the others went to `unsupported_service`, `passport_new` or below the threshold. After a passport turn, window_3 context pulls a complaint to `passport_renew` (0.86). Fix after PP1 with more training data, measured on held-out data
+- `general_question` is rarely predicted: "what documents do I need for a new NIC?" → `nic_update` 0.50, "NIC ekak ganna mona documents da one?" → below the threshold. So `check_requirements` is not in the demo
+- A short "ow ikmanata one" after an NIC-lost turn flipped to `nic_update` (0.71); the demo asks for urgency in the first message instead
 
 Why FastAPI: fast, async, auto-generates API docs, and the team already uses it as the common serving layer.
 
@@ -418,8 +448,8 @@ Why FastAPI: fast, async, auto-generates API docs, and the team already uses it 
 
 ## 8. PP1 demo & slides ⬜ (due 20 Oct)
 
-- ⬜ Pick demo dialogue (e.g. multi-turn NIC update with a correction)
-- ⬜ Test full demo flow end to end
+- ✅ Demo dialogues in `service\scripts\demo_conversation.py` (18 Oct): **A** NIC lost with urgency, district Matara corrected to Galle, ends with nothing missing; **B** complaint → `trust_verification`; **C** driving licence → `fallback`; Sinhala-script birth certificate copy; English new passport
+- 🔄 Test full demo flow end to end (C1 alone ✅ against a live uvicorn; through the gateway ⬜)
 - ⬜ Record a backup demo video
 - ⬜ Slides
   - Baseline findings (fastText on romanized Sinhala: 35.2% on gold, 26.2% on the fresh set; XLM-R tokenizer fragmentation)
@@ -511,6 +541,9 @@ Paths are relative to `components\c1-intent\`. Full data file descriptions are i
 | `research\docs\c1_results_log.md` | Results write-up for the report | 🔄 |
 | `research\docs\TASKS.md` | Short PP1 task list | 🔄 |
 | `research\docs\c2_open_questions.md` | Questions for C2 on service IDs | ✅ ready to send |
+| `research\docs\c1_contract_proposal.md` | Proposed optional contract fields (route, variant, service type / urgency, bot_text) | ✅ ready to send |
+| `service\app\core\` | `pipeline.py`, `engine.py`, `dst.py`, `projection.py`, `sessions.py` | ✅ |
+| `service\scripts\demo_conversation.py` | Demo conversations against `/v1/intent/details` | ✅ |
 
 ## Decision log
 
@@ -544,3 +577,6 @@ Paths are relative to `components\c1-intent\`. Full data file descriptions are i
 | 18 Oct 2026 | Hybrid rule-based slot extractor + state tracker instead of XLM-R NER alone | Fresh entity F1 0.73 vs 0.48 |
 | 18 Oct 2026 | Fresh-set states proposed by an LLM and checked by the author; gold is the development set for the rules | The rules were written while reading gold, so only synthetic and fresh are held out |
 | 18 Oct 2026 | Synthetic data for the 4 support intents (prompt v5) | So all 142 gold turns can be scored and complaints can be routed to C3 |
+| 18 Oct 2026 | C1-only `/v1/intent/details` endpoint carries the route and full state; the contract is unchanged; contract additions proposed in `docs/c1_contract_proposal.md` | The v1 contract cannot say "send this to trust verification", and changing it needs all four owners |
+| 18 Oct 2026 | Service confidence threshold 0.35 (`C1_MIN_CONFIDENCE`), with a keyword fallback to `unsupported_service` below it; no complaint keyword rule | At 0.5 the v2 model's correct answers for the driving-licence (0.50) and complaint (0.42–0.44) demo turns were discarded; complaints get more training data after PP1 instead |
+| 18 Oct 2026 | Service requires Python ≥ 3.10 (Docker and CI stay on 3.11) | The `nlp` env is 3.10 and runs the models locally |
