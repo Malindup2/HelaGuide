@@ -116,3 +116,9 @@ def test_a_genuine_duplicate_certificate_still_holds():
                   service_id="svc:nic_duplicate", value_text="svc:nic", value_num=None, unit=None,
                   detail={"requires_service": "svc:nic"},
                   evidence="Apply for a duplicate certificate if the original is lost")
+
+
+def test_a_plural_duration_word_is_still_a_duration():
+    assert ok(predicate="processing_time", value_text="fourteen days", value_num=None, unit=None)
+    assert ok(predicate="processing_time", value_text="within a period of six months", value_num=None, unit=None)
+    assert not ok(predicate="processing_time", value_text="as soon as possible", value_num=None, unit=None)
