@@ -749,3 +749,133 @@ seeds:
   - url: https://www.rgd.gov.lk/web/index.php/en/statistics/vital-statistics
     agency: Registrar General's Department
     note: "vital-statistics"
+  # ---- IRD: found by following links from the English home page, 2026-10-12
+  - url: https://www.ird.gov.lk/en/Downloads/SitePages/Forms.aspx?menuid=1804
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Downloads/SitePages/Quick%20Guides.aspx?menuid=1606
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Downloads/SitePages/Schedules.aspx?menuid=1604
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Downloads/SitePages/Tools.aspx?menuid=1605
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/SitePages/Contact%20Us.aspx
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/SitePages/FAQs.aspx
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Capital%20Gain%20Tax%20(CGT).aspx?menuid=1208
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Construction%20Industry%20Guarantee%20Fund%20Levy%20(CIGFL).aspx?menuid=1216
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Employer%20responsibilities%20(PAYE).aspx?menuid=1409
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Pay%20As%20You%20Earn%20(PAYE).aspx?menuid=1202
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Share%20Transaction%20Levy.aspx?menuid=1211
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Tourist%20VAT%20Refund%20Scheme%20(TVRS).aspx?menuid=1213
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Unit%20and%20Services/SitePages/Customer%20Service_Promotion%20Units.aspx?menuid=1303
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Unit%20and%20Services/SitePages/L_M_Corporate%20Refunds.aspx?menuid=1305
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Betting%20and%20Gaming%20Levy%20Unit.aspx?menuid=1307
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Information%20Branch.aspx?menuid=1310
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Metropolitan%20and%20Regional%20Offices.aspx?menuid=1304
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Stamp%20Duty.aspx?menuid=1306
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD_Units.aspx?menuid=1105
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/eServices/
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/eServices/SitePages/Access%20To%20e-Services.aspx?menuid=1803
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/eServices/SitePages/Taxpayer%20Services%20Unit.aspx?menuid=180501
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/eServices/sitepages/Registration.aspx?menuid=180101
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/eServices/sitepages/e-services.aspx?menuid=18
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/SitePages/Guide%20to%20Taxpayers.aspx?menuid=1403
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/SitePages/Inactive%20VAT%20List.aspx?menuid=1411
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/SitePages/Issuing%20of%20Privilege%20Cards.aspx?menuid=1406
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/SitePages/Online_Pay_OTP.aspx?menuid=141601
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/SitePages/Tax%20Calendar.aspx?menuid=1405
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/SitePages/VAT%20Refund%20Procedure.aspx?menuid=1410
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/SitePages/ramis_pay_din.aspx?menuid=141602
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/SitePages/tax_chart_2526.aspx?menuid=140408
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1305
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/sitepages/advanced_pricing_agreement-apa.aspx?menuid=140103
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502
+    agency: Inland Revenue Department
+    note: ""
+  - url: https://www.ird.gov.lk/en/type%20of%20taxes/sitepages/social%20security%20contribution%20levy%20(sscl).aspx?menuid=1207
+    agency: Inland Revenue Department
+    note: ""

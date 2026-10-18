@@ -187,6 +187,8 @@ def parse_contacts(html: str, md: str, page_url: str) -> list[dict]:
 
 _LABELLED = re.compile(r"^\s*[*_]*\s*(hotline|phone|telephone|tel(?:\.| no\.?)?|fax|e-?mail)\s*[*_]*\s*:?\s*[*_]*\s*:?\s*(.+?)\s*$", re.I)
 _BOLD = re.compile(r"^\s*\*\*([^*\n]{3,110})\*\*\s*$")
+_BOLD_IN_CELL = re.compile(r"\*\*([^*\n]{3,110})\*\*")   # a bold name inside a table cell
+_CALL_CENTRE = re.compile(r"(?i)call ?cent(re|er)|hotline")
 _LABEL_WORDS = re.compile(r"(?i)^(telephone|tel|phone|fax|e-?mail|email|web ?site|hotline|contact details)")
 
 
@@ -249,6 +251,21 @@ def _more_contacts(html: str, md: str, page_url: str, have: list[dict]) -> list[
             continue
         if line.lstrip().startswith("#") or text.endswith(":") or (len(text) < 70 and not person.match(text)):
             label = text.rstrip(":").strip()
+
+    # 1c. a table that breaks across lines: the bold name sits in its own cell and the office,
+    # fax and e-mail land on the lines after it. An e-mail is unambiguous, so it is read wherever
+    # it appears and attached to the name above it.
+    role = ""
+    for line in (md or "").splitlines():
+        cell = re.sub(r"[|*_​]+", " ", line)
+        name = _BOLD_IN_CELL.search(line)
+        if name and not _LABEL_WORDS.match(_clean(name.group(1))):
+            role = _clean(name.group(1)).rstrip(":")
+        for addr in _EMAIL.findall(line):
+            add("email", role or "Department", addr, line, "branch" if role else "department")
+        if _CALL_CENTRE.search(cell):
+            for n in re.findall(r"1\d{3}", cell):
+                add("phone", "Call Centre", n, line)
 
     # 2. two-column tables: topic | number(s)
     for rows in _tables(html):

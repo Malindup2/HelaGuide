@@ -787,3 +787,22 @@ def test_the_model_cannot_invent_a_form_address():
     f = next(x for x in run(FakeLLM(p), text=FORM_PAGE, service="svc:nic").facts
              if x.predicate == "document")
     assert "forms" not in f.detail
+
+
+@pytest.mark.parametrize("text,value", [
+    ("ten thousand rupees", 10_000.0),
+    ("two thousand rupees", 2_000.0),
+    ("rupees five hundred", 500.0),
+    ("Five million rupees", 5_000_000.0),
+    ("Five hundred million rupees", 500_000_000.0),
+])
+def test_a_fee_spelled_out_in_words_still_gives_a_number(text, value):
+    from app.core.extraction.ontology import parse_amount
+
+    assert parse_amount(text) == (value, "LKR")
+
+
+def test_a_year_near_rupees_does_not_get_mistaken_for_the_fee():
+    from app.core.extraction.ontology import parse_amount
+
+    assert parse_amount("rupees are the currency of Sri Lanka")[0] is None

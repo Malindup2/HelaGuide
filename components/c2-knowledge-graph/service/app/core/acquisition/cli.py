@@ -26,6 +26,8 @@ from app.core.acquisition.monitor import JsonlRunLog, PageResult, run_pass
 from app.core.acquisition.pdf import PdfAwareFetcher
 from app.core.acquisition.ratelimit import HostRateLimiter
 from app.core.acquisition.robots import RobotsPolicy
+from urllib.parse import urlsplit
+
 from app.core.acquisition.seeds import load_seeds, summarise
 from app.core.acquisition.store import SnapshotStore
 
@@ -70,6 +72,12 @@ async def _run(args: argparse.Namespace) -> int:
     if not seeds:
         print(f"no seeds in {args.seeds}")
         return 1
+    if args.only:
+        seeds = [s for s in seeds if args.only.lower() in urlsplit(s.url).netloc.lower()]
+        if not seeds:
+            print(f"no seed matches --only {args.only}")
+            return 1
+        print(f"only {args.only}: {len(seeds)} seed(s)")
     inner, fetcher = _fetcher(args)
     store, log = SnapshotStore(args.root), JsonlRunLog(args.root)
     pg = None
@@ -333,6 +341,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--min-interval", type=float, default=2.0, help="seconds between requests to one host")
     ap.add_argument("--report", action="store_true", help="print the measured change profile and exit")
     ap.add_argument("--check-seeds", action="store_true", help="validate the seed list and exit")
+    ap.add_argument("--only", metavar="HOST",
+                    help="crawl only the seeds of this site, e.g. --only ird.gov.lk")
     ap.add_argument("--db", action="store_true", help="also log to PostgreSQL, using the repo .env")
     ap.add_argument("--database-url", help="PostgreSQL DSN (overrides --db)")
     ap.add_argument("--discover", metavar="URL", help="list and score the pages this URL links to")

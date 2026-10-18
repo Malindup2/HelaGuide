@@ -82,11 +82,15 @@ def _agency_key(name: str) -> frozenset[str]:
 
 def canonical_agency(name: str, known: list[str]) -> str:
     """A page may write the agency's name slightly differently ("Department of Registration of
-    Persons"). If an agency with the same words already exists, use its name, so one agency is
-    never split in two."""
+    Persons", or with a trailing "Sri Lanka" a footer adds). If an agency whose words are the
+    same, or a subset of either name, already exists, use its name, so one agency is never split
+    in two."""
     key = _agency_key(name)
+    if not key:
+        return name
     for k in known:
-        if _agency_key(k) == key:
+        kk = _agency_key(k)
+        if kk and (kk == key or kk <= key or key <= kk):
             return k
     return name
 

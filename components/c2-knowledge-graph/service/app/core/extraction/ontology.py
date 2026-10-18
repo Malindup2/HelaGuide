@@ -115,12 +115,66 @@ _CURRENCY = r"(?:lkr|rs|rupees?)"
 _AMOUNT = re.compile(rf"(?i)\b({_CURRENCY})\b\.?\s*([\d][\d,]*(?:\.\d+)?)")
 _BARE_AMOUNT = re.compile(r"([\d][\d,]*(?:\.\d+)?)")
 _FREE = re.compile(r"(?i)\b(free of charge|free|no charge|nil)\b")
+_CURRENCY_WORD = re.compile(rf"(?i)^{_CURRENCY}$")
+
+_NUMBER_WORDS = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8,
+    "nine": 9, "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
+    "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19,
+    "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
+    "eighty": 80, "ninety": 90,
+}
+_SCALE_WORDS = {"hundred": 100, "thousand": 1_000, "million": 1_000_000, "billion": 1_000_000_000}
+
+
+def _words_to_number(words: list[str]) -> int | None:
+    """"five hundred million" -> 500000000. None if the words don't form a number."""
+    total = current = 0
+    seen = False
+    for w in words:
+        if w in _NUMBER_WORDS:
+            current += _NUMBER_WORDS[w]
+            seen = True
+        elif w == "hundred":
+            current = (current or 1) * 100
+            seen = True
+        elif w in _SCALE_WORDS:
+            total += (current or 1) * _SCALE_WORDS[w]
+            current = 0
+            seen = True
+        elif w != "and":
+            return None
+    return total + current if seen else None
+
+
+def _spelled_out_amount(text: str) -> float | None:
+    """A fee written in words next to a currency word ("ten thousand rupees", "rupees five
+    hundred"): the words immediately before or after "rupees"/"rs"/"lkr" are read as a number."""
+    words = re.findall(r"[a-zA-Z]+", (text or "").lower())
+    for i, w in enumerate(words):
+        if not _CURRENCY_WORD.match(w):
+            continue
+        after = []
+        for w2 in words[i + 1:]:
+            if w2 not in _NUMBER_WORDS and w2 not in _SCALE_WORDS and w2 != "and":
+                break
+            after.append(w2)
+        before = []
+        for w2 in reversed(words[:i]):
+            if w2 not in _NUMBER_WORDS and w2 not in _SCALE_WORDS and w2 != "and":
+                break
+            before.insert(0, w2)
+        n = _words_to_number(after) if after else (_words_to_number(before) if before else None)
+        if n is not None:
+            return float(n)
+    return None
 
 
 def parse_amount(text: str) -> tuple[float | None, str | None]:
     """'LKR. 10,000.00', 'LKR.20,000.00', 'LKR 3500.00' and 'Rs. 20,000' all give a number.
+    So does a fee spelled out in words next to a currency word, e.g. "ten thousand rupees".
 
-    The page uses four formats for one kind of value; the graph must hold one.
+    The page uses several formats for one kind of value; the graph must hold one.
     Returns (value, unit). Unit is only set when a currency was written.
     """
     m = _AMOUNT.search(text or "")
@@ -131,6 +185,9 @@ def parse_amount(text: str) -> tuple[float | None, str | None]:
     m = _BARE_AMOUNT.search(text or "")
     if m:
         return float(m.group(1).replace(",", "")), None
+    n = _spelled_out_amount(text)
+    if n is not None:
+        return n, "LKR"
     return None, None
 
 
