@@ -1,0 +1,3459 @@
+{
+ "generated_from": "Neo4j, live graph",
+ "count": 186,
+ "services": [
+  {
+   "service_id": "svc:administrative_review_appeal_objection",
+   "name": "Administrative Review Appeal Objection",
+   "agency": null,
+   "predicates": [
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "application_form",
+    "request_made_to_information_officer"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:adoption_of_a_child",
+   "name": "Adoption Of A Child",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "adoption_certificate",
+    "adoption_order_is_issued_by",
+    "application_for_the_re_registration",
+    "certified_copies_of_the_mother",
+    "marriage_certificate"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:alteration_of_name_or_address_tin_certificate",
+   "name": "Alteration Of Name Or Address Tin Certificate",
+   "agency": null,
+   "predicates": [
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "copy_of_form_01_form",
+    "original_tin_certificate",
+    "standard",
+    "the_written_request_for_alteration"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:amendment_of_details_in_a_birth_record",
+   "name": "Amendment Of Details In A Birth Record",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_certified_copy_of_the",
+    "a_copy_of_the_electoral",
+    "birth_certificate",
+    "certified_copies_of_records_from",
+    "certified_copy_of_the_birth",
+    "declaration_form",
+    "marriage_certificate",
+    "standard",
+    "student_record_book_and_extract",
+    "the_list_of_children_list"
+   ],
+   "requires": [
+    "svc:birth_certificate"
+   ]
+  },
+  {
+   "service_id": "svc:amendment_of_details_included_in_a_death_register",
+   "name": "Amendment Of Details Included In A Death Register",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:appeal_information_officer_decision",
+   "name": "Appeal Information Officer Decision",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "charging_an_excessive_fees",
+    "granting_of_incomplete_misleading_or",
+    "non_compliance_with_time_frames",
+    "refusing_a_request_made_for",
+    "refusing_access_to_the_information",
+    "standard_to_submit_an",
+    "the_citizen_requesting_having_reasonable",
+    "the_refusal_of_the_information"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:appeal_to_information_commission",
+   "name": "Appeal To Information Commission",
+   "agency": null,
+   "predicates": [
+    "document",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "a_copy_of_the_appeal",
+    "a_copy_of_the_request",
+    "aggrieved_with_the_decision_of",
+    "an_appeal_must_be_filed",
+    "copies_of_other_documents_relied",
+    "failure_to_obtain_a_decision",
+    "standard_to_lodge_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:applicant_declaration_about_delay",
+   "name": "Applicant Declaration About Delay",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "applicant_s_declaration_about_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:application_for_issue_of_shares",
+   "name": "Application For Issue Of Shares",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_issue_of_shares"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:application_for_land_tax",
+   "name": "Application For Land Tax",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_land_tax"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:application_for_stamp_duty_payment_on_lease_rent_promissory",
+   "name": "Application For Stamp Duty Payment On Lease Rent Promissory",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_stamp_duty_payment"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:application_for_stamp_duty_registration",
+   "name": "Application For Stamp Duty Registration",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_stamp_duty_registration"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:application_for_transfer_of_shares",
+   "name": "Application For Transfer Of Shares",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_transfer_of_shares"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:bank_information_registration_for_refunds",
+   "name": "Bank Information Registration For Refunds",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_form"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:betting_and_gaming_levy",
+   "name": "Betting And Gaming Levy",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "casino_entrance_levy_from_person_who",
+    "for_carrying_on_the_business_standard_for_every_year",
+    "through_an_agent_or_via_standard_for_every_year"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:birth_certificate",
+   "name": "Birth Certificate",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "application_form",
+    "birth_certificate",
+    "extract_of_the_birth_registry",
+    "if_the_birth_certificates_standard_each_additional_copy",
+    "receipt_bank_slip"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:birth_registration_abroad_locally",
+   "name": "Birth Registration Abroad Locally",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "accurately_completed_declaration_form",
+    "marriage_certificate",
+    "passport",
+    "receipt_obtained_by_paying_an",
+    "standard"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:birth_registration_abroad_mission",
+   "name": "Birth Registration Abroad Mission",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "accurately_completed_declaration_form",
+    "birth_certificate",
+    "passport"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:birth_registration_estate",
+   "name": "Birth Registration Estate",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "form_cr01"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:birth_registration_home",
+   "name": "Birth Registration Home",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "accurately_completed_registation_form",
+    "birth_certificate",
+    "grama_niladhari_letter",
+    "marriage_certificate",
+    "national_identity_card",
+    "standard_within_3m"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:birth_registration_hospital",
+   "name": "Birth Registration Hospital",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "accurately_completed_registration_form",
+    "birth_certificate",
+    "hospital_issued_report_confirming_the",
+    "marriage_certificate",
+    "national_identity_card"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:business_visa",
+   "name": "Business Visa",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "request_letter"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:business_visa_extension",
+   "name": "Business Visa Extension",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "for_any_country_other_than_standard_30th_day_to",
+    "for_any_country_other_than_standard_90th_day_to",
+    "for_united_states_of_america_standard_30th_day_to"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:cancellation_of_registered_power_of_attorney",
+   "name": "Cancellation Of Registered Power Of Attorney",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_copy_of_the_cancellation",
+    "national_identity_card",
+    "original_copy_of_the_cancellation",
+    "the_original_copy_of_the"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:capital_gain_tax",
+   "name": "Capital Gain Tax",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "cgt_return",
+    "for_companies",
+    "other_than_companies"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:casino_licence_application",
+   "name": "Casino Licence Application",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_form"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:citizenship_persons_of_chinese_origin",
+   "name": "Citizenship Persons Of Chinese Origin",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "citizenship_certificate_issued_upon"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:citizenship_special_provisions",
+   "name": "Citizenship Special Provisions",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "citizenship_certificate_issued_under",
+    "form_c_p_i_o",
+    "form_ic_c_spa",
+    "schedule_a",
+    "schedule_c"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:construction_industry_guarantee_fund_levy",
+   "name": "Construction Industry Guarantee Fund Levy",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "fee",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "obtain_a_registration_from_the",
+    "remittance_deadline_for_payer",
+    "standard_less_than_rs",
+    "standard_not_less_than",
+    "standard_rs_150_m"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:correction_of_an_error_in_a_kandyan_marriage_certificate",
+   "name": "Correction Of An Error In A Kandyan Marriage Certificate",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "affidavit",
+    "marriage_certificate",
+    "other_documents_required_to_proof"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:correction_of_an_error_in_a_muslim_marriage_certificate",
+   "name": "Correction Of An Error In A Muslim Marriage Certificate",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "affidavit",
+    "marriage_certificate"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:correction_of_an_error_in_general_marriage_certificate",
+   "name": "Correction Of An Error In General Marriage Certificate",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "documents_requested_by_the_courts",
+    "marriage_certificate"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:declaration_nic_not_obtained",
+   "name": "Declaration Nic Not Obtained",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "national_identity_card"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:divorce_of_a_kandyan_marriage",
+   "name": "Divorce Of A Kandyan Marriage",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "application_form",
+    "marriage_certificate"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:document_registration",
+   "name": "Document Registration",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "the_original_copy_or_a"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:document_search",
+   "name": "Document Search",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "application_form",
+    "results_of_search_of_registers",
+    "the_fee_for_one_land"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:dream_home_visa_extension",
+   "name": "Dream Home Visa Extension",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_certified_copy_of_latest",
+    "marriage_certificate",
+    "minor_per_year_after_16y",
+    "passport",
+    "photographs",
+    "police_clearance_report",
+    "source_of_income_pension_superannuation"
+   ],
+   "requires": [
+    "svc:passport",
+    "svc:police_clearance"
+   ]
+  },
+  {
+   "service_id": "svc:dual_citizenship",
+   "name": "Dual Citizenship",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "affidavit",
+    "applicant_s_educational_professional",
+    "applications_should_be_submitted_prior",
+    "birth_certificate",
+    "certificate_from_the_relevant_authority",
+    "certified_copy_of_applicant_s",
+    "certified_copy_of_foreign_citizenship",
+    "certified_copy_of_permanent_residence",
+    "confirmation_letter_from_the_bank",
+    "form_k",
+    "form_s",
+    "issuance_of_certified_copies_standard",
+    "main_applicant_standard",
+    "minor_standard",
+    "original_valuation_report",
+    "passport",
+    "photographs",
+    "police_clearance_report",
+    "relevant_fixed_deposit_certificate",
+    "spouse_of_applicant_standard",
+    "title_repot_with_pedigree",
+    "visa_of_the_other_country"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:passport",
+    "svc:police_clearance"
+   ]
+  },
+  {
+   "service_id": "svc:economic_service_charge",
+   "name": "Economic Service Charge",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "rate_with_effect_from",
+    "return_of_esc"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:expeditious_service_instrument_registration",
+   "name": "Expeditious Service Instrument Registration",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "addresses_total_with_expeditious_service",
+    "agreements_to_sell_total_with_expeditious_service",
+    "cancellation_of_life_interest_total_with_expeditious_service",
+    "certificates_of_sale_with_the_total_with_expeditious_service",
+    "extract_copy_of_the_title_total_with_expeditious_service",
+    "for_issuance_of_a_title_standard",
+    "for_obtaining_of_a_copy_of_standard",
+    "instrument_of_cancellation_total_with_expeditious_service",
+    "instruments_declared_by_other_total_with_expeditious_service",
+    "leases_total_with_expeditious_service",
+    "mortgages_total_with_expeditious_service",
+    "other_application_fees_total_with_expeditious_service",
+    "other_instruments_prescribed_total_with_expeditious_service",
+    "priority_notices_total_with_expeditious_service",
+    "sales_transfers_gifts_with_the_total_with_expeditious_service"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:fees_under_births_and_deaths_registration_act",
+   "name": "Fees Under Births And Deaths Registration Act",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "alteration_of_information_in_a_standard",
+    "amended_standard",
+    "for_the_issue_of_a_certified_standard",
+    "for_the_issue_of_a_certified_standard_after_2y",
+    "late_registration_of_past_standard_after_12m",
+    "late_registration_of_past_standard_within_12m",
+    "registration_of_past_births_or_standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:foreign_marriage_registration",
+   "name": "Foreign Marriage Registration",
+   "agency": null,
+   "predicates": [
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "birth_certificate"
+   ],
+   "requires": [
+    "svc:birth_certificate"
+   ]
+  },
+  {
+   "service_id": "svc:granting_citizenship_to_persons_of_indian_origin",
+   "name": "Granting Citizenship To Persons Of Indian Origin",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "a_copy_of_the_letter",
+    "affidavit",
+    "birth_certificate",
+    "citizenship_certificate_issued_after",
+    "citizenship_certificate_issued_upon",
+    "legal",
+    "passport"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:gratis_visa",
+   "name": "Gratis Visa",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "passport",
+    "recommendation_letter_of_the_ministry",
+    "standard"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:handing_over_esc_returns",
+   "name": "Handing Over Esc Returns",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "returns_of_economic_service_charge"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:handing_over_nbt_returns",
+   "name": "Handing Over Nbt Returns",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "returns_of_nation_building_tax"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:handing_over_paye_returns",
+   "name": "Handing Over Paye Returns",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "returns_of_pay_as_you"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:handing_over_vat_returns_general",
+   "name": "Handing Over Vat Returns General",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "returns_of_value_added_tax"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:handing_over_vat_returns_special_projects",
+   "name": "Handing Over Vat Returns Special Projects",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "returns_of_value_added_tax"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:income_tax",
+   "name": "Income Tax",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "1st_installment_payment_due_date",
+    "2nd_installment_payment_due_date",
+    "3rd_installment_payment_due_date",
+    "4th_installment_payment_due_date",
+    "final_installment_payment_due_date",
+    "furnish_returns_submission_due_date",
+    "furnishing_set_submission_due_date",
+    "income_tax_it_return",
+    "statement_of_estimated_tax_payable"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:inspection_of_documents",
+   "name": "Inspection Of Documents",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "application_form"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:issuance_of_certificates_of_probable_age",
+   "name": "Issuance Of Certificates Of Probable Age",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "affidavit",
+    "declaration_form",
+    "documents_search_result",
+    "grama_niladhari_letter",
+    "information_capable_of_proving_the",
+    "probable_age_certificate"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:issuance_of_extract_copies_of_a_title_register",
+   "name": "Issuance Of Extract Copies Of A Title Register",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "application_ti_re_30"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:issuing_handing_over_income_tax_returns",
+   "name": "Issuing Handing Over Income Tax Returns",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "returns_of_income_tax_it"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:issuing_of_privilege_cards",
+   "name": "Issuing Of Privilege Cards",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "all_taxes_declared_in_the",
+    "any_source_tax_deductions_must",
+    "national_identity_card",
+    "the_taxpayer_must_have_paid",
+    "the_taxpayer_must_have_submitted",
+    "the_taxpayer_s_compliance_history"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:issuing_paying_in_slips_various_taxes",
+   "name": "Issuing Paying In Slips Various Taxes",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "paying_in_slips_of_income"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:late_birth_registration",
+   "name": "Late Birth Registration",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "a_certificate_from_the_family",
+    "certificate_of_baptism",
+    "certificate_starting_that_the_birth",
+    "certify_copy_of_the_school",
+    "declaration_form_under_section_24",
+    "estate_birth_report_or_a",
+    "grama_niladhari_letter",
+    "health_development_chart",
+    "health_development_chart_chdr",
+    "horoscope_or_birth_chart_prepared",
+    "hospital_birth_report_or_a",
+    "report_of_the_estate_welfare",
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nation_building_tax",
+   "name": "Nation Building Tax",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "nation_building_tax_nbt_returns",
+    "on_the_liable_turnover_other",
+    "one_half_of_the_liable_on_the_liable_turnover_from",
+    "the_balance_liable_turnover_on_the_liable_turnover_from",
+    "three_fourth_of_the_liable_on_the_liable_turnover_from"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:naval_crew_bond_sticker_issuance",
+   "name": "Naval Crew Bond Sticker Issuance",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "sign_a_bond",
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic",
+   "name": "Nic",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "eligibility",
+    "fee",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "affidavit",
+    "amended_postage",
+    "amended_standard",
+    "an_image_of_the_applicant",
+    "applicant_s_signature_or_the",
+    "application_form",
+    "birth_certificate",
+    "certificate_documentary_proof_confirming",
+    "certificates_issued_by_the_relevant",
+    "certificates_of_reclining_of_clergy",
+    "certificates_of_reclining_of_clergyship",
+    "certifying_the_application",
+    "citizenship_certificate_issued_by_the",
+    "completing_the_application",
+    "documents_to_prove_the_name",
+    "dual_citizen_postage",
+    "dual_citizen_standard",
+    "dual_citizen_standard_after_6m",
+    "dual_citizenship_certificate",
+    "finger_impressions_of_all_fingers",
+    "first_issue_standard",
+    "first_issue_standard_after_1y",
+    "first_issue_standard_late_application",
+    "for_a_citizen_who_enters_sri",
+    "for_a_person_who_attains_the",
+    "for_a_person_who_becomes",
+    "form_d_r_p_op",
+    "form_i",
+    "grama_niladhari_letter",
+    "lost_postage",
+    "lost_standard",
+    "marriage_certificate",
+    "national_identity_card",
+    "normal_service_standard",
+    "obtaining_the_countersignature_of_the",
+    "one_day",
+    "one_day_service_standard",
+    "ordination_certificate",
+    "original_copy_of_the_police",
+    "photocopy_of_the_birth_cetificate",
+    "photocopy_of_the_certificate_of",
+    "photocopy_of_the_cetificate_issued",
+    "photocopy_of_the_citizenship_certificate",
+    "photographs",
+    "police_entry",
+    "prescribed_biometrics",
+    "probable_age_certificate",
+    "probable_age_certificate_or_results",
+    "receipt_of_payment_of_application",
+    "receipt_of_payment_of_prescribed",
+    "registered_post_postage_effective_from_10",
+    "report_of_the_divisional_secretary",
+    "report_to_the_nearest_police",
+    "standard_1d",
+    "standard_false_information",
+    "standard_repeat_submission"
+   ],
+   "requires": [
+    "svc:birth_certificate"
+   ]
+  },
+  {
+   "service_id": "svc:nic_address_verification_dual_citizenship",
+   "name": "Nic Address Verification Dual Citizenship",
+   "agency": null,
+   "predicates": [
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "applicant_must_be_a_dual",
+    "certification_of_the_commissioner_of",
+    "declaration_of_the_address_holder",
+    "declaration_of_the_dual_citizenship",
+    "dual_citizenship_holder",
+    "national_identity_card"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_amendment",
+   "name": "Nic Amendment",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "amended_standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_authenticity_certificate",
+   "name": "Nic Authenticity Certificate",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_bhikkuni_title",
+   "name": "Nic Bhikkuni Title",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "declaration_form_registered_by_the",
+    "obtained_samaneri_upasampada_under"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_certified_copy",
+   "name": "Nic Certified Copy",
+   "agency": null,
+   "predicates": [
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_written_request"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_collection",
+   "name": "Nic Collection",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "eligibility"
+   ],
+   "qualifiers": [
+    "letter_authorized_by_gramaniladhari"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_duplicate_damaged_or_changed_info",
+   "name": "Nic Duplicate Damaged Or Changed Info",
+   "agency": null,
+   "predicates": [
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "an_image_of_the_applicant",
+    "photographs",
+    "prescribed_biometrics",
+    "report_that_fact_in_writing",
+    "the_original_of_that_card"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_duplicate_lost",
+   "name": "Nic Duplicate Lost",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "an_image_of_the_applicant",
+    "biometrics",
+    "form_m",
+    "lost_standard",
+    "prescribed_biometrics",
+    "report_such_loss_to_the",
+    "submit_a_declaration_to_that"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_expedited_service",
+   "name": "Nic Expedited Service",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_failure_to_obtain_offence",
+   "name": "Nic Failure To Obtain Offence",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "national_identity_card"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_late_application_penalty",
+   "name": "Nic Late Application Penalty",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "national_identity_card",
+    "statement_must_be_certified_by"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_number_confirmation_foreign_missions",
+   "name": "Nic Number Confirmation Foreign Missions",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "eligibility",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "national_identity_card",
+    "standard"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:nic_number_verification",
+   "name": "Nic Number Verification",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "eligibility",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "birth_certificate",
+    "deceased_person_standard",
+    "grama_niladhari_letter",
+    "national_identity_card",
+    "request_of_the_relevant_person"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:nic_number_verification_deceased",
+   "name": "Nic Number Verification Deceased",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "eligibility",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "either_the_original_and_the",
+    "grama_niladhari_letter",
+    "national_identity_card",
+    "original_and_photocopy_of_the",
+    "original_and_the_photocopy_of",
+    "request_made_by_the_applicant",
+    "standard",
+    "the_closest_relation_applicant_of"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_particulars_certification",
+   "name": "Nic Particulars Certification",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "for_personal_requests_standard",
+    "for_requests_made_by_banks_in_standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_reapplication_dual_citizenship_19_2",
+   "name": "Nic Reapplication Dual Citizenship 19 2",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "eligibility",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "national_identity_card",
+    "obtained_dual_citizenship_under_19"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_renewal_amendment",
+   "name": "Nic Renewal Amendment",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "biometric_information",
+    "for_applying",
+    "form_m",
+    "photographs"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_surrender_cessation_citizenship",
+   "name": "Nic Surrender Cessation Citizenship",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "declaration_made_in_the_form",
+    "national_identity_card",
+    "of_such_cessation"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_surrender_foreign_citizenship",
+   "name": "Nic Surrender Foreign Citizenship",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "obtained_the_citizenship_of_a"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_surrender_recovered_lost",
+   "name": "Nic Surrender Recovered Lost",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "from_the_date_it_was_found",
+    "original_of_such_card"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_temporary_address_verification",
+   "name": "Nic Temporary Address Verification",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "consent_of_the_address_holder"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:nic_translation",
+   "name": "Nic Translation",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "eligibility",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_letter_of_authorization_given",
+    "english_standard",
+    "grama_niladhari_letter",
+    "national_identity_card",
+    "standard"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:notary_charges",
+   "name": "Notary Charges",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "expedited_services_fees_addresses_fixed_fee_up_to_2",
+    "expedited_services_fees_agreements_fixed_fee_up_to_2",
+    "expedited_services_fees_cancellation_of_leases_fixed",
+    "expedited_services_fees_cancellation_of_mortgages",
+    "expedited_services_fees_for_each_additional_schedule",
+    "expedited_services_fees_gifts_fixed_fee_up_to_2",
+    "expedited_services_fees_leases_fixed_fee_up_to_2_land",
+    "expedited_services_fees_mortgages_fixed_fee_up_to_2",
+    "expedited_services_fees_priority_notices_fixed_fee_for",
+    "expedited_services_fees_section_47_fixed_fee_up_to_2",
+    "expedited_services_fees_transfers_sales_fixed_fee_up",
+    "issuance_of_extract_copies_of_certified_copies_of_deeds",
+    "issuance_of_extract_copies_of_copy_of_an_extract_related_to",
+    "issuance_of_extract_copies_of_each_additional_unit_for_a",
+    "issuance_of_extract_copies_of_land_document_extract_copies",
+    "issuance_of_extract_copies_of_to_obtain_a_copy_of_a_deed_for",
+    "powers_of_attorney_ordinance_issuance_of_certified_copies",
+    "powers_of_attorney_ordinance_issuance_of_extract_copies_of",
+    "powers_of_attorney_ordinance_registration_of_powers_of"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtain_certified_copies_marriage_certificate",
+   "name": "Obtain Certified Copies Marriage Certificate",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "application_form",
+    "unknown_details_for_an_additional_copy_if_the_marriage"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtain_copies_of_death_certificates",
+   "name": "Obtain Copies Of Death Certificates",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "application_form",
+    "death_certificate",
+    "receipt_bank_slip"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtain_copy_of_deed",
+   "name": "Obtain Copy Of Deed",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_obtaining_copies_of"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtain_new_title_certificate_misplaced",
+   "name": "Obtain New Title Certificate Misplaced",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "affidavit",
+    "original_copy_of_the_police",
+    "requesting_letter"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtain_translated_copies_marriage_certificate",
+   "name": "Obtain Translated Copies Marriage Certificate",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "application_form",
+    "per_translated_copy",
+    "standard",
+    "the_original_copy_of_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtain_translated_copies_of_death_certificates",
+   "name": "Obtain Translated Copies Of Death Certificates",
+   "agency": null,
+   "predicates": [
+    "document",
+    "fee",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "application_form",
+    "death_certificate",
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtaining_a_certified_copy_of_a_deed",
+   "name": "Obtaining A Certified Copy Of A Deed",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "application_a32_b",
+    "bank_receipt",
+    "expedited_one_day",
+    "normal_normal"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtaining_a_certified_copy_of_a_land_record",
+   "name": "Obtaining A Certified Copy Of A Land Record",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "bank_receipt",
+    "expedited_expedited_service_fee_for_one",
+    "normal_normal"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtaining_a_temporary_vat_certificate",
+   "name": "Obtaining A Temporary Vat Certificate",
+   "agency": null,
+   "predicates": [
+    "document",
+    "fee",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "applications_submit_after_3_standard",
+    "applications_submit_before_3_standard",
+    "duly_completed_applications_standard",
+    "nic_of_the_applicant_director",
+    "standard",
+    "tax_payers_identification_number_tin"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtaining_certified_copies_of_a_title_instrument",
+   "name": "Obtaining Certified Copies Of A Title Instrument",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "application_ti_re_30"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtaining_income_tax_clearance_certificate_no_file",
+   "name": "Obtaining Income Tax Clearance Certificate No File",
+   "agency": null,
+   "predicates": [
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "bank_statements",
+    "disposal_of_immovable_properties",
+    "documentary_evidence_in_respect_of",
+    "epf_etf_documents_from_the",
+    "gifts_letters_from_the_donors",
+    "loans_letters_from_the_granters",
+    "other_sources",
+    "photocopy_of_the_certificate_of",
+    "saving_bank_pass_books",
+    "standard",
+    "withholding_tax_certificates"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:obtaining_license_at_first_time_notary",
+   "name": "Obtaining License At First Time Notary",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_certified_copy_of_the",
+    "an_application_accurately_completed_in",
+    "license_fee_to_obtain_the",
+    "national_identity_card",
+    "the_certificate_confirming_that_the",
+    "the_receipt_for_the_payment"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:obtaining_license_for_additional_languages",
+   "name": "Obtaining License For Additional Languages",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_copy_of_the_original",
+    "an_application_accurately_completed_in",
+    "fee_for_each_language_applied",
+    "national_identity_card",
+    "the_original_and_a_photocopy",
+    "the_receipt_for_the_payment"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:obtaining_translated_copies_of_birth_certificates",
+   "name": "Obtaining Translated Copies Of Birth Certificates",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "application_form",
+    "standard",
+    "the_original_copy_or_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:online_tax_payment_platform",
+   "name": "Online Tax Payment Platform",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "current_account_savings_accounts_casa",
+    "internet_banking_systems_of_the",
+    "minor_availability",
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:overseas_birth_registration",
+   "name": "Overseas Birth Registration",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "certificate_issued_at_the_registration",
+    "citizenship_i",
+    "consular_birth_certificate",
+    "for_a_delayed_application_penalty_per_each_year",
+    "for_an_application_made_within_standard_within_the_first",
+    "for_issuance_a_duplicate_of_standard",
+    "marriage_certificate",
+    "original_travel_documents_and_visas"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:overseas_missions",
+   "name": "Overseas Missions",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "form_k_35_a"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:passport",
+   "name": "Passport",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "adoption_certificate",
+    "all_applicants_have_to_come",
+    "application_form",
+    "approximate_for_this_event",
+    "authorization_letter",
+    "birth_certificate",
+    "consent_letter",
+    "consular_birth_certificate",
+    "court_order",
+    "death_certificate",
+    "diplomatic_normal",
+    "diplomatic_urgent",
+    "divorce_certificate",
+    "dual_citizenship_certificate",
+    "educational_certificate",
+    "every_applicant_above_16_years",
+    "fingerprints_will_be_collected_at",
+    "form_o",
+    "grama_niladhari_letter",
+    "identification_certificate_standard",
+    "legal_guardian_s_identification_document",
+    "lost_fine_after_1y",
+    "marriage_certificate",
+    "minor_normal_10y",
+    "minor_normal_3y",
+    "minor_urgent_10y",
+    "minor_urgent_3y",
+    "national_identity_card",
+    "official_normal",
+    "official_urgent",
+    "ordinary_normal",
+    "ordinary_urgent",
+    "ordination_certificate",
+    "passport",
+    "photo_studio_acknowledgement",
+    "police_report",
+    "probation_commissioner_letter",
+    "request_letter",
+    "studio_acknowledgement_note",
+    "temporary_travel_document"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:passport_alteration",
+   "name": "Passport Alteration",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "amended_standard",
+    "birth_certificate",
+    "cancel_india_nepal_only_standard",
+    "cancel_single_journey_standard",
+    "change_of_name_standard",
+    "documents_and_qualification_to_prove",
+    "marriage_certificate",
+    "minor_standard",
+    "national_identity_card",
+    "nic_number_inclusion_standard",
+    "originals_with_photocopies",
+    "passport",
+    "profession_inclusion_standard",
+    "standard"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:passport_certification",
+   "name": "Passport Certification",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "copies_to_be_certified",
+    "passport",
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:passport_copy_certification",
+   "name": "Passport Copy Certification",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "copies_to_be_certified",
+    "passport",
+    "standard_per_each_copy"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:passport_dispatch_approval",
+   "name": "Passport Dispatch Approval",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "an_undertaking_letter_from_a",
+    "national_identity_card",
+    "passport",
+    "request_letter",
+    "standard",
+    "the_endorsement_granted_by_the"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:passport_translation",
+   "name": "Passport Translation",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "applicant_must_present_him_her",
+    "passport",
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:passport_translation_arabic",
+   "name": "Passport Translation Arabic",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "passport",
+    "standard_per_passport_translation"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:pay_as_you_earn_tax",
+   "name": "Pay As You Earn Tax",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "annual_statement_of_employer_apit",
+    "certificate_of_income_tax_deductions",
+    "payment_due_date",
+    "return_furnishing_due_date",
+    "return_of_paye_tax_paye",
+    "schedule_01_for_remuneration_other",
+    "schedule_02_once_and_for",
+    "schedule_3_list_of_employees"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:permanent_residence_visa",
+   "name": "Permanent Residence Visa",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "birth_certificate",
+    "consent_letter",
+    "dual_citizenship_certificate",
+    "dual_citizenship_of_the_deceased",
+    "for_the_category_a_where_sri_standard",
+    "for_the_category_b_foreign_standard",
+    "for_the_subcategory_c_foreign_standard",
+    "initial_issue_of_the_card",
+    "minor_per_person",
+    "national_identity_card",
+    "passport",
+    "photographs",
+    "police_clearance_report",
+    "renewal_fee_for_the_prv_card_after_the_period",
+    "subcategory_i_d_foreign_spouse_standard"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic",
+    "svc:passport",
+    "svc:police_clearance"
+   ]
+  },
+  {
+   "service_id": "svc:photo_studio_registration",
+   "name": "Photo Studio Registration",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:photo_studio_registration_renewal",
+   "name": "Photo Studio Registration Renewal",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "standard_2y"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:photographer_registration_nic",
+   "name": "Photographer Registration Nic",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "photographs",
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:photographer_registration_nic_renewal",
+   "name": "Photographer Registration Nic Renewal",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "annual"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:pin_request",
+   "name": "Pin Request",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "registered_taxpayer_with_a_taxpayer"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:police_clearance",
+   "name": "Police Clearance",
+   "agency": null,
+   "predicates": [],
+   "qualifiers": [],
+   "requires": []
+  },
+  {
+   "service_id": "svc:power_of_attorney_charges",
+   "name": "Power Of Attorney Charges",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "expedited_expedited",
+    "normal_normal"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:privilege_card_application",
+   "name": "Privilege Card Application",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_form"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:procedure_employing_foreigner",
+   "name": "Procedure Employing Foreigner",
+   "agency": null,
+   "predicates": [
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "the_foreigner_should_have_a",
+    "the_job_seeker_should_arrive",
+    "within_the_period_of_stay"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:procedure_for_the_registration_of_marriages_between_a_sri",
+   "name": "Procedure For The Registration Of Marriages Between A Sri",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "application_form",
+    "certificate_confirming_civil_status",
+    "legal_documents_proving_such_status",
+    "license_issued_by_the_registrar",
+    "national_identity_card",
+    "notice_of_marriage",
+    "passport",
+    "self_declaration_health_declaration",
+    "to_obtain_the_clearance_report",
+    "visa_required_for_the_foreign"
+   ],
+   "requires": [
+    "svc:nic",
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:re_register_birth_adopted_child",
+   "name": "Re Register Birth Adopted Child",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency"
+   ],
+   "qualifiers": [],
+   "requires": []
+  },
+  {
+   "service_id": "svc:rectification_of_erroneously_registered_documents",
+   "name": "Rectification Of Erroneously Registered Documents",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "a_letter_of_request_asking",
+    "certified_copies_of_the_extracts",
+    "the_original_copy_of_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:register_birth_death_outside_sri_lanka",
+   "name": "Register Birth Death Outside Sri Lanka",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "birth_certificate",
+    "document_to_confirm_the_cause",
+    "hospital_records",
+    "information_of_the_deceased_person",
+    "passport"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:register_caveat_injunction",
+   "name": "Register Caveat Injunction",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "affidavit",
+    "caveat_injunction",
+    "certificate_issued_by_a_lawyer"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:registration_as_photographer_for_nic",
+   "name": "Registration As Photographer For Nic",
+   "agency": null,
+   "predicates": [
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "photographs",
+    "registration_standard",
+    "renewal_standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:registration_in_this_country_of_the_death_of_a_person_who",
+   "name": "Registration In This Country Of The Death Of A Person Who",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_9_4_sized_envelope",
+    "birth_certificate",
+    "death_certificate",
+    "declaration_form_required_to_give",
+    "duly_completed_declaration_form",
+    "marriage_certificate",
+    "national_identity_card",
+    "passport",
+    "standard",
+    "the_receipt_obtained_by_paying",
+    "translations_of_documents_in_languages"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:registration_of_a_death_occurring_in_a_hospital",
+   "name": "Registration Of A Death Occurring In A Hospital",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "duly_completed_registration_form_cr02",
+    "registration_cr02_form",
+    "standard_within_3m",
+    "the_report_issued_by_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:registration_of_a_death_occurring_in_a_house",
+   "name": "Registration Of A Death Occurring In A House",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "death_registration_form_cr02",
+    "grama_niladhari_letter",
+    "standard",
+    "standard_within_3m"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:registration_of_a_death_occurring_in_a_registered_estate",
+   "name": "Registration Of A Death Occurring In A Registered Estate",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "standard",
+    "the_estate_superintendent_s_death",
+    "the_following_qualified_persons_must"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:registration_of_a_delayed_death",
+   "name": "Registration Of A Delayed Death",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "declaration",
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:registration_of_betting_gaming_businesses",
+   "name": "Registration Of Betting Gaming Businesses",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_registration_of_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:registration_of_deaths_missing_persons_certificates_of",
+   "name": "Registration Of Deaths Missing Persons Certificates Of",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "a_certified_copy_of_the",
+    "other_evidence_substantiating_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:registration_of_marriages_general",
+   "name": "Registration Of Marriages General",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "birth_certificate",
+    "entering_a_notice_of_marriage",
+    "issuance_of_a_home_license_for",
+    "issuance_of_the_additional",
+    "issuance_of_the_registrar_s",
+    "marriage_certificate",
+    "national_identity_card",
+    "notice_of_marriage",
+    "obtaining_a_special_license",
+    "registration_of_a_general",
+    "registration_of_a_marriage",
+    "solemnization_of_marriage",
+    "solemnization_of_marriage_at"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:registration_of_marriages_under_kandyan_law",
+   "name": "Registration Of Marriages Under Kandyan Law",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "birth_certificate",
+    "entering_a_notice_of_marriage",
+    "issuance_of_a_home_license_for",
+    "issuance_of_the_additional",
+    "issuance_of_the_registrar_s",
+    "national_identity_card",
+    "notice_of_marriage",
+    "registering_a_marriage_under",
+    "requests_made_to_obtain_a",
+    "solemnization_of_marriage",
+    "solemnization_of_marriage_at"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:registration_of_power_of_attorney",
+   "name": "Registration Of Power Of Attorney",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_copy_of_the_power",
+    "affidavit",
+    "national_identity_card",
+    "the_original_copy_of_the"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:registration_of_subsequent_transactions_relating_to_title",
+   "name": "Registration Of Subsequent Transactions Relating To Title",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "application_form",
+    "instrument",
+    "passport",
+    "provisional_semi_or_full_condominium",
+    "stamp_duty_payment_receipt",
+    "title_certificate",
+    "title_certificate_issued_in_the"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:registration_of_the_death_of_a_sri_lankan_occurring_in_a",
+   "name": "Registration Of The Death Of A Sri Lankan Occurring In A",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "a_hospital_report_stating_the",
+    "birth_certificate",
+    "death_certificate",
+    "declaration_form_required_to_give",
+    "dual_citizenship_certificate",
+    "marriage_certificate",
+    "passport"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:release_of_terminal_benefits",
+   "name": "Release Of Terminal Benefits",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_release_of_terminal",
+    "guide_to_release_of_terminal"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:renunciation_of_citizenship",
+   "name": "Renunciation Of Citizenship",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "applicant_s_request",
+    "birth_certificate",
+    "declaration_at_the_renouncing_of",
+    "national_identity_card",
+    "passport"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic",
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:request_certified_copies_of_birth_marriage_and_death",
+   "name": "Request Certified Copies Of Birth Marriage And Death",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "local_applicants_standard",
+    "local_applicants_total"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:request_deed_and_extract_copies_via_online_platform",
+   "name": "Request Deed And Extract Copies Via Online Platform",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:residence_visa",
+   "name": "Residence Visa",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "minor_standard",
+    "residence_visa_10_standard_digital_nomad",
+    "residence_visa_4_standard_for_clergy",
+    "residence_visa_5_standard_for_a_foreign",
+    "residence_visa_6_standard_for_a_non",
+    "residence_visa_7_standard_within_10y",
+    "residence_visa_8_standard_for_a_non",
+    "residence_visa_9_standard_children_of_sri"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:residence_visa_court",
+   "name": "Residence Visa Court",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "health_protection_plan",
+    "latest_court_proceedings_indicating_the",
+    "passport",
+    "request_letter"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:residence_visa_diplomatic_official",
+   "name": "Residence Visa Diplomatic Official",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "passport",
+    "recommendation_of_the_ministry_of"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:residence_visa_educational_category",
+   "name": "Residence Visa Educational Category",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "bank_encashment_receipts_to_the",
+    "duly_filled_die_form_download",
+    "health_protection_plan",
+    "letter_from_the_university",
+    "passport",
+    "recommendation_from_ministry_of_higher",
+    "recommendation_from_the_line_ministry",
+    "recommendation_from_the_relevant_embassy",
+    "request_letter"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:residence_visa_employment_category",
+   "name": "Residence Visa Employment Category",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "agreement_of_project",
+    "article_of_association_of_the",
+    "bank_request",
+    "boi_agreement",
+    "boi_certificate",
+    "company_registration_certificate",
+    "details_of_the_board_of",
+    "health_protection_plan",
+    "memorandum_of_association_article_of",
+    "passport",
+    "project_office_request",
+    "recommendation_from_boi",
+    "recommendation_from_the_line_ministry",
+    "recommendation_of_central_bank_of",
+    "recommendation_of_line_ministry",
+    "recommendation_of_line_ministry_or",
+    "request_letter"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:residence_visa_ex_sri_lankan",
+   "name": "Residence Visa Ex Sri Lankan",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "birth_certificate",
+    "passport"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:residence_visa_family_sri_lankan",
+   "name": "Residence Visa Family Sri Lankan",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "consent_of_sri_lankan_spouse",
+    "for_a_non_sri_lankan_spouse_of_standard",
+    "marriage_certificate",
+    "national_identity_card",
+    "non_sri_lankan_spouse_of_a_sri_standard_first_issuance",
+    "passport",
+    "sri_lankan_spouse_need_to"
+   ],
+   "requires": [
+    "svc:nic",
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:residence_visa_medical",
+   "name": "Residence Visa Medical",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "bank_encashment_receipts_to_the",
+    "health_protection_plan",
+    "medical_report",
+    "passport",
+    "recommendation_letter_of_the_doctor"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:residence_visa_ngo_ingo_personnel",
+   "name": "Residence Visa Ngo Ingo Personnel",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_certified_copy_of_the",
+    "health_protection_plan",
+    "passport",
+    "recommendation_of_the_ministry_of",
+    "recommendation_of_the_non_governmental",
+    "request_of_the_organization"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:residence_visa_registered_indians",
+   "name": "Residence Visa Registered Indians",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "birth_certificate",
+    "marriage_certificate",
+    "passport",
+    "registration_certificate",
+    "request_letter"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:residence_visa_religious_category",
+   "name": "Residence Visa Religious Category",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "health_protection_plan",
+    "passport",
+    "recommendation_of_line_ministry",
+    "request_letter"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:resident_guest_scheme_visa_extension",
+   "name": "Resident Guest Scheme Visa Extension",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "already_obtained_this_visa",
+    "awards",
+    "commendations",
+    "details_of_the_project_and",
+    "documentary_evidence_for_tax_clearance",
+    "duly_completed_application",
+    "medical_report_for_applicant_and",
+    "passport",
+    "photographs",
+    "police_clearance_report",
+    "progress_report_regarding_relevant",
+    "proof_of_educational_professional_and",
+    "request_letter",
+    "standard_1y",
+    "updated_bank_statement_confirm",
+    "updated_rgfca_bank_statement_resident",
+    "updated_rgrca_bank_statement_resident"
+   ],
+   "requires": [
+    "svc:passport",
+    "svc:police_clearance"
+   ]
+  },
+  {
+   "service_id": "svc:right_to_information_fees",
+   "name": "Right To Information Fees",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "access_to_information_after",
+    "appeal",
+    "appeal_forms",
+    "application_form",
+    "copying_information_onto_device_provided_by",
+    "decision_on_request",
+    "extension_for_access_to_where_a_the",
+    "information_via_e_mail",
+    "life_and_personal_liberty_urgent",
+    "ordinarily_available",
+    "photocopies_or_printing_first_four_pages",
+    "photocopying_both_sides_a4",
+    "photocopying_both_sides_legal",
+    "photocopying_one_side_a4",
+    "photocopying_one_side_legal",
+    "printout_both_sides_a4",
+    "printout_both_sides_legal",
+    "printout_one_side_a4",
+    "printout_one_side_legal",
+    "processing_a_right_to",
+    "request_in_writing",
+    "study_or_inspection_per_hour_after"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:right_to_information_request",
+   "name": "Right To Information Request",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "fee",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "application_form_standard",
+    "copying_information_onto_standard_device_provided_by",
+    "information_prepared_or_standard",
+    "information_provided_via_e_standard",
+    "information_that_is_ordinarily_standard",
+    "photocopying_standard_a4_21_cm",
+    "photocopying_standard_legal_size_21",
+    "printout_standard_a4_21_cm",
+    "printout_standard_legal_size_21",
+    "processing_request_standard",
+    "standard_if_difficult_to",
+    "standard_to_inform_whether",
+    "standard_to_provide_information",
+    "standard_where_the_request"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:senior_citizen_refund",
+   "name": "Senior Citizen Refund",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_refund_of_advance",
+    "registration_form_for_senior_citizen"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:simplified_value_added_tax_scheme",
+   "name": "Simplified Value Added Tax Scheme",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "applicant_could_be_an_audit",
+    "applicant_himself_is_required_to",
+    "application_for_registration_under",
+    "copy_of_such_approval",
+    "national_identity_card",
+    "original_svat_certificate",
+    "the_applicant_or_an_authorized",
+    "tin_certificate",
+    "used_credit_voucher_books",
+    "vat_registration_certificate"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:social_security_contribution_levy_sscl",
+   "name": "Social Security Contribution Levy Sscl",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "rate_in_respect_of",
+    "registration_for_social_security",
+    "return_in_writing"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:solemnization_of_marriages_by_a_minister",
+   "name": "Solemnization Of Marriages By A Minister",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "birth_certificate",
+    "national_identity_card",
+    "notice_of_marriage",
+    "register_s_certificate",
+    "registration"
+   ],
+   "requires": [
+    "svc:birth_certificate",
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:stamp_duty",
+   "name": "Stamp Duty",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "a_bond_or_mortgage_for_any_standard",
+    "a_promissory_note_standard",
+    "a_receipt_or_discharge_given_standard_amount_exceeding_rs",
+    "affidavit",
+    "affidavit_standard",
+    "any_foreign_liquor_license_standard",
+    "any_instrument_relating_to_a_standard_after_20y",
+    "any_license_issued_for_the_standard_whichever_is_higher",
+    "any_liquor_license_out_of_the_standard_whichever_is_higher",
+    "any_liquor_license_out_of_the_standard_whichever_is_lower",
+    "claim_demand_or_request_made",
+    "credit_card_transactions_in_standard",
+    "hire_purchase_agreement_standard",
+    "lease_or_hire_of_any",
+    "mortgage_for_a_definite_sum",
+    "periodic_license_to_carry_on",
+    "policy_of_insurance",
+    "policy_of_insurance_standard",
+    "promissory_note",
+    "receipt_or_discharge_given_for",
+    "registration_should_be_obtained_from",
+    "remittances_for_compounded_standard",
+    "warrant_to_act_as_notary",
+    "warrant_to_act_as_notary_standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:sub_division_amalgamation_title_certificate",
+   "name": "Sub Division Amalgamation Title Certificate",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "soft_copy_of_the_plan",
+    "title_certificate"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:submission_of_self_declaration_wht_deduction",
+   "name": "Submission Of Self Declaration Wht Deduction",
+   "agency": null,
+   "predicates": [
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "form_of_the_self_declaration",
+    "obtained_a_tin_taxpayer_identification"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:submitting_appeals_for_rejected_documents",
+   "name": "Submitting Appeals For Rejected Documents",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "affidavit",
+    "appeal",
+    "the_deed_rejected_by_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:surrender_nic_deceased",
+   "name": "Surrender Nic Deceased",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "03_completed_forms_of_d",
+    "annexure_01_form_obtained_from",
+    "annexure_form_02_obtained_from",
+    "death_certificate",
+    "grama_niladhari_letter",
+    "national_identity_card",
+    "police_report",
+    "registration_of_death"
+   ],
+   "requires": [
+    "svc:nic"
+   ]
+  },
+  {
+   "service_id": "svc:tax_clearances",
+   "name": "Tax Clearances",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_for_confirmation_of_value",
+    "application_for_income_tax_clearance",
+    "application_form",
+    "expressing_consent_to_send_tax"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:tax_on_voluntary_disclosure",
+   "name": "Tax On Voluntary Disclosure",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "explanatory_note_for_imposing_tax",
+    "guidelines_on_the_manner_of",
+    "tax_on_voluntary_disclosure_form"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:taxpayer_identification_number_tin",
+   "name": "Taxpayer Identification Number Tin",
+   "agency": null,
+   "predicates": [
+    "document",
+    "fee",
+    "prerequisite",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "address_form_44",
+    "address_form_56",
+    "application_for_registration_of_a",
+    "application_for_registration_of_an",
+    "applications_submit_after_3_standard",
+    "applications_submit_before_3_standard",
+    "articles_of_association_with_signatures",
+    "authorized_person_form_46",
+    "authorized_person_form_58",
+    "boi_registration_certificate_and_boi",
+    "certificate_of_incorporation_form_2a",
+    "certificate_of_incorporation_re",
+    "certificate_of_the_business_registration",
+    "commercial_invoice_endorsed_by_bank",
+    "copy_of_registration_certificate_issued",
+    "directors_form_45",
+    "directors_form_57",
+    "duly_completed_applications_standard",
+    "export_development_board_edb",
+    "incorporation_certificate_form_42",
+    "incorporation_certificate_form_75",
+    "memorandum_of_association_articles_of",
+    "national_identity_card",
+    "other_export_relevant_documents",
+    "passport",
+    "project_agreement",
+    "request_letter",
+    "standard"
+   ],
+   "requires": [
+    "svc:nic",
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:taxpayer_registration",
+   "name": "Taxpayer Registration",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "appendix_a_for_adding_removing",
+    "appendix_b_for_adding_removing",
+    "appendix_c_for_adding_removing",
+    "appendix_d_for_adding_updating",
+    "appendix_e_for_adding_updating",
+    "application_for_change_tax_type",
+    "application_for_new_change_svat",
+    "application_for_new_update_sec",
+    "application_for_tax_type_registration",
+    "application_form"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:tourist_vat_refund_scheme",
+   "name": "Tourist Vat Refund Scheme",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "commercial_invoices",
+    "goods_declared_in_the_invoices",
+    "goods_should_be_taken_out",
+    "minimum_of_lkr_50_000",
+    "obtain_a_tourist_vat_refund",
+    "passport",
+    "purchase_goods_from_authorized_retailer",
+    "tourist_vat_refund_invoice_tvri"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:tourist_vat_refund_scheme_tvrs",
+   "name": "Tourist Vat Refund Scheme Tvrs",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "application_form",
+    "authorized_retailers",
+    "guideline_for_authorized_retailer",
+    "process_flow_chart_of_tourist"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:tourist_visa",
+   "name": "Tourist Visa",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "all_other_countries_business_standard_at_sri_lanka",
+    "all_other_countries_business_standard_at_the_head",
+    "all_other_countries_business_standard_by_the_applicant",
+    "all_other_countries_business_standard_by_third_party",
+    "all_other_countries_tourist_standard_at_sri_lanka",
+    "all_other_countries_tourist_standard_at_the_head",
+    "all_other_countries_tourist_standard_by_the_applicant",
+    "all_other_countries_tourist_standard_by_third_party",
+    "all_other_countries_tourist_standard_on_arrival_at",
+    "all_other_countries_transit_standard_at_sri_lanka",
+    "all_other_countries_transit_standard_at_the_head",
+    "all_other_countries_transit_standard_by_the_applicant",
+    "all_other_countries_transit_standard_by_third_party",
+    "all_other_countries_transit_standard_on_arrival_at",
+    "saarc_countries_business_visa_standard_at_sri_lanka",
+    "saarc_countries_business_visa_standard_at_the_head",
+    "saarc_countries_business_visa_standard_by_the_applicant",
+    "saarc_countries_business_visa_standard_by_third_party",
+    "saarc_countries_tourist_visa_standard_at_sri_lanka",
+    "saarc_countries_tourist_visa_standard_at_the_head",
+    "saarc_countries_tourist_visa_standard_by_the_applicant",
+    "saarc_countries_tourist_visa_standard_by_third_party",
+    "saarc_countries_tourist_visa_standard_on_arrival_at",
+    "saarc_countries_transit_visa_standard_at_sri_lanka",
+    "saarc_countries_transit_visa_standard_at_the_head",
+    "saarc_countries_transit_visa_standard_by_the_applicant",
+    "saarc_countries_transit_visa_standard_by_third_party",
+    "saarc_countries_transit_visa_standard_on_arrival_at"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:tourist_visa_eta_free_of_charge",
+   "name": "Tourist Visa Eta Free Of Charge",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "electronic_travel_30d",
+    "tourist_visa_eta_30d"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:tourist_visa_extension",
+   "name": "Tourist Visa Extension",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "fee"
+   ],
+   "qualifiers": [
+    "any_other_country_except_usa_standard_180d",
+    "any_other_country_except_usa_standard_270d",
+    "any_other_country_except_usa_standard_90d",
+    "austria_belgium_denmark_standard_180d",
+    "austria_belgium_denmark_standard_270d",
+    "austria_belgium_denmark_standard_90d",
+    "singapore_maldives_seychelles_standard_180d",
+    "singapore_maldives_seychelles_standard_270d",
+    "singapore_maldives_seychelles_standard_90d",
+    "united_states_of_america_standard_180d",
+    "united_states_of_america_standard_90d"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:transferring_the_judicial_zone_of_a_notary",
+   "name": "Transferring The Judicial Zone Of A Notary",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "a_photocopy_of_the_annual",
+    "an_application_accurately_completed_in",
+    "standard",
+    "the_original_notary_license",
+    "the_receipt_for_the_payment"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:transit_visa",
+   "name": "Transit Visa",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee"
+   ],
+   "qualifiers": [
+    "ordinary_standard_2d",
+    "proof_of_air_ticket_sea",
+    "two_days_standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:translate_certificate_of_birth",
+   "name": "Translate Certificate Of Birth",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "application_form",
+    "standard",
+    "the_fee_for_one_translated",
+    "the_original_copy_of_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:translation_of_death_certificates",
+   "name": "Translation Of Death Certificates",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "application_form",
+    "death_certificate",
+    "standard",
+    "the_fee_for_one_translated"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:translations_of_marriage_certificates",
+   "name": "Translations Of Marriage Certificates",
+   "agency": "Registrar General's Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "application_form",
+    "standard",
+    "the_fee_for_one_translated",
+    "the_original_copy_of_the"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:update_national_register_of_persons_details",
+   "name": "Update National Register Of Persons Details",
+   "agency": "Department for Registration of Persons",
+   "predicates": [
+    "agency",
+    "document",
+    "processing_time"
+   ],
+   "qualifiers": [
+    "declaration_substantially_in_th_form",
+    "for_informing_the_commissioner"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:value_added_tax",
+   "name": "Value Added Tax",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_list_of_intended_purchases",
+    "application_should_be_made_through",
+    "certificate_of_business_registration",
+    "certificate_of_incorporation",
+    "copies_of_nic_of_the",
+    "deed_or_rent_lease_agreement",
+    "documents_to_prove_that_exports",
+    "list_of_directors",
+    "memorandum_articles_of_association",
+    "on_supply_of_financial_standard_from_01_01",
+    "on_supply_of_financial_standard_prior_to_01",
+    "particulars_of_sales_to_prove",
+    "project_plan",
+    "sources_of_funds_to_the",
+    "standard_rate_standard_from_01_01",
+    "standard_rate_standard_from_01_06",
+    "standard_rate_standard_from_01_09",
+    "standard_rate_standard_prior_to_01",
+    "the_tin_certificate_should_be",
+    "tin_certificate",
+    "zero_rate_standard"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:vat_refund_procedure",
+   "name": "Vat Refund Procedure",
+   "agency": "Inland Revenue Department",
+   "predicates": [
+    "agency",
+    "document",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "a_schedule_of_imports_deferred",
+    "details_of_correct_bank_account",
+    "duly_filled_vat_returns_should",
+    "export_reconciliation",
+    "export_schedule",
+    "guidelines_issued_under_sec_2008",
+    "local_purchases_schedule_with_original",
+    "once_above_information_is_called",
+    "registered_person_is_entitled_to",
+    "suspended_sales_confirmation",
+    "tax_clearance_certificate"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:verification_of_address_dual_citizen_nic_applicants",
+   "name": "Verification Of Address Dual Citizen Nic Applicants",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "national_identity_card"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:verification_of_temporary_residential_address",
+   "name": "Verification Of Temporary Residential Address",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "verification_of_temporary_residential"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:visa",
+   "name": "Visa",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document"
+   ],
+   "qualifiers": [
+    "form_a",
+    "form_a1",
+    "form_b",
+    "form_c",
+    "im_32",
+    "rgs_i"
+   ],
+   "requires": []
+  },
+  {
+   "service_id": "svc:visa_overstay_penalty",
+   "name": "Visa Overstay Penalty",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency"
+   ],
+   "qualifiers": [],
+   "requires": []
+  },
+  {
+   "service_id": "svc:visit_visa_extension",
+   "name": "Visit Visa Extension",
+   "agency": "Department of Immigration and Emigration",
+   "predicates": [
+    "agency",
+    "document",
+    "fee",
+    "prerequisite"
+   ],
+   "qualifiers": [
+    "06_months_tourist_visa_and_06_obtained_before_27",
+    "address_and_the_telephone_number",
+    "passport",
+    "photographs",
+    "return_air_ticket"
+   ],
+   "requires": [
+    "svc:passport"
+   ]
+  },
+  {
+   "service_id": "svc:write_off_default_tax",
+   "name": "Write Off Default Tax",
+   "agency": null,
+   "predicates": [
+    "document"
+   ],
+   "qualifiers": [
+    "affidavit",
+    "guide_to_fill_the_statement",
+    "statement_for_the_purpose_of"
+   ],
+   "requires": []
+  }
+ ]
+}
