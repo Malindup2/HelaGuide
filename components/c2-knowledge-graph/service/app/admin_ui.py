@@ -110,6 +110,14 @@ def _seed_for(url: str):
     return None
 
 
+def _seeds_by_url() -> dict:
+    """load_seeds() parses the whole YAML file; call it once and look up by URL, not once per
+    page. /api/files used to call _seed_for() inside its per-file loop, which re-parsed
+    ~900 lines of YAML on every one of ~280 files -- seconds of real wall time for a result
+    that never changed within the request."""
+    return {s.url: s for s in load_seeds(SEEDS)}
+
+
 # ------------------------------------------------------------------------- API
 @app.get("/api/status")
 def status() -> dict:
@@ -165,6 +173,7 @@ def files() -> list[dict]:
         by_sections = {r[0] for r in c.execute(
             "SELECT DISTINCT source_url FROM c2.extractions WHERE model LIKE '%[sections]%'")}
     read_files, read_unknown = _reads()
+    seeds = _seeds_by_url()
     seen: set[str] = set()
     rows = []
     for md in sorted((CRAWL / "archive").glob("*/*.md"), reverse=True):
@@ -173,7 +182,7 @@ def files() -> list[dict]:
         seen.add(url)
         key = f"archive/{md.parent.name}/{md.name}"
         read_this = key in read_files.get(url, set()) or (url in read_unknown and latest)
-        seed = _seed_for(url)
+        seed = seeds.get(url)
         text = md.read_text(encoding="utf-8")
         gate = should_extract(text)
         if not latest:
