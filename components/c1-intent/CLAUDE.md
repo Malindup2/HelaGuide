@@ -83,7 +83,8 @@ pytest
   context, not word counts.
 - Keep JSON UTF-8 with Sinhala in script (`ensure_ascii=False`).
 - Do not commit model weights (`*.bin`, `*.safetensors`, `*.ckpt`), files over a few MB,
-  or regenerated outputs (`seed_all.json`, `ls_tasks.json`, `results/`, `backup_v0/`).
+  or regenerated outputs (`seed_all.json`, `ls_tasks.json`, `backup_v0/`). In `results/`
+  only the files allowed in `research/.gitignore` are committed.
   Record large-file locations in `research/data/README.md`.
 
 ## Privacy
