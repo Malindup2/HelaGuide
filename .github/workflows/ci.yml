@@ -35,7 +35,9 @@ jobs:
         working-directory: ${{ matrix.path }}
         run: |
           pip install -e ${{ github.workspace }}/shared
-          pip install -e ".[dev]"
+          # pdf, db and extract are light; the heavy crawl extra (Crawl4AI) stays out of CI.
+          # Components without those extras ignore the unknown names with a warning.
+          pip install -e ".[dev,pdf,db,extract]" || pip install -e ".[dev]"
       - name: Test
         working-directory: ${{ matrix.path }}
         env:

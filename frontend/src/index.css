@@ -1,0 +1,108 @@
+/* Tailwind v4 entry. Layer order matters: importing the hand-written token/
+   base CSS into the `legacy` layer, below `utilities`, means a Tailwind
+   utility class always wins over it -- so a component can migrate to
+   utilities piece by piece without a specificity fight. */
+
+@layer theme, base, legacy, components, utilities;
+
+@import "tailwindcss";
+@import "./styles/tokens.css" layer(legacy);
+@import "./styles/fonts.css";
+
+/* The app switches themes with data-theme on <html>, not Tailwind's .dark class. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #607d8b;
+  --color-slate-600: #546e7a;
+  --color-slate-700: #455a64;
+  --color-slate-800: #37474f;
+  --color-slate-900: #263238;
+
+  --color-navy-700: #1a2332;
+  --color-navy-800: #111827;
+  --color-navy-900: #0a0f1a;
+
+  --color-brand: var(--color-amber-500);
+  --color-brand-hover: var(--color-amber-600);
+  --color-brand-soft: var(--color-amber-50);
+  --color-brand-ink: var(--color-amber-800);
+
+  --color-ink: #111827;
+  --color-ink-2: #4b5563;
+  --color-ink-3: #9ca3af;
+  --color-paper: #ffffff;
+  --color-paper-2: #f9fafb;
+  --color-paper-3: #f3f4f6;
+  --color-line: #e5e7eb;
+  --color-line-2: #d1d5db;
+
+  --spacing-sp-1: 4px;
+  --spacing-sp-2: 8px;
+  --spacing-sp-3: 12px;
+  --spacing-sp-4: 16px;
+  --spacing-sp-5: 24px;
+  --spacing-sp-6: 32px;
+  --spacing-sp-7: 48px;
+  --spacing-sp-8: 64px;
+
+  --radius-r-sm: 6px;
+  --radius-r-md: 10px;
+  --radius-r-lg: 14px;
+  --radius-r-xl: 20px;
+  --radius-r-pill: 999px;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Dark theme overrides -- opt-in only, see lib/theme.ts */
+:root[data-theme="dark"] {
+  --color-paper: #0f1419;
+  --color-paper-2: #1a2332;
+  --color-paper-3: #1e293b;
+  --color-ink: #f1f5f9;
+  --color-ink-2: #94a3b8;
+  --color-ink-3: #64748b;
+  --color-line: #1e293b;
+  --color-line-2: #334155;
+  --color-brand: var(--color-amber-400);
+  --color-brand-hover: var(--color-amber-500);
+  --color-brand-soft: rgba(245, 158, 11, 0.1);
+  --color-brand-ink: var(--color-amber-300);
+}
+
+:root[data-contrast="high"] {
+  --color-ink: #000000;
+  --color-ink-2: #1c2733;
+  --color-line: #64748b;
+  --color-line-2: #334155;
+  --color-brand: #b45309;
+  --color-paper-2: #ffffff;
+}
+
+html, body { background: var(--color-paper); }
+body { font-family: var(--font-sans); color: var(--color-ink); }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--color-ink); color: var(--color-paper);
+  padding: var(--spacing-sp-2) var(--spacing-sp-4); border-radius: var(--radius-r-md);
+}
+.skip-link:focus { left: var(--spacing-sp-4); top: var(--spacing-sp-4); }

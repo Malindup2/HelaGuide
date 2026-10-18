@@ -1,0 +1,109 @@
+/* =========================================================
+   HelaGuide design tokens — GIC-inspired government palette
+   Amber gold #f59e0b · Blue-grey #607d8b · Dark navy (used sparingly, not
+   as the default background — the default theme is light/white, per the
+   product decision for this first scaffold)
+   ========================================================= */
+
+:root {
+  /* --- Primary: Amber / Gold (accent, call to action) --- */
+  --amber-50:  #fffbeb;
+  --amber-100: #fef3c7;
+  --amber-200: #fde68a;
+  --amber-300: #fcd34d;
+  --amber-400: #fbbf24;
+  --amber-500: #f59e0b;   /* brand accent */
+  --amber-600: #d97706;
+  --amber-700: #b45309;
+  --amber-800: #92400e;
+  --amber-900: #78350f;
+
+  /* --- Secondary: Blue-Grey (institutional, muted authority) --- */
+  --slate-50:  #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #607d8b;
+  --slate-600: #546e7a;
+  --slate-700: #455a64;
+  --slate-800: #37474f;
+  --slate-900: #263238;
+
+  /* --- Dark navy: reserved for accents (e.g. the top bar), not the page
+     background. The page default is --paper below. --- */
+  --navy-700: #1a2332;
+  --navy-800: #111827;
+  --navy-900: #0a0f1a;
+  --navy-950: #060a12;
+
+  --brand:       var(--amber-500);
+  --brand-hover: var(--amber-600);
+  --brand-soft:  var(--amber-50);
+  --brand-ink:   var(--amber-800);
+
+  --seal-maroon: #8d153a;
+  --seal-gold:   #f59e0b;
+
+  --conf-high:    #0f6e56;
+  --conf-high-bg: #e1f5ee;
+  --conf-med:     #854f0b;
+  --conf-med-bg:  #faeeda;
+  --conf-low:     #a32d2d;
+  --conf-low-bg:  #fcebeb;
+
+  /* --- Neutrals: light/white by default --- */
+  --ink:     #111827;
+  --ink-2:   #4b5563;
+  --ink-3:   #9ca3af;
+  --paper:   #ffffff;
+  --paper-2: #f9fafb;
+  --paper-3: #f3f4f6;
+  --line:    #e5e7eb;
+  --line-2:  #d1d5db;
+
+  --font-en:   'Inter', system-ui, -apple-system, sans-serif;
+  --font-si:   'Noto Sans Sinhala', 'Iskoola Pota', sans-serif;
+  --font-ta:   'Noto Sans Tamil', 'Latha', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-pill: 999px;
+  --r-xl: 20px;
+
+  --sh-1: 0 1px 3px rgba(0, 0, 0, .08);
+  --sh-2: 0 4px 16px rgba(0, 0, 0, .10);
+  --sh-3: 0 12px 40px rgba(0, 0, 0, .15);
+
+  --text-scale: 1;
+}
+
+/* Opt-in dark mode: applied only when data-theme="dark" is set explicitly
+   (see lib/theme.ts). The app never auto-switches to this from the OS
+   preference in this first scaffold — the default stays light/white. */
+:root[data-theme="dark"] {
+  --paper:   #0f1419;
+  --paper-2: #1a2332;
+  --paper-3: #1e293b;
+  --ink:     #f1f5f9;
+  --ink-2:   #94a3b8;
+  --ink-3:   #64748b;
+  --line:    #1e293b;
+  --line-2:  #334155;
+
+  --brand:       var(--amber-400);
+  --brand-hover: var(--amber-500);
+  --brand-soft:  rgba(245, 158, 11, 0.1);
+  --brand-ink:   var(--amber-300);
+}
+
+:root[data-contrast="high"] {
+  --ink:    #000000;
+  --ink-2:  #1c2733;
+  --line:   #64748b;
+  --line-2: #334155;
+  --brand:  #b45309;
+  --paper-2:#ffffff;
+}
