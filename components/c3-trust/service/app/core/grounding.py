@@ -107,8 +107,9 @@ class GroundingEngine:
                                trace={"method": "structured: fact_id supplied by the interface"})
 
     # -------------------------------------------------------------- free text
-    def _resolve_service(self, text_en: str, raw_text: str, hint: str | None, session_service: str | None):
-        """Which service? Order: hint from C1, a single clear alias, the best text match, the session."""
+    def _resolve_service(self, text_en: str, raw_text: str, hint: str | None, session_service: str | None,
+                         context_services: list[str] | None = None):
+        """Which service? Order: hint from C1, a single clear alias, the best text match, the screen context, the session."""
         trace: dict = {}
         if hint and hint in self.by_service:
             trace["service_candidates"] = [{"service_id": hint, "score": 1.0, "note": "hint from C1"}]
@@ -124,15 +125,24 @@ class GroundingEngine:
         rows.sort(key=lambda r: -r["score"])
         trace["service_candidates"] = rows[:3]
         hits = [r for r in rows if r["alias_hit"]]
+        context = [c for c in (context_services or []) if c in self.by_service]
         if len(hits) == 1:                     # exactly one service is named: that is the service
             trace["note"] = "exactly one service name/alias found in the message"
             return hits[0]["service_id"], "alias", trace
+        if len(hits) > 1 and context:          # several are named: prefer the one the citizen was just looking at
+            on_screen = [r for r in hits if r["service_id"] in context]
+            if len(on_screen) == 1:
+                trace["note"] = "several services are named; the one on the citizen's screen was chosen"
+                return on_screen[0]["service_id"], "context", trace
         if rows:
             top = rows[0]
             lead = top["score"] - (rows[1]["score"] if len(rows) > 1 else 0.0)
             trace["service_lead"] = round(lead, 4)
             if top["score"] >= self.s.tau_s and lead >= self.s.delta_s:
                 return top["service_id"], "text", trace
+        if len(context) == 1:                  # the citizen was looking at exactly one service
+            trace["note"] = "service taken from the workflow on the citizen's screen"
+            return context[0], "context", trace
         if session_service and session_service in self.by_service:
             trace["note"] = "service taken from an earlier message in the same session"
             return session_service, "session", trace
@@ -169,11 +179,12 @@ class GroundingEngine:
 
     def ground_text(self, text_en: str | None, raw_text: str, *, service_hint: str | None = None,
                     predicate_hint: str | None = None, session_service: str | None = None,
-                    when: datetime) -> GroundingResult:
+                    context_services: list[str] | None = None, when: datetime) -> GroundingResult:
         if not text_en:
             return GroundingResult("clarification_needed", reason="translation_unavailable",
                                    trace={"note": "no English text, so the message could not be compared"})
-        service_id, source, trace = self._resolve_service(text_en, raw_text, service_hint, session_service)
+        service_id, source, trace = self._resolve_service(text_en, raw_text, service_hint, session_service,
+                                                          context_services)
         if service_id is None:
             return GroundingResult("clarification_needed", reason="service_unclear", trace=trace)
         svc_info = self.catalog.get(service_id)

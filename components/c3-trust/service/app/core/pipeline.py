@@ -100,6 +100,14 @@ class Pipeline:
         self.grounding.refresh()
         return results
 
+    def reset_demo_state(self) -> None:
+        """Back to the clean starting state: C3's own tables recreated, a fresh copy of the mock graph,
+        reporters reloaded, every fact registered at its starting confidence."""
+        db.reset_db(self.engine)
+        self.source = build_source(self.s)
+        self.load_reporters()
+        self.sync_facts()
+
     # --------------------------------------------------------- entry points ---
     def process_structured(self, feedback: dict, extras: dict | None = None) -> ProcessResult:
         extras = extras or {}
@@ -118,7 +126,7 @@ class Pipeline:
             message_id=m.message_id, path="freetext", reporter_id=e.reporter_token or m.session_id,
             submitted_at=as_utc(m.timestamp), raw_text=m.raw_text, language=m.language, text_en=m.text_en,
             service_hint=e.service_id, predicate_hint=e.predicate_hint, claimed_hint=e.mentioned_value,
-            visit_date=e.visit_date)
+            visit_date=e.visit_date, context_services=e.context_services)
         inc.session_id = m.session_id  # type: ignore[attr-defined]
         return self.process(inc)
 
@@ -147,7 +155,8 @@ class Pipeline:
         else:
             g = self.grounding.ground_text(
                 norm.text_en, inc.raw_text, service_hint=inc.service_hint, predicate_hint=inc.predicate_hint,
-                session_service=self.repo.get_session_service(session_id), when=when)
+                session_service=self.repo.get_session_service(session_id),
+                context_services=inc.context_services, when=when)
         res.grounding = {"state": g.state, "reason": g.reason, "service_id": g.service_id,
                          "service_source": g.service_source, **g.trace}
         if g.service_id:

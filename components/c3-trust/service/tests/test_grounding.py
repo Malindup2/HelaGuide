@@ -41,7 +41,7 @@ class Env:
         n = self.norm.normalise(m["raw_text"], m.get("language"), m.get("text_en"))
         return self.engine.ground_text(n.text_en, m["raw_text"], service_hint=e.get("service_id"),
                                        predicate_hint=e.get("predicate_hint"), session_service=session_service,
-                                       when=dt(m["timestamp"]))
+                                       context_services=e.get("context_services"), when=dt(m["timestamp"]))
 
 
 @pytest.fixture(scope="module")
@@ -55,8 +55,14 @@ def test_structured_path_validates_the_fact_and_picks_the_version(env):
     assert env.engine.ground_structured("svc:passport:fee:ghost", dt("2026-10-20T10:00:00Z")).reason == "unknown_fact_id"
 
 
-def test_a_hint_from_c1_decides_the_service(env):
-    g = env.ground("ft-A1")
+def test_the_service_is_found_from_the_words_alone_when_there_is_no_hint(env):
+    g = env.ground("ft-A1")                          # no hint at all: the citizen only typed text
+    assert g.state == "grounded" and g.service_source == "alias" and g.fact_id == "svc:passport:fee:normal"
+
+
+def test_a_hint_from_c1_still_decides_the_service_when_one_is_given(env):
+    m = env.messages["ft-A1"]
+    g = env.engine.ground_text(m["raw_text"], m["raw_text"], service_hint="svc:passport", when=dt(m["timestamp"]))
     assert g.state == "grounded" and g.service_source == "hint" and g.fact_id == "svc:passport:fee:normal"
 
 
@@ -138,7 +144,7 @@ def test_accuracy_on_the_labelled_free_text_messages(env):
         good = g.state == lab["expected_state"] and (g.state != "grounded" or g.fact_id == lab["expected_fact_id"])
         ok += good
         n += 1
-    assert n == 33 and ok / n >= 0.85       # stand-in embedder; the real model is tuned with `python -m app.cli.tune_grounding`
+    assert n == 35 and ok / n >= 0.85       # stand-in embedder; the real model is tuned with `python -m app.cli.tune_grounding`
 
 
 # ---------------------------------------------------------------- the two refinements
@@ -184,3 +190,30 @@ def test_the_single_fee_of_a_service_is_grounded_without_a_high_score():
     assert without.state == "clarification_needed"           # the same message is refused when the relief is switched off
     # with several fee facts (passport) there is real competition, so no relief
     assert Env().ground("ft-C4").trace["only_fact_of_its_kind"] is False
+
+
+# ------------------------------------------------- the workflow on the citizen's screen
+def test_the_workflow_on_screen_decides_between_two_named_services(env):
+    """ft-C8 names BOTH 'birth certificate' and 'passport'. The citizen was looking at the passport workflow."""
+    g = env.ground("ft-C8")                          # the mock message carries context_services = [passport]
+    assert g.state == "grounded" and g.service_source == "context"
+    assert g.fact_id == "svc:passport:document:birth_certificate"
+    assert "on the citizen's screen" in g.trace["note"]
+
+
+def test_the_screen_context_is_only_a_soft_hint(env):
+    when = dt("2026-10-25T10:00:00Z")
+    # a service named in the words always wins over what was on the screen
+    g = env.engine.ground_text("They charged 300 rupees for a certified copy of the death certificate.", "",
+                               context_services=["svc:passport"], when=when)
+    assert g.service_id == "svc:death_certificate" and g.service_source == "alias"
+    # two services on screen and no service named: not enough to decide, so it asks
+    g = env.engine.ground_text("The office charged me more than what you said.", "",
+                               context_services=["svc:nic", "svc:passport"], when=when)
+    assert g.state == "clarification_needed" and g.reason == "service_unclear"
+    # exactly one service on screen and none named: that one is used
+    g = env.engine.ground_text("They asked me to pay Rs. 300.", "", context_services=["svc:death_certificate"], when=when)
+    assert g.state == "grounded" and g.service_source == "context" and g.fact_id == "svc:death_certificate:fee:certified_copy"
+    # an unknown service id in the context is ignored
+    g = env.engine.ground_text("The office charged me more than what you said.", "", context_services=["svc:nonexistent"], when=when)
+    assert g.state == "clarification_needed"

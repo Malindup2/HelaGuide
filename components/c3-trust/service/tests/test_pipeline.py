@@ -7,13 +7,13 @@ from tests.helpers import make_settings
 from tests.pipeline_fixtures import ds, pipe, run, settings  # noqa: F401
 
 FACT = "svc:passport:fee:normal"
-STORY = ["ft-A1", "fb-A2", "ft-A3", "fb-A4", "ft-A5", "ft-A6"]
+STORY = ["ft-A1", "ft-A2", "ft-A3", "ft-A4", "ft-A5", "ft-A6"]       # six citizens, all in their own words
 
 
 # --------------------------------------------------------------- both paths ---
 def test_both_paths_feed_the_same_fact(pipe, ds):
-    a = run(pipe, ds, "ft-A1")           # free text
-    b = run(pipe, ds, "fb-A2")           # contract message
+    a = run(pipe, ds, "ft-A1")           # free text (the main path)
+    b = run(pipe, ds, "fb-A2")           # the team's contract message (kept for compatibility)
     assert a.path == "freetext" and b.path == "structured"
     assert a.fact_id == b.fact_id == FACT
     assert pipe.exposure.explain(FACT)["report_count"] == 2
@@ -21,7 +21,7 @@ def test_both_paths_feed_the_same_fact(pipe, ds):
 
 def test_confidence_falls_with_each_credible_dispute_but_by_less_each_time(pipe, ds):
     confs = [0.9]
-    for mid in ["ft-A1", "fb-A2", "ft-A6"]:
+    for mid in ["ft-A1", "ft-A2", "ft-A6"]:
         confs.append(run(pipe, ds, mid).confidence["new"])
     drops = [confs[i] - confs[i + 1] for i in range(len(confs) - 1)]
     assert confs == sorted(confs, reverse=True)
@@ -33,7 +33,7 @@ def test_the_percentage_is_always_available_but_the_warning_waits_for_two_drops(
     assert r1.exposure["confidence_pct"] == round(100 * r1.confidence["new"])
     assert r1.exposure["warning_code"] == "NONE"
     assert pipe.exposure.contract_trust(FACT).status == "ok"
-    r2 = run(pipe, ds, "fb-A2")
+    r2 = run(pipe, ds, "ft-A2")
     assert r2.exposure["warning_code"] == "LOW_CONFIDENCE"
     assert pipe.exposure.contract_trust(FACT).status == "disputed"
 
@@ -47,15 +47,15 @@ def test_a_strong_story_ends_below_the_flag_level_with_a_strong_warning(pipe, ds
 
 def test_a_copied_report_is_discounted(pipe, ds):
     run(pipe, ds, "ft-A1")
-    copy = run(pipe, ds, "fb-A4")        # nearly the same words, different citizen
+    copy = run(pipe, ds, "ft-A4")        # nearly the same words, different citizen
     assert copy.independence["dup_count"] == 1
     assert copy.independence["I"] == pytest.approx(0.6)
-    other = run(pipe, ds, "fb-A2")
+    other = run(pipe, ds, "ft-A2")
     assert other.independence["I"] == 1.0
 
 
 def test_a_supporting_report_raises_confidence_again(pipe, ds):
-    for mid in ["ft-A1", "fb-A2", "ft-A3", "fb-A4"]:
+    for mid in ["ft-A1", "ft-A2", "ft-A3", "ft-A4"]:
         before = run(pipe, ds, mid)
     support = run(pipe, ds, "ft-A5")
     assert support.kind == "support"
@@ -135,7 +135,7 @@ def test_missing_translation_asks_a_question_instead_of_guessing(ds):
 
 def test_grounding_accuracy_on_all_labelled_messages(pipe, ds):
     rows = run_grounding(pipe, ds)
-    assert len(rows) == 41
+    assert len(rows) == 43
     assert sum(r["ok"] for r in rows) / len(rows) >= 0.85   # stand-in embedder; the real model is tuned separately
 
 
@@ -170,3 +170,15 @@ def test_lazy_registration_of_a_fact_c3_has_not_seen_yet(settings):
                               "text": "The fee is 12,000 now.", "proposed_value": 12000,
                               "submitted_at": "2026-10-20T10:00:00Z"})
     assert r.state == "grounded" and p.repo.current_version(FACT) is not None
+
+
+def test_the_story_gives_the_same_numbers_through_free_text_only(pipe, ds):
+    """76 -> 65 -> 60 -> 55 -> 60 -> 50 percent, with every report typed as free text and no hints."""
+    pcts = [run(pipe, ds, mid).confidence["pct"] for mid in STORY]
+    assert pcts == [76, 65, 60, 55, 60, 50]
+
+
+def test_the_contract_message_still_gives_the_same_numbers(pipe, ds):
+    """Compatibility: the team's per-fact message (names the fact) reaches the same confidence."""
+    pcts = [run(pipe, ds, mid).confidence["pct"] for mid in ["ft-A1", "fb-A2", "ft-A3", "fb-A4", "ft-A5", "ft-A6"]]
+    assert pcts == [76, 65, 60, 55, 60, 50]

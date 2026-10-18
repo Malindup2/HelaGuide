@@ -1,0 +1,190 @@
+{
+  "_note": "C3-private demo content for the citizen console (python -m app.cli.serve). A stand-in for what C4 would render from C2's plan. MOCK.",
+  "brand": {
+    "name": "HelaGuide",
+    "domain": "helaguide.lk",
+    "tagline": "Government guidance with a measured level of trust"
+  },
+  "request": {
+    "id": "get_passport",
+    "label": "How do I get a passport?",
+    "title": "How to get a passport"
+  },
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:nic",
+      "name": "National Identity Card",
+      "agency": "Department for Registration of Persons",
+      "facts": [
+        {
+          "fact_id": "svc:nic:fee:first_issue",
+          "label": "Fee, first issue"
+        },
+        {
+          "fact_id": "svc:nic:fee:one_day",
+          "label": "Fee, one-day service"
+        },
+        {
+          "fact_id": "svc:nic:processing_time:normal",
+          "label": "Processing time"
+        },
+        {
+          "fact_id": "svc:nic:document:birth_certificate",
+          "label": "Bring"
+        },
+        {
+          "fact_id": "svc:nic:document:grama_niladhari_certification",
+          "label": "Bring"
+        },
+        {
+          "fact_id": "svc:nic:document:icao_photograph",
+          "label": "Bring"
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "service_id": "svc:passport",
+      "name": "Passport",
+      "agency": "Department of Immigration and Emigration",
+      "facts": [
+        {
+          "fact_id": "svc:passport:fee:normal",
+          "label": "Fee, normal service"
+        },
+        {
+          "fact_id": "svc:passport:fee:one_day",
+          "label": "Fee, one-day service"
+        },
+        {
+          "fact_id": "svc:passport:fee:minor_normal",
+          "label": "Fee, child's passport"
+        },
+        {
+          "fact_id": "svc:passport:processing_time:normal",
+          "label": "Processing time"
+        },
+        {
+          "fact_id": "svc:passport:document:nic",
+          "label": "Bring"
+        },
+        {
+          "fact_id": "svc:passport:document:birth_certificate",
+          "label": "Bring"
+        },
+        {
+          "fact_id": "svc:passport:document:photographs",
+          "label": "Bring"
+        },
+        {
+          "fact_id": "svc:passport:document:application_form",
+          "label": "Bring"
+        }
+      ]
+    }
+  ],
+  "personas": {
+    "anon-0001": "Established, mostly reliable",
+    "anon-0002": "Regular, short history",
+    "anon-0003": "New account",
+    "anon-0004": "Recent account, no history",
+    "anon-0005": "Regular, good record",
+    "anon-0006": "Long-standing, very reliable",
+    "anon-0009": "Regular, good record",
+    "anon-0010": "Established, reliable",
+    "anon-0011": "New account",
+    "anon-0012": "Established, reliable",
+    "anon-0014": "New account"
+  },
+  "groups": [
+    {
+      "id": "english",
+      "label": "English"
+    },
+    {
+      "id": "sinhala",
+      "label": "සිංහල (Sinhala)"
+    },
+    {
+      "id": "singlish",
+      "label": "Singlish"
+    },
+    {
+      "id": "other",
+      "label": "Other cases"
+    }
+  ],
+  "samples": [
+    {
+      "id": "ft-A1",
+      "group": "english",
+      "note": "Established citizen, visited yesterday"
+    },
+    {
+      "id": "ft-A2",
+      "group": "english",
+      "note": "A second citizen, different words"
+    },
+    {
+      "id": "ft-A4",
+      "group": "english",
+      "note": "Near-copy of the first message (counts for less)"
+    },
+    {
+      "id": "ft-A6",
+      "group": "english",
+      "note": "Very reliable citizen, visited today"
+    },
+    {
+      "id": "ft-C4",
+      "group": "english",
+      "note": "A different fact: the one-day fee"
+    },
+    {
+      "id": "ft-C8",
+      "group": "english",
+      "note": "A document, not a fee"
+    },
+    {
+      "id": "ft-A5",
+      "group": "sinhala",
+      "note": "Says the published fee was correct (raises confidence)"
+    },
+    {
+      "id": "ft-J2",
+      "group": "sinhala",
+      "note": "The passport took 30 days"
+    },
+    {
+      "id": "ft-A3",
+      "group": "singlish",
+      "note": "Brand-new account (low trust)"
+    },
+    {
+      "id": "ft-C5",
+      "group": "singlish",
+      "note": "A child's passport fee"
+    },
+    {
+      "id": "ft-I5",
+      "group": "singlish",
+      "note": "One-day fee"
+    },
+    {
+      "id": "ft-D1",
+      "group": "other",
+      "note": "Unclear: no service is named"
+    },
+    {
+      "id": "ft-C10",
+      "group": "other",
+      "note": "A document the guide does not list"
+    },
+    {
+      "id": "ft-C9",
+      "group": "other",
+      "note": "A missing document, in Singlish"
+    }
+  ]
+}
