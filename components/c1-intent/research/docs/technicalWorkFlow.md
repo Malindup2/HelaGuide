@@ -2,9 +2,9 @@
 
 **Component:** Multilingual Conversational Intent & Entity Understanding Engine
 **Project:** AI-Driven Citizen-Service Orchestrator (J26-SE-354)
-**Project folder:** `HelaGuide\components\c1-intent\research\` in the team repo (`data\`, `experiments\`, `docs\`; local-only `models\` and `results\`). Originally `D:\Research\cs-intent-engine`.
+**Project folder:** `HelaGuide\components\c1-intent\research\` in the team repo (`data\`, `experiments\`, `docs\`, `results\`, two Colab notebooks; `models\` local only, trained models on Drive). Originally `D:\Research\cs-intent-engine`.
 **Next milestone:** PP1 — due 20 Oct 2026
-**Last updated:** 17 Oct 2026
+**Last updated:** 18 Oct 2026
 
 Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 
@@ -17,17 +17,18 @@ Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 | 1. Environment setup | ✅ | — |
 | 2. Schema & dataset creation | ✅ for PP1 (gold, silver, fresh sets) | Dataset creation |
 | 3. Annotation & data split | ✅ (guideline doc pending) | Annotation & data split |
-| 4. Language segmentation layer | 🔄 XLM-R trained (0.971 on fresh set); module wrap pending | Language segmentation layer |
-| 5. Intent classifier | 🔄 XLM-R baseline trained (0.943 gold, 0.90 fresh) | Intent classifier |
-| 6. Entity extraction + multi-turn tracking | 🔄 XLM-R NER baseline (F1 0.63 gold); multi-turn tracking not started | Entity extractor + multi-turn tracking |
+| 4. Language segmentation layer | 🔄 XLM-R trained, 3 seeds (0.973 ± 0.005 on fresh set); module wrap pending | Language segmentation layer |
+| 5. Intent classifier | 🔄 XLM-R and TF-IDF baselines, 3 seeds (XLM-R macro-F1 0.936 gold / 0.926 fresh; TF-IDF higher) | Intent classifier |
+| 6. Entity extraction + multi-turn tracking | 🔄 Hybrid extractor + state tracker done: JGA 0.807 synthetic / 0.920 fresh (held-out), 0.88 fresh with predicted intent; Rasa pending | Entity extractor + multi-turn tracking |
 | 7. FastAPI service + routing | 🔄 (skeleton + stub) | FastAPI endpoint + routing |
 | 8. PP1 demo & slides | ⬜ | PP1 demo & slides |
 | 9. Context optimization & trade-off evaluation | 🔄 first experiment done (Observation 8: XLM-R + window_3 recommended) | PP2 – Context optimization & evaluation |
 
-**Headline results (run 2, 15 Oct; details in `research\data\README.md` → Results so far)**
-- Language ID on the fresh, human-written test set: XLM-R **0.971** vs fastText 0.595 vs heuristic 0.773 (SI/EN words). On Singlish: **0.945** vs 0.262 vs 0.829
-- Intent: 0.943 accuracy / 0.944 macro-F1 on gold (8 core intents, n=70); 0.90 on the fresh set (n=50)
-- Entities: micro-F1 0.63 on gold (learnable types), 0.47 on the fresh set (n=14)
+**Headline results (mean ± std over 3 seeds, 16 Oct; `notes.md` Observations 7–8, `docs\c1_results_log.md`)**
+- Language ID on the fresh, human-written test set: XLM-R **0.973 ± 0.005** vs fastText 0.595 vs heuristic 0.773 (SI/EN words). On Singlish: **0.955** vs 0.262 vs 0.829. At code-switch points: 0.973 vs fastText 0.507
+- Intent macro-F1: XLM-R 0.936 ± 0.025 gold / 0.926 ± 0.021 fresh; a TF-IDF + LogReg baseline scores higher (0.972 / 0.953), because intents are keyword-driven
+- Entities: span micro-F1 0.528 ± 0.054 gold / 0.394 ± 0.080 fresh, the weakest part (district and travel_date over-predicted)
+- Context strategies (sessions of joined dialogues): XLM-R + window_3 matches full history on gold (0.896 vs 0.897) with a fixed input size; TF-IDF gets **worse** with more context (full history 0.683)
 
 **Current blockers**
 - ⚠️ C2 confirmation of the two proposed service IDs (`svc:marriage_registration`, `svc:death_certificate`) and the other questions in `docs\c2_open_questions.md` (ready to send)
@@ -70,7 +71,7 @@ label-studio
 
 ---
 
-## 2. Schema & dataset creation 🔄
+## 2. Schema & dataset creation ✅ (for PP1)
 
 ### 2.1 Intent schema
 
@@ -266,8 +267,10 @@ label-studio
 - ⬜ Weights & Biases (runs are currently logged only as `results\*.json`)
 - ⬜ Decide on `MIXED`: 1 gold, 1 fresh and 7 silver examples. Either add dialogues with mixed words (`16i` / `16යි`, `NIC-eka`) or fold `MIXED` into `SI` for training and report it separately. Record the choice in the decision log
 - ✅ 3 seeds (42, 1, 2): fresh SI/EN 0.973 ± 0.005, at code-switch points 0.973 ± 0.007 (`notes.md`, Observation 7)
-- ⬜ Error analysis at switch points (where the language changes mid-sentence)
-- ⬜ Wrap as a module: `segment(text) -> [(token, lang)]`
+- ✅ Accuracy at switch points (where the language changes mid-sentence): XLM-R 0.973 at switch points vs 0.974 inside single-language runs on the fresh set; fastText falls to 0.507 at switch points (Observation 7)
+- ⬜ Report per-tag scores for SI / EN / NE / OTHER, and state that `MIXED` (1 example per test set) is too rare to evaluate. Seed 2 missed the one `MIXED` word, which alone dropped its gold macro-F1 to 0.78
+- ⬜ Error analysis of individual switch-point errors
+- ⬜ Wrap as a module: `segment(text) -> [(token, lang)]`, loading `MyDrive/c1_models/run_seed1`
 
 ---
 
@@ -285,10 +288,19 @@ label-studio
 
   - Gold per style: Singlish 0.912 (34) · Sinhala script + EN 1.000 (14) · pure Sinhala 0.955 (22)
   - Gold errors: `nic_new`→`birth_cert_copy` 2, `passport_renew`→`passport_new` 1, `nic_replace_lost`→`nic_update` 1
-  - Intent switches are the main error source: the earlier part of the history misleads a full-history model. This is direct motivation for the PP2 context strategies (§9)
   - Run 1 scored 0.957 on gold; the change is within single-seed noise at n=70
+- ✅ 3 seeds (42, 1, 2), with a TF-IDF + LogReg baseline (Observation 7):
+
+  | | Gold (n=70) | Fresh (n=50) |
+  |---|---|---|
+  | XLM-R accuracy | 0.933 ± 0.030 | 0.927 ± 0.023 |
+  | XLM-R macro-F1 | 0.936 ± 0.025 | 0.926 ± 0.021 |
+  | TF-IDF + LogReg macro-F1 | **0.972** | **0.953 ± 0.014** |
+
+  - **TF-IDF beats XLM-R**: intents are signalled mainly by keywords (passport, NIC, *nathi una* = lost, renew), and with ~650 training turns the transformer gains nothing over keyword features. Reported as a finding, and it makes model cost a second axis of the trade-off in §9
+  - **One systematic error:** in every seed, 2 gold `nic_new` turns are predicted as `birth_cert_copy`, most likely because the citizen mentions the birth certificate as a required document. The other errors change from seed to seed
+  - The context experiment (§9) showed that switch turns are not the problem: they name the new service in the message. Same-intent follow-ups ("Matara", "ow urgent") are, and they need context
 - ⬜ Training data for the 4 non-core intents, so all 142 gold turns can be scored
-- ✅ 3 seeds: macro-F1 0.936 ± 0.025 gold, 0.926 ± 0.021 fresh. A TF-IDF + LogReg baseline scores higher (0.972 gold, 0.953 fresh), because intents are mostly keyword-driven (Observation 7)
 - ⬜ Tune hyperparameters
 - ⬜ Confusion matrix figure for PP1
 - ✅ Checkpoints on Drive, not git: `MyDrive/c1_models/run_seed1` is the deployment model (seed 42 models were lost)
@@ -308,16 +320,33 @@ label-studio
 
   - Over-prediction: `district` recall 0.95 but precision 0.61; `travel_date` recall 1.0, precision 0.36
   - `issue` and `service_mentioned` score 0: they only occur in the non-core intents, which have no training data
-- ⬜ Reduce over-prediction (more negative examples: place names that are not the district slot, dates that are not travel dates)
+- ✅ 3 seeds (Observation 7): span micro-F1 **0.528 ± 0.054** gold (0.584 ± 0.063 on types seen in training), **0.394 ± 0.080** fresh. The weakest and least stable part of the engine (gold 0.47–0.57, fresh 0.31–0.47 across seeds)
+- ✅ **Hybrid rule-based slot extractor** (`experiments\c1_dst.py`, Observation 9)
+  - District gazetteer: all 25 districts in English, Sinhala script and romanized spellings
+  - Date pattern matcher (English and Sinhala months, relative dates) → canonical form
+  - Keyword rules for fixed-choice slots (`applicant_for`, `change_field`, `urgency`, `service_type`); lists for service, purpose and complaint type
+  - Entity span F1 on extractive types: **0.750** gold (precision 1.00) / **0.727** fresh, vs XLM-R NER 0.655 / 0.481
+  - ⬜ XLM-R NER + rules combination not yet reported (`dst_eval.py --xlmr-dir models/c1/run_seed1`)
+  - ⬜ Synthetic data for the support intents, so `issue` and `service_mentioned` have training examples
 - ⬜ Set up Rasa Open Source project inside `components\c1-intent\`
   - Why Rasa: ready-made intent/entity/slot tracking, so effort goes into the code-switching work, not dialogue plumbing
 - ⬜ Generate `domain.yml` from `schema_v1.json` (intents, entities, slots)
 - ⬜ Configure NLU pipeline (tokenizer, featurizer with XLM-R, DIET classifier)
 - ⬜ Train NER and evaluate with **seqeval** (entity-level precision/recall/F1)
   - Why seqeval: scores whole entities, not individual tokens, which is the standard for NER
-- ⬜ Slot carryover across turns (e.g. turn 1 "NIC eka wenas karanna one", turn 2 "Colombo 7" → fills `district`)
-- ⬜ Handle corrections ("ne, Gampaha") and intent switches mid-dialogue
-- ⬜ Test on the tagged multi-turn seed dialogues
+- ✅ Slot carryover across turns (e.g. turn 1 "NIC eka wenas karanna one", turn 2 "Colombo 7" → fills `district`), using the bot's last question for short answers, yes/no and confirmations
+- ✅ Handle corrections ("ne, Gampaha") and intent switches mid-dialogue (after a switch, keep only the slots the new intent uses)
+- ✅ Joint goal accuracy (`experiments\dst_eval.py`, gold intent, Observation 9). Gold is the development set for the rules; synthetic and fresh are held out:
+
+  | Tracker setting | Gold (dev, 142) | Synthetic (726) | Fresh (50) |
+  |---|---|---|---|
+  | No memory | 0.528 | 0.477 | 0.720 |
+  | + slot carryover | 0.838 | 0.718 | 0.860 |
+  | + bot's question | 0.901 | 0.762 | 0.880 |
+  | Full (corrections, switches, negation) | 0.979 | **0.807** | **0.920** |
+
+  - With predicted intent (TF-IDF, window_3): fresh JGA **0.88** (intent accuracy 0.96)
+  - Remaining errors: unusual date formats, `new_value` without a bot question (F1 0.56), corrections that give only the new value
 
 ---
 
@@ -426,10 +455,10 @@ Team repo: `github.com/Malindup2/HelaGuide`. Rules from `CONTRIBUTING.md`:
 - No Claude co-author lines in commits or PRs
 
 **Branches** (as of 17 Oct 2026). The team merges feature branches into `dev`, and `dev` into `main`.
-- **`c1/context-experiment`** (current): branched from `c1/synthetic-data`. Fresh test set, `c1_xlmr_train.ipynb`, `c1_context_experiment.ipynb`, result files and charts, Observations 7–8. Not pushed yet; open its PR after #22 is merged
-- `c1/synthetic-data`: includes everything from `c1/seed-dataset`. **PR #22 → `dev`**, open
+- **`c1/context-experiment`** (current): branched from `c1/synthetic-data`, 5 commits on top of it. Fresh test set, `c1_xlmr_train.ipynb`, `c1_context_experiment.ipynb`, result files and charts, Observations 7–8. **Pushed**; no PR yet. Open its PR into `dev` after #22 is merged
+- `c1/synthetic-data`: includes everything from `c1/seed-dataset`, plus the 16 Oct ID and district fixes. **PR #22 → `dev`**, open, not yet reviewed
 - `c1/seed-dataset`: **PR #20 → `main`**, open. Its commits are all in `c1/synthetic-data`, so PR #22 supersedes it; close #20 or retarget it to `dev`
-- `research\.gitignore` allows the reported result files and charts in `results\` (`baseline_fasttext.json`, `fresh_baselines.json`, `synthetic_tag_quality.json`, `xlmr_results_run_*.json`, `xlmr_results_seed*.json`, `c1_context_results_e*.json`, `context_*_e*.png`, `run1\`); everything else there stays local
+- `research\.gitignore` allows the reported result files and charts in `results\` (`baseline_fasttext.json`, `fresh_baselines.json`, `synthetic_tag_quality.json`, `xlmr_results_run_*.json`, `xlmr_results_seed*.json`, `c1_context_results_e*.json`, `context_*_e*.png`, `dst_results.json`, `run1\`); everything else there stays local
 
 ## Files in the project
 
@@ -497,3 +526,12 @@ Paths are relative to `components\c1-intent\`. Full data file descriptions are i
 | 16 Oct 2026 | Fresh test set labelled from scratch, no pre-labels | Gold labels started from heuristic pre-labels, which inflates the heuristic's score (~0.99 on gold vs 0.773 fresh) |
 | 16 Oct 2026 | Synthetic dialogue IDs numbered from the highest existing ID; `--build` stops on duplicate IDs | Numbering from the count reused `s0234` / `s0235` after 2 dialogues were removed, mixing up their tags |
 | 16 Oct 2026 | District spans match English, romanized and Sinhala-script spellings (lists per district) | Romanized and Sinhala district names were missed; spans 165 → 222 |
+| 16 Oct 2026 | Report results as mean ± std over 3 seeds (42, 1, 2) | A single run on small test sets cannot show whether a difference is real |
+| 16 Oct 2026 | Add TF-IDF + LogReg as an intent baseline, and report that it beats XLM-R | Intents are keyword-driven; an honest baseline, and model cost becomes a second trade-off axis |
+| 16 Oct 2026 | `MyDrive/c1_models/run_seed1` is the deployment model | Best overall (gold intent 0.957, fresh language ID 0.979); seed 42 models were lost from temporary Colab storage |
+| 16 Oct 2026 | Context experiment at 15 epochs, best epoch on the dev set; the 6-epoch run is kept in `results\run1\` but not used for conclusions | At 6 epochs XLM-R was under-trained (structured state 0.700 ± 0.168 → 0.878 ± 0.046) |
+| 16 Oct 2026 | Default context strategy: XLM-R + window_3; CPU option: TF-IDF + structured state or window_2; never TF-IDF + full history | window_3 is within 0.001 of full history on gold with a fixed input size; TF-IDF drops to 0.683 with full history |
+| 16 Oct 2026 | Plan a hybrid entity extractor (gazetteer + date patterns + XLM-R for free text) | XLM-R entities are weak and unstable (gold F1 0.53 ± 0.05), with district and travel_date over-predicted |
+| 17 Oct 2026 | Commit the reported result files and charts (`research\.gitignore` exceptions) | The numbers in the docs must be traceable in git |
+| 18 Oct 2026 | Hybrid rule-based slot extractor + state tracker instead of XLM-R NER alone | Fresh entity F1 0.73 vs 0.48 |
+| 18 Oct 2026 | Fresh-set states proposed by an LLM and checked by the author; gold is the development set for the rules | The rules were written while reading gold, so only synthetic and fresh are held out |
