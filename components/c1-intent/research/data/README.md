@@ -23,8 +23,8 @@ Small files only (under a few MB). Large datasets, raw crawls and model weights 
 | `ls_export.json` | Label Studio JSON export, 142 tasks (one per user turn), all annotated | Label Studio → Export → JSON |
 | `gold_tokens.jsonl` | Token-level gold set, one line per user turn: tokens, language tags, BIO entity tags | `baseline_fasttext.py` |
 | `kg_service_map.json` | The 8 core intents mapped to C2 service ids (confirmed or proposed), which attributes the KG holds for each, source pages, and the KG services no intent covers | Hand-built from C2's committed files, 2026-10-14 |
-| `synthetic/synthetic_dialogues.json` | 273 LLM-written training dialogues (`s0001`–`s0275`, 8 core intents, ~35 each), 726 user turns | `generate_synthetic.py` (Claude Code 227, Gemini 3.5 Flash Lite 46) |
-| `synthetic/silver_tokens.jsonl` | Training set in the gold format: 726 turns, 4,368 tokens. Language tags from the LLM (646 turns) or hand-checked (80); entity spans from slot values | `tag_synthetic.py --build` |
+| `synthetic/synthetic_dialogues.json` | 393 LLM-written training dialogues, 977 user turns, **all 12 intents**: `s0001`–`s0275` for the 8 core intents (~35 each), `s0276`–`s0395` for the 4 support intents (30 each, prompt `v5-support-intents`) | `generate_synthetic.py` (Claude Code 347, Gemini 3.5 Flash Lite 46) |
+| `synthetic/silver_tokens.jsonl` | Training set in the gold format: 977 turns, 5,972 tokens. Language tags from the LLM (897 turns) or hand-checked (80), none from the heuristic; entity spans from slot values | `tag_synthetic.py --build` |
 | `fresh_dialogues.txt` / `.json` | Fresh test set: 23 dialogues written by the author after the model was designed, 50 user turns | Hand-written; `prepare_fresh.py` |
 | `fresh_ls_export.json` | Label Studio export of the fresh set, labelled from scratch (no pre-labels) | Label Studio |
 | `fresh_tokens.jsonl` | Fresh test set in the gold format: 50 turns, 403 tokens | `prepare_fresh.py --from-export` |
@@ -63,6 +63,24 @@ qualifier.
 
 `unsupported_service` is over a third of all turns because v0 had six out-of-KG services.
 The next dialogue batch is core intents only, to fix the imbalance.
+
+## Silver set (synthetic training data)
+
+`synthetic/silver_tokens.jsonl` after the 18 Oct rebuild. **All 12 intents now have training data.**
+
+393 dialogues, 977 user turns, 5,972 tokens.
+
+| | |
+|---|---|
+| Language tags | SI 3,522 · EN 1,890 · NE 380 · OTHER 165 · MIXED 15 |
+| Entities | district 233 · service_mentioned 107 · purpose 83 · travel_date 67 · date 48 · date_of_birth 38 · issue 33 · new_value 23 |
+| Turns per intent | death_cert_copy 106 · birth_cert_copy 105 · passport_new 98 · marriage_registration 93 · nic_update 93 · nic_replace_lost 91 · nic_new 83 · passport_renew 82 · unsupported_service 60 · general_question 60 · feedback_complaint 55 · out_of_scope 51 |
+| Tag source | LLM 897 turns · hand-checked 80 · heuristic 0 |
+
+Support-intent dialogues (`s0276`–`s0395`) use their own spec mix: no phenomenon 68, intent switch 31,
+correction 21; 1–3 user turns (`out_of_scope` 1–2). `service_mentioned` and `issue` are the user's exact
+words (e.g. "driving licence", "fee eka waradi"), not the normalised values used in the gold seeds.
+Turn counts per intent count the intent of each turn, so they include turns after an intent switch.
 
 ## Formats
 
@@ -213,15 +231,17 @@ reads the whole history (`docs/notes.md`, Observations 5–6).
 
 `district` is found almost always (gold recall 0.95) but also over-predicted (precision 0.61);
 `travel_date` likewise (recall 1.0, precision 0.36). `issue` and `service_mentioned` score 0
-because they never occur in the training data.
+because they never occurred in that training data (they do now; see "Silver set" above).
 
 ### Limitations
 
 - This section is one run with one seed. Mean ± std over 3 seeds is in `docs/notes.md`, Observation 7.
 - Small test sets. Rough 95% ranges: ±2 points for fresh language ID (375 words), about ±8 for
   fresh intent (50 turns), and entity F1 on 14 fresh entities is indicative only.
-- 72 of 142 gold turns use intents with no training data (`unsupported_service` 54,
-  `feedback_complaint` 9, `general_question` 5, `out_of_scope` 4), so they are not scored.
+- 72 of 142 gold turns use the 4 support intents (`unsupported_service` 54,
+  `feedback_complaint` 9, `general_question` 5, `out_of_scope` 4). These results come from a silver set
+  without them, so those turns are not scored here. They have training data since 18 Oct; the models
+  have not been retrained yet.
 - `MIXED` has 1 gold, 1 fresh and 7 silver examples, so the model cannot really learn it.
 - Training data is LLM-written; the fresh set is the check that results carry over to human text.
 - Run 1 (`xlmr_results_run_1.json`, 618 silver turns) scored intent 0.957 on gold; the drop to

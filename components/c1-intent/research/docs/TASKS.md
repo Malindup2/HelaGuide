@@ -33,7 +33,7 @@ Tick items here as they finish, then update the Planner card.
 - [ ] Confusion matrix figure for the slides
 - [x] Save the checkpoint to Drive, not git (`MyDrive/c1_models/run_seed1` is the deployment model; seed 42 models were lost)
 - [x] Second and third seed, to show variance (Observation 7: seeds 42, 1, 2)
-- [ ] Synthetic dialogues for the 4 intents with no training data (`unsupported_service`, `feedback_complaint`, `general_question`, `out_of_scope`)
+- [x] Synthetic dialogues for the 4 intents with no training data (`unsupported_service`, `feedback_complaint`, `general_question`, `out_of_scope`): 30 each, `s0276`–`s0395`
 - [x] TF-IDF + LogReg intent baseline: 0.972 gold / 0.953 fresh macro-F1, higher than XLM-R (Observation 7)
 - [x] Context strategies, 6 × 3 seeds, XLM-R and TF-IDF: XLM-R + window_3 is the default (Observation 8)
 - [ ] Tidy `notes.md`: fill the Observation 6 TODO (how the LLM key was used), fix the missing Observation 3, replace the old "Next steps" list

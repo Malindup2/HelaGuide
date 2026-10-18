@@ -32,7 +32,7 @@ Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 
 **Current blockers**
 - ⚠️ C2 confirmation of the two proposed service IDs (`svc:marriage_registration`, `svc:death_certificate`) and the other questions in `docs\c2_open_questions.md` (ready to send)
-- ⚠️ No training data for 4 intents (`unsupported_service`, `feedback_complaint`, `general_question`, `out_of_scope`): 72 of 142 gold turns cannot be scored yet. The silver set covers only the 8 core intents (about 35 dialogues each), which fixed the earlier imbalance among core intents
+- All 12 intents now have training data (18 Oct: 30 synthetic dialogues per support intent, §2.3), so all 142 gold turns can be scored once the models are retrained. The results above are from the 8-core-intent silver set
 
 ---
 
@@ -144,19 +144,27 @@ label-studio
 - ✅ `experiments\generate_synthetic.py` writes prompts from the schema (intent, style, phenomenon, number of turns, domain hints from `kg_service_map.json`), validates every answer and keeps the accepted ones in `data\synthetic\synthetic_dialogues.json`
   - Validation: known intent and slots, district in the 25-district list, enum values, extractive slots (`date`, `purpose`, `new_value` …) must be exact substrings of the user's words, no dropped slots, no leaked field names, script matches the style, intent switches carry `previous_intent`
   - Rejected answers go to `rejected.jsonl` with the reason (19 so far: 15 duplicates, 4 slots not allowed)
-  - Prompt versions: v2 (KG-grounded, 40 dialogues), v3 (literal examples, 193), v4 (five styles, 40)
-- ✅ **273 dialogues, 726 user turns**, `s0001`–`s0275`: Claude Code 227, Gemini 3.5 Flash Lite 46 (2 more removed by hand)
-  - 8 core intents only, 29–36 dialogues each
+  - Prompt versions: v2 (KG-grounded, 40 dialogues), v3 (literal examples, 193), v4 (five styles, 40), v5 (support intents, 120)
+  - `--intents a,b,c` picks which intents to generate (default: the 8 core intents)
+- ✅ **393 dialogues, 977 user turns**, `s0001`–`s0395`: Claude Code 347, Gemini 3.5 Flash Lite 46 (2 more removed by hand)
+  - 8 core intents, 29–36 dialogues each, `s0001`–`s0275`
   - Styles: 177 code-mixed, 72 pure Sinhala (incl. 16 romanized Sinhala without English words), 24 English only; 163 romanized, 110 Sinhala script
   - Phenomena: 67 corrections, 41 several slots in one turn, 34 intent switches
+- ✅ **Support intents (18 Oct, prompt v5)**: 120 dialogues `s0276`–`s0395`, 30 each for `unsupported_service`, `feedback_complaint`, `general_question` and `out_of_scope`; 251 user turns
+  - 120/120 accepted, no rejections
+  - Own spec mix: no phenomenon 68, intent switch 31 (to any other intent, e.g. question → apply, greeting → task), correction 21; 1–3 user turns (`out_of_scope` 1–2). No `multi_slot`, since these intents have at most two slots
+  - Slots: `service_mentioned` (and `issue` for complaints) in the user's exact words; `out_of_scope` has none. The gold seeds for these intents use normalised values ("fee different"), so the prompt uses 1–2 core seeds for format plus one inline example per intent that follows the literal rule
+  - Styles: Singlish 52, Sinhala script + EN 22, romanized Sinhala 20, pure Sinhala 18, English 8
+  - Bot turns for unsupported services say the service isn't covered yet and ask at most one follow-up
 - ✅ `experiments\tag_synthetic.py` adds word-level language tags
-  - `--export` / `--ingest`: an LLM (Claude Code) tags every word; 646 turns tagged this way
+  - `--export` / `--ingest`: an LLM (Claude Code) tags every word; 897 turns tagged this way (251 of them for the support intents)
   - `--to-labelstudio` / `--compare`: 80 turns (418 words) hand-checked in a separate Label Studio project. LLM tags agreed **100%**; the heuristic 94.0% overall but only 88.7% on code-mixed text (`results\synthetic_tag_quality.json`)
-  - `--build`: `data\synthetic\silver_tokens.jsonl`, 726 turns / 4,368 tokens in the gold format. Language tags: hand correction > LLM tag > heuristic. Entity spans from slot values
+  - `--build`: `data\synthetic\silver_tokens.jsonl`, 977 turns / 5,972 tokens in the gold format, all 12 intents. No turn falls back to heuristic tags. Language tags: hand correction > LLM tag > heuristic. Entity spans from slot values
 - ✅ Fixes on 16 Oct
   - Two new dialogues had reused IDs `s0234` / `s0235` (IDs were numbered from the count, and 2 dialogues had been removed). Renumbered to `s0274` / `s0275`; the generator now numbers from the highest ID, and `--build` stops if any ID repeats
   - District spans now also match romanized names (Kolamba, Mahanuwara, Galla …) and Sinhala-script names for all 25 districts, with several spellings each (e.g. මොණරාගල / මොනරාගල). District spans: 165 → 222
-- Silver stats: SI 2,466 · EN 1,418 · NE 320 · OTHER 157 · MIXED 7 words; entities: district 222 · purpose 79 · travel_date 64 · date 46 · date_of_birth 37 · new_value 22
+- Silver stats: SI 3,522 · EN 1,890 · NE 380 · OTHER 165 · MIXED 15 words; entities: district 233 · service_mentioned 107 · purpose 83 · travel_date 67 · date 48 · date_of_birth 38 · issue 33 · new_value 23
+- Turns per intent: death_cert_copy 106 · birth_cert_copy 105 · passport_new 98 · marriage_registration 93 · nic_update 93 · nic_replace_lost 91 · nic_new 83 · passport_renew 82 · unsupported_service 60 · general_question 60 · feedback_complaint 55 · out_of_scope 51
 
 **Why synthetic data for training:** hand-writing enough dialogues for a balanced training set was not possible before PP1. LLM-written dialogues are cheap and balanced, and they are kept separate: they are only used for training, never for testing.
 
@@ -277,7 +285,7 @@ label-studio
 ## 5. Intent classifier 🔄
 
 - ✅ Model: XLM-R fine-tune (sequence classification), input = full dialogue history up to the turn. Rasa DIET not tried yet
-- ✅ Class balance: silver set has 29–36 dialogues per core intent
+- ✅ Class balance: silver set has 29–36 dialogues per core intent and 30 per support intent
 - ✅ Baseline trained (same settings as §4)
 - ✅ Results:
 
@@ -300,7 +308,7 @@ label-studio
   - **TF-IDF beats XLM-R**: intents are signalled mainly by keywords (passport, NIC, *nathi una* = lost, renew), and with ~650 training turns the transformer gains nothing over keyword features. Reported as a finding, and it makes model cost a second axis of the trade-off in §9
   - **One systematic error:** in every seed, 2 gold `nic_new` turns are predicted as `birth_cert_copy`, most likely because the citizen mentions the birth certificate as a required document. The other errors change from seed to seed
   - The context experiment (§9) showed that switch turns are not the problem: they name the new service in the message. Same-intent follow-ups ("Matara", "ow urgent") are, and they need context
-- ⬜ Training data for the 4 non-core intents, so all 142 gold turns can be scored
+- ✅ Training data for the 4 non-core intents (18 Oct, §2.3), so all 142 gold turns can be scored. Not retrained yet: the results above are 8 core intents only
 - ⬜ Tune hyperparameters
 - ⬜ Confusion matrix figure for PP1
 - ✅ Checkpoints on Drive, not git: `MyDrive/c1_models/run_seed1` is the deployment model (seed 42 models were lost)
@@ -535,3 +543,4 @@ Paths are relative to `components\c1-intent\`. Full data file descriptions are i
 | 17 Oct 2026 | Commit the reported result files and charts (`research\.gitignore` exceptions) | The numbers in the docs must be traceable in git |
 | 18 Oct 2026 | Hybrid rule-based slot extractor + state tracker instead of XLM-R NER alone | Fresh entity F1 0.73 vs 0.48 |
 | 18 Oct 2026 | Fresh-set states proposed by an LLM and checked by the author; gold is the development set for the rules | The rules were written while reading gold, so only synthetic and fresh are held out |
+| 18 Oct 2026 | Synthetic data for the 4 support intents (prompt v5) | So all 142 gold turns can be scored and complaints can be routed to C3 |
