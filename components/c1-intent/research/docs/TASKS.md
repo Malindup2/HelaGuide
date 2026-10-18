@@ -24,7 +24,8 @@ Tick items here as they finish, then update the Planner card.
 - [x] Compare with fastText per style: Singlish 0.945 vs 0.262 on the fresh set (target of beating 35.2% met)
 - [ ] Decide what to do with `MIXED` (1 gold, 1 fresh, 7 silver examples)
 - [x] Commit the 16–17 Oct work (fresh set, XLM-R and context notebooks, results, docs) on a new branch `c1/context-experiment`
-- [ ] Push `c1/context-experiment` and open its PR once #22 is merged
+- [x] Push `c1/context-experiment`
+- [ ] Open the `c1/context-experiment` PR into `dev` once #22 is merged
 
 ### Sat 17 Oct: intent classifier
 - [x] Train an XLM-R intent baseline (synthetic training data): 0.943 gold, 0.90 fresh
@@ -33,17 +34,20 @@ Tick items here as they finish, then update the Planner card.
 - [x] Save the checkpoint to Drive, not git (`MyDrive/c1_models/run_seed1` is the deployment model; seed 42 models were lost)
 - [x] Second and third seed, to show variance (Observation 7: seeds 42, 1, 2)
 - [ ] Synthetic dialogues for the 4 intents with no training data (`unsupported_service`, `feedback_complaint`, `general_question`, `out_of_scope`)
+- [x] TF-IDF + LogReg intent baseline: 0.972 gold / 0.953 fresh macro-F1, higher than XLM-R (Observation 7)
+- [x] Context strategies, 6 × 3 seeds, XLM-R and TF-IDF: XLM-R + window_3 is the default (Observation 8)
+- [ ] Tidy `notes.md`: fill the Observation 6 TODO (how the LLM key was used), fix the missing Observation 3, replace the old "Next steps" list
 
 ### Sun 18 Oct: plug into HelaGuide
 - [ ] Map the 12 internal intents to the contract (`intent` + `service_id`)
-- [ ] Implement `resolve()` in `service/app/core/pipeline.py` behind `POST /v1/intent`, keeping stub mode working
+- [ ] Implement `resolve()` in `service/app/core/pipeline.py` behind `POST /v1/intent`, keeping stub mode working (model: `run_seed1` from Drive, window_3 context; heavy libraries in the `research` extra)
 - [ ] Add tests in `service/tests/`
 - [ ] Run `docker compose up --build` and test one request through the gateway
 
 ### Mon 19 Oct: demo and slides
 - [ ] Pick the demo dialogue (NIC or passport, since `svc:birth_certificate` has no facts yet)
 - [ ] Record a backup demo video
-- [ ] Slides: problem, baseline findings, dataset stats, model results, integration, progress vs TAF, PP2 plan
+- [ ] Slides: problem, baseline findings, dataset stats, model results (3-seed means), context trade-off chart (`results/context_tradeoff_e15.png`), integration, progress vs TAF, PP2 plan
 
 ### Tue 20 Oct
 - [ ] Rehearse
@@ -55,13 +59,19 @@ Tick items here as they finish, then update the Planner card.
 - [ ] Record C2's answers and update the service IDs in `schema_v1.json` and `kg_service_map.json`
 - [ ] Decide on a `dual_citizenship` intent
 - [ ] Write `docs/annotation_guidelines.md` (start from the tagging guidelines in `data/README.md`)
-- [ ] Reduce entity over-prediction (`district` precision 0.61, `travel_date` 0.36)
+- [x] Hybrid entity extractor (rules: district gazetteer + date patterns + keyword lists)
+- [ ] Combine the hybrid extractor with XLM-R NER for free-text slots (dst_eval.py --xlmr-dir)
+- [ ] Per-tag language-ID scores (SI / EN / NE / OTHER); state that `MIXED` is too rare to evaluate
 - [ ] Add official Sinhala service names
 - [ ] Log sources and provenance for the seed queries
-- [ ] Error analysis at switch points
+- [x] Language ID at switch points (0.973, same as inside single-language runs; fastText 0.507)
+- [ ] Error analysis of individual switch-point errors
 - [ ] Wrap language ID as `segment(text)` in `service/app/core/`
 - [ ] Set up the Rasa project: `domain.yml` from the schema, NER plus seqeval
-- [ ] Slot carryover, corrections and intent switches
+- [x] Slot carryover, corrections and intent switches
+- [ ] Retrain with support intents using c1_xlmr_train_v2.ipynb (seed 1)
+- [ ] Run dst_eval.py --xlmr-dir models/c1/run_v2_seed1
+- [ ] Fix DST errors found on held-out sets after PP1 (date formats, number-only corrections, applicant_for overwrite, new_value in first message), then retest on new data
 - [ ] Log latency per request
 - [ ] Raise a contract change with the team if C2 or C4 need more than `service_id` and `district`
 
@@ -72,9 +82,11 @@ First experiment done early (Observation 8, `c1_context_experiment.ipynb`): reco
 - [ ] Summarization (only a keyword summary so far; no LLM summary yet)
 - [x] Structured-state carryover (uses gold tags; repeat with predicted tags)
 - [x] Token counting per turn (model tokenizer)
-- [ ] Joint goal accuracy, tokens and latency per strategy (intent macro-F1, tokens and latency done; JGA needs slot tracking)
+- [ ] JGA per context strategy (JGA tool done in dst_eval.py; not yet run per strategy)
 - [x] Trade-off curve (`results/context_tradeoff_e15.png`)
 - [ ] Error analysis (accuracy by turn type done; switch-turn errors not yet analysed)
+- [ ] Structured state and keyword summary with **predicted** tags instead of gold tags
+- [ ] Real long conversations (5+ turns) instead of joined 2–3-turn dialogues
 
 ---
 
