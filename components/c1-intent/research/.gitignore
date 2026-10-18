@@ -8,6 +8,7 @@ results/*
 !results/synthetic_tag_quality.json
 !results/c1_context_results_e*.json
 !results/context_*_e*.png
+!results/dst_results.json
 !results/run1/
 data/backup_v0/
 data/backup_v1_0/
