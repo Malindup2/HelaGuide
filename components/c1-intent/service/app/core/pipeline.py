@@ -11,9 +11,10 @@ from helaguide_common.config import get_settings
 from helaguide_common.contracts import Intent, UtteranceRequest
 from helaguide_common.examples import load_example
 
-from app.core.dst import SERVICES, gaz_find
+from app.core.dst import INTENT_SLOTS, SERVICES, gaz_find
 from app.core.projection import project
 from app.core.sessions import SessionStore
+from app.models.details import DetailsRequest, IntentDetails
 
 COMPONENT_DIR = Path(__file__).resolve().parents[3]      # components/c1-intent/
 DEFAULT_MODEL_DIR = "research/models/c1/run_v2_seed1"
@@ -97,6 +98,8 @@ def _step(session_id: str, text: str, bot_text: str | None = None) -> dict:
         log.info("low confidence: session=%s turn=%s model=%s conf=%.4f < %.2f -> %s (%s)",
                  session_id, result["turn_id"], result["intent_model_output"], result["intent_confidence"],
                  getattr(engine, "min_confidence", float("nan")), result["intent"], source)
+    log.info("session=%s turn=%s intent=%s route=%s latency_ms=%.1f",
+             session_id, result["turn_id"], result["intent"], result["route"], result["latency_ms"])
     return result
 
 
@@ -107,3 +110,48 @@ def resolve(req: UtteranceRequest) -> Intent:
     # the contract request carries no bot text, so the tracker reads the message on its own
     result = _step(req.session_id, req.text)
     return project(result, req.session_id, req.text)
+
+
+def resolve_details(req: DetailsRequest) -> IntentDetails:
+    """Full C1 analysis for one turn (C1-only, for the demo and C3). Same session store as resolve()."""
+    if get_settings().stub_mode:
+        return _stub_details(req)
+    result = _step(req.session_id, req.text, req.bot_text)
+    return IntentDetails(
+        session_id=req.session_id,
+        turn_id=result["turn_id"],
+        internal_intent=result["intent"],
+        intent_model_output=result["intent_model_output"],
+        confidence=result["intent_confidence"],
+        intent_source=result["intent_source"],
+        route=result["route"],
+        slots=result["slots"],
+        missing_slots=result["missing_slots"],
+        language=result["language"],
+        language_tags=result["language_tags"],
+        code_switched=result["code_switched"],
+        latency_ms=result["latency_ms"],
+        intent=project(result, req.session_id, req.text),
+    )
+
+
+def _stub_details(req: DetailsRequest) -> IntentDetails:
+    """Canned details matching contracts/examples/intent.example.json (a passport application)."""
+    intent = resolve(req)
+    slots = {"district": intent.entities.district} if intent.entities.district else {}
+    return IntentDetails(
+        session_id=req.session_id,
+        turn_id=intent.turn_id,
+        internal_intent="passport_new",
+        intent_model_output="passport_new",
+        confidence=intent.confidence,
+        intent_source="model",
+        route="orchestration",
+        slots=slots,
+        missing_slots=[s for s in INTENT_SLOTS["passport_new"] if s not in slots],
+        language=intent.language,
+        language_tags=[],
+        code_switched=intent.language == "mixed",
+        latency_ms=0.0,
+        intent=intent,
+    )
