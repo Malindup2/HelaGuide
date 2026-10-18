@@ -40,7 +40,8 @@ MIN_CONFIDENCE = 0.5        # below this the intent is reported as "unknown"
 
 
 class C1Engine:
-    def __init__(self, model_dir, device=None, window=None, min_confidence=MIN_CONFIDENCE, use_ner=False):
+    def __init__(self, model_dir, device=None, window=None, min_confidence=MIN_CONFIDENCE, use_ner=False,
+                 fallback=None):
         self.dir = Path(model_dir)
         self.cfg = json.loads((self.dir / "c1_config.json").read_text(encoding="utf-8"))
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
@@ -56,6 +57,7 @@ class C1Engine:
         self.window = window if window is not None else self.cfg.get("intent_window", DEFAULT_WINDOW)
         self.min_confidence = min_confidence
         self.use_ner = use_ner                    # XLM-R entities as a fallback for free-text slots
+        self.fallback = fallback                  # optional callable(text) -> intent or None, used below min_confidence
         self.known_intents = set(self.intent.config.id2label.values())
 
     # ---------------------------------------------------------------- single-message helpers
@@ -138,15 +140,22 @@ class Session:
         self.turns.append(text)
         tags = self.e.tag_languages(text)
         intent, conf = self.e.classify_intent(self.turns)
+        source = "model"
         if conf < self.e.min_confidence:
-            intent_used = self.tracker.intent or "unknown"      # unsure: keep the current topic
+            fallback = self.e.fallback(text) if self.e.fallback else None
+            if fallback:
+                intent_used, source = fallback, "keyword_fallback"
+            elif self.tracker.intent:
+                intent_used, source = self.tracker.intent, "previous_topic"     # unsure: keep the current topic
+            else:
+                intent_used, source = "unknown", "unknown"
         else:
             intent_used = intent
         state = self.tracker.update(text, intent_used, bot_text)
         return {
             "turn_id": len(self.turns) - 1,
             "text": text,
-            "intent": intent_used, "intent_model_output": intent, "intent_confidence": conf,
+            "intent": intent_used, "intent_model_output": intent, "intent_confidence": conf, "intent_source": source,
             "route": ROUTES.get(intent_used, "none"),
             "slots": state["slots"],
             "missing_slots": self.tracker.missing_slots(),
