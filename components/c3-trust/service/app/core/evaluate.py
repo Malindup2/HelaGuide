@@ -46,7 +46,8 @@ def ground_only(pipe: Pipeline, ds: Loaded, label: dict, sessions: dict[str, str
         norm = pipe.normaliser.normalise(m["raw_text"], m.get("language"), m.get("text_en"))
         g = pipe.grounding.ground_text(
             norm.text_en, m["raw_text"], service_hint=e.get("service_id"), predicate_hint=e.get("predicate_hint"),
-            session_service=sessions.get(m["session_id"]), when=parse_dt(m["timestamp"]))
+            session_service=sessions.get(m["session_id"]), context_services=e.get("context_services"),
+            when=parse_dt(m["timestamp"]))
         sid = m["session_id"]
         raw = m["raw_text"]
     else:

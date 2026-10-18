@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from helaguide_common.config import get_settings
 from helaguide_common.logging import setup_logging
 
-from app.api.routes import internal, router
+from app.api.routes import demo, internal, router, ui
 
 settings = get_settings(service_name="c3-trust")
 log = setup_logging(settings.service_name, settings.log_level)
@@ -15,6 +15,8 @@ app = FastAPI(
 )
 app.include_router(router)
 app.include_router(internal)
+app.include_router(ui)
+app.include_router(demo)
 
 @app.get("/health", tags=["ops"])
 async def health() -> dict:

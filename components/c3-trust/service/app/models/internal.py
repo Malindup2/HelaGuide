@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class FreeTextEntities(BaseModel):
@@ -20,6 +20,18 @@ class FreeTextEntities(BaseModel):
     mentioned_value: str | float | int | None = None
     visit_date: date | None = None
     reporter_token: str | None = Field(default=None, pattern=r"^anon-[a-z0-9]+$")
+    # The services on the citizen's screen just before the feedback (a workflow they were looking at).
+    # A SOFT hint: used only when the words of the message cannot decide the service by themselves.
+    context_services: list[str] | None = None
+
+    @field_validator("context_services")
+    @classmethod
+    def _service_ids(cls, v):
+        import re
+        for x in v or []:
+            if not re.match(r"^svc:[a-z0-9_]+$", x):
+                raise ValueError(f"not a service id: {x}")
+        return v
 
 
 class FreeTextFeedback(BaseModel):
@@ -57,6 +69,7 @@ class Incoming:
     predicate_hint: str | None = None
     claimed_hint: Any = None
     visit_date: date | None = None
+    context_services: list[str] | None = None
 
 
 @dataclass
@@ -129,3 +142,11 @@ class ReportRow:
     state: str = "active"
     embedding: Any = None
     trace: dict = field(default_factory=dict)
+
+
+class DemoFeedbackRequest(BaseModel):
+    """What the citizen console sends when a pre-written sample message is submitted."""
+    model_config = ConfigDict(extra="forbid")
+    sample_id: str
+    persona_id: str
+    visit_date: date | None = None

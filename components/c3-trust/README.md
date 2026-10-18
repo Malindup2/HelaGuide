@@ -29,6 +29,8 @@ Not planned: multi-source conflict handling.
 | POST | `/v1/feedback` | Accept the contract `feedback` message (names the fact) |
 | GET | `/v1/trust/{fact_id}` | Current `trust` for one fact |
 | POST | `/internal/freetext-feedback` | *C3-private.* Free text, as C1 would forward it |
+| GET | `/ui` | *C3-private.* The HelaGuide citizen console (demo UI for this component alone) |
+| GET/POST | `/internal/demo/*` | *C3-private.* Routes the console uses: workflow, samples, personas, feedback, official update, reset, audit |
 | GET | `/internal/explain/{fact_id}` | *C3-private.* Percentage, internal status, warning code, reasons |
 | POST | `/internal/sync` | *C3-private.* Re-read facts, register new versions |
 
@@ -52,10 +54,11 @@ docker compose -f docker-compose.c3.yml up -d
 cd service
 copy .env.example .env                     # then edit .env
 python -m app.cli.check_model              # downloads the model once
-python -m app.cli.demo --pause             # the PP1 demonstration
+python -m app.cli.demo --pause             # the PP1 demonstration in the terminal
+python -m app.cli.serve                    # the PP1 demonstration as a web page (http://localhost:8013/ui)
 ```
 
-No Docker? `python -m app.cli.demo --sqlite` runs the same demo on an in-memory database.
+No Docker? `python -m app.cli.demo --sqlite` and `python -m app.cli.serve --sqlite` run the same demos on an in-memory database. Both demos reset the database when they start, so run one at a time.
 
 The real HTTP service: `$env:STUB_MODE="false" ; uvicorn app.main:app --reload --port 8003`, then open
 <http://localhost:8003/docs>.
@@ -64,6 +67,7 @@ The real HTTP service: `$env:STUB_MODE="false" ; uvicorn app.main:app --reload -
 
 | Tool | What it does |
 |---|---|
+| `serve` | **Starts the citizen console** at `http://localhost:8013/ui`: a chat page showing the workflow "How do I get a passport?" with a confidence % on every fact, a Give feedback button, and the updated percentage when the guide is shown again (`--sqlite` needs no Docker, `--port`) |
 | `demo` | The PP1 demonstration in seven parts (`--pause`, `--part`, `--path freetext\|structured\|both`) |
 | `reset` | Back to the clean starting state |
 | `check_model` | Checks the embedding model loads and ranks related text higher |

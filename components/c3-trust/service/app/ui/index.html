@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HelaGuide · helaguide.lk</title>
+<style>
+:root{
+  --black:#0d0d0d; --ink:#1c1c1c; --muted:#6b7280; --line:#e5e7eb; --soft:#f6f6f7; --white:#fff;
+  --orange:#f26a1b; --orange-d:#d65a10; --orange-bg:#fff3ea;
+  --green:#15803d; --green-bg:#e8f6ee; --green-line:#bfe3cc;
+  --amber:#a15c00; --amber-bg:#fff4dc; --amber-line:#f3d89b;
+  --red:#b42318; --red-bg:#fdeceb; --red-line:#f3b8b3;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--soft);color:var(--ink);
+  font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Nirmala UI","Noto Sans Sinhala","Iskoola Pota",sans-serif}
+button{font:inherit}
+.top{background:var(--black);color:#fff;display:flex;align-items:center;gap:14px;padding:0 24px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;letter-spacing:.2px}
+.mark{width:30px;height:30px;border-radius:7px;background:var(--orange);color:#111;display:grid;place-items:center;font-weight:800}
+.domain{color:#9ca3af;font-size:14px}
+.tagline{color:#d1d5db;font-size:13px;margin-left:10px;padding-left:14px;border-left:1px solid #333}
+.tag{margin-left:auto;font-size:12px;border:1px solid #3a3a3a;color:#d1d5db;border-radius:999px;padding:4px 12px;white-space:nowrap}
+.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(330px,1fr);gap:20px;max-width:1320px;margin:18px auto;padding:0 20px;height:calc(100vh - 96px)}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;min-height:0}
+.thread{flex:1;overflow:auto;padding:20px;display:flex;flex-direction:column;gap:14px}
+.msg{max-width:94%}
+.msg.user{align-self:flex-end}
+.who{font-size:12px;color:var(--muted);margin:0 4px 4px}
+.msg.user .who{text-align:right}
+.bubble{padding:10px 14px;border-radius:12px;background:var(--soft);border:1px solid var(--line)}
+.msg.user .bubble{background:var(--black);color:#fff;border-color:var(--black)}
+.bubble.err{background:var(--red-bg);border-color:var(--red-line);color:var(--red)}
+.lang{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;border:1px solid #555;border-radius:4px;padding:0 6px;margin-bottom:4px;color:#d1d5db}
+.said.si{font-family:"Nirmala UI","Noto Sans Sinhala","Iskoola Pota",system-ui,sans-serif}
+.card{border:1px solid var(--line);border-radius:12px;background:var(--white);overflow:hidden}
+.card h3{margin:0;padding:12px 16px;font-size:16px;border-bottom:1px solid var(--line);background:#fafafa}
+.step{padding:14px 16px;border-top:1px solid var(--line)}
+.step:first-of-type{border-top:0}
+.step-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.num{width:26px;height:26px;border-radius:50%;background:var(--black);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700;flex:none}
+.step-t{font-weight:700}
+.agency{color:var(--muted);font-size:13px}
+.fact{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 8px;border-top:1px dashed var(--line);border-radius:6px}
+.fact.changed{background:var(--orange-bg);border-top-color:transparent}
+.fact .lbl{color:var(--muted);font-size:13px}
+.fact .val{font-weight:600}
+.fact .conf{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.was{color:var(--muted);font-size:12px;text-decoration:line-through}
+.arrow{color:var(--orange);font-weight:700}
+.badge{display:inline-flex;align-items:center;font-weight:700;font-size:13px;padding:3px 10px;border-radius:999px;border:1px solid}
+.badge.ok{color:var(--green);background:var(--green-bg);border-color:var(--green-line)}
+.badge.warn{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-line)}
+.badge.bad{color:var(--red);background:var(--red-bg);border-color:var(--red-line)}
+.tick{color:var(--green);font-size:12px;font-weight:700}
+.note{font-size:12px;margin-top:2px;font-weight:400}
+.note.warn{color:var(--amber)} .note.bad{color:var(--red)} .note.ok{color:var(--green)}
+.legend{padding:10px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;background:#fafafa}
+.legend .badge{padding:0 7px;font-size:11px}
+.pad{padding:14px 16px}
+.line{margin:5px 0}
+.k{display:inline-block;min-width:130px;color:var(--muted);font-size:13px}
+.chip{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:0 6px;color:var(--muted)}
+.muted{color:var(--muted)}
+.shift{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:22px;font-weight:700}
+.composer{display:flex;flex-wrap:wrap;gap:10px;padding:14px 20px;border-top:1px solid var(--line);align-items:center}
+.btn{font-weight:600;border-radius:8px;padding:9px 14px;cursor:pointer;border:1px solid var(--black);background:#fff;color:var(--black)}
+.btn:hover{background:var(--soft)}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:#111}
+.btn.primary:hover{background:var(--orange-d);border-color:var(--orange-d)}
+.btn.dark{background:var(--black);color:#fff}
+.btn.dark:hover{background:#2a2a2a}
+.btn.ghost{border-color:var(--line);color:var(--ink)}
+.btn.small{padding:5px 10px;font-size:13px;margin-left:8px}
+.btn:focus-visible,select:focus-visible,input:focus-visible,.tab:focus-visible,.gbtn:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.link{margin-left:auto;background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline}
+.tabs{display:flex;border-bottom:1px solid var(--line)}
+.tab{flex:1;padding:12px 8px;text-align:center;font-weight:600;color:var(--muted);cursor:pointer;background:none;border:0;border-bottom:3px solid transparent}
+.tab.active{color:var(--black);border-bottom-color:var(--orange)}
+#side-body{padding:16px;overflow:auto;flex:1;min-height:0}
+.sec{border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+.sec h4{margin:0;padding:8px 12px;font-size:13px;background:#fafafa;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.sec h4 .n{width:20px;height:20px;border-radius:50%;background:var(--black);color:#fff;font-size:11px;display:grid;place-items:center;flex:none}
+.sec .b{padding:10px 12px;font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{text-align:left;padding:4px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.bar{height:8px;background:#eee;border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--black)}
+.sig{display:grid;grid-template-columns:96px 1fr 38px;gap:8px;align-items:center;margin:5px 0}
+.sig small{grid-column:2 / 4;color:var(--muted);margin-top:-3px}
+.big{font-size:20px;font-weight:700}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:10;padding:16px}
+.modal.hidden{display:none}
+.dialog{background:#fff;border-radius:14px;width:min(720px,100%);max-height:92vh;overflow:auto;padding:20px 22px;border-top:4px solid var(--orange)}
+.dialog-h{display:flex;align-items:center;justify-content:space-between}
+.dialog h2{margin:0;font-size:20px}
+.x{background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:var(--muted)}
+.fld{display:block;margin:14px 0;font-weight:600;font-size:14px}
+.fld select,.fld input[type=date]{display:block;width:100%;margin-top:6px;padding:9px 10px;border:1px solid #cfd4dc;border-radius:8px;font:inherit;font-weight:400;background:#fff}
+.groups{display:flex;gap:6px;margin:8px 0;flex-wrap:wrap}
+.gbtn{padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;cursor:pointer;font-weight:600;font-size:13px;color:var(--ink)}
+.gbtn.active{background:var(--black);color:#fff;border-color:var(--black)}
+.samples{border:1px solid var(--line);border-radius:10px;max-height:250px;overflow:auto}
+.sample{display:flex;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-weight:400}
+.sample:last-child{border-bottom:0}
+.sample:hover{background:var(--soft)}
+.sample.sel{background:var(--orange-bg)}
+.sample input{margin-top:4px;accent-color:var(--orange)}
+.s-note{color:var(--muted);font-size:12px;margin-top:2px}
+.err{color:var(--red);min-height:20px;font-size:13px}
+.dialog-f{display:flex;justify-content:flex-end;gap:10px;margin-top:8px}
+@media (max-width:980px){.layout{grid-template-columns:1fr;height:auto}.thread{max-height:70vh}.fact{grid-template-columns:1fr auto}.fact .lbl{grid-column:1/-1}.tagline{display:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mark">H</span><span>HelaGuide</span></div>
+  <span class="domain">helaguide.lk</span>
+  <span class="tagline">Government guidance with a measured level of trust</span>
+  <span class="tag">Component 3 demo · mock data</span>
+</header>
+
+<main class="layout">
+  <section class="panel" aria-label="Conversation">
+    <div id="thread" class="thread" aria-live="polite"></div>
+    <div class="composer">
+      <button id="btn-ask" class="btn primary">How do I get a passport?</button>
+      <button id="btn-fb" class="btn dark">Give feedback</button>
+      <button id="btn-update" class="btn ghost" title="Demo control: the official page publishes new values">Simulate official update</button>
+      <button id="btn-reset" class="link">Reset demo</button>
+    </div>
+  </section>
+
+  <aside class="panel" aria-label="Behind the scenes">
+    <div class="tabs" role="tablist">
+      <button class="tab active" id="tab-report" data-tab="report" role="tab">Last report</button>
+      <button class="tab" id="tab-audit" data-tab="audit" role="tab">Audit trail</button>
+      <button class="tab" id="tab-citizens" data-tab="citizens" role="tab">Citizens</button>
+    </div>
+    <div id="side-body"></div>
+  </aside>
+</main>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="dialog">
+    <div class="dialog-h"><h2 id="modal-title">Give feedback</h2><button class="x" id="modal-x" aria-label="Close">&times;</button></div>
+    <p class="muted" style="margin:6px 0 0">Tell us what you experienced at the office. In this demo you choose a pre-written message, so the demo never depends on a live translation.</p>
+    <label class="fld">Who is giving this feedback?<select id="persona"></select></label>
+    <div class="fld">Message
+      <div id="groups" class="groups"></div>
+      <div id="samples" class="samples"></div>
+    </div>
+    <label class="fld">When did you visit? (optional)<input type="date" id="visit"></label>
+    <div id="modal-err" class="err"></div>
+    <div class="dialog-f"><button class="btn ghost" id="modal-cancel">Cancel</button><button class="btn primary" id="modal-submit">Submit feedback</button></div>
+  </div>
+</div>
+<noscript>This page needs JavaScript.</noscript>
+
+<script>
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const pct = v => Math.round(v * 100);
+const LANG = {en: "English", si: "Sinhala", mixed: "Singlish"};
+const state = {samples: [], groups: [], personas: [], facts: [], shown: {}, last: null, lastFact: "svc:passport:fee:normal",
+               tab: "report", group: "english", picked: null, busy: false};
+
+async function api(path, body) {
+  const opt = body === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)};
+  const r = await fetch(path, opt);
+  if (!r.ok) {
+    let detail = "";
+    try { detail = (await r.json()).detail; } catch (e) { /* not json */ }
+    const err = new Error(typeof detail === "string" && detail ? detail : "HTTP " + r.status);
+    err.status = r.status;
+    throw err;
+  }
+  return r.json();
+}
+
+/* ---------- conversation ---------- */
+function scrollDown() { const t = $("#thread"); t.scrollTop = t.scrollHeight; }
+function addBot(html) {
+  const d = document.createElement("div");
+  d.className = "msg bot";
+  d.innerHTML = '<div class="who">HelaGuide</div>' + html;
+  $("#thread").appendChild(d); scrollDown(); return d;
+}
+function addBubble(html) { return addBot('<div class="bubble">' + html + "</div>"); }
+function addUser(who, html) {
+  const d = document.createElement("div");
+  d.className = "msg user";
+  d.innerHTML = '<div class="who">' + esc(who) + '</div><div class="bubble">' + html + "</div>";
+  $("#thread").appendChild(d); scrollDown(); return d;
+}
+function fail(e) {
+  const msg = e.status === 409 ? "The console must be started with: python -m app.cli.serve" : e.message;
+  addBot('<div class="bubble err">Something went wrong: ' + esc(msg) + "</div>");
+}
+function greet() {
+  addBubble("Hello, I am HelaGuide. Ask how to do something with a government service. " +
+    "This demo shows the trust layer: next to every fact you see how far citizens' experience supports it.");
+}
+
+/* ---------- confidence ---------- */
+function cls(code) { return code === "LOW_CONFIDENCE" ? "warn" : code === "VERIFY_BEFORE_VISIT" ? "bad" : "ok"; }
+function badge(f) {
+  const official = f.warning_code === "VERIFIED_BY_SOURCE" ? ' <span class="tick">&#10003; official</span>' : "";
+  return '<span class="badge ' + cls(f.warning_code) + '" title="Confidence in this fact">' + f.confidence_pct + "%</span>" + official;
+}
+function warnLine(code) {
+  if (code === "LOW_CONFIDENCE") return '<div class="note warn">Citizens report this may have changed.</div>';
+  if (code === "VERIFY_BEFORE_VISIT") return '<div class="note bad">Strong doubt: please confirm before you visit.</div>';
+  if (code === "VERIFIED_BY_SOURCE") return '<div class="note ok">Confirmed by the official source.</div>';
+  return "";
+}
+function factRow(f) {
+  const before = state.shown[f.fact_id];
+  const changed = before !== undefined && before !== f.confidence_pct;
+  return '<div class="fact' + (changed ? " changed" : "") + '" data-fact-id="' + esc(f.fact_id) + '">' +
+    '<div class="lbl">' + esc(f.label) + "</div>" +
+    '<div class="val">' + esc(f.value) + warnLine(f.warning_code) + "</div>" +
+    '<div class="conf">' + (changed ? '<span class="was">' + before + '%</span><span class="arrow">&rarr;</span>' : "") + badge(f) + "</div></div>";
+}
+function workflowCard(wf) {
+  const steps = wf.steps.map(s =>
+    '<div class="step"><div class="step-h"><span class="num">' + s.order + '</span><div><div class="step-t">' + esc(s.name) +
+    '</div><div class="agency">' + esc(s.agency) + "</div></div></div>" + s.facts.map(factRow).join("") + "</div>").join("");
+  return '<div class="card"><h3>' + esc(wf.title) + "</h3>" + steps +
+    '<div class="legend">The percentage shows how far citizens\' experience supports the published fact. ' +
+    '<span class="badge ok">green</span> reliable &middot; <span class="badge warn">amber</span> reported by citizens &middot; ' +
+    '<span class="badge bad">red</span> verify first</div></div>';
+}
+function remember(wf) {
+  state.facts = [];
+  wf.steps.forEach(s => s.facts.forEach(f => {
+    state.shown[f.fact_id] = f.confidence_pct;
+    state.facts.push({fact_id: f.fact_id, label: s.name + " · " + f.label});
+  }));
+}
+
+/* ---------- actions ---------- */
+async function ask() {
+  if (state.busy) return;
+  state.busy = true;
+  addUser("You", esc("How do I get a passport?"));
+  try {
+    const wf = await api("/internal/demo/workflow");
+    addBot(workflowCard(wf));
+    remember(wf);
+  } catch (e) { fail(e); } finally { state.busy = false; }
+}
+function againButton() {
+  return '<button class="btn dark small" data-act="ask">Show the guide again</button>';
+}
+function resultCard(r) {
+  const u = r.ui;
+  if (r.state === "duplicate_message") return '<div class="card"><h3>Already received</h3><div class="pad">This message was already processed.</div></div>';
+  if (r.state !== "grounded") {
+    const c = (u.candidates || []).map(x => "<li>" + esc(x.label) + "</li>").join("");
+    return '<div class="card"><h3>No change made</h3><div class="pad"><p style="margin-top:0">' + esc(u.note) + "</p>" +
+      (c && r.reason === "ambiguous_fact" ? '<div class="muted">Closest matches:</div><ul>' + c + "</ul>" : "") + "</div></div>";
+  }
+  const c = r.confidence, t = r.trust, i = r.independence, e = r.exposure;
+  const translated = r.norm_backend && r.norm_backend !== "not_needed";
+  return '<div class="card"><h3>Your report was processed</h3><div class="pad">' +
+    (translated ? '<div class="line"><span class="k">In English</span>' + esc(r.text_en) + ' <span class="chip">saved translation</span></div>' : "") +
+    '<div class="line"><span class="k">Matched fact</span><b>' + esc(u.fact_label) + '</b> <span class="muted">(currently ' + esc(u.fact_value) + ")</span></div>" +
+    '<div class="line"><span class="k">Trust in this report</span><b>' + t.T.toFixed(2) + '</b> <span class="muted">reporter reputation ' + t.R.toFixed(2) +
+    " &middot; account " + Math.round(t.age_days) + " days</span></div>" +
+    '<div class="line"><span class="k">Counts as</span>' + (i.I < 1 ? "a repeat of an earlier report (weight " + i.I.toFixed(2) + ")" : "independent evidence") +
+    " &middot; " + (r.kind === "support" ? "supports the published fact" : "disputes the published fact") + "</div>" +
+    '<div class="shift"><span class="was">' + pct(c.old) + '%</span><span class="arrow">&rarr;</span><span class="badge ' + cls(e.warning_code) + '" style="font-size:18px">' + c.pct + "%</span></div>" +
+    warnLine(e.warning_code) + "</div></div>";
+}
+async function submit() {
+  if (!state.picked) { $("#modal-err").textContent = "Choose a message first."; return; }
+  const s = state.samples.find(x => x.id === state.picked);
+  const persona = $("#persona").value, visit = $("#visit").value || null;
+  closeModal();
+  addUser("Citizen " + persona, '<span class="lang">' + esc(LANG[s.language] || s.language) + '</span><div class="said ' + (s.language === "si" ? "si" : "") + '">' + esc(s.text) + "</div>");
+  const wait = addBubble("Checking your report&hellip;");
+  try {
+    const r = await api("/internal/demo/feedback", {sample_id: s.id, persona_id: persona, visit_date: visit});
+    wait.remove();
+    state.last = r;
+    if (r.fact_id) state.lastFact = r.fact_id;
+    addBot(resultCard(r));
+    if (r.state === "grounded") addBubble("To see the guide with this report taken into account: " + againButton());
+    showTab("report");
+    state.personas = await api("/internal/demo/personas");
+  } catch (e) { wait.remove(); fail(e); }
+}
+async function officialUpdate() {
+  if (state.busy) return;
+  addUser("Demo control", "Simulate: the official page publishes new values");
+  try {
+    const r = await api("/internal/demo/official-update", {});
+    if (!r.changes.length) { addBubble("The official update was already applied."); return; }
+    const parts = r.changes.map(c => {
+      const right = c.verdicts.filter(v => v.outcome === "verified_by_source").length;
+      const wrong = c.verdicts.filter(v => v.outcome === "contradicted_by_source").length;
+      return '<div class="line"><b>' + esc(c.label) + ":</b> " + esc(c.old_value) + ' <span class="arrow">&rarr;</span> <b>' + esc(c.new_value) +
+        '</b><div class="muted">Confidence starts again at ' + c.confidence_pct + "%. Earlier reports judged: " + right + " matched the official value, " + wrong + " did not.</div></div>";
+    }).join("");
+    const rep = r.reputation.length ? '<div class="muted">Citizen reputation changed for ' + r.reputation.length + " citizens (see the Citizens tab).</div>" : "";
+    addBot('<div class="card"><h3>The official page changed</h3><div class="pad">' + parts + rep + "</div></div>");
+    addBubble("To see the guide with the new values: " + againButton());
+    state.personas = await api("/internal/demo/personas");
+    if (state.tab === "citizens") showTab("citizens");
+  } catch (e) { fail(e); }
+}
+async function resetDemo() {
+  if (state.busy) return;
+  try {
+    await api("/internal/demo/reset", {});
+    $("#thread").innerHTML = "";
+    state.shown = {}; state.last = null; state.lastFact = "svc:passport:fee:normal"; state.facts = []; state.picked = null;
+    greet(); await loadStatic(); showTab(state.tab);
+  } catch (e) { fail(e); }
+}
+
+/* ---------- feedback dialog ---------- */
+function openModal() {
+  $("#modal-err").textContent = "";
+  $("#persona").innerHTML = state.personas.map(p => '<option value="' + esc(p.id) + '">' + esc(p.id) + " · " + esc(p.note) + " · reputation " + p.reputation + "</option>").join("");
+  renderGroups(); renderSamples();
+  $("#modal").classList.remove("hidden");
+}
+function closeModal() { $("#modal").classList.add("hidden"); }
+function renderGroups() {
+  $("#groups").innerHTML = state.groups.map(g => '<button type="button" class="gbtn' + (g.id === state.group ? " active" : "") + '" data-group="' + esc(g.id) + '">' + esc(g.label) + "</button>").join("");
+}
+function renderSamples() {
+  const list = state.samples.filter(s => s.group === state.group);
+  $("#samples").innerHTML = list.map(s =>
+    '<label class="sample' + (s.id === state.picked ? " sel" : "") + '"><input type="radio" name="sample" value="' + esc(s.id) + '"' + (s.id === state.picked ? " checked" : "") + ">" +
+    '<div><div class="said ' + (s.language === "si" ? "si" : "") + '">' + esc(s.text) + '</div><div class="s-note">' + esc(s.note) + "</div></div></label>").join("");
+}
+function pickSample(id) {
+  state.picked = id;
+  const s = state.samples.find(x => x.id === id);
+  if (!s) return;
+  if ($$("#persona option").some(o => o.value === s.default_persona)) $("#persona").value = s.default_persona;
+  $("#visit").value = s.visit_date || "";
+  renderSamples();
+}
+
+/* ---------- side panel ---------- */
+function bar(label, v, note) {
+  return '<div class="sig"><span>' + label + '</span><div class="bar"><i style="width:' + Math.round(v * 100) + '%"></i></div><b>' + v.toFixed(2) + "</b><small>" + note + "</small></div>";
+}
+function section(n, title, body) { return '<div class="sec"><h4><span class="n">' + n + "</span>" + title + '</h4><div class="b">' + body + "</div></div>"; }
+function reportDetail(r) {
+  if (!r) return '<p class="muted">Give feedback to see exactly how a report is processed: translation, matching, trust, independence and the new confidence.</p>';
+  const u = r.ui, g = r.grounding || {};
+  const trans = section(1, "Translate", '<div class="muted">' + esc(LANG[u.language] || u.language) + "</div>" +
+    (r.norm_backend === "not_needed" ? "Already English: no translation needed." : "<div>" + esc(r.text_en) + '</div><div class="muted">via ' + esc(r.norm_backend) + " (saved, reviewed translation)</div>"));
+  const cands = (u.candidates || []).map(c => "<tr><td>" + esc(c.label) + "</td><td>" + Number(c.score).toFixed(3) + "</td></tr>").join("");
+  let find = "<div>Service found via <b>" + esc(g.service_source || "n/a") + "</b></div>";
+  if (cands) find += "<table><tr><th>Candidate fact</th><th>Score</th></tr>" + cands + "</table>";
+  if (g.phrase_similarity != null) find += '<div class="muted" style="margin-top:6px">Document check: similarity ' + Number(g.phrase_similarity).toFixed(2) + "; shared distinctive words: " + esc((g.shared_words || []).join(", ") || "none") + "</div>";
+  if (g.only_fact_of_its_kind) find += '<div class="muted">Only fact of its kind in this service: needed score lowered to ' + g.needed_score + ".</div>";
+  find += '<div style="margin-top:6px"><b>' + (r.state === "grounded" ? "Matched: " + esc(u.fact_label) : esc(u.note)) + "</b></div>";
+  let out = trans + section(2, "Find the fact", find);
+  if (r.state !== "grounded") return out;
+  const t = r.trust, i = r.independence, c = r.confidence, e = r.exposure;
+  out += section(3, "Trust in the reporter &rarr; " + t.T.toFixed(2),
+    bar("Reputation", t.R, "reports later confirmed: " + t.a + ", contradicted: " + t.b) +
+    bar("Detail", t.S, "value, when, where, detail") +
+    bar("Account", t.C, Math.round(t.age_days) + " days old") +
+    bar("Recency", t.V, t.v_imputed ? "no visit date: neutral" : "how recent the visit was"));
+  out += section(4, "Independent?", "Weight <b>" + i.I.toFixed(2) + "</b> &middot; " + (i.dup_count ? i.dup_count + " near-duplicate of earlier reports" : "no near-duplicates") +
+    '<div class="muted">One citizen counts once. A copy counts for less.</div>');
+  out += section(5, "Confidence", '<div class="big">' + pct(c.old) + '% <span class="arrow">&rarr;</span> <span class="badge ' + cls(e.warning_code) + '" style="font-size:16px">' + c.pct + "%</span></div>" +
+    '<div class="muted">evidence against ' + c.E_d + ", for " + c.E_s + ", net " + c.E + " &middot; status: " + esc(c.status) +
+    " &middot; drops so far: " + c.drop_events + "</div>" + warnLine(e.warning_code));
+  return out;
+}
+async function auditView() {
+  if (!state.facts.length) return '<p class="muted">Show the guide first (&ldquo;How do I get a passport?&rdquo;), then choose a fact here.</p>';
+  const opts = state.facts.map(f => '<option value="' + esc(f.fact_id) + '"' + (f.fact_id === state.lastFact ? " selected" : "") + ">" + esc(f.label) + "</option>").join("");
+  const a = await api("/internal/demo/audit/" + encodeURIComponent(state.lastFact));
+  const versions = a.versions.map(v =>
+    '<div class="sec"><h4>' + esc(v.value) + " &middot; " + v.confidence_pct + "% &middot; " + esc(v.status) + '</h4><div class="b">' +
+    '<div class="muted">version from ' + esc((v.from || "").slice(0, 10)) + (v.to ? " to " + esc(v.to.slice(0, 10)) : " (current)") + "</div>" +
+    (v.reports.length ? "<table><tr><th>Citizen</th><th>Kind</th><th>Claim</th><th>T</th><th>I</th></tr>" +
+      v.reports.map(r => "<tr><td>" + esc(r.citizen) + "</td><td>" + esc(r.kind) + "</td><td>" + esc(r.claim || "-") + "</td><td>" + r.trust.toFixed(2) + "</td><td>" + r.independence.toFixed(2) + "</td></tr>").join("") + "</table>" : '<div class="muted">no reports</div>') +
+    "</div></div>").join("");
+  const trail = a.audit.map(r => "<tr><td>" + (r.before == null ? "-" : Number(r.before).toFixed(3)) + "</td><td>" + Number(r.after).toFixed(3) + "</td><td>" + esc(r.reason) + "</td></tr>").join("");
+  return '<label class="fld" style="margin-top:0">Fact<select id="audit-fact">' + opts + "</select></label>" + versions +
+    '<div class="sec"><h4>Audit trail: every change, with its reason</h4><div class="b"><table><tr><th>Before</th><th>After</th><th>Reason</th></tr>' + trail + "</table></div></div>";
+}
+function citizensView() {
+  const rows = state.personas.map(p => "<tr><td>" + esc(p.id) + "</td><td>" + esc(p.note) + "</td><td>" + p.reputation + "</td><td>" + p.a + " / " + p.b + "</td><td>" + esc(p.since) + "</td></tr>").join("");
+  return '<div class="muted" style="margin-bottom:8px">Demo citizens with stable anonymous ids. Reputation = (a+1)/(a+b+2), where a = reports later confirmed by the official source and b = reports contradicted.</div>' +
+    "<table><tr><th>Id</th><th>Profile</th><th>Reputation</th><th>a / b</th><th>Since</th></tr>" + rows + "</table>";
+}
+async function showTab(name) {
+  state.tab = name;
+  $$(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === name));
+  const body = $("#side-body");
+  try {
+    if (name === "report") body.innerHTML = reportDetail(state.last);
+    else if (name === "citizens") { state.personas = await api("/internal/demo/personas"); body.innerHTML = citizensView(); }
+    else { body.innerHTML = await auditView(); const sel = $("#audit-fact"); if (sel) sel.onchange = () => { state.lastFact = sel.value; showTab("audit"); }; }
+  } catch (e) { body.innerHTML = '<div class="bubble err">' + esc(e.status === 409 ? "Start the console with: python -m app.cli.serve" : e.message) + "</div>"; }
+}
+
+/* ---------- start ---------- */
+async function loadStatic() {
+  const s = await api("/internal/demo/samples");
+  state.samples = s.samples; state.groups = s.groups;
+  if (!state.groups.some(g => g.id === state.group)) state.group = state.groups[0].id;
+  state.personas = await api("/internal/demo/personas");
+}
+async function init() {
+  $("#btn-ask").onclick = ask;
+  $("#btn-fb").onclick = openModal;
+  $("#btn-update").onclick = officialUpdate;
+  $("#btn-reset").onclick = resetDemo;
+  $("#modal-cancel").onclick = closeModal;
+  $("#modal-x").onclick = closeModal;
+  $("#modal-submit").onclick = submit;
+  $("#modal").addEventListener("click", e => { if (e.target.id === "modal") closeModal(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+  $("#thread").addEventListener("click", e => { const b = e.target.closest("[data-act]"); if (b && b.dataset.act === "ask") ask(); });
+  $("#groups").addEventListener("click", e => { const b = e.target.closest("[data-group]"); if (b) { state.group = b.dataset.group; renderGroups(); renderSamples(); } });
+  $("#samples").addEventListener("change", e => { if (e.target.name === "sample") pickSample(e.target.value); });
+  $$(".tab").forEach(t => t.onclick = () => showTab(t.dataset.tab));
+  greet();
+  try { await loadStatic(); } catch (e) { fail(e); }
+  showTab("report");
+}
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>

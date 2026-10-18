@@ -17,8 +17,9 @@ Small files only (under a few MB). Large datasets, raw crawls and model weights 
 | `reporters.json` | 15 mock anonymous reporters with stable ids, account creation dates and reputation counters (`a`, `b`) | C3-private |
 | `feedback_structured.json` | 8 messages in exactly the `feedback` contract (C4 -> C3) | `feedback` contract |
 | `structured_extras.json` | Visit dates the contract message cannot carry | C3-private |
-| `feedback_freetext.json` | 33 free-text messages (English, Sinhala, Singlish) as C1 would forward them | C3-private proposal, **not** in `contracts/` |
-| `expected_labels.json` | The answer key: the correct outcome for each of the 41 messages, and a `tune` / `test` split | C3-private |
+| `feedback_freetext.json` | 35 free-text messages (English, Sinhala, Singlish) as the citizen console or C1 would forward them. **No hints**: the citizen only types text (and optionally a visit date); `context_services` records the workflow on screen when a message names two services. | C3-private proposal, **not** in `contracts/` |
+| `expected_labels.json` | The answer key: the correct outcome for each of the 43 messages, and a `tune` / `test` split | C3-private |
+| `demo_workflow.json` | Content of the citizen console: the workflow "How to get a passport" (14 facts), the demo citizens and the 14 sample messages offered in the feedback dialog | C3-private |
 | `normalised_cache.json` | English translations of the Sinhala and Singlish messages (see below) | C3-private |
 
 ## Translations

@@ -12,6 +12,16 @@
       "split": "tune"
     },
     {
+      "message_id": "ft-A2",
+      "path": "freetext",
+      "style": "english",
+      "story": "A",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:normal",
+      "expected_kind": "dispute",
+      "split": "tune"
+    },
+    {
       "message_id": "ft-A3",
       "path": "freetext",
       "style": "singlish",
@@ -20,6 +30,16 @@
       "expected_fact_id": "svc:passport:fee:normal",
       "expected_kind": "dispute",
       "split": "tune"
+    },
+    {
+      "message_id": "ft-A4",
+      "path": "freetext",
+      "style": "english",
+      "story": "A",
+      "expected_state": "grounded",
+      "expected_fact_id": "svc:passport:fee:normal",
+      "expected_kind": "dispute",
+      "split": "test"
     },
     {
       "message_id": "ft-A5",

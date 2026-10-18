@@ -4,7 +4,7 @@ The PP1 demonstration of the Civic Trust and Knowledge Verification Engine (comp
     python -m app.cli.demo                       everything, PostgreSQL, the real model
     python -m app.cli.demo --pause               wait for Enter between parts (good for the panel)
     python -m app.cli.demo --part grounding      only one part
-    python -m app.cli.demo --path freetext       only the C1-style path   (or: structured / both)
+    python -m app.cli.demo --path structured     the contract message instead (compatibility check; the default is free text)
     python -m app.cli.demo --sqlite --embedding hash    plumbing check, needs no Docker and no download
 
 Parts: setup, grounding, story, conflict, version, exposure, checks
@@ -168,7 +168,7 @@ def plot_story(pipe, rs, name, title):
 
 
 def part_story(pipe, ds, args):
-    banner("PART 3 · CONFIDENCE STORY: passport fee, reports from both paths")
+    banner("PART 3 · CONFIDENCE STORY: passport fee, reported by different citizens in their own words")
     f = pipe.repo.current_version("svc:passport:fee:normal")
     print(f"Stored fact: {S(f.fact_id)} = {f.value_text} {f.unit}.  Starting confidence {pipe.s.c_base:.0%}.")
     rs = play(pipe, ds, "A", args.path)
@@ -288,8 +288,9 @@ def main(argv=None) -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     add_common_args(ap)
     ap.add_argument("--part", choices=["all"] + PARTS, default="all")
-    ap.add_argument("--path", choices=["both", "freetext", "structured"], default="both",
-                    help="which feedback path to feed into the confidence stories")
+    ap.add_argument("--path", choices=["freetext", "structured"], default="freetext",
+                    help="how the story's reports arrive: freetext (default, the citizen's own words) or structured "
+                         "(the team's contract message, kept for compatibility)")
     ap.add_argument("--pause", action="store_true", help="wait for Enter between parts")
     ap.add_argument("--detail", help="comma-separated message ids to show in full in the grounding part")
     args = ap.parse_args(argv)

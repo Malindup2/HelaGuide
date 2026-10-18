@@ -168,7 +168,7 @@ def test_show_gives_a_before_and_an_after_view(tmp_path, capsys):
 
     show.main(["--db", url, "--fact", "svc:passport:fee:normal"])
     detail = capsys.readouterr().out
-    for must in ("Audit trail", "ft-A1", "fb-A4", "0.60", "VERIFY_BEFORE_VISIT", "initial confidence (Algorithm 0a)"):
+    for must in ("Audit trail", "ft-A1", "ft-A4", "0.60", "VERIFY_BEFORE_VISIT", "initial confidence (Algorithm 0a)"):
         assert must in detail, must
     show.main(["--db", url, "--fact", "svc:passport:fee:ghost"])
     assert "No fact called" in capsys.readouterr().out

@@ -1,13 +1,20 @@
+from pathlib import Path as FsPath
+
 from fastapi import APIRouter, HTTPException, Path, status
+from fastapi.responses import FileResponse
 
 from helaguide_common.config import get_settings
 from helaguide_common.contracts import FACT_ID, Feedback, TrustScore
 
 from app.core import scoring
-from app.models.internal import FreeTextFeedback
+from app.models.internal import DemoFeedbackRequest, FreeTextFeedback
 
 router = APIRouter(prefix="/v1", tags=["trust"])
 internal = APIRouter(prefix="/internal", tags=["c3-private"])
+ui = APIRouter(tags=["c3-demo"])
+demo = APIRouter(prefix="/internal/demo", tags=["c3-demo"])
+
+UI_FILE = FsPath(__file__).resolve().parents[1] / "ui" / "index.html"
 
 
 @router.post("/feedback", status_code=status.HTTP_202_ACCEPTED)
@@ -57,3 +64,71 @@ def sync_facts() -> dict:
     results = get_pipeline().sync_facts()
     return {"facts": len(results), "new": sum(r.created for r in results),
             "new_versions": sum(r.new_version for r in results)}
+
+
+# ---------------------------------------------------------------------------
+# The citizen console (python -m app.cli.serve): a page and the routes it uses. C3-private, real mode only.
+# ---------------------------------------------------------------------------
+@ui.get("/ui", include_in_schema=False)
+def citizen_console():
+    """The HelaGuide citizen console for demonstrating component 3 on its own."""
+    return FileResponse(UI_FILE, media_type="text/html")
+
+
+@demo.get("/workflow")
+def demo_workflow() -> dict:
+    """The mock workflow ("How do I get a passport?") with the live confidence of every fact."""
+    _require_real_mode()
+    from app.core.demo import get_demo
+    return get_demo().workflow()
+
+
+@demo.get("/personas")
+def demo_personas() -> list:
+    _require_real_mode()
+    from app.core.demo import get_demo
+    return get_demo().personas()
+
+
+@demo.get("/samples")
+def demo_samples() -> dict:
+    _require_real_mode()
+    from app.core.demo import get_demo
+    return get_demo().samples()
+
+
+@demo.post("/feedback")
+def demo_feedback(req: DemoFeedbackRequest) -> dict:
+    """Submit one pre-written sample message as one of the demo citizens."""
+    _require_real_mode()
+    from app.core.demo import get_demo
+    try:
+        return get_demo().submit(req)
+    except KeyError as exc:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, f"unknown sample or citizen: {exc}") from exc
+
+
+@demo.post("/official-update")
+def demo_official_update() -> dict:
+    """Simulate the official source publishing new values (C2 in the integrated system)."""
+    _require_real_mode()
+    from app.core.demo import get_demo
+    return get_demo().official_update()
+
+
+@demo.post("/reset")
+def demo_reset() -> dict:
+    _require_real_mode()
+    from app.core.demo import get_demo
+    return get_demo().reset()
+
+
+@demo.get("/audit/{fact_id}")
+def demo_audit(fact_id: str = Path(pattern=FACT_ID)) -> dict:
+    """Versions, reports and the audit trail of one fact."""
+    _require_real_mode()
+    from app.core.demo import get_demo
+    try:
+        return get_demo().audit(fact_id)
+    except KeyError as exc:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, f"unknown fact: {exc}") from exc

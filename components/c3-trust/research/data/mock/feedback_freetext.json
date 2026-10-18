@@ -1,5 +1,5 @@
 {
-  "_note": "C3-PRIVATE proposed message C1 would forward for free-text feedback. MOCK. Not part of contracts/.",
+  "_note": "C3-PRIVATE proposed message C1/C4 would forward for free-text feedback. MOCK. Not part of contracts/. No hints: the citizen types only text (and optionally a visit date); context_services is the workflow on screen.",
   "messages": [
     {
       "message_id": "ft-A1",
@@ -10,10 +10,26 @@
       "text_en": null,
       "intent": "feedback_discrepancy",
       "entities": {
-        "service_id": "svc:passport",
-        "predicate_hint": "fee",
-        "mentioned_value": 12000,
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
         "visit_date": "2026-10-19",
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-A2",
+      "session_id": "anon-0002",
+      "timestamp": "2026-10-21T11:05:00Z",
+      "language": "en",
+      "raw_text": "Counter staff at the Immigration office in Battaramulla told me the ordinary passport fee is now 12,000 rupees.",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": "2026-10-18",
         "reporter_token": null
       }
     },
@@ -26,10 +42,26 @@
       "text_en": null,
       "intent": "feedback_discrepancy",
       "entities": {
-        "service_id": "svc:passport",
-        "predicate_hint": "fee",
-        "mentioned_value": 12000,
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
         "visit_date": null,
+        "reporter_token": null
+      }
+    },
+    {
+      "message_id": "ft-A4",
+      "session_id": "anon-0004",
+      "timestamp": "2026-10-23T09:20:00Z",
+      "language": "en",
+      "raw_text": "I went to the Department of Immigration yesterday and the normal passport fee at the counter was Rs. 12,000, not 11,000 as your guide said!",
+      "text_en": null,
+      "intent": "feedback_discrepancy",
+      "entities": {
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
+        "visit_date": "2026-10-22",
         "reporter_token": null
       }
     },
@@ -42,9 +74,9 @@
       "text_en": null,
       "intent": "feedback_discrepancy",
       "entities": {
-        "service_id": "svc:passport",
-        "predicate_hint": "fee",
-        "mentioned_value": 11000,
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
         "visit_date": "2026-10-22",
         "reporter_token": null
       }
@@ -58,9 +90,9 @@
       "text_en": null,
       "intent": "feedback_discrepancy",
       "entities": {
-        "service_id": "svc:passport",
-        "predicate_hint": "fee",
-        "mentioned_value": 12000,
+        "service_id": null,
+        "predicate_hint": null,
+        "mentioned_value": null,
         "visit_date": "2026-10-25",
         "reporter_token": null
       }
@@ -250,11 +282,14 @@
       "text_en": null,
       "intent": "feedback_discrepancy",
       "entities": {
-        "service_id": "svc:passport",
+        "service_id": null,
         "predicate_hint": null,
         "mentioned_value": null,
         "visit_date": null,
-        "reporter_token": null
+        "reporter_token": null,
+        "context_services": [
+          "svc:passport"
+        ]
       }
     },
     {
@@ -266,7 +301,7 @@
       "text_en": null,
       "intent": "feedback_discrepancy",
       "entities": {
-        "service_id": "svc:birth_certificate",
+        "service_id": null,
         "predicate_hint": null,
         "mentioned_value": null,
         "visit_date": null,
@@ -282,7 +317,7 @@
       "text_en": null,
       "intent": "feedback_discrepancy",
       "entities": {
-        "service_id": "svc:nic",
+        "service_id": null,
         "predicate_hint": null,
         "mentioned_value": null,
         "visit_date": null,

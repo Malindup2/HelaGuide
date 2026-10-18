@@ -17,7 +17,7 @@ pytestmark = pytest.mark.skipif(not URL, reason="set C3_TEST_PG_URL to test agai
 def test_full_story_on_postgres(ds):
     p = Pipeline.build(make_settings(database_url=URL), reset=True)
     p.load_reporters(); p.sync_facts()
-    for mid in ["ft-A1", "fb-A2", "ft-A3", "fb-A4", "ft-A5", "ft-A6"]:
+    for mid in ["ft-A1", "ft-A2", "ft-A3", "ft-A4", "ft-A5", "ft-A6"]:
         r = run(p, ds, mid)
     assert r.confidence["status"] == "flagged"
     p.source.publish_updates(p.s.data_dir / "c2_facts_updates.json")
