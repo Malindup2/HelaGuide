@@ -7,6 +7,9 @@
 
 @import "tailwindcss";
 @import "./styles/tokens.css" layer(legacy);
+@import "./styles/base.css" layer(legacy);
+@import "./styles/app.css" layer(legacy);
+@import "./styles/features.css" layer(legacy);
 @import "./styles/fonts.css";
 
 /* The app switches themes with data-theme on <html>, not Tailwind's .dark class. */
@@ -38,6 +41,7 @@
   --color-navy-700: #1a2332;
   --color-navy-800: #111827;
   --color-navy-900: #0a0f1a;
+  --color-navy-950: #060a12;
 
   --color-brand: var(--color-amber-500);
   --color-brand-hover: var(--color-amber-600);
@@ -106,3 +110,28 @@ body { font-family: var(--font-sans); color: var(--color-ink); }
   padding: var(--spacing-sp-2) var(--spacing-sp-4); border-radius: var(--radius-r-md);
 }
 .skip-link:focus { left: var(--spacing-sp-4); top: var(--spacing-sp-4); }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
