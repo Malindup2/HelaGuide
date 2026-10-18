@@ -18,8 +18,6 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "httpx>=0.27"]
-<<<<<<< Updated upstream
-=======
 # stage 1 crawling: pip install -e ".[dev,crawl]"
 crawl = ["crawl4ai>=0.9,<1", "pypdf>=4"]
 # PDF text only, without the heavy browser stack (this is what CI installs)
@@ -30,7 +28,6 @@ db = ["psycopg[binary]>=3.1"]
 graph = ["neo4j>=5.20"]
 # Stage 2 language-model extraction: pip install -e ".[extract,db]"
 extract = ["httpx>=0.27"]
->>>>>>> Stashed changes
 # heavy research libraries: uncomment as you need them, install with .[research]
 research = [
     # "neo4j>=5.20",
