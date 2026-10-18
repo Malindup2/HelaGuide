@@ -26,6 +26,10 @@ C) Anthropic API (paid)
 
 Always try first:  python experiments\generate_synthetic.py --dry-run
 
+By default it generates the 8 core intents. --intents a,b,c picks others, e.g. the 4 support
+intents (prompt v5-support-intents):
+    python experiments\generate_synthetic.py --intents unsupported_service,feedback_complaint,general_question,out_of_scope --export 30
+
 Outputs (data/synthetic/):
     synthetic_dialogues.json    accepted dialogues (appended across runs, each records its model)
     rejected.jsonl              rejected dialogues with the reason
@@ -45,6 +49,7 @@ from pathlib import Path
 DATA = Path("data")
 OUT = DATA / "synthetic"
 PROMPT_VERSION = "v4-five-styles"
+SUPPORT_PROMPT_VERSION = "v5-support-intents"   # prompt for the non-core intents (see SUPPORT_EXAMPLES)
 DEFAULT_MODEL = "claude-sonnet-5-5"
 PER_CALL = 5
 
@@ -77,6 +82,11 @@ PHENOMENA = {
     "intent_switch": 0.15,    # user moves to a different core service mid-dialogue
     "multi_slot": 0.15,       # user gives two or more details in one message
 }
+SUPPORT_PHENOMENA = {         # support intents have at most two slots, so no multi_slot
+    "none": 0.6,
+    "intent_switch": 0.25,    # to any core or support intent
+    "correction": 0.15,
+}
 
 # Grounded in C2's scraped pages (kg_service_map.json). Things citizens naturally mention.
 DOMAIN_HINTS = {
@@ -88,7 +98,47 @@ DOMAIN_HINTS = {
     "birth_cert_copy": "certified copy of a birth certificate, own or a family member's; for NIC, passport, school, visa or a job abroad; can be requested online through e-BMD; may need an English translation",
     "marriage_registration": "registering an upcoming marriage; giving notice of marriage to the registrar; Kandyan marriage; birth certificates of both parties",
     "death_cert_copy": "copy of a family member's death certificate; for land, bank, pension or insurance matters; can be requested online through e-BMD; may need a translation",
+    # support intents (not in the KG or not a request to apply)
+    "unsupported_service": "a real Sri Lankan government service HelaGuide does not cover yet: driving licence (new, renew, lost, add a vehicle class), police clearance report, business or company registration, building permit, electricity or water connection, Grama Niladhari / residence certificate, vehicle registration or transfer, land deed copy, EPF/ETF; the bot asks one follow-up question at most",
+    "feedback_complaint": "the citizen says information HelaGuide gave was wrong or did not work: wrong fee, an extra document was required, the office was closed at the stated time, wrong photo count or size, long queue or wrong office; about NIC, passport, birth/death/marriage certificates or an unsupported service; the bot asks which service or office",
+    "general_question": "a question about a service, not a request to apply: the fee, documents needed, office location or hours, how long it takes, whether it can be done online; about NIC, passport, birth/death/marriage certificates, sometimes an unsupported service",
+    "out_of_scope": "not about government services at all: weather, cricket, jokes, recipes, phone top-up, greetings with no task; 1-2 user turns",
 }
+
+# One inline example per support intent. The gold seeds for these intents use normalised slot
+# values ("fee different"), so they cannot show the literal rule; these do.
+SUPPORT_EXAMPLES = {
+    "unsupported_service": {"turns": [
+        {"speaker": "user", "text": "mata driving licence eka renew karanna one, expire wela",
+         "state": {"intent": "unsupported_service", "slots": {"service_mentioned": "driving licence"}}},
+        {"speaker": "bot", "text": "Car ekatada heavy vehicle ekatada?"},
+        {"speaker": "user", "text": "car ekata witharai",
+         "state": {"intent": "unsupported_service", "slots": {"service_mentioned": "driving licence"}}}]},
+    "feedback_complaint": {"turns": [
+        {"speaker": "user", "text": "oya kiyapu fee eka waradi, office eke 5000k gaththa",
+         "state": {"intent": "feedback_complaint", "slots": {"issue": "fee eka waradi"}}},
+        {"speaker": "bot", "text": "Mona service ekatada giye?"},
+        {"speaker": "user", "text": "passport ekata, Battaramulla office eke",
+         "state": {"intent": "feedback_complaint", "slots": {"issue": "fee eka waradi", "service_mentioned": "passport"}}}]},
+    "general_question": {"turns": [
+        {"speaker": "user", "text": "birth certificate copy ekak online ganna puluwanda?",
+         "state": {"intent": "general_question", "slots": {"service_mentioned": "birth certificate copy"}}}]},
+    "out_of_scope": {"turns": [
+        {"speaker": "user", "text": "machan ada match eka kiyatada patan ganne?",
+         "state": {"intent": "out_of_scope", "slots": {}}},
+        {"speaker": "bot", "text": "Mata udaw karanna puluwan government services walata witharai. Mokak hari service ekak onada?"}]},
+}
+SUPPORT_RULES = """
+9. Support intents and their slots:
+   - unsupported_service and general_question: only service_mentioned.
+   - feedback_complaint: service_mentioned and issue.
+   - out_of_scope: no slots, "slots" is always {}.
+10. service_mentioned is the user's own words for the service, e.g. "driving licence", "police report",
+    "රියදුරු බලපත්‍රය" (not "license eka", not a normalised name). issue is the user's own short words for
+    what went wrong, e.g. "fee eka waradi", "office eka wahala thibbe". Leave a slot out until the user says it.
+11. general_question asks about a service (fee, documents, place, hours, time taken, online) without asking
+    to apply. If the user then says they want to apply, that is an intent switch to the core intent.
+12. From an intent switch on, the state keeps only the slots the new intent has."""
 
 
 # ------------------------------------------------------------------ prompt
@@ -98,20 +148,40 @@ def weighted(d):
     return random.choices(keys, weights=weights)[0]
 
 
-def make_specs(intent, core, n):
+def prompt_version(intent):
+    return SUPPORT_PROMPT_VERSION if intent in SUPPORT_EXAMPLES else PROMPT_VERSION
+
+
+def make_specs(intent, core, n, support=()):
+    if intent in core:
+        return [core_spec(intent, core) for _ in range(n)]
     specs = []
     for _ in range(n):
-        ph = weighted(PHENOMENA)
+        ph = weighted(SUPPORT_PHENOMENA)
+        turns = [1, 2] if intent == "out_of_scope" else [1, 2, 3]
         spec = {
             "intent": intent,
             "style": weighted(ACTIVE_STYLES),
             "phenomenon": ph,
-            "user_turns": random.choice([1, 2, 3, 3, 4]) if ph == "none" else random.choice([2, 3, 4]),
+            "user_turns": random.choice(turns if ph == "none" else [t for t in turns if t >= 2]),
         }
         if ph == "intent_switch":
-            spec["switch_to"] = random.choice([i for i in core if i != intent])
+            spec["switch_to"] = random.choice([i for i in list(core) + list(support) if i != intent])
         specs.append(spec)
     return specs
+
+
+def core_spec(intent, core):
+    ph = weighted(PHENOMENA)
+    spec = {
+        "intent": intent,
+        "style": weighted(ACTIVE_STYLES),
+        "phenomenon": ph,
+        "user_turns": random.choice([1, 2, 3, 3, 4]) if ph == "none" else random.choice([2, 3, 4]),
+    }
+    if ph == "intent_switch":
+        spec["switch_to"] = random.choice([i for i in core if i != intent])
+    return spec
 
 
 def follows_literal_rule(d):
@@ -129,6 +199,9 @@ def follows_literal_rule(d):
 
 def pick_examples(seed, intent, core, k=3):
     seed = [d for d in seed if follows_literal_rule(d)]
+    if intent not in core:   # support intent: 1-2 core seeds for the format; build_prompt adds SUPPORT_EXAMPLES
+        pool = [d for d in seed if first_intent(d) in core]
+        return [{"turns": d["turns"]} for d in random.sample(pool, random.randint(1, 2))]
     same = [d for d in seed if first_intent(d) == intent]
     other = [d for d in seed if first_intent(d) in core and first_intent(d) != intent]
     ex = random.sample(same, min(1, len(same))) + random.sample(other, k - min(1, len(same)))
@@ -137,6 +210,12 @@ def pick_examples(seed, intent, core, k=3):
 
 def build_prompt(schema, intent, specs, examples):
     core = {k: v for k, v in schema["intents"].items() if v["route"] == "orchestration" and v["department"]}
+    support_rules = support_example = ""
+    if intent not in core:    # list every intent, since a support dialogue can switch to any of them
+        core = dict(schema["intents"])
+        support_rules = SUPPORT_RULES
+        support_example = (f"\n\n## Example of {intent} (follows the rules above)\n"
+                           + json.dumps(SUPPORT_EXAMPLES[intent], ensure_ascii=False, indent=1))
     slot_defs = {s: schema["slots"][s] for s in sorted({s for v in core.values() for s in v["slots"]})}
     spec_lines = "\n".join(
         f"{i+1}. intent={s['intent']}, style={s['style']}, phenomenon={s['phenomenon']}"
@@ -176,10 +255,10 @@ district must be one of: {", ".join(DISTRICTS)} (always written in English in th
 6. Bot turns have no state. Bot asks short, natural follow-up questions in the user's style.
 7. Use fake but realistic details. Never real NIC numbers. Vary names, places, dates and wording;
    do not copy the examples. Write the way real people type: short, casual, sometimes misspelled.
-8. For nic_new, include date_of_birth in some dialogues (e.g. "1998.05.12", "2008 march 3").
+8. For nic_new, include date_of_birth in some dialogues (e.g. "1998.05.12", "2008 march 3").{support_rules}
 
 ## Examples of the format
-{json.dumps(examples, ensure_ascii=False, indent=1)}
+{json.dumps(examples, ensure_ascii=False, indent=1)}{support_example}
 
 Return ONLY a JSON array of {len(specs)} objects, each {{"turns": [...]}}, in spec order. No commentary."""
 
@@ -317,6 +396,7 @@ class Collector:
         self.seen = {norm(t["text"]) for d in seed + self.accepted for t in d["turns"][:1]}
         self.model = model
         self.stats, self.reasons, self.usage = Counter(), Counter(), Counter()
+        self.versions = set()              # prompt versions seen in this run
 
     def _load(self):
         return json.loads(self.out_file.read_text(encoding="utf-8")) if self.out_file.exists() else []
@@ -328,6 +408,7 @@ class Collector:
             self.reasons["count_mismatch"] += abs(len(specs) - len(dialogues))
         for d, spec in zip(dialogues, specs):
             self.stats["generated"] += 1
+            self.versions.add(prompt_version(spec["intent"]))
             try:
                 why = validate(d, schema, spec)
             except Exception as e:           # malformed dialogue structure
@@ -344,7 +425,7 @@ class Collector:
             self.seen.add(key)
             self.new.append({
                 "dialogue_id": None, "source": "synthetic", "model": self.model,
-                "prompt_version": PROMPT_VERSION,
+                "prompt_version": prompt_version(spec["intent"]),
                 "script": STYLE_META[spec["style"]][1], "style": spec["style"],
                 "code_mix": STYLE_META[spec["style"]][0],
                 "phenomena": [] if spec["phenomenon"] == "none" else [spec["phenomenon"]],
@@ -383,7 +464,7 @@ class Collector:
         rate = round(self.stats["accepted"] / self.stats["generated"], 3) if self.stats["generated"] else 0
         log = {
             "run_at": datetime.now().isoformat(timespec="seconds"), "mode": mode, "model": self.model,
-            "prompt_version": PROMPT_VERSION, "random_seed": args.seed,
+            "prompt_version": "+".join(sorted(self.versions)) or PROMPT_VERSION, "random_seed": args.seed,
             "generated": self.stats["generated"], "accepted": self.stats["accepted"], "acceptance_rate": rate,
             "rejection_reasons": dict(self.reasons), "token_usage": dict(self.usage),
             "total_synthetic": len(self.accepted),
@@ -399,14 +480,14 @@ class Collector:
 
 
 # ------------------------------------------------------------------ modes
-def run_api(args, schema, seed, core):
+def run_api(args, schema, seed, core, support, targets):
     call = make_caller(args.provider, args.model)
     col = Collector(seed, args.model)
-    for intent in core:
+    for intent in targets:
         got, attempts = 0, 0
         while got < args.per_intent and attempts < args.per_intent * 3:
             n = min(PER_CALL, args.per_intent - got)
-            specs = make_specs(intent, core, n)
+            specs = make_specs(intent, core, n, support)
             prompt = build_prompt(schema, intent, specs, pick_examples(seed, intent, core))
             attempts += n
             try:
@@ -431,17 +512,17 @@ def run_api(args, schema, seed, core):
     col.save(args, f"api:{args.provider}")
 
 
-def run_export(args, schema, seed, core):
+def run_export(args, schema, seed, core, support, targets):
     pdir, rdir = OUT / "prompts", OUT / "responses"
     pdir.mkdir(parents=True, exist_ok=True)
     rdir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     n_files = 0
-    for intent in core:
+    for intent in targets:
         left, k = args.export, 0
         while left > 0:
             n = min(PER_CALL, left)
-            specs = make_specs(intent, core, n)
+            specs = make_specs(intent, core, n, support)
             name = f"{stamp}_{intent}_{k:02d}"
             (pdir / f"{name}.txt").write_text(
                 build_prompt(schema, intent, specs, pick_examples(seed, intent, core)), encoding="utf-8")
@@ -483,7 +564,8 @@ def run_ingest(args, schema, seed, core):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--provider", choices=["anthropic", "gemini"], help="call an API directly")
-    ap.add_argument("--per-intent", type=int, default=5, help="API mode: accepted dialogues to add per core intent")
+    ap.add_argument("--per-intent", type=int, default=5, help="API mode: accepted dialogues to add per intent")
+    ap.add_argument("--intents", help="only these intents, comma-separated (default: the core intents)")
     ap.add_argument("--export", type=int, metavar="N", help="write prompt files for N dialogues per intent")
     ap.add_argument("--ingest", action="store_true", help="validate answers saved in data/synthetic/responses/")
     ap.add_argument("--model", help="API model name, or who wrote the answers in --ingest mode")
@@ -508,11 +590,22 @@ def main():
     core = [k for k, v in schema["intents"].items() if v.get("route") == "orchestration" and v.get("department")]
     if not core:
         sys.exit("No core intents found in schema (need route=orchestration and a department).")
+    support = [k for k in schema["intents"] if k not in core]
+    targets = core
+    if args.intents:
+        targets = [x.strip() for x in args.intents.split(",") if x.strip()]
+        bad = [x for x in targets if x not in schema["intents"]]
+        if bad:
+            sys.exit(f"Unknown intent(s) {bad}. Choose from: {', '.join(schema['intents'])}")
+        missing = [x for x in targets if x in support and (x not in SUPPORT_EXAMPLES or x not in DOMAIN_HINTS)]
+        if missing:
+            sys.exit(f"No SUPPORT_EXAMPLES / DOMAIN_HINTS for {missing}; add them before generating.")
 
     if args.dry_run:
-        print(build_prompt(schema, core[0], make_specs(core[0], core, PER_CALL), pick_examples(seed, core[0], core)))
+        t = targets[0]
+        print(build_prompt(schema, t, make_specs(t, core, PER_CALL, support), pick_examples(seed, t, core)))
     elif args.export:
-        run_export(args, schema, seed, core)
+        run_export(args, schema, seed, core, support, targets)
     elif args.ingest:
         if not args.model:
             sys.exit("Say who wrote the answers, e.g.  --model claude-code  or  --model gemini-web")
@@ -522,7 +615,7 @@ def main():
             args.model = DEFAULT_MODEL if args.provider == "anthropic" else None
         if not args.model:
             sys.exit("Give the Gemini model name from AI Studio, e.g.  --model <name>")
-        run_api(args, schema, seed, core)
+        run_api(args, schema, seed, core, support, targets)
     else:
         ap.print_help()
 
