@@ -185,3 +185,12 @@ def test_an_agency_written_slightly_differently_joins_the_existing_one():
     assert canonical_agency("Department for Registrations of Persons", known) == known[0]
     assert canonical_agency("Department of Immigration and Emigration", known) == \
         "Department of Immigration and Emigration"   # a different agency stays different
+
+
+def test_a_trailing_country_name_still_matches_the_known_agency():
+    from app.core.graph.writer import canonical_agency
+
+    known = ["Inland Revenue Department"]
+    assert canonical_agency("Inland Revenue Department Sri Lanka", known) == known[0]
+    assert canonical_agency("Inland Revenue Department", ["Inland Revenue Department Sri Lanka"]) \
+        == "Inland Revenue Department Sri Lanka"

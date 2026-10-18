@@ -102,3 +102,17 @@ def test_a_fee_in_a_table_with_no_currency_in_the_cell_is_still_an_amount():
 def test_free_of_charge_is_a_valid_fee_but_a_row_of_dots_is_not():
     assert ok(value_text="FOC", value_num=None, unit=None)
     assert not ok(value_text="RS.......", value_num=None, unit=None)
+
+
+def test_in_duplicate_meaning_two_copies_is_not_a_surrender_or_loss_signal():
+    assert ok(predicate="prerequisite", fact_id="svc:marriage:prerequisite:nic",
+              service_id="svc:registration_of_marriages_general", value_text="svc:nic",
+              value_num=None, unit=None, detail={"requires_service": "svc:nic"},
+              evidence="The Notice of Marriage must be written in duplicate, certified, and handed over")
+
+
+def test_a_genuine_duplicate_certificate_still_holds():
+    assert not ok(predicate="prerequisite", fact_id="svc:nic:prerequisite:nic",
+                  service_id="svc:nic_duplicate", value_text="svc:nic", value_num=None, unit=None,
+                  detail={"requires_service": "svc:nic"},
+                  evidence="Apply for a duplicate certificate if the original is lost")
