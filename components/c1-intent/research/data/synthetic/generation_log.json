@@ -85,5 +85,18 @@
     "rejection_reasons": {},
     "token_usage": {},
     "total_synthetic": 273
+  },
+  {
+    "run_at": "2026-10-18T18:41:36",
+    "mode": "ingest",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "random_seed": 42,
+    "generated": 120,
+    "accepted": 120,
+    "acceptance_rate": 1.0,
+    "rejection_reasons": {},
+    "token_usage": {},
+    "total_synthetic": 393
   }
 ]
