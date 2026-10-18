@@ -23,6 +23,11 @@ Small files only (under a few MB). Large datasets, raw crawls and model weights 
 | `ls_export.json` | Label Studio JSON export, 142 tasks (one per user turn), all annotated | Label Studio → Export → JSON |
 | `gold_tokens.jsonl` | Token-level gold set, one line per user turn: tokens, language tags, BIO entity tags | `baseline_fasttext.py` |
 | `kg_service_map.json` | The 8 core intents mapped to C2 service ids (confirmed or proposed), which attributes the KG holds for each, source pages, and the KG services no intent covers | Hand-built from C2's committed files, 2026-10-14 |
+| `synthetic/synthetic_dialogues.json` | 273 LLM-written training dialogues (`s0001`–`s0275`, 8 core intents, ~35 each), 726 user turns | `generate_synthetic.py` (Claude Code 227, Gemini 3.5 Flash Lite 46) |
+| `synthetic/silver_tokens.jsonl` | Training set in the gold format: 726 turns, 4,368 tokens. Language tags from the LLM (646 turns) or hand-checked (80); entity spans from slot values | `tag_synthetic.py --build` |
+| `fresh_dialogues.txt` / `.json` | Fresh test set: 23 dialogues written by the author after the model was designed, 50 user turns | Hand-written; `prepare_fresh.py` |
+| `fresh_ls_export.json` | Label Studio export of the fresh set, labelled from scratch (no pre-labels) | Label Studio |
+| `fresh_tokens.jsonl` | Fresh test set in the gold format: 50 turns, 403 tokens | `prepare_fresh.py --from-export` |
 
 All files are UTF-8. Sinhala text is stored in Sinhala script, not escaped.
 
@@ -150,6 +155,79 @@ Import `ls_tasks.json` into Label Studio only when setting up a new project: the
 heuristic pre-labels, not the corrected labels, and importing them into "CS-Intent Seed"
 would add 142 duplicate tasks. `baseline_fasttext.py` stops if `seed_all.json` is missing,
 so the gold set cannot silently pick up the outdated intents in the export.
+
+## Results so far
+
+From `results/xlmr_results_run_2.json` (run 2, 2026-10-15) and `results/fresh_baselines.json`.
+Result files by observation in `docs/notes.md`: `xlmr_results_run_1.json` = Observation 5 (first XLM-R run, 618-turn silver set) · `xlmr_results_run_2.json` = Observation 6 (seed 42, first fresh-set run) · `xlmr_results_seed{42,1,2}.json` = Observation 7 (3 seeds) · `c1_context_results_e15.json` = Observation 8 (`run1/…_e6.json` is its under-trained first run).
+Model: `xlm-roberta-base`, 8 epochs, batch 16, lr 3e-5, seed 42; one model per task (language ID,
+entities, intent). Trained on the silver set only (655 train / 71 dev turns); tested on the gold set
+(142 turns) and the fresh set (50 turns), neither of which was used for training.
+
+### Language ID on the fresh set (SI/EN words only)
+
+The fresh set was labelled from scratch, without the heuristic pre-labels, so it is the fairest
+test of all three methods.
+
+| Style | n | Heuristic | fastText | XLM-R |
+|---|---|---|---|---|
+| **All** | 375 | 0.773 | 0.595 | **0.971** |
+| Code-mixed, romanized (Singlish) | 164 | 0.829 | 0.262 | **0.945** |
+| English only | 99 | 0.495 | 0.808 | **0.990** |
+| Code-mixed, Sinhala script | 80 | 0.913 | 0.888 | **0.988** |
+| Pure Sinhala | 32 | **1.000** | 0.906 | **1.000** |
+
+XLM-R on all five tags (incl. `NE`, `OTHER`, `MIXED`): 0.963. Most common errors: EN→SI (4),
+OTHER→SI (3), EN→NE (3).
+
+### Gold set (142 turns)
+
+| | XLM-R | Note |
+|---|---|---|
+| Language ID, SI/EN (n=711) | 0.990 | Singlish 0.986 · Sinhala script + EN 0.992 · pure Sinhala 1.000 |
+| Language ID, all tags | 0.991 | |
+| fastText, SI/EN (for comparison) | 0.574 | Singlish 0.352 (`results/baseline_fasttext.json`) |
+
+The heuristic scores ~0.99 on the gold set but only 0.773 on the fresh set: the gold labels
+started from its pre-labels, so that number is inflated.
+
+### Intent (full dialogue history as input)
+
+| Test set | n | Accuracy | Macro-F1 |
+|---|---|---|---|
+| Gold, 8 core intents | 70 | 0.943 | 0.944 |
+| Fresh | 50 | 0.900 | — |
+
+Gold errors: `nic_new`→`birth_cert_copy` (2), `passport_renew`→`passport_new` (1),
+`nic_replace_lost`→`nic_update` (1). In run 1, 2 of 3 errors followed an intent switch
+(birth certificate → NIC), where the earlier part of the conversation misleads a model that
+reads the whole history (`docs/notes.md`, Observations 5–6).
+
+### Entities (seqeval, entity level)
+
+| Test set | Support | Precision | Recall | Micro-F1 |
+|---|---|---|---|---|
+| Gold, learnable types | 54 | 0.506 | 0.833 | 0.629 |
+| Gold, all types | 70 | 0.506 | 0.643 | 0.566 |
+| Fresh | 14 | 0.400 | 0.571 | 0.471 |
+
+`district` is found almost always (gold recall 0.95) but also over-predicted (precision 0.61);
+`travel_date` likewise (recall 1.0, precision 0.36). `issue` and `service_mentioned` score 0
+because they never occur in the training data.
+
+### Limitations
+
+- This section is one run with one seed. Mean ± std over 3 seeds is in `docs/notes.md`, Observation 7.
+- Small test sets. Rough 95% ranges: ±2 points for fresh language ID (375 words), about ±8 for
+  fresh intent (50 turns), and entity F1 on 14 fresh entities is indicative only.
+- 72 of 142 gold turns use intents with no training data (`unsupported_service` 54,
+  `feedback_complaint` 9, `general_question` 5, `out_of_scope` 4), so they are not scored.
+- `MIXED` has 1 gold, 1 fresh and 7 silver examples, so the model cannot really learn it.
+- Training data is LLM-written; the fresh set is the check that results carry over to human text.
+- Run 1 (`xlmr_results_run_1.json`, 618 silver turns) scored intent 0.957 on gold; the drop to
+  0.943 in run 2 is within single-seed noise at n=70.
+- The result files and charts named above are committed; other files in `results/` stay local
+  (see `research/.gitignore`). Model checkpoints are on Google Drive, not in git.
 
 ## Known issues
 

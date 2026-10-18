@@ -61,9 +61,9 @@ Shared: one JSON schema across all four engines, FastAPI serving, Docker deploym
 | Context strategies | LangChain memory, tiktoken |
 | Serving | FastAPI, Docker |
 | Annotation | Label Studio |
-| Experiment tracking | Weights & Biases |
+| Experiment tracking | Results JSON files in `results\` (Weights & Biases planned) |
 | Training compute | Google Colab GPU |
-| Synthetic data | LLM API (Claude/GPT) |
+| Synthetic data | Claude Code and Gemini 3.5 Flash Lite, validated by script |
 | Local env | Miniconda, Python 3.10 (`nlp`, `label` envs) |
 
 ## 7. How success is measured
@@ -75,6 +75,20 @@ Shared: one JSON schema across all four engines, FastAPI serving, Docker deploym
 - **Main result:** accuracy vs tokens/latency trade-off curve across context strategies
 - All results broken down by style (script / Singlish / code-mixed), never one blended number
 
+### Where things stand (16 Oct 2026)
+
+| | Result | Test set |
+|---|---|---|
+| Language ID (SI/EN words) | XLM-R **0.971** vs fastText 0.595 vs heuristic 0.773 | Fresh, 375 words |
+| Language ID on Singlish | XLM-R **0.945** vs fastText 0.262 | Fresh, 164 words |
+| Intent (8 core intents) | 0.943 accuracy, 0.944 macro-F1 | Gold, 70 turns |
+| Intent | 0.900 accuracy | Fresh, 50 turns |
+| Entities (seqeval micro-F1) | 0.63 | Gold, learnable types |
+
+Data: 70 hand-written gold dialogues (142 turns), 273 synthetic training dialogues (726 turns),
+23 fresh hand-written test dialogues (50 turns). One training run so far; full tables in
+`research\data\README.md` → Results so far.
+
 ## 8. Milestones
 
 | Milestone | Date | Status |
@@ -83,6 +97,8 @@ Shared: one JSON schema across all four engines, FastAPI serving, Docker deploym
 | Literature review (15+ papers) | Before TAF | ✅ / keep updating |
 | Proposal presentation | Sep 2026 | ✅ |
 | Environment + baseline tests | Oct 2026 | ✅ |
+| Datasets (gold, silver, fresh) | 14–16 Oct 2026 | ✅ |
+| First XLM-R models (language ID, intent, entities) | 15 Oct 2026 | ✅ |
 | **PP1** | **20 Oct 2026** | 🔄 |
 | PP2 (context optimization + trade-off) | TBD | ⬜ |
 | Final report & viva | TBD | ⬜ |
@@ -92,32 +108,36 @@ Shared: one JSON schema across all four engines, FastAPI serving, Docker deploym
 | Card | Status | Due |
 |---|---|---|
 | PP1 – Implementation of Multilingual Intent Classification Engine (milestone) | 🔄 | 10/20 |
-| Dataset creation | 🔄 | |
-| Annotation & data split | 🔄 | |
-| Language segmentation layer | 🔄 | |
-| Intent classifier | ⬜ | |
-| Entity extractor + multi-turn tracking | ⬜ | |
-| FastAPI endpoint + routing | ⬜ | |
+| Dataset creation | ✅ | |
+| Annotation & data split | ✅ | |
+| Language segmentation layer | 🔄 (model trained; module pending) | |
+| Intent classifier | 🔄 (baseline trained) | |
+| Entity extractor + multi-turn tracking | 🔄 (NER baseline; tracking not started) | |
+| FastAPI endpoint + routing | 🔄 (skeleton + stub) | |
 | PP1 demo & slides | ⬜ | 10/20 |
 | PP2 – Context optimization & evaluation | ⬜ | Later |
 
 ## 10. This week's priorities
 
-1. ⬜ Send the 4 KG questions to Thilakumara and get his service IDs
-2. ⬜ Write ~45 more dialogues for the 8 core intents
-3. 🔄 Finish reviewing labels in Label Studio
-4. ⬜ Export data and create the held-out test set
-5. ⬜ Train first intent classifier baseline
+1. ⬜ Send `c2_open_questions.md` to Malindu (C2) and get the service IDs confirmed
+2. ✅ ~~Write ~45 more dialogues for the 8 core intents~~ — 273 synthetic dialogues instead
+3. ✅ Finish reviewing labels in Label Studio
+4. ✅ Export data and create test sets (gold + fresh, both test-only)
+5. ✅ Train first intent classifier baseline
+6. ⬜ Plug the models into `POST /v1/intent` behind `pipeline.resolve()`
+7. ⬜ PP1 demo dialogue, backup video and slides
 
 ## 11. Risks
 
 | Risk | Mitigation |
 |---|---|
-| Not enough labelled data | Three sources: public seed queries, manual dialogues, synthetic LLM data |
-| Class imbalance | New batch for core intents only; report macro-F1 |
+| Not enough labelled data | Three sources: manual gold dialogues, synthetic LLM data (silver), a fresh hand-labelled test set |
+| Class imbalance | Synthetic batch balanced across the 8 core intents (29–36 dialogues each); report macro-F1 |
+| 4 intents have no training data | Next synthetic batch: `unsupported_service`, `feedback_complaint`, `general_question`, `out_of_scope` |
 | Singlish spelling is inconsistent | Include romanized variants; report it separately |
 | Teammates' components not ready | Shared JSON schema + mocked services |
-| Synthetic data unrealistic | Keep separate; test set uses manual data only |
+| Synthetic data unrealistic | Train on synthetic only, test only on human-written data (gold + fresh) |
+| Results from one run on small test sets | More seeds; report confidence ranges (about ±2 pts language ID, ±8 pts fresh intent) |
 
 ## 12. Ethics & data
 
@@ -131,4 +151,6 @@ Shared: one JSON schema across all four engines, FastAPI serving, Docker deploym
 |---|---|---|
 | Early Oct | Env setup, fastText/XLM-R baselines, schema v0, 70 seed dialogues | Labelling |
 | 12–13 Oct | Schema v1 (3 departments), migration, Label Studio project (142 tasks), Planner cards | KG questions, new dialogue batch |
-| | | |
+| 14 Oct | Gold set final (788 tokens); fastText baseline (35.2% on Singlish); schema 1.1 mapped to C2 service IDs; C2 questions drafted; work moved into the team repo | Synthetic data |
+| 15 Oct | 273 synthetic dialogues, LLM language tags (100% on an 80-turn check), silver set; first XLM-R models (run 1) | Fresh test set |
+| 16 Oct | Fresh test set (50 turns, labelled from scratch); run 2: language ID 0.971, intent 0.943 gold / 0.90 fresh; synthetic ID and district fixes | Service integration, PP1 slides |
