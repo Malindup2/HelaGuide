@@ -75,19 +75,24 @@ Shared: one JSON schema across all four engines, FastAPI serving, Docker deploym
 - **Main result:** accuracy vs tokens/latency trade-off curve across context strategies
 - All results broken down by style (script / Singlish / code-mixed), never one blended number
 
-### Where things stand (16 Oct 2026)
+### Where things stand (18 Oct 2026)
+
+XLM-R values are mean ± std over 3 seeds (42, 1, 2).
 
 | | Result | Test set |
 |---|---|---|
-| Language ID (SI/EN words) | XLM-R **0.971** vs fastText 0.595 vs heuristic 0.773 | Fresh, 375 words |
-| Language ID on Singlish | XLM-R **0.945** vs fastText 0.262 | Fresh, 164 words |
-| Intent (8 core intents) | 0.943 accuracy, 0.944 macro-F1 | Gold, 70 turns |
-| Intent | 0.900 accuracy | Fresh, 50 turns |
-| Entities (seqeval micro-F1) | 0.63 | Gold, learnable types |
+| Language ID (SI/EN words) | XLM-R **0.973 ± 0.005** vs fastText 0.595 vs heuristic 0.773 | Fresh, 375 words |
+| Language ID on Singlish | XLM-R **0.955 ± 0.009** vs fastText 0.262 | Fresh, 164 words |
+| Language ID at code-switch points | XLM-R **0.973 ± 0.007** vs fastText 0.507 | Fresh |
+| Intent macro-F1 (8 core intents) | XLM-R 0.936 ± 0.025; TF-IDF + LogReg **0.972** | Gold, 70 turns |
+| Intent macro-F1 | XLM-R 0.926 ± 0.021; TF-IDF + LogReg **0.953 ± 0.014** | Fresh, 50 turns |
+| Entities (span micro-F1, all types) | XLM-R 0.528 ± 0.054 gold; 0.394 ± 0.080 fresh; hybrid: 0.75 gold / 0.73 fresh (extractive types) | Gold / fresh |
+| JGA (full tracker, gold intent) | synthetic 0.807, fresh 0.920 (held out); fresh with predicted intent 0.88; gold 0.979 is the development set | Synthetic 726 / fresh 50 / gold 142 turns |
+| Context strategy (sessions) | XLM-R + window_3: 0.896 gold, 0.898 fresh macro-F1 at ~30 tokens/turn (full history 42–55 tokens/turn) | Gold / fresh sessions |
 
 Data: 70 hand-written gold dialogues (142 turns), 273 synthetic training dialogues (726 turns),
-23 fresh hand-written test dialogues (50 turns). One training run so far; full tables in
-`research\data\README.md` → Results so far.
+23 fresh hand-written test dialogues (50 turns). Full tables in `notes.md` (Observations 7–9)
+and `research\data\README.md` → Results so far.
 
 ## 8. Milestones
 
@@ -110,12 +115,12 @@ Data: 70 hand-written gold dialogues (142 turns), 273 synthetic training dialogu
 | PP1 – Implementation of Multilingual Intent Classification Engine (milestone) | 🔄 | 10/20 |
 | Dataset creation | ✅ | |
 | Annotation & data split | ✅ | |
-| Language segmentation layer | 🔄 (model trained; module pending) | |
-| Intent classifier | 🔄 (baseline trained) | |
-| Entity extractor + multi-turn tracking | 🔄 (NER baseline; tracking not started) | |
-| FastAPI endpoint + routing | 🔄 (skeleton + stub) | |
+| Language segmentation layer | 🔄 (model trained and evaluated over 3 seeds; `segment(text)` module pending) | |
+| Intent classifier | 🔄 (XLM-R over 3 seeds + TF-IDF baseline; 4 support intents have no training data) | |
+| Entity extractor + multi-turn tracking | 🔄 (hybrid extractor done: entity F1 0.75 gold / 0.73 fresh vs XLM-R 0.655 / 0.481) | |
+| FastAPI endpoint + routing | 🔄 (skeleton + stub; `resolve()` not implemented) | 10/18 |
 | PP1 demo & slides | ⬜ | 10/20 |
-| PP2 – Context optimization & evaluation | ⬜ | Later |
+| PP2 – Context optimization & evaluation | 🔄 (6 strategies × 3 seeds, tokens, latency, trade-off curve done; JGA, LLM summary, predicted tags, long conversations pending) | Later |
 
 ## 10. This week's priorities
 
@@ -123,9 +128,10 @@ Data: 70 hand-written gold dialogues (142 turns), 273 synthetic training dialogu
 2. ✅ ~~Write ~45 more dialogues for the 8 core intents~~ — 273 synthetic dialogues instead
 3. ✅ Finish reviewing labels in Label Studio
 4. ✅ Export data and create test sets (gold + fresh, both test-only)
-5. ✅ Train first intent classifier baseline
-6. ⬜ Plug the models into `POST /v1/intent` behind `pipeline.resolve()`
-7. ⬜ PP1 demo dialogue, backup video and slides
+5. ✅ Train first intent classifier baseline; 3 seeds and a TF-IDF baseline (Observation 7)
+6. ✅ Context strategies experiment: window_3 chosen as the default (Observation 8)
+7. ⬜ Plug the models into `POST /v1/intent` behind `pipeline.resolve()`
+8. ⬜ PP1 demo dialogue, backup video and slides
 
 ## 11. Risks
 
@@ -137,7 +143,8 @@ Data: 70 hand-written gold dialogues (142 turns), 273 synthetic training dialogu
 | Singlish spelling is inconsistent | Include romanized variants; report it separately |
 | Teammates' components not ready | Shared JSON schema + mocked services |
 | Synthetic data unrealistic | Train on synthetic only, test only on human-written data (gold + fresh) |
-| Results from one run on small test sets | More seeds; report confidence ranges (about ±2 pts language ID, ±8 pts fresh intent) |
+| Small test sets | Results now reported as mean ± std over 3 seeds; test sets are still small (about ±2 pts language ID, ±8 pts fresh intent) |
+| Entity extraction was weak with XLM-R alone (0.53 / 0.39) | Hybrid extractor built: 0.75 / 0.73 on extractive types (Observation 9) |
 
 ## 12. Ethics & data
 
@@ -154,3 +161,5 @@ Data: 70 hand-written gold dialogues (142 turns), 273 synthetic training dialogu
 | 14 Oct | Gold set final (788 tokens); fastText baseline (35.2% on Singlish); schema 1.1 mapped to C2 service IDs; C2 questions drafted; work moved into the team repo | Synthetic data |
 | 15 Oct | 273 synthetic dialogues, LLM language tags (100% on an 80-turn check), silver set; first XLM-R models (run 1) | Fresh test set |
 | 16 Oct | Fresh test set (50 turns, labelled from scratch); run 2: language ID 0.971, intent 0.943 gold / 0.90 fresh; synthetic ID and district fixes | Service integration, PP1 slides |
+| 17 Oct | XLM-R over 3 seeds + TF-IDF intent baseline (Observation 7); context strategies, 6 × 3 seeds, window_3 chosen as default (Observation 8); `c1/context-experiment` pushed | Service integration, PP1 slides |
+| 18 Oct | Hybrid slot extractor + dialogue state tracker, JGA evaluation, fresh states labelled (Observation 9) | Retrain with support intents (v2 notebook), service integration, PP1 slides |
