@@ -6039,6 +6039,3214 @@
    "type": "html",
    "chars": 1043,
    "found": "2026-10-11"
+  },
+  "https://www.ird.gov.lk/en/sitepages/default.aspx": {
+   "parent": null,
+   "label": "",
+   "signals": "",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/SitePages/FAQs.aspx": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "FAQs",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 29260,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Value Added Tax (VAT)",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 29632,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Simplified Value Added Tax (SVAT) Scheme",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 35422,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Stamp Duty (SD)",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 25443,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Nation Building Tax (NBT)",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 25170,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Economic Service Charge (ESC)",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 22628,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Construction%20Industry%20Guarantee%20Fund%20Levy%20(CIGFL).aspx?menuid=1216": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Construction Industry Guarantee Fund Levy (CIGFL)",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 18906,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/tax_chart_2526.aspx?menuid=1404": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Tax Chart",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 34718,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/SitePages/Forms.aspx?menuid=1603": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Forms ​and Returns",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 44650,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/SitePages/Forms.aspx?menuid=1804": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Forms",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 45558,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/IT_Individuals_Doc/Guide_to_IIT_2425_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Guide to File Individual Return of Income Online",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 51689,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Guide to Registration and Update",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 22146,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/tax_chart_2526.aspx?menuid=140408": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Tax Rate Table",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 34760,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204?": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Who should register for VAT",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 29659,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1207": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Stamp Duty (SD)",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 25443,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/downloads/sitepages/forms.aspx?menuid=1603": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Application forms for confirmation of Registered or not Registered for Value Added Tax (VAT)",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 44650,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Income%20Tax_2017/IR_Act_No_24_2017_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "Inland Revenue Act, No.24 of 2017 [Certified on 24th October,2017]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 343083,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Income%20Tax_2017/Guide%20to%20Inland%20Revenue%20Act.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "Guide to Inland Revenue Act (Draft)",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 392638,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Income%20Tax_2017/IR_Act_No._10_2021_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "Inland Revenue (Amendment) Act, No.10 of 2021 [Certified on 13th May 2021]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 95821,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Income%20Tax_2017/IR_Act_No._45_2022_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "Inland Revenue (Amendment) Act, No.45 of 2022 [Certified on 19th December 2022]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 44379,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Income%20Tax_2017/IR_Act_No._04_2023_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "Inland Revenue (Amendment) Act, No.04 of 2023 [Certified on 08th May 2023]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 25008,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Income%20Tax_2017/IRA_Cons_Act_-_2025_Changes.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "Consolidated Text of the Inland Revenue Act, No. 24 of 2017 [Incorporating Amendments up to 31st March 2025]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 453775,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Income%20Tax_2017/IR_Act_No_11-2026_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "Inland Revenue (Amendment) Act, No.11 of 2026 [Certified on 03rd June 2026]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 57726,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1210": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "​​simplified value added tax (svat) scheme",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 35422,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo7[E]2003.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 07 of 2003 [Certified on February 27, 2003]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 26248,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo13[E]2004.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 13 of 2004 [Certified on Nvember 18, 2004]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 45180,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo8[E]2006.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 08 of 2006 [Certified on March 31, 2006]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 41224,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo14[E]2007.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 14 of 2007 [Certified on April 12, 2007]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 21161,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo9[E]2011.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 09 of 2011 [Certified on March 31, 2011]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 33197,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATAct%20No.17_2013_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 17 of 2013 [Certified on April 24, 2013]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 41745,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No.%207_2014_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 07 of 2014 [Certified on April 24, 2014]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 15608,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No._11_2015_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No.11 of 2015 [Certified on 30th October 2015]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 29029,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No._25-2018_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No.25 of 2018 [Certified on 16th of August, 2018]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 13305,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No._19_2019_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 19 of 2019 [Certified on 31st of October, 2019]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 6713,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No._09_2021_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 09 of 2021 [Certified on 13th May 2021]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 15705,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No._32_2023_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 32 of 2023 [Certified on 13th December 2023]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 15580,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No_14[E]_2002_(Consolidation_2025).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Consolidated Text of the Value Added Tax Act, No. 14 of 2002 [Incorporating Amendments up to 31.12.2025]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 401533,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No_14-2026_E.PDF": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 14 of 2026 [Certified on 30th June 2026]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 30900,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Stamp%20Duty_Acts/SDActNo.43[E]1982.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "Stamp Duty Act, No. 43 of 1982 [Certified on 10th December 1982]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 128241,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Stamp%20Duty_Acts/SDActNo.43[E]1982ConsolFinal.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "Consolidated Text of the Stamp Duty Act, No. 43 of 1982",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 125813,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Stamp%20Duty_Acts/SDActNo.10[E]2008.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "Stamp Duty (Special Provisions) (Amendment) Act, No. 10 of 2008 [Certified 29th February 2008]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 4527,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Stamp%20Duty_Acts/SDActNo.12[E]2006ConsolFinal.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "Consolidated Text of the Stamp Duty Act, No. 12 of 2006 [Incorporating Amendments up to 31.03.2011]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 46557,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BNG_Act%20No.%2019_2013_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Betting and Gaming Levy (Amendment) Act, No.19 of 2013 [Certified on 24th April, 2013]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 10003,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BNG_Act_No_40[E]_1988_(Consolidation_2013).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Consolidated Text of the Betting and Gaming Levy Act, No.40 of 1988 [Incorporating Amendments up to 30.04.2013]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 18565,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BNG_Act_No._14_2015_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Betting and Gaming Levy (Amendment) Act, No.14 of 2015 [Certified on 30th October 2015]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 13226,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BNG_Act_No._11_2023_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Betting and Gaming Levy (Amendment) Act, No.11 of 2023 [Certified on 21st August, 2023]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 19491,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Economic%20Service%20Charge/FActNo.5[E]2005.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Share%20Transaction%20Levy.aspx?menuid=1211",
+   "label": "Finance Act, No.5 of 2005 [Certified on 30th March, 2005]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 26628,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TVRS_Apps_Doc/TVRS_Procedure_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Tourist%20VAT%20Refund%20Scheme%20(TVRS).aspx?menuid=1213",
+   "label": "Guideline for Authorized Retailer",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 10223,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBTActNo.%2010(E)2011.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT) (Amendment) Act, No. 10 of 2011 [Certified on 31st March, 2011]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 19482,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBTAct%20No.%2011_2013_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT) (Amendment) Act, No. 11 of 2013 [Certified on 23rd April, 2013]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 7905,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBT_Act_No_9(E)2009_(Consolidation_2013).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Consolidated Text of the Nation Building Tax (NBT) Act, No. 09 of 2009 [Incorporating Amendments up to 30.04.2013]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 38547,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBT_Act_No._12_2015_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT)(Amendment) Act, No.12 of 2015 [Certified on 30th October 2015]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 15197,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBT_Act_No._13_2017_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT)(Amendment) Act, No.13 of 2017 [Certified on 9th August,2017]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 6921,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESCActNo.11[E]2011.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.11 of 2011 [Certified on 31st March 2011]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 8405,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESC_Act_No._07_2017_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.07 of 2017 [Certified on 17th May 2017]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 9068,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Tax_Chart_2223.aspx?menuid=140405": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Tax Chart - 2223",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 39736,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Tax_Chart_2324.aspx?menuid=140406": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Tax Chart - 2324",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 32451,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Tax_Chart_2425.aspx?menuid=140407": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Tax Chart - 2425",
+   "signals": "FDP",
+   "type": "html",
+   "chars": 33813,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IR_PR_2025_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2025",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 335284,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IR_PR_2023_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2023",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 304295,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IR_PR_2021_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2021",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 182238,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IR_PR_2016_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2016",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 94621,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/PR_2015_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2015",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 108843,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/PR_2014_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2014",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 120513,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/PR_2012_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2012",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 116857,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IRActNo.10(E)2006.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Inland Revenue Act, No.10 of 2006 [Certified on 31st March 2006]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 543931,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IRAct%20No.%2022(E)2011.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Inland Revenue (Amendment) Act, No.22 of 2011 [Certified on 31st March 2011]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 70602,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IRAct%2018_2013_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Inland Revenue (Amendment) Act, No.18 of 2013 [Certified on 28th April 2013]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 55087,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IR_Act_No.%208_2014_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Inland Revenue (Amendment) Act, No.08 of 2014 [Certified on 24th April 2014]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 48017,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IR_Act_No._9_2015_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Inland Revenue (Amendment) Act, No.09 of 2015 [Certified on 30th October 2015]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 60521,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IR_Act_No_10[E]_2006_(Consolidation_2015).pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Consolidated Text of the Inland Revenue Act, No. 10 of 2006 [Incorporating Amendments up to 30.04.2015]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 802207,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Stamp%20Duty/SDActNo.43[E]1982.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Stamp Duty Act, No.43 of 1982 [Certified on 10th December 1982]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 128241,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Stamp%20Duty/SDActNo.43[E]1982ConsolFinal.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Consolidated Text of the Stamp Duty Act, No.43 of 1982",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 125813,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Stamp%20Duty/SDActNo.10[E]2008.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Stamp Duty (Special Provisions) (Amendment) Act, No.10 of 2008 [Certified 29th February 2008]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 4527,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Stamp%20Duty/SDActNo.12[E]2006ConsolFinal.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Consolidated Text of the Stamp Duty Act, No.12 of 2006 [Incorporating Amendments up to 31.03.2011]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 46557,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Land%20Tax/Land_Act_No._38(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Land (Restrictions on Alienation) Act, No.38 of 2014 [Certified on 29th October 2014]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 29626,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Debits%20Tax/DTAct%20No.16[E]2002.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Debits Tax Act, No.16 of 2002 [Certified on 19th August, 2002]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 31303,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Debits%20Tax/DTActNo.16[E]2002ConsolFinal.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Consolidated Text of the Debits Tax Act, No.16 of 2002 [Incorporating Amendments up to 31.03.2011]",
+   "signals": "FDP",
+   "type": "pdf",
+   "chars": 55000,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD_Units.aspx?menuid=1105": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Units Organisation",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 19539,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Income Tax (IT)",
+   "signals": "F-P",
+   "type": "html",
+   "chars": 19981,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Pay%20As%20You%20Earn%20(PAYE).aspx?menuid=1202": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Pay As You Earn (PAYE)",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 19299,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/type%20of%20taxes/sitepages/social%20security%20contribution%20levy%20(sscl).aspx?menuid=1207": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Social Security Contribution Levy (SSCL)",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 22983,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Capital%20Gain%20Tax%20(CGT).aspx?menuid=1208": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Capital Gain Tax (CGT)",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 19899,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Tourist%20VAT%20Refund%20Scheme%20(TVRS).aspx?menuid=1213": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Tourist VAT Refund Scheme (TVRS)",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 19442,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/SitePages/Customer%20Service_Promotion%20Units.aspx?menuid=1303": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Customer Service & Promotion Units",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 23393,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/SitePages/L_M_Corporate%20Refunds.aspx?menuid=1305": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Large & Medium Corporate Refunds Units",
+   "signals": "F-P",
+   "type": "html",
+   "chars": 18666,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Guide%20to%20Taxpayers.aspx?menuid=1403": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Guide to Taxpayers",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 20373,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Issuing%20of%20Privilege%20Cards.aspx?menuid=1406": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Issuing of Privilege Cards",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 22526,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Employer%20responsibilities%20(PAYE).aspx?menuid=1409": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Employer Responsibilities (PAYE)",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 18379,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/VAT%20Refund%20Procedure.aspx?menuid=1410": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "VAT Refund Procedure",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 20382,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Inactive%20VAT%20List.aspx?menuid=1411": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Inactive VAT List",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 17205,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/SitePages/AlertsandAnnouncements.aspx?menuid=1418": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Alerts And Announcements",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 21788,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Docs_Public/SL_VCIP_Plan%202_2026_E.pdf?menuid=1511": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "VAT Compliance Improvement Plan - 2",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 7450,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/SitePages/Access%20To%20e-Services.aspx?menuid=1803": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Access to e-Services",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 16525,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/SitePages/Access%20To%20e-Services.aspx?menuid=1802": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "e-File Tax Return",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 16525,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Shared%20Documents/TPR_Guidelines_1.2_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Registration and Update",
+   "signals": "-DP",
+   "type": "pdf",
+   "chars": 21964,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Employer%20responsibilities%20(PAYE).aspx": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Employer responsibilities (PAYE)",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 14546,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/SitePages/Customer%20Service_Promotion%20Units.aspx?menuid=1302": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/Contact%20Us.aspx",
+   "label": "Customer Service & Promotion Units",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 23393,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/Forms_WHT_AIT/ISD_WHT_01-E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "(Home:Downloads:Forms and Returns :Forms: WHT/AIT)",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 2363,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Income%20Tax_2017/IR_Act_No14_2023_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "Inland Revenue (Amendment) Act, No.14 of 2023 [Certified on 08th September 2023]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 5446,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Income%20Tax_2017/IR_Act_No_02-2025_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "Inland Revenue (Amendment) Act, No.02 of 2025 [Certified on 20th of March, 2025]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 9125,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Pay%20as%20Your%20Earn_Annual%20Declaration%20of%20Employer/APIT_Employer_Schedule_3.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Pay%20As%20You%20Earn%20(PAYE).aspx?menuid=1202",
+   "label": "Schedule 3 - List of Employees on Non Submission of Consent (with Monthly Gross Remuneration more than Rs. 250,000)",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 1534,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo6[E]2005.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 06 of 2005 [Certified on March 30, 2005]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 20639,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo15[E]2008.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 15 of 2008 [Certified on February 29, 2008]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 14733,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo15(E)2009.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 15 of 2009 [Certified on March 31, 2009]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 17123,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo7[E]2012.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 07 of 2012 [Certified on March 30, 2012]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 22974,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No._20_2016_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No.20 of 2016 [Certified on 1st November 2016]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 33335,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No._13_2022_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 13 of 2022 [Certified on 31st March 2022]",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 4341,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No_04-2025_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 04 of 2025 [Certified on 11th April 2025]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 20202,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_Downloads/Instructions.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "Instructions on Simplified VAT (SVAT) Scheme",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 28957,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2006_1465-19_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1465/19 dated 05.10.2006",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 4001,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2014_1864_02_(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1864/02 dated 26.05.2014",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 2258,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2014_1882-17_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1882/17 dated 30.09.2014",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 2421,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2006_1465-20_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1465/20 dated 05.10.2006",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 7715,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Stamp%20Duty_Acts/SDActNo.12[E]2006.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "Stamp Duty (Special Provisions) Act, No. 12 of 2006 [Certified on 31st March 2006]",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 11407,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Stamp%20Duty_Gazette/061465-19(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "Gazette No. 1465/19 of 5.10.2006 (Stamp Duty Act - Order under Section 3 - Re. Stamp Duty for Affidavit, Policy of Insurance & etc.)",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 4001,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Stamp%20Duty_Gazette/061465-20(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "Gazette No. 1465/20 of 5.10.2006 (Stamp Duty Act - Order under Sec. 5. Re. Affidavit & Mortgages by Public Officers )",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 7715,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BGActNo.23[E]2003.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Betting and Gaming Levy (Amendment) Act, No.23 of 2003 [Certified on 30th July, 2003]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 4384,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BGActNo.9[E]2005.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Betting and Gaming Levy (Amendment) Act, No.09 of 2005 [Certified on 31st March, 2005]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 4225,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BGActNo.14[E]2006.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Betting and Gaming Levy (Amendment) Act, No.14 of 2006 [Certified on 31st March, 2006]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 3137,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Economic%20Service%20Charge/FActNo.18(E)2009.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Share%20Transaction%20Levy.aspx?menuid=1211",
+   "label": "Finance (Amendment) Act No.18 of 2009 [Certified on 31st March, 2009]",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 7329,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBT_Act_No._22_2016_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT)(Amendment) Act, No.22 of 2016 [Certified on 7th November 2016]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 8313,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBT_Act_No._20_2018_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT)(Amendment) Act, No.20 of 2018 [Certified on 30th July,2018]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 5057,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBT_Act_No._20_2019_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT)(Amendment) Act, No.20 of 2019 [Certified on 31st of October, 2019]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 8993,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBT_Act_No._03_2020_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT)(Amendment) Act, No.03 of 2020 [Certified on 12th of October, 2020]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 1642,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2014_1868_10_(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Extraordinary Gazette No. 1868/10 of June 23, 2014",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 9514,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESCActNo.11[E]2008.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.11 of 2008 [Certified on 29th February 2008]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 7281,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESCActNo.11[E]2012.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.11 of 2012 [Certified on 30th March 2012]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 5249,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESCActNo.13(E)2006Consolidate.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Consolidated Text of the Economic Service Charge Act, No.13 of 2006",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 48445,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESC_Act_No._04_2020_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.04 of 2020 [Certified on 12th October 2020]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 1752,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/ramis_pay_din.aspx?menuid=141602": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Document Identification Number (DIN)",
+   "signals": "FD-",
+   "type": "html",
+   "chars": 26565,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/EconomicActivityCodes/Business_Activity_Code_20191125.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Economic%20Activity%20Codes.aspx?menuid=1407",
+   "label": "",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 115543,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IR_PR_2024_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2024",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 256409,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IR_PR_2022_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2022",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 181130,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IR_PR_2020_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2020",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 160712,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/PR_2013_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2013",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 121224,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Guideline/PAYE_Guideline_2018_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Guideline on PAYE",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 10099,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IRActNo.10[E]2007.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Inland Revenue (Amendment) Act, No.10 of 2007 [Certified on 30th March 2007]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 76177,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IRActNo.9[E]2008.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Inland Revenue (Amendment) Act, No.09 of 2008 [Certified on 29th February 2008]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 63098,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IRActNo.19(E)2009.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Inland Revenue (Amendment) Act, No.19 of 2009 [Certified on 31st March 2009]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 26357,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Income%20Tax_Documents/IRAct%20No.%2008(E)2012.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Inland Revenue (Amendment) Act, No.08 of 2012 [Certified on 31st March 2012]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 43708,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Stamp%20Duty/SDActNo.12[E]2006.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Stamp Duty (Special Provisions) Act, No.12 of 2006 [Certified on 31st March 2006]",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 11407,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Land%20Tax/Land_Act_No_21-2018_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Land ( Restrictions on Alienation) (Amendment) Act, No. 21 of 2018 [Certified on 30th July, 2018]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 2906,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Debits%20Tax/DTActNo.17(E)2009.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Debits Tax (Amendment) Act, No.17 of 2009 [Certified on 31st March 2009]",
+   "signals": "FD-",
+   "type": "pdf",
+   "chars": 3071,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Debits%20Tax/DTAct%20No.%2014[E]2011.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Debits Tax (Repeal) Act, No.14 of 2011 [Certified on 31st March 2011]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 2929,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Surcharge_Tax/ST_Act_No._14-2022_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Surcharge Tax Act, No. 14 of 2022 - [Certified on 08th of April, 2022]",
+   "signals": "F-P",
+   "type": "pdf",
+   "chars": 11857,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "",
+   "signals": "F--",
+   "type": "html",
+   "chars": 24108,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "EnCurrently selected",
+   "signals": "F--",
+   "type": "html",
+   "chars": 24108,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "e-Services",
+   "signals": "F--",
+   "type": "html",
+   "chars": 11886,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/sitepages/feedback.aspx": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Feedback",
+   "signals": "F--",
+   "type": "html",
+   "chars": 13745,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/SitePages/Contact%20Us.aspx": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Contact Us",
+   "signals": "F--",
+   "type": "html",
+   "chars": 16654,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Quick%20Guide/IRD%20Portal%20Map%20(English).pdf": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Quick Guide",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1670,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD%20Organisation%20Structure.aspx?menuid=1103": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Organization Chart",
+   "signals": "F--",
+   "type": "html",
+   "chars": 15465,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Betting and Gaming Levy (B&GL)",
+   "signals": "F--",
+   "type": "html",
+   "chars": 20174,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Share%20Transaction%20Levy.aspx?menuid=1211": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Share Transaction Levy (STL)",
+   "signals": "F--",
+   "type": "html",
+   "chars": 16053,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/SitePages/Secretariat.aspx?menuid=1301": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Secretariat",
+   "signals": "F--",
+   "type": "html",
+   "chars": 15648,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/SitePages/Internal_Affairs_Unit.aspx?menuid=1302": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Internal Affairs Unit",
+   "signals": "F--",
+   "type": "html",
+   "chars": 19645,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Metropolitan%20and%20Regional%20Offices.aspx?menuid=1304": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Metropolitan and Regional Offices",
+   "signals": "F--",
+   "type": "html",
+   "chars": 18522,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Stamp%20Duty.aspx?menuid=1306": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Stamp Duty",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14763,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Betting%20and%20Gaming%20Levy%20Unit.aspx?menuid=1307": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Betting and Gaming Levy",
+   "signals": "F--",
+   "type": "html",
+   "chars": 15127,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Information%20Branch.aspx?menuid=1310": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Forced Registration Unit",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14934,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Legal%20Branch.aspx?menuid=1311": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Legal Branch",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14902,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Economic%20Research%20and%20Planning%20Unit.aspx?menuid=1312": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Economic Research and Planning Unit",
+   "signals": "F--",
+   "type": "html",
+   "chars": 15461,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "International Relations",
+   "signals": "F--",
+   "type": "html",
+   "chars": 20764,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Tax%20Calendar.aspx?menuid=1405": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Tax Calendar",
+   "signals": "F--",
+   "type": "html",
+   "chars": 22746,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/Economic%20Activity%20Codes.aspx?menuid=1407": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Economic Activity Codes",
+   "signals": "F--",
+   "type": "html",
+   "chars": 16980,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Approved%20Charity.aspx?menuid=1408": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Approved Charity",
+   "signals": "F--",
+   "type": "html",
+   "chars": 23838,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/SitePages/Latest%20Content%20Listing.aspx?menuid=1412": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Latest Content Listing",
+   "signals": "F--",
+   "type": "html",
+   "chars": 16865,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Advertisements.aspx?menuid=1413": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Advertisements",
+   "signals": "F--",
+   "type": "html",
+   "chars": 12660,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Other%20Government%20Links.aspx?menuid=1414": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Other Government Links",
+   "signals": "F--",
+   "type": "html",
+   "chars": 17260,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Online_Pay_OTP.aspx?menuid=1416": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Tax Payments",
+   "signals": "F--",
+   "type": "html",
+   "chars": 18617,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/SitePages/UpcomingDueDatesList.aspx?menuid=1417": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Upcoming Due Dates",
+   "signals": "F--",
+   "type": "html",
+   "chars": 21472,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Annual Performance Report",
+   "signals": "F--",
+   "type": "html",
+   "chars": 16508,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "APIT TABLES",
+   "signals": "F--",
+   "type": "html",
+   "chars": 23516,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "PAYE Tax Tables",
+   "signals": "F--",
+   "type": "html",
+   "chars": 18543,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/interpretations%20and%20rulings%202018.aspx?menuid=1507": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Interpretations and Rulings",
+   "signals": "F--",
+   "type": "html",
+   "chars": 18877,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Public_Rulings.aspx?menuid=1508": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Public Rulings",
+   "signals": "F--",
+   "type": "html",
+   "chars": 17056,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SiteAssets/Taxpayer_Charter_Final.pdf?menuid=1509": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Taxpayer Charter",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 25006,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SiteAssets/SL_VCIP_2025_2026_E.pdf?menuid=1510": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "VAT Compliance Improvement Plan - 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 6769,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Acts",
+   "signals": "F--",
+   "type": "html",
+   "chars": 37211,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/Gazette.aspx?menuid=1602": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Gazette",
+   "signals": "F--",
+   "type": "html",
+   "chars": 43730,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/SitePages/Schedules.aspx?menuid=1604": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Schedules",
+   "signals": "F--",
+   "type": "html",
+   "chars": 35760,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/SitePages/Tools.aspx?menuid=1605": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Tools",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14809,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/SitePages/Quick%20Guides.aspx?menuid=1606": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Quick Guides",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14203,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/SitePages/TaxEvasionFeedback.aspx?menuid=1701": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Tax Evasion Reporting Form",
+   "signals": "F--",
+   "type": "html",
+   "chars": 15521,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/sitepages/Registration.aspx?menuid=180101": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Overview and Quick Guides",
+   "signals": "F--",
+   "type": "html",
+   "chars": 17878,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eservices/sitepages/e-learning.aspx?menuid=180201": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "e-Learning",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14620,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/SitePages/Taxpayer%20Services%20Unit.aspx?menuid=180501": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Help options",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14710,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Shared%20Documents/Terminal_Benefits_2025_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Release of Terminal Benefits",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 4755,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/SitePages/Policy%20Changes.aspx?menuid=110406": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Policy Changes over the years​",
+   "signals": "F--",
+   "type": "html",
+   "chars": 27949,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Shared%20Documents/Guideline_for_SVAT_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Guidelines for the Simplified Value Added Tax (SVAT) Scheme",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 7334,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1208": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Betting and Gaming Levy (BGL)",
+   "signals": "F--",
+   "type": "html",
+   "chars": 20174,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Share%20Transaction%20Levy.aspx?menuid=1210": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Share Transaction Levy (STL)",
+   "signals": "F--",
+   "type": "html",
+   "chars": 16053,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/sitepages/e-services.aspx?menuid=18": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "",
+   "signals": "F--",
+   "type": "html",
+   "chars": 15115,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/Tax%20Calendar.aspx?menuid=1405": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "",
+   "signals": "F--",
+   "type": "html",
+   "chars": 22746,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/downloads/sitepages/schedules.aspx?menuid=1604": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Schedule Templates 1, 2 & 3 (with Amendments) w.e.f. 01-04-2025",
+   "signals": "F--",
+   "type": "html",
+   "chars": 35760,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/sitepages/Latest%20Content%20Listing.aspx": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "More >>",
+   "signals": "F--",
+   "type": "html",
+   "chars": 16613,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/SitePages/Privacy.aspx": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Privacy",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14900,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/sitepages/Feedback.aspx": {
+   "parent": "https://www.ird.gov.lk/en/eServices/",
+   "label": "Feedback",
+   "signals": "F--",
+   "type": "html",
+   "chars": 13745,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Metropolitan%20and%20Regional%20Offices.aspx?menuid=1305": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/Contact%20Us.aspx",
+   "label": "Metropolitan and Regional Offices",
+   "signals": "F--",
+   "type": "html",
+   "chars": 18522,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Stamp%20Duty.aspx?menuid=1307": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/Contact%20Us.aspx",
+   "label": "Stamp Duty",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14763,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/sitepages/Betting%20and%20Gaming%20Levy%20Unit.aspx?menuid=1308": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/Contact%20Us.aspx",
+   "label": "Betting and Gaming Levy",
+   "signals": "F--",
+   "type": "html",
+   "chars": 15127,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_001_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application Form for Taxpayer Registration (For Company)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 4730,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_002_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application Form for Taxpayer Registration (For Individual and Proprietorship)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 4177,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_003_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application Form for Taxpayer Registration (For Partnership / Joint Venture / Project)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 4575,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_004_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application Form for Taxpayer Registration (For NGO / Charity / Co-op /Associations & Clubs / Semi Government Institutions / Government Institutions / Provident Fund / Trust / Embassy / High Commissions / Others)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 3439,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_005_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application for Tax Type Registration",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 5364,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_006_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application for New / Change SVAT Scheme Registration",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 2175,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_007_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application for New / Update Sec 22(7) / SP / SDP Registration",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1741,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_008_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application Form For Change Taxpayer Registration Details (For Company)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 4516,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_009_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application Form for Change Taxpayer Registration Details (For Individual and Proprietorship)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 5038,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_010_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application Form for Change Taxpayer Registration Details (For Partnership / Joint Venture / Project)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 4758,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_011_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application Form for Change Taxpayer Registration Details (For NGO / Charity / Co-op /Associations & Clubs / Semi Government Institutions / Government Institutions / Provident Fund / Trust / Embassy / High Commissions / Others)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 2394,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TaxpayerRegistrationDocs/TPR_012_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application for Change Tax Type Registration",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1983,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Unit%20Profiles_Tax%20Payer%20Service%20Unit/Form_App_Temporary_VAT.pdf": {
+   "parent": "https://www.ird.gov.lk/en/SitePages/FAQs.aspx",
+   "label": "Application for Temporary Registration - VAT",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1649,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/SitePages/Amuraghapura%20Kingdom.aspx?menuid=110402": {
+   "parent": "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD%20Organisation%20Structure.aspx?menuid=1103",
+   "label": "Anuradhapura Kingdom",
+   "signals": "F--",
+   "type": "html",
+   "chars": 15185,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/SitePages/Polonnaruwa%20Kingdom.aspx?menuid=110403": {
+   "parent": "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD%20Organisation%20Structure.aspx?menuid=1103",
+   "label": "Polonnaruwa Kingdom",
+   "signals": "F--",
+   "type": "html",
+   "chars": 15254,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/SitePages/Kandyan%20Kingdom.aspx?menuid=110404": {
+   "parent": "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD%20Organisation%20Structure.aspx?menuid=1103",
+   "label": "Kandyan Kingdom",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14613,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/SitePages/Since%201932.aspx?menuid=110405": {
+   "parent": "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD%20Organisation%20Structure.aspx?menuid=1103",
+   "label": "Tax System Since 1932",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14652,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1305": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Pay%20As%20You%20Earn%20(PAYE).aspx?menuid=1202",
+   "label": "PAYE Tax Table - 2018/2019, 2019/2020 - upto 31st December 2019",
+   "signals": "F--",
+   "type": "html",
+   "chars": 18561,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/downloads/sitepages/tools.aspx?menuid=1605": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Pay%20As%20You%20Earn%20(PAYE).aspx?menuid=1202",
+   "label": "PAYE Tax Calculator - 2018/2019",
+   "signals": "F--",
+   "type": "html",
+   "chars": 14809,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Pay%20as%20Your%20Earn_Annual%20Declaration%20of%20Employer/Asmt_APIT_001_2020_2021_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Pay%20As%20You%20Earn%20(PAYE).aspx?menuid=1202",
+   "label": "Annual Statement of Employer – APIT (2020/2021) (Asmt_APIT_001_E)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 4344,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Pay%20as%20Your%20Earn_Annual%20Declaration%20of%20Employer/APIT_Employer_Schedule_1.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Pay%20As%20You%20Earn%20(PAYE).aspx?menuid=1202",
+   "label": "Schedule 01 - For Remuneration Other than and Once and for all payments",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1586,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Pay%20as%20Your%20Earn_Annual%20Declaration%20of%20Employer/APIT_Employer_Schedule_2.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Pay%20As%20You%20Earn%20(PAYE).aspx?menuid=1202",
+   "label": "Schedule 02 - Once and for all Payments (Terminal Benefits)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1566,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Pay%20as%20Your%20Earn_Annual%20Declaration%20of%20Employer/APIT_T10_NEW_2021.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Pay%20As%20You%20Earn%20(PAYE).aspx?menuid=1202",
+   "label": "Certificate of Income Tax Deductions ‍",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 6775,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_Act_No._44_2022_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 44 of 2022 [Certified on 14th December 2022]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 5359,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VAT_(Amd)_Act_No_16%20of%202024_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax (Amendment) Act, No 16 of 2024 [Certified on 20 th March 2024]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4204,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_Downloads/SVAT_Guidelines-31.7.2012.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "Guidelines of the Simplified Value Added Tax (SVAT) Scheme",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 35360,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_The%20forms%20specified%20for%20the%20purposes%20of%20this/svatF2_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "Suspended VAT Invoice (SVAT 02) used for supplies without charging VAT",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 750,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_The%20forms%20specified%20for%20the%20purposes%20of%20this/TPR_006_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "Application for New / Change SVAT Scheme Registration",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 2175,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/20081530_13[E].pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1530/13 dated 01.01.2008",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1687,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2012_1789_09%20(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1789/09 dated 17.12.2012",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2240,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2013_1809_19%20(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1809/19 dated 10.05.2013",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1433,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2015_1933_14_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1933/14 dated 21.09.2015",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2054,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2016_1947_45_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1947/45 dated 01.01.2016",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2177,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2018_2091-03_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 2091/03 dated 01.10.2018",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2950,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2018_2104-05_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 2104/05 dated 31.12.2018",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3187,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/20071478_7(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1478/07 dated 01.01.2007",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1647,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2012_1752_17%20(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1752/17 dated 04.04.2012",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1240,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2012_1757_04%20(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1757/04 dated 09.05.2012",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1267,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2012_1778_32%20(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1778/32 dated 04.10.2012",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1522,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2014_1878-03_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1878/03 dated 01.09.2014",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 2689,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2014_1889-48_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1889/48 dated 21.11.2014",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 2723,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2016_1947_46_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1947/46 dated 01.01.2016",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 2099,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/Stamp%20Duty_Gazette/20081530_13[E].pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "Gazette No. 1530/13 of 1.1.2008 (Stamp Duty (Special Provisions) Act No. 2 of 2006. Amendment to the Gaz. Ex. No. 1465/19 of 05.10.2006 w.e.f. 01.01.2008 )",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1687,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BNG_Act_No._25_2025_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Betting and Gaming Levy (Amendment) Act, No.25 of 2025 [Certified on 17th of December, 2025]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2704,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Economic%20Service%20Charge/FActNo.45[E]2007.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Share%20Transaction%20Levy.aspx?menuid=1211",
+   "label": "Finance (Amendment) Act No.45 of 2007 [Certified on 15th October, 2007]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1724,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Economic%20Service%20Charge/FActNo.8[E]2008.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Share%20Transaction%20Levy.aspx?menuid=1211",
+   "label": "Finance (Amendment) Act No.8 of 2008 [Certified on 29th February, 2008]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4313,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2018_2088-25_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Tourist%20VAT%20Refund%20Scheme%20(TVRS).aspx?menuid=1213",
+   "label": "Gazette Nortification for TVRS (2088/25 - 11 September 2018)",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3071,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TVRS_Apps_Doc/TVRS_003_E_2025.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Tourist%20VAT%20Refund%20Scheme%20(TVRS).aspx?menuid=1213",
+   "label": "Application form for Authorization for Representative",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1308,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TVRS_Apps_Doc/TVRS_002_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Tourist%20VAT%20Refund%20Scheme%20(TVRS).aspx?menuid=1213",
+   "label": "Application form for registration of vendors under Tourist VAT Refund Scheme",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1303,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBTActNo.32(E)2009.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT) (Amendment) Act, No. 32 of 2009 [Certified on 18th May, 2009]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3549,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBTActNo.%2009(E)2012.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT) (Amendment) Act, No. 09 of 2012 [Certified on 30th March, 2012]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 8250,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBT_Act_No.%2010_2014_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax (NBT) (Amendment) Act, No. 10 of 2014 [Certified on 24th April, 2014]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 7635,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESCActNo.13[E]2006.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge Act, No.13 of 2006 [Certified on 31st March 2006]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 20492,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESCActNo.15[E]2007.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.15 of 2007 [Certified on 12th April 2007]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 11419,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESCActNo.16(E)2009.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.16 of 2009 [Certified on 31st March 2009]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4948,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESCAct%20No.%2006_2013_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.06 of 2013 [Certified on 22nd March 2013]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3223,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESC_Act_No.%2009_2014_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.09 of 2014 [Certified on 24th April 2014]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4240,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESC_Act_No._13_2015_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.13 of 2015 [Certified on 30th October 2015]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 5693,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Economic%20Service%20Charge_Acts/ESC_Act_No._33-2018_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Economic%20Service%20Charge%20(ESC).aspx?menuid=1215",
+   "label": "Economic Service Charge (Amendment) Act, No.33 of 2018 [Certified on 04th October 2018]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4211,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=140101": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Double Tax Avoidance Treaties",
+   "signals": "F--",
+   "type": "html",
+   "chars": 20806,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/international%20relations-map.aspx?menuid=140102": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Mutual Agreement Procedure (MAP)",
+   "signals": "F--",
+   "type": "html",
+   "chars": 17522,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/advanced_pricing_agreement-apa.aspx?menuid=140103": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Advanced Pricing Agreement(APA)",
+   "signals": "F--",
+   "type": "html",
+   "chars": 17664,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Tax_Chart_1819.aspx?menuid=140401": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Tax Chart - 1819",
+   "signals": "F--",
+   "type": "html",
+   "chars": 25814,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Tax_Chart_1920.aspx?menuid=140402": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Tax Chart - 1920",
+   "signals": "F--",
+   "type": "html",
+   "chars": 37224,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Tax_Chart_2021.aspx?menuid=140403": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Tax Chart - 2021",
+   "signals": "F--",
+   "type": "html",
+   "chars": 28216,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Tax_Chart_2122.aspx?menuid=140404": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Tax Chart - 2122",
+   "signals": "F--",
+   "type": "html",
+   "chars": 30121,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Online_Pay_OTP.aspx?menuid=141601": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "Online Tax Payment Platform (OTPP)",
+   "signals": "F--",
+   "type": "html",
+   "chars": 18659,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%203/04.%20APIT_2526_Table_03_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/SitePages/tax_chart_2526.aspx?menuid=1404",
+   "label": "(https://www.ird.gov.lk : Publications : APIT Tables : Table - 03",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3600,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Unit%20Profiles_Tax%20Payer%20Service%20Unit/IRD_PC%20_001_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/SitePages/Issuing%20of%20Privilege%20Cards.aspx?menuid=1406",
+   "label": "Application for a Privilege Card",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 2421,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/VAT_Inactive_List/VAT_Deactive_18_11_2025.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/SitePages/Inactive%20VAT%20List.aspx?menuid=1411",
+   "label": "List of VAT Registration Deactivated Per​sons (w.e.f. 18.11.2025)",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 1607368,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/PR2011_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2011",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 124703,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/PR2010E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2010",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 93410,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/PR2009.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2009",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 292246,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/sitepages/interpretations%20and%20rulings%202018.aspx?menuid=150701": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Act, No. 24 of 2017",
+   "signals": "F--",
+   "type": "html",
+   "chars": 18919,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/SitePages/Interpretations%20And%20Rulings.aspx?menuid=150702": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Act, No. 10 of 2006",
+   "signals": "F--",
+   "type": "html",
+   "chars": 18262,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%201/02.%20APIT_2526_Table_01_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 01",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3747,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%201/02.%20APIT_2526_Table_01.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Table 01",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1044079,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%202/03.%20APIT_2526_Table_02_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 02",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 12644,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%204/05.%20APIT_2526_Table_04_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 04",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4436,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%205/06.%20APIT_2526_Table_05_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 05",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4073,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%205/06.%20APIT_2526_Table_05.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Table 05",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1132901,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%206/07.%20APIT_2526_Table_06_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 06",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 6593,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%207/08.%20APIT_2526_Table_07_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 07",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4580,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Table%20-%208/09.%20APIT_2526_Table_08_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 08",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4805,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Table%20-%201/02.%20APIT_2324_Table_01_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "02. APIT_2324_Table_01",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3908,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Table%20-%201/02.%20APIT_2324_Table_01.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Table 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1049537,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Table%20-%202/03.%20APIT_2324_Table_02_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 2",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 12497,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Table%20-%203/04.%20APIT_2324_Table_03_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 3",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2625,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Table%20-%204/05.%20APIT_2324_Table_04_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 4",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4582,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Table%20-%205/06.%20APIT_2324_Table_05_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3395,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Table%20-%205/06.%20APIT_2324_Table_05.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1134965,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Table%20-%206/07.%20APIT_2324_Table_06_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 6",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 7150,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Table%20-%207/08.%20APIT_2324_Table_07_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 7",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3095,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20-%201/02.APIT_2223_Table_01_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3959,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20-%201/02.APIT_2223_Table_01.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Table 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 262919,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20-%202/03.APIT_2223_Table_02_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 2",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 13300,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20-%203/03.APIT_2223_Table_02_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 3",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 13300,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20-%204/05.APIT_2223_Table_04_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 4",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4864,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20-%205/06.APIT_2223_Table_05_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3295,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20-%205/06.APIT_2223_Table_05.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 253007,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20-%206/07.APIT_2223_Table_06_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 6",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4150,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Table%20-%207/08.APIT_2223_Table_07_Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 7",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2594,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Non_Cash/SEC_2022_E_05(Rev).pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Values for Non Cash Benefits (Revised)",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 8390,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Index/01.APIT_Index_2020.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Index",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 4141,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Table%20-%201/02.AIPT_Table_01-Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3587,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Table%20-%201/02.AIPT_Table_01-Table.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Table 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 988916,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Table%20-%202/03.AIPT_Table_02-Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 2",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 7506,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Table%20-%204/05.AIPT_Table_04-Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 4",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3122,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Table%20-%205/06.AIPT_Table_05-Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2432,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Table%20-%205/06.AIPT_Table_05-Table.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1034333,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Table%20-%206/07.AIPT_Table_06-Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 6",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3863,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Table%20-%207/08.AIPT_Table_07-Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 7",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2439,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Guideline/09.%20AIPT_2021_Guideline.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Guideline on Advance Personal Income Tax (APIT)",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 10101,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Benefits/10.%20AIPT_2021-Values%20for%20Non%20Cash%20Benefits.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Values for Non Cash Benefits",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 5091,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2019-2020/Guideline/PAYE%20Table%20_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Guideline on Deduction of Tax on Cumulative Income from Employment",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 6948,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2019-2020/Benefits/PAYE-Values_Non_Cash_Benefits_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Values for Non Cash Benefits",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 5364,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Index/Index%202018_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "References",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 3929,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%201/Table%201%20-%20Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "How to apply Table 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3885,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%201/Table%201%20-%20Tax%20Table%2001.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 897924,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%202/Table%202%20-%20Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "How to apply Table 2",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3156,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%203/Table%203%20-%20Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 3",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2387,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%204/Table%204%20-%20Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 4",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 2713,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%205/Table%205%20-%20Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "How to apply Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 1708,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%205/Table%205%20-%20Tax%20Table%2005.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 605421,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%206/Table%206%20-%20Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 6",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3273,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%207/Table%207%20-%20Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 7",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 600,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Benifits/PAYE-Values%20for%20Non%20Cash%20Benefits_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Values for Non Cash Benefits",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 5364,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Index/Index.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "References",
+   "signals": "-D-",
+   "type": "pdf",
+   "chars": 9606,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%201/Table_1.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "How to apply Table 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 9402,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%201/Table_1_-_Calculation.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 1",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 138157,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%202/Table_2.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "How to apply Table 2",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 8339,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%202/Table_2_-_Calculation.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 2",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 62837,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%203/Table_3.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 3",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 16065,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%204/Table_4.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 4",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 4418,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%205/Table_5.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "How to apply Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 5774,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%205/Table_5_-_Calculation.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 5",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 91488,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%206/Table_6.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 6",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 8363,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2015-2016/Table%20-%207/Table_7.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 7",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3178,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Public_Rulings_IT/PR_IT_2018_01_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/SitePages/Public_Rulings.aspx?menuid=1508",
+   "label": "Due dates of instalment payments of tax payable under Inland Revenue Act, No. 24 of 2017, for taxpayers who have been granted the approval to change the accounting period under the Inland Revenue Act, No. 10 of 2006. - (PR/IT/2018/01_E)",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 12262,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Debits%20Tax/DTAct%20No.12[E]2007.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Debits Tax (Amendment) Act, No.12 of 2007 [Certified on 11th April, 2007]",
+   "signals": "F--",
+   "type": "pdf",
+   "chars": 3176,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "About IRD",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Type of Taxes",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Publications",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services/": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Unit & Services",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Downloads",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/_layouts/15/viewlsts.aspx": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Site Contents",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/_layouts/15/RecycleBin.aspx?ql=1": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Recycle Bin",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/Lists/PaymentRefund/Attachments/7/User_Guide_for_IRD_Online_Payment_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "​​​​​How to Pay Taxes Online",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 4834,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/Lists/FilingReturns/Attachments/17/VAT_WEB_API_Quick_Guide_v0_1.pdf": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "Submit Invoices via WEB API",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 10636,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TVRS_Apps_Doc/Authorized_Retailers_-_TVRS_2025.pdf": {
+   "parent": "https://www.ird.gov.lk/en/sitepages/default.aspx",
+   "label": "TVRS - Authorized Retailers",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 24235,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/_layouts/15/viewlsts.aspx": {
+   "parent": "https://www.ird.gov.lk/en/eServices/",
+   "label": "Site Contents",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/_layouts/15/RecycleBin.aspx?ql=1": {
+   "parent": "https://www.ird.gov.lk/en/eServices/",
+   "label": "Recycle Bin",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/eServices/Shared%20Documents": {
+   "parent": "https://www.ird.gov.lk/en/eServices/",
+   "label": "Documents",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD": {
+   "parent": "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD%20Organisation%20Structure.aspx?menuid=1103",
+   "label": "",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/Shared%20Documents/Forms/AllItems.aspx": {
+   "parent": "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD%20Organisation%20Structure.aspx?menuid=1103",
+   "label": "Documents",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/_layouts/15/viewlsts.aspx": {
+   "parent": "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD%20Organisation%20Structure.aspx?menuid=1103",
+   "label": "Site Contents",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/about%20IRD/_layouts/15/RecycleBin.aspx?ql=1": {
+   "parent": "https://www.ird.gov.lk/en/about%20IRD/SitePages/IRD%20Organisation%20Structure.aspx?menuid=1103",
+   "label": "Recycle Bin",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Income%20Tax.aspx?menuid=1201",
+   "label": "",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Value%20Added%20Tax_Acts/VATActNo14[E]2002.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Value%20Added%20Tax%20(VAT).aspx?menuid=1204",
+   "label": "Value Added Tax Act, No 14 of 2002 [Certified on July 26, 2002]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 1193,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_Downloads/SVAT_RIS_20240101.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "List of Registered Identified Suppliers (RISs) [01-01-2024]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 379767,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_Downloads/SVAT_RIP_20240101.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "List of Registered Identified Purchasers (RIPs) [ 01 -01- 2024]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 204640,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_Downloads/SVAT_Status_20240101.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "List of Cancel & Inactive SVAT [01-01-2024]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 201387,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_The%20forms%20specified%20for%20the%20purposes%20of%20this/svatF3_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "Total Output Declaration (SVAT 03) is required to be submitted by Purchasers and Suppliers",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 1626,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_NOTICE%20TO%20TAXPAYERS/Notice20111018.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "SVAT- NOTICE [ 2011 Oct 18 ]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 469,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_NOTICE%20TO%20TAXPAYERS/RIS_List_at_02_09_2016.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "List of Registered Identified Suppliers (RISs) [ 02 Sep 2016 ]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 123637,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_NOTICE%20TO%20TAXPAYERS/TPR_SVAT_RIP_List_at_22-07-2020.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "List of Registered Identified Purchasers (RIPs) [ 22-07-2020]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 160615,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SVAT_NOTICE%20TO%20TAXPAYERS/Cancel_Inactive_30_04_2015.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Simplified%20Value%20Added%20Tax%20(SVAT)%20Scheme.aspx?menuid=1205",
+   "label": "List of Cancel & Inactive SVAT [30 Apr 2015]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 66916,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/20081546_7(E).pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 1546/07 dated 22.04.2008",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 1438,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2017_2007_24_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 2007/24 dated 21.02.2017",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 3339,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2019_2149-18_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 2149/18 dated 14.11.2019",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 2223,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Gazette_Documents/2022_2312-73_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/StampDuty.aspx?menuid=1209",
+   "label": "No. 2312/73 dated 31.12.2022",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 2563,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BGActNo.40[E]1988.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Betting and Gaming Levy Act, No.40 of 1988 [Certified on 24th November, 1988]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 76,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/BGActNo.7(E)2001.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Betting and Gaming Levy (Amendment) Act, No.7 of 2001 [Certified on 11th April, 2001]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 50,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Betting%20and%20Gaming%20Levy/FActNo.11(E)2002.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Betting%20and%20Gaming%20Levy.aspx?menuid=1210",
+   "label": "Finance (Amendment) Act, No.11 of 2002 [Certified on 8th July, 2002]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 171,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Type%20of%20Taxes/SiteAssets/Tourist%20VAT%20Refund%20Scheme%20-%20Venders%20List%202026.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Tourist%20VAT%20Refund%20Scheme%20(TVRS).aspx?menuid=1213",
+   "label": "Authorized Retailers List",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 44778,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Downloads/TVRS_Apps_Doc/TVRS_Proced_Flow_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Tourist%20VAT%20Refund%20Scheme%20(TVRS).aspx?menuid=1213",
+   "label": "Process Flow Chart of Tourist VAT Refund Scheme",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 2086,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Nation%20Building%20TaxNBT/NBTActNo.9(E)2009.pdf": {
+   "parent": "https://www.ird.gov.lk/en/Type%20of%20Taxes/SitePages/Nation%20Building%20Tax(NBT).aspx?menuid=1214",
+   "label": "Nation Building Tax Act, No. 09 of 2009 [Certified on 11th March, 2009]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 157,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/Unit%20and%20Services": {
+   "parent": "https://www.ird.gov.lk/en/Unit%20and%20Services/SitePages/Secretariat.aspx?menuid=1301",
+   "label": "",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/International%20Relations.aspx?menuid=1401",
+   "label": "",
+   "signals": "---",
+   "type": "html",
+   "chars": 0,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Tax%20Calendar_Documents/Tax_Calendar_2026_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/SitePages/Tax%20Calendar.aspx?menuid=1405",
+   "label": "Tax Calendar 2026",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 8325,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IR_PR_2009_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2019",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 1420,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IT_PR_2018_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2018",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 1263,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Annual%20Performance%20Report_Documents/IR_PR_2017_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Annual%20Performance%20Report.aspx?menuid=1501",
+   "label": "Performance Report 2017",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 1414,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Index/01.%20APIT_2526_Index.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Index",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 5466,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Guide/APIT_2526_Guideline.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Guideline on Advance Personal Income Tax (APIT)",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 63,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2025-2026/Non%20Cash%20Benefits/SEC_2023_E_02.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Values for Non Cash Benefits",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 50,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Index/01.%20APIT_2324_Index.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Index",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 5298,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2023-2024/Guide%20Line/09.%20APIT_2324_Guideline.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Guideline on Advance Personal Income Tax (APIT)",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 63,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Index/01.APIT_2223_Index.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Index",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 3205,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Guide%20Line/09.APIT_2223_Guideline_2023.01.01-2023.03.31.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Guideline on Advance Personal Income Tax (APIT)",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 63,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2022-2023/Non_Cash/10.APIT_2223_Non_Cash_Benifits_2023.01.01-2023.03.31.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "Values for Non Cash Benefits",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 37,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/APIT_Tax_Tables/2020-2021/Table%20-%203/04.AIPT_Table_03-Text.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/apit_tax_tables.aspx?menuid=1502",
+   "label": "How to apply Table 3",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 545,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/PAYE%20Tax%20Tables/2018-2019/Table%20-%202/Table%202%20-%20Tax%20Table%2002.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/PAYE%20Tax%20Tables.aspx?menuid=1503",
+   "label": "Table 2",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 341984,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Public_Rulings_IT/PR_IT_2023_01_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/SitePages/Public_Rulings.aspx?menuid=1508",
+   "label": "Guidance with regard to the applicability of provisions' of the Inland Revenue Act, No. 24 of 2017, as amended on the tax treatment in respect of foreign exchange gains and losses, which arise from domestic transactions and on cross border transactions denominated in foreign currency. - (PR/IT/2023/01)",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 185,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Public_Rulings_IT/PR_IT_2022_01_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/SitePages/Public_Rulings.aspx?menuid=1508",
+   "label": "Guidance with regard to the applicability of provisions of the Inland Revenue Act, No. 24 of 2017 (IR Act), as amended by the Inland Revenue (Amendment) Act, No. 10 of 202l (Amendment Act) to the Interest Income accruing to or derived by any person outside Sri Lanka from the Investment in Treasury Bills or Treasury Bonds. - (PR/IT/2022/01)",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 76,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Public_Rulings_IT/PR_IT_2021_01_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/SitePages/Public_Rulings.aspx?menuid=1508",
+   "label": "Guidance with regard to the applicability of provisions of the Inland Revenue Act, No. 24 of2017 (IR Act), as amended by the Inland Revenue (Amendment) Act, No. 10 of202l (Amendment Act) to persons who submit accounts for an alternative period other than the period of twelve months commencing on the first day of April of any year and ending on the thirty first day of March in the immediately succeeding year. - (PR/IT/2021/01)",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 89,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Public_Rulings_IT/PR_IT_2019_01_E.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/SitePages/Public_Rulings.aspx?menuid=1508",
+   "label": "The application of Inland Revenue Provisions in respect of the tax payers who have already obtained the approval from Commissioner General to make up their accounts for a period other than the year of assessment. - (PR/IT/2019/01_E)",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 89,
+   "found": "2026-10-12"
+  },
+  "https://www.ird.gov.lk/en/publications/Acts_Debits%20Tax/DTAct%20No.5(E)2003.pdf": {
+   "parent": "https://www.ird.gov.lk/en/publications/sitepages/Acts.aspx?menuid=1601",
+   "label": "Debits Tax (Amendment) Act, No.05 of 2003 [Certified on 27th February, 2003]",
+   "signals": "---",
+   "type": "pdf",
+   "chars": 157,
+   "found": "2026-10-12"
   }
  }
 }
