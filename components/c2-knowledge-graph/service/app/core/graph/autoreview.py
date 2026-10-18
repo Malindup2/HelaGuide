@@ -31,10 +31,11 @@ _CONDITIONAL = re.compile(
     r"in lieu|on behalf|not presented)\b")
 # A derived "requires service" link is wrong when the person already holds the item, or the
 # whole process is about losing, returning or penalising.
-_HOLDS_ALREADY = re.compile(r"(?i)\b(deceased|surrender|hand over|lost|late|penalty|fine|duplicate)\b")
+_HOLDS_ALREADY = re.compile(
+    r"(?i)\b(deceased|surrender|hand over|lost|late|penalty|fine|duplicate (?:copy|certificate|card))\b")
 _FREE = re.compile(r"(?i)^\s*(foc|free( of charge)?|nil|no charge|exempt)\b")
 _PLACEHOLDER = re.compile(r"[.…_]{4,}|\bn/?a\b|^\s*[\d.]+\s*$|^\s*(rs\.?|lkr)?\s*[.…_]+\s*$", re.I)
-_DURATION = re.compile(r"(?i)\d|\b(hour|day|week|month|year|minute|immediate|same day|one)\b")
+_DURATION = re.compile(r"(?i)\d|\b(hours?|days?|weeks?|months?|years?|minutes?|immediate|same day|one)\b")
 
 
 @dataclass
