@@ -3,6 +3,7 @@ models/
 results/*
 !results/baseline_fasttext.json
 !results/xlmr_results_seed*.json
+!results/xlmr_results_v2_seed*.json
 !results/xlmr_results_run_*.json
 !results/fresh_baselines.json
 !results/synthetic_tag_quality.json
