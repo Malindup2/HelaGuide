@@ -12,24 +12,24 @@ those 🟡, not ✅.
 
 ## 1. The five specific objectives
 
-| | Objective | Target | Status | What's missing |
+| | Objective | Target | Status | Real result |
 |---|---|---|---|---|
-| SO1 | Change classification | 95% accuracy, labelled test set, zero tokens on unchanged pages | 🟡 mechanism works (confirmed live, repeatedly) | No accuracy number against a labelled set |
-| SO2 | Typed extraction with provenance | 90%/80% precision-recall, <4,500 tokens/page | 🟡 extraction + grounding + provenance all work; token use is well under budget | No precision/recall number against hand-annotated pages |
+| SO1 | Change classification | 95% accuracy, labelled test set, zero tokens on unchanged pages | ✅ **measured 18 Oct** — see `so1_classification.md` | **100% (9/9)**, 0 false positives |
+| SO2 | Typed extraction with provenance | 90%/80% precision-recall, <4,500 tokens/page | 🟡 **precision measured**, recall partial — see `so2_extraction.md` | **Precision 99.2% (123/124)**. Recall: 1 real miss found in a 2-of-10-page partial check, not yet a full number |
 | SO3 | Value-change summary regeneration | Zero stale facts, <10% rebuild cost | ⬜ **not in scope for PP2** — correctly deferred per `PLAN.md` §1 and the proposal's own Appendix B ("the real service graph does not yet exist") | Needs Leiden communities first — next milestone |
-| SO4 | Entity resolution + temporal versioning | 95% merge precision, 90% recall | 🟡 mechanism works (`canonical_agency`, `validFrom`/`validTo`; a real matching bug was fixed this session) | No precision/recall number against a labelled duplicate set |
-| SO5 | Dependency-ordered workflow + evaluation | 85% exact match, 95% set match vs. ground truth, no LLM judge | 🟡 workflow generation works and is demonstrated (passport→NIC→birth certificate, etc.) | **The scoring itself has never been run.** Proposal's own words: "the principal outstanding work" |
+| SO4 | Entity resolution + temporal versioning | 95% merge precision, 90% recall | ✅ **agency-level measured 18 Oct** — see `so4_entity_resolution.md`. 🟡 service-level: not built | **Agency: 100%/100% (3/3 merges correct)**. Service-level resolution doesn't exist — 1 real unmerged duplicate found (`tourist_vat_refund_scheme`) |
+| SO5 | Dependency-ordered workflow + evaluation | 85% exact match, 95% set match vs. ground truth, no LLM judge | ✅ **measured 18 Oct** — see `so5_workflow.md` | **Graph: 80%/80% (8/10)**, below target with 2 specific understood causes. **Lexical baseline: 0%/0%** |
 
 ## 2. Evaluation metrics (Table 3)
 
 | Metric | Status |
 |---|---|
-| Token cost per update | 🟡 logged per page, not reported as a formal comparison |
-| Update latency | ⬜ not measured |
+| Token cost per update | ✅ **done 18 Oct** — 909,593 tokens / 244 pages total (real, B1-style); a real repeat-crawl event showed 57% of previously-seen pages cost zero tokens. See `token_cost_and_latency.md` for what this is and isn't (a real number, not a controlled B1/B2 ablation) |
+| Update latency | ✅ **done 18 Oct** — unchanged page 22.8ms median (no LLM call) vs changed page 11.8s median, ~500x apart. Real timings, see `token_cost_and_latency.md` |
 | Stale-fact count | ⬜ N/A until SO3 (deferred) |
 | Partition fidelity (ARI/NMI) | ⬜ N/A until SO3 (deferred) |
-| **Workflow correctness (exact/set match)** | ⬜ **not done — see SO5** |
-| Query-side traversal latency/memory | ⬜ not measured (`/v1/plan` isn't wired yet, nothing to time end-to-end) |
+| **Workflow correctness (exact/set match)** | ✅ **done 18 Oct** — graph 80%/80%, lexical baseline 0%/0%, see `so5_workflow.md` |
+| Query-side traversal latency/memory | 🟡 partial — `/v1/plan` measured once (153ms for a 3-step plan), not yet measured across varying graph sizes the way the proposal's Figure 5 does |
 
 ## 3. Requirements worth a direct check
 
@@ -39,20 +39,31 @@ those 🟡, not ✅.
 | — | `/v1/facts/{id}` serves a real fact with version history | ✅ **done 18 Oct** — `app.core.facts.get` now queries Neo4j; verified a real closed version (`svc:nic:fee:first_issue_standard`: Rs.200/- → Rs. 200/-, the formatting fix made earlier this session, now visible as real history) |
 | FR14 | Reports when no valid order exists (cycle detection) | 🟡 implemented (`plan_for` returns `None` on a detected cycle) — not yet exercised against a real cyclic case in this graph |
 | — | Correction path from C3 (FR16) | ⬜ still `NotImplementedError`, correctly — C3's verified-correction contract isn't exercised against the real graph yet, this is a two-way integration point, not solo work |
-| NFR7 | Evaluated at ≥4,000 nodes | ⬜ **currently 2,385** — short by ~1,600 |
+| NFR7 | Evaluated at ≥4,000 nodes | ⬜ **currently 2,385**, checked 18 Oct — short by ~1,600. Decision: not rushing a 5th department just to hit the number; each of the 4 so far (crawl → read → review → write) took real hours and real LLM quota, and a low-quality fast add would undermine everything else on this list. Stated as a known shortfall for the report rather than hidden or inflated. |
 | NFR9 | No personal/citizen data collected | ✅ true by construction — only public service facts |
 | NFR8 | Every fact carries source URL + retrieval timestamp | ✅ confirmed throughout — this was the whole grounding design |
 
-## 4. What this adds up to, in order of priority before 26 Oct
+## 4. What's left, now that all six priority items have a real result
 
-1. ~~Wire `/v1/plan` to the real graph.~~ ✅ **done 18 Oct**, see §3. Not yet behind the actual
-   gateway container (`gateway/`) — only verified directly against the C2 service. Routing
-   the gateway's own `/v1/plan` passthrough to this is a small remaining step.
-2. **Build 5–10 ground-truth journeys and score exact/set match (SO5).** The proposal's own named "principal outstanding work." Biggest single gap. Now unblocked by #1.
-3. **Measure SO1**: label ~15 pages (changed/unchanged/structure), report accuracy.
-4. **Measure SO2**: hand-annotate ~15 pages against the extracted facts, report precision/recall.
-5. **Measure SO4**: label a duplicate-agency set, report merge precision/recall.
-6. **Check NFR7**: either grow the graph past 4,000 nodes (more departments/pages) or state the real count and note it as a known shortfall.
+1. ~~Wire `/v1/plan` to the real graph.~~ ✅ done. Not yet behind the actual gateway
+   container (`gateway/`) — only verified directly against the C2 service. Routing the
+   gateway's own `/v1/plan` passthrough to this is a small remaining step.
+2. ~~Build ground-truth journeys, score exact/set match (SO5).~~ ✅ done — 80%/80%, 2 named
+   causes, both pointing at the same underlying problem (case/variant mixing and
+   free-text prerequisites not becoming edges).
+3. ~~Measure SO1.~~ ✅ done — 100%, exceeds target.
+4. ~~Measure SO2.~~ 🟡 precision done (99.2%), recall only partially checked (2 of 10
+   pages) — finishing the other 8 pages is the one real number still missing.
+5. ~~Measure SO4.~~ ✅ agency-level done (100%/100%). Service-level resolution doesn't
+   exist as a mechanism — building `canonical_service()` (mirroring `canonical_agency`)
+   would fix the one confirmed case (`tourist_vat_refund_scheme`) and is a scoped,
+   concrete next step, not yet started.
+6. ~~Check NFR7.~~ ✅ checked — 2,385 of 4,000, stated as a known shortfall, not addressed
+   today (see §3).
+
+**What's actually left to reach full coverage of this list:** finish SO2's recall check
+(8 more pages), and decide whether to build `canonical_service()` before 26 Oct or name it
+as a limitation for the report, same as NFR7.
 
 ## 5. What's correctly NOT on this list
 
