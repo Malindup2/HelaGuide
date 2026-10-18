@@ -315,3 +315,63 @@ Same span-level metric as Observation 7. "Extractive types" are district, dates 
 - Fresh is small (50 turns, few examples per slot).
 - The issue categories (fee, documents, office hours, photo) are a small hand-made list.
 - No XLM-R NER + rules combination is reported yet: run `dst_eval.py --xlmr-dir models/c1/run_seed1` to add it.
+
+
+## Observation 10: retrained with all 12 intents (v2), and the full pipeline (2026-10-18)
+ 
+**Setup:**
+- `c1_xlmr_train_v2.ipynb`, seed 1, xlm-roberta-base fine-tuned for 8 epochs.
+- Intent reads the **last 3 user messages**, cut from the left.
+- New silver set: 393 dialogues / 977 turns, now including 120 dialogues for the 4 support intents.
+- Models: `MyDrive/c1_models/run_v2_seed1`. Results: `results/xlmr_results_v2_seed1.json` and `results/dst_results.json`.
+- Single seed, so treat differences under about 0.03 as noise.
+### Intent (now scored on all 142 gold turns, not 70)
+ 
+| | Gold accuracy | Gold macro-F1 | Fresh accuracy (core intents only) |
+|---|---|---|---|
+| XLM-R v2 (12 intents, window_3) | **0.852** | **0.791** | 0.88 |
+| TF-IDF + LogReg (same input) | 0.782 | 0.772 | 0.92 |
+| *Before (v1, 8 intents, 70 gold turns): XLM-R* | *0.933* | *0.936* | *0.927* |
+ 
+- **With 12 intents, XLM-R now beats TF-IDF on gold.** The support intents are harder to spot by keywords, so a contextual model helps. This reverses Observation 7, where only the 8 keyword-heavy core intents were scored.
+- **Per intent:**
+  - unsupported_service: F1 0.90 (54 turns)
+  - feedback_complaint: F1 0.80 (recall 0.67)
+  - out_of_scope: F1 0.75
+  - **general_question: F1 0.00** (5 turns), the weakest class; these are confused with nic_update, passport_new and unsupported_service
+- **Most common gold error:** 5× unsupported_service → passport_renew. The word "renew" appears in licence renewals too.
+- **Fresh accuracy fell slightly** (0.927 → 0.88): with 12 classes there are more ways to be wrong, e.g. 2 marriage turns → unsupported_service.
+- **XLM-R intent is under-trained.** Training loss was still 0.41 at epoch 8 (0.04 in v1), and dev macro-F1 peaked at 0.69. A 15-epoch run is the obvious next step, as in Observation 8.
+### Language ID (unchanged, stable)
+- Gold SI/EN: 0.989. Fresh: 0.971.
+- At switch points: 0.993 gold / 0.973 fresh.
+### Dialogue state tracking (JGA)
+ 
+| Setting | Gold (dev) | Fresh (held-out) |
+|---|---|---|
+| Rules tracker, gold intent | 0.979 | 0.92 |
+| Rules tracker + XLM-R NER fallback, gold intent | 0.979 | **0.94** |
+| Full pipeline, **TF-IDF** intent | 0.796 | 0.84 (0.86 with NER) |
+| Full pipeline, **XLM-R** intent | **0.838** | 0.82 (0.84 with NER) |
+| XLM-R NER alone (no rules), gold intent | 0.254 | 0.48 |
+ 
+- On gold, all turns, the full pipeline rises from 0.46 (before the support-intent data) to **0.84**.
+- **The rules carry slot tracking.** XLM-R NER on its own reaches only 0.25–0.48 JGA. Used as a **fallback** for free-text slots the rules miss, it adds a little: fresh 0.92 → 0.94, one turn.
+- **Synthetic held-out set:** the rules tracker alone scores 0.746 (977 turns, now including support dialogues). With the NER fallback it shows 0.851, but **that number is not valid**: the NER model was trained on 90% of these dialogues. Use the fresh set for the NER comparison.
+### Entity spans, extractive types (fresh, held-out)
+ 
+| XLM-R NER v2 | Hybrid rules | Hybrid + XLM-R NER |
+|---|---|---|
+| 0.455 | 0.727 | **0.783** |
+ 
+### Takeaways
+1. **All 12 intents are now recognised and scored.** The pipeline handles complaints (routed to trust verification), unsupported services and off-topic messages. Gold JGA rose from 0.46 to 0.84.
+2. **The model choice flips with the task.** For the 8 keyword-heavy service intents, TF-IDF was as good or better. With the support intents, XLM-R is better on gold (0.852 vs 0.782). TF-IDF stays a strong low-cost option and is slightly better on the fresh core-intent set.
+3. **Hybrid design confirmed.** Rules for slot tracking, plus XLM-R NER only as a fallback for free text, gives the best entity F1 (0.78) and fresh JGA (0.94).
+4. **Weak spots to fix next:**
+   - general_question (needs more varied examples)
+   - "renew" in licence questions read as passport_renew
+   - XLM-R intent under-training (rerun at 15 epochs, 3 seeds)
+### Deployment choice
+`run_v2_seed1` (12 intents, window_3, left truncation) + the rules tracker + the XLM-R NER fallback. This replaces `run_seed1`.
+ 
