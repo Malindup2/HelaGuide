@@ -12830,5 +12830,5050 @@
         }
       }
     ]
+  },
+  {
+    "dialogue_id": "s0276",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔයා කිව්ව office එක 8.30ට open කියලා, මම ගියාම 9 වෙනකම් වහලා තිබ්බේ",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "9 වෙනකම් වහලා තිබ්බේ"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න. මොන service එකටද ගියේ?"
+      },
+      {
+        "speaker": "user",
+        "text": "NIC එකට, Kurunegala DS office එකට",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "9 වෙනකම් වහලා තිබ්බේ",
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ස්තූතියි, අපි office hours check කරලා හදන්නම්."
+      },
+      {
+        "speaker": "user",
+        "text": "හරි. ආ ඇත්තටම, අද match එක කීයටද පටන් ගන්නේ?",
+        "state": {
+          "intent": "out_of_scope",
+          "previous_intent": "feedback_complaint",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, මට උදව් කරන්න පුළුවන් රජයේ සේවා ගැන විතරයි."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0277",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport ekata photo 2k athi kiwwa, eth office eke 4k illuwa",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "service_mentioned": "passport",
+            "issue": "office eke 4k illuwa"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ane samawenna, api eka check karala hadannam. Mona office ekeda?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0278",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiyapu gaana waradi, kaaryalaye wadiyen gaththa",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "gaana waradi"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna. kumana sevawatada?"
+      },
+      {
+        "speaker": "user",
+        "text": "uppenna sahathikaye pitapathakata",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "gaana waradi",
+            "service_mentioned": "uppenna sahathikaye pitapatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "kumana kaaryalayeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Gaalle disthrikka lekam kaaryalaye",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "gaana waradi",
+            "service_mentioned": "uppenna sahathikaye pitapatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "sthuthiyi, api eka balannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0279",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport එකට ගියාම birth certificate එකේ English copy එකකුත් ඕනේ කිව්වා, ඔයා ඒක කිව්වේ නෑ",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "service_mentioned": "passport",
+            "issue": "English copy එකකුත් ඕනේ කිව්වා"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න. කොයි office එකටද ගියේ?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0280",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "HelaGuide eken kiwwa online apply karanna puluwan kiyala, eth site eke eka nehe",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "site eke eka nehe"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna. Mona service ekatada?"
+      },
+      {
+        "speaker": "user",
+        "text": "achchige death certificate copy ekata",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "site eke eka nehe",
+            "service_mentioned": "death certificate copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, oya try kale kawadada?"
+      },
+      {
+        "speaker": "user",
+        "text": "iye raa, e-BMD site eke option eka penne nehe",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "site eke eka nehe",
+            "service_mentioned": "death certificate copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sthuthiyi, api eka check karannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0281",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiyapu office ekata giya, eth eka wrong office eka, Battaramulla yanna kiwwa",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "wrong office eka"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna. Mona service ekatada?"
+      },
+      {
+        "speaker": "user",
+        "text": "NIC eka. eka ehema thiyanna, mata police clearance ekak ganna one",
+        "state": {
+          "intent": "unsupported_service",
+          "previous_intent": "feedback_complaint",
+          "slots": {
+            "service_mentioned": "police clearance"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, police clearance gana mata thama udaw karanna baha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0282",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiyapu welawata kaaryalaya wahala thibba, hadunumpatha ganna giyama",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "kaaryalaya wahala thibba",
+            "service_mentioned": "hadunumpatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna. kumana kaaryalayeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "samawenna, hadunumpatha nemei, gaman balapathraya ganna giye",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "kaaryalaya wahala thibba",
+            "service_mentioned": "gaman balapathraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, api eka balannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0283",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔයා කිව්ව fee එක Rs 2500, counter එකේ ඉල්ලුවේ 3000ක්, marriage certificate එකට",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "counter එකේ ඉල්ලුවේ 3000ක්",
+            "service_mentioned": "marriage certificate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, කොයි office එකේද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0284",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "the info you gave about photo size was wrong, they rejected my photos",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "they rejected my photos"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sorry about that. Which service was this for?"
+      },
+      {
+        "speaker": "user",
+        "text": "for the NIC",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "they rejected my photos",
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Which office did you go to?"
+      },
+      {
+        "speaker": "user",
+        "text": "wait sorry, it was for the passport not NIC. colombo office",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "they rejected my photos",
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Thanks, we'll check the photo requirements."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0285",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ane oya kiwwata queue eka podi kiyala, mama paya 5k hitiya",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "paya 5k hitiya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ane samawenna. Mona service ekatada giye?"
+      },
+      {
+        "speaker": "user",
+        "text": "passport renew karanna",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "paya 5k hitiya",
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona office ekeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Matara regional office eke",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "paya 5k hitiya",
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, api eka note karagannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0286",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "you said I only need a police report, but the office asked for a GN letter too",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "asked for a GN letter too"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sorry about that. Which service was it?"
+      },
+      {
+        "speaker": "user",
+        "text": "replacing my lost NIC. can I still get it done urgently? I'm in Kandy",
+        "state": {
+          "intent": "nic_replace_lost",
+          "previous_intent": "feedback_complaint",
+          "slots": {
+            "urgency": "urgent",
+            "district": "Kandy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Yes, you can use the one-day service. Bring the police report and the GN letter."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0287",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiyapu ganana waradi, gaman balapathraya aluth karanna giyama wadiyen illuwa",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "wadiyen illuwa",
+            "service_mentioned": "gaman balapathraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, api eka balannam."
+      },
+      {
+        "speaker": "user",
+        "text": "kamak na. mata eka ikmanata aluth karaganna one, labana sathiye gaman yanawa",
+        "state": {
+          "intent": "passport_renew",
+          "previous_intent": "feedback_complaint",
+          "slots": {
+            "service_type": "urgent",
+            "travel_date": "labana sathiye"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, ekdina sevaya thiyenawa. parana gaman balapathrayai hadunumpathai genna."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0288",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔබ කියපු විදියට ගියාම පිටපතට තව ලේඛනයක් ඉල්ලුවා, මරණ සහතිකයට",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "තව ලේඛනයක් ඉල්ලුවා",
+            "service_mentioned": "මරණ සහතිකය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, කුමන කාර්යාලයේද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0289",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔබ කිව්වා ඡායාරූප දෙකක් ඇති කියලා, කාර්යාලයේ හතරක් ඉල්ලුවා",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "හතරක් ඉල්ලුවා"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න. කුමන සේවාවටද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ගමන් බලපත්‍රයට. නෑ නෑ, හතරක් නෙමෙයි තුනක් ඉල්ලුවේ",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "තුනක් ඉල්ලුවේ",
+            "service_mentioned": "ගමන් බලපත්‍රය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හරි, අපි ඒක හදන්නම්."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0290",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiyapu e-BMD link eka wada nehe",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "link eka wada nehe"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna. Mona service ekatada?"
+      },
+      {
+        "speaker": "user",
+        "text": "thaththage death certificate copy eka ganna",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "link eka wada nehe",
+            "service_mentioned": "death certificate copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Api link eka check karannam."
+      },
+      {
+        "speaker": "user",
+        "text": "ok, ehenam office ekata gihin ganna one, bank ekata denna. Gampaha",
+        "state": {
+          "intent": "death_cert_copy",
+          "previous_intent": "feedback_complaint",
+          "slots": {
+            "purpose": "bank ekata denna",
+            "district": "Gampaha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, Gampaha district registrar office eken ganna puluwan."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0291",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiwwa saturday open kiyala, eth registrar office eka wahala",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "registrar office eka wahala"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna. Mona service ekatada giye?"
+      },
+      {
+        "speaker": "user",
+        "text": "marriage register karanna notice eka denna",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "registrar office eka wahala",
+            "service_mentioned": "marriage register"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona district ekeda office eka?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kalutara. aye monday yannam",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "registrar office eka wahala",
+            "service_mentioned": "marriage register"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, api hours check karala hadannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0292",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "NIC එකේ address change එකට GN letter එක විතරක් ඇති කිව්වා, ඒත් utility bill එකකුත් ඉල්ලුවා",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "service_mentioned": "NIC",
+            "issue": "utility bill එකකුත් ඉල්ලුවා"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, අපි ඒක check කරන්නම්. කොයි office එකද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0293",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔබ කිව්ව කාර්යාලය වැරදියි, ගියාම කිව්වා වෙන තැනකට යන්න කියලා",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "කාර්යාලය වැරදියි"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න. කුමන සේවාවටද ගියේ?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0294",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya dunna fee eka parana eka, dan wadi",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "fee eka parana eka"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna. Mona service ekeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "urgent passport eke",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "fee eka parana eka",
+            "service_mentioned": "urgent passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, api eka update karannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0295",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "photo size eka waradi kiyala studio eke kiwwa",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "photo size eka waradi"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona service ekatada photo eka?"
+      },
+      {
+        "speaker": "user",
+        "text": "puthage first NIC ekata",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "photo size eka waradi",
+            "service_mentioned": "first NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Photo eka gaththe approved studio ekakinda?"
+      },
+      {
+        "speaker": "user",
+        "text": "ow, Nugegoda studio ekakin",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "photo size eka waradi",
+            "service_mentioned": "first NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sthuthiyi, api eka check karannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0296",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiyapu lekhana athi wune na",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "lekhana athi wune na"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna. kumana sevawatada?"
+      },
+      {
+        "speaker": "user",
+        "text": "vivaha liyapadinchiyata",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "lekhana athi wune na",
+            "service_mentioned": "vivaha liyapadinchiya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "monawada thawa illuwe?"
+      },
+      {
+        "speaker": "user",
+        "text": "dennage uppenna sahathika pitapathuth illuwa",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "lekhana athi wune na",
+            "service_mentioned": "vivaha liyapadinchiya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, api eka hadannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0297",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "license eka gana oya dunna info eka waradi, RMV eke kiwwa medical eka kalin ganna one kiyala",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "service_mentioned": "license",
+            "issue": "medical eka kalin ganna one"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, driving licence gana api thama hariyata info denne naha."
+      },
+      {
+        "speaker": "user",
+        "text": "ehenam eka danna kiyanna users lata",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "service_mentioned": "license",
+            "issue": "medical eka kalin ganna one"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, api eka note karagannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0298",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiwwa 1 hour wage kiyala, eth NIC ekata 4 hours giya",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "4 hours giya",
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ane samawenna, api eka balannam."
+      },
+      {
+        "speaker": "user",
+        "text": "ok kamak na. machan joke ekak kiyanna",
+        "state": {
+          "intent": "out_of_scope",
+          "previous_intent": "feedback_complaint",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, mata udaw karanna puluwan government services walata witharai."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0299",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔයා කිව්ව office address එක වැරදියි",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "office address එක වැරදියි"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, කොයි service එකටද?"
+      },
+      {
+        "speaker": "user",
+        "text": "birth certificate copy එක ගන්න. Kandy office එක",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "office address එක වැරදියි",
+            "service_mentioned": "birth certificate copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හරි, අපි address එක හදන්නම්."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0300",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiyapu fee eka hari na, passport ekata wadiyen gaththa",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "fee eka hari na",
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna. Kochchara gaththada?"
+      },
+      {
+        "speaker": "user",
+        "text": "ne ne passport nemei, NIC duplicate ekata",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "fee eka hari na",
+            "service_mentioned": "NIC duplicate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, api eka check karannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0301",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "the office hours you gave were wrong, the passport office closed at 3",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "service_mentioned": "passport",
+            "issue": "closed at 3"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sorry about that, we'll fix it."
+      },
+      {
+        "speaker": "user",
+        "text": "anyway I still need my first passport, normal service is fine",
+        "state": {
+          "intent": "passport_new",
+          "previous_intent": "feedback_complaint",
+          "slots": {
+            "applicant_for": "self",
+            "service_type": "normal"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Okay. Do you have a travel date?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0302",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔයා කිව්වා සති 2න් එනවා කියලා, දැන් මාසයක් උනා NIC එක තාම නෑ",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "මාසයක් උනා",
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න. ඔයා apply කළේ කොයි office එකෙන්ද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0303",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiwwa birth cert copy eka online ganna puluwan kiyala, eth site eka down",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "service_mentioned": "birth cert copy",
+            "issue": "site eka down"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, api eka check karannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0304",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiyapu document list eka incomplete, marriage cert ekata",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "document list eka incomplete",
+            "service_mentioned": "marriage cert"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna. Mona document ekada adu?"
+      },
+      {
+        "speaker": "user",
+        "text": "sorry marriage nemei, death cert ekata",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "document list eka incomplete",
+            "service_mentioned": "death cert"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, death certificate eke list eka check karannam."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0305",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiyapu kaaryalaya wenas wela, eka dan ehe na",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "kaaryalaya wenas wela"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, kumana sevawatada giye?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0306",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport එකක් හදන්න කොච්චර කල් යනවද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Normal service එකට වැඩි කාලයක් යනවා, urgent එකට අඩුයි."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0307",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "hadunumpatha ganna kochchara wiyadam wenawada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "hadunumpatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "palaweni hadunumpathatada?"
+      },
+      {
+        "speaker": "user",
+        "text": "samawenna, hadunumpatha nemei, gaman balapathrayata",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "gaman balapathraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samanya sevayatada ikman sevayatada?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0308",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "uppenna sahathikaye pitapathak ganna kumana lekhana one?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "uppenna sahathikaye pitapatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "kageda sahathikaya?"
+      },
+      {
+        "speaker": "user",
+        "text": "mage, mama inne Kurunegala",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "uppenna sahathikaye pitapatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "hari, hadunumpatha geniyanna. ayadumpathraya kaaryalayen ganna puluwan."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0309",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "විවාහ ලියාපදිංචියට මොන ලේඛන ඕනෙද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "විවාහ ලියාපදිංචිය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කුමන දිස්ත්‍රික්කයේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "කෑගල්ල. කාර්යාලය විවෘත වෙන්නේ කීයටද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "විවාහ ලියාපදිංචිය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සාමාන්‍යයෙන් උදේ වරුවේ විවෘතයි."
+      },
+      {
+        "speaker": "user",
+        "text": "සමාවෙන්න, විවාහ නෙමෙයි, මරණ සහතිකයක පිටපතකට",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "මරණ සහතිකයක පිටපත"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හරි, මරණ සහතිකයේ පිටපතකට අයදුම්පත්‍රය සහ හැඳුනුම්පත ඕනේ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0310",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "gaman balapathraya aluth karanna kochchara kal yanawada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "gaman balapathraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samanya sevayen dawas kihipayak yanawa."
+      },
+      {
+        "speaker": "user",
+        "text": "ikman sevayen?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "gaman balapathraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ekdina sevayath thiyenawa."
+      },
+      {
+        "speaker": "user",
+        "text": "hari, sthuthiyi",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "gaman balapathraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "sthuthiyi!"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0311",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "maranaya sahathikaye pitapathak ganna kohenda?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "maranaya sahathikaye pitapatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "maranaya liyapadinchi kale kumana disthrikkayeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Rathnapura",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "maranaya sahathikaye pitapatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Rathnapura disthrikka lekam kaaryalayen ganna puluwan."
+      },
+      {
+        "speaker": "user",
+        "text": "ekata kochchara kal yanawada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "maranaya sahathikaye pitapatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "godak welawata dawas kihipayakin denawa."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0312",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "first NIC ekata mona documents da one?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "first NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Birth certificate eka saha GN certify karapu form eka one."
+      },
+      {
+        "speaker": "user",
+        "text": "photo eka koheda ganna one?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "first NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Approved photo studio ekakin."
+      },
+      {
+        "speaker": "user",
+        "text": "hari, mage duwata NIC eka apply karanna one, Matale",
+        "state": {
+          "intent": "nic_new",
+          "previous_intent": "general_question",
+          "slots": {
+            "applicant_for": "child",
+            "district": "Matale"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Duwage upan dinaya mokakda?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0313",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "e-BMD එකෙන් birth certificate එකක් ගන්න කොච්චර කල් යනවද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "birth certificate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සාමාන්‍යයෙන් දවස් කීපයක්."
+      },
+      {
+        "speaker": "user",
+        "text": "post එකෙන් එවනවද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "birth certificate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඔව්, ඔයා දෙන address එකට එවනවා."
+      },
+      {
+        "speaker": "user",
+        "text": "fee එක කීයද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "birth certificate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Copies ගණන අනුව වෙනස් වෙනවා, site එකේ පෙන්නනවා."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0314",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "vivaha liyapadinchi karanna kochchara wiyadam wenawada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "vivaha liyapadinchi"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "eka lekam kaaryalaya anuwa wenas wenawa. kumana disthrikkayeda?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0315",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport office eka Kandy wala thiyenawada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ow, Kandy regional office eka thiyenawa."
+      },
+      {
+        "speaker": "user",
+        "text": "sorry passport nemei, NIC office eka ahanna one une",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Kandy wala NIC regional office ekakuth thiyenawa."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0316",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "how long does it take to get a death certificate copy?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "death certificate copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Usually a few days. Which district was the death registered in?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0317",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "NIC duplicate ekak ganna kiyada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC duplicate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Normal ekatada one day service ekatada?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0318",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "Marriage register කරන්න registrar ට කලින් notice දෙන්න ඕනෙද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "Marriage register"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඔව්, කලින් notice එකක් දෙන්න ඕනේ."
+      },
+      {
+        "speaker": "user",
+        "text": "කොච්චර කලින්ද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "Marriage register"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Registrar ගෙන් අහලා date එක fix කරගන්න හොඳයි."
+      },
+      {
+        "speaker": "user",
+        "text": "හරි thanks",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "Marriage register"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සතුටුයි!"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0319",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport ekata photo kiyak one da?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Approved studio eken gaththa photo eka online yawanawa."
+      },
+      {
+        "speaker": "user",
+        "text": "size eka mokakda?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Studio eka danna size ekata hadala denawa."
+      },
+      {
+        "speaker": "user",
+        "text": "ok thanks machan",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Welcome!"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0320",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "NIC eka nathi unama mokada karanna one?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Police eke entry ekak dala, eken aluth ekakata apply karanna puluwan."
+      },
+      {
+        "speaker": "user",
+        "text": "police report eka ganna salli one da?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Police station eken ahanna, godak welawata nikan."
+      },
+      {
+        "speaker": "user",
+        "text": "hari, mage NIC eka iye nathi una, urgent one, Colombo",
+        "state": {
+          "intent": "nic_replace_lost",
+          "previous_intent": "general_question",
+          "slots": {
+            "urgency": "urgent",
+            "district": "Colombo"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, one day service eka Battaramulla thiyenawa."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0321",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "palaweni hadunumpathata kochchara kal yanawada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "palaweni hadunumpatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "sathi kihipayak yanna puluwan."
+      },
+      {
+        "speaker": "user",
+        "text": "samawenna, palaweni ekata nemei, nathi wuna hadunumpathakata",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "nathi wuna hadunumpatha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ekata polis warthawak one, ekdina sevayath thiyenawa."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0322",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "gaman balapathra kaaryalaya kiyatada wahanne?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "gaman balapathra"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "kumana kaaryalayeda? Battaramulla da pradeshiya kaaryalayakda?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0323",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "birth cert eke English translation eka ganna puluwan da?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "birth cert"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ow, ganna puluwan."
+      },
+      {
+        "speaker": "user",
+        "text": "eka koheda karanne?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "birth cert"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "District registrar office eken hari e-BMD eken request karanna puluwan."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0324",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport eka online renew karanna puluwanda?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Online apply karala, eeta passa office ekata yanna one."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0325",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "death cert copy ekata kiyada yanne?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "death cert copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Copy ekakata podi gaanak yanawa. Online da office eken da?"
+      },
+      {
+        "speaker": "user",
+        "text": "ane sorry, death nemei, birth cert copy ekata",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "birth cert copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, birth cert copy ekata e wagemai."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0326",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "riyaduru balapathrayak ganna kochchara kal yanawada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "riyaduru balapathraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, riyaduru balapathra gana mata thama hariyata kiyanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "hari. ada wessa wahinawada?",
+        "state": {
+          "intent": "out_of_scope",
+          "previous_intent": "general_question",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "kalaguna gana mata kiyanna baha. rajaye sevawak gana onada?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0327",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "NIC eka hora giyoth police report eka one da?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ow, police entry ekak one."
+      },
+      {
+        "speaker": "user",
+        "text": "mage NIC eka iye bus eke hora giya, Jaffna wala",
+        "state": {
+          "intent": "nic_replace_lost",
+          "previous_intent": "general_question",
+          "slots": {
+            "district": "Jaffna"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ane samawenna. Ikmanata onada?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0328",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "where do i go to get a marriage certificate copy in Galle?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "marriage certificate copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "The district registrar's office at the Galle divisional secretariat."
+      },
+      {
+        "speaker": "user",
+        "text": "do they open on saturdays?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "marriage certificate copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Usually weekdays only. Better to call them first."
+      },
+      {
+        "speaker": "user",
+        "text": "ok thanks",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "marriage certificate copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "You're welcome."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0329",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "police clearance ekak ganna kochchara kal yanawada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "police clearance"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, police clearance gana mata thama hariyata kiyanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "online apply karanna puluwanda eka?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "police clearance"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Eka gana info thama naha, police site eka balanna."
+      },
+      {
+        "speaker": "user",
+        "text": "ok hari",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "police clearance"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sthuthiyi."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0330",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "one day service eken NIC ganna mona documents da one?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Birth certificate, GN certify karapu form eka saha photo receipt eka."
+      },
+      {
+        "speaker": "user",
+        "text": "Battaramulla office eka kiyatada open karanne?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Udeta kalin open karanawa, kalin yanna."
+      },
+      {
+        "speaker": "user",
+        "text": "Sunday open da?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Naha, weekdays witharai."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0331",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "uppenna sahathikayak ingrisiyata parivarthanaya karaganne kohomada?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "uppenna sahathikaya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "lekam kaaryalayen parivarthana pitapathak illanna puluwan."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0332",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "Death certificate එකක් ගන්න මොනවද ඕනේ?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "Death certificate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Application form එක සහ ඔයාගේ NIC එක."
+      },
+      {
+        "speaker": "user",
+        "text": "online ගන්න පුළුවන්ද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "Death certificate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඔව්, e-BMD එකෙන් request කරන්න පුළුවන්."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0333",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport urgent ekata kiyada yanne?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "passport"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Urgent eka normal ekata wada wadi. Aluth ekakda renew ekakda?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0334",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "NIC ekata GN certificate eka one da?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ow, GN certify karapu application form eka one."
+      },
+      {
+        "speaker": "user",
+        "text": "NIC office eka kiyatada open?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Weekdays udeta open."
+      },
+      {
+        "speaker": "user",
+        "text": "hari. mata gedarata building permit ekakuth ganna one",
+        "state": {
+          "intent": "unsupported_service",
+          "previous_intent": "general_question",
+          "slots": {
+            "service_mentioned": "building permit"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, building permit gana mata thama udaw karanna baha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0335",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "NIC එකේ address එක change කරන්න කොච්චර කල් යනවද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සාමාන්‍යයෙන් සති කීපයක්, one day service එකත් තියෙනවා."
+      },
+      {
+        "speaker": "user",
+        "text": "හරි, මට address එක change කරන්න ඕනේ, අලුත් address එක Kiribathgoda, Gampaha",
+        "state": {
+          "intent": "nic_update",
+          "previous_intent": "general_question",
+          "slots": {
+            "change_field": "address",
+            "new_value": "Kiribathgoda, Gampaha",
+            "district": "Gampaha"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හරි, GN ගෙන් residence certificate එකක් ගන්න."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0336",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "machan Kandy wala ada wahinawada danne?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, mata weather gana kiyanna baha. Government service ekak gana udaw onada?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0337",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "hello hello, kohomada?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hondai! Mata government services walata udaw karanna puluwan. Mokadda one?"
+      },
+      {
+        "speaker": "user",
+        "text": "nikan katha karanna aawe",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, service ekak gana one unoth ahanna."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0338",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "අද කොළඹ කාලගුණය කොහොමද?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, මට කාලගුණය ගැන කියන්න බැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "නෑ නෑ, කොළඹ නෙමෙයි, මහනුවර",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, ඒ ගැනත් කියන්න බැහැ. රජයේ සේවාවක් ගැන උදව් ඕනෙද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0339",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "reload ekak danna puluwanda mage dialog ekata?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, mata phone reload karanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "sorry dialog nemei, mobitel ekata",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, eka mata karanna baha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0340",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "suba udasanak! oyata kohomada?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Suba udasanak! Mokadda udaw karanna one?"
+      },
+      {
+        "speaker": "user",
+        "text": "kalin oya kiyapu passport fee eka waradi, office eke wadiyen illuwa",
+        "state": {
+          "intent": "feedback_complaint",
+          "previous_intent": "out_of_scope",
+          "slots": {
+            "service_mentioned": "passport",
+            "issue": "office eke wadiyen illuwa"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ane samawenna. Mona office ekeda?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0341",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "kiribath hadanne kohomada kiyala kiyanna puluwanda?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, mata uyana pihana gana kiyanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "ne ne kiribath nemei, kokis hadanne kohomada?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, mata udaw karanna puluwan rajaye sevawalata witharai."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0342",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "Sri Lanka vs India match eka kiyatada?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, cricket gana mata kiyanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "sorry India nemei, Pakistan ekka match eka",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Eka gana info mata naha. Government service ekak onada?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0343",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "හායි, ඔයා bot කෙනෙක්ද?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඔව්, මට රජයේ සේවා ගැන උදව් කරන්න පුළුවන්."
+      },
+      {
+        "speaker": "user",
+        "text": "එහෙනම් මගේ passport එක renew කරන්න ඕනේ, ලබන මාසේ travel කරනවා",
+        "state": {
+          "intent": "passport_renew",
+          "previous_intent": "out_of_scope",
+          "slots": {
+            "travel_date": "ලබන මාසේ"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඉක්මනට ඕනෙද, normal service එක ඇතිද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0344",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මට විහිළුවක් කියන්න",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, මම රජයේ සේවා ගැන විතරයි උදව් කරන්නේ."
+      },
+      {
+        "speaker": "user",
+        "text": "අනේ එක විහිළුවක් විතරක්",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, ඒක මට බැහැ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0345",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "whats the weather like in Galle tomorrow?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sorry, I can't help with weather. I can help with government services."
+      },
+      {
+        "speaker": "user",
+        "text": "oh i meant Matara, not Galle",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sorry, I still can't help with the weather."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0346",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "tell me a joke pls",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sorry, I can only help with government services like NIC, passports and certificates."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0347",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ආයුබෝවන්, ඔයාට කොහොමද?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ආයුබෝවන්! මට රජයේ සේවා ගැන උදව් කරන්න පුළුවන්. මොකක්ද ඕනේ?"
+      },
+      {
+        "speaker": "user",
+        "text": "කිසිම දෙයක් නෑ, නිකන් බැලුවා",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හරි, ඕනෙ වුණොත් අහන්න."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0348",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "english",
+    "code_mix": "pure_en",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "who won the cricket match yesterday?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sorry, I only help with government services."
+      },
+      {
+        "speaker": "user",
+        "text": "ah ok, then what can you do?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "I can help with NIC, passports, and birth, death and marriage certificates."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0349",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ phone එකට data package එකක් දාන්න පුළුවන්ද?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, මට phone reload කරන්න බැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "අනේ එහෙනම් කමක් නෑ",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "රජයේ සේවාවක් ගැන ඕනේ නම් අහන්න."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0350",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "machan hodama biryani kade Colombo wala koheda?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, mata kema kade gana kiyanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "ane sorry Colombo nemei, Kandy wala",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, eka gana mata danna naha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0351",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mata lottery result eka balanna one, ada dinum anka mokada?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, lottery result gana mata danna naha."
+      },
+      {
+        "speaker": "user",
+        "text": "ada nemei, iye eka",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, eka mata kiyanna baha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0352",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oyata sindu kiyanna puluwanda?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ane naha! Mata government services walata udaw karanna puluwan."
+      },
+      {
+        "speaker": "user",
+        "text": "hahaha ok",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Service ekak gana onanam ahanna."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0353",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ada raatriyata kanna mokakda hodha?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, mata kema gana kiyanna baha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0354",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "IPL එකේ අද match එක කවුද play කරන්නේ?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, cricket ගැන මට කියන්න බැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "අනේ boring",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "රජයේ සේවාවක් ගැන ඕනෙනම් අහන්න."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0355",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "good morning bot! අද මොකද news?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සුබ උදෑසනක්! සමාවෙන්න, news ගැන මට කියන්න බැහැ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0356",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "heta kalaguna thathwaya kohomada?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, kalaguna gana mata kiyanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "heta nemei, anidda",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, ekath kiyanna baha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0357",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "hello bot, oya AI da?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ow, mama government services walata udaw karana assistant kenek."
+      },
+      {
+        "speaker": "user",
+        "text": "ah hari, mata business registration eka karanna one",
+        "state": {
+          "intent": "unsupported_service",
+          "previous_intent": "out_of_scope",
+          "slots": {
+            "service_mentioned": "business registration"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, business registration gana mata thama udaw karanna baha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0358",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "අද dollar rate එක කීයද?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, මට ඒ ගැන කියන්න බැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "හරි හරි",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "රජයේ සේවාවක් ගැන ඕනේ නම් අහන්න."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0359",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "හලෝ, ඔයා කොහොමද?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හොඳයි! මොකක්ද උදව් කරන්න ඕනේ?"
+      },
+      {
+        "speaker": "user",
+        "text": "මට ලබන අවුරුද්දේ marriage එක register කරන්න ඕනේ, Matara",
+        "state": {
+          "intent": "marriage_registration",
+          "previous_intent": "out_of_scope",
+          "slots": {
+            "date": "ලබන අවුරුද්දේ",
+            "district": "Matara"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හරි, දෙන්නගේම birth certificates ඕනේ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0360",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ado mokada wenne?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mokadda udaw karanna one?"
+      },
+      {
+        "speaker": "user",
+        "text": "oya kiyapu NIC office eke address eka waradi",
+        "state": {
+          "intent": "feedback_complaint",
+          "previous_intent": "out_of_scope",
+          "slots": {
+            "service_mentioned": "NIC",
+            "issue": "address eka waradi"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, mona office ekada?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0361",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "kohomada yaluwa, wedding ekata hoda saree shop ekak kiyanna",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, shop gana mata kiyanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "ah ok, ehenam marriage eka register karanna mokada karanna one? Kandy wala",
+        "state": {
+          "intent": "marriage_registration",
+          "previous_intent": "out_of_scope",
+          "slots": {
+            "district": "Kandy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Kalin registrar ta notice ekak denna one. Kawadada wedding eka?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0362",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "අද රෑට තරු පේනවද?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, මට ඒ ගැන කියන්න බැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "හරි, එහෙනම් අම්මගේ මරණ සහතිකයේ පිටපතක් ඕනේ, බැංකුවට දෙන්න",
+        "state": {
+          "intent": "death_cert_copy",
+          "previous_intent": "out_of_scope",
+          "slots": {
+            "purpose": "බැංකුවට දෙන්න"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "මරණය ලියාපදිංචි කළේ කුමන දිස්ත්‍රික්කයේද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0363",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔයාට නමක් තියෙනවද?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "මම HelaGuide."
+      },
+      {
+        "speaker": "user",
+        "text": "ලස්සන නමක්",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ස්තූතියි! රජයේ සේවාවක් ගැන උදව් ඕනෙද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0364",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "suba sandyawak!",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "suba sandyawak! mokakda one?"
+      },
+      {
+        "speaker": "user",
+        "text": "gaman balapathraya ganna kochchara wiyadam wenawada?",
+        "state": {
+          "intent": "general_question",
+          "previous_intent": "out_of_scope",
+          "slots": {
+            "service_mentioned": "gaman balapathraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samanya sevayatada ikman sevayatada?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0365",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මට movie එකක් recommend කරන්න",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, මට ඒ ගැන උදව් කරන්න බැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "කමක් නෑ, bye",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Bye!"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0366",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mata police clearance report ekak one, Dubai job ekata",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "police clearance report"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, police clearance gana mata thama udaw karanna baha. Thawa mokak hari onada?"
+      },
+      {
+        "speaker": "user",
+        "text": "ehenam passport ekath one, mata thama passport ekak naha",
+        "state": {
+          "intent": "passport_new",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "applicant_for": "self"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Kawadada gaman yanne?"
+      },
+      {
+        "speaker": "user",
+        "text": "labana mase aga",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "self",
+            "travel_date": "labana mase aga"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, urgent service eka ganna puluwan."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0367",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මට වාහන අයිතිය මාරු කරන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "වාහන අයිතිය මාරු"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කාර් එකක්ද යතුරුපැදියක්ද?"
+      },
+      {
+        "speaker": "user",
+        "text": "කාර් එකක්, තාත්තගේ නමින් මගේ නමට",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "වාහන අයිතිය මාරු"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, මේ සේවාව ගැන තාම මට විස්තර නැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "හරි, කමක් නෑ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "වාහන අයිතිය මාරු"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ස්තූතියි."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0368",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මට EPF එකේ සල්ලි ගන්න ඕනේ, retire උනා",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "EPF"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, EPF ගැන මට තාම උදව් කරන්න බැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "හරි. ETF එකත් එහෙමද?",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "ETF"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඔව්, ETF ගැනත් තාම නැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "එහෙනම් මගේ පුතාට අලුත් NIC එකක් ගන්න ඕනේ, Kegalle",
+        "state": {
+          "intent": "nic_new",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "applicant_for": "child",
+            "district": "Kegalle"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "පුතාගේ උපන් දිනය මොකක්ද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0369",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "land deed eke copy ekak ganna one, idama Horana",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "land deed eke copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Idama thiyenne mona district ekeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kalutara district",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "land deed eke copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, deed copies gana mata thama info naha."
+      },
+      {
+        "speaker": "user",
+        "text": "ane ehenam kohenda ganna one kiyala hari kiyanna",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "land deed eke copy"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Land registry office eken ahanna puluwan."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0370",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "Driving license එකට bike class එක add කරගන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "Driving license"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, license ගැන මට තාම විස්තර නැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "අයියෝ. එහෙනම් passport එකක් ගන්න පුළුවන්ද? මගේ අම්මට",
+        "state": {
+          "intent": "passport_new",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "applicant_for": "parent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඉක්මනට ඕනෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "නෑ normal එක ඇති",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "parent",
+            "service_type": "normal"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හරි, අම්මගේ NIC එක සහ birth certificate එක ඕනේ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0371",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "kade ekata electricity connection ekak ganna one",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "electricity connection"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, electricity connection gana mata thama udaw karanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "ok, ehenam marriage eka register karanna one, Hambantota, December wala",
+        "state": {
+          "intent": "marriage_registration",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "district": "Hambantota",
+            "date": "December"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, kalin registrar ta notice ekak denna one."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0372",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "company registration eka karanna one, private limited ekak",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "company registration"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Company eka Colombo wala da?"
+      },
+      {
+        "speaker": "user",
+        "text": "ow Colombo",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "company registration"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, company registration gana mata thama info naha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0373",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "water connection ekak ganna kohomada? aluth gedarata",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "water connection"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Gedara thiyenne mona district ekeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Anuradhapura",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "water connection"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, water connection gana mata thama udaw karanna baha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0374",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "පදිංචි සහතිකයක් ගන්න ඕනේ ග්‍රාම නිලධාරීගෙන්",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "පදිංචි සහතිකය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, ඒ සේවාව ගැන මට තාම විස්තර නැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "හරි, එහෙනම් තාත්තගේ මරණ සහතිකයේ පිටපතක් ඕනේ, ඉඩම් වැඩකට",
+        "state": {
+          "intent": "death_cert_copy",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "purpose": "ඉඩම් වැඩකට"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "මරණය ලියාපදිංචි කළේ කුමන දිස්ත්‍රික්කයේද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0375",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mata godanagili avasarayak ganna one",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "godanagili avasaraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "idama thiyenne kohenda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Maharagama",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "godanagili avasaraya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, e sevawa gana mata thama wisthara na."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0376",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මට පොලිස් නිෂ්කාශන සහතිකයක් ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "පොලිස් නිෂ්කාශන සහතිකය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "රට යන්නද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ඔව්, ජපානයට වැඩකට",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "පොලිස් නිෂ්කාශන සහතිකය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, ඒ සේවාව ගැන මට තාම උදව් කරන්න බැහැ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0377",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "විදුලි සම්බන්ධතාවයක් ගන්නේ කොහොමද?",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "විදුලි සම්බන්ධතාවය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, විදුලි සම්බන්ධතා ගැන මට තාම විස්තර නැහැ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0378",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ රියදුරු බලපත්‍රය නැති වුණා",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "රියදුරු බලපත්‍රය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, ඒ ගැන මට තාම උදව් කරන්න බැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "එහෙනම් මට අලුත් ගමන් බලපත්‍රයක් ගන්න ඕනේ, ඉක්මනට",
+        "state": {
+          "intent": "passport_new",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "applicant_for": "self",
+            "service_type": "urgent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හරි, ගමන් යන්නේ කවදද?"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0379",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "vehicle registration ekata RMV yanna one da?",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "vehicle registration"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Aluth vehicle ekakda?"
+      },
+      {
+        "speaker": "user",
+        "text": "ow aluth bike ekak",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "vehicle registration"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, eka gana mata thama info naha."
+      },
+      {
+        "speaker": "user",
+        "text": "ane sorry, registration nemei, vehicle transfer eka",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "vehicle transfer"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Vehicle transfer gana info ekath thama naha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0380",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "residence certificate ekak ganna one, bank eka illuwa",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "residence certificate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, eka gana mata thama udaw karanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "hari. bank ekata mage birth certificate copy ekakuth one",
+        "state": {
+          "intent": "birth_cert_copy",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "applicant_for": "self",
+            "purpose": "bank ekata"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Upan liyapadinchi kale mona district ekeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Polonnaruwa",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "self",
+            "purpose": "bank ekata",
+            "district": "Polonnaruwa"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, e-BMD eken online request karanna puluwan."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0381",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ව්‍යාපාර ලියාපදිංචිය කරගන්න ඕනේ, මගේ කඩේට",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "ව්‍යාපාර ලියාපදිංචිය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, ඒ සේවාව ගැන මට තාම විස්තර නැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "හරි, එහෙනම් හැඳුනුම්පතක් ගන්න කාර්යාලය කොහෙද තියෙන්නේ?",
+        "state": {
+          "intent": "general_question",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "හැඳුනුම්පත"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ප්‍රධාන කාර්යාලය බත්තරමුල්ලේ, පළාත් කාර්යාලත් තියෙනවා."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0382",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ license එකයි NIC එකයි දෙකම නැති උනා",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "license"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "License ගැන මට තාම උදව් කරන්න බැහැ."
+      },
+      {
+        "speaker": "user",
+        "text": "එහෙනම් NIC එක ගැන කියන්න, ඉක්මනට ඕනේ, Badulla",
+        "state": {
+          "intent": "nic_replace_lost",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "urgency": "urgent",
+            "district": "Badulla"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "හරි, මුලින්ම police entry එකක් දාන්න."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0383",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "EPF balance eka balanne kohomada?",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "EPF"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Oyage member number eka thiyenawada?"
+      },
+      {
+        "speaker": "user",
+        "text": "ow thiyenawa",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "EPF"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, EPF gana mata thama info naha."
+      },
+      {
+        "speaker": "user",
+        "text": "ok kamak na",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "EPF"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sthuthiyi."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0384",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "GN certificate ekak one, school admission ekata",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "GN certificate"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, GN certificate gana mata thama udaw karanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "hari. ehenam duwata first NIC eka ganna one",
+        "state": {
+          "intent": "nic_new",
+          "previous_intent": "unsupported_service",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Duwage upan dinaya?"
+      },
+      {
+        "speaker": "user",
+        "text": "2010 august 14",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child",
+            "date_of_birth": "2010 august 14"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, birth certificate eka ganna."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0385",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "building plan approval ekata pradeshiya sabhawa yanna one da?",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "building plan approval"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Idama thiyenne koheda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Wattala",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "building plan approval"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, building approvals gana mata thama info naha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0386",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "romanized_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "jala sambandathawayak ganna one aluth gedarata",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "jala sambandathawaya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "gedara thiyenne kohenda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kaduwela",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "jala sambandathawaya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "samawenna, e sevawa gana mata thama wisthara na."
+      },
+      {
+        "speaker": "user",
+        "text": "hari sthuthiyi",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "jala sambandathawaya"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "sthuthiyi."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0387",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඉඩම් ඔප්පුවේ පිටපතක් ගන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "ඉඩම් ඔප්පුවේ පිටපත"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඉඩම තියෙන්නේ කොහෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "මාතර",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "ඉඩම් ඔප්පුවේ පිටපත"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, ඔප්පු පිටපත් ගැන මට තාම විස්තර නැහැ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0388",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ රියදුරු බලපත්‍රය අලුත් කරන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "රියදුරු බලපත්‍රය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සාමාන්‍ය වාහනවලටද?"
+      },
+      {
+        "speaker": "user",
+        "text": "නෑ නෑ, බලපත්‍රය නෙමෙයි, වාහන ලියාපදිංචිය අලුත් කරන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "වාහන ලියාපදිංචිය"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, ඒ ගැනත් මට තාම උදව් කරන්න බැහැ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0389",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "bus ekak dawanna heavy license eka ganne kohomada",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "heavy license"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Dan light vehicle license eka thiyenawada?"
+      },
+      {
+        "speaker": "user",
+        "text": "ow thiyenawa awurudu 3k",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "heavy license"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, license gana mata thama info naha."
+      },
+      {
+        "speaker": "user",
+        "text": "aney hari",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "heavy license"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Sthuthiyi."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0390",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "pure_si",
+    "code_mix": "pure_si",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "සේවක අර්ථසාධක අරමුදලේ මුදල් ගන්නේ කොහොමද?",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "සේවක අර්ථසාධක අරමුදල"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "විශ්‍රාම ගිහින්ද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ඔව්, පසුගිය මාසේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "සේවක අර්ථසාධක අරමුදල"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, ඒ ගැන මට තාම විස්තර නැහැ."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0391",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "current connection ekak ganna one kade ekata",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "current connection"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Kade thiyenne koheda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Negombo town eke",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "current connection"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, eka gana mata thama info naha."
+      },
+      {
+        "speaker": "user",
+        "text": "ane wait, current nemei, water connection eka",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "water connection"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Water connection gana info ekath thama naha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0392",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "police report ekak ganna puluwanda online?",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "police report"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, police report gana mata thama udaw karanna baha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0393",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mata bike ekata revenue license eka renew karanna one",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "revenue license"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona province ekeda bike eka register kale?"
+      },
+      {
+        "speaker": "user",
+        "text": "Western",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "revenue license"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, revenue license gana mata thama udaw karanna baha."
+      },
+      {
+        "speaker": "user",
+        "text": "ok thanks",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "revenue license"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Welcome."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0394",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "romanized",
+    "style": "singlish",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "EPF claim eka karanne kohomada, job eka eheuwa",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "EPF claim"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Kochchara kalayak wada kalada?"
+      },
+      {
+        "speaker": "user",
+        "text": "awurudu 6k",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "EPF claim"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Samawenna, EPF claims gana mata thama info naha."
+      }
+    ]
+  },
+  {
+    "dialogue_id": "s0395",
+    "source": "synthetic",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "script": "sinhala",
+    "style": "sinhala_mixed",
+    "code_mix": "mixed",
+    "phenomena": [],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "Police clearance එකට apply කරන්නේ කොහොමද?",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "Police clearance"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "රට යන්නද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ඔව් Canada",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "Police clearance"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "සමාවෙන්න, police clearance ගැන මට තාම උදව් කරන්න බැහැ."
+      }
+    ]
   }
 ]
