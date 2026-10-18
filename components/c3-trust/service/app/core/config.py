@@ -56,8 +56,8 @@ class C3Settings(BaseSettings):
     w_q: float = 0.15                         # qualifier agreement
     w_v: float = 0.10                         # the stored value is mentioned
     tau_f: float = 0.55                       # min fact score
-    delta_f: float = 0.06                     # min lead over the runner-up fact
-    tau_miss_cos: float = 0.35                # document phrase similarity floor: below it a document is "not in the graph"
+    delta_f: float = 0.08                     # min lead over the runner-up fact
+    tau_miss_cos: float = 0.30               # document phrase similarity floor: below it a document is "not in the graph"
     tau_doc_sure: float = 0.60                # at or above this the similarity alone is trusted for a document;
                                               # between tau_miss_cos and this, the message must also share a distinctive word
     tau_f_unique_relief: float = 0.10         # if the service has only ONE fact of the kind discussed, tau_f is lowered by this
