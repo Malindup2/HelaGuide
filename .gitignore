@@ -16,6 +16,7 @@ venv/
 # node
 node_modules/
 dist/
+*.tsbuildinfo
 
 # data and models: keep out of git, document the location in research/data/README.md
 **/research/data/raw/
