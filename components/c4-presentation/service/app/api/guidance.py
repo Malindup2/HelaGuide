@@ -56,6 +56,7 @@ def register_guidance_routes(application, runtime, select_presentation):
                     **status.model_dump(),
                     spec=selected.spec,
                     stale_for_display=selected.stale_for_display,
+                    wording=selected.wording,
                 )
 
             if request.focus_action_id is not None:
@@ -64,6 +65,7 @@ def register_guidance_routes(application, runtime, select_presentation):
                     "focus_action_id applies only to adaptive guidance",
                 )
             graph, _, safety = current.procedure(request.procedure_id)
+            wording, _ = current.wording_views.prepare(graph, writing_style=request.standard_writing_style)
             guidance = build_standard_guidance(
                 graph,
                 current.explanations,
@@ -73,6 +75,7 @@ def register_guidance_routes(application, runtime, select_presentation):
             return StandardGuidanceResponse(
                 **status.model_dump(),
                 guidance=guidance,
+                wording=wording,
             )
 
     application.include_router(router)
