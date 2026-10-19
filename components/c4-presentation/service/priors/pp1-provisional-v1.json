@@ -1,0 +1,48 @@
+{
+  "schema_version": "c4-weak-prior-1.0",
+  "version": "pp1-provisional-v1",
+  "status": "provisional_pending_expert_validation",
+  "author": "C4 researcher draft with AI assistance; not elicited expert responses",
+  "reviewer": null,
+  "review_reference": null,
+  "sources": [
+    {
+      "source_id": "segmenting",
+      "title": "Principles for Managing Essential Processing in Multimedia Learning, Cambridge Handbook of Multimedia Learning",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-handbook-of-multimedia-learning/principles-for-managing-essential-processing-in-multimedia-learning/A9E77D0172F905AC957689D1771E2888",
+      "scope": "Publisher summary supports learner-paced segmentation in multimedia learning. Transfer to this text-based guidance interface and numeric coefficients are unvalidated researcher hypotheses."
+    },
+    {
+      "source_id": "expertise",
+      "title": "Kalyuga, Ayres, Chandler and Sweller (2003), The Expertise Reversal Effect",
+      "url": "https://doi.org/10.1207/S15326985EP3801_4",
+      "scope": "Publisher abstract describes instructional effectiveness depending on learner experience. Self-reported familiarity is an imperfect proxy; no five-point thresholds or coefficients are established by this source."
+    },
+    {
+      "source_id": "disclosure",
+      "title": "Jakob Nielsen (2006), Progressive Disclosure, Nielsen Norman Group",
+      "url": "https://www.nngroup.com/articles/progressive-disclosure/",
+      "scope": "Author guidance on deferring secondary options, distinct from staged disclosure. C4 may collapse only separately reviewed supplementary content; source requirements remain visible. This is design guidance, not C4 empirical evidence."
+    },
+    {
+      "source_id": "signaling",
+      "title": "Richard E. Mayer, Multimedia Learning (3rd edition), Signaling Principle",
+      "url": "https://www.cambridge.org/highereducation/books/multimedia-learning/FB7E79A165D24D47CEACEB4D2C426ECD/signaling-principle/9E37E775874EC1D93763620B8A296DD4",
+      "scope": "Signaling motivates testing organizational cues. Specific branch/dependency/parallel diagrams and their weights are researcher extrapolations, not conclusions established for this system."
+    }
+  ],
+  "judgments": [
+    {"judgment_id":"familiarity-1-guided","context":"user.familiarity.level_1","aid":"guided","score_delta":0.025,"rationale":"Tentatively favor paced guidance for the least familiar self-report category. Test assumption; not an expert response.","source_ids":["segmenting","expertise"]},
+    {"judgment_id":"familiarity-2-guided","context":"user.familiarity.level_2","aid":"guided","score_delta":0.025,"rationale":"Tentatively favor pacing for lower familiarity. Category cutoff is provisional.","source_ids":["segmenting","expertise"]},
+    {"judgment_id":"familiarity-4-overview","context":"user.familiarity.level_4","aid":"guided","score_delta":-0.025,"rationale":"Tentatively reduce extra pacing for higher familiarity; does not force Overview.","source_ids":["expertise"]},
+    {"judgment_id":"familiarity-5-overview","context":"user.familiarity.level_5","aid":"guided","score_delta":-0.025,"rationale":"Tentatively reduce pacing for the most familiar self-report category. Familiarity is not measured expertise.","source_ids":["expertise"]},
+    {"judgment_id":"step-volume-pacing","context":"structure.step_count.normalized_observed","aid":"guided","score_delta":0.02,"rationale":"More supplied steps tentatively increase value of pacing. Interdependent steps may instead benefit from an overview; weak hypothesis only.","source_ids":["segmenting","disclosure"]},
+    {"judgment_id":"information-disclosure","context":"structure.information_volume.normalized_observed","aid":"progressive_disclosure","score_delta":0.02,"rationale":"Tentatively defer reviewed supplementary explanations when original information volume grows. Hard feasibility still prevents hiding required information.","source_ids":["disclosure"]},
+    {"judgment_id":"dependencies-cues","context":"structure.dependency_count.normalized_observed","aid":"prerequisite_cue","score_delta":0.025,"rationale":"Tentatively favor explicit prerequisite reminders when supplied dependencies grow; no completion inferred.","source_ids":["signaling"]},
+    {"judgment_id":"branches-map","context":"structure.branch_count.normalized_observed","aid":"branch_map","score_delta":0.02,"rationale":"Tentatively favor inspecting supplied alternatives with a map. Exact diagram suitability requires validation.","source_ids":["signaling"]},
+    {"judgment_id":"dependencies-map","context":"structure.dependency_depth.normalized_observed","aid":"dependency_map","score_delta":0.02,"rationale":"Tentatively favor an explicit dependency map as supplied depth grows. This does not add AND/OR semantics.","source_ids":["signaling"]},
+    {"judgment_id":"parallel-map","context":"structure.parallel_group_count.normalized_observed","aid":"parallel_map","score_delta":0.02,"rationale":"Tentatively favor visualization of explicitly supplied parallel groups. No independence beyond source assertions inferred.","source_ids":["signaling"]},
+    {"judgment_id":"navigation-1-pacing","context":"user.navigation_capability.level_1","aid":"guided","score_delta":0.01,"rationale":"Exploratory assumption that pacing may help low reported navigation capability; extra navigation could also burden users. Validate directly.","source_ids":["segmenting","disclosure"]},
+    {"judgment_id":"navigation-2-pacing","context":"user.navigation_capability.level_2","aid":"guided","score_delta":0.01,"rationale":"Exploratory low-weight pacing hypothesis for navigation category 2, pending direct user and expert evidence.","source_ids":["segmenting","disclosure"]}
+  ]
+}
