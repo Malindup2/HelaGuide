@@ -83,6 +83,7 @@ from app.models.corrections import (
 
 from app.api.demo_profiles import register_demo_profile_routes
 from app.api.guidance import register_guidance_routes
+from app.api.pipeline_trace import register_pipeline_trace_routes
 from app.core.guidance_access import (
     episode_is_active,
     require_active_episode,
@@ -1121,6 +1122,7 @@ def create_app(
             }
 
     register_guidance_routes(application, runtime, create_presentation)
+    register_pipeline_trace_routes(application, runtime)
     return application
 
 
