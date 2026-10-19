@@ -163,6 +163,7 @@ class InMemoryContextService:
         update: ContextUpdate,
         *,
         expected_revision: int,
+        event_id: str | None = None,
     ) -> GuestSession:
         """Apply only explicitly supplied fields.
 
@@ -174,6 +175,8 @@ class InMemoryContextService:
 
         with self._lock:
             state = self._state(session_id)
+            if event_id is not None and any(e.event_id == event_id for e in state.events):
+                raise ContextConflictError("preference event identity already exists")
             self._check_revision(state, expected_revision)
             before = state.session.settings
             changes = {}
@@ -212,7 +215,7 @@ class InMemoryContextService:
             sequence = state.session.revision + 1
 
             event = PreferenceChange(
-                event_id=f"event:{uuid4().hex}",
+                event_id=event_id or f"event:{uuid4().hex}",
                 session_id=session_id,
                 sequence=sequence,
                 occurred_at=now,

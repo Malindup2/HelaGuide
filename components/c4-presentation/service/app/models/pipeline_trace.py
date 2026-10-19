@@ -5,6 +5,7 @@ from typing import Literal
 from pydantic import AwareDatetime, Field
 
 from app.models.corrections import CorrectionRecord
+from app.models.adjustments import AdjustmentState
 from app.models.guidance import GuidanceStatus
 from app.models.policy import CandidateScore, PolicyOffer
 from app.models.prepared_wording import WordingArtifact, WordingResolution, WordingStyle
@@ -138,6 +139,7 @@ class PipelineTrace(GraphRecord):
     learning: FeedbackSummary
     current: CurrentTraceStatus
     evidence_boundaries: tuple[EvidenceBoundary, ...]
+    adjustments: AdjustmentState | None = None
 
 
 class TraceListEntry(GraphRecord):

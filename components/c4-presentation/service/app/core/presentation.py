@@ -311,8 +311,12 @@ def build_source_cards(graph, source, configuration) -> tuple[SourceCard, ...]:
 
 
 def _diagram(graph, selected) -> RelationshipDiagram:
-    kind = selected.offer.configuration.relationship_visual
-    supported = selected.decision.evaluation.feasibility.supported_dependency_layers
+    return diagram_for_configuration(graph, selected.offer.configuration, selected.decision.evaluation.feasibility)
+
+
+def diagram_for_configuration(graph, configuration, feasibility) -> RelationshipDiagram:
+    kind = configuration.relationship_visual
+    supported = feasibility.supported_dependency_layers
 
     if kind == "NONE":
         return RelationshipDiagram(kind="NONE")
