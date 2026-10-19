@@ -1,6 +1,7 @@
 import { ContractError } from "../api/client";
 import type { Branch, Document, Edge, Spec } from "./types";
 import { actionLabel } from "./types";
+import { preparedText } from "./wording";
 
 export const branchMeanings = {
   AND: "All options apply under the supplied applicability.",
@@ -16,7 +17,9 @@ export function compactLabel(text: string, limit = 68): string {
   return cut.slice(0, boundary > limit / 2 ? boundary : cut.length).trimEnd() + "…";
 }
 /** Display label only. Complete requirements are never replaced with this label. */
-export function actionTitle(doc: Document, id: string) { return compactLabel(actionLabel(doc, id)); }
+export function actionTitle(doc: Document, id: string) {
+  return preparedText(doc, "action_heading", "action", id) ?? compactLabel(actionLabel(doc, id));
+}
 
 export interface MapNode {
   id: string; title: string; fullLabel: string; eyebrow: string;
@@ -75,7 +78,7 @@ export function layoutMap(nodes: MapNode[], edges: MapEdge[]): MapLayout {
 export function actionNode(doc: Document, id: string): MapNode {
   const index = doc.pages.findIndex((page) => page.action_id === id);
   return {
-    id, title: actionTitle(doc, id), fullLabel: actionLabel(doc, id),
+    id, title: preparedText(doc, "diagram_label", "action", id) ?? actionTitle(doc, id), fullLabel: actionLabel(doc, id),
     eyebrow: index >= 0 ? "Action " + (index + 1) : "Supplied action", tone: "action",
     actionIds: [id], conditionIds: doc.pages[index]?.condition_ids ?? [],
   };
@@ -84,7 +87,7 @@ export function dependencyLayout(doc: Document, layer: "action" | "service", nod
   const mapNodes = nodes.map((id): MapNode => {
     if (layer === "action") return actionNode(doc, id);
     const stage = doc.explanation.source.graph.stages.find((row) => row.service_id === id);
-    return { id, title: compactLabel(stage?.name ?? id), fullLabel: stage?.name ?? id, eyebrow: "Service",
+    return { id, title: preparedText(doc, "diagram_label", "stage", id) ?? compactLabel(stage?.name ?? id), fullLabel: stage?.name ?? id, eyebrow: "Service",
       tone: "service", serviceId: id, actionIds: [], conditionIds: [] };
   });
   return layoutMap(mapNodes, edges.map((edge) => ({
@@ -93,12 +96,12 @@ export function dependencyLayout(doc: Document, layer: "action" | "service", nod
 }
 export function branchLayout(doc: Document, group: Branch): MapLayout {
   const gate: MapNode = {
-    id: group.group_id, title: group.selection === "XOR" ? "Choose exactly one" : group.selection === "OR" ? "One or more options" : "All applicable options",
+    id: group.group_id, title: preparedText(doc, "diagram_label", "branch_group", group.group_id) ?? (group.selection === "XOR" ? "Choose exactly one" : group.selection === "OR" ? "One or more options" : "All applicable options"),
     fullLabel: branchMeanings[group.selection], eyebrow: group.selection + " selection",
     tone: "choice", actionIds: [], conditionIds: [],
   };
   const options: MapNode[] = group.options.map((option, index) => ({
-    id: option.option_id, title: compactLabel(option.action_ids.map((id) => actionTitle(doc, id)).join(" · ")),
+    id: option.option_id, title: preparedText(doc, "diagram_label", "branch_option", option.option_id) ?? compactLabel(option.action_ids.map((id) => actionTitle(doc, id)).join(" · ")),
     fullLabel: option.action_ids.map((id) => actionLabel(doc, id)).join("\n"),
     eyebrow: "Option " + (index + 1), tone: "option", actionIds: [...option.action_ids],
     conditionIds: [...new Set([...option.condition_ids,

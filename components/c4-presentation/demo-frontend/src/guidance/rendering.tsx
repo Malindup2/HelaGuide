@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
-import type { Card, Document, Item, Page, Spec } from "./types";
+import type { Card, Document, Item, Page, Spec, Navigation } from "./types";
 import { itemKey } from "./types";
 import { actionDomId, actionTitle } from "./scaffoldModel";
 import RelationshipMap from "./RelationshipMap";
+import { preparedText, previousViewedAction } from "./wording";
 
 function GeneratedText({ annotations }: { annotations: Document["explanation"]["explanations"] }) {
   if (!annotations.length) return null;
@@ -24,11 +25,11 @@ function SourceCard({ card, annotations = [] }: { card: Card; annotations?: Docu
   return <div className={"source-card source-kind-" + card.source.kind} data-source-kind={card.source.kind} data-source-id={card.source.identifier}>
     <h4>{card.title}</h4>{body}</div>;
 }
-export function SourceItems({ doc, refs, annotationActionId }: { doc: Document; refs: Item[]; annotationActionId?: string }) {
+export function SourceItems({ doc, refs, annotationActionId, suppressAnnotations = false }: { doc: Document; refs: Item[]; annotationActionId?: string; suppressAnnotations?: boolean }) {
   const cards = new Map(doc.cards.map((card) => [itemKey(card.source), card]));
   return <>{refs.map((ref) => {
     const card = cards.get(itemKey(ref));
-    const annotations = annotationActionId && ref.kind === "content" ? doc.explanation.explanations.filter((row) =>
+    const annotations = !suppressAnnotations && annotationActionId && ref.kind === "content" ? doc.explanation.explanations.filter((row) =>
       row.action_id === annotationActionId && row.content_id === ref.identifier && row.origin === "generated") : [];
     return card ? <SourceCard key={itemKey(ref)} card={card} annotations={annotations} /> : null;
   })}</>;
@@ -41,8 +42,9 @@ export function PrerequisiteCues({ doc, refs }: { doc: Document; refs: Item[] })
     <ul>{refs.map((ref) => {
       const actionEdge = ref.kind === "action_prerequisite" ? graph.action_prerequisites.find((row) => row.edge_id === ref.identifier) : null;
       const stageEdge = ref.kind === "stage_dependency" ? graph.stage_dependencies.find((row) => row.edge_id === ref.identifier) : null;
-      if (actionEdge) return <li key={itemKey(ref)}>First complete: <strong>{actionTitle(doc, actionEdge.source_id)}</strong></li>;
-      if (stageEdge) return <li key={itemKey(ref)}>This service depends on: <strong>{graph.stages.find((row) => row.service_id === stageEdge.source_id)?.name ?? stageEdge.source_id}</strong></li>;
+      const wording = preparedText(doc, "prerequisite_explanation", ref.kind, ref.identifier);
+      if (actionEdge) return <li key={itemKey(ref)}>{wording && <p>{wording}</p>}First complete: <strong>{actionTitle(doc, actionEdge.source_id)}</strong></li>;
+      if (stageEdge) return <li key={itemKey(ref)}>{wording && <p>{wording}</p>}This service depends on: <strong>{graph.stages.find((row) => row.service_id === stageEdge.source_id)?.name ?? stageEdge.source_id}</strong></li>;
       return <li key={itemKey(ref)}><SourceItems doc={doc} refs={[ref]} /></li>;
     })}</ul>
     <p className="helper-text">These are supplied requirements. Viewing an earlier action does not confirm its completion.</p>
@@ -87,6 +89,7 @@ export function ActionSection({ doc, page, index, disabled, observeToken, onVisi
   const group = graph.branch_groups.find((row) => row.group_id === page.branch_group_id);
   const primaryItems = page.items.filter((item) => item.kind === "content");
   const otherItems = page.items.filter((item) => item.kind !== "content");
+  const preparedExplanation = preparedText(doc, "action_explanation", "action", page.action_id);
   return <article ref={ref} id={actionDomId(page.action_id)} tabIndex={-1} className="action-section" aria-label={"Procedure action " + (index + 1)}>
     <div className="action-heading"><span className="action-number">{String(index + 1).padStart(2, "0")}</span>
       <div><span className="eyebrow">{stage?.name ?? page.service_id}</span><h3>{actionTitle(doc, page.action_id)}</h3>
@@ -95,10 +98,24 @@ export function ActionSection({ doc, page, index, disabled, observeToken, onVisi
     {page.condition_ids.length > 0 && <div className="action-conditions"><strong>Applies under these supplied conditions</strong>
       {page.condition_ids.map((id) => <p key={id}>{graph.conditions.find((row) => row.condition_id === id)?.text ?? id}</p>)}</div>}
     <PrerequisiteCues doc={doc} refs={page.prerequisite_cues} />
-    <SourceItems doc={doc} refs={primaryItems} annotationActionId={page.action_id} />
+    {preparedExplanation && <aside className="prepared-step-explanation" aria-label="Step explanation"><p>{preparedExplanation}</p></aside>}
+    <SourceItems doc={doc} refs={primaryItems} annotationActionId={page.action_id} suppressAnnotations={!!preparedExplanation} />
     <ActionFacts doc={doc} page={page} />
     {otherItems.length > 0 && <div className="action-source-records"><SourceItems doc={doc} refs={otherItems} /></div>}
   </article>;
+}
+export function PreviousStepSummary({ spec, navigation, currentActionId }: {
+  spec: Spec; navigation: Navigation | null; currentActionId: string | null;
+}) {
+  const previous = previousViewedAction(spec, navigation, currentActionId);
+  if (!previous) return null;
+  const summary = preparedText(spec, "action_summary", "action", previous);
+  return <aside className="guided-previous-summary" aria-label="Previous viewed step">
+    <p className="eyebrow">From your previous step</p>
+    <h4>{actionTitle(spec, previous)}</h4>
+    {summary && <p>{summary}</p>}
+    <p className="helper-text">A reminder of information shown, not confirmation of completion.</p>
+  </aside>;
 }
 export function SelectedAids({ spec, currentActionId }: { spec: Spec; currentActionId?: string | null }) {
   return <>
