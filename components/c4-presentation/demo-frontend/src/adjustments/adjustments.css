@@ -1,0 +1,7 @@
+.adjustment-panel { border: 1px solid #cbd4c3; background: #f4f7f0; padding: 24px; border-radius: 14px; margin: 24px 0; }
+.adjustment-panel h3 { margin-top: 0; }.adjustment-panel p { line-height: 1.65; }
+.adjustment-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); gap: 18px; margin: 20px 0; }
+.adjustment-fields label { display: flex; flex-direction: column; gap: 9px; font-weight: 600; }
+.adjustment-fields select { padding: 12px; border: 1px solid #aab8a4; border-radius: 7px; background: white; font: inherit; width: 100%; }
+.adjustment-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
+.adjustment-history { margin-top: 22px; }.adjustment-history summary { cursor: pointer; font-weight: 600; }.adjustment-history li { margin: 12px 0; }.adjustment-history code { overflow-wrap: anywhere; }

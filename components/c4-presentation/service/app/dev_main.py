@@ -84,6 +84,9 @@ from app.models.corrections import (
 from app.api.demo_profiles import register_demo_profile_routes
 from app.api.guidance import register_guidance_routes
 from app.api.pipeline_trace import register_pipeline_trace_routes
+from app.api.adjustments import register_adjustment_routes
+from app.core.adjustment_store import AdjustmentStore
+from app.core.adjustments import require_original_feedback, require_original_display
 from app.core.guidance_access import (
     episode_is_active,
     require_active_episode,
@@ -183,6 +186,7 @@ class DevRuntime:
         generation_enabled=True,
         prepared_wording_directory=None,
         wording_views_directory=None,
+        adjustment_database_path=None,
     ):
         self.lock = RLock()
         self.allow_legacy_adaptive_sessions = allow_legacy_adaptive_sessions
@@ -202,6 +206,7 @@ class DevRuntime:
         )
         self.provider = provider
         self.wording_views = WordingViews(prepared_wording_directory, wording_views_directory)
+        self.adjustments = AdjustmentStore(adjustment_database_path or (str(database_path) + ".views.sqlite3" if database_path else None))
         self.procedures = {}
 
         for graph in graphs:
@@ -253,6 +258,7 @@ class DevRuntime:
                     self._store_revision = revision
             except Exception:
                 self.store.close()
+                self.adjustments.close()
                 raise
 
     def export_state(self) -> RuntimeState:
@@ -433,6 +439,7 @@ class DevRuntime:
                     raise
 
     def close(self):
+        self.adjustments.close()
         if self.store is not None:
             self.store.close()
 
@@ -473,6 +480,7 @@ class DevRuntime:
 
     def accept_feedback(self, session_id, exposure_id, request):
         spec = self.presentation(session_id, exposure_id)
+        require_original_feedback(self, spec)
         if (
             request.presentation_id != spec.presentation_id
             or request.configuration_id != spec.configuration.configuration_id
@@ -521,6 +529,7 @@ def create_app(
     reviewed_content_only: bool = False,
     prepared_wording_directory: str | Path | None = None,
     wording_views_directory: str | Path | None = None,
+    adjustment_database_path: str | Path | None = None,
 ) -> FastAPI:
     """Create the independent C4 research application.
 
@@ -583,6 +592,7 @@ def create_app(
                 generation_enabled=generation_enabled,
                 prepared_wording_directory=prepared_wording_directory,
                 wording_views_directory=wording_views_directory,
+                adjustment_database_path=adjustment_database_path,
             )
             application.state.runtime = active_runtime
             yield
@@ -882,6 +892,7 @@ def create_app(
                 for event in runtime().contexts.event_history(session_id)
             )
             if not already_acknowledged:
+                require_original_display(runtime(), spec)
                 selected = runtime().policy.get_offer(exposure_id)
                 require_active_episode(
                     runtime(),
@@ -983,6 +994,7 @@ def create_app(
                 for event in current.contexts.event_history(session_id)
             )
             if not existing_event:
+                require_original_display(current, spec)
                 selected = current.policy.get_offer(exposure_id)
                 require_active_episode(
                     current,
@@ -1123,6 +1135,7 @@ def create_app(
 
     register_guidance_routes(application, runtime, create_presentation)
     register_pipeline_trace_routes(application, runtime)
+    register_adjustment_routes(application, runtime)
     return application
 
 
@@ -1158,6 +1171,9 @@ def _application_from_environment():
     wording_views_directory = os.getenv("C4_WORDING_VIEWS_DIR") or (
         Path(__file__).resolve().parents[1] / ".local" / "wording-views" / mode
     )
+    adjustment_database_path = os.getenv("C4_ADJUSTMENT_DB") or (
+        Path(__file__).resolve().parents[1] / ".local" / f"c4-{mode}-views.sqlite3"
+    )
 
     if backend == "postgresql":
         dsn = os.getenv("C4_DATABASE_URL")
@@ -1173,6 +1189,7 @@ def _application_from_environment():
             reviewed_content_only=review_mode == "true",
             prepared_wording_directory=prepared_wording_directory,
             wording_views_directory=wording_views_directory,
+            adjustment_database_path=adjustment_database_path,
         )
 
     default_path = (
@@ -1190,6 +1207,7 @@ def _application_from_environment():
         reviewed_content_only=review_mode == "true",
         prepared_wording_directory=prepared_wording_directory,
         wording_views_directory=wording_views_directory,
+        adjustment_database_path=adjustment_database_path,
     )
 
 

@@ -1,4 +1,5 @@
 import type { Configuration, GuidanceStatus, Spec } from "../guidance/types";
+import type { AdjustmentState } from "../adjustments/api";
 
 export type RawRecord = Record<string, unknown>;
 export interface TraceEntry {
@@ -20,6 +21,7 @@ export interface TraceCandidate {
     sampling_std: number; sampled_score: number | null } | null;
 }
 export interface PipelineTrace {
+  adjustments?: AdjustmentState | null;
   schema_version: "c4-pipeline-trace-1.0"; scope: "saved_adaptive_presentation";
   records: { presentation: Spec; policy_offer: { decision: RawRecord; offer: RawRecord };
     wording: RawRecord | null; wording_artifact: RawRecord | null; wording_style: "plain" | "extra_plain" | "concise" | null;

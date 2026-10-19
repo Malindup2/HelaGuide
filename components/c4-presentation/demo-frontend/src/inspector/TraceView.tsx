@@ -127,6 +127,7 @@ export function TraceView({ trace: t }: { trace: PipelineTrace }) {
       <Json title="Saved presentation specification and explanation" value={spec} />
     </Panel>
     <Panel id="trace-display" title="7. Display and navigation records">
+      {t.adjustments && <><h3>Manual view lineage</h3><p>{t.adjustments.ledger.views.length} view changes · {t.adjustments.ledger.displays.length} manual display events · {t.adjustments.ledger.ratings.length} separate view ratings. These do not alter the recorded policy selection or its reward.</p><Json title="Manual views, Undo targets, display records and separate ratings" value={t.adjustments} /></>}
       <Facts items={[["Display status", human(t.display.status)], ["Recorded current action", t.display.current_action_id], ["Displayed action IDs", t.display.displayed_action_ids.join(", ") || "None acknowledged"], ["Navigation events", t.display.navigation_event_count]]} />
       <p>A client acknowledgment records display, not reading, comprehension, eligibility or completion. Inspecting this page does not acknowledge any action.</p>
       <Json title="Original acknowledgment and navigation events" value={{ acknowledgment: t.records.acknowledgment, navigation: t.records.navigation_events }} />

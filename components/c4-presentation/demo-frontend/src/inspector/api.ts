@@ -1,5 +1,6 @@
 import { C4Api, ContractError } from "../api/client";
 import { parseSpec, parseStatus } from "../guidance/contracts";
+import { parseAdjustment } from "../adjustments/api";
 import type { Configuration } from "../guidance/types";
 import type { PipelineTrace, TraceIndex } from "./types";
 
@@ -104,6 +105,7 @@ export function parseTrace(value: unknown, sid: string, eid: string): PipelineTr
   check(parseStatus(value.current.guidance).session_id === sid, "current session");
   check(Array.isArray(value.evidence_boundaries) && value.evidence_boundaries.length > 0 && value.evidence_boundaries.every(x => object(x) &&
     ["recorded", "derived", "unavailable"].includes(String(x.kind)) && [x.section, x.location, x.explanation].every(v => typeof v === "string")), "evidence boundaries");
+  if ("adjustments" in value && value.adjustments !== null) parseAdjustment(value.adjustments, spec);
   return value as unknown as PipelineTrace;
 }
 
