@@ -20,6 +20,11 @@ from threading import RLock
 from pydantic import ValidationError
 
 from app.core.llm_provider import ExplanationProvider, ProviderFailure
+from app.core.explanation_store import (
+    ArtifactStoreError,
+    ExplanationArtifactStore,
+    StoredExplanation,
+)
 from app.core.scaffolds import (
     filter_scaffolds,
     graph_fingerprint,
@@ -483,8 +488,53 @@ def _artifact_digest(artifact: CachedExplanation) -> str:
     return _digest(artifact.model_dump(mode="json", exclude={"review"}))
 
 
+def artifact_request_key(payload, fingerprint, provider_identity):
+    return _digest(
+        {
+            "graph_fingerprint": fingerprint,
+            "payload": payload,
+            "provider": provider_identity.model_dump(mode="json"),
+            "prompt_version": PROMPT_VERSION,
+            "generation_prompt": GENERATION_PROMPT,
+            "assessment_prompt": ASSESSMENT_PROMPT,
+            "draft_schema": ExplanationDraft.model_json_schema(),
+            "assessment_schema": ExplanationAssessment.model_json_schema(),
+            "validation_version": VALIDATION_VERSION,
+        }
+    )
+
+
+def validate_stored_artifact(stored: StoredExplanation) -> None:
+    """Revalidate a local review package, including the exact source packet.
+
+    Actual requests additionally compare it to their freshly prepared packet.
+    This does not authenticate the source or prove semantic correctness.
+    """
+    artifact = stored.artifact
+    payload = stored.source_packet
+    if (
+        artifact.prompt_version != PROMPT_VERSION
+        or artifact.validation_version != VALIDATION_VERSION
+        or artifact.request_key != artifact_request_key(
+            payload, artifact.graph_fingerprint, artifact.provider
+        )
+    ):
+        raise OutputRejected("stored_artifact_version_or_packet_mismatch")
+    try:
+        validate_draft(payload, artifact.draft)
+        validate_assessment(payload, artifact.assessment)
+    except (KeyError, TypeError, AttributeError):
+        raise OutputRejected("stored_source_packet_invalid") from None
+    if artifact.review is not None:
+        if (
+            not artifact.review.reviewer_reference.strip()
+            or artifact.review.artifact_digest != _artifact_digest(artifact)
+        ):
+            raise OutputRejected("review_digest_mismatch")
+
+
 class ExplanationService:
-    """Bounded in-memory cache with optional manual JSON export/import.
+    """Bounded memory cache and optional durable local review packages.
 
     Use one service instance per backend process. The lock also prevents
     duplicate concurrent calls for the same request in this prototype.
@@ -497,10 +547,16 @@ class ExplanationService:
         provider: ExplanationProvider,
         *,
         cache_capacity: int = 128,
+        artifact_store: ExplanationArtifactStore | None = None,
+        reviewed_only: bool = False,
+        generation_enabled: bool = True,
     ):
         if type(cache_capacity) is not int or cache_capacity < 1:
             raise ValueError("cache_capacity must be a positive integer")
         self.provider = provider
+        self.artifact_store = artifact_store
+        self.reviewed_only = reviewed_only
+        self.generation_enabled = generation_enabled
         self._capacity = cache_capacity
         self._cache: OrderedDict[str, CachedExplanation] = OrderedDict()
         self._lock = RLock()
@@ -541,7 +597,13 @@ class ExplanationService:
             raise ValueError("reviewer_reference must not be blank")
 
         with self._lock:
-            artifact = self._cache[request_key]
+            stored = (
+                self.artifact_store.read(request_key)
+                if self.artifact_store is not None else None
+            )
+            if stored is not None:
+                validate_stored_artifact(stored)
+            artifact = stored.artifact if stored is not None else self._cache[request_key]
             reviewed = artifact.model_copy(
                 update={
                     "review": HumanReview(
@@ -551,23 +613,13 @@ class ExplanationService:
                     )
                 }
             )
+            if stored is not None:
+                self.artifact_store.write(stored.model_copy(update={"artifact": reviewed}))
             self._remember(reviewed)
             return reviewed
 
     def _key(self, payload, fingerprint):
-        return _digest(
-            {
-                "graph_fingerprint": fingerprint,
-                "payload": payload,
-                "provider": self.provider.identity.model_dump(mode="json"),
-                "prompt_version": PROMPT_VERSION,
-                "generation_prompt": GENERATION_PROMPT,
-                "assessment_prompt": ASSESSMENT_PROMPT,
-                "draft_schema": ExplanationDraft.model_json_schema(),
-                "assessment_schema": ExplanationAssessment.model_json_schema(),
-                "validation_version": VALIDATION_VERSION,
-            }
-        )
+        return artifact_request_key(payload, fingerprint, self.provider.identity)
 
     def _check_artifact(self, artifact, payload, fingerprint, key):
         if (
@@ -630,7 +682,23 @@ class ExplanationService:
             diagnostics = []
 
             try:
+                if self.artifact_store is not None:
+                    stored = self.artifact_store.read(key)
+                    if stored is not None:
+                        validate_stored_artifact(stored)
+                        if _canonical(stored.source_packet) != _canonical(payload):
+                            raise OutputRejected("stored_source_packet_mismatch")
+                        artifact = stored.artifact
+                        cache_hit = True
+                    else:
+                        # Disk is authoritative; removed approval is not retained in RAM.
+                        artifact = None
+                        cache_hit = False
+                if artifact is not None and self.reviewed_only and artifact.review is None:
+                    raise OutputRejected("human_review_required")
                 if artifact is None:
+                    if not self.generation_enabled:
+                        raise ProviderFailure("provider_disabled")
                     units = payload["units"]
                     if not units or len(units) > MAX_UNITS:
                         raise OutputRejected("unsupported_request_size")
@@ -685,11 +753,17 @@ class ExplanationService:
                         generation_call=generation.call,
                         assessment_call=assessment_reply.call,
                     )
+                    if self.artifact_store is not None:
+                        self.artifact_store.write(StoredExplanation(
+                            source_packet=payload, artifact=artifact,
+                        ))
+                    if self.reviewed_only:
+                        raise OutputRejected("human_review_required")
 
                 self._check_artifact(artifact, payload, fingerprint, key)
                 self._remember(artifact)
 
-            except (ProviderFailure, OutputRejected) as exc:
+            except (ProviderFailure, OutputRejected, ArtifactStoreError) as exc:
                 code = exc.code if isinstance(exc, ProviderFailure) else str(exc)
                 diagnostics.append(code)
                 self._cache.pop(key, None)
