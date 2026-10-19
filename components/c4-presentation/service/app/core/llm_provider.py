@@ -1,6 +1,7 @@
 """Official OpenAI SDK adapter for structured explanation generation."""
 
 import math
+import logging
 import os
 from importlib.metadata import version
 from typing import Protocol
@@ -18,6 +19,33 @@ from app.models.explanations import (
 
 
 DEFAULT_MODEL = "gpt-5.4-mini-2026-03-17"
+log = logging.getLogger("helaguide.c4.llm")
+
+
+def provider_error_code(exc: OpenAIError) -> str:
+    """Classify structured errors without exposing messages, bodies or keys."""
+    body = getattr(exc, "body", None)
+    body = body if isinstance(body, dict) else {}
+    nested = body.get("error")
+    details = nested if isinstance(nested, dict) else body
+    markers = (
+        getattr(exc, "code", None), getattr(exc, "type", None),
+        details.get("code"), details.get("type"),
+    )
+    if any(marker in (
+        "insufficient_quota", "credit_balance_exhausted", "billing_not_active",
+        "billing_hard_limit_reached", "organization_usage_limit_reached",
+        "project_usage_limit_reached", "organization_spend_limit_exceeded",
+        "project_spend_limit_exceeded",
+    ) for marker in markers):
+        return "provider_quota_or_billing_limit"
+    if any(marker == "invalid_api_key" for marker in markers):
+        return "provider_invalid_api_key"
+    if any(marker == "model_not_found" for marker in markers):
+        return "provider_model_unavailable_or_inaccessible"
+    if any(marker in ("rate_limit_exceeded", "rate_limit_error", "slow_down") for marker in markers):
+        return "provider_rate_limit"
+    return type(exc).__name__
 
 
 class ProviderFailure(RuntimeError):
@@ -80,7 +108,7 @@ class OpenAIExplanationProvider:
         return self._identity
 
     @classmethod
-    def from_environment(cls):
+    def from_environment(cls, *, allow_live: bool = True):
         env_path = Path(__file__).resolve().parents[2] / ".env"
         load_dotenv(dotenv_path=env_path, override=False)
 
@@ -90,7 +118,7 @@ class OpenAIExplanationProvider:
 
         return cls(
             model=os.getenv("C4_LLM_MODEL", DEFAULT_MODEL),
-            enabled=enabled_text == "true",
+            enabled=allow_live and enabled_text == "true",
         )
 
     def _get_client(self):
@@ -129,8 +157,10 @@ class OpenAIExplanationProvider:
                 store=False,
             )
         except OpenAIError as exc:
-            # Class names are safe diagnostics. Do not expose exception bodies.
-            raise ProviderFailure(type(exc).__name__) from None
+            code = provider_error_code(exc)
+            # Deliberately never log str(exc), request headers or error bodies.
+            log.warning("C4 LLM request failed: %s", code)
+            raise ProviderFailure(code) from None
         except (ValidationError, ValueError):
             raise ProviderFailure("provider_schema_failure") from None
 

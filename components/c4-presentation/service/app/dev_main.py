@@ -32,6 +32,7 @@ from app.models.policy import PolicyConfig, SupportFitFeedback
 from app.models.runtime_state import AcceptedFeedback, RuntimeState
 
 from app.core.explanations import ExplanationService
+from app.core.explanation_store import ExplanationArtifactStore
 from app.core.llm_provider import OpenAIExplanationProvider
 from app.core.policy import NoFeasibleConfigurationError, SharedLinTSPolicy
 from app.core.presentation import (
@@ -173,6 +174,9 @@ class DevRuntime:
         policy_config=None,
         postgres_dsn=None,
         allow_legacy_adaptive_sessions=True,
+        content_directory=None,
+        reviewed_content_only=False,
+        generation_enabled=True,
     ):
         self.lock = RLock()
         self.allow_legacy_adaptive_sessions = allow_legacy_adaptive_sessions
@@ -181,7 +185,15 @@ class DevRuntime:
         self.policy = SharedLinTSPolicy(
             self.contexts, config=self.policy_config
         )
-        self.explanations = ExplanationService(provider)
+        self.explanations = ExplanationService(
+            provider,
+            artifact_store=(
+                ExplanationArtifactStore(content_directory)
+                if content_directory is not None else None
+            ),
+            reviewed_only=reviewed_content_only,
+            generation_enabled=generation_enabled,
+        )
         self.provider = provider
         self.procedures = {}
 
@@ -497,6 +509,8 @@ def create_app(
     policy_config: PolicyConfig | None = None,
     postgres_dsn: str | None = None,
     allow_legacy_adaptive_sessions: bool = True,
+    content_directory: str | Path | None = None,
+    reviewed_content_only: bool = False,
 ) -> FastAPI:
     """Create the independent C4 research application.
 
@@ -517,16 +531,19 @@ def create_app(
     async def lifespan(application):
         active_provider = provider
         owns_provider = active_provider is None
+        generation_enabled = True
 
         if active_provider is None:
             enabled = os.getenv("C4_DEV_LLM_ENABLED", "false").lower()
             if enabled not in {"true", "false"}:
                 raise ValueError("C4_DEV_LLM_ENABLED must be true or false")
 
-            active_provider = (
-                OpenAIExplanationProvider.from_environment()
-                if enabled == "true"
-                else OpenAIExplanationProvider(enabled=False)
+            active_provider = OpenAIExplanationProvider.from_environment(
+                allow_live=enabled == "true"
+            )
+            generation_enabled = (
+                enabled == "true"
+                and os.getenv("C4_LLM_ENABLED", "true").lower() == "true"
             )
 
         active_runtime = None
@@ -551,6 +568,9 @@ def create_app(
                 policy_config=policy_config,
                 postgres_dsn=postgres_dsn,
                 allow_legacy_adaptive_sessions=allow_legacy_adaptive_sessions,
+                content_directory=content_directory,
+                reviewed_content_only=reviewed_content_only,
+                generation_enabled=generation_enabled,
             )
             application.state.runtime = active_runtime
             yield
@@ -613,6 +633,11 @@ def create_app(
             "status": "ok",
             "storage": runtime().storage_backend,
             "exposure_requires_acknowledgment": True,
+            "content": {
+                "persistent_artifacts": runtime().explanations.artifact_store is not None,
+                "reviewed_only": runtime().explanations.reviewed_only,
+                "generation_enabled": runtime().explanations.generation_enabled,
+            },
         }
 
     @application.get("/dev/v1/procedures")
@@ -1075,6 +1100,17 @@ def create_app(
 
 
 def _application_from_environment():
+    # Load C4's local file before evaluating either the live gate or storage.
+    # Existing shell variables take precedence. Never load the team's root .env.
+    from dotenv import load_dotenv
+
+    load_dotenv(Path(__file__).resolve().parents[1] / ".env", override=False)
+    review_mode = os.getenv("C4_REVIEWED_CONTENT_ONLY", "true").lower()
+    if review_mode not in {"true", "false"}:
+        raise ValueError("C4_REVIEWED_CONTENT_ONLY must be true or false")
+    content_directory = os.getenv("C4_CONTENT_DIR") or (
+        Path(__file__).resolve().parents[1] / ".local" / "wording-artifacts"
+    )
     mode = os.getenv("C4_FEEDBACK_MODE", "simulation").lower()
     if mode not in {"simulation", "participant"}:
         raise ValueError("C4_FEEDBACK_MODE must be simulation or participant")
@@ -1095,6 +1131,8 @@ def _application_from_environment():
             postgres_dsn=dsn,
             policy_config=config,
             allow_legacy_adaptive_sessions=False,
+            content_directory=content_directory,
+            reviewed_content_only=review_mode == "true",
         )
 
     default_path = (
@@ -1108,6 +1146,8 @@ def _application_from_environment():
         database_path=database_path,
         policy_config=config,
         allow_legacy_adaptive_sessions=False,
+        content_directory=content_directory,
+        reviewed_content_only=review_mode == "true",
     )
 
 
