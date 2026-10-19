@@ -75,6 +75,7 @@ The real HTTP service: `$env:STUB_MODE="false" ; uvicorn app.main:app --reload -
 | `translate_cache` | Refreshes the translation cache with Gemini. Resumable and paced under the free-tier limit (`--overwrite`, `--limit N`, `--pause S`, `--dry-run`, `--compare`) |
 | `tune_grounding` | Finds grounding thresholds for your model from the labelled messages |
 | `show` | Read-only view of what C3 stores right now: table sizes, every fact whose confidence moved, and one fact in detail (`--fact`). Use `reset` then `show` for BEFORE, `demo` then `show` for AFTER |
+| `report` | Turns the demo into **one HTML page** for the panel: a heading and explanation per part, real tables, colour-coded confidence, the audit trail and the chart. Runs the demo, or converts a saved `demo_output.txt` (`--from-file`). Output: `research/experiments/out/pp1_demo_report.html` |
 | `export_ddl` | Prints the PostgreSQL table definitions (for `infra/postgres` at integration) |
 
 ## Layout
