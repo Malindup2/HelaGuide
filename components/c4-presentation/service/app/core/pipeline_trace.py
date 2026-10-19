@@ -1,6 +1,7 @@
 """Project stored records without evaluating feasibility, selecting, generating or writing."""
 
 from app.core.guidance_access import episode_is_active, guidance_status
+from app.core.adjustments import state as adjustment_state
 from app.core.policy import CONTEXT_NAMES, FEATURE_NAMES_SHARED, encode_context
 from app.core.prior import prior_digest
 from app.core.scaffolds import graph_fingerprint
@@ -19,6 +20,8 @@ def boundary(section, kind, location, explanation):
 
 
 BOUNDARIES = (
+    boundary("manual_views", "recorded", "adjustments.ledger",
+             "Explicit user-controlled view lineage, display acknowledgments and separate manual ratings; these do not rewrite the original policy decision or train its selected features."),
     boundary("input", "recorded", "records.presentation.explanation.source.graph",
              "Saved canonical graph, supplied provenance and evidence. Source dates are not validation timestamps."),
     boundary("input", "unavailable", "input.raw_plan_payload",
@@ -157,6 +160,7 @@ def build_pipeline_trace(runtime, session_id, exposure_id):
             stale_for_display=(session.settings != offer.context_snapshot.settings or not episode_is_active(
                 runtime, offer, allow_legacy=runtime.allow_legacy_adaptive_sessions))),
         evidence_boundaries=BOUNDARIES,
+        adjustments=adjustment_state(runtime, spec),
     )
 
 
