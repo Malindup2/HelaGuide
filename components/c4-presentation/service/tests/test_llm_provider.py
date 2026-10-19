@@ -3,12 +3,42 @@
 from types import SimpleNamespace
 
 import pytest
+import httpx
+from openai import RateLimitError
 
 from app.core.llm_provider import (
     OpenAIExplanationProvider,
     ProviderFailure,
 )
 from app.models.explanations import ExplanationDraft
+
+
+@pytest.mark.parametrize("details, expected", [
+    ({"code": "insufficient_quota"}, "provider_quota_or_billing_limit"),
+    ({"code": "credit_balance_exhausted", "type": "insufficient_quota"}, "provider_quota_or_billing_limit"),
+    ({"code": "project_spend_limit_exceeded"}, "provider_quota_or_billing_limit"),
+    ({"code": "rate_limit_exceeded"}, "provider_rate_limit"),
+    ({"type": "rate_limit_error", "code": "slow_down"}, "provider_rate_limit"),
+    ({"code": "invalid_api_key"}, "provider_invalid_api_key"),
+    ({"code": "model_not_found"}, "provider_model_unavailable_or_inaccessible"),
+    ({"code": "unrecognized_value"}, "RateLimitError"),
+])
+def test_structured_provider_failures_are_safe_and_distinguishable(details, expected, caplog):
+    secret = "credential-must-not-appear"
+    response = httpx.Response(429, request=httpx.Request("POST", "https://example.invalid"))
+    error = RateLimitError(secret, response=response, body={"error": {
+        **details, "message": secret,
+    }})
+    class FailingResponses:
+        def parse(self, **kwargs):
+            raise error
+    provider = OpenAIExplanationProvider(client=SimpleNamespace(responses=FailingResponses()))
+    with pytest.raises(ProviderFailure) as caught:
+        provider.complete(instructions="test", payload="{}", response_model=ExplanationDraft)
+    assert caught.value.code == expected
+    assert expected in caplog.text
+    assert secret not in caplog.text
+    assert secret not in str(caught.value)
 
 
 class FakeResponses:
