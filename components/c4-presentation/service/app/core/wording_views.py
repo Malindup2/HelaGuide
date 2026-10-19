@@ -113,6 +113,11 @@ class WordingViews:
             raise StateStoreError("saved reviewed wording differs from its artifact")
 
     def read(self, spec):
+        view = self.read_view(spec)
+        return None if view is None else view.wording
+
+    def read_view(self, spec):
+        """Read validated historical provenance without consulting today's registry."""
         key = self.key(spec)
         try:
             if self.files is None:
@@ -125,6 +130,6 @@ class WordingViews:
             if stored.checksum != _digest(stored.view.model_dump(mode="json")):
                 raise StateStoreError("presentation wording checksum mismatch")
             self._validate(spec, stored.view)
-            return stored.view.wording
+            return stored.view
         except (ArtifactStoreError, OutputRejected):
             raise StateStoreError("cannot restore valid presentation wording") from None
