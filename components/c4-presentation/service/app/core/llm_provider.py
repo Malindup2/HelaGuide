@@ -80,7 +80,7 @@ class OpenAIExplanationProvider:
         return self._identity
 
     @classmethod
-    def from_environment(cls):
+    def from_environment(cls, *, allow_live: bool = True):
         env_path = Path(__file__).resolve().parents[2] / ".env"
         load_dotenv(dotenv_path=env_path, override=False)
 
@@ -90,7 +90,7 @@ class OpenAIExplanationProvider:
 
         return cls(
             model=os.getenv("C4_LLM_MODEL", DEFAULT_MODEL),
-            enabled=enabled_text == "true",
+            enabled=allow_live and enabled_text == "true",
         )
 
     def _get_client(self):
