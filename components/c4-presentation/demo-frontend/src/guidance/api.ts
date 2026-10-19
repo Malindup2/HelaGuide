@@ -1,6 +1,6 @@
 import { api, ContractError } from "../api/client";
 import type { C4Api } from "../api/client";
-import { assertGuidanceScope, parseGuidance, parseNavigation, parseSpec, parseStatus } from "./contracts";
+import { assertGuidanceScope, attachWording, parseGuidance, parseNavigation, parseSpec, parseStatus } from "./contracts";
 import type { AckRequest, DisplayRequest, GuidanceRequest, Spec } from "./types";
 
 export class GuidanceApi {
@@ -24,7 +24,7 @@ export class GuidanceApi {
     if (!response || typeof response !== "object" || !("spec" in response) || !("stale_for_display" in response)) {
       throw new ContractError("Missing saved presentation.");
     }
-    const spec = parseSpec(response.spec);
+    const spec = attachWording(parseSpec(response.spec), "wording" in response ? response.wording : undefined);
     if (spec.session_id !== id || spec.exposure_id !== exposureId || spec.graph_fingerprint !== procedureId ||
         typeof response.stale_for_display !== "boolean") throw new ContractError("Saved presentation attribution differs.");
     return { spec, stale_for_display: response.stale_for_display };

@@ -1,5 +1,5 @@
 import { ContractError } from "../api/client";
-import type { Document, Guidance, GuidanceStatus, Navigation, Spec } from "./types";
+import type { Document, Guidance, GuidanceStatus, Navigation, Spec, PreparedWording } from "./types";
 import { documentOf, itemKey } from "./types";
 import { validateSelectedDiagram } from "./scaffoldModel";
 
@@ -19,6 +19,48 @@ function items(value: unknown) {
   value.forEach((item) => { object(item); text(item.kind); text(item.identifier); });
 }
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
+
+export function attachWording<T extends Document>(doc: T, value: unknown): T {
+  if (value === undefined || value === null) return { ...doc, prepared_wording: null };
+  object(value);
+  check(value.graph_fingerprint === doc.graph_fingerprint, "wording graph attribution differs");
+  text(value.request_key); check(/^[a-f0-9]{64}$/.test(value.request_key), "invalid wording key");
+  check(value.artifact_digest === null || (typeof value.artifact_digest === "string" && /^[a-f0-9]{64}$/.test(value.artifact_digest)), "invalid wording artifact digest");
+  strings(value.diagnostics); array(value.items);
+  const graph = doc.explanation.source.graph;
+  const known = new Set(doc.cards.map((card) => JSON.stringify([card.source.kind, card.source.identifier])));
+  for (const action of graph.actions) known.add(JSON.stringify(["action", action.action_id]));
+  for (const stage of graph.stages) known.add(JSON.stringify(["stage", stage.service_id]));
+  for (const group of graph.branch_groups) for (const option of group.options) known.add(JSON.stringify(["branch_option", option.option_id]));
+  const ids: string[] = []; const origins = new Set<string>();
+  const limits: Record<string, number> = { action_heading: 120, action_explanation: 1800, action_summary: 400, diagram_label: 100, prerequisite_explanation: 800 };
+  for (const item of value.items) {
+    object(item); text(item.slot_id); text(item.text); array(item.source_references);
+    const match = /^(action_heading|action_explanation|action_summary|diagram_label|prerequisite_explanation)\/([^/]+)\/(.+)$/.exec(item.slot_id);
+    check(match, "unknown wording slot");
+    const [, kind, subjectKind, id] = match;
+    check(kind === "diagram_label" ? ["action", "stage", "branch_group", "branch_option", "parallel_group"].includes(subjectKind) :
+      kind === "prerequisite_explanation" ? ["action_prerequisite", "stage_dependency"].includes(subjectKind) : subjectKind === "action", "wording slot subject differs");
+    check(known.has(JSON.stringify([subjectKind, id])), "unknown wording subject");
+    const references: string[] = [];
+    for (const reference of item.source_references) {
+      object(reference); text(reference.kind); text(reference.reference_id);
+      const key = JSON.stringify([reference.kind, reference.reference_id]);
+      check(known.has(key), "unknown wording source reference"); references.push(key);
+    }
+    unique(references, "wording reference");
+    check(references.includes(JSON.stringify([subjectKind, id])), "wording subject source missing");
+    check(["human_prepared", "provider_generated", "source_fallback"].includes(String(item.origin)), "unknown wording origin");
+    if (item.origin !== "source_fallback") {
+      check(value.artifact_digest !== null && item.text.trim().length > 0 && item.text.length <= limits[kind], "unreviewed or oversized wording");
+      check(!/https?:\/\/|www\.|javascript:|```|<[^>]+>|\[[^\]]+\]\(/i.test(item.text), "unsafe wording format");
+      origins.add(String(item.origin));
+    }
+    ids.push(item.slot_id);
+  }
+  unique(ids, "wording slot"); check(origins.size <= 1, "mixed wording provenance");
+  return { ...doc, prepared_wording: value as unknown as PreparedWording };
+}
 
 export function parseStatus(value: unknown): GuidanceStatus {
   object(value); text(value.session_id); integer(value.session_revision);
@@ -171,7 +213,9 @@ export function parseGuidance(value: unknown): Guidance {
     const doc = standard as unknown as Document;
     check(!doc.cards.some((card) => card.collapsed) && doc.pages.every((page) => !page.prerequisite_cues.length), "standard guidance has adaptive scaffolds");
   }
-  return value as unknown as Guidance;
+  const result = value as unknown as Guidance;
+  return result.mode === "adaptive" ? { ...result, spec: attachWording(result.spec, value.wording) } :
+    { ...result, guidance: attachWording(result.guidance, value.wording) };
 }
 
 export function parseNavigation(value: unknown, spec: Spec): Navigation {

@@ -38,10 +38,18 @@ export interface Explanation {
     citations: { evidence_id: string; quote: string }[];
   }[];
 }
+export interface PreparedWording {
+  request_key: string; graph_fingerprint: string; artifact_digest: string | null;
+  diagnostics: string[];
+  items: { slot_id: string; text: string; source_references: { kind: string; reference_id: string }[];
+    origin: "human_prepared" | "provider_generated" | "source_fallback" }[];
+}
 export interface Document {
   graph_fingerprint: string; cards: Card[]; global_items: Item[]; pages: Page[];
   explanation: Explanation; visibility: { visible: Item[]; collapsed: Item[] };
   navigation_semantics: "browsing_order_not_completion_or_eligibility";
+  /** Client-side attachment from the response envelope; not a new policy spec. */
+  prepared_wording?: PreparedWording | null;
 }
 export interface Configuration {
   presentation_mode: PresentationMode; progressive_disclosure: boolean;
