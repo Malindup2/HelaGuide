@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { API_BASE, api } from "../api/client";
 import type { ActiveIdentity, GuestSession, ProcedureSummary } from "../api/types";
 import FeedbackPanel from "../feedback/FeedbackPanel";
@@ -9,6 +9,12 @@ import { ActionSection, PreviousStepSummary, SelectedAids, SourceItems, SourceRe
 import { actionDomId, actionTitle } from "./scaffoldModel";
 import { actionLabel, documentOf } from "./types";
 import type { Standard } from "./types";
+import type { Navigation } from "./types";
+import { AdjustmentFlow, emptyFlow } from "../adjustments/flow";
+import { AdjustmentControls, ManualViewFeedback } from "../adjustments/AdjustmentControls";
+
+const noSubscription = () => () => {};
+const emptySnapshot = () => emptyFlow;
 
 function scrollToAction(id: string) {
   const action = document.getElementById(actionDomId(id));
@@ -29,43 +35,56 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
   const [feedbackLocked, setFeedbackLocked] = useState(false);
   const restoredScroll = useRef<string | null>(null);
   const enabled = active.kind === "profile" && active.profile.personalization_enabled;
-  const { result, navigation } = state;
-  const doc = result ? documentOf(result) : null;
-  const spec = result?.mode === "adaptive" ? result.spec : null;
+  const { result } = state;
+  const rootSpec = result?.mode === "adaptive" ? result.spec : null;
+  const adjustments = useMemo(() => rootSpec ? new AdjustmentFlow(rootSpec, undefined, browserStorage(), API_BASE) : null, [rootSpec]);
+  const views = useSyncExternalStore(adjustments?.subscribe ?? noSubscription, adjustments?.snapshot ?? emptySnapshot);
+  useEffect(() => { if (adjustments) void adjustments.initialize(); }, [adjustments]);
+  const manual = !!views.value?.ledger.views.length;
+  const spec = manual ? views.value!.spec : rootSpec;
+  const doc = manual ? spec : result ? documentOf(result) : null;
+  const focus = manual ? views.focus : state.focus;
+  const navigation: Navigation | null = manual && spec && views.value ? {
+    schema_version: "c4-navigation-1.0", presentation_id: spec.presentation_id, exposure_id: spec.exposure_id,
+    configuration_id: spec.configuration.configuration_id, graph_fingerprint: spec.graph_fingerprint,
+    session_revision: views.value.ledger.revision, acknowledged: views.value.displayed_action_ids.length > 0,
+    current_action_id: focus, displayed_action_ids: views.value.displayed_action_ids,
+    events: views.value.ledger.displays.filter(d => d.view_id === views.value!.active_view_id).map((d, i, rows) => ({ event_id: d.event_id, action_id: d.action_id, is_revisit: rows.slice(0, i).some(previous => previous.action_id === d.action_id), sequence: i + 1 })),
+  } : state.navigation;
   const guided = spec?.configuration.presentation_mode === "GUIDED";
-  const index = doc?.pages.findIndex((page) => page.action_id === state.focus) ?? -1;
+  const index = doc?.pages.findIndex((page) => page.action_id === focus) ?? -1;
   const current = doc?.pages[index];
-  const blocked = disabled || state.loading || state.busy || state.pending !== null || feedbackLocked;
+  const blocked = disabled || state.loading || state.busy || state.pending !== null || feedbackLocked || views.loading || views.busy || views.pending !== null;
   const archived = result?.mode === "adaptive" && result.stale_for_display;
-  const browsingBlocked = blocked || archived;
+  const browsingBlocked = blocked || archived || (!!rootSpec && !views.ready);
   const disclaimerInNotices = doc ? doc.global_items.some((ref) => ref.kind === "notice" &&
     doc.cards.some((card) => card.source.kind === "notice" && card.source.identifier === ref.identifier &&
       card.lines.includes(doc.explanation.source.graph.disclaimer))) : false;
 
   useEffect(() => { void episode.initialize(); }, [episode]);
   useEffect(() => {
-    if (!state.restored || state.loading || !guided || !spec || !state.focus ||
+    if (!state.restored || state.loading || !guided || !spec || !focus ||
         restoredScroll.current === spec.exposure_id) return;
-    const id = state.focus;
+    const id = focus;
     const exposure = spec.exposure_id;
     const frame = requestAnimationFrame(() => {
       scrollToAction(id);
       restoredScroll.current = exposure;
     });
     return () => cancelAnimationFrame(frame);
-  }, [state.restored, state.loading, guided, spec, state.focus]);
+  }, [state.restored, state.loading, guided, spec, focus]);
   useEffect(() => {
-    onActivityChange(state.loading || state.busy || state.pending !== null || feedbackLocked);
+    onActivityChange(state.loading || state.busy || state.pending !== null || feedbackLocked || views.loading || views.busy || views.pending !== null);
     return () => onActivityChange(false);
-  }, [onActivityChange, state.loading, state.busy, state.pending, feedbackLocked]);
-  const onVisible = useCallback((id: string) => { void episode.visible(id); }, [episode]);
+  }, [onActivityChange, state.loading, state.busy, state.pending, feedbackLocked, views.loading, views.busy, views.pending]);
+  const onVisible = useCallback((id: string) => { if (manual) void adjustments?.visible(id); else void episode.visible(id); }, [episode, manual, adjustments]);
   const onPreferencesApplied = useCallback(async () => {
     episode.freezeForPreferences();
     const session = await api.getSession(active.session.session_id);
     onSessionUpdate(session);
   }, [episode, active.session.session_id, onSessionUpdate]);
   function move(id: string) {
-    episode.move(id);
+    if (manual) adjustments?.move(id); else episode.move(id);
     requestAnimationFrame(() => scrollToAction(id));
   }
 
@@ -92,7 +111,10 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
       <button className="text-button" disabled={state.busy} onClick={() => episode.close()}>Leave this episode without retrying</button>
       <p className="helper-text">Leaving does not undo records already accepted by the backend.</p>
     </div>}
-    {state.notice && <p className="guidance-status" role="status">{state.notice}</p>}
+    {state.notice && !manual && <p className="guidance-status" role="status">{state.notice}</p>}
+    {adjustments && rootSpec && <AdjustmentControls key={rootSpec.exposure_id + ":" + (views.value?.active_view_id ?? "original")} flow={adjustments} state={views}
+      disabled={disabled || state.loading || state.busy || state.pending !== null || feedbackLocked || !!archived}
+      focus={focus ?? state.navigation?.current_action_id ?? rootSpec.pages[0].action_id} onPreferencesApplied={onPreferencesApplied} onActivityChange={setFeedbackLocked} />}
     {doc && <div className="guidance-output">
       <div className="guidance-metadata">
         <span className="tag">{guided ? "Guided" : "Overview"}</span>
@@ -105,14 +127,15 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
       <div className="source-notices">
         <SourceItems doc={doc} refs={doc.global_items.filter((ref) => ref.kind === "notice")} />
       </div>
-      {archived && <p className="guidance-stale" role="status">This is the original acknowledged presentation retained for reference and feedback. Request fresh guidance to use current settings.</p>}
-      {spec && <SelectedAids spec={spec} currentActionId={guided ? state.focus : null} />}
+      {archived && <p className="guidance-stale" role="status">{manual ? "This manually adjusted view is retained for reference. Request fresh guidance to use current settings." : "This is the original acknowledged presentation retained for reference and feedback. Request fresh guidance to use current settings."}</p>}
+      {manual && <p className="notice">User-adjusted view · {views.value?.original_view ? "original layout restored" : "temporary settings"} · ratings saved separately from policy learning</p>}
+      {spec && <SelectedAids spec={spec} currentActionId={guided ? focus : null} />}
       {guided && spec && current ? <>
         <nav className="guided-step-list" aria-label="Browse procedure actions">
           {doc.pages.map((page, pageIndex) => <button key={page.action_id}
             disabled={browsingBlocked || !navigation?.acknowledged}
-            className={page.action_id === state.focus ? "active" : ""}
-            aria-current={page.action_id === state.focus ? "step" : undefined}
+            className={page.action_id === focus ? "active" : ""}
+            aria-current={page.action_id === focus ? "step" : undefined}
             onClick={() => move(page.action_id)}>
             <span className="guided-position">Action {pageIndex + 1}</span>
             <strong className="guided-short-label" title={actionLabel(doc, page.action_id)}>{actionTitle(doc, page.action_id)}</strong>
@@ -121,7 +144,7 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
         </nav>
         <p className="helper-text">Action {index + 1} of {doc.pages.length}. {doc.explanation.source.graph.branch_groups.length > 0 ? "Alternative actions remain available for inspection." : "Browsing does not mark completion."}</p>
         <div id={actionDomId(current.action_id) + "-visit"}>
-          <PreviousStepSummary spec={spec} navigation={navigation} currentActionId={state.focus} />
+          <PreviousStepSummary spec={spec} navigation={navigation} currentActionId={focus} />
           <ActionSection key={current.action_id} doc={doc} page={current} index={index}
             disabled={browsingBlocked} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />
         </div>
@@ -136,8 +159,8 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
         {doc.pages.map((page, pageIndex) => <ActionSection key={page.action_id} doc={doc} page={page} index={pageIndex}
           disabled={browsingBlocked || !spec} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />)}
       </div>}
-      {spec && <FeedbackPanel key={spec.exposure_id} spec={spec} navigation={navigation}
-        disabled={disabled || state.loading || state.busy || state.pending !== null}
+      {manual && adjustments ? <ManualViewFeedback flow={adjustments} state={views} disabled={blocked || !!archived} /> : spec && <FeedbackPanel key={spec.exposure_id} spec={spec} navigation={navigation}
+        disabled={disabled || state.loading || state.busy || state.pending !== null || !views.ready || views.busy || views.loading}
         onActivityChange={setFeedbackLocked} onPreferencesApplied={onPreferencesApplied} />}
       <SourceRegister doc={doc} />
       <div className="exposure-status" role="status">
@@ -153,7 +176,8 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
             <dt>Wording origins</dt><dd>{[...new Set(doc.prepared_wording.items.map((item) => item.origin))].join(", ")}</dd>
             <dt>Wording reference</dt><dd>{doc.prepared_wording.request_key}</dd></>}
           {spec && <><dt>Presentation</dt><dd>{spec.presentation_id}</dd><dt>Exposure</dt><dd>{spec.exposure_id}</dd>
-            <dt>Decision</dt><dd>{spec.decision_id}</dd><dt>Selected configuration</dt><dd>{spec.configuration.configuration_id}</dd>
+            <dt>Decision</dt><dd>{spec.decision_id}</dd><dt>{manual ? "Displayed manual configuration" : "Selected configuration"}</dt><dd>{spec.configuration.configuration_id}</dd>
+            {manual && <><dt>Manual view</dt><dd>{views.value?.active_view_id}</dd><dt>Original policy configuration</dt><dd>{rootSpec?.configuration.configuration_id}</dd></>}
             <dt>Decision context revision</dt><dd>{spec.context_revision}</dd><dt>Current navigation revision</dt><dd>{navigation?.session_revision ?? "Not yet acknowledged"}</dd></>}
         </dl>
       </details>
