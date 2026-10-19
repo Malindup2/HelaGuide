@@ -1102,10 +1102,15 @@ def create_app(
     def policy_status():
         with runtime().lock:
             policy = runtime().policy
+            from app.core.prior import prior_digest
             return {
                 "policy_run_id": policy.policy_run_id,
                 "model_version": policy.config.model_version,
                 "feedback_mode": policy.config.feedback_mode,
+                "prior_version": policy.config.prior.version if policy.config.prior else "neutral",
+                "prior_status": policy.config.prior.status if policy.config.prior else "neutral",
+                "prior_digest": prior_digest(policy.config.prior),
+                "cold_start_updates": policy.config.cold_start_updates,
                 "feature_schema_version": FEATURE_SCHEMA_VERSION,
                 "feature_schema_fingerprint": FEATURE_SCHEMA_FINGERPRINT,
                 "feature_dimension": FEATURE_DIMENSION,
@@ -1139,7 +1144,12 @@ def _application_from_environment():
     if backend not in {"sqlite", "postgresql"}:
         raise ValueError("C4_STORAGE_BACKEND must be sqlite or postgresql")
 
-    config = PolicyConfig(feedback_mode=mode)
+    # Explicit opt-in; an absent file setting is a neutral prior. A bad supplied
+    # file fails closed instead of silently changing the model at startup.
+    from app.core.prior import load_prior
+    prior_path = os.getenv("C4_PRIOR_FILE")
+    config = PolicyConfig(feedback_mode=mode, cold_start_updates=0,
+                          prior=load_prior(prior_path) if prior_path else None)
     prepared_wording_directory = os.getenv("C4_PREPARED_WORDING_DIR") or (
         Path(__file__).resolve().parents[1] / ".local" / "prepared-wording"
     )
