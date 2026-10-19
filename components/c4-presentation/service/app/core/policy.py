@@ -3,8 +3,7 @@
 One policy instance owns one shared posterior across all scaffold choices
 and guest sessions.
 
-State is in memory. Restarting loses decisions, attribution, feedback
-receipts and learned parameters.
+The runtime persists exported state and replays attributed feedback on restart.
 
 The Gaussian linear model is a surrogate for binary support-fit rewards.
 Scores are not calibrated probabilities.
@@ -26,6 +25,7 @@ from uuid import uuid4
 import numpy as np
 import scipy
 from scipy.linalg import solve_triangular
+from app.core.prior import compile_prior
 
 from app.core.user_context import (
     ContextConflictError,
@@ -267,12 +267,16 @@ class _GaussianPosterior:
         self._precision = (
             np.eye(dimension, dtype=np.float64) * config.prior_precision
         )
-        self._b = np.zeros(dimension, dtype=np.float64)
+        if config.prior is not None and dimension != FEATURE_DIMENSION:
+            raise PolicyError("configured prior requires the shared feature dimension")
+        mean = (compile_prior(config.prior, FEATURE_NAMES_SHARED, FEATURE_SCALE)
+                if config.prior is not None else np.zeros(dimension, dtype=np.float64))
+        self._b = config.prior_precision * mean
         self._factor = (
             np.eye(dimension, dtype=np.float64)
             * math.sqrt(config.prior_precision)
         )
-        self._mean = np.zeros(dimension, dtype=np.float64)
+        self._mean = mean
 
     def _matrix(self, values) -> np.ndarray:
         matrix = np.asarray(values, dtype=np.float64)

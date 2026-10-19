@@ -2,7 +2,9 @@
 
 from typing import Literal
 
-from pydantic import Field
+from pydantic import Field, model_validator
+
+from app.models.prior import PriorSpec
 
 from app.models.procedure_features import StructuralFeatures
 from app.models.procedure_graph import GraphRecord
@@ -25,6 +27,13 @@ class PolicyConfig(GraphRecord):
     seed: int = Field(default=0, ge=0, le=2**63 - 1)
 
     feedback_mode: Literal["simulation", "participant"] = "simulation"
+    prior: PriorSpec | None = None
+
+    @model_validator(mode="after")
+    def prior_uses_policy_immediately(self):
+        if self.prior is not None and self.cold_start_updates != 0:
+            raise ValueError("a configured prior requires cold_start_updates=0")
+        return self
 
 
 class CandidateScore(GraphRecord):
