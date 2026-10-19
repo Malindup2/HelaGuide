@@ -40,18 +40,22 @@ def _unique(pairs):
     return result
 
 
-def parse_stored(text: str) -> StoredExplanation:
+def parse_artifact_json(model, text: str):
     try:
         if len(text.encode("utf-8")) > MAX_ARTIFACT_BYTES:
             raise ArtifactStoreError("artifact_too_large")
         def reject_constant(value):
             raise ArtifactStoreError("artifact_non_finite_number")
         json.loads(text, object_pairs_hook=_unique, parse_constant=reject_constant)
-        return StoredExplanation.model_validate_json(text, strict=True)
+        return model.model_validate_json(text, strict=True)
     except ArtifactStoreError:
         raise
     except (ValueError, RecursionError):
         raise ArtifactStoreError("artifact_invalid_schema") from None
+
+
+def parse_stored(text: str) -> StoredExplanation:
+    return parse_artifact_json(StoredExplanation, text)
 
 
 class ExplanationArtifactStore:
@@ -66,25 +70,34 @@ class ExplanationArtifactStore:
             raise ArtifactStoreError("artifact_symlink_rejected")
         return path
 
-    def read(self, key: str) -> StoredExplanation | None:
+    def read_text(self, key: str) -> str | None:
         path = self._path(key)
         try:
             with path.open("rb") as stream:
                 data = stream.read(MAX_ARTIFACT_BYTES + 1)
             if len(data) > MAX_ARTIFACT_BYTES:
                 raise ArtifactStoreError("artifact_too_large")
-            stored = parse_stored(data.decode("utf-8"))
-            if stored.artifact.request_key != key:
-                raise ArtifactStoreError("artifact_filename_mismatch")
-            return stored
+            return data.decode("utf-8")
         except FileNotFoundError:
             return None
         except (OSError, UnicodeError):
             raise ArtifactStoreError("artifact_read_failed") from None
 
+    def read(self, key: str) -> StoredExplanation | None:
+        text = self.read_text(key)
+        if text is None:
+            return None
+        stored = parse_stored(text)
+        if stored.artifact.request_key != key:
+            raise ArtifactStoreError("artifact_filename_mismatch")
+        return stored
+
     def write(self, stored: StoredExplanation) -> None:
-        path = self._path(stored.artifact.request_key)
-        data = stored.model_dump_json(indent=2).encode("utf-8")
+        self.write_text(stored.artifact.request_key, stored.model_dump_json(indent=2))
+
+    def write_text(self, key: str, text: str) -> None:
+        path = self._path(key)
+        data = text.encode("utf-8")
         if len(data) > MAX_ARTIFACT_BYTES:
             raise ArtifactStoreError("artifact_too_large")
         temporary = None
