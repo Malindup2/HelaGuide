@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import type { Document, Spec } from "./types";
 import { actionLabel } from "./types";
+import { preparedText } from "./wording";
 import {
   NODE_HEIGHT, NODE_WIDTH, actionNode, branchLayout, branchMeanings, dependencyLayout, wrapLabel,
 } from "./scaffoldModel";
@@ -110,13 +111,13 @@ export default function RelationshipMap({ spec, currentActionId }: { spec: Spec;
       <p className="map-footnote">Lines connect a selection group to its options; they are not prerequisite arrows. The application does not decide eligibility or choose an option for you.</p>
     </div>)}
     {diagram.kind === "PARALLEL_MAP" && diagram.parallel_groups.map((group) => <ParallelGroup key={group.group_id} spec={spec}
-      actionIds={group.action_ids} currentActionId={currentActionId} />)}
+      groupId={group.group_id} actionIds={group.action_ids} currentActionId={currentActionId} />)}
   </section>;
 }
-function ParallelGroup({ spec, actionIds, currentActionId }: { spec: Spec; actionIds: string[]; currentActionId?: string | null }) {
+function ParallelGroup({ spec, groupId, actionIds, currentActionId }: { spec: Spec; groupId: string; actionIds: string[]; currentActionId?: string | null }) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   return <div className="parallel-group-frame">
-    <div className="parallel-label"><span aria-hidden="true">∥</span><strong>Explicit parallel group</strong></div>
+    <div className="parallel-label"><span aria-hidden="true">∥</span><strong>{preparedText(spec, "diagram_label", "parallel_group", groupId) ?? "Explicit parallel group"}</strong></div>
     <div className="parallel-lanes">{actionIds.map((id) => {
       const node = actionNode(spec, id);
       return <button type="button" key={id} className={"parallel-node " + (currentActionId === id ? "current" : "")}

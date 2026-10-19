@@ -5,6 +5,7 @@ from typing import Annotated, Literal, Self
 from pydantic import Field, model_validator
 
 from app.models.explanations import StandardExplanationResult
+from app.models.prepared_wording import WordingResolution
 from app.models.presentation import ActionPage, PresentationSpec, SourceCard
 from app.models.procedure import ActionId
 from app.models.procedure_graph import GraphRecord
@@ -80,12 +81,14 @@ class GuidanceStatus(GraphRecord):
 class StandardGuidanceResponse(GuidanceStatus):
     mode: Literal["standard"] = "standard"
     guidance: StandardGuidance
+    wording: WordingResolution | None = None
 
 
 class AdaptiveGuidanceResponse(GuidanceStatus):
     mode: Literal["adaptive"] = "adaptive"
     spec: PresentationSpec
     stale_for_display: bool
+    wording: WordingResolution | None = None
 
 
 GuidanceResponse = Annotated[

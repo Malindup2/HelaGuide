@@ -1,14 +1,21 @@
-import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { API_BASE, api } from "../api/client";
 import type { ActiveIdentity, GuestSession, ProcedureSummary } from "../api/types";
 import FeedbackPanel from "../feedback/FeedbackPanel";
 import { browserStorage } from "../session/continuity";
 import { guidanceApi } from "./api";
 import { GuidanceEpisode } from "./episode";
-import { ActionSection, SelectedAids, SourceItems, SourceRegister } from "./rendering";
+import { ActionSection, PreviousStepSummary, SelectedAids, SourceItems, SourceRegister } from "./rendering";
 import { actionDomId, actionTitle } from "./scaffoldModel";
 import { actionLabel, documentOf } from "./types";
 import type { Standard } from "./types";
+
+function scrollToAction(id: string) {
+  const action = document.getElementById(actionDomId(id));
+  const visit = document.getElementById(actionDomId(id) + "-visit");
+  (visit ?? action)?.scrollIntoView({ block: "start", behavior: "auto" });
+  action?.focus({ preventScroll: true });
+}
 
 export default function GuidanceWorkspace({ active, procedure, disabled, onActivityChange, onSessionUpdate }: {
   active: ActiveIdentity; procedure: ProcedureSummary; disabled: boolean;
@@ -20,6 +27,7 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
   const state = useSyncExternalStore(episode.subscribe, episode.getSnapshot);
   const [writingStyle, setWritingStyle] = useState<Standard["writing_style"]>("plain");
   const [feedbackLocked, setFeedbackLocked] = useState(false);
+  const restoredScroll = useRef<string | null>(null);
   const enabled = active.kind === "profile" && active.profile.personalization_enabled;
   const { result, navigation } = state;
   const doc = result ? documentOf(result) : null;
@@ -36,6 +44,17 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
 
   useEffect(() => { void episode.initialize(); }, [episode]);
   useEffect(() => {
+    if (!state.restored || state.loading || !guided || !spec || !state.focus ||
+        restoredScroll.current === spec.exposure_id) return;
+    const id = state.focus;
+    const exposure = spec.exposure_id;
+    const frame = requestAnimationFrame(() => {
+      scrollToAction(id);
+      restoredScroll.current = exposure;
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [state.restored, state.loading, guided, spec, state.focus]);
+  useEffect(() => {
     onActivityChange(state.loading || state.busy || state.pending !== null || feedbackLocked);
     return () => onActivityChange(false);
   }, [onActivityChange, state.loading, state.busy, state.pending, feedbackLocked]);
@@ -47,11 +66,7 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
   }, [episode, active.session.session_id, onSessionUpdate]);
   function move(id: string) {
     episode.move(id);
-    requestAnimationFrame(() => {
-      const action = document.getElementById(actionDomId(id));
-      action?.scrollIntoView({ block: "start", behavior: "auto" });
-      action?.focus({ preventScroll: true });
-    });
+    requestAnimationFrame(() => scrollToAction(id));
   }
 
   return <section className="panel guidance-panel" aria-labelledby="guidance-title">
@@ -81,7 +96,8 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
     {doc && <div className="guidance-output">
       <div className="guidance-metadata">
         <span className="tag">{guided ? "Guided" : "Overview"}</span>
-        <span className="tag">{doc.explanation.origin === "fallback" ? "Source-preserving fallback" : "Generated explanation · original sources retained"}</span>
+        <span className="tag">{doc.prepared_wording?.artifact_digest ? "Reviewed wording · original sources retained" :
+          doc.explanation.origin === "fallback" ? "Source-preserving fallback" : "Generated explanation · original sources retained"}</span>
         <span className="tag">{doc.explanation.source.graph.synthetic ? "Synthetic demonstration" : "Supplied sources · verification status below"}</span>
       </div>
       {!disclaimerInNotices && <p className="guidance-disclaimer">{doc.explanation.source.graph.disclaimer}</p>}
@@ -104,8 +120,11 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
           </button>)}
         </nav>
         <p className="helper-text">Action {index + 1} of {doc.pages.length}. {doc.explanation.source.graph.branch_groups.length > 0 ? "Alternative actions remain available for inspection." : "Browsing does not mark completion."}</p>
-        <ActionSection key={current.action_id} doc={doc} page={current} index={index}
-          disabled={browsingBlocked} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />
+        <div id={actionDomId(current.action_id) + "-visit"}>
+          <PreviousStepSummary spec={spec} navigation={navigation} currentActionId={state.focus} />
+          <ActionSection key={current.action_id} doc={doc} page={current} index={index}
+            disabled={browsingBlocked} observeToken={String(navigation?.session_revision ?? -1)} onVisible={onVisible} />
+        </div>
         <nav className="guided-navigation" aria-label="Previous and next guidance">
           <button className="button button-outline" disabled={browsingBlocked || !navigation?.acknowledged || index <= 0}
             onClick={() => move(doc.pages[index - 1].action_id)}>← Back</button>
@@ -130,6 +149,9 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
       <details className="guidance-attribution"><summary>Guidance reference</summary>
         <dl><dt>Graph fingerprint</dt><dd>{doc.graph_fingerprint}</dd>
           <dt>Source status</dt><dd>{doc.explanation.source_status}</dd><dt>Assurance</dt><dd>{doc.explanation.assurance}</dd>
+          {doc.prepared_wording && <><dt>Prepared wording</dt><dd>{doc.prepared_wording.artifact_digest ? "Reviewed snapshot" : "Source fallback"}</dd>
+            <dt>Wording origins</dt><dd>{[...new Set(doc.prepared_wording.items.map((item) => item.origin))].join(", ")}</dd>
+            <dt>Wording reference</dt><dd>{doc.prepared_wording.request_key}</dd></>}
           {spec && <><dt>Presentation</dt><dd>{spec.presentation_id}</dd><dt>Exposure</dt><dd>{spec.exposure_id}</dd>
             <dt>Decision</dt><dd>{spec.decision_id}</dd><dt>Selected configuration</dt><dd>{spec.configuration.configuration_id}</dd>
             <dt>Decision context revision</dt><dd>{spec.context_revision}</dd><dt>Current navigation revision</dt><dd>{navigation?.session_revision ?? "Not yet acknowledged"}</dd></>}

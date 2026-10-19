@@ -33,6 +33,8 @@ from app.models.runtime_state import AcceptedFeedback, RuntimeState
 
 from app.core.explanations import ExplanationService
 from app.core.explanation_store import ExplanationArtifactStore
+from app.core.wording_views import WordingViews
+from app.models.prepared_wording import WordingResolution
 from app.core.llm_provider import OpenAIExplanationProvider
 from app.core.policy import NoFeasibleConfigurationError, SharedLinTSPolicy
 from app.core.presentation import (
@@ -121,6 +123,7 @@ class FeedbackRequest(RequestModel):
 class PresentationResponse(BaseModel):
     spec: PresentationSpec
     stale_for_display: bool
+    wording: WordingResolution | None = None
 
 
 
@@ -177,6 +180,8 @@ class DevRuntime:
         content_directory=None,
         reviewed_content_only=False,
         generation_enabled=True,
+        prepared_wording_directory=None,
+        wording_views_directory=None,
     ):
         self.lock = RLock()
         self.allow_legacy_adaptive_sessions = allow_legacy_adaptive_sessions
@@ -195,6 +200,7 @@ class DevRuntime:
             generation_enabled=generation_enabled,
         )
         self.provider = provider
+        self.wording_views = WordingViews(prepared_wording_directory, wording_views_directory)
         self.procedures = {}
 
         for graph in graphs:
@@ -453,6 +459,7 @@ class DevRuntime:
         selected = self.policy.get_offer(spec.exposure_id)
         return PresentationResponse(
             spec=spec,
+            wording=self.wording_views.read(spec),
             stale_for_display=(
                 session.settings != selected.offer.context_snapshot.settings
                 or not episode_is_active(
@@ -511,6 +518,8 @@ def create_app(
     allow_legacy_adaptive_sessions: bool = True,
     content_directory: str | Path | None = None,
     reviewed_content_only: bool = False,
+    prepared_wording_directory: str | Path | None = None,
+    wording_views_directory: str | Path | None = None,
 ) -> FastAPI:
     """Create the independent C4 research application.
 
@@ -571,6 +580,8 @@ def create_app(
                 content_directory=content_directory,
                 reviewed_content_only=reviewed_content_only,
                 generation_enabled=generation_enabled,
+                prepared_wording_directory=prepared_wording_directory,
+                wording_views_directory=wording_views_directory,
             )
             application.state.runtime = active_runtime
             yield
@@ -752,6 +763,14 @@ def create_app(
                 raise HTTPException(409, "session revision changed")
 
             graph, features, safety = runtime().procedure(request.procedure_id)
+            familiarity = session.settings.familiarity_for(graph.requested_service_id)
+            navigation = session.settings.navigation_capability
+            writing_style = (
+                "plain" if familiarity is None or navigation is None else
+                "extra_plain" if familiarity <= 2 or navigation <= 2 else
+                "concise" if familiarity >= 4 and navigation >= 4 else "plain"
+            )
+            prepared_wording = runtime().wording_views.prepare(graph, writing_style=writing_style)
             order = action_navigation_order(graph)
             if not order:
                 raise HTTPException(
@@ -806,6 +825,7 @@ def create_app(
                 safety=safety,
             )
             runtime().presentations[spec.exposure_id] = spec
+            runtime().wording_views.capture(spec, prepared_wording, writing_style=writing_style)
             return runtime().response(spec)
 
     @application.get(
@@ -1120,6 +1140,12 @@ def _application_from_environment():
         raise ValueError("C4_STORAGE_BACKEND must be sqlite or postgresql")
 
     config = PolicyConfig(feedback_mode=mode)
+    prepared_wording_directory = os.getenv("C4_PREPARED_WORDING_DIR") or (
+        Path(__file__).resolve().parents[1] / ".local" / "prepared-wording"
+    )
+    wording_views_directory = os.getenv("C4_WORDING_VIEWS_DIR") or (
+        Path(__file__).resolve().parents[1] / ".local" / "wording-views" / mode
+    )
 
     if backend == "postgresql":
         dsn = os.getenv("C4_DATABASE_URL")
@@ -1133,6 +1159,8 @@ def _application_from_environment():
             allow_legacy_adaptive_sessions=False,
             content_directory=content_directory,
             reviewed_content_only=review_mode == "true",
+            prepared_wording_directory=prepared_wording_directory,
+            wording_views_directory=wording_views_directory,
         )
 
     default_path = (
@@ -1148,6 +1176,8 @@ def _application_from_environment():
         allow_legacy_adaptive_sessions=False,
         content_directory=content_directory,
         reviewed_content_only=review_mode == "true",
+        prepared_wording_directory=prepared_wording_directory,
+        wording_views_directory=wording_views_directory,
     )
 
 

@@ -85,3 +85,19 @@
 }
 
 .action-section { scroll-margin-top: 20px; }
+.prepared-step-explanation {
+  padding: 1rem 1.25rem;
+  border-left: 3px solid #708164;
+  background: #f5f7f1;
+  border-radius: 0 0.65rem 0.65rem 0;
+  margin-bottom: 1rem;
+}
+.prepared-step-explanation p { margin: 0; }
+.guided-previous-summary {
+  border: 1px solid #d7dece;
+  border-radius: 0.8rem;
+  background: #f5f7f1;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+.guided-previous-summary h4 { margin: 0.4rem 0; }
