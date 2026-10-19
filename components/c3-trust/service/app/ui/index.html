@@ -119,8 +119,7 @@ th{color:var(--muted);font-weight:600}
 <header class="top">
   <div class="brand"><span class="mark">H</span><span>HelaGuide</span></div>
   <span class="domain">helaguide.lk</span>
-  <span class="tagline">Government guidance with a measured level of trust</span>
-  <span class="tag">Component 3 demo · mock data</span>
+  
 </header>
 
 <main class="layout">
@@ -147,13 +146,13 @@ th{color:var(--muted);font-weight:600}
 <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="dialog">
     <div class="dialog-h"><h2 id="modal-title">Give feedback</h2><button class="x" id="modal-x" aria-label="Close">&times;</button></div>
-    <p class="muted" style="margin:6px 0 0">Tell us what you experienced at the office. In this demo you choose a pre-written message, so the demo never depends on a live translation.</p>
-    <label class="fld">Who is giving this feedback?<select id="persona"></select></label>
-    <div class="fld">Message
+    <p class="muted" style="margin:6px 0 0">Tell us what you experienced at the office.</p>
+    <label class="fld">1 · Who is giving this feedback?<select id="persona"></select></label>
+    <div class="fld">2 · Choose a message
       <div id="groups" class="groups"></div>
       <div id="samples" class="samples"></div>
     </div>
-    <label class="fld">When did you visit? (optional)<input type="date" id="visit"></label>
+    <label class="fld">3 · When did you visit? (optional)<input type="date" id="visit"></label>
     <div id="modal-err" class="err"></div>
     <div class="dialog-f"><button class="btn ghost" id="modal-cancel">Cancel</button><button class="btn primary" id="modal-submit">Submit feedback</button></div>
   </div>
@@ -168,7 +167,7 @@ const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&": "&am
 const pct = v => Math.round(v * 100);
 const LANG = {en: "English", si: "Sinhala", mixed: "Singlish"};
 const state = {samples: [], groups: [], personas: [], facts: [], shown: {}, last: null, lastFact: "svc:passport:fee:normal",
-               tab: "report", group: "english", picked: null, busy: false};
+               tab: "report", group: "english", picked: null, persona: null, busy: false};
 
 async function api(path, body) {
   const opt = body === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)};
@@ -282,6 +281,7 @@ async function submit() {
   if (!state.picked) { $("#modal-err").textContent = "Choose a message first."; return; }
   const s = state.samples.find(x => x.id === state.picked);
   const persona = $("#persona").value, visit = $("#visit").value || null;
+  state.persona = persona;
   closeModal();
   addUser("Citizen " + persona, '<span class="lang">' + esc(LANG[s.language] || s.language) + '</span><div class="said ' + (s.language === "si" ? "si" : "") + '">' + esc(s.text) + "</div>");
   const wait = addBubble("Checking your report&hellip;");
@@ -320,7 +320,7 @@ async function resetDemo() {
   try {
     await api("/internal/demo/reset", {});
     $("#thread").innerHTML = "";
-    state.shown = {}; state.last = null; state.lastFact = "svc:passport:fee:normal"; state.facts = []; state.picked = null;
+    state.shown = {}; state.last = null; state.lastFact = "svc:passport:fee:normal"; state.facts = []; state.picked = null; state.persona = null;
     greet(); await loadStatic(); showTab(state.tab);
   } catch (e) { fail(e); }
 }
@@ -329,6 +329,9 @@ async function resetDemo() {
 function openModal() {
   $("#modal-err").textContent = "";
   $("#persona").innerHTML = state.personas.map(p => '<option value="' + esc(p.id) + '">' + esc(p.id) + " · " + esc(p.note) + " · reputation " + p.reputation + "</option>").join("");
+  if (state.persona && $$("#persona option").some(o => o.value === state.persona)) $("#persona").value = state.persona;   // keep the last citizen
+  state.persona = $("#persona").value;
+  state.picked = null; $("#visit").value = "";                                                                           // choose the message afresh
   renderGroups(); renderSamples();
   $("#modal").classList.remove("hidden");
 }
@@ -346,8 +349,7 @@ function pickSample(id) {
   state.picked = id;
   const s = state.samples.find(x => x.id === id);
   if (!s) return;
-  if ($$("#persona option").some(o => o.value === s.default_persona)) $("#persona").value = s.default_persona;
-  $("#visit").value = s.visit_date || "";
+  $("#visit").value = s.visit_date || "";            // the citizen chosen above is never changed
   renderSamples();
 }
 
@@ -427,6 +429,7 @@ async function init() {
   $("#modal-cancel").onclick = closeModal;
   $("#modal-x").onclick = closeModal;
   $("#modal-submit").onclick = submit;
+  $("#persona").addEventListener("change", e => { state.persona = e.target.value; });
   $("#modal").addEventListener("click", e => { if (e.target.id === "modal") closeModal(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
   $("#thread").addEventListener("click", e => { const b = e.target.closest("[data-act]"); if (b && b.dataset.act === "ask") ask(); });
