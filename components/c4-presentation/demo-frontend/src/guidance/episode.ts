@@ -11,10 +11,12 @@ interface Saved {
   pending: PendingDisplay | null;
 }
 export interface EpisodeState {
+  restored: boolean;
   loading: boolean; busy: boolean; result: Guidance | null; navigation: Navigation | null;
   focus: string | null; pending: PendingDisplay | null; error: string | null; notice: string | null;
 }
 const initial: EpisodeState = {
+  restored: false,
   loading: false, busy: false, result: null, navigation: null, focus: null,
   pending: null, error: null, notice: null,
 };
@@ -111,6 +113,7 @@ export class GuidanceEpisode {
       const pending = saved.pending;
       this.recordedVisit = navigation.acknowledged ? 0 : -1;
       this.update({
+        restored: true,
         result: { ...status, mode: "adaptive", spec, stale_for_display: response.stale_for_display }, navigation, pending,
         focus: pending?.kind === "navigation" ? pending.request.action_id :
           navigation.current_action_id ?? spec.initial_action_id,
@@ -125,7 +128,7 @@ export class GuidanceEpisode {
   }
   async select(writingStyle: Standard["writing_style"] = "plain") {
     if (this.state.busy || this.state.loading || this.state.pending) return;
-    this.update({ busy: true, error: null, notice: null, result: null, navigation: null, focus: null });
+    this.update({ restored: false, busy: true, error: null, notice: null, result: null, navigation: null, focus: null });
     try {
       const status = await this.currentStatus();
       const result = await this.api.select(status.session_id, {

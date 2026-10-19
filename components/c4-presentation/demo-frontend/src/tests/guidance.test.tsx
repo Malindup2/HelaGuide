@@ -179,6 +179,24 @@ describe("stable adaptive episode", () => {
     expect(s.presentation).toHaveBeenCalledTimes(1); expect(s.select).not.toHaveBeenCalled();
     expect(s.ack).not.toHaveBeenCalled(); expect(s.display).not.toHaveBeenCalled();
   });
+  it("restores the later Guided step and its history without a new display or selection", async () => {
+    const s = setup();
+    await s.episode.select(); await s.episode.visible("action:one");
+    s.episode.move("action:two"); await s.episode.visible("action:two");
+    const before = s.episode.getSnapshot();
+    expect(before.restored).toBe(false);
+    s.select.mockClear(); s.ack.mockClear(); s.display.mockClear();
+    const restored = new GuidanceEpisode(s.api, identity(), fp, s.saved, base);
+    await restored.initialize();
+    expect(restored.getSnapshot().restored).toBe(true);
+    expect(restored.getSnapshot().focus).toBe("action:two");
+    expect(restored.getSnapshot().navigation).toEqual(before.navigation);
+    await restored.visible("action:two");
+    expect(s.select).not.toHaveBeenCalled(); expect(s.ack).not.toHaveBeenCalled();
+    expect(s.display).not.toHaveBeenCalled();
+    await restored.select();
+    expect(restored.getSnapshot().restored).toBe(false);
+  });
   it("retains an unconfirmed initial acknowledgment across reload and retries it unchanged", async () => {
     const s = setup(); await s.episode.select();
     s.ack.mockRejectedValueOnce(new Error("lost response"));
