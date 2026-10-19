@@ -29,6 +29,7 @@ export default function App() {
       <header className="app-header">
         <div className="brand"><Mark /><div><strong>HelaGuide</strong><span>Adaptive guidance workspace</span></div></div>
         <div className="header-status">
+          <a className="tag" href="/#pipeline-inspector" target="_blank" rel="noreferrer">Pipeline Inspector ↗</a>
           <span className="tag">C4 Research Demo</span>
           <span className={"connection " + (state.health ? "connected" : "")}>
             <i aria-hidden="true" />
