@@ -1,0 +1,77 @@
+{
+  "plan_id": "synthetic-parallel-v1",
+  "requested_service_id": "svc:demo_submission",
+  "generated_at": "2026-10-15T00:00:00Z",
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:demo_application",
+      "name": "Synthetic demo: register an application",
+      "agency": "Fictional C4 Demo Office",
+      "fee": {
+        "value": 0,
+        "currency": "LKR",
+        "fact_id": "svc:demo_application:fee"
+      },
+      "documents": [],
+      "depends_on": []
+    },
+    {
+      "order": 2,
+      "service_id": "svc:demo_preparation",
+      "name": "Synthetic demo: prepare two required items",
+      "agency": "Fictional C4 Demo Office",
+      "fee": {
+        "value": 0,
+        "currency": "LKR",
+        "fact_id": "svc:demo_preparation:fee"
+      },
+      "documents": [],
+      "depends_on": ["svc:demo_application"]
+    },
+    {
+      "order": 3,
+      "service_id": "svc:demo_submission",
+      "name": "Synthetic demo: submit a prepared application",
+      "agency": "Fictional C4 Demo Office",
+      "fee": {
+        "value": 0,
+        "currency": "LKR",
+        "fact_id": "svc:demo_submission:fee"
+      },
+      "documents": [
+        {
+          "name": "Fictional completed application form",
+          "fact_id": "svc:demo_submission:document:form"
+        },
+        {
+          "name": "Fictional supporting copy",
+          "fact_id": "svc:demo_submission:document:copy"
+        }
+      ],
+      "depends_on": ["svc:demo_preparation"]
+    }
+  ],
+  "provenance": {
+    "svc:demo_application:fee": {
+      "source_url": "https://example.org/c4/fixtures/parallel",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    "svc:demo_preparation:fee": {
+      "source_url": "https://example.org/c4/fixtures/parallel",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    "svc:demo_submission:fee": {
+      "source_url": "https://example.org/c4/fixtures/parallel",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    "svc:demo_submission:document:form": {
+      "source_url": "https://example.org/c4/fixtures/parallel",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    },
+    "svc:demo_submission:document:copy": {
+      "source_url": "https://example.org/c4/fixtures/parallel",
+      "retrieved_at": "2026-10-15T00:00:00Z"
+    }
+  }
+}

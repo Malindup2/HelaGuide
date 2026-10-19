@@ -1,0 +1,54 @@
+{
+  "plan_id": "synthetic-linear-v1",
+  "requested_service_id": "svc:demo_pack",
+  "generated_at": "2026-10-14T00:00:00Z",
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:demo_token",
+      "name": "Synthetic demo: issue a token",
+      "agency": "Fictional C4 Demo Office",
+      "fee": {
+        "value": 0,
+        "currency": "LKR",
+        "fact_id": "svc:demo_token:fee"
+      },
+      "documents": [],
+      "depends_on": []
+    },
+    {
+      "order": 2,
+      "service_id": "svc:demo_pack",
+      "name": "Synthetic demo: collect a pack",
+      "agency": "Fictional C4 Demo Office",
+      "fee": {
+        "value": 0,
+        "currency": "LKR",
+        "fact_id": "svc:demo_pack:fee"
+      },
+      "documents": [
+        {
+          "name": "Fictional demo token",
+          "fact_id": "svc:demo_pack:document:token"
+        }
+      ],
+      "depends_on": [
+        "svc:demo_token"
+      ]
+    }
+  ],
+  "provenance": {
+    "svc:demo_token:fee": {
+      "source_url": "https://example.org/c4/fixtures/linear/token",
+      "retrieved_at": "2026-10-14T00:00:00Z"
+    },
+    "svc:demo_pack:fee": {
+      "source_url": "https://example.org/c4/fixtures/linear/pack",
+      "retrieved_at": "2026-10-14T00:00:00Z"
+    },
+    "svc:demo_pack:document:token": {
+      "source_url": "https://example.org/c4/fixtures/linear/pack",
+      "retrieved_at": "2026-10-14T00:00:00Z"
+    }
+  }
+}
