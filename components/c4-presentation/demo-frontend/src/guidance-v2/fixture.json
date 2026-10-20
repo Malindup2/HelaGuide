@@ -1,0 +1,450 @@
+{
+  "id": "journey:eed74c6698f842d49bbea3075c2a89e3",
+  "decision_id": "decision:fe2f629103d4410ebfb1917cf4ef8741",
+  "document": {
+    "id": "synthetic-practice-v2",
+    "title": "Practice application: prepare and submit",
+    "synthetic": true,
+    "scope": "Fictional practice procedure authored for C4 research. All desks and charges are fictional. Viewing guidance never confirms completion. This is not government advice.",
+    "graph_fingerprint": "edbab5e04baffd245dd51b049c5d250c7cbc6fc19ac181028394e4520ed448b4",
+    "actions": [
+      {
+        "id": "action:register_application",
+        "title": "Register the practice application",
+        "service_id": "svc:demo_application",
+        "service_agency": "Fictional C4 Demo Office",
+        "actor": "Fictional Registration Desk",
+        "concise": "Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.",
+        "expanded": "Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.\n\nRegistration is the common prerequisite for both preparation work areas. The copy routes are alternatives, while the form is required in either route.",
+        "recap": "Register the practice application",
+        "fact_ids": [
+          "svc:demo_application:fee",
+          "svc:demo_preparation:fee",
+          "svc:demo_submission:fee"
+        ],
+        "coverage": [
+          "content:register_application"
+        ],
+        "conditions": [],
+        "branch": null,
+        "option": null,
+        "optional": [
+          {
+            "id": "content:preparation_explanation",
+            "text": "Think of preparation as two work areas that come together at submission. This is another way to describe the required preparation relationships."
+          }
+        ],
+        "unreviewed_supplement": []
+      },
+      {
+        "id": "action:obtain_copy",
+        "title": "Obtain a copy at the Records Desk",
+        "service_id": "svc:demo_preparation",
+        "service_agency": "Fictional C4 Demo Office",
+        "actor": "Fictional Records Desk",
+        "concise": "If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.",
+        "expanded": "If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.\n\nThe Records Desk supplies the copy for this route. It does not prepare the application form; that separate preparation is still required.",
+        "recap": "Obtain a copy at the Records Desk",
+        "fact_ids": [
+          "svc:demo_submission:document:copy"
+        ],
+        "coverage": [
+          "content:obtain_copy"
+        ],
+        "conditions": [
+          "You do not have the fictional supporting copy."
+        ],
+        "branch": "branch:copy_route",
+        "option": "option:office",
+        "optional": [],
+        "unreviewed_supplement": []
+      },
+      {
+        "id": "action:prepare_copy",
+        "title": "Prepare your existing copy",
+        "service_id": "svc:demo_preparation",
+        "service_agency": "Fictional C4 Demo Office",
+        "actor": null,
+        "concise": "If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.",
+        "expanded": "If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.\n\nThis is one of two alternative copy routes. Submission still requires the form as well as this copy.",
+        "recap": "Prepare your existing copy",
+        "fact_ids": [
+          "svc:demo_submission:document:copy"
+        ],
+        "coverage": [
+          "content:prepare_copy"
+        ],
+        "conditions": [
+          "You already have the fictional supporting copy."
+        ],
+        "branch": "branch:copy_route",
+        "option": "option:own",
+        "optional": [],
+        "unreviewed_supplement": []
+      },
+      {
+        "id": "action:prepare_form",
+        "title": "Prepare the form",
+        "service_id": "svc:demo_preparation",
+        "service_agency": "Fictional C4 Demo Office",
+        "actor": null,
+        "concise": "After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.",
+        "expanded": "After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.\n\nForm preparation does not replace copy preparation. You can work on either preparation area first after registration.",
+        "recap": "Prepare the form",
+        "fact_ids": [
+          "svc:demo_submission:document:form"
+        ],
+        "coverage": [
+          "content:prepare_form"
+        ],
+        "conditions": [],
+        "branch": null,
+        "option": null,
+        "optional": [],
+        "unreviewed_supplement": []
+      },
+      {
+        "id": "action:submit_application",
+        "title": "Submit both prepared items",
+        "service_id": "svc:demo_submission",
+        "service_agency": "Fictional C4 Demo Office",
+        "actor": "Fictional Submission Desk",
+        "concise": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.",
+        "expanded": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.\n\nThe final action joins two work areas: the form and one copy route. The two copy alternatives are not both required.",
+        "recap": "Submit both prepared items",
+        "fact_ids": [
+          "svc:demo_submission:document:copy",
+          "svc:demo_submission:document:form"
+        ],
+        "coverage": [
+          "content:submit_application"
+        ],
+        "conditions": [],
+        "branch": null,
+        "option": null,
+        "optional": [],
+        "unreviewed_supplement": []
+      }
+    ],
+    "facts": [
+      {
+        "kind": "fee",
+        "fact_id": "svc:demo_application:fee",
+        "value": 0.0,
+        "currency": "LKR"
+      },
+      {
+        "kind": "fee",
+        "fact_id": "svc:demo_preparation:fee",
+        "value": 0.0,
+        "currency": "LKR"
+      },
+      {
+        "kind": "document",
+        "fact_id": "svc:demo_submission:document:copy",
+        "name": "Fictional supporting copy"
+      },
+      {
+        "kind": "document",
+        "fact_id": "svc:demo_submission:document:form",
+        "name": "Fictional completed application form"
+      },
+      {
+        "kind": "fee",
+        "fact_id": "svc:demo_submission:fee",
+        "value": 0.0,
+        "currency": "LKR"
+      }
+    ],
+    "sources": [
+      {
+        "evidence_id": "evidence:application_rules",
+        "kind": "synthetic_authored",
+        "source_url": "https://example.org/c4/fixtures/parallel",
+        "text": "Authored fictional V2 rules. Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission. Registration is the common prerequisite for both preparation work areas. The copy routes are alternatives, while the form is required in either route. After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission. Form preparation does not replace copy preparation. You can work on either preparation area first after registration. If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently. This is one of two alternative copy routes. Submission still requires the form as well as this copy. If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently. The Records Desk supplies the copy for this route. It does not prepare the application form; that separate preparation is still required. Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient. The final action joins two work areas: the form and one copy route. The two copy alternatives are not both required.",
+        "retrieved_at": null
+      }
+    ],
+    "provenance": [
+      {
+        "fact_id": "svc:demo_application:fee",
+        "source_url": "https://example.org/c4/fixtures/parallel",
+        "retrieved_at": "2026-10-15T00:00:00Z"
+      },
+      {
+        "fact_id": "svc:demo_preparation:fee",
+        "source_url": "https://example.org/c4/fixtures/parallel",
+        "retrieved_at": "2026-10-15T00:00:00Z"
+      },
+      {
+        "fact_id": "svc:demo_submission:document:copy",
+        "source_url": "https://example.org/c4/fixtures/parallel",
+        "retrieved_at": "2026-10-15T00:00:00Z"
+      },
+      {
+        "fact_id": "svc:demo_submission:document:form",
+        "source_url": "https://example.org/c4/fixtures/parallel",
+        "retrieved_at": "2026-10-15T00:00:00Z"
+      },
+      {
+        "fact_id": "svc:demo_submission:fee",
+        "source_url": "https://example.org/c4/fixtures/parallel",
+        "retrieved_at": "2026-10-15T00:00:00Z"
+      }
+    ],
+    "conditions": [
+      {
+        "condition_id": "condition:have_copy",
+        "text": "You already have the fictional supporting copy.",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "condition_id": "condition:no_copy",
+        "text": "You do not have the fictional supporting copy.",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      }
+    ],
+    "stages": [
+      {
+        "service_id": "svc:demo_application",
+        "display_order": 1,
+        "name": "Synthetic demo: register an application",
+        "agency": "Fictional C4 Demo Office",
+        "fee_fact_id": "svc:demo_application:fee",
+        "document_fact_ids": []
+      },
+      {
+        "service_id": "svc:demo_preparation",
+        "display_order": 2,
+        "name": "Synthetic demo: prepare two required items",
+        "agency": "Fictional C4 Demo Office",
+        "fee_fact_id": "svc:demo_preparation:fee",
+        "document_fact_ids": []
+      },
+      {
+        "service_id": "svc:demo_submission",
+        "display_order": 3,
+        "name": "Practice application: prepare and submit",
+        "agency": "Fictional C4 Demo Office",
+        "fee_fact_id": "svc:demo_submission:fee",
+        "document_fact_ids": [
+          "svc:demo_submission:document:form",
+          "svc:demo_submission:document:copy"
+        ]
+      }
+    ],
+    "stage_edges": [
+      {
+        "edge_id": "stage_dependency:svc:demo_application->svc:demo_preparation",
+        "kind": "stage_dependency",
+        "source_id": "svc:demo_application",
+        "target_id": "svc:demo_preparation"
+      },
+      {
+        "edge_id": "stage_dependency:svc:demo_preparation->svc:demo_submission",
+        "kind": "stage_dependency",
+        "source_id": "svc:demo_preparation",
+        "target_id": "svc:demo_submission"
+      }
+    ],
+    "edges": [
+      {
+        "edge_id": "prerequisite:form_before_submission",
+        "kind": "requires_completion",
+        "source_id": "action:prepare_form",
+        "target_id": "action:submit_application",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "edge_id": "prerequisite:registration_before_copy",
+        "kind": "requires_completion",
+        "source_id": "action:register_application",
+        "target_id": "action:prepare_copy",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "edge_id": "prerequisite:registration_before_form",
+        "kind": "requires_completion",
+        "source_id": "action:register_application",
+        "target_id": "action:prepare_form",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "edge_id": "prerequisite:registration_before_office",
+        "kind": "requires_completion",
+        "source_id": "action:register_application",
+        "target_id": "action:obtain_copy",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      }
+    ],
+    "branches": [
+      {
+        "group_id": "branch:copy_route",
+        "service_id": "svc:demo_preparation",
+        "selection": "XOR",
+        "options": [
+          {
+            "option_id": "option:office",
+            "action_ids": [
+              "action:obtain_copy"
+            ],
+            "condition_ids": [
+              "condition:no_copy"
+            ]
+          },
+          {
+            "option_id": "option:own",
+            "action_ids": [
+              "action:prepare_copy"
+            ],
+            "condition_ids": [
+              "condition:have_copy"
+            ]
+          }
+        ],
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      }
+    ],
+    "parallel": [],
+    "joins": [
+      {
+        "target": "action:submit_application",
+        "requirement": {
+          "kind": "all_of",
+          "ref": null,
+          "children": [
+            {
+              "kind": "action",
+              "ref": "action:prepare_form",
+              "children": []
+            },
+            {
+              "kind": "selected_option_of",
+              "ref": "branch:copy_route",
+              "children": []
+            }
+          ]
+        },
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      }
+    ],
+    "parallel_areas": [
+      [
+        {
+          "kind": "action",
+          "ref": "action:prepare_form",
+          "children": []
+        },
+        {
+          "kind": "selected_option_of",
+          "ref": "branch:copy_route",
+          "children": []
+        }
+      ]
+    ],
+    "completeness": {
+      "service_dependencies": "complete",
+      "actions": "complete",
+      "content": "complete",
+      "conditions": "complete",
+      "branch_groups": "complete",
+      "prerequisites": "complete",
+      "parallel_groups": "complete"
+    },
+    "capabilities": {
+      "navigation": {
+        "states": [
+          "overview",
+          "guided"
+        ],
+        "applicable": true,
+        "reason": "bounded guidance browsing; not execution order"
+      },
+      "explanation": {
+        "states": [
+          "concise",
+          "expanded"
+        ],
+        "applicable": true,
+        "reason": "expanded requires reviewed full coverage variants"
+      },
+      "disclosure": {
+        "states": [
+          "collapsed",
+          "expanded"
+        ],
+        "applicable": true,
+        "reason": "no reviewed optional material"
+      },
+      "relationships": {
+        "states": [
+          "none",
+          "inline",
+          "map"
+        ],
+        "applicable": true,
+        "reason": "only supplied relationships; completeness caveats retained"
+      },
+      "recap": {
+        "states": [
+          "off",
+          "on"
+        ],
+        "applicable": true,
+        "reason": "within-journey opportunity appears after earlier action display"
+      },
+      "summary": {
+        "states": [
+          "off",
+          "on"
+        ],
+        "applicable": true,
+        "reason": "deduplicated facts; no inferred fee total"
+      }
+    },
+    "measurement_semantics": "v2.1: conditional joins count once; depth is maximum supplied structural path; no implied completion",
+    "content_origin": "reviewed authored fixture",
+    "reviewer": "synthetic-fixture-author-v2; not official-source review",
+    "content_fingerprint": "ed025a7762b229523753ead9edf46036b281d19341f5dc944a8ddaa4374611fa"
+  },
+  "current_view": "view:ba98b912f409456588ddfbf4c46c8afb",
+  "root_view": "view:ba98b912f409456588ddfbf4c46c8afb",
+  "views": {
+    "view:ba98b912f409456588ddfbf4c46c8afb": {
+      "id": "view:ba98b912f409456588ddfbf4c46c8afb",
+      "parent": null,
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "expanded",
+        "disclosure": "collapsed",
+        "relationships": "map",
+        "recap": "off",
+        "summary": "on"
+      },
+      "displayed": [],
+      "rating": null
+    }
+  },
+  "events": [],
+  "seen": [],
+  "focus": null,
+  "focused_routes": {},
+  "opportunities": {},
+  "created_at": "2026-10-20T11:40:27.162433+00:00"
+}

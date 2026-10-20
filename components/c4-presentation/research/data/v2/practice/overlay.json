@@ -1,0 +1,134 @@
+{
+  "schema_version": "c4-enrichment-v2.1",
+  "graph_fingerprint": "edbab5e04baffd245dd51b049c5d250c7cbc6fc19ac181028394e4520ed448b4",
+  "reviewer": "synthetic-fixture-author-v2; not official-source review",
+  "variants": [
+    {
+      "action_id": "action:register_application",
+      "title": "Register the practice application",
+      "concise": "Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.",
+      "expanded": "Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.\n\nRegistration is the common prerequisite for both preparation work areas. The copy routes are alternatives, while the form is required in either route.",
+      "recap": "Register the practice application",
+      "required_content_ids": [
+        "content:register_application"
+      ],
+      "evidence_ids": [
+        "evidence:application_rules"
+      ]
+    },
+    {
+      "action_id": "action:prepare_form",
+      "title": "Prepare the form",
+      "concise": "After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.",
+      "expanded": "After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.\n\nForm preparation does not replace copy preparation. You can work on either preparation area first after registration.",
+      "recap": "Prepare the form",
+      "required_content_ids": [
+        "content:prepare_form"
+      ],
+      "evidence_ids": [
+        "evidence:application_rules"
+      ]
+    },
+    {
+      "action_id": "action:prepare_copy",
+      "title": "Prepare your existing copy",
+      "concise": "If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.",
+      "expanded": "If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.\n\nThis is one of two alternative copy routes. Submission still requires the form as well as this copy.",
+      "recap": "Prepare your existing copy",
+      "required_content_ids": [
+        "content:prepare_copy"
+      ],
+      "evidence_ids": [
+        "evidence:application_rules"
+      ]
+    },
+    {
+      "action_id": "action:obtain_copy",
+      "title": "Obtain a copy at the Records Desk",
+      "concise": "If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.",
+      "expanded": "If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.\n\nThe Records Desk supplies the copy for this route. It does not prepare the application form; that separate preparation is still required.",
+      "recap": "Obtain a copy at the Records Desk",
+      "required_content_ids": [
+        "content:obtain_copy"
+      ],
+      "evidence_ids": [
+        "evidence:application_rules"
+      ]
+    },
+    {
+      "action_id": "action:submit_application",
+      "title": "Submit both prepared items",
+      "concise": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.",
+      "expanded": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.\n\nThe final action joins two work areas: the form and one copy route. The two copy alternatives are not both required.",
+      "recap": "Submit both prepared items",
+      "required_content_ids": [
+        "content:submit_application"
+      ],
+      "evidence_ids": [
+        "evidence:application_rules"
+      ]
+    }
+  ],
+  "owners": [
+    {
+      "action_id": "action:register_application",
+      "actor": "Fictional Registration Desk",
+      "evidence_ids": [
+        "evidence:application_rules"
+      ]
+    },
+    {
+      "action_id": "action:obtain_copy",
+      "actor": "Fictional Records Desk",
+      "evidence_ids": [
+        "evidence:application_rules"
+      ]
+    },
+    {
+      "action_id": "action:submit_application",
+      "actor": "Fictional Submission Desk",
+      "evidence_ids": [
+        "evidence:application_rules"
+      ]
+    }
+  ],
+  "joins": [
+    {
+      "target": "action:submit_application",
+      "requirement": {
+        "kind": "all_of",
+        "children": [
+          {
+            "kind": "action",
+            "ref": "action:prepare_form"
+          },
+          {
+            "kind": "selected_option_of",
+            "ref": "branch:copy_route"
+          }
+        ]
+      },
+      "evidence_ids": [
+        "evidence:application_rules"
+      ]
+    }
+  ],
+  "parallel_areas": [
+    [
+      {
+        "kind": "action",
+        "ref": "action:prepare_form"
+      },
+      {
+        "kind": "selected_option_of",
+        "ref": "branch:copy_route"
+      }
+    ]
+  ],
+  "evidence_ids": [
+    "evidence:application_rules"
+  ],
+  "optional_content_ids": [
+    "content:preparation_explanation"
+  ]
+}
