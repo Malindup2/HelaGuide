@@ -94,7 +94,7 @@ export default function App() {
           <div className="workspace-heading">
             <div><p className="eyebrow">Guidance, at your pace</p><h1>A clearer next step.</h1>
               <p className="muted">Choose a procedure and the support experience you want to explore.</p></div>
-            <span className="tag source-tag">Synthetic procedures</span>
+            <span className="tag source-tag">Procedure examples</span>
           </div>
 
           {state.error && (
@@ -128,8 +128,8 @@ export default function App() {
                   <span className="count-label">{state.procedures.length} registered</span>
                 </div>
                 <label className="search-field">
-                  <span aria-hidden="true">⌕</span><span className="sr-only">Search registered demo procedures</span>
-                  <input type="search" placeholder="Find a demo procedure…" value={search} onChange={(event) => setSearch(event.target.value)} />
+                  <span aria-hidden="true">⌕</span><span className="sr-only">Search registered procedures</span>
+                  <input type="search" placeholder="Find a procedure…" value={search} onChange={(event) => setSearch(event.target.value)} />
                 </label>
                 <div className="procedure-grid">
                   {visibleProcedures.map((procedure, index) => (
@@ -137,14 +137,14 @@ export default function App() {
                       className={"procedure-choice " + (selected?.procedure_id === procedure.procedure_id ? "selected" : "")}
                       aria-pressed={selected?.procedure_id === procedure.procedure_id}
                       onClick={() => workspace.selectProcedure(procedure.procedure_id)}>
-                      <span className="procedure-top"><span className="eyebrow">Demo procedure</span><span aria-hidden="true">{selected?.procedure_id === procedure.procedure_id ? "✓" : String(index + 1).padStart(2, "0")}</span></span>
+                      <span className="procedure-top"><span className="eyebrow">{procedure.synthetic ? "Synthetic scenario" : "Official-source snapshot"}</span><span aria-hidden="true">{selected?.procedure_id === procedure.procedure_id ? "✓" : String(index + 1).padStart(2, "0")}</span></span>
                       <strong>{procedure.title}</strong>
                       <span className="procedure-meta">{procedure.action_ids.length} actions<span aria-hidden="true">↗</span></span>
                     </button>
                   ))}
                 </div>
                 {visibleProcedures.length === 0 && <p className="empty-state">{state.procedures.length ? "No registered procedures match that search." : "No procedures are registered in this backend."}</p>}
-                <p className="helper-text">Search selects supplied demo procedures. Free-text government-service intent is not connected here.</p>
+                <p className="helper-text">Search selects registered procedure examples. Free-text government-service intent is not connected here.</p>
               </section>
 
               <section className="panel entry-panel" aria-labelledby="entry-title">
@@ -191,7 +191,7 @@ export default function App() {
 
               {active && <div className="panel"><ContextSummary active={active} procedures={state.procedures} /></div>}
 
-              <div className="source-note"><span aria-hidden="true">◇</span><div><strong>Research examples, not official instructions</strong><p>{selected?.disclaimer ?? "The registered procedures are synthetic. No government transaction, eligibility decision or application submission occurs here."}</p></div></div>
+              <div className="source-note"><span aria-hidden="true">◇</span><div><strong>Research examples, not official instructions</strong><p>{selected?.disclaimer ?? "The catalogue contains research examples. No government transaction, eligibility decision or application submission occurs here."}</p></div></div>
             </>
           ) : (
             <div className="panel"><h2>Start the C4 development backend</h2><p className="muted">The workspace needs its independent API to load real procedures and saved profiles.</p><code>{API_BASE}</code></div>

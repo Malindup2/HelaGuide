@@ -36,7 +36,7 @@ export interface PipelineTrace {
     exact_value: number | null; normalized_observed: number; normalized_exact: number | null } }[];
   content: { explanation_origin: "generated" | "fallback"; assurance: string;
     recorded_cache_hit: boolean; diagnostics: string[]; generated_item_count: number;
-    source_copy_item_count: number; wording_status: "snapshot_not_available" | "snapshot_source_fallback" | "reviewed_snapshot";
+    source_copy_item_count: number; wording_status: "snapshot_not_available" | "snapshot_source_fallback" | "reviewed_snapshot" | "demo_mock_snapshot";
     wording_origins: string[]; wording_diagnostics: string[]; wording_digest: string | null };
   candidates: TraceCandidate[];
   selection: { policy_run_id: string; prior_version: string; prior_status: string;

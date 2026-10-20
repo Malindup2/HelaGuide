@@ -5,7 +5,7 @@ import FeedbackPanel from "../feedback/FeedbackPanel";
 import { browserStorage } from "../session/continuity";
 import { guidanceApi } from "./api";
 import { GuidanceEpisode } from "./episode";
-import { ActionSection, PreviousStepSummary, SelectedAids, SourceItems, SourceRegister } from "./rendering";
+import { ActionSection, PreviousStepSummary, SelectedAids, ServiceRequirements, SourceItems, SourceRegister } from "./rendering";
 import { actionDomId, actionTitle } from "./scaffoldModel";
 import { actionLabel, documentOf } from "./types";
 import type { Standard } from "./types";
@@ -118,7 +118,7 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
     {doc && <div className="guidance-output">
       <div className="guidance-metadata">
         <span className="tag">{guided ? "Guided" : "Overview"}</span>
-        <span className="tag">{doc.prepared_wording?.artifact_digest ? "Reviewed wording · original sources retained" :
+        <span className="tag">{doc.prepared_wording?.items.some((item) => item.origin === "demo_mock") ? "Prepared demo wording · pending validation" : doc.prepared_wording?.artifact_digest ? "Reviewed wording · original sources retained" :
           doc.explanation.origin === "fallback" ? "Source-preserving fallback" : "Generated explanation · original sources retained"}</span>
         <span className="tag">{doc.explanation.source.graph.synthetic ? "Synthetic demonstration" : "Supplied sources · verification status below"}</span>
       </div>
@@ -127,6 +127,7 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
       <div className="source-notices">
         <SourceItems doc={doc} refs={doc.global_items.filter((ref) => ref.kind === "notice")} />
       </div>
+      <ServiceRequirements doc={doc} />
       {archived && <p className="guidance-stale" role="status">{manual ? "This manually adjusted view is retained for reference. Request fresh guidance to use current settings." : "This is the original acknowledged presentation retained for reference and feedback. Request fresh guidance to use current settings."}</p>}
       {manual && <p className="notice">User-adjusted view · {views.value?.original_view ? "original layout restored" : "temporary settings"} · ratings saved separately from policy learning</p>}
       {spec && <SelectedAids spec={spec} currentActionId={guided ? focus : null} />}
@@ -162,7 +163,7 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
       {manual && adjustments ? <ManualViewFeedback flow={adjustments} state={views} disabled={blocked || !!archived} /> : spec && <FeedbackPanel key={spec.exposure_id} spec={spec} navigation={navigation}
         disabled={disabled || state.loading || state.busy || state.pending !== null || !views.ready || views.busy || views.loading}
         onActivityChange={setFeedbackLocked} onPreferencesApplied={onPreferencesApplied} />}
-      <SourceRegister doc={doc} />
+      <SourceRegister doc={doc} serviceFactsRendered />
       <div className="exposure-status" role="status">
         {spec ? <><strong>{navigation?.acknowledged ? "Display acknowledgment recorded" : "Awaiting a visible action"}</strong>
           <p>{navigation?.displayed_action_ids.length ?? 0} of {doc.pages.length} actions recorded as displayed. This does not measure comprehension or completion.</p>
@@ -172,7 +173,7 @@ export default function GuidanceWorkspace({ active, procedure, disabled, onActiv
       <details className="guidance-attribution"><summary>Guidance reference</summary>
         <dl><dt>Graph fingerprint</dt><dd>{doc.graph_fingerprint}</dd>
           <dt>Source status</dt><dd>{doc.explanation.source_status}</dd><dt>Assurance</dt><dd>{doc.explanation.assurance}</dd>
-          {doc.prepared_wording && <><dt>Prepared wording</dt><dd>{doc.prepared_wording.artifact_digest ? "Reviewed snapshot" : "Source fallback"}</dd>
+          {doc.prepared_wording && <><dt>Prepared wording</dt><dd>{doc.prepared_wording.items.some((item) => item.origin === "demo_mock") ? "Demo mock snapshot" : doc.prepared_wording.artifact_digest ? "Reviewed snapshot" : "Source fallback"}</dd>
             <dt>Wording origins</dt><dd>{[...new Set(doc.prepared_wording.items.map((item) => item.origin))].join(", ")}</dd>
             <dt>Wording reference</dt><dd>{doc.prepared_wording.request_key}</dd></>}
           {spec && <><dt>Presentation</dt><dd>{spec.presentation_id}</dd><dt>Exposure</dt><dd>{spec.exposure_id}</dd>

@@ -58,6 +58,8 @@ class PreparedWordingStore:
         artifact = self.read(key)
         if artifact is None:
             raise ArtifactStoreError("wording_not_found")
+        if artifact.origin == "demo_mock":
+            raise ArtifactStoreError("mock_must_be_replaced_by_an_authored_or_provider_artifact")
         reviewed = artifact.model_copy(update={"review": HumanReview(
             artifact_digest=wording_digest(artifact), reviewer_reference=reviewer_reference,
             reviewed_at=datetime.now(timezone.utc),
@@ -165,7 +167,7 @@ def generate_wording(packet, provider, *, max_batches=8):
     return artifact
 
 
-def resolve_wording(graph, store, *, writing_style="plain"):
+def resolve_wording(graph, store, *, writing_style="plain", allow_demo_mock=False):
     """Read only. Always expose source fallbacks for missing slots."""
     packet = prepare_wording_packet(graph, writing_style=writing_style)
     key = wording_key(packet)
@@ -173,10 +175,14 @@ def resolve_wording(graph, store, *, writing_style="plain"):
     artifact = None
     try:
         artifact = store.read(key)
+        if artifact is not None:
+            validate_wording_artifact(artifact)
         if artifact is None:
             diagnostics.append("wording_not_prepared")
         elif artifact.source != packet:
             raise OutputRejected("wording_current_source_mismatch")
+        elif artifact.origin == "demo_mock" and allow_demo_mock:
+            diagnostics.append("demo_mock_not_expert_reviewed_or_live_provider_output")
         elif artifact.review is None:
             diagnostics.append("wording_human_review_required")
             artifact = None

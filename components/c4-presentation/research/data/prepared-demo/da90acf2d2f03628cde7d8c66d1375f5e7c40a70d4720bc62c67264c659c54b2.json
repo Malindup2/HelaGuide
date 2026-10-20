@@ -1,0 +1,3144 @@
+{
+  "schema_version": "c4-prepared-artifact-1.0",
+  "request_key": "da90acf2d2f03628cde7d8c66d1375f5e7c40a70d4720bc62c67264c659c54b2",
+  "recipe_version": "c4-wording-recipe-1.0",
+  "created_at": "2026-10-19T16:10:01.050656Z",
+  "source": {
+    "contract_version": "c4-prepared-wording-1.0",
+    "graph_fingerprint": "213071cb3b7ffff73c03745e760c988593deb2b1dc15e167794f092186c05436",
+    "language": "en",
+    "writing_style": "plain",
+    "graph": {
+      "graph_schema_version": "1.0",
+      "enrichment_schema_version": "1.0",
+      "plan_id": "official-company_pack-v3",
+      "requested_service_id": "svc:company_pack",
+      "generated_at": "2026-10-19T14:19:11Z",
+      "synthetic": false,
+      "disclaimer": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+      "stages": [
+        {
+          "service_id": "svc:company_pack",
+          "display_order": 1,
+          "name": "Private company: required incorporation document sets",
+          "agency": "Department of the Registrar of Companies",
+          "fee_fact_id": "svc:company_pack:fee",
+          "document_fact_ids": [
+            "svc:company_pack:document:0",
+            "svc:company_pack:document:1",
+            "svc:company_pack:document:2",
+            "svc:company_pack:document:3",
+            "svc:company_pack:document:4"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "action_id": "action:company_articles",
+          "service_id": "svc:company_pack",
+          "required_content_ids": [
+            "content:company_articles",
+            "content:scope"
+          ],
+          "supplementary_content_ids": [],
+          "direct_condition_ids": [],
+          "applicability": {
+            "condition_ids": [],
+            "branch_group_id": null,
+            "branch_option_id": null
+          }
+        },
+        {
+          "action_id": "action:company_check",
+          "service_id": "svc:company_pack",
+          "required_content_ids": [
+            "content:company_check",
+            "content:scope"
+          ],
+          "supplementary_content_ids": [],
+          "direct_condition_ids": [],
+          "applicability": {
+            "condition_ids": [],
+            "branch_group_id": null,
+            "branch_option_id": null
+          }
+        },
+        {
+          "action_id": "action:company_directors",
+          "service_id": "svc:company_pack",
+          "required_content_ids": [
+            "content:company_directors",
+            "content:scope"
+          ],
+          "supplementary_content_ids": [],
+          "direct_condition_ids": [],
+          "applicability": {
+            "condition_ids": [],
+            "branch_group_id": null,
+            "branch_option_id": null
+          }
+        },
+        {
+          "action_id": "action:company_form",
+          "service_id": "svc:company_pack",
+          "required_content_ids": [
+            "content:company_form",
+            "content:scope"
+          ],
+          "supplementary_content_ids": [],
+          "direct_condition_ids": [],
+          "applicability": {
+            "condition_ids": [],
+            "branch_group_id": null,
+            "branch_option_id": null
+          }
+        },
+        {
+          "action_id": "action:company_secretary",
+          "service_id": "svc:company_pack",
+          "required_content_ids": [
+            "content:company_secretary",
+            "content:scope"
+          ],
+          "supplementary_content_ids": [],
+          "direct_condition_ids": [],
+          "applicability": {
+            "condition_ids": [],
+            "branch_group_id": null,
+            "branch_option_id": null
+          }
+        }
+      ],
+      "stage_dependencies": [],
+      "action_prerequisites": [
+        {
+          "edge_id": "prerequisite:0",
+          "kind": "requires_completion",
+          "source_id": "action:company_form",
+          "target_id": "action:company_check",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:1",
+          "kind": "requires_completion",
+          "source_id": "action:company_directors",
+          "target_id": "action:company_check",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:2",
+          "kind": "requires_completion",
+          "source_id": "action:company_secretary",
+          "target_id": "action:company_check",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:3",
+          "kind": "requires_completion",
+          "source_id": "action:company_articles",
+          "target_id": "action:company_check",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        }
+      ],
+      "conditions": [],
+      "branch_groups": [],
+      "parallel_groups": [],
+      "content": [
+        {
+          "content_id": "content:company_articles",
+          "role": "required",
+          "text": "Prepare two copies of the Articles of Association for the manual application.",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "fact_ids": [
+            "svc:company_pack:document:4"
+          ]
+        },
+        {
+          "content_id": "content:company_check",
+          "role": "required",
+          "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "fact_ids": [
+            "svc:company_pack:document:0",
+            "svc:company_pack:document:1",
+            "svc:company_pack:document:2",
+            "svc:company_pack:document:3",
+            "svc:company_pack:document:4"
+          ]
+        },
+        {
+          "content_id": "content:company_directors",
+          "role": "required",
+          "text": "Prepare Form 18 director consent documentation for the application.",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "fact_ids": [
+            "svc:company_pack:document:2"
+          ]
+        },
+        {
+          "content_id": "content:company_form",
+          "role": "required",
+          "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "fact_ids": [
+            "svc:company_pack:document:0",
+            "svc:company_pack:document:1",
+            "svc:company_pack:fee"
+          ]
+        },
+        {
+          "content_id": "content:company_secretary",
+          "role": "required",
+          "text": "Prepare Form 19 secretary consent documentation for the application.",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "fact_ids": [
+            "svc:company_pack:document:3"
+          ]
+        },
+        {
+          "content_id": "content:scope",
+          "role": "required",
+          "text": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "evidence_ids": [
+            "evidence:company_docs",
+            "evidence:company_fee"
+          ],
+          "fact_ids": []
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "evidence:company_docs",
+          "kind": "source_passage",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "text": "Short source anchor: Submit the above mentioned documents to the information counter",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "evidence_id": "evidence:company_fee",
+          "kind": "source_passage",
+          "source_url": "https://drc.gov.lk/en/?p=3968",
+          "text": "Short source anchor: Form 01",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "facts": [
+        {
+          "kind": "document",
+          "fact_id": "svc:company_pack:document:0",
+          "name": "Approved name certificate"
+        },
+        {
+          "kind": "document",
+          "fact_id": "svc:company_pack:document:1",
+          "name": "Form 1"
+        },
+        {
+          "kind": "document",
+          "fact_id": "svc:company_pack:document:2",
+          "name": "Form 18"
+        },
+        {
+          "kind": "document",
+          "fact_id": "svc:company_pack:document:3",
+          "name": "Form 19"
+        },
+        {
+          "kind": "document",
+          "fact_id": "svc:company_pack:document:4",
+          "name": "Two copies of Articles of Association"
+        },
+        {
+          "kind": "fee",
+          "fact_id": "svc:company_pack:fee",
+          "value": 4000.0,
+          "currency": "LKR"
+        }
+      ],
+      "provenance": [
+        {
+          "fact_id": "svc:company_pack:document:0",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:document:1",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:document:2",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:document:3",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:document:4",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:fee",
+          "source_url": "https://drc.gov.lk/en/?p=3968",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "unknown"
+      }
+    },
+    "targets": [
+      {
+        "slot_id": "action_heading/action/action:company_articles",
+        "kind": "action_heading",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_articles"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare two copies of the Articles of Association for the manual application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_articles",
+        "kind": "action_explanation",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_articles"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare two copies of the Articles of Association for the manual application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_summary/action/action:company_articles",
+        "kind": "action_summary",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_articles"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare two copies of the Articles of Association for the manual application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_articles",
+        "kind": "diagram_label",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_articles"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare two copies of the Articles of Association for the manual application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_heading/action/action:company_check",
+        "kind": "action_heading",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_check"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_check",
+        "kind": "action_explanation",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_check"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_summary/action/action:company_check",
+        "kind": "action_summary",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_check"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_check",
+        "kind": "diagram_label",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_check"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_heading/action/action:company_directors",
+        "kind": "action_heading",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_directors"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 18 director consent documentation for the application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_directors",
+        "kind": "action_explanation",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_directors"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 18 director consent documentation for the application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_summary/action/action:company_directors",
+        "kind": "action_summary",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_directors"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 18 director consent documentation for the application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_directors",
+        "kind": "diagram_label",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_directors"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 18 director consent documentation for the application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_heading/action/action:company_form",
+        "kind": "action_heading",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_form"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_form",
+        "kind": "action_explanation",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_form"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_summary/action/action:company_form",
+        "kind": "action_summary",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_form"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_form",
+        "kind": "diagram_label",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_form"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_heading/action/action:company_secretary",
+        "kind": "action_heading",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_secretary"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 19 secretary consent documentation for the application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_secretary",
+        "kind": "action_explanation",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_secretary"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 19 secretary consent documentation for the application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_summary/action/action:company_secretary",
+        "kind": "action_summary",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_secretary"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 19 secretary consent documentation for the application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_secretary",
+        "kind": "diagram_label",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:company_secretary"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "Prepare Form 19 secretary consent documentation for the application. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "diagram_label/stage/svc:company_pack",
+        "kind": "diagram_label",
+        "subject": {
+          "kind": "stage",
+          "reference_id": "svc:company_pack"
+        },
+        "source_references": [
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          },
+          {
+            "kind": "stage",
+            "reference_id": "svc:company_pack"
+          }
+        ],
+        "evidence_ids": [],
+        "fallback_text": "Private company: required incorporation document sets"
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:0",
+        "kind": "prerequisite_explanation",
+        "subject": {
+          "kind": "action_prerequisite",
+          "reference_id": "prerequisite:0"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "action:company_form must be completed before action:company_check. Completion is not established."
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:1",
+        "kind": "prerequisite_explanation",
+        "subject": {
+          "kind": "action_prerequisite",
+          "reference_id": "prerequisite:1"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "action:company_directors must be completed before action:company_check. Completion is not established."
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:2",
+        "kind": "prerequisite_explanation",
+        "subject": {
+          "kind": "action_prerequisite",
+          "reference_id": "prerequisite:2"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "action:company_secretary must be completed before action:company_check. Completion is not established."
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:3",
+        "kind": "prerequisite_explanation",
+        "subject": {
+          "kind": "action_prerequisite",
+          "reference_id": "prerequisite:3"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ],
+        "fallback_text": "action:company_articles must be completed before action:company_check. Completion is not established."
+      }
+    ]
+  },
+  "origin": "demo_mock",
+  "author_reference": "assistant-authored-demo; pending source and expert validation",
+  "provider": null,
+  "generation_calls": [],
+  "assessment_calls": [],
+  "draft": {
+    "synthetic": false,
+    "items": [
+      {
+        "slot_id": "action_heading/action/action:company_articles",
+        "text": "Prepare the Articles of Association",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_articles",
+        "text": "Prepare two copies of the Articles of Association for the manual application.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_summary/action/action:company_articles",
+        "text": "Prepare two copies of the Articles of Association.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_articles",
+        "text": "Prepare the Articles of Association",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_heading/action/action:company_check",
+        "text": "Submit the complete set for a format check",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_check",
+        "text": "Once all four sets are prepared, submit them with the approved name certificate for the format check. All preparation steps feed into this check.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_summary/action/action:company_check",
+        "text": "Submit all four prepared document sets and the approved name certificate.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_check",
+        "text": "Submit the complete set for a format check",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_heading/action/action:company_directors",
+        "text": "Prepare director consent — Form 18",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_directors",
+        "text": "Prepare Form 18 director consent documentation for the application.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_summary/action/action:company_directors",
+        "text": "Prepare the Form 18 director consent documentation.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_directors",
+        "text": "Prepare director consent — Form 18",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_heading/action/action:company_form",
+        "text": "Prepare Form 1",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_form",
+        "text": "Use the approved company name to prepare Form 1 for incorporation. The recorded LKR 4000 is the Form 1 base charge only; it excludes VAT and other charges.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_summary/action/action:company_form",
+        "text": "After name approval, prepare Form 1.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_form",
+        "text": "Prepare Form 1",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_heading/action/action:company_secretary",
+        "text": "Prepare secretary consent — Form 19",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_explanation/action/action:company_secretary",
+        "text": "Prepare Form 19 secretary consent documentation for the application.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_summary/action/action:company_secretary",
+        "text": "Prepare the Form 19 secretary consent documentation.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "diagram_label/action/action:company_secretary",
+        "text": "Prepare secretary consent — Form 19",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "diagram_label/stage/svc:company_pack",
+        "text": "Prepare company incorporation documents",
+        "source_references": [
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          },
+          {
+            "kind": "stage",
+            "reference_id": "svc:company_pack"
+          }
+        ],
+        "citations": []
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:0",
+        "text": "Prepare Form 1 before you submit the complete set for a format check.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_form"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_form"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:1",
+        "text": "Prepare director consent — Form 18 before you submit the complete set for a format check.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_directors"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:1"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_directors"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:2",
+        "text": "Prepare secretary consent — Form 19 before you submit the complete set for a format check.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_secretary"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:2"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_secretary"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:3",
+        "text": "Prepare the Articles of Association before you submit the complete set for a format check.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:company_articles"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:company_check"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:3"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_articles"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:company_check"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_docs"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:company_fee"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:2"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:3"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:company_pack:document:4"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:company_docs",
+            "quote": "Short source anchor: Submit the above mentioned documents to the information counter"
+          },
+          {
+            "evidence_id": "evidence:company_fee",
+            "quote": "Short source anchor: Form 01"
+          }
+        ]
+      }
+    ]
+  },
+  "assessment": null,
+  "review": null
+}

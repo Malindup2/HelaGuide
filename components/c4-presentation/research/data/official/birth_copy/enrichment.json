@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "plan_id": "official-birth_copy-v3",
+  "base_generated_at": "2026-10-19T14:19:11Z",
+  "synthetic": false,
+  "disclaimer": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+  "actions": [
+    {
+      "action_id": "action:birth_pay",
+      "service_id": "svc:birth_copy",
+      "required_content_ids": [
+        "content:birth_pay",
+        "content:scope"
+      ],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:birth_submit",
+      "service_id": "svc:birth_copy",
+      "required_content_ids": [
+        "content:birth_submit",
+        "content:scope"
+      ],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    }
+  ],
+  "content": [
+    {
+      "content_id": "content:scope",
+      "role": "required",
+      "text": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+      "evidence_ids": [
+        "evidence:birth_request"
+      ],
+      "fact_ids": []
+    },
+    {
+      "content_id": "content:birth_pay",
+      "role": "required",
+      "text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service.",
+      "evidence_ids": [
+        "evidence:birth_request"
+      ],
+      "fact_ids": [
+        "svc:birth_copy:fee"
+      ]
+    },
+    {
+      "content_id": "content:birth_submit",
+      "role": "required",
+      "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+      "evidence_ids": [
+        "evidence:birth_request"
+      ],
+      "fact_ids": [
+        "svc:birth_copy:document:0",
+        "svc:birth_copy:document:1"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "evidence:birth_request",
+      "kind": "source_passage",
+      "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+      "text": "Short source anchor: submitting the receipt",
+      "retrieved_at": "2026-10-19T14:19:11Z"
+    }
+  ],
+  "conditions": [],
+  "prerequisites": [
+    {
+      "prerequisite_id": "prerequisite:0",
+      "kind": "requires_completion",
+      "required_action_id": "action:birth_pay",
+      "dependent_action_id": "action:birth_submit",
+      "evidence_ids": [
+        "evidence:birth_request"
+      ]
+    }
+  ],
+  "branch_groups": [],
+  "parallel_groups": [],
+  "completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "unknown"
+  }
+}

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import type { Card, Document, Item, Page, Spec, Navigation } from "./types";
-import { itemKey } from "./types";
+import { actionFactItems, contentCoveredByNotice, itemKey, serviceFactItems } from "./types";
 import { actionDomId, actionTitle } from "./scaffoldModel";
 import RelationshipMap from "./RelationshipMap";
 import { preparedText, previousViewedAction } from "./wording";
@@ -50,16 +50,40 @@ export function PrerequisiteCues({ doc, refs }: { doc: Document; refs: Item[] })
     <p className="helper-text">These are supplied requirements. Viewing an earlier action does not confirm its completion.</p>
   </aside>;
 }
-function ActionFacts({ doc, page }: { doc: Document; page: Page }) {
-  const stage = doc.explanation.source.graph.stages.find((row) => row.service_id === page.service_id);
-  if (!stage) return null;
-  const lookup = (id: string) => doc.cards.find((card) => card.source.kind === "fact" && card.source.identifier === id)?.lines[0];
-  const fee = lookup(stage.fee_fact_id);
-  const documents = stage.document_fact_ids.map(lookup).filter((line): line is string => !!line);
-  return <dl className="action-facts">
-    {fee && <div><dt>Fee for this service</dt><dd>{fee}</dd></div>}
-    {documents.length > 0 && <div><dt>Required documents</dt><dd><ul>{documents.map((line, index) => <li key={index}>{line}</li>)}</ul></dd></div>}
-  </dl>;
+export function ServiceRequirements({ doc }: { doc: Document }) {
+  const actionLinked = new Set(doc.pages.flatMap((page) => actionFactItems(doc, page.action_id).map((item) => item.identifier)));
+  const available = new Set(serviceFactItems(doc).filter((item) => !actionLinked.has(item.identifier)).map((item) => item.identifier));
+  const emitted = new Set<string>();
+  const services = doc.explanation.source.graph.stages.map((stage) => {
+    const refs = [stage.fee_fact_id, ...stage.document_fact_ids].filter((id) => {
+      if (!available.has(id) || emitted.has(id)) return false;
+      emitted.add(id); return true;
+    }).map((identifier) => ({ kind: "fact", identifier }));
+    return { stage, refs };
+  }).filter((service) => service.refs.length > 0);
+  if (!services.length) return null;
+  return <section className="source-register" aria-label="Service fees and documents">
+    <h3>Service fees and documents</h3>
+    <p className="helper-text">These records apply to the named service, not as an additional charge at each action. Read the scope information above for fee exclusions and applicability.</p>
+    {services.map(({ stage, refs }) => <section key={stage.service_id} className="source-register-group">
+      <h4>{stage.name}</h4><p className="muted">Agency: {stage.agency}</p>
+      <div className="source-register-grid"><SourceItems doc={doc} refs={refs} /></div>
+    </section>)}
+  </section>;
+}
+export function ActionRequirements({ doc, actionId }: { doc: Document; actionId: string }) {
+  const refs = actionFactItems(doc, actionId);
+  const stage = doc.explanation.source.graph.stages.find((row) =>
+    doc.explanation.source.graph.actions.some((a) => a.action_id === actionId && a.service_id === row.service_id));
+  const fee = refs.filter((ref) => ref.identifier === stage?.fee_fact_id);
+  const documents = refs.filter((ref) => stage?.document_fact_ids.includes(ref.identifier));
+  if (!refs.length) return <p className="helper-text">No action-specific fee or document links were supplied. This does not mean the step is free or needs no documents.</p>;
+  return <section className="action-facts" aria-label="Requirements for this step">
+    {fee.length > 0 && <div><h4>Fee associated with this step</h4><SourceItems doc={doc} refs={fee} />
+      <p className="helper-text">Read the step explanation for payment timing and exclusions. A repeated fee reference is the same charge.</p></div>}
+    {documents.length > 0 && <div><h4>Documents used or prepared in this step</h4><SourceItems doc={doc} refs={documents} /></div>}
+    <SourceItems doc={doc} refs={refs.filter((ref) => !fee.includes(ref) && !documents.includes(ref))} />
+  </section>;
 }
 export function ActionSection({ doc, page, index, disabled, observeToken, onVisible }: {
   doc: Document; page: Page; index: number; disabled: boolean; observeToken: string;
@@ -87,20 +111,22 @@ export function ActionSection({ doc, page, index, disabled, observeToken, onVisi
   const graph = doc.explanation.source.graph;
   const stage = graph.stages.find((row) => row.service_id === page.service_id);
   const group = graph.branch_groups.find((row) => row.group_id === page.branch_group_id);
-  const primaryItems = page.items.filter((item) => item.kind === "content");
+  const primaryItems = page.items.filter((item) => item.kind === "content" &&
+    (!contentCoveredByNotice(doc, item.identifier) || doc.explanation.explanations.some((row) =>
+      row.action_id === page.action_id && row.content_id === item.identifier && row.origin === "generated")));
   const otherItems = page.items.filter((item) => item.kind !== "content");
   const preparedExplanation = preparedText(doc, "action_explanation", "action", page.action_id);
   return <article ref={ref} id={actionDomId(page.action_id)} tabIndex={-1} className="action-section" aria-label={"Procedure action " + (index + 1)}>
     <div className="action-heading"><span className="action-number">{String(index + 1).padStart(2, "0")}</span>
       <div><span className="eyebrow">{stage?.name ?? page.service_id}</span><h3>{actionTitle(doc, page.action_id)}</h3>
         {stage && <p className="muted">Agency: {stage.agency}</p>}</div></div>
-    {group && <p className="applicability-note"><strong>{group.selection === "XOR" ? "One alternative only" : group.selection === "OR" ? "One or more applicable alternatives" : "All applicable options"}.</strong> Check the supplied conditions. Viewing this action does not select an option.</p>}
+    {group && <p className="applicability-note"><strong>{group.selection === "XOR" ? "Part of one applicant route" : group.selection === "OR" ? "Part of an applicable route" : "All required parts"}.</strong> This step belongs to the route described below. Other steps in the same route may also be required.</p>}
     {page.condition_ids.length > 0 && <div className="action-conditions"><strong>Applies under these supplied conditions</strong>
       {page.condition_ids.map((id) => <p key={id}>{graph.conditions.find((row) => row.condition_id === id)?.text ?? id}</p>)}</div>}
     <PrerequisiteCues doc={doc} refs={page.prerequisite_cues} />
     {preparedExplanation && <aside className="prepared-step-explanation" aria-label="Step explanation"><p>{preparedExplanation}</p></aside>}
     <SourceItems doc={doc} refs={primaryItems} annotationActionId={page.action_id} suppressAnnotations={!!preparedExplanation} />
-    <ActionFacts doc={doc} page={page} />
+    <ActionRequirements doc={doc} actionId={page.action_id} />
     {otherItems.length > 0 && <div className="action-source-records"><SourceItems doc={doc} refs={otherItems} /></div>}
   </article>;
 }
@@ -130,7 +156,8 @@ export function SelectedAids({ spec, currentActionId }: { spec: Spec; currentAct
     <RelationshipMap spec={spec} currentActionId={currentActionId} />
   </>;
 }
-export function SourceRegister({ doc }: { doc: Document }) {
+export function SourceRegister({ doc, serviceFactsRendered = false }: { doc: Document; serviceFactsRendered?: boolean }) {
+  const renderedFacts = new Set(serviceFactsRendered ? serviceFactItems(doc).map(itemKey) : []);
   const groups = [
     { title: "Requirements and conditions", kinds: ["fact", "condition", "branch_group", "parallel_group", "stage_dependency", "action_prerequisite"] },
     { title: "Sources and provenance", kinds: ["evidence", "provenance"] },
@@ -142,7 +169,7 @@ export function SourceRegister({ doc }: { doc: Document }) {
     <div className="section-heading"><div><p className="eyebrow">Source information</p><h3>Requirements and supporting records</h3></div></div>
     <p className="helper-text">These supplied records remain available throughout. A diagram does not replace requirements or establish completion.</p>
     {groups.map((group) => {
-      const refs = doc.global_items.filter((ref) => group.kinds.includes(ref.kind));
+      const refs = doc.global_items.filter((ref) => group.kinds.includes(ref.kind) && !renderedFacts.has(itemKey(ref)));
       return refs.length ? <section className="source-register-group" key={group.title}><h4>{group.title}</h4>
         <div className="source-register-grid"><SourceItems doc={doc} refs={refs} /></div></section> : null;
     })}

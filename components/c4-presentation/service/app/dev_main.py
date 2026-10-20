@@ -43,6 +43,7 @@ from app.core.presentation import (
 )
 from app.core.procedure_features import extract_structural_features
 from app.core.demo_procedures import load_demo_procedures
+from app.core.official_procedures import load_registered_procedures
 from app.core.scaffolds import graph_fingerprint
 from app.core.user_context import (
     ContextConflictError,
@@ -186,6 +187,7 @@ class DevRuntime:
         generation_enabled=True,
         prepared_wording_directory=None,
         wording_views_directory=None,
+        demo_wording_directory=None,
         adjustment_database_path=None,
     ):
         self.lock = RLock()
@@ -205,7 +207,7 @@ class DevRuntime:
             generation_enabled=generation_enabled,
         )
         self.provider = provider
-        self.wording_views = WordingViews(prepared_wording_directory, wording_views_directory)
+        self.wording_views = WordingViews(prepared_wording_directory, wording_views_directory, demo_wording_directory)
         self.adjustments = AdjustmentStore(adjustment_database_path or (str(database_path) + ".views.sqlite3" if database_path else None))
         self.procedures = {}
 
@@ -519,6 +521,7 @@ class DevRuntime:
 def create_app(
     *,
     provider=None,
+    include_official_examples: bool = False,
     graphs: tuple[CanonicalProcedureGraph, ...] | None = None,
     safety_by_fingerprint: dict[str, ContentSafety] | None = None,
     database_path: str | Path | None = None,
@@ -529,11 +532,14 @@ def create_app(
     reviewed_content_only: bool = False,
     prepared_wording_directory: str | Path | None = None,
     wording_views_directory: str | Path | None = None,
+    demo_wording_directory: str | Path | None = None,
     adjustment_database_path: str | Path | None = None,
 ) -> FastAPI:
     """Create the independent C4 research application.
 
-    Factory-created applications default to in-memory state for tests.
+    Factory-created applications default to in-memory state and synthetic
+    examples for tests; the environment-created server includes official-source
+    snapshots. Explicit graphs override either catalogue choice.
     The module-level application below explicitly enables SQLite.
 
     LLM calls remain disabled unless C4_DEV_LLM_ENABLED=true.
@@ -543,6 +549,8 @@ def create_app(
     allow_legacy_adaptive_sessions=False. Disabled profiles are rejected
     regardless of this compatibility option.
     """
+    if type(include_official_examples) is not bool:
+        raise TypeError("include_official_examples must be bool")
     if type(allow_legacy_adaptive_sessions) is not bool:
         raise TypeError("allow_legacy_adaptive_sessions must be bool")
 
@@ -568,7 +576,8 @@ def create_app(
         active_runtime = None
         try:
             if graphs is None:
-                active_graphs, catalogue_safety = load_demo_procedures()
+                loader = load_registered_procedures if include_official_examples else load_demo_procedures
+                active_graphs, catalogue_safety = loader()
             else:
                 active_graphs = graphs
                 catalogue_safety = {}
@@ -592,6 +601,7 @@ def create_app(
                 generation_enabled=generation_enabled,
                 prepared_wording_directory=prepared_wording_directory,
                 wording_views_directory=wording_views_directory,
+                demo_wording_directory=demo_wording_directory,
                 adjustment_database_path=adjustment_database_path,
             )
             application.state.runtime = active_runtime
@@ -1171,6 +1181,8 @@ def _application_from_environment():
     wording_views_directory = os.getenv("C4_WORDING_VIEWS_DIR") or (
         Path(__file__).resolve().parents[1] / ".local" / "wording-views" / mode
     )
+    demo_wording_directory = (Path(__file__).resolve().parents[2] / "research" / "data" / "prepared-demo"
+                              if mode == "simulation" else None)
     adjustment_database_path = os.getenv("C4_ADJUSTMENT_DB") or (
         Path(__file__).resolve().parents[1] / ".local" / f"c4-{mode}-views.sqlite3"
     )
@@ -1182,6 +1194,7 @@ def _application_from_environment():
                 "C4_DATABASE_URL is required for PostgreSQL storage"
             )
         return create_app(
+            include_official_examples=True,
             postgres_dsn=dsn,
             policy_config=config,
             allow_legacy_adaptive_sessions=False,
@@ -1189,6 +1202,7 @@ def _application_from_environment():
             reviewed_content_only=review_mode == "true",
             prepared_wording_directory=prepared_wording_directory,
             wording_views_directory=wording_views_directory,
+            demo_wording_directory=demo_wording_directory,
             adjustment_database_path=adjustment_database_path,
         )
 
@@ -1200,6 +1214,7 @@ def _application_from_environment():
     database_path = os.getenv("C4_STATE_DB") or default_path
 
     return create_app(
+        include_official_examples=True,
         database_path=database_path,
         policy_config=config,
         allow_legacy_adaptive_sessions=False,
@@ -1207,6 +1222,7 @@ def _application_from_environment():
         reviewed_content_only=review_mode == "true",
         prepared_wording_directory=prepared_wording_directory,
         wording_views_directory=wording_views_directory,
+        demo_wording_directory=demo_wording_directory,
         adjustment_database_path=adjustment_database_path,
     )
 

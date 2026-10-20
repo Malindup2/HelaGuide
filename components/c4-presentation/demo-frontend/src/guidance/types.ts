@@ -16,7 +16,7 @@ export interface Branch {
 export interface Parallel { group_id: string; service_id: string; action_ids: string[] }
 export interface Graph {
   synthetic: boolean; disclaimer: string; stages: Stage[]; actions: Action[];
-  content: { content_id: string; text: string; role: "required" | "supplementary" }[];
+  content: { content_id: string; text: string; role: "required" | "supplementary"; fact_ids?: string[] }[];
   conditions: { condition_id: string; text: string }[];
   stage_dependencies: Edge[]; action_prerequisites: Edge[];
   branch_groups: Branch[]; parallel_groups: Parallel[];
@@ -42,7 +42,7 @@ export interface PreparedWording {
   request_key: string; graph_fingerprint: string; artifact_digest: string | null;
   diagnostics: string[];
   items: { slot_id: string; text: string; source_references: { kind: string; reference_id: string }[];
-    origin: "human_prepared" | "provider_generated" | "source_fallback" }[];
+    origin: "human_prepared" | "provider_generated" | "demo_mock" | "source_fallback" }[];
 }
 export interface Document {
   graph_fingerprint: string; cards: Card[]; global_items: Item[]; pages: Page[];
@@ -101,7 +101,34 @@ export function documentOf(result: Guidance): Document {
 }
 
 export function actionLabel(doc: Document, id: string) {
-  const action = doc.explanation.source.graph.actions.find((row) => row.action_id === id);
-  const content = doc.explanation.source.graph.content.find((row) => row.content_id === action?.required_content_ids[0]);
+  const graph = doc.explanation.source.graph;
+  const action = graph.actions.find((row) => row.action_id === id);
+  const content = action?.required_content_ids.map((key) => graph.content.find((row) => row.content_id === key))
+    .find((row) => row && row.text !== graph.disclaimer && !contentCoveredByNotice(doc, row.content_id));
   return content?.text ?? id;
+}
+
+/** Only omit a duplicate paragraph when the complete text is already visible. */
+export function contentCoveredByNotice(doc: Document, contentId: string): boolean {
+  const content = doc.explanation.source.graph.content.find((row) => row.content_id === contentId);
+  if (!content) return false;
+  const notices = new Set(doc.global_items.filter((ref) => ref.kind === "notice").map((ref) => ref.identifier));
+  return doc.cards.some((card) => card.source.kind === "notice" && notices.has(card.source.identifier) &&
+    !card.collapsed && card.lines.includes(content.text));
+}
+
+export function serviceFactItems(doc: Document): Item[] {
+  const identifiers = new Set(doc.explanation.source.graph.stages.flatMap((stage) => [stage.fee_fact_id, ...stage.document_fact_ids]));
+  return doc.cards.filter((card) => card.source.kind === "fact" && identifiers.has(card.source.identifier)).map((card) => card.source);
+}
+
+/** Only explicit action-content fact links. Shared scope and parent-service
+ * membership alone do not establish which action uses a document or fee. */
+export function actionFactItems(doc: Document, actionId: string): Item[] {
+  const graph = doc.explanation.source.graph;
+  const action = graph.actions.find((row) => row.action_id === actionId);
+  if (!action) return [];
+  const ids = new Set(graph.content.filter((content) => action.required_content_ids.includes(content.content_id)
+    && content.text !== graph.disclaimer).flatMap((content) => content.fact_ids ?? []));
+  return doc.cards.filter((card) => card.source.kind === "fact" && ids.has(card.source.identifier)).map((card) => card.source);
 }

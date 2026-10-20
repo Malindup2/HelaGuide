@@ -78,7 +78,7 @@ class WordingArtifact(GraphRecord):
     recipe_version: str
     created_at: AwareDatetime
     source: WordingPacket
-    origin: Literal["human_prepared", "provider_generated"]
+    origin: Literal["human_prepared", "provider_generated", "demo_mock"]
     author_reference: str | None
     provider: ProviderIdentity | None
     generation_calls: tuple[ProviderCall, ...]
@@ -89,7 +89,7 @@ class WordingArtifact(GraphRecord):
 
     @model_validator(mode="after")
     def provenance_is_honest(self) -> Self:
-        if self.origin == "human_prepared":
+        if self.origin in {"human_prepared", "demo_mock"}:
             if (
                 not self.author_reference or not self.author_reference.strip()
                 or self.provider is not None or self.generation_calls
@@ -103,6 +103,8 @@ class WordingArtifact(GraphRecord):
             or self.assessment is None
         ):
             raise ValueError("generated content requires actual generation and assessment records")
+        if self.origin == "demo_mock" and self.review is not None:
+            raise ValueError("demo mock cannot claim human review")
         return self
 
 
@@ -110,7 +112,7 @@ class ResolvedWordingItem(GraphRecord):
     slot_id: str
     text: str
     source_references: tuple[WordingReference, ...]
-    origin: Literal["human_prepared", "provider_generated", "source_fallback"]
+    origin: Literal["human_prepared", "provider_generated", "demo_mock", "source_fallback"]
 
 
 class WordingResolution(GraphRecord):

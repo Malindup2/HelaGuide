@@ -1,0 +1,35 @@
+{
+  "plan_id": "official-nic_amendment-v3",
+  "requested_service_id": "svc:nic_amendment",
+  "generated_at": "2026-10-19T14:19:11Z",
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:nic_amendment",
+      "name": "NIC amendment: certifying-officer routes",
+      "agency": "Department for Registration of Persons",
+      "fee": {
+        "value": 500,
+        "currency": "LKR",
+        "fact_id": "svc:nic_amendment:fee"
+      },
+      "documents": [
+        {
+          "name": "NIC amendment application",
+          "fact_id": "svc:nic_amendment:document:0"
+        }
+      ],
+      "depends_on": []
+    }
+  ],
+  "provenance": {
+    "svc:nic_amendment:fee": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-19T14:19:11Z"
+    },
+    "svc:nic_amendment:document:0": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-19T16:02:34Z"
+    }
+  }
+}

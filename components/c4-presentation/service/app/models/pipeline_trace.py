@@ -68,7 +68,7 @@ class ContentSummary(GraphRecord):
     diagnostics: tuple[str, ...]
     generated_item_count: int = Field(ge=0)
     source_copy_item_count: int = Field(ge=0)
-    wording_status: Literal["snapshot_not_available", "snapshot_source_fallback", "reviewed_snapshot"]
+    wording_status: Literal["snapshot_not_available", "snapshot_source_fallback", "reviewed_snapshot", "demo_mock_snapshot"]
     wording_origins: tuple[str, ...]
     wording_diagnostics: tuple[str, ...]
     wording_digest: str | None

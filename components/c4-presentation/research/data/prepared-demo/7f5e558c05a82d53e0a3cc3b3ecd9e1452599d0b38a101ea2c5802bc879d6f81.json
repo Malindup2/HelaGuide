@@ -1,0 +1,1027 @@
+{
+  "schema_version": "c4-prepared-artifact-1.0",
+  "request_key": "7f5e558c05a82d53e0a3cc3b3ecd9e1452599d0b38a101ea2c5802bc879d6f81",
+  "recipe_version": "c4-wording-recipe-1.0",
+  "created_at": "2026-10-19T16:10:00.808059Z",
+  "source": {
+    "contract_version": "c4-prepared-wording-1.0",
+    "graph_fingerprint": "7f384d0d51b9e7493bd0afe26d3308ea93afc04e1ec5a09c64b6632af9db7b7a",
+    "language": "en",
+    "writing_style": "plain",
+    "graph": {
+      "graph_schema_version": "1.0",
+      "enrichment_schema_version": "1.0",
+      "plan_id": "official-birth_copy-v3",
+      "requested_service_id": "svc:birth_copy",
+      "generated_at": "2026-10-19T14:19:11Z",
+      "synthetic": false,
+      "disclaimer": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+      "stages": [
+        {
+          "service_id": "svc:birth_copy",
+          "display_order": 1,
+          "name": "Birth certificate copy: receipt-backed submission",
+          "agency": "Registrar General's Department",
+          "fee_fact_id": "svc:birth_copy:fee",
+          "document_fact_ids": [
+            "svc:birth_copy:document:0",
+            "svc:birth_copy:document:1"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "action_id": "action:birth_pay",
+          "service_id": "svc:birth_copy",
+          "required_content_ids": [
+            "content:birth_pay",
+            "content:scope"
+          ],
+          "supplementary_content_ids": [],
+          "direct_condition_ids": [],
+          "applicability": {
+            "condition_ids": [],
+            "branch_group_id": null,
+            "branch_option_id": null
+          }
+        },
+        {
+          "action_id": "action:birth_submit",
+          "service_id": "svc:birth_copy",
+          "required_content_ids": [
+            "content:birth_submit",
+            "content:scope"
+          ],
+          "supplementary_content_ids": [],
+          "direct_condition_ids": [],
+          "applicability": {
+            "condition_ids": [],
+            "branch_group_id": null,
+            "branch_option_id": null
+          }
+        }
+      ],
+      "stage_dependencies": [],
+      "action_prerequisites": [
+        {
+          "edge_id": "prerequisite:0",
+          "kind": "requires_completion",
+          "source_id": "action:birth_pay",
+          "target_id": "action:birth_submit",
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        }
+      ],
+      "conditions": [],
+      "branch_groups": [],
+      "parallel_groups": [],
+      "content": [
+        {
+          "content_id": "content:birth_pay",
+          "role": "required",
+          "text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service.",
+          "evidence_ids": [
+            "evidence:birth_request"
+          ],
+          "fact_ids": [
+            "svc:birth_copy:fee"
+          ]
+        },
+        {
+          "content_id": "content:birth_submit",
+          "role": "required",
+          "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+          "evidence_ids": [
+            "evidence:birth_request"
+          ],
+          "fact_ids": [
+            "svc:birth_copy:document:0",
+            "svc:birth_copy:document:1"
+          ]
+        },
+        {
+          "content_id": "content:scope",
+          "role": "required",
+          "text": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "evidence_ids": [
+            "evidence:birth_request"
+          ],
+          "fact_ids": []
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "evidence:birth_request",
+          "kind": "source_passage",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "text": "Short source anchor: submitting the receipt",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "facts": [
+        {
+          "kind": "document",
+          "fact_id": "svc:birth_copy:document:0",
+          "name": "Completed application"
+        },
+        {
+          "kind": "document",
+          "fact_id": "svc:birth_copy:document:1",
+          "name": "Payment receipt"
+        },
+        {
+          "kind": "fee",
+          "fact_id": "svc:birth_copy:fee",
+          "value": 120.0,
+          "currency": "LKR"
+        }
+      ],
+      "provenance": [
+        {
+          "fact_id": "svc:birth_copy:document:0",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:birth_copy:document:1",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:birth_copy:fee",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "unknown"
+      }
+    },
+    "targets": [
+      {
+        "slot_id": "action_heading/action/action:birth_pay",
+        "kind": "action_heading",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:birth_pay"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "fallback_text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_explanation/action/action:birth_pay",
+        "kind": "action_explanation",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:birth_pay"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "fallback_text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_summary/action/action:birth_pay",
+        "kind": "action_summary",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:birth_pay"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "fallback_text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "diagram_label/action/action:birth_pay",
+        "kind": "diagram_label",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:birth_pay"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "fallback_text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_heading/action/action:birth_submit",
+        "kind": "action_heading",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:birth_submit"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "fallback_text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_explanation/action/action:birth_submit",
+        "kind": "action_explanation",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:birth_submit"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "fallback_text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "action_summary/action/action:birth_submit",
+        "kind": "action_summary",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:birth_submit"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "fallback_text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "diagram_label/action/action:birth_submit",
+        "kind": "diagram_label",
+        "subject": {
+          "kind": "action",
+          "reference_id": "action:birth_submit"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "fallback_text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate. Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency."
+      },
+      {
+        "slot_id": "diagram_label/stage/svc:birth_copy",
+        "kind": "diagram_label",
+        "subject": {
+          "kind": "stage",
+          "reference_id": "svc:birth_copy"
+        },
+        "source_references": [
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          },
+          {
+            "kind": "stage",
+            "reference_id": "svc:birth_copy"
+          }
+        ],
+        "evidence_ids": [],
+        "fallback_text": "Birth certificate copy: receipt-backed submission"
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:0",
+        "kind": "prerequisite_explanation",
+        "subject": {
+          "kind": "action_prerequisite",
+          "reference_id": "prerequisite:0"
+        },
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "fallback_text": "action:birth_pay must be completed before action:birth_submit. Completion is not established."
+      }
+    ]
+  },
+  "origin": "demo_mock",
+  "author_reference": "assistant-authored-demo; pending source and expert validation",
+  "provider": null,
+  "generation_calls": [],
+  "assessment_calls": [],
+  "draft": {
+    "synthetic": false,
+    "items": [
+      {
+        "slot_id": "action_heading/action/action:birth_pay",
+        "text": "Pay for the certificate copy",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:birth_request",
+            "quote": "Short source anchor: submitting the receipt"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_explanation/action/action:birth_pay",
+        "text": "Pay the LKR 120 charge for one certificate copy and keep the receipt for submission. This example assumes the registration number and date are known.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:birth_request",
+            "quote": "Short source anchor: submitting the receipt"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_summary/action/action:birth_pay",
+        "text": "Pay the copy charge and keep the receipt.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:birth_request",
+            "quote": "Short source anchor: submitting the receipt"
+          }
+        ]
+      },
+      {
+        "slot_id": "diagram_label/action/action:birth_pay",
+        "text": "Pay for the certificate copy",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:birth_request",
+            "quote": "Short source anchor: submitting the receipt"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_heading/action/action:birth_submit",
+        "text": "Submit the form and receipt",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:birth_request",
+            "quote": "Short source anchor: submitting the receipt"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_explanation/action/action:birth_submit",
+        "text": "Take the completed request form and payment receipt to the relevant Divisional Secretariat. Paying the copy charge comes before this submission.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:birth_request",
+            "quote": "Short source anchor: submitting the receipt"
+          }
+        ]
+      },
+      {
+        "slot_id": "action_summary/action/action:birth_submit",
+        "text": "Submit the completed form with the payment receipt.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:birth_request",
+            "quote": "Short source anchor: submitting the receipt"
+          }
+        ]
+      },
+      {
+        "slot_id": "diagram_label/action/action:birth_submit",
+        "text": "Submit the form and receipt",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:birth_request",
+            "quote": "Short source anchor: submitting the receipt"
+          }
+        ]
+      },
+      {
+        "slot_id": "diagram_label/stage/svc:birth_copy",
+        "text": "Request a birth certificate copy",
+        "source_references": [
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          },
+          {
+            "kind": "stage",
+            "reference_id": "svc:birth_copy"
+          }
+        ],
+        "citations": []
+      },
+      {
+        "slot_id": "prerequisite_explanation/action_prerequisite/prerequisite:0",
+        "text": "Pay for the certificate copy before you submit the form and receipt.",
+        "source_references": [
+          {
+            "kind": "action",
+            "reference_id": "action:birth_pay"
+          },
+          {
+            "kind": "action",
+            "reference_id": "action:birth_submit"
+          },
+          {
+            "kind": "action_prerequisite",
+            "reference_id": "prerequisite:0"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_pay"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:birth_submit"
+          },
+          {
+            "kind": "content",
+            "reference_id": "content:scope"
+          },
+          {
+            "kind": "evidence",
+            "reference_id": "evidence:birth_request"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:0"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:document:1"
+          },
+          {
+            "kind": "fact",
+            "reference_id": "svc:birth_copy:fee"
+          }
+        ],
+        "citations": [
+          {
+            "evidence_id": "evidence:birth_request",
+            "quote": "Short source anchor: submitting the receipt"
+          }
+        ]
+      }
+    ]
+  },
+  "assessment": null,
+  "review": null
+}

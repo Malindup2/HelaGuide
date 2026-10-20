@@ -50,7 +50,7 @@ export function attachWording<T extends Document>(doc: T, value: unknown): T {
     }
     unique(references, "wording reference");
     check(references.includes(JSON.stringify([subjectKind, id])), "wording subject source missing");
-    check(["human_prepared", "provider_generated", "source_fallback"].includes(String(item.origin)), "unknown wording origin");
+    check(["human_prepared", "provider_generated", "demo_mock", "source_fallback"].includes(String(item.origin)), "unknown wording origin");
     if (item.origin !== "source_fallback") {
       check(value.artifact_digest !== null && item.text.trim().length > 0 && item.text.length <= limits[kind], "unreviewed or oversized wording");
       check(!/https?:\/\/|www\.|javascript:|```|<[^>]+>|\[[^\]]+\]\(/i.test(item.text), "unsafe wording format");
@@ -94,7 +94,7 @@ function validateDocument(value: unknown): Document {
     object(row); text(row.action_id); text(row.service_id); strings(row.required_content_ids); strings(row.supplementary_content_ids);
   }
   for (const row of graph.content as unknown[]) {
-    object(row); text(row.content_id); text(row.text); check(row.role === "required" || row.role === "supplementary", "unknown content role");
+    object(row); text(row.content_id); text(row.text); if (row.fact_ids !== undefined) strings(row.fact_ids); check(row.role === "required" || row.role === "supplementary", "unknown content role");
   }
   for (const row of graph.conditions as unknown[]) { object(row); text(row.condition_id); text(row.text); }
   for (const field of ["stage_dependencies", "action_prerequisites"]) {
@@ -127,6 +127,10 @@ function validateDocument(value: unknown): Document {
 
   const doc = value as unknown as Document;
   const cards = new Map(doc.cards.map((card) => [itemKey(card.source), card]));
+  for (const content of doc.explanation.source.graph.content) {
+    unique(content.fact_ids ?? [], "content fact link");
+    check((content.fact_ids ?? []).every((id) => cards.has(itemKey({ kind: "fact", identifier: id }))), "unknown action content fact");
+  }
   unique(doc.cards.map((card) => itemKey(card.source)), "source card");
   unique(doc.pages.map((page) => page.action_id), "page");
   const preservation = doc.explanation.source.preservation;

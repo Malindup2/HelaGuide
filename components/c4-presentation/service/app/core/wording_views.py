@@ -44,24 +44,32 @@ class CapturedStore:
 
 
 class WordingViews:
-    def __init__(self, prepared_directory=None, snapshot_directory=None):
+    def __init__(self, prepared_directory=None, snapshot_directory=None, demo_directory=None):
         self.prepared = None if prepared_directory is None else PreparedWordingStore(prepared_directory)
         self.files = None if snapshot_directory is None else ExplanationArtifactStore(snapshot_directory)
         self.memory = {}
+        self.demo = None if demo_directory is None else PreparedWordingStore(demo_directory)
 
     def prepare(self, graph, *, writing_style="plain"):
-        if self.prepared is None:
+        if self.prepared is None and self.demo is None:
             return None, None
         from app.core.prepared_wording import prepare_wording_packet, wording_key
 
         key = wording_key(prepare_wording_packet(graph, writing_style=writing_style))
         artifact, error = None, None
         try:
-            artifact = self.prepared.read(key)
+            artifact = self.prepared.read(key) if self.prepared is not None else None
+            # Only absent production bundles use demo data. Invalid or pending
+            # production content must remain a visible source fallback.
+            if artifact is None and self.demo is not None:
+                artifact = self.demo.read(key)
+                if artifact is not None and artifact.origin != "demo_mock":
+                    raise OutputRejected("demo_registry_requires_mock_origin")
         except (ArtifactStoreError, OutputRejected) as exc:
             error = exc
         # Resolve from one captured record, avoiding races with an editor's save.
-        wording = resolve_wording(graph, CapturedStore(artifact, error), writing_style=writing_style)
+        wording = resolve_wording(graph, CapturedStore(artifact, error), writing_style=writing_style,
+                                  allow_demo_mock=self.demo is not None)
         if wording.artifact_digest is None:
             artifact = None
         return wording, artifact
@@ -103,7 +111,8 @@ class WordingViews:
         graph = spec.explanation.source.graph
         # Missing/invalid content is frozen as source fallback. Do not adopt a
         # newly reviewed artifact while restoring an earlier presentation.
-        expected = resolve_wording(graph, CapturedStore(view.artifact), writing_style=view.writing_style)
+        expected = resolve_wording(graph, CapturedStore(view.artifact), writing_style=view.writing_style,
+                                   allow_demo_mock=view.artifact is not None and view.artifact.origin == "demo_mock")
         if view.artifact is None:
             if (view.wording.artifact_digest is not None or view.wording.items != expected.items
                 or view.wording.request_key != expected.request_key

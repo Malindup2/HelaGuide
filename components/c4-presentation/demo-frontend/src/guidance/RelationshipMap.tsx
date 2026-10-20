@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import type { Document, Spec } from "./types";
-import { actionLabel } from "./types";
+import { actionLabel, contentCoveredByNotice } from "./types";
 import { preparedText } from "./wording";
 import {
   NODE_HEIGHT, NODE_WIDTH, actionNode, branchLayout, branchMeanings, dependencyLayout, wrapLabel,
@@ -17,7 +17,7 @@ function NodeDetails({ doc, node }: { doc: Document; node: MapNode | undefined }
     {stage && <p>Agency: {stage.agency}</p>}
     {node.actionIds.map((id) => {
       const action = graph.actions.find((row) => row.action_id === id);
-      return <div key={id}>{action?.required_content_ids.map((contentId) => {
+      return <div key={id}>{action?.required_content_ids.filter((contentId) => !contentCoveredByNotice(doc, contentId)).map((contentId) => {
         const content = graph.content.find((row) => row.content_id === contentId);
         return content ? <p key={contentId}>{content.text}</p> : null;
       })}</div>;

@@ -65,7 +65,7 @@ export function parseTrace(value: unknown, sid: string, eid: string): PipelineTr
   const c = value.content;
   check(["generated", "fallback"].includes(String(c.explanation_origin)) && typeof c.assurance === "string" && typeof c.recorded_cache_hit === "boolean" &&
     count(c.generated_item_count) && count(c.source_copy_item_count) && strings(c.diagnostics) && strings(c.wording_origins) && strings(c.wording_diagnostics) &&
-    ["snapshot_not_available", "snapshot_source_fallback", "reviewed_snapshot"].includes(String(c.wording_status)) && nullableText(c.wording_digest), "content provenance");
+    ["snapshot_not_available", "snapshot_source_fallback", "reviewed_snapshot", "demo_mock_snapshot"].includes(String(c.wording_status)) && nullableText(c.wording_digest), "content provenance");
   check(object(value.selection), "selection");
   const s = value.selection;
   check(["thompson", "forced", "cold_start_baseline"].includes(String(s.selection_mode)) &&

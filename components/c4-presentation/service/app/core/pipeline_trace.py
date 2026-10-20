@@ -123,6 +123,7 @@ def build_pipeline_trace(runtime, session_id, exposure_id):
             generated_item_count=sum(e.origin == "generated" for e in explanation.explanations),
             source_copy_item_count=sum(e.origin == "source_copy" for e in explanation.explanations),
             wording_status=("snapshot_not_available" if wording is None else
+                            "demo_mock_snapshot" if any(i.origin == "demo_mock" for i in wording.items) else
                             "reviewed_snapshot" if wording.artifact_digest else "snapshot_source_fallback"),
             wording_origins=tuple(sorted({item.origin for item in wording.items})) if wording else (),
             wording_diagnostics=wording.diagnostics if wording else (),

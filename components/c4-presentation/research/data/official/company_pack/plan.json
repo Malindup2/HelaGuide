@@ -1,0 +1,67 @@
+{
+  "plan_id": "official-company_pack-v3",
+  "requested_service_id": "svc:company_pack",
+  "generated_at": "2026-10-19T14:19:11Z",
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:company_pack",
+      "name": "Private company: required incorporation document sets",
+      "agency": "Department of the Registrar of Companies",
+      "fee": {
+        "value": 4000,
+        "currency": "LKR",
+        "fact_id": "svc:company_pack:fee"
+      },
+      "documents": [
+        {
+          "name": "Approved name certificate",
+          "fact_id": "svc:company_pack:document:0"
+        },
+        {
+          "name": "Form 1",
+          "fact_id": "svc:company_pack:document:1"
+        },
+        {
+          "name": "Form 18",
+          "fact_id": "svc:company_pack:document:2"
+        },
+        {
+          "name": "Form 19",
+          "fact_id": "svc:company_pack:document:3"
+        },
+        {
+          "name": "Two copies of Articles of Association",
+          "fact_id": "svc:company_pack:document:4"
+        }
+      ],
+      "depends_on": []
+    }
+  ],
+  "provenance": {
+    "svc:company_pack:fee": {
+      "source_url": "https://drc.gov.lk/en/?p=3968",
+      "retrieved_at": "2026-10-19T14:19:11Z"
+    },
+    "svc:company_pack:document:0": {
+      "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+      "retrieved_at": "2026-10-19T14:19:11Z"
+    },
+    "svc:company_pack:document:1": {
+      "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+      "retrieved_at": "2026-10-19T14:19:11Z"
+    },
+    "svc:company_pack:document:2": {
+      "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+      "retrieved_at": "2026-10-19T14:19:11Z"
+    },
+    "svc:company_pack:document:3": {
+      "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+      "retrieved_at": "2026-10-19T14:19:11Z"
+    },
+    "svc:company_pack:document:4": {
+      "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+      "retrieved_at": "2026-10-19T14:19:11Z"
+    }
+  }
+}
