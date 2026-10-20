@@ -189,3 +189,81 @@ def test_every_sample_gives_the_outcome_in_the_answer_key(client, real):
             wrong.append(s["id"])
     # ft-J2 is the one message the tiny stand-in embedder cannot ground; the real model is checked with tune_grounding.
     assert set(wrong) <= {"ft-J2"}, wrong
+
+
+# ----------------------------------------------------------------- typed English text (the optional text box)
+TYPED = "I paid Rs. 13,500 for the normal passport at the Battaramulla office yesterday, the guide says 11,000."
+
+
+def send_typed(client, text, persona="anon-0006", days_ago=1):
+    body = {"text": text, "persona_id": persona}
+    if days_ago is not None:
+        body["visit_days_ago"] = days_ago
+    return client.post("/internal/demo/feedback", json=body)
+
+
+def test_typed_english_text_is_grounded_and_lowers_only_that_fact(client, real):
+    client.get("/internal/demo/workflow")
+    r = send_typed(client, TYPED)
+    assert r.status_code == 200
+    j = r.json()
+    assert j["state"] == "grounded" and j["fact_id"] == FEE and j["kind"] == "dispute" and j["claimed"] == "13500"
+    assert j["norm_backend"] == "not_needed" and j["ui"]["message_text"] == TYPED
+    assert j["confidence"]["pct"] < 90
+    assert {k for k, f in facts(client).items() if f["confidence_pct"] != 90} == {FEE}
+
+
+def test_the_chosen_citizen_changes_the_effect_of_the_same_typed_text(client, real):
+    client.get("/internal/demo/workflow")
+    reliable = send_typed(client, TYPED, "anon-0006").json()                   # long-standing, reliable
+    client.post("/internal/demo/reset", json={})
+    client.get("/internal/demo/workflow")
+    newbie = send_typed(client, TYPED, "anon-0003").json()                     # a 5-day-old account
+    assert reliable["trust"]["T"] > newbie["trust"]["T"] + 0.2
+    assert reliable["confidence"]["pct"] < newbie["confidence"]["pct"]
+
+
+def test_the_visit_choice_changes_the_trust_of_typed_text(client, real):
+    client.get("/internal/demo/workflow")
+    today = send_typed(client, TYPED, days_ago=0).json()["trust"]
+    client.post("/internal/demo/reset", json={}); client.get("/internal/demo/workflow")
+    month = send_typed(client, TYPED, days_ago=30).json()["trust"]
+    client.post("/internal/demo/reset", json={}); client.get("/internal/demo/workflow")
+    none = send_typed(client, TYPED, days_ago=None).json()["trust"]
+    assert today["V"] == pytest.approx(1.0) and month["V"] < 0.2 and none["V"] == 0.5 and none["v_imputed"] is True
+    assert today["T"] > none["T"] > month["T"]
+
+
+def test_typed_text_and_samples_share_one_pipeline_and_can_be_mixed(client, real):
+    client.get("/internal/demo/workflow")
+    first = send(client, "ft-A1", "anon-0001")                                 # a sample
+    second = send_typed(client, TYPED, "anon-0002").json()                     # then typed text, another citizen
+    third = send(client, "ft-A6", "anon-0006")                                 # then another sample
+    pcts = [first["confidence"]["pct"], second["confidence"]["pct"], third["confidence"]["pct"]]
+    assert pcts == sorted(pcts, reverse=True) and pcts[0] > pcts[-1]           # each credible report lowers it further
+    assert second["independence"]["I"] == 1.0                                  # different words: not a copy
+
+
+def test_typed_text_that_names_no_fact_changes_nothing(client, real):
+    client.get("/internal/demo/workflow")
+    j = send_typed(client, "The office was crowded and the staff were rude to everyone there.").json()
+    assert j["state"] != "grounded" and "changed nothing" in j["ui"]["note"] or "Nothing was changed" in j["ui"]["note"]
+    assert all(f["confidence_pct"] == 90 for f in facts(client).values())
+
+
+def test_typed_text_the_demo_cannot_take_is_refused_politely(client, real):
+    client.get("/internal/demo/workflow")
+    sinhala = send_typed(client, "ගමන් බලපත්‍ර ගාස්තුව වැරදියි, රුපියල් 13,500 ක් ගත්තා")
+    assert sinhala.status_code == 400 and "write in English" in sinhala.json()["detail"]
+    assert send_typed(client, "short").status_code == 400
+    assert client.post("/internal/demo/feedback", json={"persona_id": "anon-0001"}).status_code == 422            # neither
+    assert client.post("/internal/demo/feedback", json={"persona_id": "anon-0001", "sample_id": "ft-A1", "text": TYPED}).status_code == 422   # both
+    assert send_typed(client, TYPED, persona="nobody").status_code == 404
+    assert client.post("/internal/demo/feedback", json={"persona_id": "anon-0001", "text": "x" * 601}).status_code == 422
+    assert all(f["confidence_pct"] == 90 for f in facts(client).values())
+
+
+def test_the_page_offers_the_typed_text_tab_and_keeps_the_samples(client):
+    page = client.get("/ui").text
+    for must in ("Write your own (English)", 'id="custom-text"', 'id="visit-rel"', "submitTyped", 'id="samples"', "How do I get a passport?"):
+        assert must in page, must

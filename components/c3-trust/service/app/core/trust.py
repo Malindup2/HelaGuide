@@ -71,5 +71,8 @@ def msrt(settings: C3Settings, a: float, b: float, age_days: float, gap_days: fl
     total = sum(w)
     w = [x / total for x in w]
     vals = [max(x, EPS) for x in (R, S, C, V)]
-    T = math.exp(sum(wi * math.log(v) for wi, v in zip(w, vals) if wi > 0))
+    if settings.trust_mean == "arithmetic":                  # ablation only: a weak signal can then be outvoted
+        T = sum(wi * v for wi, v in zip(w, vals))
+    else:                                                    # the real thing: a weighted geometric mean
+        T = math.exp(sum(wi * math.log(v) for wi, v in zip(w, vals) if wi > 0))
     return TrustResult(T=T, R=R, S=S, C=C, V=V, v_imputed=v_imputed, weights=tuple(w), features=feats)  # type: ignore[arg-type]

@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 class FreeTextEntities(BaseModel):
@@ -145,8 +145,16 @@ class ReportRow:
 
 
 class DemoFeedbackRequest(BaseModel):
-    """What the citizen console sends when a pre-written sample message is submitted."""
+    """What the citizen console sends: ONE pre-written sample message, or the panel's own English text."""
     model_config = ConfigDict(extra="forbid")
-    sample_id: str
     persona_id: str
-    visit_date: date | None = None
+    sample_id: str | None = None                                       # a pre-written sample message ...
+    text: str | None = Field(default=None, max_length=600)             # ... or typed English text
+    visit_date: date | None = None                                     # with a sample: the date picker
+    visit_days_ago: int | None = Field(default=None, ge=0, le=365)     # with typed text: how long ago
+
+    @model_validator(mode="after")
+    def _exactly_one_source(self):
+        if bool(self.sample_id) == bool((self.text or "").strip()):
+            raise ValueError("send either sample_id or text: exactly one of them")
+        return self
