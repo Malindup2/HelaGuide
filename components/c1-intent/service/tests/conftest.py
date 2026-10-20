@@ -44,6 +44,10 @@ class FakeEngine:
     def classify_intent(self, user_turns):
         return self.intents.get(user_turns[-1], ("nic_replace_lost", 0.9))
 
+    def classify_current(self, text):
+        """intents[("current", text)] when a test sets it, else the same as the windowed prediction."""
+        return self.intents.get(("current", text)) or self.classify_intent([text])
+
     language_of = staticmethod(C1Engine.language_of)
 
     def new_session(self):

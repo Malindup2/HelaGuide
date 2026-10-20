@@ -3,25 +3,17 @@ Projection of C1's internal 12-intent state onto the team contract (contracts/sc
 
 The contract has 4 intents and only service_id + district as entities, so the rest of the state (variant,
 other slots, route) stays inside C1; /v1/intent/details exposes it. Table: research/docs/technicalWorkFlow.md §7.
+Once the conversation has an active intent, that is what is projected (a complaint mid-way does not replace it).
 """
 import re
 
 from helaguide_common.contracts import Intent, IntentEntities
 
-from app.core.dst import SERVICE_OF_INTENT, canon_value
+from app.core.dst import KG_SERVICE_IDS, SERVICE_OF_INTENT, UNKNOWN_VALUE, canon_value
 
 # internal intent -> KG service ID. From research/data/kg_service_map.json (kg_service_id); that file is not in
-# the Docker image, so the IDs are copied here and tests/test_projection.py checks the two agree.
-SERVICE_IDS = {
-    "nic_new": "svc:nic",
-    "nic_update": "svc:nic",
-    "nic_replace_lost": "svc:nic",
-    "passport_new": "svc:passport",
-    "passport_renew": "svc:passport",
-    "birth_cert_copy": "svc:birth_certificate",
-    "marriage_registration": "svc:marriage_registration",
-    "death_cert_copy": "svc:death_certificate",
-}
+# the Docker image, so the IDs are copied into dst.py and tests/test_projection.py checks the two agree.
+SERVICE_IDS = KG_SERVICE_IDS
 
 # canonical service_mentioned value (dst.SERVICES) -> KG service ID, through the intent that serves it
 SERVICE_MENTIONED_IDS = {name: SERVICE_IDS[intent] for intent, name in SERVICE_OF_INTENT.items()}
@@ -51,15 +43,16 @@ def service_id(internal_intent: str, slots: dict) -> str | None:
 
 def project(result: dict, session_id: str, text: str) -> Intent:
     """result: one Session.step() output. text: the user's message for this turn."""
-    internal = result["intent"]
+    internal = result.get("active_intent") or result["intent"]
+    slots = result.get("active_slots", result["slots"])
     return Intent(
         session_id=session_id,
         turn_id=result["turn_id"],
         language=result["language"],
         intent=contract_intent(internal, text),
         entities=IntentEntities(
-            service_id=service_id(internal, result["slots"]),
-            district=result["slots"].get("district"),
+            service_id=service_id(internal, slots),
+            district=None if slots.get("district") == UNKNOWN_VALUE else slots.get("district"),
         ),
         confidence=result["intent_confidence"],
     )

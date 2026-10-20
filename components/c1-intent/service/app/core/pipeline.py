@@ -89,17 +89,31 @@ def get_engine():
         return _engine
 
 
+def warmup() -> None:
+    """Real mode: load the models and run one throwaway turn so the first citizen's request is not slow."""
+    if get_settings().stub_mode:
+        return
+    try:
+        engine = get_engine()
+    except EngineUnavailable as e:
+        log.warning("C1 engine not loaded at startup: %s", e)
+        return
+    engine.new_session().step("mata passport ekak ganna one")
+    log.info("C1 engine warmed up")
+
+
 def _step(session_id: str, text: str, bot_text: str | None = None) -> dict:
     engine = get_engine()
     result = _store.step(session_id, engine.new_session, text, bot_text)
     source = result.get("intent_source", "model")
-    if source != "model":
+    if source in ("keyword_fallback", "previous_topic", "unknown"):
         # no message text in logs (privacy)
         log.info("low confidence: session=%s turn=%s model=%s conf=%.4f < %.2f -> %s (%s)",
                  session_id, result["turn_id"], result["intent_model_output"], result["intent_confidence"],
                  getattr(engine, "min_confidence", float("nan")), result["intent"], source)
-    log.info("session=%s turn=%s intent=%s route=%s latency_ms=%.1f",
-             session_id, result["turn_id"], result["intent"], result["route"], result["latency_ms"])
+    log.info("session=%s turn=%s intent=%s source=%s active=%s route=%s latency_ms=%.1f",
+             session_id, result["turn_id"], result["intent"], source, result["active_intent"], result["route"],
+             result["latency_ms"])
     return result
 
 
@@ -120,12 +134,22 @@ def resolve_details(req: DetailsRequest) -> IntentDetails:
     return IntentDetails(
         session_id=req.session_id,
         turn_id=result["turn_id"],
+        state_version=result["state_version"],
         internal_intent=result["intent"],
         intent_model_output=result["intent_model_output"],
         confidence=result["intent_confidence"],
         intent_source=result["intent_source"],
+        active_intent=result["active_intent"],
+        intent_locked=result["intent_locked"],
+        ready=result["ready"],
+        assumed_slots=result["assumed_slots"],
+        variant_pending=result["variant_pending"],
+        reply=result["reply"],
+        completed_requests=result["completed_requests"],
+        pending_requests=result["pending_requests"],
         route=result["route"],
         slots=result["slots"],
+        conditions=result["conditions"],
         missing_slots=result["missing_slots"],
         language=result["language"],
         language_tags=result["language_tags"],
@@ -142,10 +166,18 @@ def _stub_details(req: DetailsRequest) -> IntentDetails:
     return IntentDetails(
         session_id=req.session_id,
         turn_id=intent.turn_id,
+        state_version=0,
         internal_intent="passport_new",
         intent_model_output="passport_new",
         confidence=intent.confidence,
         intent_source="model",
+        active_intent="passport_new",
+        intent_locked=False,
+        ready=False,
+        assumed_slots=[],
+        reply="Normal da urgent da?",
+        completed_requests=[],
+        pending_requests=[],
         route="orchestration",
         slots=slots,
         missing_slots=[s for s in INTENT_SLOTS["passport_new"] if s not in slots],
