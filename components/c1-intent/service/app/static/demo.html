@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C1 Intent Demo</title>
+<!--
+  C1-only demo page, served by the C1 service at GET /demo. Calls POST /v1/intent/details on the same origin
+  and shows each turn: language tags, intent, dialogue state, route and the v1 contract projection.
+  No build step and no external files, so it works offline.
+-->
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --ink: #1b1f24; --muted: #5f6b7a; --line: #e2e6eb; --soft: #f0f2f5;
+  --accent: #2557d6; --accent-soft: #e6edfc;
+  --si: #b4531a; --si-soft: #fcebdc; --en: #1f6fb8; --en-soft: #dfeefb; --mixed: #7a4bc2; --mixed-soft: #eee6fa;
+  --ne: #2b7a4b; --ne-soft: #dff3e6; --other: #6b7280; --other-soft: #eceef1;
+  --ok: #2b7a4b; --warn: #a15c00; --warn-soft: #fdf0d9; --bad: #b42318; --bad-soft: #fde4e1;
+  --user: #2557d6; --user-ink: #ffffff; --bot: #eceff3;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111418; --panel: #1a1e24; --ink: #e6e9ed; --muted: #98a2b0; --line: #2c323b; --soft: #222831;
+    --accent: #7aa2ff; --accent-soft: #1f2a44;
+    --si: #f0a46b; --si-soft: #3a2616; --en: #7cb9f0; --en-soft: #16293b; --mixed: #c3a2f2; --mixed-soft: #2c2140;
+    --ne: #7fd3a0; --ne-soft: #17301f; --other: #a3abb6; --other-soft: #262b33;
+    --ok: #7fd3a0; --warn: #f2c06b; --warn-soft: #382a10; --bad: #f59a90; --bad-soft: #3d1a17;
+    --user: #3a64d8; --user-ink: #ffffff; --bot: #262c35;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111418; --panel: #1a1e24; --ink: #e6e9ed; --muted: #98a2b0; --line: #2c323b; --soft: #222831;
+  --accent: #7aa2ff; --accent-soft: #1f2a44;
+  --si: #f0a46b; --si-soft: #3a2616; --en: #7cb9f0; --en-soft: #16293b; --mixed: #c3a2f2; --mixed-soft: #2c2140;
+  --ne: #7fd3a0; --ne-soft: #17301f; --other: #a3abb6; --other-soft: #262b33;
+  --ok: #7fd3a0; --warn: #f2c06b; --warn-soft: #382a10; --bad: #f59a90; --bad-soft: #3d1a17;
+  --user: #3a64d8; --user-ink: #ffffff; --bot: #262c35;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 15px/1.45 "Segoe UI", system-ui, -apple-system, "Nirmala UI", "Iskoola Pota", "Noto Sans Sinhala", sans-serif;
+}
+header {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--panel);
+}
+header h1 { font-size: 17px; margin: 0; font-weight: 600; }
+header .sub { color: var(--muted); font-size: 13px; }
+.spacer { flex: 1; }
+.badge { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--soft); color: var(--muted); white-space: nowrap; }
+.badge.ok { background: var(--ne-soft); color: var(--ok); }
+.badge.warn { background: var(--warn-soft); color: var(--warn); }
+.badge.bad { background: var(--bad-soft); color: var(--bad); }
+button {
+  font: inherit; font-size: 13px; cursor: pointer; border: 1px solid var(--line); background: var(--panel);
+  color: var(--ink); border-radius: 8px; padding: 5px 10px;
+}
+button:hover { border-color: var(--accent); }
+button:disabled { opacity: .5; cursor: default; }
+button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+main { display: grid; grid-template-columns: minmax(320px, 420px) 1fr; height: calc(100% - 57px); }
+@media (max-width: 860px) { main { grid-template-columns: 1fr; height: auto; } }
+
+/* chat column */
+.chat { display: flex; flex-direction: column; border-right: 1px solid var(--line); background: var(--panel); min-height: 0; }
+.presets { padding: 10px 14px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.presets .label { font-size: 12px; color: var(--muted); margin-right: 4px; }
+.log { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 8px; min-height: 240px; }
+.empty { color: var(--muted); font-size: 14px; margin: auto; text-align: center; max-width: 280px; }
+.msg { max-width: 85%; padding: 8px 12px; border-radius: 14px; word-wrap: break-word; }
+.msg.bot { align-self: flex-start; background: var(--bot); border-bottom-left-radius: 4px; }
+.msg.bot .note { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+.msg.user { align-self: flex-end; background: var(--user); color: var(--user-ink); border-bottom-right-radius: 4px; cursor: pointer; }
+.msg.user.selected { outline: 3px solid var(--accent-soft); outline-offset: 1px; }
+.msg.user .meta { display: block; font-size: 11px; opacity: .8; margin-top: 2px; }
+.msg.error { align-self: stretch; background: var(--bad-soft); color: var(--bad); font-size: 13px; }
+.composer { border-top: 1px solid var(--line); padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; }
+.composer .row { display: flex; gap: 6px; }
+.composer input[type=text] {
+  flex: 1; font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--bg); color: var(--ink); min-width: 0;
+}
+.composer input[type=text]:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+.composer .opts { display: flex; gap: 12px; font-size: 12px; color: var(--muted); align-items: center; flex-wrap: wrap; }
+.composer .opts label { display: flex; gap: 4px; align-items: center; cursor: pointer; }
+
+/* analysis column */
+.analysis { overflow-y: auto; padding: 18px 22px 40px; min-height: 0; }
+.analysis .placeholder { color: var(--muted); margin-top: 40px; text-align: center; }
+.turnhead { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.turnhead h2 { margin: 0; font-size: 16px; font-weight: 600; }
+.turnhead .quote { color: var(--muted); font-size: 14px; }
+
+.flow { display: flex; align-items: stretch; gap: 0; margin-bottom: 16px; overflow-x: auto; }
+.flow .step { flex: 1; min-width: 110px; padding: 8px 10px; background: var(--panel); border: 1px solid var(--line); }
+.flow .step:first-child { border-radius: 10px 0 0 10px; }
+.flow .step:last-child { border-radius: 0 10px 10px 0; }
+.flow .step + .step { border-left: none; }
+.flow .k { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.flow .v { font-weight: 600; font-size: 14px; margin-top: 2px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.card.wide { grid-column: 1 / -1; }
+.card h3 { margin: 0 0 10px; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { display: inline-flex; flex-direction: column; align-items: center; padding: 4px 8px; border-radius: 8px; font-size: 15px; }
+.tag small { font-size: 10px; font-weight: 700; letter-spacing: .05em; margin-top: 1px; }
+.tag.SI { background: var(--si-soft); color: var(--si); }
+.tag.EN { background: var(--en-soft); color: var(--en); }
+.tag.MIXED { background: var(--mixed-soft); color: var(--mixed); }
+.tag.NE { background: var(--ne-soft); color: var(--ne); }
+.tag.OTHER, .tag.O { background: var(--other-soft); color: var(--other); }
+.legend { display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 10px; }
+.legend span::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; background: var(--c); }
+
+.intent-name { font-size: 20px; font-weight: 600; font-family: var(--mono); }
+.bar { height: 8px; border-radius: 4px; background: var(--soft); overflow: hidden; margin: 8px 0 4px; }
+.bar > div { height: 100%; background: var(--accent); }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: 14px; margin-top: 8px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; }
+.mono { font-family: var(--mono); font-size: 13px; }
+
+table.slots { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.slots td { padding: 6px 4px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.slots tr:last-child td { border-bottom: none; }
+table.slots td:first-child { font-family: var(--mono); font-size: 13px; color: var(--muted); width: 40%; }
+.missing { color: var(--warn); font-style: italic; }
+.changed { background: var(--warn-soft); border-radius: 4px; padding: 0 4px; }
+.was { color: var(--muted); text-decoration: line-through; font-size: 12px; margin-left: 6px; }
+
+.route { display: inline-block; font-weight: 600; padding: 4px 10px; border-radius: 8px; }
+.route.orchestration { background: var(--ne-soft); color: var(--ok); }
+.route.trust_verification { background: var(--mixed-soft); color: var(--mixed); }
+.route.fallback { background: var(--warn-soft); color: var(--warn); }
+.route.none { background: var(--other-soft); color: var(--other); }
+
+pre { margin: 0; font-family: var(--mono); font-size: 12.5px; background: var(--soft); border-radius: 8px; padding: 10px 12px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 700px) { .split { grid-template-columns: 1fr; } }
+.split h4 { margin: 0 0 6px; font-size: 13px; font-weight: 600; }
+.lost { margin: 10px 0 0; padding-left: 18px; font-size: 13px; color: var(--muted); }
+
+.timeline { width: 100%; border-collapse: collapse; font-size: 13px; }
+.timeline th, .timeline td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--line); }
+.timeline th { color: var(--muted); font-weight: 600; }
+.timeline tr { cursor: pointer; }
+.timeline tr.sel td { background: var(--accent-soft); }
+</style>
+</head>
+<body>
+<header>
+  <h1>HelaGuide · C1 Intent &amp; Entity Engine</h1>
+  <span class="sub">Sinhala · English · code-switched, multi-turn</span>
+  <span class="spacer"></span>
+  <span id="mode" class="badge">checking service…</span>
+  <button id="theme" title="Toggle light / dark">◐</button>
+</header>
+
+<main>
+  <section class="chat">
+    <div class="presets" id="presets"><span class="label">Demo sessions:</span></div>
+    <div class="log" id="log">
+      <div class="empty" id="empty">Type a message in Sinhala, Singlish or English, or play one of the demo sessions above.</div>
+    </div>
+    <form class="composer" id="composer" autocomplete="off">
+      <div class="row">
+        <input type="text" id="text" placeholder="e.g. mata ID eka nathi una, ikmanata aluth ekak one" maxlength="2000">
+        <button class="primary" id="send" type="submit">Send</button>
+      </div>
+      <div class="opts">
+        <span class="spacer"></span>
+        <button type="button" id="reset">New session</button>
+        <span class="mono" id="sid"></span>
+      </div>
+    </form>
+  </section>
+
+  <section class="analysis" id="analysis">
+    <div class="placeholder">The analysis of each turn appears here. Click any of your messages to look at that turn again.</div>
+  </section>
+</main>
+
+<script>
+"use strict";
+const API = "/v1/intent/details";
+
+// Demo sessions: the user's messages only. C1's own reply after each turn is shown and sent back as bot_text.
+const PRESETS = [
+  ["A", "NIC lost + correction", [
+    "mata ID eka nathi una, ikmanata aluth ekak one", "Matara", "ne ne, Galle",
+  ]],
+  ["LOCK", "Passport stays active", [
+    "passport ekak mata ganna puluwnda", "normal", "next year, mata wayasa 14i", "next year", "ganna puluwnda", "galle",
+  ]],
+  ["SWITCH", "Passport, then NIC", [
+    "mama galle inne, passport ekak ganna one", "normal", "next year", "NIC ekath aluthen ganna one",
+  ]],
+  ["B", "Complaint mid-way", [
+    "mata passport ekak ganna one", "normal",
+    "oya kiwwa office eka saturday open kiyala, mama giyama wahala thibbe", "next year",
+  ]],
+  ["MULTI", "NIC, then passport", [
+    "hi", "mage ID eka nathi una", "mama inne bandarawela", "ikmanata one", "passport ekakuth ganna one",
+    "mata", "normal", "i dont know",
+  ]],
+  ["C", "Driving licence", ["driving licence ekak ganna one"]],
+  ["SI", "Sinhala script", ["මට දුවගේ උප්පැන්න සහතිකයේ පිටපතක් ඕනේ", "ගාල්ලේ", "පාසලට දාන්න"]],
+  ["EN", "English passport", [
+    "I want to apply for a new passport", "It's for my daughter", "Normal", "We are travelling in mid December",
+  ]],
+];
+
+const ROUTE_TEXT = {
+  orchestration: "Orchestration → C2 builds the plan",
+  trust_verification: "Trust verification → C3 checks the claim",
+  fallback: "Fallback → service not supported",
+  none: "None → no service action",
+};
+const SOURCE_TEXT = {
+  model: "XLM-R classifier",
+  keyword_fallback: "below threshold → service keyword",
+  previous_topic: "below threshold → kept the active topic",
+  active_intent: "locked → kept the active intent over the model",
+  current_message_switch: "switch → the message alone names and asks for another service",
+  pending_resume: "resumed an unfinished request",
+  greeting: "greeting → model not run",
+  unknown: "below threshold, no topic yet",
+};
+
+const $ = (id) => document.getElementById(id);
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v;
+    else if (k === "style") n.style.cssText = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  for (const kid of kids.flat()) if (kid != null) n.append(kid instanceof Node ? kid : String(kid));
+  return n;
+};
+
+let sessionId, turns, pendingBot, selected, busy = false;
+
+function newSession(tag = "ui") {
+  const rand = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)).replace(/-/g, "").slice(0, 6);
+  sessionId = `anon-${tag}-${rand}`;
+  turns = [];
+  pendingBot = null;
+  selected = -1;
+  $("sid").textContent = sessionId;
+  $("log").replaceChildren(el("div", { class: "empty", id: "empty" },
+    "Type a message in Sinhala, Singlish or English, or play one of the demo sessions above."));
+  $("analysis").replaceChildren(el("div", { class: "placeholder" },
+    "The analysis of each turn appears here. Click any of your messages to look at that turn again."));
+}
+
+function addBubble(node) {
+  const empty = $("empty");
+  if (empty) empty.remove();
+  $("log").append(node);
+  node.scrollIntoView({ block: "end", behavior: "smooth" });
+}
+
+function botSays(text, note) {
+  addBubble(el("div", { class: "msg bot" }, text, note ? el("span", { class: "note" }, note) : null));
+}
+
+function setBusy(on) {
+  busy = on;
+  for (const b of document.querySelectorAll("button")) if (b.id !== "theme") b.disabled = on;
+  $("text").disabled = on;
+}
+
+// one turn: send the message with C1's previous reply as bot_text, then show C1's new reply
+async function sendTurn(text) {
+  const idx = turns.length, botText = pendingBot;
+  const bubble = el("div", { class: "msg user", onclick: () => select(idx) }, text, el("span", { class: "meta" }, "…"));
+  addBubble(bubble);
+  let res;
+  try {
+    const r = await fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: sessionId, text, bot_text: botText }),
+    });
+    const body = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(`${r.status}: ${typeof body.detail === "string" ? body.detail : JSON.stringify(body.detail ?? body)}`);
+    res = body;
+  } catch (e) {
+    bubble.querySelector(".meta").textContent = "failed";
+    addBubble(el("div", { class: "msg error" }, String(e.message || e)));
+    return null;
+  }
+  turns.push({ text, botText, res });
+  bubble.querySelector(".meta").textContent =
+    `${res.internal_intent}${res.intent_locked ? " 🔒" : ""} · ${Math.round(res.confidence * 100)}% · ${res.route}`;
+  pendingBot = res.reply;
+  botSays(res.reply, res.ready ? "ready · request complete" : null);
+  select(idx);
+  return res;
+}
+
+async function onSubmit(ev) {
+  ev.preventDefault();
+  const text = $("text").value.trim();
+  if (!text || busy) return;
+  $("text").value = "";
+  setBusy(true);
+  await sendTurn(text);
+  setBusy(false);
+  $("text").focus();
+}
+
+async function playPreset([name, , script]) {
+  if (busy) return;
+  newSession(`demo-${name.toLowerCase()}`);
+  setBusy(true);
+  for (const text of script) {
+    await pause(500);
+    if (!(await sendTurn(text))) break;
+  }
+  setBusy(false);
+}
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function select(i) {
+  selected = i;
+  document.querySelectorAll(".msg.user").forEach((b, j) => b.classList.toggle("selected", j === i));
+  render();
+}
+
+// ---------------------------------------------------------------- analysis
+function render() {
+  const t = turns[selected];
+  if (!t) return;
+  const d = t.res, prev = turns[selected - 1]?.res;
+  const root = $("analysis");
+  root.replaceChildren();
+
+  root.append(el("div", { class: "turnhead" },
+    el("h2", {}, `Turn ${d.turn_id}`),
+    el("span", { class: "quote" }, `“${t.text}”`),
+    t.botText ? el("span", { class: "badge" }, `bot_text: ${t.botText}`) : null,
+  ));
+
+  // pipeline strip
+  const step = (k, v) => el("div", { class: "step" }, el("div", { class: "k" }, k), el("div", { class: "v" }, v));
+  const filled = Object.keys(d.slots).length, need = filled + d.missing_slots.length;
+  root.append(el("div", { class: "flow" },
+    step("1 · Language", `${d.language}${d.code_switched ? " · switched" : ""}`),
+    step("2 · Intent", `${d.internal_intent}${d.intent_locked ? " 🔒" : ""}`),
+    step("3 · Slots", need ? `${filled} of ${need} filled` : "none needed"),
+    step("4 · Route", d.route),
+    step("Ready", d.ready ? "yes" : "no"),
+    step("Latency", `${Math.round(d.latency_ms)} ms`),
+  ));
+
+  const grid = el("div", { class: "grid" });
+  root.append(grid);
+
+  // language tags
+  const tags = d.language_tags.length
+    ? el("div", { class: "tags" }, d.language_tags.map((w) => el("span", { class: `tag ${w.tag}` }, w.word, el("small", {}, w.tag))))
+    : el("div", { class: "missing" }, "No word tags (stub mode returns none).");
+  grid.append(el("div", { class: "card wide" },
+    el("h3", {}, "Word-level language ID"),
+    tags,
+    el("div", { class: "legend" },
+      [["SI", "--si"], ["EN", "--en"], ["MIXED", "--mixed"], ["NE", "--ne"], ["OTHER", "--other"]]
+        .map(([n, c]) => el("span", { style: `--c: var(${c})` }, n))),
+  ));
+
+  // intent
+  const pct = Math.round(d.confidence * 100);
+  grid.append(el("div", { class: "card" },
+    el("h3", {}, "Intent (12 internal intents)"),
+    el("div", { class: "intent-name" }, d.internal_intent),
+    el("div", { class: "bar" }, el("div", { style: `width:${pct}%` })),
+    el("div", { class: "mono" }, `confidence ${d.confidence.toFixed(3)}`),
+    el("dl", { class: "kv" },
+      el("dt", {}, "decided by"), el("dd", {}, SOURCE_TEXT[d.intent_source] || d.intent_source),
+      el("dt", {}, "active intent"), el("dd", { class: "mono" }, d.active_intent ?? "none yet"),
+      el("dt", {}, "locked"), el("dd", {}, d.intent_locked ? "yes: the model said something else" : "no"),
+      d.intent_model_output !== d.internal_intent ? [el("dt", {}, "model said"), el("dd", { class: "mono" }, d.intent_model_output)] : null,
+      prev && prev.internal_intent !== d.internal_intent ? [el("dt", {}, "previous turn"), el("dd", { class: "mono" }, prev.internal_intent)] : null,
+    ),
+  ));
+
+  // dialogue state
+  const rows = [];
+  for (const [k, v] of Object.entries(d.slots)) {
+    const before = prev && prev.internal_intent === d.internal_intent ? prev.slots[k] : undefined;
+    const isNew = before === undefined && prev && prev.internal_intent === d.internal_intent;
+    const changed = before !== undefined && before !== v;
+    rows.push(el("tr", {},
+      el("td", {}, k),
+      el("td", {}, el("span", { class: changed || isNew ? "changed" : "" }, v),
+        changed ? el("span", { class: "was" }, before) : null),
+    ));
+  }
+  for (const k of d.missing_slots) rows.push(el("tr", {}, el("td", {}, k), el("td", { class: "missing" }, "missing")));
+  grid.append(el("div", { class: "card" },
+    el("h3", {}, "Dialogue state"),
+    rows.length ? el("table", { class: "slots" }, rows) : el("div", { class: "missing" }, "This intent has no slots."),
+    el("div", { class: "legend" }, el("span", { style: "--c: var(--warn-soft)" }, "set or corrected this turn")),
+  ));
+
+  // other requests in the conversation
+  if (d.completed_requests.length || d.pending_requests.length) {
+    const req = (r, status) => el("tr", {},
+      el("td", {}, status), el("td", { class: "mono" }, r.intent),
+      el("td", { class: "mono" }, Object.entries(r.slots).map(([k, v]) => `${k}=${v}`).join(", ") || "—"));
+    grid.append(el("div", { class: "card" },
+      el("h3", {}, "Other requests"),
+      el("table", { class: "slots" },
+        d.completed_requests.map((r) => req(r, "completed")), d.pending_requests.map((r) => req(r, "pending"))),
+    ));
+  }
+
+  // route
+  grid.append(el("div", { class: "card" },
+    el("h3", {}, "Route"),
+    el("span", { class: `route ${d.route}` }, ROUTE_TEXT[d.route] || d.route),
+  ));
+
+  // contract projection
+  const c = d.intent;
+  const lost = [];
+  const projected = d.active_intent ?? d.internal_intent;
+  if (projected !== "unknown") lost.push(`internal intent ${projected} → contract intent ${c.intent}`);
+  if (d.active_intent && d.internal_intent !== d.active_intent) lost.push(`this turn's intent ${d.internal_intent} (the contract carries the active intent)`);
+  for (const k of Object.keys(d.slots)) if (k !== "district") lost.push(`slot ${k} = ${d.slots[k]}`);
+  lost.push(`route ${d.route}`);
+  const full = {
+    internal_intent: d.internal_intent, active_intent: d.active_intent, intent_locked: d.intent_locked,
+    ready: d.ready, confidence: +d.confidence.toFixed(3), route: d.route,
+    slots: d.slots, missing_slots: d.missing_slots, language: d.language, code_switched: d.code_switched,
+  };
+  grid.append(el("div", { class: "card wide" },
+    el("h3", {}, "What the other components receive"),
+    el("div", { class: "split" },
+      el("div", {}, el("h4", {}, "v1 contract · POST /v1/intent"), el("pre", {}, JSON.stringify(c, null, 2))),
+      el("div", {}, el("h4", {}, "Full C1 state · POST /v1/intent/details"), el("pre", {}, JSON.stringify(full, null, 2))),
+    ),
+    el("div", { style: "font-size:13px;margin-top:10px" }, "Not carried by the v1 contract (see docs/c1_contract_proposal.md):"),
+    el("ul", { class: "lost" }, lost.map((s) => el("li", {}, s))),
+  ));
+
+  // timeline
+  if (turns.length > 1) {
+    grid.append(el("div", { class: "card wide" },
+      el("h3", {}, "Session so far"),
+      el("table", { class: "timeline" },
+        el("tr", {}, ["#", "Message", "Intent", "Conf.", "Route", "Slots", "ms"].map((h) => el("th", {}, h))),
+        turns.map((tt, j) => el("tr", { class: j === selected ? "sel" : "", onclick: () => select(j) },
+          el("td", {}, tt.res.turn_id), el("td", {}, tt.text),
+          el("td", { class: "mono" }, tt.res.internal_intent), el("td", {}, tt.res.confidence.toFixed(2)),
+          el("td", {}, tt.res.route),
+          el("td", { class: "mono" }, Object.entries(tt.res.slots).map(([k, v]) => `${k}=${v}`).join(", ") || "—"),
+          el("td", {}, Math.round(tt.res.latency_ms)),
+        )),
+      ),
+    ));
+  }
+}
+
+// ---------------------------------------------------------------- setup
+async function checkHealth() {
+  const badge = $("mode");
+  try {
+    const h = await (await fetch("/health")).json();
+    if (h.stub_mode) { badge.className = "badge warn"; badge.textContent = "stub mode · canned answers"; }
+    else { badge.className = "badge ok"; badge.textContent = "real engine"; }
+  } catch {
+    badge.className = "badge bad"; badge.textContent = "service unreachable";
+  }
+}
+
+function initTheme() {
+  let saved = null;
+  try { saved = localStorage.getItem("c1-demo-theme"); } catch {}
+  if (saved) document.documentElement.dataset.theme = saved;
+  $("theme").addEventListener("click", () => {
+    const dark = document.documentElement.dataset.theme
+      ? document.documentElement.dataset.theme === "dark"
+      : matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = dark ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("c1-demo-theme", next); } catch {}
+  });
+}
+
+for (const p of PRESETS) $("presets").append(el("button", { type: "button", title: p[1], onclick: () => playPreset(p) }, `${p[0]} · ${p[1]}`));
+$("composer").addEventListener("submit", onSubmit);
+$("reset").addEventListener("click", () => newSession());
+initTheme();
+newSession();
+checkHealth();
+</script>
+</body>
+</html>

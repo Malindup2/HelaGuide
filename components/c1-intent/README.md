@@ -128,3 +128,12 @@ Sessions: **A** NIC lost (district memory, correction Matara → Galle, urgency)
 `trust_verification`, **C** driving licence → `fallback`, **SI** Sinhala script (birth certificate copy),
 **EN** English (new passport).
 
+**6. Demo page** (service running): open <http://127.0.0.1:8001/demo>. A chat that calls
+`/v1/intent/details` and shows, per turn, the word-level language tags, the intent and confidence, the
+dialogue state (slots set or corrected this turn are highlighted), the route, and the v1 contract next to the
+full C1 state. Every bot message is C1's own `reply`, and the page sends it back as `bot_text` with the next
+message. The buttons replay demo sessions: **A**, **C**, **SI** and **EN** as above, **B** a complaint in the
+middle of a passport request, **LOCK** (passport kept over misread follow-ups), **SWITCH** (passport, then NIC)
+and **MULTI** (NIC, then passport). Click any of your messages to look at that turn again. The page is C1-only
+(`app/static/demo.html`), needs no build step and is not in the OpenAPI docs.
+
