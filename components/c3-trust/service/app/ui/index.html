@@ -111,6 +111,9 @@ th{color:var(--muted);font-weight:600}
 .sample input{margin-top:4px;accent-color:var(--orange)}
 .s-note{color:var(--muted);font-size:12px;margin-top:2px}
 .err{color:var(--red);min-height:20px;font-size:13px}
+.hidden{display:none}
+.custom textarea{display:block;width:100%;padding:10px;border:1px solid #cfd4dc;border-radius:8px;font:inherit;font-weight:400;resize:vertical}
+.custom select{display:block;width:100%;margin-top:6px;padding:9px 10px;border:1px solid #cfd4dc;border-radius:8px;font:inherit;font-weight:400;background:#fff}
 .dialog-f{display:flex;justify-content:flex-end;gap:10px;margin-top:8px}
 @media (max-width:980px){.layout{grid-template-columns:1fr;height:auto}.thread{max-height:70vh}.fact{grid-template-columns:1fr auto}.fact .lbl{grid-column:1/-1}.tagline{display:none}}
 </style>
@@ -119,7 +122,8 @@ th{color:var(--muted);font-weight:600}
 <header class="top">
   <div class="brand"><span class="mark">H</span><span>HelaGuide</span></div>
   <span class="domain">helaguide.lk</span>
-  
+  <span class="tagline">Government guidance with a measured level of trust</span>
+  <span class="tag">Component 3 demo · mock data</span>
 </header>
 
 <main class="layout">
@@ -146,13 +150,19 @@ th{color:var(--muted);font-weight:600}
 <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="dialog">
     <div class="dialog-h"><h2 id="modal-title">Give feedback</h2><button class="x" id="modal-x" aria-label="Close">&times;</button></div>
-    <p class="muted" style="margin:6px 0 0">Tell us what you experienced at the office.</p>
+    <p class="muted" style="margin:6px 0 0">Tell us what you experienced at the office. In this demo you choose a citizen first, then a pre-written message, or write your own in English. Live translation is switched off, so nothing depends on the internet.</p>
     <label class="fld">1 · Who is giving this feedback?<select id="persona"></select></label>
     <div class="fld">2 · Choose a message
       <div id="groups" class="groups"></div>
       <div id="samples" class="samples"></div>
+      <div id="custom" class="custom hidden">
+        <textarea id="custom-text" rows="4" maxlength="600" placeholder="Write in English. Name the service and what it was about, for example: I paid Rs. 13,500 for the normal passport at the Battaramulla office yesterday."></textarea>
+        <div class="s-note">English only. Mention the service and what happened (a fee, a document or a time). If the system cannot tell which fact you mean, it asks and changes nothing.</div>
+      </div>
     </div>
-    <label class="fld">3 · When did you visit? (optional)<input type="date" id="visit"></label>
+    <label class="fld" id="visit-wrap">3 · When did you visit? (optional)<input type="date" id="visit"></label>
+    <label class="fld hidden" id="visit-rel-wrap">3 · When did you visit? (optional)
+      <select id="visit-rel"><option value="">Not given</option><option value="0">Today</option><option value="1">Yesterday</option><option value="7">A week ago</option><option value="30">A month ago</option></select></label>
     <div id="modal-err" class="err"></div>
     <div class="dialog-f"><button class="btn ghost" id="modal-cancel">Cancel</button><button class="btn primary" id="modal-submit">Submit feedback</button></div>
   </div>
@@ -277,7 +287,27 @@ function resultCard(r) {
     '<div class="shift"><span class="was">' + pct(c.old) + '%</span><span class="arrow">&rarr;</span><span class="badge ' + cls(e.warning_code) + '" style="font-size:18px">' + c.pct + "%</span></div>" +
     warnLine(e.warning_code) + "</div></div>";
 }
+async function submitTyped() {
+  const text = $("#custom-text").value.trim();
+  if (text.length < 8) { $("#modal-err").textContent = "Write a little more: name the service and what it was about."; return; }
+  const persona = $("#persona").value, rel = $("#visit-rel").value;
+  state.persona = persona;
+  closeModal();
+  addUser("Citizen " + persona, '<span class="lang">English · typed</span><div class="said">' + esc(text) + "</div>");
+  const wait = addBubble("Checking your report&hellip;");
+  try {
+    const r = await api("/internal/demo/feedback", {text: text, persona_id: persona, visit_days_ago: rel === "" ? null : Number(rel)});
+    wait.remove();
+    state.last = r;
+    if (r.fact_id) state.lastFact = r.fact_id;
+    addBot(resultCard(r));
+    if (r.state === "grounded") addBubble("To see the guide with this report taken into account: " + againButton());
+    showTab("report");
+    state.personas = await api("/internal/demo/personas");
+  } catch (e) { wait.remove(); fail(e); }
+}
 async function submit() {
+  if (state.group === "custom") return submitTyped();
   if (!state.picked) { $("#modal-err").textContent = "Choose a message first."; return; }
   const s = state.samples.find(x => x.id === state.picked);
   const persona = $("#persona").value, visit = $("#visit").value || null;
@@ -331,15 +361,22 @@ function openModal() {
   $("#persona").innerHTML = state.personas.map(p => '<option value="' + esc(p.id) + '">' + esc(p.id) + " · " + esc(p.note) + " · reputation " + p.reputation + "</option>").join("");
   if (state.persona && $$("#persona option").some(o => o.value === state.persona)) $("#persona").value = state.persona;   // keep the last citizen
   state.persona = $("#persona").value;
-  state.picked = null; $("#visit").value = "";                                                                           // choose the message afresh
+  state.picked = null; $("#visit").value = ""; $("#custom-text").value = ""; $("#visit-rel").value = "";                                                                           // choose the message afresh
   renderGroups(); renderSamples();
   $("#modal").classList.remove("hidden");
 }
 function closeModal() { $("#modal").classList.add("hidden"); }
 function renderGroups() {
-  $("#groups").innerHTML = state.groups.map(g => '<button type="button" class="gbtn' + (g.id === state.group ? " active" : "") + '" data-group="' + esc(g.id) + '">' + esc(g.label) + "</button>").join("");
+  const all = state.groups.concat([{id: "custom", label: "Write your own (English)"}]);
+  $("#groups").innerHTML = all.map(g => '<button type="button" class="gbtn' + (g.id === state.group ? " active" : "") + '" data-group="' + esc(g.id) + '">' + esc(g.label) + "</button>").join("");
 }
 function renderSamples() {
+  const typed = state.group === "custom";                                     // the typed-text tab
+  $("#samples").classList.toggle("hidden", typed);
+  $("#custom").classList.toggle("hidden", !typed);
+  $("#visit-wrap").classList.toggle("hidden", typed);
+  $("#visit-rel-wrap").classList.toggle("hidden", !typed);
+  if (typed) return;
   const list = state.samples.filter(s => s.group === state.group);
   $("#samples").innerHTML = list.map(s =>
     '<label class="sample' + (s.id === state.picked ? " sel" : "") + '"><input type="radio" name="sample" value="' + esc(s.id) + '"' + (s.id === state.picked ? " checked" : "") + ">" +

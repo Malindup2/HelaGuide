@@ -14,12 +14,14 @@ import json
 import threading
 from datetime import datetime, timedelta, timezone
 
+from app.core.lexicon import has_sinhala
 from app.core.pipeline import ProcessResult, get_pipeline
 from app.core.util import as_utc, fmt_value, iso, parse_dt
 from app.models.internal import DemoFeedbackRequest
 
 INITIAL_CLOCK = datetime(2026, 10, 19, 9, 0, tzinfo=timezone.utc)
 UPDATE_CLOCK = datetime(2026, 10, 28, 12, 0, tzinfo=timezone.utc)      # the official page changes on 28 Oct 2026
+TYPED_BASE = datetime(2026, 10, 26, 9, 0, tzinfo=timezone.utc)         # typed text is dated after the whole sample story
 
 REASONS = {
     "service_unclear": "I could not tell which service this is about, so I changed nothing.",
@@ -110,6 +112,8 @@ class DemoService:
     # ------------------------------------------------------------- feedback
     def submit(self, req: DemoFeedbackRequest) -> dict:
         with self.lock:
+            if req.sample_id is None:                                         # the panel's own English text
+                return self._submit_typed(req)
             m = self.messages[req.sample_id]                                  # KeyError -> 404 in the route
             if self.pipe.repo.get_reporter(req.persona_id) is None:
                 raise KeyError(req.persona_id)
@@ -125,6 +129,27 @@ class DemoService:
                        "intent": "feedback_discrepancy", "entities": entities}
             res = self.pipe.process_freetext(payload)
             return self._present(res, m, req)
+
+    def _submit_typed(self, req: DemoFeedbackRequest) -> dict:
+        """English text typed at the demo. It goes through exactly the same pipeline as a sample message:
+        grounding, trust, independence, confidence. No translation is needed, so nothing depends on the internet."""
+        text = " ".join((req.text or "").split())
+        if len(text) < 8:
+            raise ValueError("Write a little more: name the service and what it was about.")
+        if has_sinhala(text):
+            raise ValueError("Please write in English. Live translation is switched off in this demo.")
+        if self.pipe.repo.get_reporter(req.persona_id) is None:
+            raise KeyError(req.persona_id)
+        ts = max(TYPED_BASE, self.clock + timedelta(minutes=1))                # time only moves forward
+        self.clock = ts
+        self.counter += 1
+        visit = (ts.date() - timedelta(days=req.visit_days_ago)).isoformat() if req.visit_days_ago is not None else None
+        payload = {"message_id": f"ui-{self.counter:04d}", "session_id": req.persona_id, "timestamp": iso(ts),
+                   "language": "en", "raw_text": text, "text_en": None, "intent": "feedback_discrepancy",
+                   "entities": {"service_id": None, "predicate_hint": None, "mentioned_value": None, "visit_date": visit,
+                                "reporter_token": None, "context_services": self.context or None}}
+        res = self.pipe.process_freetext(payload)
+        return self._present(res, {"raw_text": text, "language": "en"}, req)
 
     def _present(self, res: ProcessResult, m: dict, req: DemoFeedbackRequest) -> dict:
         out = res.to_dict()

@@ -121,3 +121,15 @@ def test_two_copies_are_discounted_twice_and_own_reports_are_ignored():
     assert I == pytest.approx(S.rho ** 2) and dup == 2
     I_self, _, _ = independence(S, np.array([1, 0], dtype=np.float32), "u1", "dispute", [_row("u1", [1, 0])])
     assert I_self == 1.0
+
+
+def test_the_arithmetic_alternative_exists_only_for_ablation_and_excuses_a_weak_signal():
+    assert make_settings().trust_mean == "geometric"                                   # the real system
+    ar = make_settings(trust_mean="arithmetic")
+    weak = dict(a=0, b=0, age_days=0.0, gap_days=None, text_en=VAGUE_TEXT, raw_text=VAGUE_TEXT, claimed_num=None, has_visit_date=False)
+    assert msrt(ar, **weak).T > 2 * msrt(S, **weak).T                                  # one very weak signal is covered up
+    flat = dict(weak, a=3, b=0, age_days=400.0, gap_days=0)                            # all signals strong: the means agree
+    assert abs(msrt(ar, **flat).T - msrt(S, **flat).T) < 0.1
+
+
+VAGUE_TEXT = "I think the passport fee is different from what your guide says."

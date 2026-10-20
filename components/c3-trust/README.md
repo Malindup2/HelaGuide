@@ -67,7 +67,7 @@ The real HTTP service: `$env:STUB_MODE="false" ; uvicorn app.main:app --reload -
 
 | Tool | What it does |
 |---|---|
-| `serve` | **Starts the citizen console** at `http://localhost:8013/ui`: a chat page showing the workflow "How do I get a passport?" with a confidence % on every fact, a Give feedback button, and the updated percentage when the guide is shown again (`--sqlite` needs no Docker, `--port`) |
+| `serve` | **Starts the citizen console** at `http://localhost:8013/ui`: a chat page showing the workflow "How do I get a passport?" with a confidence % on every fact, a Give feedback button, and the updated percentage when the guide is shown again (`--sqlite` needs no Docker, `--port`). The feedback dialog also has a **Write your own (English)** tab, for typing a message at the demo |
 | `demo` | The PP1 demonstration in seven parts (`--pause`, `--part`, `--path freetext\|structured\|both`) |
 | `reset` | Back to the clean starting state |
 | `check_model` | Checks the embedding model loads and ranks related text higher |
@@ -76,6 +76,7 @@ The real HTTP service: `$env:STUB_MODE="false" ; uvicorn app.main:app --reload -
 | `tune_grounding` | Finds grounding thresholds for your model from the labelled messages |
 | `show` | Read-only view of what C3 stores right now: table sizes, every fact whose confidence moved, and one fact in detail (`--fact`). Use `reset` then `show` for BEFORE, `demo` then `show` for AFTER |
 | `report` | Turns the demo into **one HTML page** for the panel: a heading and explanation per part, real tables, colour-coded confidence, the audit trail and the chart. Runs the demo, or converts a saved `demo_output.txt` (`--from-file`). Output: `research/experiments/out/pp1_demo_report.html` |
+| `ablation` | The ablation study: switch one part of the trust and confidence logic off (independence weighting, geometric mean, reputation, account age, visit recency) and show how the result changes. Needs no Docker and no model download. `--only NAME`, `--html` for a readable page |
 | `export_ddl` | Prints the PostgreSQL table definitions (for `infra/postgres` at integration) |
 
 ## Layout

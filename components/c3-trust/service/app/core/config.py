@@ -56,8 +56,8 @@ class C3Settings(BaseSettings):
     w_q: float = 0.15                         # qualifier agreement
     w_v: float = 0.10                         # the stored value is mentioned
     tau_f: float = 0.55                       # min fact score
-    delta_f: float = 0.08                     # min lead over the runner-up fact
-    tau_miss_cos: float = 0.30               # document phrase similarity floor: below it a document is "not in the graph"
+    delta_f: float = 0.06                     # min lead over the runner-up fact
+    tau_miss_cos: float = 0.35                # document phrase similarity floor: below it a document is "not in the graph"
     tau_doc_sure: float = 0.60                # at or above this the similarity alone is trusted for a document;
                                               # between tau_miss_cos and this, the message must also share a distinctive word
     tau_f_unique_relief: float = 0.10         # if the service has only ONE fact of the kind discussed, tau_f is lowered by this
@@ -70,6 +70,7 @@ class C3Settings(BaseSettings):
     tau_c: float = 30.0                       # account-age curve, days
     tau_v: float = 14.0                       # visit-recency curve, days
     recency_missing_mode: Literal["neutral", "drop"] = "neutral"
+    trust_mean: Literal["geometric", "arithmetic"] = "geometric"   # "arithmetic" exists only for the ablation study
     spec_value: float = 0.30
     spec_when: float = 0.25
     spec_where: float = 0.20

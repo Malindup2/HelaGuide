@@ -99,13 +99,15 @@ def demo_samples() -> dict:
 
 @demo.post("/feedback")
 def demo_feedback(req: DemoFeedbackRequest) -> dict:
-    """Submit one pre-written sample message as one of the demo citizens."""
+    """Submit one pre-written sample message, or typed English text, as one of the demo citizens."""
     _require_real_mode()
     from app.core.demo import get_demo
     try:
         return get_demo().submit(req)
     except KeyError as exc:
         raise HTTPException(status.HTTP_404_NOT_FOUND, f"unknown sample or citizen: {exc}") from exc
+    except ValueError as exc:                                                  # typed text the demo cannot take
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, str(exc)) from exc
 
 
 @demo.post("/official-update")
