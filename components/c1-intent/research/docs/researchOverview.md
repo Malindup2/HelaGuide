@@ -75,9 +75,9 @@ Shared: one JSON schema across all four engines, FastAPI serving, Docker deploym
 - **Main result:** accuracy vs tokens/latency trade-off curve across context strategies
 - All results broken down by style (script / Singlish / code-mixed), never one blended number
 
-### Where things stand (18 Oct 2026)
+### Where things stand (19 Oct 2026)
 
-XLM-R values are mean ± std over 3 seeds (42, 1, 2).
+XLM-R values are mean ± std over 3 seeds (42, 1, 2), except the v2 rows (1 seed).
 
 | | Result | Test set |
 |---|---|---|
@@ -89,10 +89,17 @@ XLM-R values are mean ± std over 3 seeds (42, 1, 2).
 | Entities (span micro-F1, all types) | XLM-R 0.528 ± 0.054 gold; 0.394 ± 0.080 fresh; hybrid: 0.75 gold / 0.73 fresh (extractive types) | Gold / fresh |
 | JGA (full tracker, gold intent) | synthetic 0.807, fresh 0.920 (held out); fresh with predicted intent 0.88; gold 0.979 is the development set | Synthetic 726 / fresh 50 / gold 142 turns |
 | Context strategy (sessions) | XLM-R + window_3: 0.896 gold, 0.898 fresh macro-F1 at ~30 tokens/turn (full history 42–55 tokens/turn) | Gold / fresh sessions |
+| Intent, all 12 intents (v2, 1 seed) | XLM-R **0.852** acc / 0.791 macro-F1; TF-IDF 0.782 / 0.772 | Gold, all 142 turns |
+| Full pipeline JGA (v2, predicted intent) | **0.838** gold (0.46 before the support-intent data); 0.84 fresh with the NER fallback | Gold 142 / fresh 50 turns |
+| Entities, rules + XLM-R NER fallback (v2) | **0.783** span F1 (rules alone 0.727, NER alone 0.455); JGA with gold intent 0.94 | Fresh, extractive types |
 
-Data: 70 hand-written gold dialogues (142 turns), 273 synthetic training dialogues (726 turns),
-23 fresh hand-written test dialogues (50 turns). Full tables in `notes.md` (Observations 7–9)
-and `research\data\README.md` → Results so far.
+Data: 70 hand-written gold dialogues (142 turns), 393 synthetic training dialogues (977 turns: 273 for the
+8 core intents, 120 for the 4 support intents), 23 fresh hand-written test dialogues (50 turns). Full tables
+in `notes.md` (Observations 7–11) and `research\data\README.md` → Results so far.
+
+The service runs the v2 model with an intent policy on top (Observation 11): a conversation keeps its
+active service unless the citizen names a different one, a complaint does not replace it, and every turn
+gets a reply. Not yet measured on the test sets.
 
 ## 8. Milestones
 
@@ -116,10 +123,10 @@ and `research\data\README.md` → Results so far.
 | Dataset creation | ✅ | |
 | Annotation & data split | ✅ | |
 | Language segmentation layer | 🔄 (model trained and evaluated over 3 seeds; `segment(text)` module pending) | |
-| Intent classifier | 🔄 (XLM-R over 3 seeds + TF-IDF baseline; 4 support intents have no training data) | |
-| Entity extractor + multi-turn tracking | 🔄 (hybrid extractor done: entity F1 0.75 gold / 0.73 fresh vs XLM-R 0.655 / 0.481) | |
-| FastAPI endpoint + routing | 🔄 (skeleton + stub; `resolve()` not implemented) | 10/18 |
-| PP1 demo & slides | ⬜ | 10/20 |
+| Intent classifier | 🔄 (v2 with all 12 intents: 0.852 gold accuracy, 1 seed; 15-epoch 3-seed rerun pending) | |
+| Entity extractor + multi-turn tracking | 🔄 (rules + XLM-R NER fallback: fresh entity F1 0.783, JGA 0.94; active-intent policy in the service) | |
+| FastAPI endpoint + routing | ✅ (real engine behind `/v1/intent`, `/v1/intent/details` with route and reply, 66 tests; Docker with the real model and PostgreSQL sessions pending) | 10/18 |
+| PP1 demo & slides | 🔄 (demo page `/demo` done; video and slides pending) | 10/20 |
 | PP2 – Context optimization & evaluation | 🔄 (6 strategies × 3 seeds, tokens, latency, trade-off curve done; JGA, LLM summary, predicted tags, long conversations pending) | Later |
 
 ## 10. This week's priorities
@@ -130,16 +137,18 @@ and `research\data\README.md` → Results so far.
 4. ✅ Export data and create test sets (gold + fresh, both test-only)
 5. ✅ Train first intent classifier baseline; 3 seeds and a TF-IDF baseline (Observation 7)
 6. ✅ Context strategies experiment: window_3 chosen as the default (Observation 8)
-7. ⬜ Plug the models into `POST /v1/intent` behind `pipeline.resolve()`
-8. ⬜ PP1 demo dialogue, backup video and slides
+7. ✅ Plug the models into `POST /v1/intent` behind `pipeline.resolve()` (18 Oct, branch `c1/api`)
+8. 🔄 PP1 demo: dialogues and demo page done (19 Oct); backup video and slides pending
 
 ## 11. Risks
 
 | Risk | Mitigation |
 |---|---|
 | Not enough labelled data | Three sources: manual gold dialogues, synthetic LLM data (silver), a fresh hand-labelled test set |
-| Class imbalance | Synthetic batch balanced across the 8 core intents (29–36 dialogues each); report macro-F1 |
-| 4 intents have no training data | Next synthetic batch: `unsupported_service`, `feedback_complaint`, `general_question`, `out_of_scope` |
+| Class imbalance | Synthetic data balanced: 29–36 dialogues per core intent, 30 per support intent; report macro-F1 |
+| ~~4 intents have no training data~~ | Done 18 Oct: 30 synthetic dialogues each; v2 trained on all 12 |
+| Support intents still weak (`general_question` F1 0.00; complaints after a service request read as that service) | More varied training data after PP1, measured on held-out data |
+| Short follow-up answers re-classified as another service | Active-intent policy in the service (Observation 11); switching needs a confident prediction and the new service's name |
 | Singlish spelling is inconsistent | Include romanized variants; report it separately |
 | Teammates' components not ready | Shared JSON schema + mocked services |
 | Synthetic data unrealistic | Train on synthetic only, test only on human-written data (gold + fresh) |
@@ -162,4 +171,5 @@ and `research\data\README.md` → Results so far.
 | 15 Oct | 273 synthetic dialogues, LLM language tags (100% on an 80-turn check), silver set; first XLM-R models (run 1) | Fresh test set |
 | 16 Oct | Fresh test set (50 turns, labelled from scratch); run 2: language ID 0.971, intent 0.943 gold / 0.90 fresh; synthetic ID and district fixes | Service integration, PP1 slides |
 | 17 Oct | XLM-R over 3 seeds + TF-IDF intent baseline (Observation 7); context strategies, 6 × 3 seeds, window_3 chosen as default (Observation 8); `c1/context-experiment` pushed | Service integration, PP1 slides |
-| 18 Oct | Hybrid slot extractor + dialogue state tracker, JGA evaluation, fresh states labelled (Observation 9) | Retrain with support intents (v2 notebook), service integration, PP1 slides |
+| 18 Oct | Hybrid slot extractor + dialogue state tracker, JGA evaluation, fresh states labelled (Observation 9); support-intent data, v2 retrain with 12 intents, full pipeline (Observation 10); real engine in the service with routing and sessions; contract proposal | Demo, PP1 slides |
+| 19 Oct | Demo page `/demo`; active-intent policy, slot state per intent and bot replies (Observation 11) | Backup video, slides, rehearse |

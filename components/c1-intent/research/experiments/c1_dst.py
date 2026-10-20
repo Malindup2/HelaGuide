@@ -123,16 +123,69 @@ SERVICES = [
     ("NIC", ["nic", "id", "identity card", "හැඳුනුම්පත", "ජාතික හැඳුනුම්පත"]),
 ]
 
+# internal core intent -> KG service ID (research/data/kg_service_map.json, kg_service_id; marriage and death
+# are proposed, pending C2). tests/test_projection.py checks the two agree.
+KG_SERVICE_IDS = {
+    "nic_new": "svc:nic", "nic_update": "svc:nic", "nic_replace_lost": "svc:nic",
+    "passport_new": "svc:passport", "passport_renew": "svc:passport",
+    "birth_cert_copy": "svc:birth_certificate",
+    "marriage_registration": "svc:marriage_registration",
+    "death_cert_copy": "svc:death_certificate",
+}
+# explicit service keywords per KG service: leaving the active intent for another core intent needs one of
+# these for the new service in the message (engine.Session). Matched with gaz_find.
+SERVICE_KEYWORDS = {
+    "svc:nic": ["nic", "id", "id card", "identity card", "national identity card", "handunumpatha",
+                "hendunumpatha", "handunumpath", "හැඳුනුම්පත", "හැදුනුම්පත", "ජාතික හැඳුනුම්පත"],
+    "svc:passport": ["passport", "pass port", "gaman balapathraya", "gaman balapatraya", "ගමන් බලපත්‍ර",
+                     "පාස්පෝට්"],
+    "svc:birth_certificate": ["birth certificate", "birth cert", "uppenna", "uppanna", "upan sahathikaya",
+                              "උප්පැන්න", "උප්පැන්න සහතික"],
+    "svc:death_certificate": ["death certificate", "death cert", "marana sahathikaya", "maranaya", "මරණ සහතික",
+                              "මරණ"],
+    "svc:marriage_registration": ["marriage", "marriage certificate", "vivaha", "wiwaha", "විවාහ"],
+}
+# variant cues for the services with more than one core intent, checked in this order (a lost NIC that is
+# applied for "aluthen" is still lost; "aluth karanna" is a renewal). A message that names the service with none
+# of these gets "which one?" instead of the classifier's guess (engine.Session). "ganna" / "apply" (get, apply
+# for) count as new: "passport ekak ganna one".
+VARIANT_KEYWORDS = {
+    "svc:nic": [
+        ("nic_replace_lost", ["lost", "lose", "missing", "stolen", "replace", "replacement", "duplicate", "nathiuna",
+                              "nathi una", "nathi unaa", "nathi wuna", "nathi vuna", "nathi wela", "naathi una",
+                              "naathi wela", "naathi wuna", "නැති වුණා", "නැතිවුණා", "නැති උනා", "නැති වුණු",
+                              "නැති වෙලා"]),
+        ("nic_update", ["update", "updated", "change", "changed", "correction", "amend", "wenas", "venas",
+                        "wenaskaranna", "වෙනස්", "යාවත්කාලීන"]),
+        ("nic_new", ["new", "aluth", "aluthen", "alut", "first", "palamu", "palaweni", "ganna", "apply", "අලුත්",
+                     "අලුතෙන්", "පළමු", "ගන්න"]),
+    ],
+    "svc:passport": [
+        ("passport_renew", ["renew", "renewal", "re-new", "expire", "expired", "expiring", "ikuth", "kal ikuth",
+                            "aluth karanna", "aluth karaganna", "අලුත් කරන්න", "අලුත් කරගන්න", "කල් ඉකුත්", "ඉකුත්"]),
+        ("passport_new", ["new", "aluth", "alut", "first", "palamu", "palaweni", "ganna", "apply", "අලුත්", "පළමු",
+                          "ගන්න"]),
+    ],
+}
+
+# purpose is only filled from this list (free text is not accepted: "for my daughter" is not a purpose)
 PURPOSES = [
     ("school admission", ["school", "පාසල්", "පාසලට", "ඉස්කෝල"]),
-    ("land transfer", ["idam", "land", "ඉඩම්", "ඉඩම"]),
-    ("bank", ["bank", "බැංකු"]),
-    ("visa", ["visa", "වීසා"]),
+    ("land transfer", ["idam", "land", "ඉඩම්", "ඉඩම", "deed", "oppuwa", "ඔප්පුව"]),
+    ("bank", ["bank", "බැංකු", "account"]),
+    ("visa", ["visa", "වීසා", "විසා"]),
     ("passport", ["passport", "ගමන් බලපත්‍ර"]),
-    ("job", ["job", "rakiyawa", "රැකියා"]),
-    ("pension", ["pension", "විශ්‍රාම"]),
+    ("NIC", ["nic", "id", "හැඳුනුම්පත"]),
+    ("job", ["job", "rakiyawa", "රැකියා", "army"]),
+    ("foreign employment", ["foreign employment", "foreign job", "rata rassawa"]),
+    ("going abroad", ["abroad", "going abroad", "pitarata", "පිටරට"]),
+    ("pension", ["pension", "විශ්‍රාම", "wishrama"]),
+    ("EPF", ["epf", "etf"]),
     ("insurance", ["insurance", "රක්ෂණ"]),
     ("court case", ["court", "nadu", "උසාවි"]),
+    ("exam", ["exam", "a/l", "o/l", "විභාග"]),
+    ("scholarship", ["scholarship", "ශිෂ්‍යත්ව"]),
+    ("marriage", ["marriage", "vivaha", "විවාහ"]),
 ]
 
 # complaint categories (feedback_complaint -> issue). A small taxonomy of common complaint types.
@@ -148,12 +201,19 @@ APPLICANT = [
                "lamayage", "lamayata", "daruwa", "daruwage", "son", "daughter", "child", "kid", "baby", "babyge",
                "පුතා", "පුතාට", "පුතාගේ", "දුව", "දුවට", "දුවගේ", "ළමයා", "ළමයාට", "දරුවා", "දරුවාට", "දරුවාගේ"]),
     ("parent", ["amma", "ammage", "ammata", "thaththa", "thaththage", "thaththata", "appachchi", "mother", "father",
-                "mom", "dad", "අම්මා", "අම්මාගේ", "අම්මාට", "තාත්තා", "තාත්තාගේ", "තාත්තාට"]),
+                "mom", "dad", "අම්මා", "අම්මාගේ", "අම්මාට", "අම්මට", "අම්මගේ", "තාත්තා", "තාත්තාගේ", "තාත්තාට",
+                "තාත්තට", "තාත්තගේ"]),
     ("spouse", ["wife", "husband", "birida", "biridage", "mahaththaya", "mahaththayage", "බිරිඳ", "බිරිඳට",
                 "බිරිඳගේ", "සැමියා", "සැමියාට", "මහත්තයා"]),
-    ("other", ["malli", "mallige", "nangi", "nangige", "ayya", "akka", "brother", "sister", "seeya", "aachchi",
-               "මල්ලි", "නංගි", "අයියා", "අක්කා", "සීයා", "ආච්චි", "friend", "yaluwa"]),
-    ("self", ["mata", "mage", "mama", "my", "i", "me", "myself", "මට", "මගේ", "මම"]),
+    # siblings: romanized forms match whole words, so each case ending is listed; Sinhala-script forms match
+    # as prefixes (නංගි covers නංගිට), but අක්කට / අයියට do not start with අක්කා / අයියා
+    ("other", ["malli", "mallige", "mallita", "malliita", "malliata", "malliage", "nangi", "nangige", "nangita",
+               "nangiata", "ayya", "ayyata", "ayyage", "akka", "akkata", "akkage", "brother", "sister", "seeya",
+               "aachchi", "මල්ලි", "නංගි", "අයියා", "අයියට", "අයියගේ", "අක්කා", "අක්කට", "අක්කගේ", "සීයා", "ආච්චි",
+               "friend", "yaluwa"]),
+    # "mata" (for me), "mage" (my), "my", "me": the request is for the speaker. A bare subject pronoun
+    # ("i need...", "mama", "මම") is not evidence: "i need a birth certificate" can be for a daughter.
+    ("self", ["mata", "mage", "my", "me", "myself", "for me", "මට", "මගේ"]),
 ]
 
 CHANGE_FIELD = [
@@ -393,6 +453,96 @@ def bot_proposed_district(bot_text):
     return hit[2] if hit else None
 
 
+# a pronoun that points back to the person of the previous request ("eyata ID eka ganna" after a daughter's
+# birth certificate): on an intent switch, applicant_for is carried only when one of these is in the message
+BACK_REFERENCE = ["eyata", "eyage", "එයාට", "එයාගේ", "for her", "for him"]
+
+
+def refers_back(text):
+    return has_any(_words(text), BACK_REFERENCE)
+
+
+def variant_cue(text, service):
+    """The core intent a variant cue in the message points to for this KG service, or None."""
+    words = _words(text)
+    return next((intent for intent, forms in VARIANT_KEYWORDS.get(service, []) if has_any(words, forms)), None)
+
+
+# ---------------------------------------------------------------- condition facts
+# Facts about the applicant that are not slots: never asked for, only kept when the citizen says them ("she is
+# 14 years still"). C1 only records them; what they mean for the application is C2's decision.
+ADULT_AGE = 18
+AGE_BEFORE = {"is", "am", "age", "aged", "wayasa", "vayasa", "වයස", "වයස්", "avurudu", "awurudu", "අවුරුදු"}
+AGE_AFTER = {"year", "years", "yr", "yrs", "yo", "y/o", "old", "avurudu", "awurudu", "අවුරුදු"}
+NOT_AGE_BEFORE = {"for", "in", "within", "after", "last", "past", "under", "below", "over", "above", "valid"}
+NOT_AGE_AFTER = {"ago", "kalin", "kalinda", "before", "back", "passe", "කලින්", "පස්සේ"}
+# a number next to these is an address, a date or an ID number ("No. 14, Temple Road", "my number is 14")
+NUMBER_CONTEXT = {"no", "number", "num", "house", "address", "lipinaya", "road", "lane", "mawatha", "date",
+                  "dinaya", "day", "nic", "id", "phone"}
+MINOR = ["under 18", "below 18", "under age", "underage", "under-age", "18ta adu", "18ට අඩු", "bala wayaskara",
+         "බාල වයස්කාර"]
+NOT_MINOR_AFTER = {"change", "changes", "correction", "mistake", "error", "issue", "problem"}   # "minor correction"
+_AGE_NUM = re.compile(r"(\d{1,3})(i|yi|යි)?")
+
+
+def find_age(words):
+    """'she is 14', '14 years', 'avurudu 14', 'wayasa 14i' -> 14. Dates, addresses and ID numbers are skipped."""
+    lw = [low(w) for w, _, _ in words]
+    for i, w in enumerate(lw):
+        m = _AGE_NUM.fullmatch(w)
+        if not m:
+            continue
+        age, before, after = int(m.group(1)), lw[i - 1] if i else "", lw[i + 1:i + 3]
+        if not 0 < age < 120 or before in NOT_AGE_BEFORE or set(lw[max(0, i - 2):i]) & NUMBER_CONTEXT \
+                or set(after) & NOT_AGE_AFTER:
+            continue
+        if before in AGE_BEFORE or (after and after[0] in AGE_AFTER):
+            return age
+    return None
+
+
+def extract_conditions(text):
+    """Condition facts said in this message: {"applicant_age": 14, "applicant_minor": True}, or
+    {"applicant_minor": True} for "minor" / "under 18" without an age."""
+    words = _words(text)
+    age = find_age(words)
+    if age is not None:
+        return {"applicant_age": age, "applicant_minor": age < ADULT_AGE}
+    lw = [low(w) for w, _, _ in words] + [""]
+    minor = any(w == "minor" and lw[i + 1] not in NOT_MINOR_AFTER for i, w in enumerate(lw[:-1]))
+    if minor or has_any(words, MINOR):
+        return {"applicant_minor": True}
+    return {}
+
+
+def merge_conditions(old, new):
+    """A new age replaces the old one; "minor" alone drops an adult age said before."""
+    out = dict(old)
+    if "applicant_age" in new:
+        out.update(new)
+    elif new.get("applicant_minor"):
+        if out.get("applicant_age", 0) >= ADULT_AGE:
+            out.pop("applicant_age")
+        out["applicant_minor"] = True
+    return out
+
+
+def other_slot_evidence(text, words, allowed, requested, prev_state=None):
+    """Fixed-choice (keyword) slots other than `requested` that the message matches ("for my daughter" ->
+    applicant_for). Free text is only put into the requested slot when this is empty. Not checked, because
+    they are normal inside a free-text value: districts and dates ("No 12, Main Street, Kandy"), "my"/"mata"
+    ("my husband's surname"), and the field already being changed ("aluth address eka No. 45 ...")."""
+    current_field = (prev_state or {}).get("change_field")
+    checks = {
+        "applicant_for": lambda: any(has_any(words, forms) for canon, forms in APPLICANT if canon != "self"),
+        "change_field": lambda: any(has_any(words, forms) for canon, forms in CHANGE_FIELD if canon != current_field),
+        "urgency": lambda: has_any(words, URGENT) or has_any(words, NORMAL),
+        "service_type": lambda: has_any(words, URGENT) or has_any(words, NORMAL),
+        "purpose": lambda: gaz_find(text, PURPOSES, words) is not None,
+    }
+    return {slot for slot, check in checks.items() if slot != requested and slot in allowed and check()}
+
+
 # ---------------------------------------------------------------- extractor
 class SlotExtractor:
     """Per-turn slot values. use_context=False ignores the bot's question (ablation)."""
@@ -409,6 +559,8 @@ class SlotExtractor:
         out = {}
         req = requested_slot(bot_text, intent) if self.use_context else None
         fw = first_word(words)
+        # the answer belongs to another slot ("for my daughter" to "what is it for?"): no free text for req
+        free_text_ok = bool(req) and not other_slot_evidence(text, words, allowed, req, prev_state)
 
         def put(slot, value, s=None, e=None):
             if slot in allowed and value:
@@ -466,7 +618,7 @@ class SlotExtractor:
                     put(slot, "normal")
 
         # new_value: the whole answer to "what is the new address/name?"
-        if "new_value" in allowed and self.use_context and req == "new_value" and words:
+        if "new_value" in allowed and self.use_context and req == "new_value" and words and free_text_ok:
             put("new_value", text.strip().strip(TRIM), 0, len(words))
 
         # purpose
@@ -474,15 +626,13 @@ class SlotExtractor:
             hit = gaz_find(text, PURPOSES, words)
             if hit:
                 put("purpose", hit[0], hit[1], hit[2])
-            elif self.use_context and req == "purpose" and words:
-                put("purpose", text.strip().strip(TRIM), 0, len(words))
 
         # service_mentioned
         if "service_mentioned" in allowed:
             hit = gaz_find(text, SERVICES, words)
             if hit:
                 put("service_mentioned", hit[0], hit[1], hit[2])
-            elif self.use_context and req == "service_mentioned" and words:
+            elif self.use_context and req == "service_mentioned" and words and free_text_ok:
                 put("service_mentioned", canon_text(text), 0, len(words))
 
         # issue (complaint type)
@@ -491,12 +641,18 @@ class SlotExtractor:
             if hit:
                 put("issue", hit[0], hit[1], hit[2])
 
-        # optional XLM-R entities fill free-text slots the rules missed
+        # optional XLM-R entities fill free-text slots the rules missed (purpose only from the keyword list,
+        # and never the requested slot when the answer belongs to another slot)
         if self.ner:
             for ent in self.ner(text):
                 slot = ent["type"]
-                if slot in allowed and slot not in out and slot != "district":
-                    out[slot] = {"value": ent["text"], "start": ent["start"], "end": ent["end"]}
+                if slot not in allowed or slot in out or slot == "district":
+                    continue
+                if slot == "purpose" and not gaz_find(ent["text"], PURPOSES):
+                    continue
+                if slot == req and not free_text_ok:
+                    continue
+                out[slot] = {"value": ent["text"], "start": ent["start"], "end": ent["end"]}
         return out
 
     @staticmethod
@@ -518,8 +674,14 @@ NUM_FIX = re.compile(r"(\d+[\w/]*)\s*,?\s*(\d+[\w/]*)\s*(nemei|nemeyi|newei|neve
 class DialogueStateTracker:
     """
     carryover=False      : state = this turn's slots only (no memory)
-    switch_filter=True   : after an intent switch keep only slots the new intent uses
+    switch_filter=True   : an intent switch starts a new slot frame; only district is carried, and it stays
+                           in `assumed` until the citizen restates or confirms it. applicant_for is carried
+                           too when the message points back to that person ("eyata", BACK_REFERENCE)
     corrections=True     : apply in-turn number corrections to new_value ("18, 8 nemei")
+
+    `conditions` holds facts about the applicant that are not slots (applicant_age, applicant_minor): kept when
+    said, never asked for, and carried to a new request only under the same back-reference rule as applicant_for.
+    They are not part of the JGA state.
     """
 
     def __init__(self, extractor, carryover=True, switch_filter=True, corrections=True):
@@ -533,13 +695,26 @@ class DialogueStateTracker:
         self.intent = None
         self.slots = {}
         self.spans = {}
+        self.assumed = set()        # carried slots the citizen has not confirmed for the current intent
+        self.conditions = {}        # condition facts about the applicant (not slots)
 
-    def update(self, text, intent, bot_text=None):
+    def update(self, text, intent, bot_text=None, frame=None):
+        """frame: the slots to start from when the caller prepared them (engine.Session restores a request the
+        citizen comes back to, and sets `conditions` itself); None = carry over from the previous turn."""
         prev = dict(self.slots) if self.carryover else {}
-        if self.switch_filter and intent != self.intent:
-            allowed = set(INTENT_SLOTS.get(intent, []))
-            prev = {k: v for k, v in prev.items() if k in allowed}
+        conditions = dict(self.conditions) if self.carryover else {}
+        if frame is not None:
+            prev = dict(frame)
+        elif self.switch_filter and intent != self.intent:
+            back = refers_back(text)
+            carry = {"district", "applicant_for"} if back else {"district"}
+            prev = {k: v for k, v in prev.items() if k in carry and k in INTENT_SLOTS.get(intent, [])}
+            self.assumed = set(prev) & {"district"}
+            if not back:
+                conditions = {}
+        self.conditions = merge_conditions(conditions, extract_conditions(text))
         new = self.x.extract(text, intent, bot_text, prev)
+        self.assumed -= set(new)    # restated or corrected this turn
         if self.corrections and "new_value" in prev and "new_value" not in new:
             m = NUM_FIX.search(norm(text))
             if m:
@@ -556,7 +731,147 @@ class DialogueStateTracker:
             state[k] = v["value"]
         self.intent, self.slots = intent, state
         self.spans = new
-        return {"intent": intent, "slots": dict(state)}
+        return {"intent": intent, "slots": dict(state), "conditions": dict(self.conditions)}
 
     def missing_slots(self):
         return [s for s in INTENT_SLOTS.get(self.intent, []) if s not in self.slots]
+
+
+# ---------------------------------------------------------------- session helpers (engine.Session only)
+# Not used by the tracker or dst_eval.py, so the JGA results are unchanged.
+UNKNOWN_VALUE = "unknown"       # slot value when the citizen says they don't know
+
+# major towns / DS divisions that are not district names -> (district, spellings). Romanized entries are
+# stems where the ending changes ("wennappuw" matches wennappuwa, wennappuwe, wennappuwata); Sinhala-script
+# entries match with case endings (ගාල්ලේ) through starts().
+TOWNS = {
+    # Colombo
+    "Moratuwa": ("Colombo", ["moratuw", "මොරටුව"]),
+    "Dehiwala": ("Colombo", ["dehiwala", "dehiwal", "දෙහිවල"]),
+    "Mount Lavinia": ("Colombo", ["mount lavinia", "galkissa", "ගල්කිස්ස"]),
+    "Maharagama": ("Colombo", ["maharagam", "මහරගම"]),
+    "Nugegoda": ("Colombo", ["nugegod", "නුගේගොඩ"]),
+    "Kotte": ("Colombo", ["kotte", "කෝට්ටේ"]),
+    "Battaramulla": ("Colombo", ["battaramull", "බත්තරමුල්ල"]),
+    "Kaduwela": ("Colombo", ["kaduwel", "කඩුවෙල"]),
+    "Homagama": ("Colombo", ["homagam", "හෝමාගම"]),
+    "Piliyandala": ("Colombo", ["piliyandal", "පිළියන්දල"]),
+    "Avissawella": ("Colombo", ["avissawell", "awissawell", "අවිස්සාවේල්ල"]),
+    "Kolonnawa": ("Colombo", ["kolonnaw", "කොලොන්නාව"]),
+    # Gampaha
+    "Negombo": ("Gampaha", ["negombo", "meegamuw", "migamuw", "මීගමුව"]),
+    "Wattala": ("Gampaha", ["wattal", "වත්තල"]),
+    "Ja-Ela": ("Gampaha", ["ja-ela", "jaela", "ජා-ඇල", "ජාඇල"]),
+    "Kadawatha": ("Gampaha", ["kadawath", "කඩවත"]),
+    "Kiribathgoda": ("Gampaha", ["kiribathgod", "කිරිබත්ගොඩ"]),
+    "Minuwangoda": ("Gampaha", ["minuwangod", "මිනුවන්ගොඩ"]),
+    "Kelaniya": ("Gampaha", ["kelaniy", "කැලණිය"]),
+    # Kalutara
+    "Panadura": ("Kalutara", ["panadur", "පානදුර"]),
+    "Horana": ("Kalutara", ["horana", "horane", "හොරණ"]),
+    "Beruwala": ("Kalutara", ["beruwal", "බේරුවල"]),
+    "Matugama": ("Kalutara", ["matugam", "mathugam", "මතුගම"]),
+    "Aluthgama": ("Kalutara", ["aluthgam", "අළුත්ගම", "අලුත්ගම"]),
+    # Puttalam
+    "Wennappuwa": ("Puttalam", ["wennappuw", "wennapuw", "වෙන්නප්පුව"]),
+    "Chilaw": ("Puttalam", ["chilaw", "halawath", "හලාවත"]),
+    "Marawila": ("Puttalam", ["marawil", "මාරවිල"]),
+    "Nattandiya": ("Puttalam", ["nattandiy", "naththandiy", "නාත්තණ්ඩිය"]),
+    "Dankotuwa": ("Puttalam", ["dankotuw", "දංකොටුව"]),
+    # Kurunegala
+    "Kuliyapitiya": ("Kurunegala", ["kuliyapitiy", "කුලියාපිටිය"]),
+    "Narammala": ("Kurunegala", ["narammal", "නාරම්මල"]),
+    "Pannala": ("Kurunegala", ["pannal", "පන්නල"]),
+    "Wariyapola": ("Kurunegala", ["wariyapol", "වාරියපොල"]),
+    "Polgahawela": ("Kurunegala", ["polgahawel", "පොල්ගහවෙල"]),
+    # Kandy
+    "Gampola": ("Kandy", ["gampol", "ගම්පොළ", "ගම්පොල"]),
+    "Peradeniya": ("Kandy", ["peradeniy", "පේරාදෙණිය"]),
+    "Katugastota": ("Kandy", ["katugastot", "කටුගස්තොට"]),
+    "Nawalapitiya": ("Kandy", ["nawalapitiy", "නාවලපිටිය"]),
+    "Kundasale": ("Kandy", ["kundasale", "කුණ්ඩසාලේ"]),
+    # Matale
+    "Dambulla": ("Matale", ["dambull", "දඹුල්ල"]),
+    "Galewela": ("Matale", ["galewel", "ගලේවෙල"]),
+    # Nuwara Eliya
+    "Hatton": ("Nuwara Eliya", ["hatton", "හැටන්"]),
+    "Talawakele": ("Nuwara Eliya", ["talawakel", "තලවාකැලේ"]),
+    # Galle
+    "Hikkaduwa": ("Galle", ["hikkaduw", "හික්කඩුව"]),
+    "Ambalangoda": ("Galle", ["ambalangod", "අම්බලන්ගොඩ"]),
+    "Elpitiya": ("Galle", ["elpitiy", "ඇල්පිටිය"]),
+    "Baddegama": ("Galle", ["baddegam", "බද්දේගම"]),
+    # Matara
+    "Weligama": ("Matara", ["weligam", "වැලිගම"]),
+    "Akuressa": ("Matara", ["akuress", "අකුරැස්ස"]),
+    "Dikwella": ("Matara", ["dikwell", "දික්වැල්ල"]),
+    # Hambantota
+    "Tangalle": ("Hambantota", ["tangall", "thangall", "තංගල්ල"]),
+    "Ambalantota": ("Hambantota", ["ambalantot", "අම්බලන්තොට"]),
+    "Tissamaharama": ("Hambantota", ["tissamaharam", "tissa", "තිස්සමහාරාම"]),
+    # Ratnapura
+    "Embilipitiya": ("Ratnapura", ["embilipitiy", "ඇඹිලිපිටිය"]),
+    "Balangoda": ("Ratnapura", ["balangod", "බලංගොඩ"]),
+    "Pelmadulla": ("Ratnapura", ["pelmadull", "පැල්මඩුල්ල"]),
+    "Eheliyagoda": ("Ratnapura", ["eheliyagod", "ඇහැළියගොඩ"]),
+    # Kegalle
+    "Mawanella": ("Kegalle", ["mawanell", "මාවනැල්ල"]),
+    "Warakapola": ("Kegalle", ["warakapol", "වරකාපොළ", "වරකාපොල"]),
+    "Rambukkana": ("Kegalle", ["rambukkan", "රඹුක්කන"]),
+    # Badulla
+    "Bandarawela": ("Badulla", ["bandarawel", "බණ්ඩාරවෙල"]),
+    "Haputale": ("Badulla", ["haputal", "හපුතලේ"]),
+    "Welimada": ("Badulla", ["welimad", "වැලිමඩ"]),
+    "Mahiyanganaya": ("Badulla", ["mahiyangan", "මහියංගනය"]),
+    "Passara": ("Badulla", ["passar", "පස්සර"]),
+    # Monaragala
+    "Wellawaya": ("Monaragala", ["wellaway", "වැල්ලවාය"]),
+    "Bibile": ("Monaragala", ["bibile", "බිබිලේ"]),
+    "Buttala": ("Monaragala", ["buttal", "බුත්තල"]),
+    "Kataragama": ("Monaragala", ["kataragam", "කතරගම"]),
+    # Anuradhapura / Polonnaruwa
+    "Kekirawa": ("Anuradhapura", ["kekiraw", "කැකිරාව"]),
+    "Medawachchiya": ("Anuradhapura", ["medawachchiy", "මැදවච්චිය"]),
+    "Kaduruwela": ("Polonnaruwa", ["kaduruwel", "කඩුරුවෙල"]),
+    "Hingurakgoda": ("Polonnaruwa", ["hingurakgod", "හිඟුරක්ගොඩ"]),
+    # East and North
+    "Kalmunai": ("Ampara", ["kalmunai", "කල්මුණේ"]),
+    "Akkaraipattu": ("Ampara", ["akkaraipattu", "අක්කරපත්තුව"]),
+    "Kattankudy": ("Batticaloa", ["kattankudy", "කාත්තන්කුඩි"]),
+    "Kinniya": ("Trincomalee", ["kinniya", "කින්නියා"]),
+    "Chavakachcheri": ("Jaffna", ["chavakachcheri", "චාවකච්චේරි"]),
+}
+TOWN_DISTRICT = {town: district for town, (district, _) in TOWNS.items()}
+_TOWN_GAZ = [(town, forms) for town, (_, forms) in TOWNS.items()]
+
+
+def find_town(words):
+    """Last town mention not cancelled by a following 'no/sorry' -> (town, district), or None."""
+    hit = gaz_find("", _TOWN_GAZ, words)
+    if not hit or negated_after([low(w) for w, _, _ in words], hit[2]):
+        return None
+    return hit[0], TOWN_DISTRICT[hit[0]]
+
+
+DONT_KNOW = ["danne na", "danne naa", "danne nae", "danne nehe", "danna na", "danne nǣ", "dannē nǣ", "dannē na",
+             "danne nathi", "mathaka na", "mathaka nehe", "i dont know", "i don't know", "dont know", "don't know",
+             "do not know", "not sure", "idk", "no idea", "දන්නේ නෑ", "දන්නෙ නෑ", "දන්නේ නැහැ", "දන්නෙ නැහැ",
+             "මතක නෑ", "මතක නැහැ"]
+_DONT_KNOW_RE = re.compile(r"(?<![\w඀-෿])(" + "|".join(re.escape(norm(p)) for p in DONT_KNOW) + r")(?![\w඀-෿])")
+
+
+def is_dont_know(text):
+    return bool(_DONT_KNOW_RE.search(low(text).replace("’", "'")))
+
+
+GREETINGS = {"hi", "hii", "hello", "helo", "hey", "hai", "halo", "ayubowan", "aayubowan", "ayubovan", "ආයුබෝවන්",
+             "good", "morning", "afternoon", "evening", "gm", "there", "sir", "madam", "miss", "machan", "kohomada",
+             "කොහොමද", "hari"}
+_GREETING_WORDS = {"hi", "hii", "hello", "helo", "hey", "hai", "halo", "ayubowan", "aayubowan", "ayubovan",
+                   "ආයුබෝවන්", "morning", "evening", "afternoon", "gm"}
+
+
+def is_greeting(text):
+    """The whole message is a greeting ("hi", "hello there", "ආයුබෝවන්", "good morning sir")."""
+    words = [low(w) for w, _, _ in words_with_offsets(text)]
+    return 0 < len(words) <= 4 and all(w in GREETINGS for w in words) and any(w in _GREETING_WORDS for w in words)
