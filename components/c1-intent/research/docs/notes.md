@@ -88,12 +88,12 @@ XLM-R trained on 726 synthetic turns (5 styles), 1 seed.
 
 ---
 
-## Next steps
-- [ ] Install Label Studio (env `label`)
-- [ ] Define intent list and slots per intent (align with Knowledge Graph ontology)
-- [ ] Write 50–100 seed dialogues (Sinhala script + Singlish, 1–5 turns, with corrections)
-- [ ] Label seed data: token language tags, entities, intent
-- [ ] Run fastText baseline on full seed set and log the result
+## Next steps (early October list, all done; current tasks are in `TASKS.md`)
+- [x] Install Label Studio (env `label`)
+- [x] Define intent list and slots per intent (align with Knowledge Graph ontology)
+- [x] Write 50–100 seed dialogues (Sinhala script + Singlish, 1–5 turns, with corrections)
+- [x] Label seed data: token language tags, entities, intent
+- [x] Run fastText baseline on full seed set and log the result
 
 
 
@@ -314,7 +314,7 @@ Same span-level metric as Observation 7. "Extractive types" are district, dates 
 - The fresh states were LLM-proposed and author-checked, not labelled independently.
 - Fresh is small (50 turns, few examples per slot).
 - The issue categories (fee, documents, office hours, photo) are a small hand-made list.
-- No XLM-R NER + rules combination is reported yet: run `dst_eval.py --xlmr-dir models/c1/run_seed1` to add it.
+- The XLM-R NER + rules combination is reported in Observation 10 (fresh entity F1 0.783, fresh JGA 0.94).
 
 
 ## Observation 10: retrained with all 12 intents (v2), and the full pipeline (2026-10-18)
@@ -374,4 +374,47 @@ Same span-level metric as Observation 7. "Extractive types" are district, dates 
    - XLM-R intent under-training (rerun at 15 epochs, 3 seeds)
 ### Deployment choice
 `run_v2_seed1` (12 intents, window_3, left truncation) + the rules tracker + the XLM-R NER fallback. This replaces `run_seed1`.
+
+
+## Observation 11: keeping the topic across turns, and always replying (2026-10-19)
+
+**Problem.** The intent model labels every message again, so short follow-up answers can change the topic.
+- Replaying the conversation "passport ekak mata ganna puluwnda" → "normal" → "next year, mata wayasa 14i" → "next year" → "ganna puluwnda" → "galle" on `run_v2_seed1`:
+  - "ganna puluwnda" comes out as `nic_new` at 0.39
+  - "next year" comes out as `passport_new` at 0.34
+- The service threshold is 0.35, so before this change the 0.39 turn would have replaced the passport request with `nic_new`.
+- Bot questions were also only templates in the demo page; the engine itself did not reply.
+
+**Change (no retraining).** A policy in `Session` (`experiments/c1_engine.py`, copied to the service):
+- **Active intent.**
+  - A core intent becomes the conversation's `active_intent` at confidence ≥ 0.6, or ≥ 0.5 on the first turn.
+  - Later turns keep it. They switch only when a different core intent is predicted at ≥ 0.75 **and** the message names that service. The keyword lists are `SERVICE_KEYWORDS` in `c1_dst.py`, next to `KG_SERVICE_IDS`.
+  - When the bot's last question asked for a slot that is still missing, the answer never switches.
+  - Low-confidence turns still fill the active intent's slots.
+- **Complaints.** `feedback_complaint` is still routed to trust verification, but it does not replace the active intent. The next turn resumes it.
+- **Slots per intent.**
+  - Each intent keeps its own slot state.
+  - On a switch, district and applicant_for carry over, also when they were said under an intent that has no such slot (a district mentioned during a passport request).
+  - Switching back restores the old intent's slots.
+- **A reply on every turn**, in the script the user typed (Sinhala script, English or Singlish):
+  - the question for the next missing slot
+  - a confirmation when all slots are filled (`ready`)
+  - "which service?" on an unsure first turn
+  - fixed replies for unsupported, off-topic and unclear messages
+- Slot questions are worded so the tracker recognises them when they come back as the bot's last question.
+
+**Replay on `run_v2_seed1`** (live service, each reply sent back as the bot's last question):
+- The passport conversation above stays `passport_new` on all 6 turns. `service_type` stays `normal`, and it ends with "Hari — normal new passport, oyata, travel next year. Documents tika pennannam."
+- A real switch works. After a completed passport request, "NIC ekath aluthen ganna one" (`nic_new` 0.77, names NIC) switches. Galle, said in the first passport message, and `applicant_for` carry over.
+- Demo sessions A, C, Sinhala script and English give the same intents as before (A and Sinhala script also the same slots), now with replies.
+- The first version picked the reply language from the turn's language tag. Romanized Sinhala words are tagged SI, so Singlish got Sinhala-script replies. The reply now follows the characters the user typed.
+
+**Limits seen (model, not policy):**
+- **A complaint in the middle of a conversation is not detected.** After two passport turns, the window_3 input makes the complaint text `passport_new` at 0.77, so it never reaches the complaint rule (also noted in technicalWorkFlow §7).
+- **An unsure first message can lock.** "mata udaw ekak one" ("I need help") is `nic_new` at 0.63, above the first-turn threshold, so the bot asks for a district instead of "which service?".
+- **The no-switch rule is strict.** A user who changes service while a slot question is pending is not switched; they can switch on a later turn.
+
+**Not measured yet.** The policy changes multi-turn behaviour, but `dst_eval.py` scores the tracker directly, not `Session`, so Observations 9–10 are unchanged. Next: run the gold and fresh dialogues through `Session` and compare JGA with and without the policy.
+
+Tests: 17 in `service/tests/test_intent_policy.py`, using a fake model that misreads every follow-up turn. 66 service tests in total, all passing.
  

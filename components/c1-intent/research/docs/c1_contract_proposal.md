@@ -25,6 +25,8 @@ otherwise.
 | `entities.service_type` | entities | string or null | `normal`, `urgent` (passport) |
 | `entities.urgency` | entities | string or null | `normal`, `urgent` (NIC one-day) |
 | `bot_text` | `UtteranceRequest` | string or null, ≤ 2000 chars | the bot's last question |
+| `conditions` | top level | object or null | `applicant_age` (integer), `applicant_minor` (boolean); more keys later |
+| `state_version` | top level | integer ≥ 0, or null | goes up when the active request changes |
 
 ## `route`
 
@@ -61,6 +63,45 @@ Colombo. In Observation 9 (`notes.md`), on the human-written fresh set, adding t
 goal accuracy from **0.86 to 0.88**; corrections and confirmations, which also read the question, take it to 0.92.
 The frontend or gateway already has the bot's last message, so passing it costs one optional string. Without it,
 `/v1/intent` calls the tracker with no question, as now.
+
+## `conditions` (for C2)
+
+Citizens often mention facts about the applicant that are not slots: "she is 14 years still", "avurudu 14",
+"under 18". They change which rules apply (a minor's passport needs different documents), but C1 never asks for
+them and does not decide what they mean. C1 only records what was said:
+
+```json
+"conditions": {"applicant_age": 14, "applicant_minor": true}
+```
+
+- `applicant_age`: the age as said; `applicant_minor` is `true` when it is under 18. "minor" or "under 18"
+  without an age gives `{"applicant_minor": true}` only.
+- Numbers in addresses, dates and ID numbers are not read as ages ("No. 14, Temple Road", "2010-05-14").
+- A condition belongs to the request it was said in. It moves to a new request only when the citizen points
+  back to the same person ("eyata", "for her"), the same rule C1 uses for `applicant_for`.
+- **C1 contains no rule such as "minor → consent form".** Which documents, fees or consent a condition triggers is
+  C2's decision from the knowledge graph. New condition keys will be added here first; C2 should ignore keys it
+  does not know.
+
+C1 already returns `conditions` on `POST /v1/intent/details`, for the active request and for each entry in
+`completed_requests` / `pending_requests`. `/v1/intent` is unchanged.
+
+## `state_version`
+
+`turn_id` counts every user message, including greetings and complaints that change nothing, so it cannot tell
+the gateway when the request C2 planned for has changed. `state_version` goes up by one exactly when the active
+request's intent, slots, conditions or pending variant change, and stays the same otherwise. The gateway keeps
+the last `state_version` it sent to C2 and calls C2 again only when the new one differs. It is per session and
+starts at 0 before any request is active. Already returned on `/v1/intent/details`.
+
+## Bare service mentions (C1 behaviour, no contract change)
+
+"i need a NIC" names the service but not the kind of request. C1 no longer lets the classifier guess the
+variant: it keeps the service (so `/v1/intent` still sends `svc:nic`), marks the variant pending
+(`variant_pending: true` on `/v1/intent/details`, `ready: false`) and asks "Aluth NIC ekak da, wenas karanna da,
+nathi una ekak da?". The answer picks the variant. Passport does the same for new vs renewal. C2 should not plan
+documents for a request while `variant_pending` is true; with `entities.variant` (above) this would be explicit
+in the contract.
 
 ## What does not change
 
