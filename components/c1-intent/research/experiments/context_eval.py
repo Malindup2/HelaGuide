@@ -678,6 +678,19 @@ def analyse(runs, table, states, ni_margin):
 CONV_LOSS_FACTOR, CONV_DEV_GAP = 3.0, 0.10
 
 
+def load_run_histories(paths):
+    """Merge the notebook's runs.json files (one per Colab run). The same seed/strategy in two files is an error."""
+    merged = {}
+    for p in paths:
+        with open(p, encoding="utf-8") as fh:
+            part = json.load(fh)
+        clash = sorted(set(part) & set(merged))
+        if clash:
+            sys.exit(f"{p}: runs already in an earlier --runs-json file: {clash}")
+        merged.update(part)
+    return merged
+
+
 def convergence_check(runs_json, keys):
     """Applies the rule from Observation 15 to every XLM-R run in `keys` ((model, strategy, seed)): flagged when its
     final training loss is > 3x the median final loss of the other seeds of the same model and strategy AND its best
@@ -1048,19 +1061,8 @@ def write_summary(res, path, out_dir, ni_margin, conv=None, sens=None):
         L += _h4_lines(h4)
     else:
         L += ["**inconclusive (not run yet)**: `robustness.csv` is written by `experiments/perturb.py` (Stage 3).", ""]
-    L += ["## Scale claim: cheap and fast enough on CPU", ""]
-    if bench:
-        L += _bench_lines(bench)
-    else:
-        L += ["**inconclusive (not run yet)**: `deployment_benchmark.csv` is written by `experiments/bench_cpu.py` (Stage 4). "
-              "Tokens per turn from the predictions:", ""]
-    L += ["| strategy | XLM-R tokens/turn (mean) | cl100k tokens/turn | XLM-R latency (ms, notebook device) |", "|---|---|---|---|"]
-    for st in res["settings"]["strategies"]:
-        m = res["metrics"].get(f"xlmr/{st}/{headline}") or {}
-        if m:
-            L.append(f"| {name(st)} | {m['tokens_xlmr_mean'][0]:.1f} | {m['tokens_cl100k_mean'][0]:.1f} | "
-                     f"{m['latency_ms_mean'][0]:.1f} ({m.get('device')}) |")
-    L += [""] + token_ratio_lines(res)
+    L += scale_lines(bench, res, headline)
+    L += token_ratio_lines(res)
     L += convergence_lines(conv, sens, res)
     L += ["## Gold (development set, reported separately)", "",
           "| model | strategy | JGA mean ± std | JGA median | intent acc | 95% CI JGA |", "|---|---|---|---|---|---|"]
@@ -1110,15 +1112,8 @@ def _h4_lines(rows):
 
 
 def _bench_lines(rows):
-    """bench_cpu.py writes deployment_benchmark.csv; summarised here so summary.md has the scale claim."""
-    verdict = next((r.get("scale_verdict") for r in rows if r.get("scale_verdict")), None)
-    L = ["Metric: CPU latency per turn at batch size 1 (`experiments/bench_cpu.py`, held-out test sessions), "
-         "throughput of one stream, peak process memory, tokens per turn and per conversation (XLM-R tokenizer). "
-         "Intent-model rows measure each strategy's input on `run_v2_seed1` (cost only); the c1_engine row is the "
-         "deployed engine end to end (language ID, intent, NER, tracker, policy) in its own process. The 4-core "
-         "numbers are an **ESTIMATE** (4 workers × 1 thread, linear scaling assumed), not a measurement.", "",
-         f"**{verdict or 'inconclusive (no deployed-engine row)'}**", "",
-         "| model | strategy | threads | p50 ms | p95 ms | turns/s | 4-core ESTIMATE turns/s | peak MB | tokens/turn | "
+    """Rows of deployment_benchmark.csv (bench_cpu.py) as a table."""
+    L = ["| model | strategy | threads | p50 ms | p95 ms | turns/s | 4-core ESTIMATE turns/s | peak MB | tokens/turn | "
          "tokens/conversation |", "|---|---|---|---|---|---|---|---|---|---|"]
     for r in rows:
         L.append(f"| {r.get('model', '')} | {name(r.get('strategy', ''))} | {r.get('threads', '')} | "
@@ -1126,6 +1121,56 @@ def _bench_lines(rows):
                  f"{r.get('est_4core_turns_per_s') or '-'} | {r.get('peak_memory_mb')} | {r.get('tokens_per_turn')} | "
                  f"{r.get('tokens_per_conversation')} |")
     return L + [""]
+
+
+def scale_lines(bench, res, headline):
+    """Scale claim: the cost of each context strategy (intent model only) and the cost of the deployed pipeline
+    (end to end), in separate sections."""
+    engine = [r for r in (bench or []) if r.get("model") == "c1_engine"]
+    intent = [r for r in (bench or []) if r.get("model") != "c1_engine"]
+    verdict = next((r.get("scale_verdict") for r in engine if r.get("scale_verdict")), None)
+    L = ["## Scale claim: cheap and fast enough on CPU", "",
+         "Budgets (`bench_cpu.py`): p95 ≤ 500 ms per turn at 1 CPU thread and ≤ 2048 MB per worker. A chat reply should "
+         "come in under about 1 s in total, and C1 may take at most half of that because C2–C4 also run on every turn.", "",
+         f"**{verdict or 'inconclusive (not run yet): `deployment_benchmark.csv` is written by `experiments/bench_cpu.py`'}**", "",
+         "### Context-strategy cost (intent model only, per strategy)", "",
+         "What each strategy sends to the intent model. Tokens are from the predictions (XLM-R tokenizer with <s> and "
+         "</s>; cl100k for comparison); latency in the predictions was measured on the notebook's device.", "",
+         "| strategy | XLM-R tokens/turn (mean) | cl100k tokens/turn | XLM-R latency (ms, notebook device) |", "|---|---|---|---|"]
+    for st in res["settings"]["strategies"]:
+        m = res["metrics"].get(f"xlmr/{st}/{headline}") or {}
+        if m:
+            L.append(f"| {name(st)} | {m['tokens_xlmr_mean'][0]:.1f} | {m['tokens_cl100k_mean'][0]:.1f} | "
+                     f"{m['latency_ms_mean'][0]:.1f} ({m.get('device')}) |")
+    L += [""]
+    if intent:
+        L += ["On CPU, batch size 1 (`run_v2_seed1`'s intent model reading each strategy's input, so cost only; "
+              "TF-IDF trained per strategy). The 4-core numbers are an **ESTIMATE** (4 workers × 1 thread, linear "
+              "scaling assumed), not a measurement:", ""] + _bench_lines(intent)
+    else:
+        L += ["CPU timings per strategy: not run yet (`bench_cpu.py`).", ""]
+    L += ["### Full-pipeline cost (deployed engine, end to end)", "",
+          "The deployed engine (`C1Engine` + `Session`, window_3, rules + XLM-R NER fallback) runs, per turn: word-level "
+          "language ID, the intent model twice, XLM-R NER, the state tracker and the intent policy.", "",
+          "**Why two intent calls per turn:** the first reads the window_3 context and decides the conversation's "
+          "request; the second, from the second turn on, reads the current message alone, so that a switch to another "
+          "service or a complaint in the middle of a conversation is not hidden by the earlier turns (Observation 13: "
+          "window_3 history turned a mid-conversation complaint into `passport_new`). The first turn needs one call.", ""]
+    if engine:
+        L += _bench_lines(engine)
+        if verdict and verdict.startswith("not supported"):
+            L += ["**Why it misses the budget:**",
+                  "- three separate fp32 XLM-R models (language ID, NER, intent), each with its own copy of the encoder, "
+                  "so one worker needs several GB;",
+                  "- four XLM-R forward passes per turn (language ID, two intent calls, NER).", "",
+                  "**Fixes (future work):**",
+                  "- one shared XLM-R encoder with three heads (language ID, NER, intent): one forward pass and one copy "
+                  "of the weights;",
+                  "- int8 quantisation or ONNX Runtime for CPU inference;",
+                  "- one intent call per turn (for example the current-message prediction only when the policy needs it).", ""]
+    else:
+        L += ["Not measured yet (`bench_cpu.py`; run it on a quiet machine).", ""]
+    return L
 
 
 # ------------------------------------------------------------------ outputs
@@ -1292,8 +1337,9 @@ def main(argv=None):
     ap.add_argument("--ni-margin", type=float, default=0.05, help="H2 non-inferiority margin on JGA")
     ap.add_argument("--overwrite", action="store_true", help="replace results already in --out-dir")
     ap.add_argument("--no-plots", action="store_true")
-    ap.add_argument("--runs-json", default=None,
-                    help="notebook training log for the convergence check (default: runs.json next to --preds-dir)")
+    ap.add_argument("--runs-json", nargs="+", default=None,
+                    help="notebook training log(s) for the convergence check, merged (e.g. one per Colab run); "
+                         "default: runs.json next to --preds-dir")
     a = ap.parse_args(argv)
 
     os.makedirs(a.out_dir, exist_ok=True)
@@ -1312,13 +1358,17 @@ def main(argv=None):
     res["settings"]["preds_dir"] = a.preds_dir
 
     # convergence check (sensitivity only): the notebook's training log, next to the preds folder by default
-    runs_json = a.runs_json or os.path.join(os.path.dirname(os.path.normpath(a.preds_dir)), "runs.json")
+    paths = a.runs_json or [os.path.join(os.path.dirname(os.path.normpath(a.preds_dir)), "runs.json")]
     conv = sens = None
-    if os.path.exists(runs_json):
-        with open(runs_json, encoding="utf-8") as fh:
-            conv = convergence_check(json.load(fh), list(runs))
+    missing = [p for p in paths if not os.path.exists(p)]
+    if not missing:
+        history = load_run_histories(paths)
+        no_history = sorted(k for k in runs if k[0] == "xlmr" and f"seed{k[2]}/{k[1]}" not in history)
+        if no_history:
+            print(f"WARNING: no training history for {no_history}; they cannot be checked")
+        conv = convergence_check(history, list(runs))
         flagged = {(r["model"], r["strategy"], r["seed"]) for r in conv if r["flagged"]}
-        res["convergence_check"] = {"runs_json": runs_json, "rule": f"final loss > {CONV_LOSS_FACTOR:g}x median of the "
+        res["convergence_check"] = {"runs_json": paths, "rule": f"final loss > {CONV_LOSS_FACTOR:g}x median of the "
                                     f"other seeds AND best dev F1 >= {CONV_DEV_GAP} below their median",
                                     "defined_after_seeing_failures": True, "flagged": sorted(map(list, flagged))}
         if flagged:
@@ -1331,7 +1381,7 @@ def main(argv=None):
                                                     "seeds_per_run": r2["settings"]["seeds_per_run"]}
         write_csv(os.path.join(a.out_dir, "convergence_check.csv"), conv)
     else:
-        print(f"no {runs_json}: convergence check skipped")
+        print(f"not found: {missing}; convergence check skipped")
 
     with open(os.path.join(a.out_dir, "context_jga_results.json"), "w", encoding="utf-8") as fh:
         json.dump(res, fh, ensure_ascii=False, indent=2)
