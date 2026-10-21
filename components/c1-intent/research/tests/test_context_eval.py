@@ -115,6 +115,36 @@ def test_stratified_interaction_removes_turn_position_effect():
     assert lo <= 0 <= hi
 
 
+def test_permutation_test_detects_an_effect_and_not_a_null():
+    from context_eval import Permutations
+    labels = ["high_cmi"] * 20 + ["pure_si"] * 20 + ["pure_en"] * 20
+    strata = [("s", False)] * 30 + [("s", True)] * 30            # positions mixed into both strata
+    pt = Permutations(labels, strata, n=2000, seed=1)
+    effect = np.array([1.0] * 20 + [0.0] * 40)                    # the reduced strategy loses only high-CMI turns
+    obs, p = pt.test(effect[:, None])
+    assert obs[0] == pytest.approx(1.0) and p[0] < 0.001
+    null = np.random.default_rng(0).integers(0, 2, 60).astype(float)
+    assert np.array_equal(pt.test(null[:, None])[1], Permutations(labels, strata, n=2000, seed=1).test(null[:, None])[1])
+
+
+def test_permutation_false_positive_rate_on_null_data_is_under_10_percent():
+    """30 null fake data sets (no code-mixing effect within a turn position), intent accuracy, the H3 verdict rule:
+    the permutation test should say "supported" in about 5% of model x test-set families, and never above 10%."""
+    if not os.path.exists(os.path.join(RESEARCH, "data", "seed_all.json")):
+        pytest.skip("data/seed_all.json missing (python experiments/prepare_labelstudio.py)")
+    import h3_calibration as hc
+    cwd = os.getcwd()
+    os.chdir(RESEARCH)
+    try:
+        results = [hc._one(s, scopes=("permutation",), metrics=(("intent_acc", "intent_ok"),)) for s in range(1, 31)]
+    finally:
+        os.chdir(cwd)
+    rates = {r["test_set"]: r for r in hc.summarise(results)}
+    for ts in ("synthetic", "heldout"):          # the sets with >= 30 turns in both buckets
+        assert rates[ts]["families"] == 60
+        assert rates[ts]["says_supported"] < 0.10, rates[ts]
+
+
 def test_interaction_ci_with_one_session_per_turn():
     full = np.ones(8)
     red = np.array([0, 0, 0, 0, 1, 1, 1, 1], float)

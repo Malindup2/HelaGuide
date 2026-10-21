@@ -50,11 +50,16 @@ def bot_text():
     return bot
 
 
-def make_fake_preds(out_dir, seeds=(1, 2, 3), max_sessions=None, strategies=cs.STRATEGIES, models=("xlmr", "tfidf")):
-    os.makedirs(out_dir, exist_ok=True)
-    sets, bot = test_sessions(max_sessions), bot_text()
+def fake_runs(seeds=(1, 2, 3), max_sessions=None, strategies=cs.STRATEGIES, models=("xlmr", "tfidf"), noise_seed=0,
+              with_inputs=True, sets=None, bot=None):
+    """{(model, strategy, seed): rows}. The error rate depends only on the strategy, the model and whether the turn
+    is a follow-up in its dialogue, never on code-mixing: within a turn position there is no H3 effect (a null for
+    calibration). noise_seed draws a different, equally null, data set. with_inputs=False skips the model inputs
+    and token counts (faster; for h3_calibration.py)."""
+    sets = sets or test_sessions(max_sessions)
+    bot = bot or bot_text()
     intents = sorted({r["intent"] for v in sets.values() for s in v for r in s})
-    paths = []
+    runs = {}
     for model in models:
         for st in strategies:
             for seed in seeds:
@@ -63,12 +68,13 @@ def make_fake_preds(out_dir, seeds=(1, 2, 3), max_sessions=None, strategies=cs.S
                     for si, s in enumerate(sessions):
                         prev_pred = None
                         for pos, cur in enumerate(s):
-                            rng = random.Random(zlib.crc32(f"{model}/{st}/{seed}/{ts}/{si}/{pos}".encode()))
+                            key = f"{model}/{st}/{seed}/{ts}/{si}/{pos}" + (f"/n{noise_seed}" if noise_seed else "")
+                            rng = random.Random(zlib.crc32(key.encode()))
                             follow = pos > 0 and s[pos - 1]["dialogue_id"] == cur["dialogue_id"]
                             err = ERRORS[st][follow] + (0.05 if model == "tfidf" else 0.0)
                             pred = cur["intent"] if rng.random() > err else rng.choice(
                                 [i for i in intents if i != cur["intent"]])
-                            x = cs.build_input(st, s[:pos], cur, prev_pred)
+                            x = cs.build_input(st, s[:pos], cur, prev_pred) if with_inputs else cur["text"]
                             prev_pred = pred
                             n, n_cur = round(1.4 * len(x.split())) + 2, round(1.4 * len(cur["text"].split())) + 2
                             rows.append({
@@ -82,11 +88,20 @@ def make_fake_preds(out_dir, seeds=(1, 2, 3), max_sessions=None, strategies=cs.S
                                 "context_tokens_xlmr": n - n_cur, "context_tokens_cl100k": round((n - n_cur) * 1.8),
                                 "truncated": n > 128, "latency_ms": round((8 if model == "xlmr" else 1.5) + 0.02 * n, 3),
                                 "build_ms": 0.1, "device": "cuda" if model == "xlmr" else "cpu", "fake": True})
-                path = os.path.join(out_dir, f"{model}__{st}__seed{seed}.jsonl")
-                with open(path, "w", encoding="utf-8") as fh:
-                    for r in rows:
-                        fh.write(json.dumps(r, ensure_ascii=False) + "\n")
-                paths.append(path)
+                runs[(model, st, seed)] = rows
+    return runs
+
+
+def make_fake_preds(out_dir, seeds=(1, 2, 3), max_sessions=None, strategies=cs.STRATEGIES, models=("xlmr", "tfidf"),
+                    noise_seed=0):
+    os.makedirs(out_dir, exist_ok=True)
+    paths = []
+    for (model, st, seed), rows in fake_runs(seeds, max_sessions, strategies, models, noise_seed).items():
+        path = os.path.join(out_dir, f"{model}__{st}__seed{seed}.jsonl")
+        with open(path, "w", encoding="utf-8") as fh:
+            for r in rows:
+                fh.write(json.dumps(r, ensure_ascii=False) + "\n")
+        paths.append(path)
     return paths
 
 
@@ -95,6 +110,7 @@ if __name__ == "__main__":
     ap.add_argument("--out", required=True)
     ap.add_argument("--max-sessions", type=int, default=None, help="sessions per test set (default: all)")
     ap.add_argument("--seeds", default="1,2,3")
+    ap.add_argument("--noise-seed", type=int, default=0, help="another null data set (0 = the default one)")
     a = ap.parse_args()
-    ps = make_fake_preds(a.out, tuple(int(s) for s in a.seeds.split(",")), a.max_sessions)
+    ps = make_fake_preds(a.out, tuple(int(s) for s in a.seeds.split(",")), a.max_sessions, noise_seed=a.noise_seed)
     print(f"wrote {len(ps)} FAKE prediction files to {a.out}")

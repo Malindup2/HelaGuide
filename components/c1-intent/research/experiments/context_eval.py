@@ -22,9 +22,9 @@ What it does
      (majority over seeds) against full_history (and against current_only for H1), Holm-corrected per model,
      test set and metric.
   4. H3 interaction: drop(S, bucket) = acc(full_history) - acc(S); the difference in drop between high-CMI and
-     monolingual (pure SI + pure EN) turns, with a cluster-bootstrap CI. Headline: stratified by turn position
-     (within first turns and within follow-up turns, weighted by their turn counts); also all turns pooled and
-     follow-up turns only.
+     monolingual (pure SI + pure EN) turns. Headline: a permutation test (CMI labels shuffled within test set x
+     turn-position strata, Holm across strategies), the method closest to 5% false positives on null data
+     (h3_calibration.py). Secondary: cluster-bootstrap CIs stratified by position, all turns pooled, follow-up only.
   5. Writes context_jga_results.json, stats_tests.csv, cmi_breakdown.csv/.png, interaction_tests.csv/.png,
      pareto_jga_vs_tokens.png, token_growth_by_turn_depth.png and summary.md (H1-H4 + scale claim).
      H4 and the scale claim are filled in from robustness.csv (perturb.py) and deployment_benchmark.csv
@@ -61,7 +61,9 @@ SET_LABEL = {"gold": "gold (dev set for the rules)", "synthetic": "synthetic (he
 CMI_BUCKETS = ["pure_si", "pure_en", "low_cmi", "high_cmi", "ne_other_only"]
 SCRIPT_BUCKETS = ["sinhala_script", "romanised", "mixed_script", "no_letters"]
 MONO = ("pure_si", "pure_en")
-H3_SCOPES = ("stratified", "all_turns", "follow_up")      # stratified by turn position is the H3 headline
+# H3 versions; the first is the headline (chosen by false-positive rate on null data, h3_calibration.py)
+H3_SCOPES = ("permutation", "stratified", "all_turns", "follow_up")
+N_PERMUTATIONS, PERM_SEED = 5000, 20261022
 H2_SENSITIVITY_MARGIN = 0.03
 ORACLE = {"keyword_summary", "structured_state"}          # read gold language/entity tags at test time
 
@@ -274,41 +276,198 @@ def turn_table(runs, test_sets, tokens):
 
 
 # ------------------------------------------------------------------ one run through the tracker
-def eval_run(rows, table, states):
-    """Per-turn correctness and slot counts for one (model, strategy, seed), in table order."""
-    by = {(r["test_set"], r["session_id"], r["session_pos"]): r for r in rows}
-    out = {"intent_ok": [], "jga_ok": [], "tokens_xlmr": [], "tokens_cl100k": [], "context_tokens_xlmr": [],
-           "latency_ms": [], "span": [], "per_slot": collections.defaultdict(lambda: collections.defaultdict(
-               lambda: [0, 0, 0]))}
-    trk, cur = DialogueStateTracker(SlotExtractor()), None
-    for t in table:
-        r = by[(t["test_set"], t["session_id"], t["session_pos"])]
-        if (t["session_id"], t["dialogue_id"]) != cur:          # gold states restart with every dialogue
-            trk.reset()
-            cur = (t["session_id"], t["dialogue_id"])
+def _track_dialogue(turns, rows, states):
+    """The tracker over one dialogue (it restarts with every dialogue, like the gold states). Per turn:
+    (intent_ok, jga_ok, (span tp, fp, fn), ((slot, tp, fp, fn), ...))."""
+    trk, out = DialogueStateTracker(SlotExtractor()), []
+    for t, r in zip(turns, rows):
         pred = trk.update(r["text"], r["pred_intent"], r.get("bot_text"))
         gold = states[(t["dialogue_id"], t["turn_index"])]
         gs, ps = gold.get("slots", {}) or {}, pred["slots"]
         intent_ok = pred["intent"] == gold.get("intent")
-        out["intent_ok"].append(intent_ok)
-        out["jga_ok"].append(intent_ok and states_match(ps, gs, True))
-        for k in ("tokens_xlmr", "tokens_cl100k", "context_tokens_xlmr", "latency_ms"):
-            out[k].append(r[k])
-        slot_counts = out["per_slot"][t["test_set"]]
-        for slot in set(gs) | set(ps):
-            if slot in gs and slot in ps and values_match(slot, ps[slot], gs[slot], True):
-                slot_counts[slot][0] += 1
-            else:
-                slot_counts[slot][1] += slot in ps
-                slot_counts[slot][2] += slot in gs
+        slots = []
+        for slot in sorted(set(gs) | set(ps)):
+            ok = slot in gs and slot in ps and values_match(slot, ps[slot], gs[slot], True)
+            slots.append((slot, int(ok), int(not ok and slot in ps), int(not ok and slot in gs)))
         pred_spans = char_to_word_spans(r["text"], [(k, v["start"], v["end"]) for k, v in trk.spans.items()
                                                     if k in EXTRACTIVE and v["start"] is not None])
         gold_spans = {s for s in spans_from_bio(t["ner_tags"]) if s[2] in EXTRACTIVE}
-        out["span"].append((len(pred_spans & gold_spans), len(pred_spans - gold_spans), len(gold_spans - pred_spans)))
+        out.append((intent_ok, intent_ok and states_match(ps, gs, True),
+                    (len(pred_spans & gold_spans), len(pred_spans - gold_spans), len(gold_spans - pred_spans)),
+                    tuple(slots)))
+    return out
+
+
+def eval_run(rows, table, states, memo=None):
+    """Per-turn correctness and slot counts for one (model, strategy, seed), in table order. `memo` (a dict) caches
+    each dialogue's result by its predicted intents, which many runs share (used by h3_calibration.py)."""
+    by = {(r["test_set"], r["session_id"], r["session_pos"]): r for r in rows}
+    out = {"intent_ok": [], "jga_ok": [], "tokens_xlmr": [], "tokens_cl100k": [], "context_tokens_xlmr": [],
+           "latency_ms": [], "span": [], "per_slot": collections.defaultdict(lambda: collections.defaultdict(
+               lambda: [0, 0, 0]))}
+    segments = []                      # consecutive turns of one dialogue inside one session
+    for t in table:
+        if segments and (segments[-1][0]["session_id"], segments[-1][0]["dialogue_id"]) == (t["session_id"], t["dialogue_id"]):
+            segments[-1].append(t)
+        else:
+            segments.append([t])
+    for seg in segments:
+        rs = [by[(t["test_set"], t["session_id"], t["session_pos"])] for t in seg]
+        key = (seg[0]["test_set"], seg[0]["dialogue_id"], tuple(r["pred_intent"] for r in rs))
+        res = memo.get(key) if memo is not None else None
+        if res is None:
+            res = _track_dialogue(seg, rs, states)
+            if memo is not None:
+                memo[key] = res
+        for t, r, (intent_ok, jga_ok, span, slots) in zip(seg, rs, res):
+            out["intent_ok"].append(intent_ok)
+            out["jga_ok"].append(jga_ok)
+            out["span"].append(span)
+            for k in ("tokens_xlmr", "tokens_cl100k", "context_tokens_xlmr", "latency_ms"):
+                out[k].append(r.get(k, 0))
+            for slot, tp, fp, fn in slots:
+                c = out["per_slot"][t["test_set"]][slot]
+                c[0] += tp; c[1] += fp; c[2] += fn
     return out
 
 
 # ------------------------------------------------------------------ the analysis
+def prepare(table, sets):
+    """Per test set: which turns belong to it, the CMI threshold and buckets, the bootstrap and the H3 permutations."""
+    members = {s: np.array([t["test_set"] == s or (s == POOLED and t["test_set"] in HELD_OUT) for t in table])
+               for s in sets}
+    thresholds, buckets, boots, perms = {}, {}, {}, {}
+    for k, s in enumerate(sets):
+        idx = np.flatnonzero(members[s])
+        mixed = [table[i]["cmi"] for i in idx if table[i]["cmi"] > 0]
+        thresholds[s] = round(float(np.median(mixed)), 2) if mixed else None
+        buckets[s] = {"cmi": [cmi_bucket(table[i]["tags"], table[i]["cmi"], thresholds[s] or 0) for i in idx],
+                      "script": [table[i]["script"] for i in idx]}
+        names = {}
+        sid = [names.setdefault(table[i]["session_id"], len(names)) for i in idx]
+        boots[s] = Bootstrap(sid, seed=BOOT_SEED + k)
+        strata = [(table[i]["test_set"], table[i]["follow_up"]) for i in idx]
+        perms[s] = Permutations(buckets[s]["cmi"], strata, seed=PERM_SEED + k)
+    return members, thresholds, buckets, boots, perms
+
+
+def make_vec(per_run, seeds, members):
+    def vec(model, strategy, metric, s, seed=None):
+        """Per-turn correctness on test set s: one seed, or the mean over seeds."""
+        idx = members[s]
+        rs = [per_run[(model, strategy, sd)][metric] for sd in seeds if (model, strategy, sd) in per_run
+              and (seed is None or sd == seed)]
+        return np.mean([np.asarray(r, float)[idx] for r in rs], axis=0) if rs else None
+    return vec
+
+
+class Permutations:
+    """H3 permutation test. CMI bucket labels are shuffled among the turns of the same stratum (test set x turn
+    position: first / follow-up), so sessions, per-turn correctness and the bucket sizes per stratum stay fixed.
+    The statistic is the position-stratified interaction (weights = high-CMI + monolingual turns per stratum)."""
+
+    def __init__(self, labels, strata, n=N_PERMUTATIONS, seed=PERM_SEED):
+        labels, rng = np.asarray(labels), np.random.default_rng(seed)
+        keys = sorted(set(strata))
+        sid = np.array([keys.index(k) for k in strata])
+        self.n, self.strata = n, []
+        for k in range(len(keys)):
+            idx = np.flatnonzero(sid == k)
+            lab = labels[idx]
+            n_h, n_m = int((lab == "high_cmi").sum()), int(np.isin(lab, MONO).sum())
+            if not n_h or not n_m:
+                continue                 # a stratum without one of the two buckets carries no interaction
+            perm = rng.permuted(np.tile(lab, (n, 1)), axis=1)
+            self.strata.append({"idx": idx, "w": n_h + n_m, "n_h": n_h, "n_m": n_m, "obs": lab,
+                                "H": (perm == "high_cmi").astype(np.float32), "M": np.isin(perm, MONO).astype(np.float32)})
+
+    def test(self, drops):
+        """drops: turns x strategies matrix of drop = correct(full_history) - correct(strategy) per turn.
+        Returns (observed statistic, two-sided p-value) per strategy."""
+        d = np.atleast_2d(np.asarray(drops, float).T).T
+        if not self.strata:
+            return np.full(d.shape[1], np.nan), np.full(d.shape[1], np.nan)
+        obs, perm, wsum = 0.0, 0.0, sum(s["w"] for s in self.strata)
+        for s in self.strata:
+            dk = d[s["idx"]]
+            h, m = (s["obs"] == "high_cmi"), np.isin(s["obs"], MONO)
+            obs = obs + s["w"] * (dk[h].mean(axis=0) - dk[m].mean(axis=0))
+            perm = perm + s["w"] * (s["H"] @ dk / s["n_h"] - s["M"] @ dk / s["n_m"])
+        obs, perm = obs / wsum, perm / wsum
+        p = (1 + (np.abs(perm) >= np.abs(obs) - 1e-12).sum(axis=0)) / (1 + self.n)
+        return obs, p
+
+
+def h3_rows(vec, models, strategies, sets, table, members, buckets, boots, perms,
+            metrics=(("jga", "jga_ok"), ("intent_acc", "intent_ok")), scopes=None):
+    """H3: does the drop from full_history differ between high-CMI and monolingual turns? Short follow-up answers
+    ("ow", "Matara") are mostly monolingual and first requests mostly code-mixed, so turn position is confounded
+    with code-mixing. Four versions: the permutation test within position strata, the position-stratified
+    bootstrap CI, all turns pooled and follow-up turns only."""
+    rows = []
+    reduced = [x for x in strategies if x != REFERENCE]
+    k_family = max(1, len(reduced))
+    n_count = lambda m: float(np.sum(m))
+    rnd = lambda x: None if x is None or (isinstance(x, float) and math.isnan(x)) else round(float(x), 4)
+    for model in models:
+        for s, scope in [(s, sc) for s in sets for sc in (scopes or H3_SCOPES)]:
+            labels = np.array(buckets[s]["cmi"])
+            follow = np.array([t["follow_up"] for t, m in zip(table, members[s]) if m])
+            keep = follow if scope == "follow_up" else np.ones(len(labels), bool)
+            high, mono = (labels == "high_cmi") & keep, np.isin(labels, MONO) & keep
+            strata = [st for st in (~follow, follow) if (high & st).any() and (mono & st).any()]
+            strata_note = " · ".join(f"{nm} {int((high & st).sum())}/{int((mono & st).sum())}"
+                                     for nm, st in (("first", ~follow), ("follow-up", follow)))
+            n_h, n_m = int(high.sum()), int(mono.sum())
+            if scope == "permutation":           # the permutation strata: test set x position
+                ts_of = np.array([table[i]["test_set"] for i in np.flatnonzero(members[s])])
+                pstrata = [x for ts in dict.fromkeys(ts_of) for x in (~follow & (ts_of == ts), follow & (ts_of == ts))
+                           if (high & x).any() and (mono & x).any()]
+            for metric, key in metrics:
+                fv = vec(model, REFERENCE, key, s)
+                sts = [st for st in reduced if fv is not None and vec(model, st, key, s) is not None]
+                if not sts:
+                    continue
+                svs = {st: vec(model, st, key, s) for st in sts}
+                if scope == "permutation":
+                    obs, p = perms[s].test(np.stack([fv - svs[st] for st in sts], axis=1))
+                    p_holm = holm([1.0 if math.isnan(x) else float(x) for x in p])
+                for j, st in enumerate(sts):
+                    sv = svs[st]
+                    ci, ci_b, pp, ph = [None, None], [None, None], None, None
+                    if scope == "permutation":
+                        est, dh, dm = (float(x) for x in stratified(masked_mean, n_count, fv, sv, high, mono, pstrata)) \
+                            if pstrata else (None, None, None)
+                        pp, ph = rnd(p[j]), rnd(p_holm[j])
+                        sig = ph is not None and ph < 0.05
+                    elif scope == "stratified":
+                        est, dh, dm = (float(x) for x in stratified(masked_mean, n_count, fv, sv, high, mono, strata)) \
+                            if strata else (None, None, None)
+                        ci = boots[s].stratified_ci(fv, sv, high, mono, strata) if strata else [None, None]
+                        ci_b = boots[s].stratified_ci(fv, sv, high, mono, strata, alpha=0.05 / k_family) \
+                            if strata else [None, None]
+                    else:
+                        ok = high.any() and mono.any()
+                        est = interaction_samples(masked_mean, fv, sv, high, mono) if ok else None
+                        dh = masked_mean(fv, high) - masked_mean(sv, high) if high.any() else None
+                        dm = masked_mean(fv, mono) - masked_mean(sv, mono) if mono.any() else None
+                        ci = boots[s].interaction_ci(fv, sv, high, mono)
+                        ci_b = boots[s].interaction_ci(fv, sv, high, mono, alpha=0.05 / k_family)
+                    if scope != "permutation":
+                        sig = ci[0] is not None and (ci[0] > 0 or ci[1] < 0)
+                    rows.append({
+                        "model": model, "test_set": s, "scope": scope, "metric": metric, "strategy": st,
+                        "n_high_cmi": n_h, "n_mono": n_m,
+                        "strata_high_mono": strata_note if scope in ("stratified", "permutation") else "",
+                        "drop_high": rnd(dh), "drop_mono": rnd(dm), "diff": rnd(est),
+                        "ci95_low": ci[0], "ci95_high": ci[1], "ci_bonferroni_low": ci_b[0], "ci_bonferroni_high": ci_b[1],
+                        "p_perm": pp, "p_holm": ph,
+                        "verdict": "inconclusive (bucket < 30 turns)" if min(n_h, n_m) < MIN_BUCKET
+                        else ("differs" if sig else ("inconclusive (Holm p ≥ 0.05)" if scope == "permutation"
+                                                     else "inconclusive (CI crosses 0)"))})
+    return rows
+
+
 def analyse(runs, table, states, ni_margin):
     sets = list(dict.fromkeys(t["test_set"] for t in table))
     if all(s in sets for s in HELD_OUT):
@@ -317,29 +476,8 @@ def analyse(runs, table, states, ni_margin):
     strategies = [s for s in STRATEGIES if any(k[1] == s for k in runs)]
     seeds = sorted({k[2] for k in runs})
     per_run = {k: eval_run(v, table, states) for k, v in runs.items()}
-
-    members = {s: np.array([t["test_set"] == s or (s == POOLED and t["test_set"] in HELD_OUT) for t in table])
-               for s in sets}
-    thresholds, buckets = {}, {}
-    for s in sets:
-        idx = np.flatnonzero(members[s])
-        mixed = [table[i]["cmi"] for i in idx if table[i]["cmi"] > 0]
-        thresholds[s] = round(float(np.median(mixed)), 2) if mixed else None
-        buckets[s] = {"cmi": [cmi_bucket(table[i]["tags"], table[i]["cmi"], thresholds[s] or 0) for i in idx],
-                      "script": [table[i]["script"] for i in idx]}
-    boots = {}
-    for s in sets:
-        idx = np.flatnonzero(members[s])
-        names = {}
-        sid = [names.setdefault(table[i]["session_id"], len(names)) for i in idx]
-        boots[s] = Bootstrap(sid, seed=BOOT_SEED + sets.index(s))
-
-    def vec(model, strategy, metric, s, seed=None):
-        """Per-turn correctness on test set s: one seed, or the mean over seeds."""
-        idx = members[s]
-        rs = [per_run[(model, strategy, sd)][metric] for sd in seeds if (model, strategy, sd) in per_run
-              and (seed is None or sd == seed)]
-        return np.mean([np.asarray(r, float)[idx] for r in rs], axis=0) if rs else None
+    members, thresholds, buckets, boots, perms = prepare(table, sets)
+    vec = make_vec(per_run, seeds, members)
 
     res = {"settings": {"seeds": seeds, "models": models, "strategies": strategies, "test_sets": sets,
                         "bootstrap": {"resamples": B_RESAMPLES, "seed": BOOT_SEED, "cluster": "session"},
@@ -446,53 +584,7 @@ def analyse(runs, table, states, ni_margin):
                         row["jga_ci95_low"], row["jga_ci95_high"] = boots[s].mean_ci(vec(model, st, "jga_ok", s), mask)
                         res["cmi_breakdown"].append(row)
 
-    # H3: does the drop from full_history differ between high-CMI and monolingual turns? Short follow-up answers
-    # ("ow", "Matara") are mostly monolingual and first requests mostly mixed, so turn position is confounded with
-    # code-mixing. Three versions: stratified by position (first / follow-up turns, the headline), all turns
-    # pooled, and follow-up turns only.
-    k_family = max(1, len([x for x in strategies if x != REFERENCE]))
-    n_count = lambda m: float(np.sum(m))
-    for model in models:
-        for s, scope in [(s, sc) for s in sets for sc in H3_SCOPES]:
-            labels = np.array(buckets[s]["cmi"])
-            follow = np.array([t["follow_up"] for t, m in zip(table, members[s]) if m])
-            keep = follow if scope == "follow_up" else np.ones(len(labels), bool)
-            high, mono = (labels == "high_cmi") & keep, np.isin(labels, MONO) & keep
-            strata = [st for st in (~follow, follow) if (high & st).any() and (mono & st).any()]
-            strata_note = " · ".join(f"{name} {int((high & st).sum())}/{int((mono & st).sum())}"
-                                     for name, st in (("first", ~follow), ("follow-up", follow)))
-            for metric, key in (("jga", "jga_ok"), ("intent_acc", "intent_ok")):
-                fv = vec(model, REFERENCE, key, s)
-                if fv is None:
-                    continue
-                for st in strategies:
-                    if st == REFERENCE or vec(model, st, key, s) is None:
-                        continue
-                    sv = vec(model, st, key, s)
-                    if scope == "stratified":
-                        est, dh, dm = (float(x) for x in stratified(masked_mean, n_count, fv, sv, high, mono, strata)) \
-                            if strata else (None, None, None)
-                        ci = boots[s].stratified_ci(fv, sv, high, mono, strata) if strata else [None, None]
-                        ci_b = boots[s].stratified_ci(fv, sv, high, mono, strata, alpha=0.05 / k_family) \
-                            if strata else [None, None]
-                    else:
-                        ok = high.any() and mono.any()
-                        est = interaction_samples(masked_mean, fv, sv, high, mono) if ok else None
-                        dh = masked_mean(fv, high) - masked_mean(sv, high) if high.any() else None
-                        dm = masked_mean(fv, mono) - masked_mean(sv, mono) if mono.any() else None
-                        ci = boots[s].interaction_ci(fv, sv, high, mono)
-                        ci_b = boots[s].interaction_ci(fv, sv, high, mono, alpha=0.05 / k_family)
-                    n_h, n_m = int(high.sum()), int(mono.sum())
-                    excl = ci[0] is not None and (ci[0] > 0 or ci[1] < 0)
-                    rnd = lambda x: None if x is None or (isinstance(x, float) and math.isnan(x)) else round(float(x), 4)
-                    res["interaction_tests"].append({
-                        "model": model, "test_set": s, "scope": scope, "metric": metric, "strategy": st,
-                        "n_high_cmi": n_h, "n_mono": n_m, "strata_high_mono": strata_note if scope == "stratified" else "",
-                        "drop_high": rnd(dh), "drop_mono": rnd(dm), "diff": rnd(est),
-                        "ci95_low": ci[0], "ci95_high": ci[1],
-                        "ci_bonferroni_low": ci_b[0], "ci_bonferroni_high": ci_b[1],
-                        "verdict": "inconclusive (bucket < 30 turns)" if min(n_h, n_m) < MIN_BUCKET
-                        else ("differs" if excl else "inconclusive (CI crosses 0)")})
+    res["interaction_tests"] = h3_rows(vec, models, strategies, sets, table, members, buckets, boots, perms)
 
     # tokens by turn depth (held-out turns, mean over seeds)
     depth_sets = [POOLED] if POOLED in sets else [s for s in sets if s != "gold"] or sets
@@ -514,6 +606,10 @@ def analyse(runs, table, states, ni_margin):
 # ------------------------------------------------------------------ hypotheses
 def find(rows, **kw):
     return [r for r in rows if all(r.get(k) == v for k, v in kw.items())]
+
+
+def fmt_p(r):
+    return "n/a" if r.get("p_perm") is None else f"p = {r['p_perm']:.4f} (Holm {r['p_holm']:.4f})"
 
 
 def fmt_ci(lo, hi):
@@ -580,13 +676,45 @@ def verdicts(res, out_dir, ni_margin):
             for scope in H3_SCOPES:
                 rows = find(inter, model=model, test_set=s, metric="jga", scope=scope)
                 h3 += rows
-                out[f"H3/{model}/{s}" + ("" if scope == "stratified" else f"/{scope}")] = (
+                out[f"H3/{model}/{s}" + ("" if scope == H3_SCOPES[0] else f"/{scope}")] = (
                     "supported" if any(r["verdict"] == "differs" for r in rows)
                     else "inconclusive" if rows else "inconclusive (not run)")
     # H4 and scale: filled in by later stages
     h4 = _read_csv(os.path.join(out_dir, "robustness.csv"))
     bench = _read_csv(os.path.join(out_dir, "deployment_benchmark.csv"))
     return out, h1, h2, h3, h4, bench
+
+
+def _read_json(path):
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def calib_note(calib, scope, test_set):
+    """" (false positives on null data: x% intent, y% JGA)" from h3_calibration.json, if it exists."""
+    if not calib:
+        return ""
+    r = {x["metric"]: x for x in calib["rates"] if x["method"] == scope and x["test_set"] == test_set}
+    if not r:
+        return ""
+    return " (says supported on null data: " + ", ".join(
+        f"{r[m]['says_supported']:.1%} {lab}" for m, lab in (("intent_acc", "intent"), ("jga", "JGA")) if m in r) + ")"
+
+
+def calib_table(calib, test_set):
+    L = [f"Calibration on {calib['null_data_sets']} null data sets (`h3_calibration.csv`), {SET_LABEL.get(test_set, test_set)}: "
+         "how often each method wrongly says supported (target about 5%).", "",
+         "| method | intent (exact null) | JGA (approximate null) | per comparison, intent |", "|---|---|---|---|"]
+    for scope in H3_SCOPES:
+        r = {x["metric"]: x for x in calib["rates"] if x["method"] == scope and x["test_set"] == test_set}
+        if r:
+            note = " (buckets < 30: never supported)" if not r["intent_acc"]["buckets_eligible"] else                 (" (not a null: turn position)" if scope == "all_turns" else "")
+            L.append(f"| {scope.replace('_', ' ')}{' (headline)' if scope == H3_SCOPES[0] else ''}{note} | "
+                     f"{r['intent_acc']['says_supported']:.1%} | {r.get('jga', {}).get('says_supported', float('nan')):.1%} | "
+                     f"{r['intent_acc']['per_comparison_unadjusted']:.1%} |")
+    return L
 
 
 def _read_csv(path):
@@ -625,14 +753,17 @@ def write_summary(res, path, out_dir, ni_margin):
           f"and the CI lower bound of JGA(S) − JGA(full_history) is above −{ni_margin}; not supported when it is "
           f"significantly worse or not cheaper; otherwise inconclusive. Margin set with `--ni-margin`.",
           f"  A sensitivity row repeats the verdicts at a margin of {H2_SENSITIVITY_MARGIN}.",
-          f"- **H3** supported when, for at least one reduced strategy, the difference in drop (high CMI − monolingual) "
-          f"has a 95% CI that excludes 0 with ≥ {MIN_BUCKET} turns in both buckets; otherwise inconclusive "
-          "(a bucket under 30 turns or a CI crossing 0). The CIs are not adjusted for the 6 strategies; the "
-          "Bonferroni-adjusted CI is in `interaction_tests.csv`. Short follow-up answers are mostly monolingual and "
-          "first requests mostly code-mixed, so turn position is confounded with code-mixing. The **headline is "
-          "stratified by position**: the interaction is computed within first turns and within follow-up turns, "
-          "combined weighted by the turns (high CMI + monolingual) in each, and its CI comes from resampling sessions "
-          "with every turn keeping its stratum. All turns pooled and follow-up turns only are shown next to it.",
+          "- **H3** statistic: the difference in drop from full_history between high-CMI and monolingual turns. Short "
+          "follow-up answers are mostly monolingual and first requests mostly code-mixed, so turn position is "
+          "confounded with code-mixing, and the statistic is computed within position strata (test set × first / "
+          "follow-up turn) and combined weighted by the high-CMI + monolingual turns in each. The **headline is a "
+          f"permutation test**: CMI bucket labels are shuffled within each stratum ({N_PERMUTATIONS} permutations, "
+          "fixed seed), keeping sessions and per-turn correctness fixed; two-sided p, Holm across the 6 strategies "
+          f"per model × test set. Supported when at least one strategy has Holm p < 0.05 with ≥ {MIN_BUCKET} turns "
+          "in both buckets; otherwise inconclusive. It is the headline because it is the method whose false-positive "
+          "rate on null data is closest to 5% (`h3_calibration.py`). The bootstrap versions (stratified, all turns, "
+          "follow-up only; supported when an unadjusted 95% CI excludes 0) are secondary and over-reject on null "
+          "data; their calibration rates are shown with them.",
           "- Strategies marked *oracle (gold tags at test time) — upper bound* read the gold language/entity tags of "
           "earlier turns, which a deployed system does not have; their results are upper bounds.",
           "- An overall verdict mixes per-strategy verdicts: all supported → supported, all not supported → not "
@@ -641,6 +772,7 @@ def write_summary(res, path, out_dir, ni_margin):
     def verdict_line(h, model):
         return " · ".join(f"{s}: **{v.get(f'{h}/{model}/{s}', 'n/a')}**" for s in sets)
 
+    calib = _read_json(os.path.join(out_dir, "h3_calibration.json"))
     for h, title, rows, cols in [
         ("H1", "H1: current_only is worse than the context strategies (JGA)", h1,
          lambda r: f"| {name(r['strategy'])} | {r['acc_strategy']:.3f} | {r['acc_reference']:.3f} | {r['diff']:+.3f} | "
@@ -652,8 +784,15 @@ def write_summary(res, path, out_dir, ni_margin):
          lambda r: f"| {name(r['strategy'])} | {r['scope'].replace('_', ' ')} | {r['n_high_cmi']} / {r['n_mono']} | "
                    f"{'n/a' if r['drop_high'] is None else format(r['drop_high'], '+.3f')} | "
                    f"{'n/a' if r['drop_mono'] is None else format(r['drop_mono'], '+.3f')} | "
-                   f"{'n/a' if r['diff'] is None else format(r['diff'], '+.3f')} | {fmt_ci(r['ci95_low'], r['ci95_high'])} | {r['verdict']} |")]:
+                   f"{'n/a' if r['diff'] is None else format(r['diff'], '+.3f')} | "
+                   f"{fmt_p(r) if r['scope'] == 'permutation' else fmt_ci(r['ci95_low'], r['ci95_high'])} | {r['verdict']} |")]:
         L += [f"## {title}", ""]
+        if h == "H3":
+            L += [f"Headline: {H3_SCOPES[0]} test{calib_note(calib, H3_SCOPES[0], headline)}.", ""]
+            if calib:
+                L += calib_table(calib, headline) + [""]
+            else:
+                L += ["Calibration not found: run `python experiments/h3_calibration.py --out-dir <this folder>`.", ""]
         for model in res["settings"]["models"]:
             L += [f"**{MODELS[model]}**: {verdict_line(h, model)}", ""]
             if headline:
@@ -661,7 +800,7 @@ def write_summary(res, path, out_dir, ni_margin):
                 if hr:
                     head = {"H1": "| strategy | JGA | JGA current_only | diff | 95% CI | Holm p | verdict |\n|---|---|---|---|---|---|---|",
                             "H2": "| strategy | JGA | JGA full_history | diff | 95% CI | Holm p | tokens | verdict |\n|---|---|---|---|---|---|---|---|",
-                            "H3": "| strategy | turns | turns high / mono | drop high | drop mono | diff | 95% CI | verdict |\n|---|---|---|---|---|---|---|---|"}[h]
+                            "H3": "| strategy | method | turns high / mono | drop high | drop mono | diff | 95% CI or p (Holm) | verdict |\n|---|---|---|---|---|---|---|---|"}[h]
                     L += [f"{SET_LABEL[headline]}:", "", head] + [cols(r) for r in hr] + [""]
             if h == "H2":
                 sens = " · ".join(f"{s}: **{v_sens.get(f'H2/{model}/{s}', 'n/a')}**" for s in sets)
@@ -676,9 +815,9 @@ def write_summary(res, path, out_dir, ni_margin):
             if h == "H3":
                 for scope in H3_SCOPES[1:]:
                     line = " · ".join(f"{s}: **{v.get(f'H3/{model}/{s}/{scope}', 'n/a')}**" for s in sets)
-                    L += [f"{scope.replace('_', ' ').capitalize()}: {line}", ""]
+                    L += [f"Secondary, {scope.replace('_', ' ')} (bootstrap){calib_note(calib, scope, headline)}: {line}", ""]
                 if any(v.get(f"H3/{model}/{s}") != v.get(f"H3/{model}/{s}/all_turns") for s in sets):
-                    L += ["> The stratified and all-turns verdicts disagree: part of the all-turns effect comes from turn "
+                    L += ["> The headline and all-turns verdicts disagree: part of the all-turns effect comes from turn "
                           "position (short monolingual answers vs code-mixed first requests), not from code-mixing.", ""]
     L += ["## H4: the hybrid tracker (rules + XLM-R NER) degrades less than rules only on messy input", ""]
     if h4:
@@ -856,7 +995,7 @@ def plot_all(res, out_dir):
     reduced = [s for s in strategies if s != REFERENCE]
     fig, axes = plt.subplots(1, len(iset), figsize=(4.2 * len(iset), 0.45 * len(reduced) + 1.8), squeeze=False, sharey=True)
     for ax, s in zip(axes[0], iset):
-        series = [(m, sc) for m in models for sc in H3_SCOPES]
+        series = [(m, sc) for m in models for sc in H3_SCOPES if sc != "permutation"]     # CI-based versions
         for k, (model, scope) in enumerate(series):
             rows = {r["strategy"]: r for r in res["interaction_tests"] if r["model"] == model and r["test_set"] == s
                     and r["metric"] == "jga" and r["scope"] == scope}
@@ -883,7 +1022,7 @@ def plot_all(res, out_dir):
         ax.grid(axis="y", visible=False)
     handles, labels = axes[0][0].get_legend_handles_labels()
     fig.legend(handles, labels, frameon=False, fontsize=8, loc="lower center", ncol=6)
-    fig.suptitle("H3: does reducing context hurt code-mixed turns more? (95% cluster-bootstrap CI; n = all turns; filled = stratified)" + fake,
+    fig.suptitle("H3: does reducing context hurt code-mixed turns more? (95% cluster-bootstrap CIs; n = all turns; filled = stratified; permutation p-values in summary.md)" + fake,
                  x=0.01, ha="left", fontsize=11, color=INK)
     fig.tight_layout(rect=(0, 0.07, 1, 1))
     fig.savefig(os.path.join(out_dir, "interaction_tests.png"), dpi=200)
