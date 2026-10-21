@@ -145,6 +145,26 @@ def test_permutation_false_positive_rate_on_null_data_is_under_10_percent():
         assert rates[ts]["says_supported"] < 0.10, rates[ts]
 
 
+def test_h3_bound_sentence_uses_the_widest_adjusted_ci():
+    from context_eval import h3_bound_line
+    rows = [{"diff": -0.10, "ci_bonferroni_low": -0.25, "ci_bonferroni_high": 0.05},
+            {"diff": 0.02, "ci_bonferroni_low": -0.08, "ci_bonferroni_high": 0.12}]
+    text = h3_bound_line(rows, 0.081)
+    assert "rule out an interaction larger than 25.0 JGA points" in text
+    assert "-10.0 to +2.0" in text and "8.1%" in text
+    assert h3_bound_line([{"diff": None, "ci_bonferroni_low": None, "ci_bonferroni_high": None}]) is None
+
+
+def test_deployed_line_is_xlmr_window_3_only():
+    from context_eval import deployed_line
+    rows = [{"strategy": "window_3", "diff": -0.010, "ci95_low": -0.091, "ci95_high": 0.077},
+            {"strategy": "window_2", "diff": -0.105, "ci95_low": -0.235, "ci95_high": 0.024}]
+    text = deployed_line("xlmr", rows)
+    assert "XLM-R window_3" in text and "single pre-specified comparison" in text
+    assert "[-9.10, +7.70]" in text and "larger than 9.10 JGA points" in text
+    assert deployed_line("tfidf", rows) is None
+
+
 def test_interaction_ci_with_one_session_per_turn():
     full = np.ones(8)
     red = np.array([0, 0, 0, 0, 1, 1, 1, 1], float)
@@ -191,6 +211,7 @@ def test_h2_verdict_and_conflicts():
     v = h2_verdict(ni(-0.15, -0.07), mc(-0.10, 0.20), 0.05)          # CI below the margin, McNemar: no difference
     assert v[0] == "not supported" and v[2] == "conflicting"
     assert h2_verdict(ni(-0.08, 0.02), mc(-0.03, 0.3), 0.05)[:3] == ("inconclusive", "not significantly worse", "agree")
+    assert h2_verdict(ni(0.05, 0.16), mc(0.10, 0.0001), 0.05)[:3] == ("supported", "significantly better", "agree")
     assert h2_verdict(ni(-0.01, 0.02, tok=60), mc(0.0, 1.0), 0.05)[0] == "not supported"     # not cheaper
 
 

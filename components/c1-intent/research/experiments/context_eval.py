@@ -462,6 +462,11 @@ def h3_rows(vec, models, strategies, sets, table, members, buckets, boots, perms
                     if scope == "permutation":
                         est, dh, dm = (float(x) for x in stratified(masked_mean, n_count, fv, sv, high, mono, pstrata)) \
                             if pstrata else (None, None, None)
+                        # size of the effect: cluster-bootstrap CI of the same statistic, same strata (the test is
+                        # the permutation p; the CI says how large an interaction the data still allow)
+                        ci = boots[s].stratified_ci(fv, sv, high, mono, pstrata) if pstrata else [None, None]
+                        ci_b = boots[s].stratified_ci(fv, sv, high, mono, pstrata, alpha=0.05 / k_family) \
+                            if pstrata else [None, None]
                         pp, ph = rnd(p[j]), rnd(p_holm[j])
                         sig = ph is not None and ph < 0.05
                     elif scope == "stratified":
@@ -740,7 +745,9 @@ def h2_verdict(ni, mcnemar, margin):
     else:
         primary = "inconclusive"
     worse = mcnemar is not None and mcnemar["diff"] < 0 and mcnemar["p_holm"] < 0.05
-    secondary = "n/a" if mcnemar is None else ("significantly worse" if worse else "not significantly worse")
+    better = mcnemar is not None and mcnemar["diff"] > 0 and mcnemar["p_holm"] < 0.05
+    secondary = "n/a" if mcnemar is None else ("significantly worse" if worse else "significantly better" if better
+                                               else "not significantly worse")
     agreement, why = "agree", ""
     if fewer and primary == "supported" and worse:
         agreement = "conflicting"
@@ -759,7 +766,45 @@ def find(rows, **kw):
 
 
 def fmt_p(r):
-    return "n/a" if r.get("p_perm") is None else f"p = {r['p_perm']:.4f} (Holm {r['p_holm']:.4f})"
+    if r.get("p_perm") is None:
+        return "n/a"
+    ci = "" if r.get("ci95_low") is None else f"; 95% CI {fmt_ci(r['ci95_low'], r['ci95_high'])}"
+    return f"p = {r['p_perm']:.4f} (Holm {r['p_holm']:.4f}){ci}"
+
+
+DEPLOYED = ("xlmr", "window_3")       # the deployed default (Observation 8), chosen before the v2 experiment
+
+
+def deployed_line(model, rows):
+    """H3 for the deployed default alone: one pre-specified comparison, so its own unadjusted 95% CI."""
+    if model != DEPLOYED[0]:
+        return None
+    r = next((x for x in rows if x["strategy"] == DEPLOYED[1] and x.get("ci95_low") is not None), None)
+    if r is None or r.get("diff") is None:
+        return None
+    return (f"Deployed default ({MODELS[model]} {DEPLOYED[1]}), a single pre-specified comparison and not part of the "
+            f"6-strategy family: interaction {100 * r['diff']:+.2f} JGA points, 95% CI [{100 * r['ci95_low']:+.2f}, "
+            f"{100 * r['ci95_high']:+.2f}] (cluster bootstrap over sessions, the permutation test's strata). For the "
+            f"deployed strategy the data rule out an interaction larger than "
+            f"{100 * max(abs(r['ci95_low']), abs(r['ci95_high'])):.2f} JGA points.")
+
+
+def h3_bound_line(rows, per_comparison_rate=None):
+    """One sentence on how large an interaction the data still allow (permutation rows of one model and test set).
+    per_comparison_rate: how often a stratified bootstrap CI excluded 0 on null data (h3_calibration.json)."""
+    rows = [r for r in rows if r.get("ci_bonferroni_low") is not None and r.get("diff") is not None]
+    if not rows:
+        return None
+    bound = max(max(abs(r["ci_bonferroni_low"]), abs(r["ci_bonferroni_high"])) for r in rows)
+    lo, hi = min(r["diff"] for r in rows), max(r["diff"] for r in rows)
+    return (f"Effect size: the estimates range from {100 * lo:+.1f} to {100 * hi:+.1f} JGA points (difference in drop, "
+            f"high CMI − monolingual; negative = monolingual turns lose more), with the 95% CI of each strategy in the "
+            f"table. Taking all {len(rows)} strategies together (Bonferroni-adjusted 95% CIs, cluster bootstrap over "
+            f"sessions, the permutation test's strata), **the data rule out an interaction larger than "
+            f"{100 * bound:.1f} JGA points** in either direction." +
+            ("" if per_comparison_rate is None else
+             f" On null data a stratified bootstrap CI excluded 0 in {per_comparison_rate:.1%} of single comparisons "
+             "(5% expected), so the bound is approximate."))
 
 
 def fmt_ci(lo, hi):
@@ -1049,6 +1094,16 @@ def write_summary(res, path, out_dir, ni_margin, conv=None, sens=None):
                         f"| {name(r['strategy'])} | {fmt_ci(r['ci95_low'], r['ci95_high'])} | {main_v.get(r['strategy'])} | "
                         f"{r['verdict']} |" for r in sr] + [""]
             if h == "H3":
+                rate = next((x["per_comparison_unadjusted"] for x in (calib or {}).get("rates", [])
+                             if x["method"] == "stratified" and x["metric"] == "jga" and x["test_set"] == headline), None)
+                bound = h3_bound_line([r for r in rows if r["model"] == model and r["test_set"] == headline
+                                       and r["scope"] == H3_SCOPES[0]], rate)
+                if bound:
+                    L += [bound, ""]
+                dep = deployed_line(model, [r for r in rows if r["model"] == model and r["test_set"] == headline
+                                            and r["scope"] == H3_SCOPES[0]])
+                if dep:
+                    L += [dep, ""]
                 for scope in H3_SCOPES[1:]:
                     line = " · ".join(f"{s}: **{v.get(f'H3/{model}/{s}/{scope}', 'n/a')}**" for s in sets)
                     L += [f"Secondary, {scope.replace('_', ' ')} (bootstrap){calib_note(calib, scope, headline)}: {line}", ""]
