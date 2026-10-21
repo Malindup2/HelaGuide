@@ -1,13 +1,13 @@
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {API_BASE} from '../api/client';
 import type {ActiveIdentity,ProcedureSummary} from '../api/types';
-import GuidanceMessage from './GuidanceMessage';
+import GuidanceMessage from './card/GuidanceCard';
 import ComparisonSheet from './compare/ComparisonSheet';
 import type {Configuration,EventInput,Journey,Receipt} from './types';
 import './v2.css';
-import './clear-path.css';
-import './picker-compare.css';
+import './card/card.css';
 import {workspaceRequest,WorkspaceError} from './workspaceClient';
+import ResearchBar from './card/ResearchBar';
 
 type Capability={id:string;token:string};
 
@@ -37,11 +37,14 @@ export default function WorkspaceGuidance({active,procedure,disabled,research=fa
  const adjust=async(configuration:Configuration)=>{setBusy(true);setError('');try{await queue.current;const i=identity.current!,j=latest.current!;accept(await workspaceRequest<Journey>(`/v2/journeys/${encodeURIComponent(i.id)}/adjustments`,{event_id:crypto.randomUUID(),view_id:j.current_view,configuration},i.token));}catch(e){setError(String(e));}finally{setBusy(false);}};
  const rate=async(rating:string)=>{await queue.current;const i=identity.current!,j=latest.current!;try{return await workspaceRequest<Receipt>(`/v2/journeys/${encodeURIComponent(i.id)}/ratings`,{view_id:j.current_view,rating},i.token);}catch(e){setError(String(e));throw e;}};
  const canCompare=active.kind==='profile'&&active.profile.personalization_enabled&&journey?.routing==='adaptive'&&!journey.constraints_revoked;
- return <section ref={responseRoot} className="panel unified-guidance" aria-label="Your guidance"><div className="section-heading"><div><p className="eyebrow">Your guidance</p>{!journey&&<h2>{procedure.title}</h2>}</div><button className="button button-primary" disabled={disabled||busy} onClick={()=>void start()}>{busy?'Preparing guidance…':journey?'Request fresh guidance':'Show guidance'}</button></div>
-  {!journey&&<p className="helper-text">{active.kind==='profile'&&active.profile.personalization_enabled?'Your saved profile informs how this guidance is laid out.':'You will see standard guidance.'} Viewing guidance does not mark anything as done.</p>}
-  {error&&<p className="alert alert-error" role="alert">{error}</p>}
-  {journey?.constraints_revoked&&<p className="notice" role="status">Your accessibility or hard requirements changed. Request fresh guidance to use the updated requirements.</p>}
-  {journey&&!journey.constraints_revoked&&<fieldset disabled={disabled||busy} className="v2-shell v2-container"><GuidanceMessage key={journey.current_view} journey={journey} event={event} adjust={c=>void adjust(c)} rate={rate} research={research} onCompare={canCompare?()=>setComparing(true):undefined}/></fieldset>}
+ return <section ref={responseRoot} className="sh-guidance" aria-label="Your guidance">
+  <div className="sh-guidance-bar"><div>{!journey&&<h2 className="sh-procedure">{procedure.title}</h2>}</div>
+   <button className="gc-btn" disabled={disabled||busy} onClick={()=>void start()}>{busy?'Preparing guidance…':journey?'Request fresh guidance':'Show guidance'}</button></div>
+  {!journey&&<p className="gc-fine">{active.kind==='profile'&&active.profile.personalization_enabled?'Your saved profile informs how this guidance is laid out.':'You will see standard guidance.'} Viewing guidance does not mark anything as done.</p>}
+  {error&&<p className="sh-alert" role="alert">{error}</p>}
+  {journey?.constraints_revoked&&<p className="sh-notice" role="status">Your accessibility or hard requirements changed. Request fresh guidance to use the updated requirements.</p>}
+  {research&&journey&&<ResearchBar journey={journey} onCompare={canCompare?()=>setComparing(true):undefined}/>}
+  {journey&&!journey.constraints_revoked&&<fieldset disabled={disabled||busy} className="sh-fieldset"><GuidanceMessage key={journey.current_view} journey={journey} event={event} adjust={c=>void adjust(c)} rate={rate} research={research}/></fieldset>}
   {comparing&&journey&&<ComparisonSheet original={journey} sessionId={sid} research={research} request={workspaceRequest} storage={sessionStorage} onClose={()=>setComparing(false)}/>}
  </section>;
 }

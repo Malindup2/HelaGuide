@@ -1,7 +1,7 @@
 import {describe,expect,it,vi} from 'vitest';
 import {renderToStaticMarkup} from 'react-dom/server';
 import fixture from './fixture.json';
-import GuidanceMessage from './GuidanceMessage';
+import GuidanceMessage from './card/GuidanceCard';
 import ProcessMap from './ProcessMap';
 import {previousActions,relationshipLines} from './semantics';
 import type {Configuration,Journey} from './types';
@@ -21,7 +21,8 @@ describe('V2 six-dimensional renderer contract',()=>{
   for(const recap of ['off','on'] as const)
   for(const summary of ['off','on'] as const){
    const html=render({navigation,explanation,disclosure,relationships,recap,summary});count++;
-   expect(html).toContain('Fictional practice procedure');
+   expect(html).toContain('Practice application: prepare and submit');
+   expect(html).toContain('Practice example');
    expect(html).toContain('Register at the fictional Registration Desk');
    expect(html).toContain('You already have the fictional supporting copy');
    expect(html).toContain('You do not have the fictional supporting copy');
@@ -33,9 +34,9 @@ describe('V2 six-dimensional renderer contract',()=>{
   for(const explanation of ['concise','expanded'] as const)
   for(const disclosure of ['collapsed','expanded'] as const){
    const html=render({...base,explanation,disclosure});
-   const prose=[...html.matchAll(/class="v2-prose">([\s\S]*?)<\/div>/g)].map(m=>m[1]).join(' ');
+   const prose=[...html.matchAll(/class="gc-prose[^"]*"[^>]*>([\s\S]*?)<\/div>/g)].map(m=>m[1]).join(' ');
    expect(prose.includes('Registration is the common prerequisite')).toBe(explanation==='expanded');
-   expect(html.includes('<details open=""><summary>Optional explanation')).toBe(disclosure==='expanded');
+   expect(html.includes('<details open=""><summary>Extra info')).toBe(disclosure==='expanded');
   }
  });
  it('uses actual current-journey displays and excludes a focused alternative',()=>{

@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import fixture from './fixture.json';
-import GuidanceMessage, { PreparationSummary } from './GuidanceMessage';
+import GuidanceMessage from './card/GuidanceCard';
+import { PreparationSummary } from './card/Sheets';
 import type { Configuration, Journey } from './types';
 
 const base: Configuration = { navigation: 'overview', explanation: 'concise', disclosure: 'collapsed', relationships: 'none', recap: 'off', summary: 'off' };
@@ -17,15 +18,15 @@ describe('alternative routes and the path', () => {
     const out = html(journey());
     expect(out).toContain('Route A · choose one');
     expect(out).toContain('Route B · choose one');
-    expect(out).not.toMatch(/class="v2-num[^"]*"[^>]*>\d+</);
+    expect(out).not.toMatch(/class="gc-mark[^"]*"[^>]*>\d+</);
     expect(out).toContain('You do not have the fictional supporting copy');
     expect(out).toContain('You already have the fictional supporting copy');
   });
 
   it('keeps actual prerequisites separate from route alternatives', () => {
     const out = html(journey());
-    expect(out).toContain('<strong>Do first:</strong>');
-    expect(out).toContain('Choose the route that applies');
+    expect(out).toContain('<b>Do first</b>');
+    expect(out).toContain('Which applies to you?');
   });
 
   it('shows a truncated source-excerpt title as the complete source sentence in the path, stepper and map', () => {

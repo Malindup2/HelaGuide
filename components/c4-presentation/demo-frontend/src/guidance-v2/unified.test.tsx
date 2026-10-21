@@ -1,7 +1,8 @@
 import {describe,it,expect,vi} from 'vitest';
 import {renderToStaticMarkup} from 'react-dom/server';
 import VersionRoute from './VersionRoute';
-import GuidanceMessage,{PreparationSummary} from './GuidanceMessage';
+import GuidanceMessage from './card/GuidanceCard';
+import {PreparationSummary} from './card/Sheets';
 import fixture from './fixture.json';
 import type {Journey} from './types';
 import {previousActions} from './semantics';
@@ -12,11 +13,11 @@ describe('Integrated citizen and research routing',()=>{
   expect(html).toContain('Continue as guest');expect(html).toContain('Create demo profile');
   expect(html).not.toContain('C4 V2 research workspace');
  });
- it('keeps explicit support adjustments compact and exposes an enlargeable map',()=>{
-  const j=structuredClone(fixture) as unknown as Journey;j.views[j.current_view].configuration.relationships='map';
+ it('keeps support adjustments behind one compact control and offers a compact, expandable map', () => {
+  const j = structuredClone(fixture) as unknown as Journey;j.views[j.current_view].configuration.relationships='map';
   const html=renderToStaticMarkup(<GuidanceMessage journey={j} event={vi.fn()} adjust={vi.fn()} rate={vi.fn()}/>);
-  expect(html).toContain('<details class="v2-adjustments"><summary>Adjust support for this visit</summary>');
-  expect(html).toContain('Enlarge map');expect(html).toContain('Hide map');
+  expect(html).toContain('</svg>Support</button>');expect(html).not.toContain('Adjust support for this visit');
+  expect(html).toContain('Expand map');expect(html).toContain('aria-label="Integrated supplied process"');
  });
  it('keeps previously viewed earlier actions in recap after revisiting a later step',()=>{
   const j=structuredClone(fixture) as unknown as Journey;const actions=j.document.actions;

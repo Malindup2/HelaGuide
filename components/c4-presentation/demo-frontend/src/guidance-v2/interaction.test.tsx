@@ -2,8 +2,9 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import fixture from './fixture.json';
-import GuidanceMessage from './GuidanceMessage';
+import GuidanceMessage from './card/GuidanceCard';
 import ComparisonSheet from './compare/ComparisonSheet';
+import ResearchBar from './card/ResearchBar';
 import type { Configuration, Journey, Receipt } from './types';
 
 const base: Configuration = { navigation: 'overview', explanation: 'concise', disclosure: 'collapsed', relationships: 'none', recap: 'off', summary: 'off' };
@@ -65,23 +66,27 @@ describe('guidance interactions', () => {
     render(<GuidanceMessage journey={journey({ navigation: 'guided', recap: 'on' })} event={event} adjust={adjust} rate={rate} readOnly />);
     fireEvent.click(screen.getAllByRole('button', { name: 'Next' })[0]);
     expect(event).not.toHaveBeenCalled(); expect(adjust).not.toHaveBeenCalled(); expect(rate).not.toHaveBeenCalled();
-    expect(screen.queryByText('Was this the right amount of guidance?')).toBeNull();
-    expect(screen.queryByText('Adjust support for this visit')).toBeNull();
+    expect(screen.queryByText('Rate the amount of help')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Support' })).toBeNull();
     expect(screen.getByText(/Earlier in this journey/)).toBeTruthy();
   });
 
   it('changes support through the labelled controls using the same adjustment call', () => {
     const adjust = vi.fn();
     render(<GuidanceMessage journey={journey()} event={vi.fn()} adjust={adjust} rate={vi.fn()} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Support' }));
     fireEvent.click(screen.getByRole('button', { name: 'Guided' }));
     expect(adjust).toHaveBeenCalledWith({ ...base, navigation: 'guided' });
   });
 
-  it('only offers the comparison link when it is supplied and the view is not read-only', () => {
-    const { rerender } = render(<GuidanceMessage journey={journey({}, 'adaptive')} event={vi.fn()} adjust={vi.fn()} rate={vi.fn()} />);
+  it('keeps the research comparison action out of the card and inside the research bar only when supplied', () => {
+    const j = journey({}, 'adaptive');
+    const { unmount } = render(<ResearchBar journey={j} />);
     expect(screen.queryByText('Compare with standard guidance')).toBeNull();
-    rerender(<GuidanceMessage journey={journey({}, 'adaptive')} event={vi.fn()} adjust={vi.fn()} rate={vi.fn()} onCompare={vi.fn()} />);
+    unmount();
+    render(<ResearchBar journey={j} onCompare={vi.fn()} />);
     expect(screen.getByText('Compare with standard guidance')).toBeTruthy();
+    expect(screen.getByText(/routing adaptive/)).toBeTruthy();
   });
 });
 
@@ -130,6 +135,7 @@ describe('corrected behaviour', () => {
   it('keeps the preparation tick-list local: no event, no request, and no completion wording', () => {
     const event = vi.fn(), adjust = vi.fn(), rate = vi.fn();
     render(<GuidanceMessage journey={journey({ summary: 'on' })} event={event} adjust={adjust} rate={rate} />);
+    fireEvent.click(screen.getByRole('button', { name: /Before you start/ }));
     const box = screen.getAllByRole('checkbox')[0] as HTMLInputElement;
     fireEvent.click(box);
     expect(box.checked).toBe(true);

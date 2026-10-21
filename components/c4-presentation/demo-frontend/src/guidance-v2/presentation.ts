@@ -1,5 +1,5 @@
 /** Pure presentation helpers. Nothing here chooses a configuration or alters backend facts. */
-import type { Action, Configuration, Document, Journey } from './types';
+import type { Action, Branch, Configuration, Document, Journey } from './types';
 
 export const DIMENSIONS = ['navigation', 'explanation', 'disclosure', 'relationships', 'recap', 'summary'] as const;
 export type Dimension = (typeof DIMENSIONS)[number];
@@ -15,10 +15,10 @@ export const SUPPORT_TEXT: Record<Dimension, { title: string; question: string; 
     expanded: { label: 'Fuller', benefit: 'More explanation for each action' } } },
   disclosure: { title: 'Optional detail', question: 'Should optional detail start open?', states: {
     collapsed: { label: 'Tucked away', benefit: 'Optional detail stays out of the way' },
-    expanded: { label: 'Open', benefit: 'Optional detail is open by default' } } },
+    expanded: { label: 'Extra info open', benefit: 'Optional detail is open by default' } } },
   relationships: { title: 'How actions connect', question: 'How should dependencies be shown?', states: {
     none: { label: 'Text only', benefit: 'Dependencies described in the text' },
-    inline: { label: 'Beside each action', benefit: 'What comes first is marked beside each action' },
+    inline: { label: 'Inline', benefit: 'What comes first is marked beside each action' },
     map: { label: 'Process map', benefit: 'The whole route at a glance' } } },
   recap: { title: 'Earlier guidance', question: 'Show a reminder of what you viewed?', states: {
     off: { label: 'Off', benefit: 'No reminder' },
@@ -41,7 +41,7 @@ export function originOf(journey: Pick<Journey, 'routing' | 'views' | 'current_v
 
 export const ORIGIN_TEXT: Record<Origin, { label: string; detail: string }> = {
   standard: { label: 'Standard guidance', detail: 'The same plain layout for everyone.' },
-  personalised: { label: 'Selected for your saved profile', detail: 'The layout was chosen using your saved profile.' },
+  personalised: { label: 'Selected for you', detail: 'The layout was chosen using your saved profile.' },
   adjusted: { label: 'Adjusted by you', detail: 'You changed the support for this visit.' },
 };
 
@@ -175,6 +175,50 @@ export function incomplete(doc: Document): boolean {
 
 export function statusChip(doc: Document): string {
   return doc.synthetic ? 'Practice example, not an official service' : 'Information snapshot. Check the official source before acting';
+}
+
+export function qualifier(doc: Document): string {
+  return doc.synthetic ? 'Practice example · not an official service'
+    : 'Bounded snapshot · not a current or verified service · check the official source';
+}
+
+export type RouteOption = { id: string; letter: string; conditions: string[]; actions: Action[] };
+export type Block = { kind: 'action'; action: Action } | { kind: 'group'; group: Branch; options: RouteOption[] };
+
+/**
+ * Browsing outline. Actions in one branch group are gathered into a single route block so alternatives
+ * are never shown as consecutive steps. The position of a group is where its first action is browsed.
+ */
+export function outline(doc: Document): Block[] {
+  const blocks: Block[] = [], groups = new Map<string, Extract<Block, { kind: 'group' }>>();
+  for (const action of doc.actions) {
+    const group = action.branch ? doc.branches.find(b => b.group_id === action.branch) : undefined;
+    if (!group) { blocks.push({ kind: 'action', action }); continue; }
+    let block = groups.get(group.group_id);
+    if (!block) {
+      block = { kind: 'group', group, options: group.options.map((o, i) => ({
+        id: o.option_id, letter: String.fromCharCode(65 + i), actions: [],
+        conditions: o.condition_ids.map(id => doc.conditions.find(c => c.condition_id === id)?.text).filter((t): t is string => Boolean(t)) })) };
+      groups.set(group.group_id, block); blocks.push(block);
+    }
+    block.options.find(o => o.id === action.option)?.actions.push(action);
+  }
+  return blocks;
+}
+
+/** Maps the backend configuration to layout decisions. It never selects or alters the configuration. */
+export function resolveLayout(c: Configuration) {
+  return {
+    list: c.navigation === 'guided' ? 'focused' : 'accordion',
+    strip: c.relationships === 'map' ? 'graph' : c.navigation === 'guided' ? 'dots' : 'none',
+    needs: c.summary === 'on' && c.navigation === 'overview' ? 'reference' : 'inline',
+    cues: c.relationships === 'none' ? 'text' : 'links',
+    explanation: c.explanation === 'expanded' ? 'full' : 'plain',
+    optionalOpen: c.disclosure === 'expanded',
+    recap: c.recap === 'on',
+    prepare: c.summary === 'on',
+    map: c.relationships === 'map',
+  } as const;
 }
 
 export function prefersReducedMotion(): boolean {
