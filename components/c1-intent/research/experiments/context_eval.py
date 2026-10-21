@@ -1081,13 +1081,32 @@ def write_summary(res, path, out_dir, ni_margin, conv=None, sens=None):
 
 
 def _h4_lines(rows):
-    """Stage 3 writes robustness.csv; summarised here so summary.md has all hypotheses."""
-    L = ["| test set | perturbation | rules JGA | hybrid JGA | rules drop | hybrid drop | valid |", "|---|---|---|---|---|---|---|"]
+    """perturb.py writes robustness.csv; summarised here so summary.md has all hypotheses."""
+    head = next((r for r in rows if r.get("h4_verdict")), None)
+    L = ["Metric: JGA with the gold intent (slot tracking only), clean vs perturbed fresh and held-out synthetic text "
+         "(`experiments/perturb.py`, hand-written lists in `data/perturb_lexicon.json`, fixed seed, mean over draws). "
+         "Statistic per turn: rules drop − hybrid drop (> 0 = the hybrid degrades less), 95% cluster bootstrap over "
+         "dialogues. Headline: fresh, all perturbations pooled. The XLM-R NER was trained on most synthetic dialogues, "
+         "so the hybrid results on synthetic are **INVALID**; the rules-only numbers there are valid.", ""]
+    if head:
+        L += [f"**{head['h4_verdict']}**: fresh, all perturbations: rules drop {head.get('rules_drop')}, hybrid drop "
+              f"{head.get('hybrid_drop')}, difference {head.get('delta')} [{head.get('ci95_low')}, {head.get('ci95_high')}].", ""]
+    else:
+        L += ["**inconclusive**: no headline row (run perturb.py with the NER model).", ""]
+    L += ["| test set | perturbation | words changed | rules JGA | hybrid JGA | rules drop | hybrid drop | "
+          "rules − hybrid drop [95% CI] | rules span F1 | hybrid span F1 | verdict |",
+          "|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in rows:
-        L.append(f"| {r.get('test_set')} | {r.get('perturbation')} | {r.get('rules_jga')} | {r.get('hybrid_jga')} | "
-                 f"{r.get('rules_drop')} | {r.get('hybrid_drop')} | {r.get('valid')} |")
-    verdict = next((r.get("h4_verdict") for r in rows if r.get("h4_verdict")), None)
-    return [f"**{verdict or 'see table'}**", ""] + L + [""]
+        ci = f"{r.get('delta')} [{r.get('ci95_low')}, {r.get('ci95_high')}]" if r.get("delta") not in (None, "") else "-"
+        L.append(f"| {r.get('test_set')} | {r.get('perturbation')} | {r.get('words_changed_share')} | {r.get('rules_jga')} | "
+                 f"{r.get('hybrid_jga', '-')} | {r.get('rules_drop') or '-'} | {r.get('hybrid_drop') or '-'} | {ci} | "
+                 f"{r.get('rules_span_f1')} | {r.get('hybrid_span_f1', '-')} | {r.get('verdict') or r.get('valid')} |")
+    known = [r for r in rows if r.get("new_form_known_share") not in (None, "")]
+    if known:
+        L += ["", "Share of changed words whose new spelling is already in the tracker's keyword lists (the rules "
+              "already know these spellings, so such changes test the rules less): " + ", ".join(f"{r['test_set']} {r['perturbation']} {float(r['new_form_known_share']):.0%}"
+                                                    for r in known if r["perturbation"] != "all_perturbations") + "."]
+    return L + [""]
 
 
 def _bench_lines(rows):
