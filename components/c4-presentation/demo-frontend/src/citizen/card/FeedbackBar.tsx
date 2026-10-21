@@ -23,7 +23,7 @@ export default function FeedbackBar({ eligible, rate, busy }: { eligible: boolea
   };
   return <section className="cz-feedback" aria-labelledby="cz-fb-q">
     <p id="cz-fb-q"><b>Did this way of presenting the guidance suit you?</b></p>
-    {!eligible && <p className="cz-fine">Research preview diagnostic. Recorded for evaluation only; it does not train or change any selection.</p>}
+    {!eligible && <p className="cz-fine">Preview or adjusted-view diagnostic. It does not train or change the model.</p>}
     {stage === 'ask' && <div className="cz-fbrow">
       <button type="button" className="cz-chip" disabled={busy || sending} onClick={() => void send('fits', [])}><ThumbUpIcon />Fits</button>
       <button type="button" className="cz-chip" disabled={busy || sending} onClick={() => setStage('reasons')}><ThumbDownIcon />Does not fit</button></div>}

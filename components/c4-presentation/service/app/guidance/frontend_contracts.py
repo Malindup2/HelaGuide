@@ -89,7 +89,7 @@ class Rating(DTO):
     reasons: list[Literal["too_much_explanation","not_enough_explanation","navigation_difficult","diagram_confusing","requirements_hard_to_find","other"]] = Field(default_factory=list,max_length=6)
 
 class PolicyEvidence(DTO):
-    """Future producer contract only: no invented values are emitted today."""
+    """Real PP1 producer evidence; previews and standard guidance never populate it."""
     algorithm: Literal["shared_gaussian_lints"]
     action_schema: Literal["c4-scaffolds-v3.0"]
     encoder_schema: str
@@ -119,7 +119,7 @@ class Selection(DTO):
         return self
 
 class RevisedSelector(Protocol):
-    """Reserved for the approved fresh-posterior encoder; no adapter is installed."""
+    """Producer interface for compatible revised policies; PP1 adapter is in guidance.policy."""
     def select(self, *, effective_context, procedure, prepared_content, feasible_configurations) -> Selection: ...
 
 class SourcePassage(DTO):

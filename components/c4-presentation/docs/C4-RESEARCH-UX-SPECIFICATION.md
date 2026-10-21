@@ -1,6 +1,6 @@
 # C4 Research and UX Semantics Specification
 
-**Status:** revision 5: the controlled frontend-ready backend API phase is authorised. Standard source-grounded guidance and explicit research previews use revised content/feasibility with isolated journey/event records. The current frontend and V2 policy remain unchanged. A NEW compatible Shared Gaussian LinTS encoder (525 proposed, awaiting approval), fresh posterior, synthetic training and held-out evaluation are mandatory remaining PP1 deliverables, not replaced by previews. Procedure-specific history score adjustment is deferred to PP2. No training, frontend redesign, historical migration, cleanup, commit or push is authorised in this phase.
+**Status:** revision 6: PP1 revised ML implementation/training is authorised. The 525-term reference-coded candidate and its 416/451/516 ablations are approved; isolated Shared Gaussian LinTS, selected-only synthetic learning traces and genuine personalized API integration are implemented. See PP1-ML.md for actual verification/results and limitations. No old posterior is reused. Procedure-specific history scoring remains deferred to PP2; its estimator/thresholds/bound are not approved. No cleanup, migration, UI redesign, commit or push is authorised.
 
 **Scope:** `components/c4-presentation/`, branch `c4/scaffolding-dimensions`. The active V2 system and Guidance Card stay unchanged during this phase. Historical systems remain reproducible through Git checkpoints and preserved datasets, manifests, artifacts and stores; they need not remain permanent competing runtimes.
 
@@ -342,7 +342,7 @@ The seven action indicators (`v2/features.py: ACTION_NAMES`) are `guided, explan
 - Research identifiers remain separate: `c4-scaffolds-v3.0`, `c4-guidance-content-3.0`, new feature/settings/event schemas and new manifest fingerprints. A versioned dataset/store directory does not imply another maintained application.
 - Fresh isolated learning state is mandatory for the revised actions. Never copy/replay V2 coefficients, feedback or experimental outcomes as revised-action training data. Existing stores are never opened for migration or overwritten automatically.
 - Preserve exact historical code checkpoints, environment records, datasets, fingerprints and experimental results for rollback/reproduction. Reproduction uses the matching checkpoint and storage configuration, not an old binary against the new store.
-- The proposed 525-feature design is NOT yet approved. No final encoder feature order, implementation or manifest is introduced in the first controlled phase.
+- The first controlled phase intentionally introduced no encoder. The subsequent PP1 approval adopts the exact reference-coded 525 schema in PP1-FEATURE-SCHEMA.json, tested against 416/451/516 ablations with a fresh posterior.
 - Procedure-specific interaction history is a separate secondary selection stage (§9.5), not an encoder feature block or a replacement for Shared Gaussian LinTS.
 
 ### 9.4 Profile and settings migration [Proposed]
@@ -473,12 +473,12 @@ Future approved phases consolidate the active runtime/API, reusable profiles, Ga
 - **Dwell detection:** the visibility threshold and the dwell time are configurable, versioned and testable parameters stored with each `step_visible` event. I will propose concrete values (with the reasoning) **before** the event instrumentation is implemented, and no value is hard-coded silently.
 - **Source review:** you act as the named internal source-fidelity reviewer for the official-source snapshots. The review record states exactly which sources (URLs, retrieval date, passages) and which drafted statements were compared, the result per statement, the reviewer and the date. Nothing implies independent government verification.
 - **Profile import:** approved as read-only copying from V2 into a separate V3 settings store, with explicit confirmation and no silent reinterpretation of changed scaffold meanings (§9.4).
-- **Encoder:** the revised interaction terms, their hypotheses and the proposed feature schema require explicit approval before encoder coding; the proposed 525 schema remains unapproved.
+- **Encoder:** the revised 525 candidate is now explicitly approved, including rating 5 as reference, all targeted terms and bounded scaling. It is not presumed optimal; held-out ablations and negative results must be retained.
 - Earlier decisions stand: supplementary information stays separate when useful, reviewed and non-duplicative; verified Plan stages or reviewed overlays may supply segmentation groups; ordinary guests get no personalised Support controls or feedback controls; V3 gets its own feature schema and a fresh posterior; the first V3 experiment keeps the seven structural measurements.
 
 ## 19. Controlled handoff
 **Earlier phase:** inactive neutral content contracts, source/review/coverage validation, explicit fee attribution, recap/phases, revised 96-action catalogue and candidate-level feasibility, safe composition plans and interfaces for later base/history decision evidence. Tests must use isolated fixtures; do not train, migrate, activate scoring, switch the runtime or change the frontend.
-**Approval gates:** final encoder (525 remains proposed), history estimator and statistical thresholds/bound, instrumentation constants, runtime/storage cutover and cleanup.
+**Approval gates:** PP1 encoder approval is recorded in PP1-ML.md. Remaining gates: history estimator and statistical thresholds/bound, instrumentation constants, runtime/storage cutover and cleanup.
 **Claude later:** integrate the approved contracts into the existing Guidance Card and workspace, with source-safe essential layers, per-depth disclosure, reviewed phases/reminders, honest route orientation, maps, guest behavior and Inspector/comparison. Do not create a permanent parallel renderer.
 **Preserved:** current working application and all old stores; Guidance Card checkpoints `83d02ac` and `89805f4`; specification checkpoint `cd8d312`; historical research artifacts. Versioned data/manifest identifiers remain even after runtime consolidation.
 

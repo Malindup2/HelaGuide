@@ -1,4 +1,4 @@
-"""Opt-in revised guidance API orchestration. No encoder, scorer or reward update."""
+"""Prepared guidance with opt-in PP1 selection and atomic attributed rewards."""
 import copy
 import hashlib
 import hmac
@@ -24,9 +24,14 @@ class ApiFailure(Exception):
         super().__init__(message)
 
 class GuidanceAPI:
-    def __init__(self,prepared,*,research_enabled=False,visibility_policy=None):
+    def __init__(self,prepared,*,research_enabled=False,visibility_policy=None,policy_options=None,experiment_directory=None):
         self.prepared=prepared;self.runtime=prepared.runtime;self.research_enabled=research_enabled
         self.store=JourneyStore(prepared.registry.directory/'frontend-api')
+        self.policy = None
+        self.experiment_directory = experiment_directory
+        if policy_options is not None:
+            from app.guidance.policy import PolicyStore
+            self.policy = PolicyStore(**policy_options)
         self.visibility_policy=visibility_policy
         if visibility_policy is not None:
             if set(visibility_policy)!={'version','min_visible_ratio','min_dwell_ms'} or not visibility_policy['version'] or not 0<visibility_policy['min_visible_ratio']<=1 or visibility_policy['min_dwell_ms']<=0:
@@ -69,7 +74,7 @@ class GuidanceAPI:
                        'preferences':'explicit_revised_settings_or_request','accessibility':'saved_requirements_union_request'},
             'legacy':{'preferences_not_imported':saved['preferences'],'pending_preference_review':saved['legacy_review'],
                       'hard_requirements_unresolved':unresolved,'lock_fingerprint':fingerprint,'raw_locks':raw_locks},
-            'scoring_use':'Stored for later approved revised encoder. No scoring is run in this phase.'}
+            'scoring_use':'Familiarity, confidence and confirmed revised preferences enter the PP1 encoder; constraints filter candidates. Identity/history are not features.'}
 
     def patch_context(self,sid,patch):
         self._saved(sid)
@@ -131,8 +136,8 @@ class GuidanceAPI:
                 'session_id':journey['session_id'],'procedure_id':journey['procedure_id'],'procedure_title':journey['title'],
                 'created_at':journey['created_at'],'selection':view['selection'],'preparation':journey['preparation'],
                 'effective_context':journey['context'],'availability':journey['availability'],'document':doc,'interaction':state,
-                'controls':{'configuration_adjustment':journey['origin']=='research_preview',
-                            'feedback':journey['origin']=='research_preview','research_inspection':self.research_enabled}}
+                'controls':{'configuration_adjustment':journey['origin'] in ('research_preview','shared_gaussian_lints'),
+                            'feedback':journey['origin'] in ('research_preview','shared_gaussian_lints'),'research_inspection':self.research_enabled}}
         return GuidanceResponse.model_validate_json(json.dumps(result))
 
     def start(self,body,*,preview=False):
@@ -148,8 +153,8 @@ class GuidanceAPI:
         initial=self.context(body.session_id,body.procedure_id,body.context)
         if body.expected_context_revision and body.expected_context_revision.model_dump()!=initial['revision']:
             raise ApiFailure(409,'context_revision_changed','Refresh the profile context before requesting guidance.')
-        if not preview and body.mode=='personalized':
-            raise ApiFailure(503,'revised_policy_unavailable','The approved revised Shared Gaussian LinTS encoder, fresh posterior, training and evaluation remain mandatory PP1 work. The 515-feature V2 policy is not used here.',action_schema='c4-scaffolds-v3.0',encoder_status='awaiting_approval',pp2_history='deferred')
+        if not preview and body.mode=='personalized' and self.policy is None:
+            raise ApiFailure(503,'revised_policy_unavailable','The compatible PP1 model is not enabled in this runtime. Set an explicit isolated PP1 policy directory and enable C4_PP1_POLICY_ENABLED. The 515-feature V2 policy is never reused.',action_schema='c4-scaffolds-v3.0',encoder_status='approved_pp1_policy_disabled',pp2_history='deferred')
         availability,source,content=self.availability(body.procedure_id,body.session_id,body.language,body.context,enqueue_on_miss=True)
         context=availability.pop('context');metadata=availability.pop('preparation')
         if body.expected_context_revision and body.expected_context_revision.model_dump()!=context['revision']:
@@ -157,28 +162,37 @@ class GuidanceAPI:
         if context['legacy']['hard_requirements_unresolved']:raise ApiFailure(409,'legacy_hard_requirements_unresolved','Review changed-meaning hard requirements or use a separate guest session.')
         feasible=[c for c in availability['candidates'] if c['feasible']]
         if not feasible:raise ApiFailure(409,'no_feasible_configuration','No configuration satisfies the content and hard requirements.',candidates=availability['candidates'])
-        if preview:
-            chosen=next(c for c in availability['candidates'] if c['configuration']==body.configuration.model_dump())
-            if not chosen['feasible']:raise ApiFailure(422,'infeasible_configuration','The requested research preview is unavailable.',reasons=chosen['reasons'],configuration=chosen['configuration'])
-            config=body.configuration;kind='research_preview';label='Research preview - not a learned selection'
-        else:
-            config=Configuration(**feasible[0]['configuration']);kind='standard' if config==Configuration() else 'constraint_standard';label='Standard guidance'
-        selection=Selection(kind=kind,configuration=config,label=label,explanation='Explicit researcher choice; no scoring or model update.' if preview else 'Fixed baseline within hard constraints; not a learned recommendation.').model_dump(mode='json')
-        doc,reminders=render(source,content,config,Constraints(**context['constraints']))
-        jid='guidance:'+uuid4().hex;vid='view:'+uuid4().hex
-        initial={'routes':{},'visited':{},'active_action_id':None,'viewport':None,'map_visible':config.relationships=='map',
-                 'explanation_open':[],'displayed_views':[],'sequence':0}
-        initial['active_action_id']=navigation(source,doc,initial)['active_action_id']
-        journey={'id':jid,'session_id':body.session_id,'procedure_id':body.procedure_id,'title':next(s.name for s in source.graph.stages if s.service_id==source.graph.requested_service_id),
-                 'origin':kind,'created_at':now(),'context':context,'hard_context_hash':self._hard_hash(context),
-                 'overrides':body.context.model_dump(mode='json',exclude_unset=True),'preparation':metadata,'availability':availability,
-                 'source':source.model_dump(mode='json'),'content':content.model_dump(mode='json') if content else None,
-                 'current_view_id':vid,'views':{vid:{'id':vid,'parent_view_id':None,'created_at':now(),'selection':selection,'document':doc,'reminders':reminders}},'interaction':initial}
+        learned = not preview and body.mode=='personalized' and context['personalization_enabled']
         with self.store.transaction() as db:
             row=db.execute('SELECT id,signature FROM journeys WHERE session_id=? AND request_id=?',(body.session_id,body.request_id)).fetchone()
             if row:
                 if row[1]!=signature:raise ApiFailure(409,'request_id_reused','Request ID was reused.')
                 return self._response(self._authorize(db,row[0],body.capability_token))
+            decision=None
+            if preview:
+                chosen=next(c for c in availability['candidates'] if c['configuration']==body.configuration.model_dump())
+                if not chosen['feasible']:raise ApiFailure(422,'infeasible_configuration','The requested research preview is unavailable.',reasons=chosen['reasons'],configuration=chosen['configuration'])
+                config=body.configuration;kind='research_preview';label='Research preview - not a learned selection'
+            elif learned:
+                config,decision=self.policy.select(db,measurements(source.graph,source.relationships),context,[Configuration(**c['configuration']) for c in feasible])
+                kind='shared_gaussian_lints';label='Personalized guidance - Shared Gaussian LinTS'
+            else:
+                config=Configuration(**feasible[0]['configuration']);kind='standard' if config==Configuration() else 'constraint_standard';label='Standard guidance'
+            selection=Selection(kind=kind,configuration=config,label=label,
+                scoring_status='executed' if learned else 'not_run',policy=decision['policy'] if learned else None,
+                learning_eligible=learned,explanation='Maximum sampled score among feasible configurations; scores are not probabilities.' if learned else
+                ('Explicit researcher choice; no scoring or model update.' if preview else 'Fixed baseline within hard constraints; not a learned recommendation.')).model_dump(mode='json')
+            doc,reminders=render(source,content,config,Constraints(**context['constraints']))
+            jid='guidance:'+uuid4().hex;vid='view:'+uuid4().hex
+            interaction={'routes':{},'visited':{},'active_action_id':None,'viewport':None,'map_visible':config.relationships=='map',
+                         'explanation_open':[],'displayed_views':[],'sequence':0}
+            interaction['active_action_id']=navigation(source,doc,interaction)['active_action_id']
+            journey={'id':jid,'session_id':body.session_id,'procedure_id':body.procedure_id,'title':next(s.name for s in source.graph.stages if s.service_id==source.graph.requested_service_id),
+                     'origin':kind,'created_at':now(),'context':context,'hard_context_hash':self._hard_hash(context),
+                     'overrides':body.context.model_dump(mode='json',exclude_unset=True),'preparation':metadata,'availability':availability,
+                     'source':source.model_dump(mode='json'),'content':content.model_dump(mode='json') if content else None,
+                     'decision':decision,'ever_adjusted':False,
+                     'current_view_id':vid,'views':{vid:{'id':vid,'parent_view_id':None,'created_at':now(),'selection':selection,'document':doc,'reminders':reminders}},'interaction':interaction}
             self._check_context(journey,db)
             db.execute('INSERT INTO journeys VALUES (?,?,?,?,?,?,?)',(jid,body.session_id,body.request_id,signature,token_hash(body.capability_token),json.dumps(journey),digest(journey)))
             return self._response(journey)
@@ -194,13 +208,13 @@ class GuidanceAPI:
             return signature,json.loads(row[1])
         return signature,None
 
-    def _record(self,db,j,identifier,signature,record):
+    def _record(self,db,j,identifier,signature,record,learning=None):
         j['interaction']['sequence']+=1
         record={**record,'event_id':identifier,'sequence':j['interaction']['sequence'],'server_timestamp':now(),
                 'procedure_id':j['procedure_id'],'source_graph_fingerprint':j['preparation'].get('source_graph_fingerprint',self._snapshot_source(j).graph_fingerprint),
-                'evidence_origin':'client_reported_interaction_not_completion','reward':None,'policy_updated':False}
+                'evidence_origin':'client_reported_interaction_not_completion','reward':None,'policy_updated':False,**(learning or {})}
         receipt={'event_id':identifier,'sequence':record['sequence'],'server_timestamp':record['server_timestamp'],
-                 'reward':None,'policy_updated':False,'learning_eligible':False}
+                 'reward':None,'policy_updated':False,'learning_eligible':False,**{k:v for k,v in (learning or {}).items() if k in ('reward','policy_updated','learning_eligible')}}
         db.execute('INSERT INTO operations VALUES (?,?,?,?,?)',(j['id'],identifier,signature,json.dumps(record),json.dumps(receipt)))
         self.store.save(db,j)
         return receipt
@@ -266,17 +280,18 @@ class GuidanceAPI:
             return self._record(db,j,event.event_id,signature,{'type':event.type,'view_id':event.view_id,'payload':event.model_dump(mode='json'),**outcome})
 
     def adjust(self,jid,token,body):
-        if not self.research_enabled:raise ApiFailure(403,'research_preview_disabled','Research adjustments are disabled.')
+
         with self.store.transaction() as db:
             j=self._authorize(db,jid,token);signature,receipt=self._operation(db,j,body.request_id,{'kind':'adjustment',**body.model_dump(mode='json')})
             if receipt:return self._response(j)
-            if j['origin']!='research_preview':raise ApiFailure(403,'standard_adjustment_unavailable','Standard guests do not receive personalized support controls.')
+            if j['origin'] not in ('research_preview','shared_gaussian_lints'):raise ApiFailure(403,'standard_adjustment_unavailable','Standard guests do not receive personalized support controls.')
             self._view(j,body.parent_view_id);source=self._snapshot_source(j);content=GuidanceContent.model_validate(j['content']) if j['content'] else None
             constraints=Constraints(**j['context']['constraints']);candidate=next(c for c in evaluate(source,content,constraints) if c.configuration==body.configuration)
             if not candidate.feasible:raise ApiFailure(422,'infeasible_configuration','Adjusted configuration is unavailable.',reasons=list(candidate.reasons))
             doc,reminders=render(source,content,body.configuration,constraints);vid='view:'+uuid4().hex
             selection=Selection(kind='manual_adjustment',configuration=body.configuration,label='Adjusted research preview - not a learned selection',explanation='Explicit child view; no policy scoring or reward update.').model_dump(mode='json')
             j['views'][vid]={'id':vid,'parent_view_id':body.parent_view_id,'created_at':now(),'selection':selection,'document':doc,'reminders':reminders}
+            j['ever_adjusted']=True
             j['current_view_id']=vid;j['interaction']['explanation_open']=[];j['interaction']['map_visible']=body.configuration.relationships=='map'
             self._record(db,j,body.request_id,signature,{'type':'explicit_adjustment','view_id':vid,'parent_view_id':body.parent_view_id,'configuration':body.configuration.model_dump()})
             return self._response(j)
@@ -286,10 +301,22 @@ class GuidanceAPI:
             j=self._authorize(db,jid,token);signature,receipt=self._operation(db,j,body.event_id,{'kind':'rating',**body.model_dump(mode='json')})
             if receipt:return receipt
             self._view(j,body.view_id)
-            if j['origin']!='research_preview':raise ApiFailure(403,'standard_feedback_unavailable','Standard guests have no support-fit learning feedback.')
+            if j['origin'] not in ('research_preview','shared_gaussian_lints'):raise ApiFailure(403,'standard_feedback_unavailable','Standard guests have no support-fit learning feedback.')
             if len(body.reasons)!=len(set(body.reasons)):raise ApiFailure(422,'duplicate_reasons','Reasons must be distinct.')
             if any(json.loads(row[0]).get('type')=='rating' and json.loads(row[0]).get('view_id')==body.view_id for row in db.execute('SELECT record FROM operations WHERE journey_id=?',(jid,))):raise ApiFailure(409,'already_rated','This preview view already has a rating.')
-            return self._record(db,j,body.event_id,signature,{'type':'rating','view_id':body.view_id,'rating':body.rating,'reasons':body.reasons,'ineligible_reason':'research_preview_not_a_model_selection'})
+            eligible = (j['origin']=='shared_gaussian_lints' and not j.get('ever_adjusted',False)
+                and j['views'][body.view_id]['parent_view_id'] is None and self.context(j['session_id'],j['procedure_id'],db=db)['personalization_enabled'])
+            learning=None
+            if eligible:
+                if body.view_id not in j['interaction']['displayed_views']:
+                    raise ApiFailure(409,'display_acknowledgment_required','Acknowledge the original displayed guidance before rating.')
+                reward=int(body.rating=='fits')
+                if self.policy is None:raise ApiFailure(503,'revised_policy_unavailable','Restart with the matching isolated PP1 model before rating this decision.')
+                try:update=self.policy.update(db,j,body.event_id,reward)
+                except ValueError as exc:raise ApiFailure(409,'policy_run_changed','This frozen decision belongs to a different model run; request fresh guidance.') from exc
+                learning={'reward':reward,'policy_updated':True,'learning_eligible':True,**update}
+            return self._record(db,j,body.event_id,signature,{'type':'rating','view_id':body.view_id,'rating':body.rating,'reasons':body.reasons,
+                'ineligible_reason':None if eligible else 'preview_manual_or_personalization_disabled'},learning)
 
     def inspect(self,jid,token):
         if not self.research_enabled:raise ApiFailure(403,'research_inspection_disabled','Research inspection is disabled.')
@@ -303,6 +330,8 @@ class GuidanceAPI:
                     'content_fingerprint':j['views'][j['current_view_id']]['document']['content_fingerprint'],
                     'effective_context':context,'measurements':measurements(source.graph,source.relationships).model_dump(mode='json'),
                     'availability':j['availability'],'views':[{k:v[k] for k in ('id','parent_view_id','created_at','selection')} for v in j['views'].values()],
-                    'events':events,'features':None,'sampled_scores':None,'policy':None,'posterior_updates':0,
-                    'scoring_status':'not_run','pp2_history_adjustment':'not_implemented','visibility_policy':self.visibility_policy,
-                    'note':'Only stored request/configuration evidence and actual client-reported events; no reading, completion or policy-learning claim.'}
+                    'events':events,'features':{'names':__import__('app.guidance.features',fromlist=['NAMES']).NAMES,'selected':j['decision']['selected_features'],'fingerprint':j['decision']['feature_fingerprint']} if j.get('decision') else None,
+                    'sampled_scores':j['decision']['candidates'] if j.get('decision') else None,
+                    'policy':j['decision'] if j.get('decision') else None,'posterior_updates':sum(bool(e.get('policy_updated')) for e in events),
+                    'scoring_status':'executed' if j.get('decision') else 'not_run','pp2_history_adjustment':'not_implemented','visibility_policy':self.visibility_policy,
+                    'note':('Actual frozen PP1 scores/features and attributed explicit updates. Interaction events do not establish reading or completion.' if j.get('decision') else 'Only stored request/configuration evidence and actual client-reported events; no reading, completion or policy-learning claim.')}

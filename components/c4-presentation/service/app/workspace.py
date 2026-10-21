@@ -55,5 +55,15 @@ if guidance_flag == "true":
         raise ValueError("C4_GUIDANCE_API_ENABLED requires C4_PREPARED_CONTENT_ENABLED=true")
     guidance_options = {"research_enabled": research_flag == "true"}
 
+if guidance_options is not None and os.getenv("C4_PP1_POLICY_ENABLED", "false").lower() == "true":
+    policy_directory = os.getenv("C4_PP1_POLICY_DIRECTORY")
+    if not policy_directory:
+        raise ValueError("C4_PP1_POLICY_DIRECTORY must name new isolated pp1-learning storage")
+    guidance_options["policy_options"] = {"directory": policy_directory,
+        "seed": int(os.getenv("C4_PP1_POLICY_SEED", "0")),
+        "mode": os.getenv("C4_PP1_POLICY_MODE", "simulation"),
+        "checkpoint": os.getenv("C4_PP1_CHECKPOINT") or None}
+    guidance_options["experiment_directory"] = os.getenv("C4_PP1_EXPERIMENT_DIRECTORY") or None
+
 app=create_app(path, mode=mode, seed=int(os.getenv("C4_WORKSPACE_SEED", "0")), runtime_class=ActiveRuntime, workspace=True,
     preparation_options={"enabled":content_mode == "prepare" and llm_enabled == "true", "provider_factory":provider_factory}, prepared_content_options=prepared_options, guidance_api_options=guidance_options)

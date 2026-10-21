@@ -1,0 +1,140 @@
+{
+  "execution": "real uvicorn loopback HTTP, actual trained checkpoint, isolated stores",
+  "port": 52732,
+  "checkpoint": "C:\\Users\\Lenovo\\Desktop\\HelaGuide\\components\\c4-presentation\\service\\.local\\pp1-learning\\experiment-20261022-a\\seed-11-525-n600.npz",
+  "selected": {
+    "kind": "shared_gaussian_lints",
+    "configuration": {
+      "navigation": "guided",
+      "explanation": "concise",
+      "disclosure": "on",
+      "relationships": "inline",
+      "recap": "on",
+      "segmentation": "on"
+    },
+    "action_schema": "c4-scaffolds-v3.0",
+    "label": "Personalized guidance - Shared Gaussian LinTS",
+    "scoring_status": "executed",
+    "policy": {
+      "algorithm": "shared_gaussian_lints",
+      "action_schema": "c4-scaffolds-v3.0",
+      "encoder_schema": "c4-features-pp1-1.0-525",
+      "model_manifest_fingerprint": "99a23c124d0b17546196569727c51a7a40384d79a3f0e3a403e768a3f40bb951",
+      "policy_run_id": "pp1-run:8f3151a0fe5d4474820c6dfb807f6a82",
+      "posterior_revision": 600,
+      "decision_id": "decision:64f1a90a01ce4c41a8781f6a30f01746",
+      "training_provenance": "synthetic"
+    },
+    "learning_eligible": true,
+    "explanation": "Maximum sampled score among feasible configurations; scores are not probabilities."
+  },
+  "before": {
+    "manifest": {
+      "model": "c4-shared-gaussian-pp1-1.0",
+      "action": "c4-scaffolds-v3.0",
+      "features": "c4-features-pp1-1.0-525",
+      "feature_fingerprint": "a9c94aee6ee52fef8468dae277fe3677b05091595d3b837f5cf36daa06535e7a",
+      "variant": "525",
+      "dimension": 525,
+      "content": "c4-guidance-content-3.0",
+      "reward": "fits-1-does-not-fit-0-pp1",
+      "prior_precision": 1.0,
+      "noise": 1.0,
+      "exploration": 1.0,
+      "reward_center": 0.5
+    },
+    "manifest_fingerprint": "99a23c124d0b17546196569727c51a7a40384d79a3f0e3a403e768a3f40bb951",
+    "policy_run_id": "pp1-run:8f3151a0fe5d4474820c6dfb807f6a82",
+    "posterior_revision": 600,
+    "accepted_feedback_count": 0,
+    "initial_training_revision": 600,
+    "decision_count": 1,
+    "posterior_fingerprint": "56fb7bb7baf646bc4aacd17d81f40492d0b519ee3627c8d149a07741070395ea",
+    "mode": "simulation",
+    "training_provenance": "synthetic"
+  },
+  "after": {
+    "manifest": {
+      "model": "c4-shared-gaussian-pp1-1.0",
+      "action": "c4-scaffolds-v3.0",
+      "features": "c4-features-pp1-1.0-525",
+      "feature_fingerprint": "a9c94aee6ee52fef8468dae277fe3677b05091595d3b837f5cf36daa06535e7a",
+      "variant": "525",
+      "dimension": 525,
+      "content": "c4-guidance-content-3.0",
+      "reward": "fits-1-does-not-fit-0-pp1",
+      "prior_precision": 1.0,
+      "noise": 1.0,
+      "exploration": 1.0,
+      "reward_center": 0.5
+    },
+    "manifest_fingerprint": "99a23c124d0b17546196569727c51a7a40384d79a3f0e3a403e768a3f40bb951",
+    "policy_run_id": "pp1-run:8f3151a0fe5d4474820c6dfb807f6a82",
+    "posterior_revision": 601,
+    "accepted_feedback_count": 1,
+    "initial_training_revision": 600,
+    "decision_count": 1,
+    "posterior_fingerprint": "b698d8beac59ae390b5fbdf6fe1821b2a7ea3b7f7bea1c956477a31a1874e112",
+    "mode": "simulation",
+    "training_provenance": "synthetic"
+  },
+  "restart": {
+    "manifest": {
+      "model": "c4-shared-gaussian-pp1-1.0",
+      "action": "c4-scaffolds-v3.0",
+      "features": "c4-features-pp1-1.0-525",
+      "feature_fingerprint": "a9c94aee6ee52fef8468dae277fe3677b05091595d3b837f5cf36daa06535e7a",
+      "variant": "525",
+      "dimension": 525,
+      "content": "c4-guidance-content-3.0",
+      "reward": "fits-1-does-not-fit-0-pp1",
+      "prior_precision": 1.0,
+      "noise": 1.0,
+      "exploration": 1.0,
+      "reward_center": 0.5
+    },
+    "manifest_fingerprint": "99a23c124d0b17546196569727c51a7a40384d79a3f0e3a403e768a3f40bb951",
+    "policy_run_id": "pp1-run:8f3151a0fe5d4474820c6dfb807f6a82",
+    "posterior_revision": 601,
+    "accepted_feedback_count": 1,
+    "initial_training_revision": 600,
+    "decision_count": 1,
+    "posterior_fingerprint": "b698d8beac59ae390b5fbdf6fe1821b2a7ea3b7f7bea1c956477a31a1874e112",
+    "mode": "simulation",
+    "training_provenance": "synthetic"
+  },
+  "receipt": {
+    "event_id": "e0f20ea5f5344aefb91eb7509eb0b621",
+    "sequence": 2,
+    "server_timestamp": "2026-10-21T21:53:08.369159Z",
+    "reward": 1,
+    "policy_updated": true,
+    "learning_eligible": true
+  },
+  "frozen_scoring_seed": 3926704849073358691,
+  "source_preparation": {
+    "content_state": "published",
+    "preparation_state": "published",
+    "job_state": null,
+    "job_id": null,
+    "error_code": null,
+    "generation_enabled": false,
+    "mode": "demo",
+    "language": "en",
+    "fallback_language": null,
+    "content_schema": "c4-guidance-content-3.0",
+    "artifact_id": "2449d86823559a2b3db32007d6b48ba7037318621c648eb2f6463cc9b7da3e1a",
+    "review_kind": "internal_fictional_author",
+    "source_kind": "fictional",
+    "content_origin": "fictional_authored",
+    "source_review": {
+      "reviewer": "Codex internal fictional author-review (AI-assisted; not human or external expert review)",
+      "reviewed_at": "2026-10-22T00:00:00Z",
+      "scope_note": "Compared authored wording to the supplied fictional Plan, source passages and verified graph. External assessment of scaffold suitability/scenario hypotheses remains pending; this is not expert validation.",
+      "independent_government_validation": false
+    }
+  },
+  "historical_host_515_unchanged": true,
+  "duplicate_exact_receipt": true,
+  "restart_recovery": true
+}

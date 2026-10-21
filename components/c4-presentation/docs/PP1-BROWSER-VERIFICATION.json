@@ -1,0 +1,37 @@
+{
+  "execution": "Actual browser guest guidance, saved profile, personalized selection, Fits and Research Inspector",
+  "inspector_posterior_updates": 1,
+  "original_configuration": "guided / concise / on / inline / on / on",
+  "effective_familiarity": 1,
+  "effective_confidence": 1,
+  "sandbox": "C:\\Users\\Lenovo\\Desktop\\HelaGuide\\components\\c4-presentation\\service\\.local\\pp1-learning\\browser-a",
+  "screenshots": [
+    "PP1-PERSONALIZED-BROWSER.png",
+    "PP1-INSPECTOR-BROWSER.png"
+  ],
+  "policy": {
+    "manifest": {
+      "model": "c4-shared-gaussian-pp1-1.0",
+      "action": "c4-scaffolds-v3.0",
+      "features": "c4-features-pp1-1.0-525",
+      "feature_fingerprint": "a9c94aee6ee52fef8468dae277fe3677b05091595d3b837f5cf36daa06535e7a",
+      "variant": "525",
+      "dimension": 525,
+      "content": "c4-guidance-content-3.0",
+      "reward": "fits-1-does-not-fit-0-pp1",
+      "prior_precision": 1.0,
+      "noise": 1.0,
+      "exploration": 1.0,
+      "reward_center": 0.5
+    },
+    "manifest_fingerprint": "99a23c124d0b17546196569727c51a7a40384d79a3f0e3a403e768a3f40bb951",
+    "policy_run_id": "pp1-run:6d922a127c4a4db58f4d3e7e147a9976",
+    "posterior_revision": 601,
+    "accepted_feedback_count": 1,
+    "initial_training_revision": 600,
+    "decision_count": 1,
+    "posterior_fingerprint": "b698d8beac59ae390b5fbdf6fe1821b2a7ea3b7f7bea1c956477a31a1874e112",
+    "mode": "simulation",
+    "training_provenance": "synthetic"
+  }
+}

@@ -52,7 +52,7 @@ function Stage({ active, procedure, status, research, onSession }: { active: Act
     {active.kind === 'profile' && <ProfileContext active={active} procedure={procedure} onSession={onSession} />}
     {journey.policyUnavailable && <div className="cz-notice" role="status">
       <p><b>Personalised selection is not available yet.</b> You can read the standard guidance for this procedure in the meantime.</p>
-      {research && <p className="cz-fine">The revised selection model has not been implemented yet ({status?.encoder_status?.replaceAll('_', ' ') ?? 'status unknown'}). No personalised choice is shown or simulated.</p>}
+      {research && <p className="cz-fine">The revised selection model is not enabled for this runtime ({status?.encoder_status?.replaceAll('_', ' ') ?? 'status unknown'}). No personalised choice is shown or simulated.</p>}
       <button type="button" className="cz-btn cz-btn-quiet" onClick={() => void journey.start({ kind: 'standard' })}>Show standard guidance</button></div>}
     {journey.error && <p className="cz-alert" role="alert">{friendly(journey.error)}</p>}
     {!response && !journey.busy && !journey.policyUnavailable && !journey.error && <p className="cz-fine">Press “Show guidance” for {split(procedure.title)[0].toLowerCase()}. Viewing guidance never marks anything as done.</p>}
@@ -60,6 +60,7 @@ function Stage({ active, procedure, status, research, onSession }: { active: Act
     {previewsOn && <section className="cz-research" aria-label="Research view">
       <h2>Research view</h2>
       {response && <p className="cz-fine">Selection: {response.selection.label} · scoring {response.selection.scoring_status.replaceAll('_', ' ')} · learning eligible: {response.selection.learning_eligible ? 'yes' : 'no'} · personalised selection available: {status?.personalized_selection_available ? 'yes' : 'no'}.</p>}
+      {status?.personalized_selection_available && <p className="cz-fine"><a href={`${API_BASE}/workspace/guidance/research/learning/report.html`} target="_blank" rel="noreferrer">Synthetic learning report and checkpoint comparisons</a></p>}
       <PreviewChooser availability={availability} busy={journey.busy} onStart={c => void journey.start({ kind: 'preview', configuration: c })} />
       <div className="cz-fbrow">
         <button type="button" className="cz-chip" disabled={!response || !response.controls.research_inspection} onClick={() => setInspect(true)}>Open inspector</button>

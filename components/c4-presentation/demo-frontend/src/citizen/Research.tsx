@@ -101,6 +101,7 @@ function Record({ record }: { record: InspectorRecord }) {
       <dt>Views</dt><dd><ul>{record.views.map(v => <li key={v.id}>…{tail(v.id)} · {v.parent_view_id ? `child of …${tail(v.parent_view_id)} (adjusted)` : 'original'} · {Object.values(v.selection.configuration).join(' / ')}</li>)}</ul></dd>
     </dl>
     <p className="cz-fine">{record.note}</p>
+    {record.policy !== null && <details><summary>Recorded model decision, features and sampled scores</summary><pre style={{ overflowX: 'auto', maxHeight: 400 }}>{JSON.stringify({ policy: record.policy, features: record.features, sampled_scores: record.sampled_scores }, null, 2)}</pre></details>}
     <h3 className="cz-subhead">B. Recorded interaction events</h3>
     <p className="cz-fine">Client-reported interaction events. They never establish reading or completion.</p>
     {record.events.length === 0 ? <p>No events recorded yet.</p> : <table className="cz-matrix"><thead><tr><th scope="col">#</th><th scope="col">Type</th><th scope="col">Detail</th><th scope="col">Counts for recap</th></tr></thead>

@@ -249,7 +249,7 @@ describe('origin, support and feedback', () => {
     const rate = vi.fn().mockResolvedValue({}), r = practiceRich();
     render(<GuidanceCard response={r} emit={vi.fn()} rate={rate} research />);
     expect(screen.getByText('Did this way of presenting the guidance suit you?')).toBeTruthy();
-    expect(screen.getByText(/Research preview diagnostic\. Recorded for evaluation only/)).toBeTruthy();
+    expect(screen.getByText(/Preview or adjusted-view diagnostic\. It does not train/)).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: /Does not fit/ }));
     fireEvent.click(screen.getByLabelText('Too much explanation'));
     fireEvent.click(screen.getByRole('button', { name: 'Send' }));

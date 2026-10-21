@@ -23,10 +23,47 @@ def register_routes(app):
         result=api()
         return {'schema_version':API_SCHEMA,'action_schema':'c4-scaffolds-v3.0','nominal_configuration_count':96,
                 'standard_guidance_available':True,'research_previews_enabled':result.research_enabled,
-                'personalized_selection_available':False,'encoder_status':'525_proposed_awaiting_approval',
-                'policy':None,'history_adjustment':'deferred_to_PP2',
-                'pp1_remaining_requirements':['approved_revised_encoder','fresh_posterior','synthetic_training','held_out_evaluation','genuine_feasible_LinTS_selection'],
+                'personalized_selection_available':result.policy is not None,'encoder_status':'c4-features-pp1-1.0-525' if result.policy else 'approved_525_policy_disabled',
+                'policy':result.policy.status() if result.policy else None,'history_adjustment':'deferred_to_PP2',
+                'pp1_remaining_requirements':[] if result.policy else ['enable_isolated_PP1_policy'],
                 'visibility_policy':result.visibility_policy,'contracts':'/openapi.json'}
+
+    @app.get('/workspace/guidance/research/learning',tags=['Revised Guidance'])
+    def learning_report():
+        from pathlib import Path
+        from app.guidance.policy import C4_ROOT
+        result=api()
+        if not result.research_enabled or not result.experiment_directory:
+            raise HTTPException(404,{'code':'learning_report_unavailable','message':'Configure an explicit completed synthetic experiment.'})
+        path=Path(result.experiment_directory).resolve()
+        if not path.is_relative_to(C4_ROOT) or 'pp1-learning' not in path.parts:
+            raise HTTPException(422,'Experiment path must be isolated inside C4/pp1-learning')
+        if not (path/'report.json').is_file():raise HTTPException(404,'Completed learning report unavailable')
+        return json.loads((path/'report.json').read_text(encoding='utf-8'))
+
+    @app.get('/workspace/guidance/research/traces/{run}',tags=['Revised Guidance'])
+    def learning_trace(run:str,offset:int=0,limit:int=20):
+        from pathlib import Path
+        report=learning_report()
+        entry=next((r for r in report['runs'] if r['run']==run),None)
+        if entry is None:raise HTTPException(404,'Unknown recorded run')
+        if offset<0 or not 1<=limit<=100:raise HTTPException(422,'Use nonnegative offset and limit 1..100')
+        path=Path(api().experiment_directory)/entry['trace']
+        if path.parent.resolve()!=Path(api().experiment_directory).resolve():raise HTTPException(422,'Invalid trace path')
+        import itertools
+        with path.open(encoding='utf-8') as file:
+            return {'run':run,'offset':offset,'observations':[json.loads(line) for line in itertools.islice(file,offset,offset+limit)]}
+
+    @app.get('/workspace/guidance/research/learning/{artifact}',tags=['Revised Guidance'])
+    def learning_plot(artifact:str):
+        from pathlib import Path
+        from fastapi.responses import FileResponse
+        learning_report()
+        if artifact not in ('learning.svg','baselines.svg','regret.svg','distribution.svg','ablation.svg','constraints.svg','report.html'):
+            raise HTTPException(404,'Unknown learning artifact')
+        path=Path(api().experiment_directory)/artifact
+        if not path.is_file():raise HTTPException(404,'Artifact unavailable; generate plots first')
+        return FileResponse(path)
 
     @app.get('/workspace/guidance/profiles',response_model=list[DemoProfileResponse],tags=['Revised Guidance'])
     def profiles():
