@@ -558,6 +558,7 @@ def analyse(runs, table, states, ni_margin):
                 res["metrics"][f"{model}/{st}/{s}"] = {
                     "model": model, "strategy": st, "test_set": s, "n_turns": int(idx.sum()), "seeds": len(runs_ms),
                     **{k: mean_std(v) for k, v in per_seed.items()},
+                    "jga_per_seed": {str(sd): round(float(v), 4) for (sd, _), v in zip(runs_ms, per_seed["jga"])},
                     "jga_ci95": boots[s].mean_ci(jv), "intent_acc_ci95": boots[s].mean_ci(iv),
                     "per_slot_f1": {slot: {"f1": mean_std([f for f, _ in v]), "support": v[0][1]}
                                     for slot, v in sorted(slot_f1.items())},
