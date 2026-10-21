@@ -2,16 +2,19 @@ import {useCallback,useEffect,useRef,useState} from 'react';
 import {API_BASE} from '../api/client';
 import type {ActiveIdentity,ProcedureSummary} from '../api/types';
 import GuidanceMessage from './GuidanceMessage';
+import ComparisonSheet from './compare/ComparisonSheet';
 import type {Configuration,EventInput,Journey,Receipt} from './types';
 import './v2.css';
+import './clear-path.css';
+import './picker-compare.css';
 import {workspaceRequest,WorkspaceError} from './workspaceClient';
 
 type Capability={id:string;token:string};
 
 function saved(key:string):Capability|null{try{return JSON.parse(sessionStorage.getItem(key)??'null');}catch{return null;}}
-export default function WorkspaceGuidance({active,procedure,disabled,onActivityChange}:{active:ActiveIdentity;procedure:ProcedureSummary;disabled:boolean;onActivityChange:(busy:boolean)=>void}){
+export default function WorkspaceGuidance({active,procedure,disabled,research=false,onActivityChange}:{active:ActiveIdentity;procedure:ProcedureSummary;disabled:boolean;research?:boolean;onActivityChange:(busy:boolean)=>void}){
  const sid=active.session.session_id,key=`c4-workspace:${API_BASE}:${sid}:${procedure.procedure_id}`;
- const [journey,setJourney]=useState<Journey|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState('');
+ const [journey,setJourney]=useState<Journey|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),[comparing,setComparing]=useState(false);
  const responseRoot=useRef<HTMLElement>(null);
  const identity=useRef<Capability|null>(saved(key)),latest=useRef<Journey|null>(null),queue=useRef<Promise<void>>(Promise.resolve());
  const accept=useCallback((j:Journey)=>{latest.current=j;setJourney(j);},[]);
@@ -33,10 +36,12 @@ export default function WorkspaceGuidance({active,procedure,disabled,onActivityC
  }catch(e){if(e instanceof WorkspaceError&&e.status===409)sessionStorage.removeItem(`${key}:pending`);setError(String(e));}finally{setBusy(false);}};
  const adjust=async(configuration:Configuration)=>{setBusy(true);setError('');try{await queue.current;const i=identity.current!,j=latest.current!;accept(await workspaceRequest<Journey>(`/v2/journeys/${encodeURIComponent(i.id)}/adjustments`,{event_id:crypto.randomUUID(),view_id:j.current_view,configuration},i.token));}catch(e){setError(String(e));}finally{setBusy(false);}};
  const rate=async(rating:string)=>{await queue.current;const i=identity.current!,j=latest.current!;try{return await workspaceRequest<Receipt>(`/v2/journeys/${encodeURIComponent(i.id)}/ratings`,{view_id:j.current_view,rating},i.token);}catch(e){setError(String(e));throw e;}};
- return <section ref={responseRoot} className="panel unified-guidance" aria-label="Your guidance"><div className="section-heading"><div><p className="eyebrow">Your guidance</p><h2>{journey?'Guidance for this visit':procedure.title}</h2></div><button className="button button-primary" disabled={disabled||busy} onClick={()=>void start()}>{busy?'Preparing guidance…':'Request fresh guidance'}</button></div>
-  <p className="helper-text">{active.kind==='profile'&&active.profile.personalization_enabled?'Saved procedure familiarity, confidence and settings inform the learned support selection.':'Standard guidance. Personalization is off.'} No application action is marked complete by browsing.</p>
+ const canCompare=active.kind==='profile'&&active.profile.personalization_enabled&&journey?.routing==='adaptive'&&!journey.constraints_revoked;
+ return <section ref={responseRoot} className="panel unified-guidance" aria-label="Your guidance"><div className="section-heading"><div><p className="eyebrow">Your guidance</p>{!journey&&<h2>{procedure.title}</h2>}</div><button className="button button-primary" disabled={disabled||busy} onClick={()=>void start()}>{busy?'Preparing guidance…':journey?'Request fresh guidance':'Show guidance'}</button></div>
+  {!journey&&<p className="helper-text">{active.kind==='profile'&&active.profile.personalization_enabled?'Your saved profile informs how this guidance is laid out.':'You will see standard guidance.'} Viewing guidance does not mark anything as done.</p>}
   {error&&<p className="alert alert-error" role="alert">{error}</p>}
   {journey?.constraints_revoked&&<p className="notice" role="status">Your accessibility or hard requirements changed. Request fresh guidance to use the updated requirements.</p>}
-  {journey&&!journey.constraints_revoked&&<fieldset disabled={disabled||busy} className="v2-shell v2-container"><GuidanceMessage key={journey.current_view} journey={journey} event={event} adjust={c=>void adjust(c)} rate={rate}/></fieldset>}
+  {journey&&!journey.constraints_revoked&&<fieldset disabled={disabled||busy} className="v2-shell v2-container"><GuidanceMessage key={journey.current_view} journey={journey} event={event} adjust={c=>void adjust(c)} rate={rate} research={research} onCompare={canCompare?()=>setComparing(true):undefined}/></fieldset>}
+  {comparing&&journey&&<ComparisonSheet original={journey} sessionId={sid} research={research} request={workspaceRequest} storage={sessionStorage} onClose={()=>setComparing(false)}/>}
  </section>;
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useResearchView } from "./app/research";
 import WorkspaceGuidance from "./guidance-v2/WorkspaceGuidance";
 import ProfileSettings from "./profiles/ProfileSettings";
 import { API_BASE } from "./api/client";
@@ -13,25 +14,22 @@ function Mark({ small = false }: { small?: boolean }) {
 export default function App() {
   const workspace = useWorkspace();
   const { state } = workspace;
-  const [search, setSearch] = useState("");
+  const [research, setResearch] = useResearchView();
   const [guidanceLocked, setGuidanceLocked] = useState(false);
   const selected = state.procedures.find((item) => item.procedure_id === state.selectedId);
   const active = state.active;
   const enabled = active?.kind === "profile" && active.profile.personalization_enabled;
   const locked = state.busy !== null || state.loading;
   const identityLocked = locked || guidanceLocked || state.pendingMode !== null;
-  const visibleProcedures = state.procedures.filter((item) =>
-    item.title.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase()),
-  );
 
   return (
     <div className="demo-app">
       <a className="skip-link" href="#workspace-main">Skip to workspace</a>
       <header className="app-header">
-        <div className="brand"><Mark /><div><strong>HelaGuide</strong><span>Adaptive guidance workspace</span></div></div>
+        <div className="brand"><Mark /><div><strong>HelaGuide</strong><span>Clear procedure guidance</span></div></div>
         <div className="header-status">
-          <a className="tag" href="#pipeline-inspector">Pipeline Inspector ↗</a>
-          <span className="tag">C4 Research Demo</span>
+          {research && <a className="tag" href="#c4-v2-inspector">Research Inspector ↗</a>}
+          {research && <span className="tag">C4 Research Demo</span>}
           <span className={"connection " + (state.health ? "connected" : "")}>
             <i aria-hidden="true" />
             {state.loading ? "Connecting" : state.health ? "Backend connected" : "Backend unavailable"}
@@ -93,9 +91,8 @@ export default function App() {
 
         <main id="workspace-main" className="workspace-main" tabIndex={-1}>
           <div className="workspace-heading">
-            <div><p className="eyebrow">Guidance, at your pace</p><h1>A clearer next step.</h1>
-              <p className="muted">Choose a procedure and the support experience you want to explore.</p></div>
-            <span className="tag source-tag">Procedure examples</span>
+            <div><p className="eyebrow">Procedure guidance</p><h1>What do you need to do?</h1>
+              <p className="muted">Choose a procedure to see what to prepare and what to do next.</p></div>
           </div>
 
           {state.error && (
@@ -123,40 +120,28 @@ export default function App() {
               onCancel={workspace.closeCreation} onDiscard={workspace.discardPendingCreation} />
           ) : state.health ? (
             <>
-              <section className="panel procedure-panel" aria-labelledby="procedure-title">
-                <div className="section-heading">
-                  <div><p className="eyebrow">Procedure</p><h2 id="procedure-title">What would you like guidance with?</h2></div>
-                  <span className="count-label">{state.procedures.length} registered</span>
+              <section className="panel procedure-panel picker" aria-label="Procedure">
+                <div className="picker-row">
+                  <label htmlFor="procedure-select" className="field-label">Procedure</label>
+                  <select id="procedure-select" value={selected?.procedure_id ?? ""} disabled={identityLocked}
+                    onChange={(event) => workspace.selectProcedure(event.target.value)}>
+                    {!selected && <option value="">Choose a procedure…</option>}
+                    {state.procedures.map((procedure) => <option key={procedure.procedure_id} value={procedure.procedure_id}>{procedure.title}</option>)}
+                  </select>
+                  {selected && <p className="picker-meta"><span className="v2-chip">{selected.synthetic ? "Practice example" : "Information snapshot"}</span><span>{selected.action_ids.length} actions</span></p>}
                 </div>
-                <label className="search-field">
-                  <span aria-hidden="true">⌕</span><span className="sr-only">Search registered procedures</span>
-                  <input type="search" placeholder="Find a procedure…" value={search} onChange={(event) => setSearch(event.target.value)} />
-                </label>
-                <div className="procedure-grid">
-                  {visibleProcedures.map((procedure, index) => (
-                    <button key={procedure.procedure_id} disabled={identityLocked}
-                      className={"procedure-choice " + (selected?.procedure_id === procedure.procedure_id ? "selected" : "")}
-                      aria-pressed={selected?.procedure_id === procedure.procedure_id}
-                      onClick={() => workspace.selectProcedure(procedure.procedure_id)}>
-                      <span className="procedure-top"><span className="eyebrow">{procedure.synthetic ? "Synthetic scenario" : "Official-source snapshot"}</span><span aria-hidden="true">{selected?.procedure_id === procedure.procedure_id ? "✓" : String(index + 1).padStart(2, "0")}</span></span>
-                      <strong>{procedure.title}</strong>
-                      <span className="procedure-meta">{procedure.action_ids.length} actions<span aria-hidden="true">↗</span></span>
-                    </button>
-                  ))}
-                </div>
-                {visibleProcedures.length === 0 && <p className="empty-state">{state.procedures.length ? "No registered procedures match that search." : "No procedures are registered in this backend."}</p>}
-                <p className="helper-text">Search selects registered procedure examples. Free-text government-service intent is not connected here.</p>
+                {state.procedures.length === 0 && <p className="empty-state">No procedures are registered in this backend.</p>}
               </section>
 
               <section className="panel entry-panel" aria-labelledby="entry-title">
                 <div className="entry-copy">
-                  <p className="eyebrow">Guidance experience</p>
+                  <p className="eyebrow">Who is this for</p>
                   <h2 id="entry-title">{active ? active.kind === "profile" ? active.profile.display_name : "Guest workspace" : "Choose how to continue"}</h2>
                   <p className="muted">{active
                     ? enabled
-                      ? "Your saved context is available to the adaptive engine. Preferences inform the selection; they do not guarantee a particular layout."
-                      : "Personalization is off. Future requests use a standard presentation of the supplied procedure."
-                    : "Use standard guidance as a guest, or create a demo profile to explore personalized support over time."}</p>
+                      ? "Your saved profile informs how guidance is laid out. It does not guarantee a particular layout."
+                      : "Personalization is off. Guidance uses the standard layout."
+                    : "Use standard guidance as a guest, or create a demo profile to try a personalised layout."}</p>
                 </div>
                 {active?.kind === "profile" ? (
                   <div className="personalization-control">
@@ -183,22 +168,24 @@ export default function App() {
                 <WorkspaceGuidance
                   key={JSON.stringify([active.session.session_id, selected.procedure_id, active.kind === "profile" ? active.profile.revision : null])}
                   active={active} procedure={selected}
-                  disabled={locked || state.pendingMode !== null}
+                  disabled={locked || state.pendingMode !== null} research={research}
                   onActivityChange={setGuidanceLocked}
                 />
               )}
-              {!active || !selected ? <p className="helper-text">Select a procedure and open a guest workspace or demo profile to show guidance.</p> : null}
+              {!active || !selected ? <p className="helper-text">Choose a procedure, then continue as a guest or open a demo profile.</p> : null}
 
               {active && <div className="panel"><ContextSummary active={active} procedures={state.procedures} /><ProfileSettings key={active.session.session_id} active={active} procedures={state.procedures} onSession={workspace.updateSession}/></div>}
 
-              <div className="source-note"><span aria-hidden="true">◇</span><div><strong>Research examples, not official instructions</strong><p>{selected?.disclaimer ?? "The catalogue contains research examples. No government transaction, eligibility decision or application submission occurs here."}</p></div></div>
+              {research && <div className="source-note"><span aria-hidden="true">◇</span><div><strong>Research examples, not official instructions</strong><p>{selected?.disclaimer ?? "The catalogue contains research examples. No government transaction, eligibility decision or application submission occurs here."}</p></div></div>}
             </>
           ) : (
             <div className="panel"><h2>Start the C4 development backend</h2><p className="muted">The workspace needs its independent API to load real procedures and saved profiles.</p><code>{API_BASE}</code></div>
           )}
         </main>
       </div>
-      <footer className="app-footer"><span>HelaGuide C4 · Independent research prototype</span><span>{state.health ? state.health.storage + " storage · Real backend records" : API_BASE}</span></footer>
+      <footer className="app-footer"><span>{research ? "HelaGuide C4 · Independent research prototype" : "HelaGuide · Demonstration service. No application is made here."}</span>
+        <span>{research && (state.health ? state.health.storage + " storage · Real backend records" : API_BASE)}
+          <button type="button" className="text-button" aria-pressed={research} onClick={() => setResearch(!research)}>Research view: {research ? "on" : "off"}</button></span></footer>
     </div>
   );
 }

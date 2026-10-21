@@ -6,7 +6,8 @@ export type Configuration = {
 export type Expression = { kind: 'action' | 'all_of' | 'any_of' | 'selected_option_of'; ref: string | null; children: Expression[] };
 export type Action = { id: string; title: string; service_id: string; service_agency: string; actor: string | null;
   concise: string; expanded: string; recap: string; fact_ids: string[]; coverage: string[]; conditions: string[];
-  branch: string | null; option: string | null; optional: {id: string; text: string}[]; unreviewed_supplement: string[] };
+  branch: string | null; option: string | null; optional: {id: string; text: string}[]; unreviewed_supplement: string[];
+  wording_status?: {title: string; instructions: string} };
 export type Branch = { group_id: string; selection: 'AND' | 'OR' | 'XOR'; options: {option_id: string; action_ids: string[]; condition_ids: string[]}[] };
 export type Document = { id: string; title: string; scope: string; synthetic: boolean; actions: Action[];
   facts: {kind: 'fee' | 'document'; fact_id: string; name?: string; value?: number; currency?: string}[];
@@ -17,13 +18,15 @@ export type Document = { id: string; title: string; scope: string; synthetic: bo
   parallel_areas: Expression[][]; completeness: Record<string, string>;
   capabilities: Record<keyof Configuration, {states: string[]; applicable: boolean; reason: string}>;
   sources: {evidence_id: string; source_url: string; text: string; retrieved_at: string | null}[];
-  graph_fingerprint: string; content_fingerprint: string; content_origin: string;
+  provenance?: {fact_id: string; source_url: string; retrieved_at: string | null}[];
+  graph_fingerprint: string; content_fingerprint: string; structure_fingerprint?: string; content_origin: string;
 };
 export type Receipt = { exclusion_reason?: string | null; rating: string; reward: number | null; eligible: boolean; posterior_revision: number };
 export type Journey = {constraints_revoked?:boolean; routing?: 'standard'|'adaptive'; id: string; decision_id: string; document: Document; current_view: string; root_view: string;
   views: Record<string, {id: string; parent: string | null; configuration: Configuration; displayed: string[]; rating: Receipt | null}>;
   available_configurations?: Configuration[]; seen: string[]; focus: string | null; focused_routes?: Record<string,string>; events: unknown[];
   opportunities: Record<string, {id: string; dimension: string; available: boolean; visible: boolean}>; token?: string;
+  identity?: {session_id: string; profile_id: string | null; requested_service_id: string; sources: Record<string, string>};
 };
 export type EventInput = {type: 'action_visible' | 'opportunity_visible' | 'navigate' | 'detail_open' | 'detail_close' | 'recap_open' | 'source_open' | 'route_focus' | 'reason' | 'map_expand' | 'map_collapse'; action_id?: string; opportunity_id?: string; value?: string};
 export type Inspector = {journey: Journey; decision: {context: unknown; effective_context?: unknown; configuration: Configuration; policy_revision: number; selection_mode: string;

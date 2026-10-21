@@ -1,6 +1,10 @@
 import type { Document, Expression, Journey } from './types';
+import { displayTitle } from './presentation';
 export function expressionText(expression: Expression, doc: Document): string {
-  if (expression.kind === 'action') return doc.actions.find(a => a.id === expression.ref)?.title ?? 'Unresolved action';
+  if (expression.kind === 'action') {
+    const found = doc.actions.find(a => a.id === expression.ref);
+    return found ? displayTitle(found) : 'Unresolved action';
+  }
   if (expression.kind === 'selected_option_of') {
     const branch = doc.branches.find(b => b.group_id === expression.ref);
     return `the applicable ${branch?.selection === 'XOR' ? 'one alternative' : 'alternative(s)'} from the route group`;
@@ -15,7 +19,7 @@ export function previousActions(journey: Journey, current: string) {
     (!a.branch || journey.document.branches.find(b=>b.group_id===a.branch)?.selection!=='XOR' || !journey.focused_routes?.[a.branch] || journey.focused_routes[a.branch] === a.option));
 }
 export function relationshipLines(doc: Document): string[] {
-  const title = (id: string) => doc.actions.find(a => a.id === id)?.title ?? id;
+  const title = (id: string) => { const a = doc.actions.find(x => x.id === id); return a ? displayTitle(a) : id; };
   return [...doc.edges.map(e => `${title(e.source_id)} must precede ${title(e.target_id)}.`),
     ...doc.joins.map(j => `${title(j.target)} requires ${expressionText(j.requirement, doc)}.`),
     ...doc.parallel.map(p => `${p.action_ids.map(title).join(' and ')} may proceed in parallel as explicitly supplied.`),
