@@ -37,13 +37,31 @@ class Rating(Request):
     rating: Literal["about_right", "need_more", "too_much"]
 
 
-def create_app(path=None, *, mode="simulation", seed=0, runtime=None, runtime_class=Runtime, workspace=False):
+def create_app(path=None, *, mode="simulation", seed=0, runtime=None, runtime_class=Runtime, workspace=False, preparation_options=None):
     @asynccontextmanager
     async def lifespan(app):
         app.state.runtime = runtime or runtime_class(path or Path(__file__).resolve().parents[2] / ".local" / "v2" / mode / "state.sqlite3", mode=mode, seed=seed)
-        yield
-        if runtime is None:
-            app.state.runtime.close()
+        processor = None
+        if workspace:
+            database = app.state.runtime.db.execute("PRAGMA database_list").fetchone()[2]
+            if database:
+                from app.v2.preparation_jobs import PreparationProcessor
+                from app.v2.registration import queue_preparation
+                directory = Path(database).parent / "preparation"
+                for entry in app.state.runtime.procedures.values():
+                    if entry["preparation"]["missing"]:
+                        queue_preparation(entry, directory)
+                processor = PreparationProcessor(app.state.runtime, directory, **(preparation_options or {}))
+                processor.start()
+        app.state.preparation_processor = processor
+        try:
+            yield
+        finally:
+            if processor is not None:
+                import asyncio
+                await asyncio.to_thread(processor.close)
+            if runtime is None:
+                app.state.runtime.close()
     app = FastAPI(title="C4 V2 research", lifespan=lifespan)
     app.add_middleware(CORSMiddleware, allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"], allow_methods=["GET", "POST", "PATCH"], allow_headers=["Content-Type", "X-C4-Token"])
     def rt():

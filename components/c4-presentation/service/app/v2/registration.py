@@ -64,10 +64,11 @@ def finalize(entry, *, demo=True):
         doc["content_origin"] = "prepared demo labels; source-preserving instructions"
     # A map may show only supplied relationships, but incomplete structure must
     # not be promoted to a complete procedure map or focused execution sequence.
-    structural = ("actions", "conditions", "action_prerequisites", "branch_groups", "stage_dependencies")
-    complete = all(doc["completeness"].get(k)=="complete" for k in structural if k in doc["completeness"])
+    structural = ("actions", "conditions", "prerequisites", "branch_groups", "service_dependencies")
+    complete = all(doc["completeness"].get(k)=="complete" for k in structural)
     if not complete:
         doc["capabilities"]["navigation"] = {"states":["overview"], "applicable":False,"reason":"incomplete structure requires overview"}
+    if not complete or doc["completeness"].get("parallel_groups") != "complete":
         relation = doc["capabilities"]["relationships"]
         relation["states"] = [s for s in relation["states"] if s != "map"]
         relation["reason"] = "full map unavailable: structural coverage is incomplete"
@@ -109,9 +110,16 @@ def queue_preparation(entry, directory):
         raise ValueError("preparation jobs must stay in C4/v2")
     status = preparation_status(entry)
     directory.mkdir(parents=True,exist_ok=True)
-    target = directory/(digest(status)+".json")
+    target = directory/(digest({"status":status, "overlay":entry["overlay"].model_dump(mode="json") if entry.get("overlay") else None})+".json")
     payload = {**status, "status":"pending_review_preparation", "graph":entry["graph"].model_dump(mode="json"),
         "base_overlay":entry["overlay"].model_dump(mode="json") if entry.get("overlay") else None}
     if not target.exists():
-        target.write_text(json.dumps(payload,indent=2),encoding="utf-8")
+        import os
+        from uuid import uuid4
+        temporary = directory / ("." + uuid4().hex + ".tmp")
+        try:
+            temporary.write_text(json.dumps(payload,indent=2),encoding="utf-8")
+            os.replace(temporary, target)
+        finally:
+            temporary.unlink(missing_ok=True)
     return target

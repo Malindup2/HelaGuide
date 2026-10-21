@@ -220,3 +220,7 @@ Selections can vary with RNG and posterior state. Do not promise a specific conf
 ## Verification and limitations
 
 See UNIFIED-VALIDATION.md for executed tests and screenshots. Local profile aliases are visible research records, not authenticated identities. Public deployment, secure participant identity/consent, live team C2/gateway integration, physical-device/screen-reader testing and real-user evaluation remain external work. No live LLM call was made for this integration.
+
+### Preparation worker update (2026-10-21)
+
+See [PREPARATION-BRIDGE.md](PREPARATION-BRIDGE.md) for the now-connected durable asynchronous worker, dynamic-job CLI and review/publication workflow. PP1 defaults to C4_WORKSPACE_CONTENT_MODE=demo with live generation disabled. Full Map now requires complete structural/parallel coverage; current bounded official examples retain inline aids. This update supersedes earlier limitations about the absent worker/dynamic-job bridge, but does not claim live LLM or human-review validation.

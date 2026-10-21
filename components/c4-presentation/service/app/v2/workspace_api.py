@@ -76,13 +76,42 @@ def register_routes(app, runtime):
             if database:
                 from pathlib import Path
                 queue_preparation(runtime().procedures[result["procedure_id"]],Path(database).parent/"preparation")
+        processor = getattr(app.state, "preparation_processor", None)
+        if processor is not None:
+            processor.scan()
+            processor.wake_event.set()
         return result
 
     @app.post("/workspace/procedures/{procedure_id}/wording")
     def publish(procedure_id: str,body: ReviewedWording):
-        return runtime().publish_wording(procedure_id,body.artifact)
+        result = runtime().publish_wording(procedure_id,body.artifact)
+        processor = getattr(app.state, "preparation_processor", None)
+        if processor is not None:
+            processor.scan()
+        return result
 
     @app.get("/workspace/preparation")
     def preparation():
         from app.v2.registration import preparation_status
         return [preparation_status(p) for p in runtime().procedures.values()]
+
+
+    @app.get("/workspace/preparation/jobs")
+    def jobs():
+        processor = getattr(app.state, "preparation_processor", None)
+        return processor.jobs() if processor else []
+
+    @app.get("/workspace/preparation/jobs/{job_id}/draft")
+    def pending_draft(job_id: str):
+        processor = getattr(app.state, "preparation_processor", None)
+        if processor is None:
+            raise ValueError("preparation processor unavailable")
+        return processor.draft(job_id)
+
+    @app.post("/workspace/preparation/jobs/{job_id}/retry")
+    def retry(job_id: str):
+        processor = getattr(app.state, "preparation_processor", None)
+        if processor is None:
+            raise ValueError("preparation processor unavailable")
+        processor.retry(job_id)
+        return {"status":"queued", "generation_enabled":processor.enabled}

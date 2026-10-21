@@ -13,10 +13,22 @@ class ActiveRuntime(WorkspaceRuntime):
     def __init__(self, path, **kwargs):
         entries=workspace_registry()
         super().__init__(path, procedures=entries, **kwargs)
-        for entry in entries.values():
+        for entry in self.procedures.values():
             if entry["preparation"]["missing"]:
                 queue_preparation(entry, Path(path).parent/"preparation")
 
 mode=os.getenv("C4_WORKSPACE_MODE", "simulation")
 path=os.getenv("C4_WORKSPACE_DATABASE") or Path(__file__).resolve().parents[1]/".local"/"v2"/"workspace"/mode/"state.sqlite3"
-app=create_app(path, mode=mode, seed=int(os.getenv("C4_WORKSPACE_SEED", "0")), runtime_class=ActiveRuntime, workspace=True)
+content_mode = os.getenv("C4_WORKSPACE_CONTENT_MODE", "demo")
+if content_mode not in ("demo", "prepare"):
+    raise ValueError("C4_WORKSPACE_CONTENT_MODE must be demo or prepare")
+llm_enabled = os.getenv("C4_LLM_ENABLED", "false").lower()
+if llm_enabled not in ("true", "false"):
+    raise ValueError("C4_LLM_ENABLED must be true or false")
+
+def provider_factory():
+    from app.core.llm_provider import OpenAIExplanationProvider
+    return OpenAIExplanationProvider.from_environment()
+
+app=create_app(path, mode=mode, seed=int(os.getenv("C4_WORKSPACE_SEED", "0")), runtime_class=ActiveRuntime, workspace=True,
+    preparation_options={"enabled":content_mode == "prepare" and llm_enabled == "true", "provider_factory":provider_factory})
