@@ -21,6 +21,7 @@ dev = ["pytest>=8", "httpx>=0.27", "jsonschema>=4.18"]
 research = [
     "torch>=2.3",
     "transformers>=4.44",
+    "matplotlib>=3.8",      # research/experiments/context_eval.py charts
     # "rasa>=3.6",
 ]
 
