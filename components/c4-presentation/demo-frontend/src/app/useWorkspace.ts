@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { API_BASE, ApiError, api, errorMessage } from "../api/client";
+import type { IdentityClient } from "../api/client";
 import type {
   ActiveIdentity, BackendHealth, CreateDemoProfileRequest, DemoProfile,
   DemoProfileResponse, GuestSession, PersonalizationRequest, ProcedureSummary,
@@ -51,7 +52,7 @@ function loadPendingMode(): PendingMode | null {
   return null;
 }
 
-export function useWorkspace() {
+export function useWorkspace(client: IdentityClient = api) {
   const [state, setState] = useState<State>(initial);
   const [attempt, setAttempt] = useState(0);
   const mutation = useRef(false);
@@ -61,12 +62,12 @@ export function useWorkspace() {
     async function initialize() {
       try {
         const [health, procedures, profiles] = await Promise.all([
-          api.health(controller.signal),
-          api.procedures(controller.signal),
-          api.profiles(controller.signal),
+          client.health(controller.signal),
+          client.procedures(controller.signal),
+          client.profiles(controller.signal),
         ]);
         const storage = browserStorage();
-        const restored = await restoreIdentity(api, storage, API_BASE, controller.signal);
+        const restored = await restoreIdentity(client, storage, API_BASE, controller.signal);
         const savedProcedure = readStored(storage, storageKey(API_BASE, "procedure"));
         let pendingCreation: CreateDemoProfileRequest | null = null;
         const pendingText = readStored(storage, storageKey(API_BASE, "pending-profile"));
@@ -92,7 +93,7 @@ export function useWorkspace() {
     }
     void initialize();
     return () => controller.abort();
-  }, [attempt]);
+  }, [attempt, client]);
 
   const updateSession = useCallback((session: GuestSession) => {
     setState((old) => {
@@ -154,7 +155,7 @@ export function useWorkspace() {
       const savedId = readStored(storage, storageKey(API_BASE, "session"));
       if (savedId && /^guest:[0-9a-f]{32}$/.test(savedId)) {
         try {
-          const session = await api.getSession(savedId);
+          const session = await client.getSession(savedId);
           activate({ kind: "guest", session }, "Guest workspace restored. Personalization is off.");
           return;
         } catch (error) {
@@ -163,7 +164,7 @@ export function useWorkspace() {
         }
       }
       try {
-        const session = await api.createSession();
+        const session = await client.createSession();
         activate({ kind: "guest", session }, "Guest workspace ready. Personalization is off.");
       } catch (error) {
         throw new Error(
@@ -177,7 +178,7 @@ export function useWorkspace() {
   function chooseProfile(id: string) {
     if (state.pendingMode) return;
     return perform("Opening profile", async () => {
-      acceptProfile(await api.getProfile(id), "Saved profile and current context loaded.");
+      acceptProfile(await client.getProfile(id), "Saved profile and current context loaded.");
     });
   }
 
@@ -198,7 +199,7 @@ export function useWorkspace() {
       // Retain the original request for explicit retries, including after reload.
       writeStored(browserStorage(), storageKey(API_BASE, "pending-profile"), JSON.stringify(request));
       setState((old) => ({ ...old, pendingCreation: request }));
-      const result = await api.createProfile(request);
+      const result = await client.createProfile(request);
       removeStored(browserStorage(), storageKey(API_BASE, "pending-profile"));
       setState((old) => ({ ...old, pendingCreation: null }));
       acceptProfile(result, "Demo profile saved. Your answers remain editable context, not inferred knowledge.");
@@ -229,7 +230,7 @@ export function useWorkspace() {
       writeStored(browserStorage(), storageKey(API_BASE, "pending-mode"), JSON.stringify(pending));
       setState((old) => ({ ...old, pendingMode: pending }));
       try {
-        const result = await api.setPersonalization(pending.profile_id, pending.request);
+        const result = await client.setPersonalization(pending.profile_id, pending.request);
         removeStored(browserStorage(), storageKey(API_BASE, "pending-mode"));
         setState((old) => ({ ...old, pendingMode: null }));
         acceptProfile(result, result.profile.personalization_enabled
@@ -237,7 +238,7 @@ export function useWorkspace() {
           : "Personalization disabled. Future requests will use standard guidance.");
       } catch (error) {
         if (error instanceof ApiError && error.status === 409) {
-          const current = await api.getProfile(pending.profile_id);
+          const current = await client.getProfile(pending.profile_id);
           removeStored(browserStorage(), storageKey(API_BASE, "pending-mode"));
           setState((old) => ({ ...old, pendingMode: null }));
           acceptProfile(current, "The profile changed elsewhere. Current settings have been loaded; review them before trying again.");
@@ -249,7 +250,7 @@ export function useWorkspace() {
 
   function refreshProfiles() {
     return perform("Refreshing profiles", async () => {
-      const profiles = await api.profiles();
+      const profiles = await client.profiles();
       setState((old) => ({ ...old, profiles, notice: "Saved profile list refreshed." }));
     });
   }
@@ -259,13 +260,13 @@ export function useWorkspace() {
     if (!pending) return;
     return perform("Retrying personalization request", async () => {
       try {
-        const result = await api.setPersonalization(pending.profile_id, pending.request);
+        const result = await client.setPersonalization(pending.profile_id, pending.request);
         removeStored(browserStorage(), storageKey(API_BASE, "pending-mode"));
         setState((old) => ({ ...old, pendingMode: null }));
         acceptProfile(result, "Original setting request resolved. Current profile state loaded.");
       } catch (error) {
         if (error instanceof ApiError && error.status === 409) {
-          const current = await api.getProfile(pending.profile_id);
+          const current = await client.getProfile(pending.profile_id);
           removeStored(browserStorage(), storageKey(API_BASE, "pending-mode"));
           setState((old) => ({ ...old, pendingMode: null }));
           acceptProfile(current, "The original setting request conflicted with newer changes. Current settings are loaded; review them before submitting another change.");

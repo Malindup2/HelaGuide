@@ -412,6 +412,9 @@ export class C4Api {
 
 export const api = new C4Api();
 
+/** What the workspace hook needs from an identity/procedure service; lets the same hook run against either API surface. */
+export type IdentityClient = Pick<C4Api, "health" | "procedures" | "createSession" | "getSession" | "profiles" | "getProfile" | "createProfile" | "setPersonalization">;
+
 export function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : "An unexpected error occurred.";
 }
