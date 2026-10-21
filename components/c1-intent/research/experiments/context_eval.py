@@ -1116,7 +1116,7 @@ def write_summary(res, path, out_dir, ni_margin, conv=None, sens=None):
         L += _h4_lines(h4)
     else:
         L += ["**inconclusive (not run yet)**: `robustness.csv` is written by `experiments/perturb.py` (Stage 3).", ""]
-    L += scale_lines(bench, res, headline)
+    L += scale_lines(bench, res, headline, _read_json(os.path.join(out_dir, "deployment_benchmark.json")))
     L += token_ratio_lines(res)
     L += convergence_lines(conv, sens, res)
     L += ["## Gold (development set, reported separately)", "",
@@ -1178,20 +1178,66 @@ def _bench_lines(rows):
     return L + [""]
 
 
-def scale_lines(bench, res, headline):
+def _f(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return None
+
+
+def _rank_corr(xs, ys):
+    """Spearman rank correlation (no ties expected)."""
+    rank = lambda v: {x: i for i, x in enumerate(sorted(v))}
+    rx, ry = rank(xs), rank(ys)
+    a, b = [rx[x] for x in xs], [ry[y] for y in ys]
+    n = len(a)
+    if n < 3:
+        return None
+    return 1 - 6 * sum((p - q) ** 2 for p, q in zip(a, b)) / (n * (n * n - 1))
+
+
+def scale_lines(bench, res, headline, meta=None):
     """Scale claim: the cost of each context strategy (intent model only) and the cost of the deployed pipeline
-    (end to end), in separate sections."""
+    (end to end), in separate sections. meta: deployment_benchmark.json (budgets, machine), if present.
+    The measured 4-thread latencies are the primary figures. The 1-thread rows get a caveat when their latency
+    does not rise with input length (seen on an Intel hybrid CPU, where Windows moves a 1-thread process between
+    performance and efficiency cores)."""
+    meta = meta or {}
+    budgets = meta.get("budgets", {"latency_p95_ms": 500.0, "peak_memory_mb": 2048.0})
+    lat_budget, mem_budget = budgets["latency_p95_ms"], budgets["peak_memory_mb"]
     engine = [r for r in (bench or []) if r.get("model") == "c1_engine"]
     intent = [r for r in (bench or []) if r.get("model") != "c1_engine"]
+    threads = lambda rows, n: [r for r in rows if str(r.get("threads")) == str(n)]
     verdict = next((r.get("scale_verdict") for r in engine if r.get("scale_verdict")), None)
+
+    one = threads([r for r in intent if r.get("model") == "xlmr"], 1)
+    corr = _rank_corr([_f(r["tokens_per_turn"]) for r in one], [_f(r["latency_p50_ms"]) for r in one]) if one else None
+    unreliable = corr is not None and corr < 0.5
+    machine = meta.get("machine", "this machine")
+    caveat = (f"**Caveat, 1-thread rows: unreliable on this Intel hybrid CPU (Windows scheduling across P/E cores); "
+              f"latency does not rise with input length** (rank correlation of p50 with tokens per turn {corr:.2f}; "
+              f"machine: {machine}). Use the 4-thread rows for latency." if unreliable else None)
+    est_note = ("The 4-core numbers are an **ESTIMATE** (4 workers × 1 thread, linear scaling assumed), not a "
+                "measurement; they are based on the 1-thread timings" +
+                (", so they are approximate." if unreliable else "."))
+
     L = ["## Scale claim: cheap and fast enough on CPU", "",
-         "Budgets (`bench_cpu.py`): p95 ≤ 500 ms per turn at 1 CPU thread and ≤ 2048 MB per worker. A chat reply should "
-         "come in under about 1 s in total, and C1 may take at most half of that because C2–C4 also run on every turn.", "",
-         f"**{verdict or 'inconclusive (not run yet): `deployment_benchmark.csv` is written by `experiments/bench_cpu.py`'}**", "",
-         "### Context-strategy cost (intent model only, per strategy)", "",
-         "What each strategy sends to the intent model. Tokens are from the predictions (XLM-R tokenizer with <s> and "
-         "</s>; cl100k for comparison); latency in the predictions was measured on the notebook's device.", "",
-         "| strategy | XLM-R tokens/turn (mean) | cl100k tokens/turn | XLM-R latency (ms, notebook device) |", "|---|---|---|---|"]
+         f"Budgets (`bench_cpu.py`): p95 ≤ {lat_budget:g} ms per turn at 1 CPU thread and ≤ {mem_budget:g} MB per "
+         "worker. A chat reply should come in under about 1 s in total, and C1 may take at most half of that because "
+         "C2–C4 also run on every turn.", "",
+         f"**{verdict or 'inconclusive (not run yet): `deployment_benchmark.csv` is written by `experiments/bench_cpu.py`'}**", ""]
+    eng1, eng4 = (threads(engine, 1) or [None])[0], (threads(engine, 4) or [None])[0]
+    if eng1:
+        mem_miss = _f(eng1["peak_memory_mb"]) > mem_budget
+        lat_miss = _f(eng1["latency_p95_ms"]) > lat_budget
+        if unreliable:
+            L += ["The latency part of this verdict uses the 1-thread timing, which is unreliable on this machine (caveat "
+                  "below)" + (f"; the measured 4-thread p95 of the deployed engine is {eng4['latency_p95_ms']} ms" if eng4
+                              else "") + (". Memory alone decides the verdict." if mem_miss else "."), ""]
+    L += ["### Context-strategy cost (intent model only, per strategy)", "",
+          "What each strategy sends to the intent model. Tokens are from the predictions (XLM-R tokenizer with <s> and "
+          "</s>; cl100k for comparison); latency in the predictions was measured on the notebook's device.", "",
+          "| strategy | XLM-R tokens/turn (mean) | cl100k tokens/turn | XLM-R latency (ms, notebook device) |", "|---|---|---|---|"]
     for st in res["settings"]["strategies"]:
         m = res["metrics"].get(f"xlmr/{st}/{headline}") or {}
         if m:
@@ -1199,9 +1245,14 @@ def scale_lines(bench, res, headline):
                      f"{m['latency_ms_mean'][0]:.1f} ({m.get('device')}) |")
     L += [""]
     if intent:
-        L += ["On CPU, batch size 1 (`run_v2_seed1`'s intent model reading each strategy's input, so cost only; "
-              "TF-IDF trained per strategy). The 4-core numbers are an **ESTIMATE** (4 workers × 1 thread, linear "
-              "scaling assumed), not a measurement:", ""] + _bench_lines(intent)
+        many = [r for r in intent if str(r.get("threads")) != "1"]
+        if many:
+            L += ["**Measured on CPU, 4 threads, batch size 1 (primary latency figures).** `run_v2_seed1`'s intent model "
+                  "reads each strategy's input, so this is cost only:", ""] + _bench_lines(many)
+        L += ["1 thread, batch size 1 (XLM-R; TF-IDF trained per strategy). " + est_note, ""]
+        if caveat:
+            L += [caveat, ""]
+        L += _bench_lines(threads(intent, 1))
     else:
         L += ["CPU timings per strategy: not run yet (`bench_cpu.py`).", ""]
     L += ["### Full-pipeline cost (deployed engine, end to end)", "",
@@ -1212,17 +1263,28 @@ def scale_lines(bench, res, headline):
           "service or a complaint in the middle of a conversation is not hidden by the earlier turns (Observation 13: "
           "window_3 history turned a mid-conversation complaint into `passport_new`). The first turn needs one call.", ""]
     if engine:
-        L += _bench_lines(engine)
-        if verdict and verdict.startswith("not supported"):
-            L += ["**Why it misses the budget:**",
-                  "- three separate fp32 XLM-R models (language ID, NER, intent), each with its own copy of the encoder, "
-                  "so one worker needs several GB;",
-                  "- four XLM-R forward passes per turn (language ID, two intent calls, NER).", "",
-                  "**Fixes (future work):**",
-                  "- one shared XLM-R encoder with three heads (language ID, NER, intent): one forward pass and one copy "
-                  "of the weights;",
-                  "- int8 quantisation or ONNX Runtime for CPU inference;",
-                  "- one intent call per turn (for example the current-message prediction only when the policy needs it).", ""]
+        if eng4:
+            L += ["**Measured, 4 threads (primary latency figure):**", ""] + _bench_lines([eng4])
+        if eng1:
+            L += ["1 thread. " + est_note, ""] + ([caveat, ""] if caveat else []) + _bench_lines([eng1])
+        if eng1 and (mem_miss or lat_miss):
+            L += ["**Why it misses the budget:**"]
+            if mem_miss:
+                L += [f"- memory: peak {eng1['peak_memory_mb']} MB per worker against a budget of {mem_budget:g} MB, "
+                      "because the engine loads three separate fp32 XLM-R models (language ID, NER, intent), each with "
+                      "its own copy of the encoder."]
+            if lat_miss:
+                L += [f"- latency: p95 {eng1['latency_p95_ms']} ms per turn at 1 thread against a budget of "
+                      f"{lat_budget:g} ms, from four XLM-R forward passes per turn (language ID, two intent calls, NER)."]
+            if not lat_miss:
+                L += [f"- Latency is within budget (p95 {eng1['latency_p95_ms']} ms at 1 thread"
+                      + (f", {eng4['latency_p95_ms']} ms at 4 threads" if eng4 else "") + "), so it is not a reason."]
+            L += ["", "**Fixes (future work):**",
+                  "- memory: one shared XLM-R encoder with three heads (language ID, NER, intent), so one copy of the "
+                  "weights; int8 quantisation or fp16 weights;",
+                  "- efficiency: the four XLM-R forward passes per turn (language ID, two intent calls, NER) could become "
+                  "one with the shared encoder; ONNX Runtime or int8 for CPU inference; one intent call per turn (for "
+                  "example the current-message prediction only when the policy needs it).", ""]
     else:
         L += ["Not measured yet (`bench_cpu.py`; run it on a quiet machine).", ""]
     return L
