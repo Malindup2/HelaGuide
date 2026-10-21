@@ -17,10 +17,14 @@ What it does
      for synthetic): CMI = 100 * (1 - max_lang / (n - u)), u = NE + OTHER words, languages SI / EN / MIXED,
      CMI = 0 if n == u. Buckets: pure SI, pure EN, low CMI, high CMI (mixed turns split at the median CMI of the
      test set), plus NE/OTHER-only turns; separately Sinhala script / romanised / mixed script.
-  3. Statistics: mean +- std over seeds; 95% CI by cluster bootstrap over sessions (1000 resamples, fixed seed,
-     the same resamples for every strategy so differences are paired); exact McNemar on per-turn correctness
-     (majority over seeds) against full_history (and against current_only for H1), Holm-corrected per model,
-     test set and metric.
+  3. Statistics: mean +- std and median over seeds (all seeds; any seed set per strategy); 95% CI by cluster
+     bootstrap over sessions (1000 resamples, fixed seed, the same resamples for every strategy so differences are
+     paired); exact McNemar on per-turn correctness (majority over seeds) against full_history (and against
+     current_only for H1), Holm-corrected per model, test set and metric. H2's primary decision is a non-inferiority
+     CI that resamples sessions and seeds; McNemar is secondary, and disagreements are marked "conflicting".
+     A convergence check (rule from Observation 15, defined after seeing the failures) flags XLM-R runs from the
+     notebook's runs.json; the analysis is repeated without them as a sensitivity section only.
+     The cl100k / XLM-R token ratio is reported per test set and language bucket.
   4. H3 interaction: drop(S, bucket) = acc(full_history) - acc(S); the difference in drop between high-CMI and
      monolingual (pure SI + pure EN) turns. Headline: a permutation test (CMI labels shuffled within test set x
      turn-position strata, Holm across strategies), the method closest to 5% false positives on null data
@@ -78,7 +82,7 @@ FILES = {"gold": ("data/seed_all.json", "data/gold_tokens.jsonl"),
          "fresh": ("data/fresh_dialogues_states.json", "data/fresh_tokens.jsonl")}
 OUTPUTS = ["context_jga_results.json", "stats_tests.csv", "cmi_breakdown.csv", "cmi_breakdown.png",
            "interaction_tests.csv", "interaction_tests.png", "pareto_jga_vs_tokens.png",
-           "token_growth_by_turn_depth.png", "summary.md"]
+           "token_growth_by_turn_depth.png", "summary.md", "convergence_check.csv"]
 
 
 # ------------------------------------------------------------------ code-mixing
@@ -134,8 +138,26 @@ class Bootstrap:
     def __init__(self, session_idx, n_resamples=B_RESAMPLES, seed=BOOT_SEED):
         self.sid = np.asarray(session_idx)
         self.ns = int(self.sid.max()) + 1
+        self.seed = seed
         rng = np.random.default_rng(seed)
         self.w = rng.multinomial(self.ns, np.full(self.ns, 1 / self.ns), size=n_resamples).astype(float)
+
+    def _two_level(self, per_seed, rng):
+        """Per-resample mean of a seeds x turns correctness matrix, resampling sessions (the shared session weights)
+        and, independently, seeds with replacement."""
+        c = np.atleast_2d(np.asarray(per_seed, float))
+        k = c.shape[0]
+        counts = rng.multinomial(k, np.full(k, 1 / k), size=len(self.w))            # resamples x seeds
+        per_turn = counts @ c / k                                                     # resamples x turns
+        by_session = np.stack([np.bincount(self.sid, weights=row, minlength=self.ns) for row in per_turn])
+        turns = np.bincount(self.sid, minlength=self.ns).astype(float)
+        return (self.w * by_session).sum(axis=1) / (self.w @ turns)
+
+    def two_level_diff_ci(self, per_seed_a, per_seed_b, alpha=0.05):
+        """CI of mean(a) - mean(b), resampling sessions and the seeds of each strategy. Seeds are resampled
+        independently for a and b, so the two strategies may have different seed sets."""
+        rng = np.random.default_rng(self.seed + 1)
+        return self._ci(self._two_level(per_seed_a, rng) - self._two_level(per_seed_b, rng), alpha)
 
     def _ratio(self, values, mask):
         """Per-resample mean of `values` over the turns in `mask` (NaN when a resample has none)."""
@@ -202,10 +224,12 @@ def stratified(ratio, count, full, red, high, mono, strata):
 
 
 def mean_std(xs):
+    """[mean, std, median] over seeds."""
     xs = [x for x in xs if x is not None and not (isinstance(x, float) and math.isnan(x))]
     if not xs:
-        return [None, None]
-    return [round(statistics.mean(xs), 4), round(statistics.stdev(xs), 4) if len(xs) > 1 else 0.0]
+        return [None, None, None]
+    return [round(statistics.mean(xs), 4), round(statistics.stdev(xs), 4) if len(xs) > 1 else 0.0,
+            round(statistics.median(xs), 4)]
 
 
 def prf(tp, fp, fn):
@@ -479,7 +503,14 @@ def analyse(runs, table, states, ni_margin):
     members, thresholds, buckets, boots, perms = prepare(table, sets)
     vec = make_vec(per_run, seeds, members)
 
+    def mat(model, strategy, metric, s):
+        """seeds x turns correctness on test set s (only the seeds this strategy has)."""
+        rs = [per_run[(model, strategy, sd)][metric] for sd in seeds if (model, strategy, sd) in per_run]
+        return np.array([np.asarray(r, float)[members[s]] for r in rs]) if rs else None
+
     res = {"settings": {"seeds": seeds, "models": models, "strategies": strategies, "test_sets": sets,
+                        "seeds_per_run": {f"{m}/{st}": sorted(k[2] for k in runs if k[:2] == (m, st))
+                                          for m in models for st in strategies},
                         "bootstrap": {"resamples": B_RESAMPLES, "seed": BOOT_SEED, "cluster": "session"},
                         "mcnemar": "exact, per-turn correctness = majority over seeds, Holm per model x test set x metric",
                         "tracker": "DialogueStateTracker(SlotExtractor()), full setting, reset at dialogue boundaries",
@@ -489,7 +520,8 @@ def analyse(runs, table, states, ni_margin):
                          "switch_turns": int(sum(t["switch"] for t, m in zip(table, members[s]) if m)),
                          "cmi_buckets": dict(collections.Counter(buckets[s]["cmi"])),
                          "script_buckets": dict(collections.Counter(buckets[s]["script"]))} for s in sets},
-           "metrics": {}, "stats_tests": [], "interaction_tests": [], "cmi_breakdown": [], "token_growth": {}}
+           "metrics": {}, "stats_tests": [], "interaction_tests": [], "cmi_breakdown": [], "token_growth": {},
+           "h2_noninferiority": [], "token_ratio": []}
 
     for model in models:
         for st in strategies:
@@ -580,9 +612,48 @@ def analyse(runs, table, states, ni_margin):
                         if not per_seed:
                             continue
                         for k, v in per_seed.items():
-                            row[f"{k}_mean"], row[f"{k}_std"] = mean_std(v)
+                            row[f"{k}_mean"], row[f"{k}_std"], row[f"{k}_median"] = mean_std(v)
                         row["jga_ci95_low"], row["jga_ci95_high"] = boots[s].mean_ci(vec(model, st, "jga_ok", s), mask)
                         res["cmi_breakdown"].append(row)
+
+    # H2 primary: non-inferiority CI of JGA(S) - JGA(full_history), resampling sessions and seeds
+    for model in models:
+        for s in sets:
+            fm = mat(model, REFERENCE, "jga_ok", s)
+            full = res["metrics"].get(f"{model}/{REFERENCE}/{s}")
+            if fm is None or full is None:
+                continue
+            for st in strategies:
+                sm, m = mat(model, st, "jga_ok", s), res["metrics"].get(f"{model}/{st}/{s}")
+                if st == REFERENCE or sm is None or m is None:
+                    continue
+                lo, hi = boots[s].two_level_diff_ci(sm, fm)
+                res["h2_noninferiority"].append({
+                    "model": model, "test_set": s, "strategy": st, "seeds": sm.shape[0], "seeds_reference": fm.shape[0],
+                    "jga": round(float(sm.mean()), 4), "jga_reference": round(float(fm.mean()), 4),
+                    "diff": round(float(sm.mean() - fm.mean()), 4), "ci95_low": lo, "ci95_high": hi,
+                    "tokens": m["tokens_xlmr_mean"][0], "tokens_reference": full["tokens_xlmr_mean"][0]})
+
+    # cl100k / XLM-R token ratio, per test set and language bucket. Text tokens: XLM-R minus <s> and </s>.
+    # current_only = the turn's own text; full_history = the whole input. Model inputs are the same for XLM-R and
+    # TF-IDF, so the XLM-R runs are used (mean over seeds; only structured_state depends on the predictions).
+    ratio_model = "xlmr" if "xlmr" in models else models[0]
+    for s in sets:
+        labels = np.array(buckets[s]["cmi"])
+        groups = {"all": np.ones(len(labels), bool), "pure_si": labels == "pure_si", "pure_en": labels == "pure_en",
+                  "mixed": np.isin(labels, ("low_cmi", "high_cmi"))}
+        for st in [x for x in (BASELINE, REFERENCE) if x in strategies]:
+            rs = [per_run[(ratio_model, st, sd)] for sd in seeds if (ratio_model, st, sd) in per_run]
+            if not rs:
+                continue
+            xl = np.mean([np.asarray(r["tokens_xlmr"], float)[members[s]] for r in rs], axis=0) - 2
+            cl = np.mean([np.asarray(r["tokens_cl100k"], float)[members[s]] for r in rs], axis=0)
+            for g, mask in groups.items():
+                if mask.any():
+                    res["token_ratio"].append({
+                        "test_set": s, "bucket": g, "strategy": st, "n_turns": int(mask.sum()),
+                        "xlmr_text_tokens": round(float(xl[mask].mean()), 1), "cl100k_tokens": round(float(cl[mask].mean()), 1),
+                        "ratio": round(float(cl[mask].sum() / max(xl[mask].sum(), 1e-9)), 2)})
 
     res["interaction_tests"] = h3_rows(vec, models, strategies, sets, table, members, buckets, boots, perms)
 
@@ -603,7 +674,73 @@ def analyse(runs, table, states, ni_margin):
     return res
 
 
+# ------------------------------------------------------------------ convergence check (sensitivity only)
+CONV_LOSS_FACTOR, CONV_DEV_GAP = 3.0, 0.10
+
+
+def convergence_check(runs_json, keys):
+    """Applies the rule from Observation 15 to every XLM-R run in `keys` ((model, strategy, seed)): flagged when its
+    final training loss is > 3x the median final loss of the other seeds of the same model and strategy AND its best
+    dev macro-F1 is >= 0.10 below their median. TF-IDF has no training loss, so it is never flagged."""
+    hist = {}
+    for name, run in (runs_json or {}).items():
+        seed, st = name.split("/", 1)
+        for model, m in run.items():
+            if isinstance(m, dict) and m.get("history"):
+                hist[(model, st, int(seed.replace("seed", "")))] = m["history"]
+    rows = []
+    for key in sorted(keys):
+        model, st, seed = key
+        h = hist.get(key)
+        row = {"model": model, "strategy": st, "seed": seed, "final_loss": None, "best_dev_f1": None,
+               "median_other_final_loss": None, "median_other_best_dev": None, "loss_ratio": None, "dev_gap": None,
+               "flagged": False, "note": ""}
+        others = [hist[k] for k in keys if k[:2] == key[:2] and k != key and k in hist]
+        if h is None:
+            row["note"] = "no training history (TF-IDF)" if model == "tfidf" else "no history in runs.json"
+        elif not others:
+            row["note"] = "no other seeds to compare with"
+        if h is not None:
+            row["final_loss"], row["best_dev_f1"] = h[-1]["loss"], max(x["dev"] for x in h)
+        if h is not None and others:
+            ml = statistics.median(o[-1]["loss"] for o in others)
+            md = statistics.median(max(x["dev"] for x in o) for o in others)
+            row.update(median_other_final_loss=round(ml, 4), median_other_best_dev=round(md, 4),
+                       loss_ratio=round(row["final_loss"] / ml, 2) if ml else None,
+                       dev_gap=round(md - row["best_dev_f1"], 4))
+            row["flagged"] = bool(row["final_loss"] > CONV_LOSS_FACTOR * ml and row["dev_gap"] >= CONV_DEV_GAP)
+        rows.append(row)
+    return rows
+
+
 # ------------------------------------------------------------------ hypotheses
+def h2_verdict(ni, mcnemar, margin):
+    """H2 for one strategy. Primary: non-inferiority CI (sessions and seeds resampled) and fewer tokens. Secondary:
+    exact McNemar on majority-vote correctness. Returns (primary, secondary, agreement, explanation)."""
+    fewer = ni["tokens"] < ni["tokens_reference"]
+    if not fewer:
+        primary = "not supported"
+    elif ni["ci95_low"] is not None and ni["ci95_low"] > -margin:
+        primary = "supported"
+    elif ni["ci95_high"] is not None and ni["ci95_high"] < -margin:
+        primary = "not supported"
+    else:
+        primary = "inconclusive"
+    worse = mcnemar is not None and mcnemar["diff"] < 0 and mcnemar["p_holm"] < 0.05
+    secondary = "n/a" if mcnemar is None else ("significantly worse" if worse else "not significantly worse")
+    agreement, why = "agree", ""
+    if fewer and primary == "supported" and worse:
+        agreement = "conflicting"
+        why = (f"McNemar finds it worse than full_history, but the CI says the loss is smaller than the {margin} margin: "
+               "a real but small drop")
+    elif fewer and primary == "not supported" and mcnemar is not None and not worse:
+        agreement = "conflicting"
+        why = ("the CI (sessions and seeds) lies wholly below the margin, but McNemar on the majority vote finds no "
+               "significant difference: the majority vote hides seed-to-seed variation and the test counts only "
+               "discordant turns")
+    return primary, secondary, agreement, why
+
+
 def find(rows, **kw):
     return [r for r in rows if all(r.get(k) == v for k, v in kw.items())]
 
@@ -651,23 +788,16 @@ def verdicts(res, out_dir, ni_margin):
     for model in res["settings"]["models"]:
         for s in sets:
             per = []
-            full = metrics.get(f"{model}/{REFERENCE}/{s}")
             for st in H2_STRATEGIES:
-                r = (find(tests, model=model, test_set=s, metric="jga", reference=REFERENCE, strategy=st) or [None])[0]
-                m = metrics.get(f"{model}/{st}/{s}")
-                if r is None or m is None or full is None:
+                ni = (find(res["h2_noninferiority"], model=model, test_set=s, strategy=st) or [None])[0]
+                mc = (find(tests, model=model, test_set=s, metric="jga", reference=REFERENCE, strategy=st) or [None])[0]
+                if ni is None:
                     continue
-                fewer = m["tokens_xlmr_mean"][0] < full["tokens_xlmr_mean"][0]
-                worse = r["diff"] < 0 and r["p_holm"] < 0.05
-                if worse or not fewer:
-                    v = "not supported"
-                elif r["ci95_low"] is not None and r["ci95_low"] > -ni_margin:
-                    v = "supported"
-                else:
-                    v = "inconclusive"
-                saving = 1 - m["tokens_xlmr_mean"][0] / full["tokens_xlmr_mean"][0] if full["tokens_xlmr_mean"][0] else 0
+                v, sec, agree, why = h2_verdict(ni, mc, ni_margin)
+                saving = 1 - ni["tokens"] / ni["tokens_reference"] if ni["tokens_reference"] else 0
                 per.append(v)
-                h2.append({**r, "token_saving": round(saving, 3), "verdict": v})
+                h2.append({**ni, "token_saving": round(saving, 3), "verdict": v, "mcnemar": sec,
+                           "p_holm": None if mc is None else mc["p_holm"], "agreement": agree, "why": why})
             out[f"H2/{model}/{s}"] = overall(per)
     # H3: headline = stratified by turn position; all turns pooled and follow-up only are reported next to it
     h3 = []
@@ -724,7 +854,92 @@ def _read_csv(path):
         return list(csv.DictReader(fh))
 
 
-def write_summary(res, path, out_dir, ni_margin):
+def fmt_mcnemar(r):
+    return r["mcnemar"] + ("" if r.get("p_holm") is None else f" (Holm p {r['p_holm']:.4f})")
+
+
+def primary_table(res):
+    """JGA per strategy on every test set, all seeds: mean ± std and median."""
+    sets = res["settings"]["test_sets"]
+    L = ["## JGA per strategy (primary: all seeds)", "",
+         "Mean ± std over seeds, median in brackets. Gold is the development set.", "",
+         "| model | strategy | seeds | " + " | ".join(SET_LABEL[s] for s in sets) + " |",
+         "|---|---|---|" + "---|" * len(sets)]
+    for model in res["settings"]["models"]:
+        for st in res["settings"]["strategies"]:
+            cells = [res["metrics"].get(f"{model}/{st}/{s}") for s in sets]
+            if not any(cells):
+                continue
+            n = next(c["seeds"] for c in cells if c)
+            L.append(f"| {MODELS[model]} | {name(st)} | {n} | " + " | ".join(
+                "-" if c is None else f"{c['jga'][0]:.3f} ± {c['jga'][1]:.3f} ({c['jga'][2]:.3f})" for c in cells) + " |")
+    return L + [""]
+
+
+def token_ratio_lines(res):
+    rows = res.get("token_ratio", [])
+    if not rows:
+        return []
+    L = ["## Token tax: cl100k vs XLM-R tokenizer", "",
+         "Ratio = cl100k tokens / XLM-R text tokens (XLM-R without `<s>` and `</s>`), summed over the turns. "
+         "current_only measures the turn's own text; full_history the whole input. mixed = low + high CMI.", "",
+         "| test set | strategy | all | pure SI | pure EN | mixed |", "|---|---|---|---|---|---|"]
+    for s in res["settings"]["test_sets"]:
+        for st in (BASELINE, REFERENCE):
+            by = {r["bucket"]: r for r in rows if r["test_set"] == s and r["strategy"] == st}
+            if by:
+                L.append(f"| {SET_LABEL[s]} | {st} | " + " | ".join(
+                    f"{by[b]['ratio']:.2f}× (n={by[b]['n_turns']})" if b in by else "-"
+                    for b in ("all", "pure_si", "pure_en", "mixed")) + " |")
+    return L + [""]
+
+
+def convergence_lines(conv, sens, res):
+    L = ["## Convergence check (sensitivity analysis)", ""]
+    if conv is None:
+        return L + ["Not run: `runs.json` (the notebook's training log) was not found next to the predictions.", ""]
+    flagged = [r for r in conv if r["flagged"]]
+    L += [f"Rule: an XLM-R run is flagged when its final training loss is > {CONV_LOSS_FACTOR:g}× the median final "
+          f"loss of the other seeds of the same model and strategy **and** its best dev macro-F1 is ≥ {CONV_DEV_GAP} "
+          "below their median. **The rule was defined after seeing the failed runs (Observation 15)**, so it is used "
+          "only for this sensitivity analysis; every result above uses all seeds. TF-IDF has no training loss and is "
+          "never flagged.", ""]
+    L += ["| model | strategy | seed | final loss | median of others | ratio | best dev F1 | median of others | gap | flagged |",
+          "|---|---|---|---|---|---|---|---|---|---|"]
+    for r in conv:
+        if r["final_loss"] is None:
+            continue
+        L.append(f"| {MODELS[r['model']]} | {r['strategy']} | {r['seed']} | {r['final_loss']:.4f} | "
+                 f"{r['median_other_final_loss'] if r['median_other_final_loss'] is not None else '-'} | "
+                 f"{r['loss_ratio'] if r['loss_ratio'] is not None else '-'} | {r['best_dev_f1']:.4f} | "
+                 f"{r['median_other_best_dev'] if r['median_other_best_dev'] is not None else '-'} | "
+                 f"{r['dev_gap'] if r['dev_gap'] is not None else '-'} | {'**yes**' if r['flagged'] else 'no'} |")
+    L += [""]
+    if not flagged:
+        return L + ["No run is flagged, so the sensitivity analysis equals the primary analysis.", ""]
+    if sens is None:
+        return L + ["Flagged runs found, but the analysis without them was not run.", ""]
+    v, vs = sens["primary_verdicts"], sens["verdicts"]
+    L += ["### Results without the flagged runs: " + ", ".join(f"{r['strategy']} seed {r['seed']}" for r in flagged), "",
+          "| verdict | all seeds (primary) | flagged runs excluded |", "|---|---|---|"]
+    for k in sorted(v):
+        if k.count("/") == 2:                                    # headline verdicts only
+            L.append(f"| {k} | {v[k]} | {vs.get(k, 'n/a')} |")
+    L += [""]
+    head = POOLED if POOLED in res["settings"]["test_sets"] else None
+    if head:
+        L += [f"JGA on {SET_LABEL[head]}, flagged runs excluded (mean ± std, median):", "",
+              "| model | strategy | seeds | JGA |", "|---|---|---|---|"]
+        for k, m in sens["metrics"].items():
+            if m["test_set"] == head:
+                L.append(f"| {MODELS[m['model']]} | {name(m['strategy'])} | {m['seeds']} | "
+                         f"{m['jga'][0]:.3f} ± {m['jga'][1]:.3f} ({m['jga'][2]:.3f}) |")
+        L += [""]
+    return L
+
+
+def write_summary(res, path, out_dir, ni_margin, conv=None, sens=None):
+    """conv: convergence_check() rows; sens: the analysis repeated without the flagged runs (or None)."""
     v, h1, h2, h3, h4, bench = verdicts(res, out_dir, ni_margin)
     v_sens, _, h2_sens, _, _, _ = verdicts(res, out_dir, H2_SENSITIVITY_MARGIN)
     sets = [s for s in res["settings"]["test_sets"] if s != "gold"]
@@ -732,6 +947,9 @@ def write_summary(res, path, out_dir, ni_margin):
     L = ["# Context strategies v2: hypothesis summary", "",
          f"Generated by `experiments/context_eval.py` on {time.strftime('%Y-%m-%d %H:%M')}. "
          f"Seeds: {res['settings']['seeds']}. Models: {', '.join(MODELS[m] for m in res['settings']['models'])}.", ""]
+    spr = res["settings"].get("seeds_per_run", {})
+    if len({tuple(x) for x in spr.values()}) > 1:
+        L += ["Seeds differ between runs: " + "; ".join(f"{k} {x}" for k, x in spr.items()) + ".", ""]
     if res["settings"]["fake_predictions"]:
         L += ["> **FAKE PREDICTIONS (dry run).** These numbers come from `tests/fixtures/fake_context_preds.py`, "
               "not from trained models. Do not report them.", ""]
@@ -748,11 +966,12 @@ def write_summary(res, path, out_dir, ni_margin):
           f"model × test set × metric family. CIs: 95% cluster bootstrap over sessions ({B_RESAMPLES} resamples).",
           "- **H1** supported when every context strategy beats current_only on JGA (CI > 0 and Holm p < 0.05); "
           "not supported when every one is significantly worse; otherwise inconclusive.",
-          f"- **H2** is a non-inferiority claim, so 'CI crosses 0' is the expected outcome, not a failure. A strategy is "
-          f"supported when it uses fewer tokens than full_history, is not significantly worse (Holm p ≥ 0.05 or better), "
-          f"and the CI lower bound of JGA(S) − JGA(full_history) is above −{ni_margin}; not supported when it is "
-          f"significantly worse or not cheaper; otherwise inconclusive. Margin set with `--ni-margin`.",
-          f"  A sensitivity row repeats the verdicts at a margin of {H2_SENSITIVITY_MARGIN}.",
+          f"- **H2** is a non-inferiority claim. **Primary decision:** the 95% bootstrap CI of JGA(S) − JGA(full_history), "
+          f"resampling sessions and, independently for each strategy, seeds ({B_RESAMPLES} resamples). Supported when "
+          f"S uses fewer tokens and the CI lower bound is above −{ni_margin}; not supported when S is not cheaper or the "
+          f"whole CI is below −{ni_margin}; otherwise inconclusive. Margin set with `--ni-margin`; a sensitivity table "
+          f"repeats the verdicts at {H2_SENSITIVITY_MARGIN}. **Secondary:** exact McNemar on majority-vote correctness "
+          "(Holm). When the two disagree the row is marked *conflicting*, with the reason.",
           "- **H3** statistic: the difference in drop from full_history between high-CMI and monolingual turns. Short "
           "follow-up answers are mostly monolingual and first requests mostly code-mixed, so turn position is "
           "confounded with code-mixing, and the statistic is computed within position strata (test set × first / "
@@ -778,8 +997,9 @@ def write_summary(res, path, out_dir, ni_margin):
          lambda r: f"| {name(r['strategy'])} | {r['acc_strategy']:.3f} | {r['acc_reference']:.3f} | {r['diff']:+.3f} | "
                    f"{fmt_ci(r['ci95_low'], r['ci95_high'])} | {r['p_holm']:.4f} | {r['verdict']} |"),
         ("H2", "H2: window / state / summary are not worse than full_history, at fewer tokens (JGA)", h2,
-         lambda r: f"| {name(r['strategy'])} | {r['acc_strategy']:.3f} | {r['acc_reference']:.3f} | {r['diff']:+.3f} | "
-                   f"{fmt_ci(r['ci95_low'], r['ci95_high'])} | {r['p_holm']:.4f} | {r['token_saving']:.0%} fewer | {r['verdict']} |"),
+         lambda r: f"| {name(r['strategy'])} | {r['jga']:.3f} | {r['jga_reference']:.3f} | {r['diff']:+.3f} | "
+                   f"{fmt_ci(r['ci95_low'], r['ci95_high'])} | {r['token_saving']:.0%} fewer | **{r['verdict']}** | "
+                   f"{fmt_mcnemar(r)} | {r['agreement']} |"),
         ("H3", "H3: the drop from context reduction differs between high-CMI and monolingual turns (JGA)", h3,
          lambda r: f"| {name(r['strategy'])} | {r['scope'].replace('_', ' ')} | {r['n_high_cmi']} / {r['n_mono']} | "
                    f"{'n/a' if r['drop_high'] is None else format(r['drop_high'], '+.3f')} | "
@@ -799,12 +1019,15 @@ def write_summary(res, path, out_dir, ni_margin):
                 hr = [r for r in rows if r["model"] == model and r["test_set"] == headline]
                 if hr:
                     head = {"H1": "| strategy | JGA | JGA current_only | diff | 95% CI | Holm p | verdict |\n|---|---|---|---|---|---|---|",
-                            "H2": "| strategy | JGA | JGA full_history | diff | 95% CI | Holm p | tokens | verdict |\n|---|---|---|---|---|---|---|---|",
+                            "H2": "| strategy | JGA | JGA full_history | diff | 95% CI (sessions + seeds) | tokens | primary: NI | secondary: McNemar | agreement |\n|---|---|---|---|---|---|---|---|---|",
                             "H3": "| strategy | method | turns high / mono | drop high | drop mono | diff | 95% CI or p (Holm) | verdict |\n|---|---|---|---|---|---|---|---|"}[h]
                     L += [f"{SET_LABEL[headline]}:", "", head] + [cols(r) for r in hr] + [""]
             if h == "H2":
-                sens = " · ".join(f"{s}: **{v_sens.get(f'H2/{model}/{s}', 'n/a')}**" for s in sets)
-                L += [f"Sensitivity, margin {H2_SENSITIVITY_MARGIN}: {sens}", ""]
+                conflicts = [r for r in h2 if r["model"] == model and r["agreement"] == "conflicting"]
+                L += [f"- Conflicting, {name(r['strategy'])} ({SET_LABEL[r['test_set']]}): {r['why']}." for r in conflicts]
+                L += [""] if conflicts else []
+                margin_line = " · ".join(f"{s}: **{v_sens.get(f'H2/{model}/{s}', 'n/a')}**" for s in sets)
+                L += [f"Sensitivity, margin {H2_SENSITIVITY_MARGIN}: {margin_line}", ""]
                 sr = [r for r in h2_sens if r["model"] == model and r["test_set"] == headline]
                 if sr:
                     main_v = {r["strategy"]: r["verdict"] for r in h2 if r["model"] == model and r["test_set"] == headline}
@@ -819,6 +1042,7 @@ def write_summary(res, path, out_dir, ni_margin):
                 if any(v.get(f"H3/{model}/{s}") != v.get(f"H3/{model}/{s}/all_turns") for s in sets):
                     L += ["> The headline and all-turns verdicts disagree: part of the all-turns effect comes from turn "
                           "position (short monolingual answers vs code-mixed first requests), not from code-mixing.", ""]
+    L += primary_table(res)
     L += ["## H4: the hybrid tracker (rules + XLM-R NER) degrades less than rules only on messy input", ""]
     if h4:
         L += _h4_lines(h4)
@@ -836,12 +1060,14 @@ def write_summary(res, path, out_dir, ni_margin):
         if m:
             L.append(f"| {name(st)} | {m['tokens_xlmr_mean'][0]:.1f} | {m['tokens_cl100k_mean'][0]:.1f} | "
                      f"{m['latency_ms_mean'][0]:.1f} ({m.get('device')}) |")
-    L += ["", "## Gold (development set, reported separately)", "",
-          "| model | strategy | JGA (mean ± std) | intent acc | 95% CI JGA |", "|---|---|---|---|---|"]
+    L += [""] + token_ratio_lines(res)
+    L += convergence_lines(conv, sens, res)
+    L += ["## Gold (development set, reported separately)", "",
+          "| model | strategy | JGA mean ± std | JGA median | intent acc | 95% CI JGA |", "|---|---|---|---|---|---|"]
     for k, m in res["metrics"].items():
         if m["test_set"] == "gold":
             L.append(f"| {MODELS[m['model']]} | {name(m['strategy'])} | {m['jga'][0]:.3f} ± {m['jga'][1]:.3f} | "
-                     f"{m['intent_acc'][0]:.3f} | {fmt_ci(*m['jga_ci95'])} |")
+                     f"{m['jga'][2]:.3f} | {m['intent_acc'][0]:.3f} | {fmt_ci(*m['jga_ci95'])} |")
     L += ["", "## Caveats", "",
           f"- {name('keyword_summary')} and {name('structured_state')}: they read gold language/entity tags; "
           "summary reads only the text.",
@@ -909,7 +1135,7 @@ def plot_all(res, out_dir):
     fig, axes = plt.subplots(1, len(sets), figsize=(4.6 * len(sets), 4.4), squeeze=False)
     for ax, s in zip(axes[0], sets):
         for model in models:
-            pts = [(res["metrics"][k]["tokens_xlmr_mean"][0], *res["metrics"][k]["jga"], st)
+            pts = [(res["metrics"][k]["tokens_xlmr_mean"][0], *res["metrics"][k]["jga"][:2], st)
                    for st in strategies for k in [f"{model}/{st}/{s}"] if k in res["metrics"]]
             ax.errorbar([p[0] for p in pts], [p[1] for p in pts], yerr=[p[2] for p in pts], fmt="o", ms=7, capsize=3,
                         lw=1.2, color=MODEL_COLOUR[model], markeredgecolor="#fcfcfb", markeredgewidth=1.5,
@@ -1037,6 +1263,8 @@ def main(argv=None):
     ap.add_argument("--ni-margin", type=float, default=0.05, help="H2 non-inferiority margin on JGA")
     ap.add_argument("--overwrite", action="store_true", help="replace results already in --out-dir")
     ap.add_argument("--no-plots", action="store_true")
+    ap.add_argument("--runs-json", default=None,
+                    help="notebook training log for the convergence check (default: runs.json next to --preds-dir)")
     a = ap.parse_args(argv)
 
     os.makedirs(a.out_dir, exist_ok=True)
@@ -1054,12 +1282,34 @@ def main(argv=None):
     res["settings"]["run_at"] = time.strftime("%Y-%m-%d %H:%M")
     res["settings"]["preds_dir"] = a.preds_dir
 
+    # convergence check (sensitivity only): the notebook's training log, next to the preds folder by default
+    runs_json = a.runs_json or os.path.join(os.path.dirname(os.path.normpath(a.preds_dir)), "runs.json")
+    conv = sens = None
+    if os.path.exists(runs_json):
+        with open(runs_json, encoding="utf-8") as fh:
+            conv = convergence_check(json.load(fh), list(runs))
+        flagged = {(r["model"], r["strategy"], r["seed"]) for r in conv if r["flagged"]}
+        res["convergence_check"] = {"runs_json": runs_json, "rule": f"final loss > {CONV_LOSS_FACTOR:g}x median of the "
+                                    f"other seeds AND best dev F1 >= {CONV_DEV_GAP} below their median",
+                                    "defined_after_seeing_failures": True, "flagged": sorted(map(list, flagged))}
+        if flagged:
+            print(f"convergence check: {len(flagged)} flagged run(s) {sorted(flagged)}; repeating the analysis without them")
+            kept = {k: v for k, v in runs.items() if k not in flagged}
+            r2 = analyse(kept, table, states, a.ni_margin)
+            sens = {"metrics": r2["metrics"], "verdicts": verdicts(r2, a.out_dir, a.ni_margin)[0],
+                    "primary_verdicts": verdicts(res, a.out_dir, a.ni_margin)[0]}
+            res["sensitivity_excluding_flagged"] = {"verdicts": sens["verdicts"],
+                                                    "seeds_per_run": r2["settings"]["seeds_per_run"]}
+        write_csv(os.path.join(a.out_dir, "convergence_check.csv"), conv)
+    else:
+        print(f"no {runs_json}: convergence check skipped")
+
     with open(os.path.join(a.out_dir, "context_jga_results.json"), "w", encoding="utf-8") as fh:
         json.dump(res, fh, ensure_ascii=False, indent=2)
     write_csv(os.path.join(a.out_dir, "stats_tests.csv"), res["stats_tests"])
     write_csv(os.path.join(a.out_dir, "cmi_breakdown.csv"), res["cmi_breakdown"])
     write_csv(os.path.join(a.out_dir, "interaction_tests.csv"), res["interaction_tests"])
-    write_summary(res, os.path.join(a.out_dir, "summary.md"), a.out_dir, a.ni_margin)
+    write_summary(res, os.path.join(a.out_dir, "summary.md"), a.out_dir, a.ni_margin, conv, sens)
     if not a.no_plots:
         plot_all(res, a.out_dir)
 

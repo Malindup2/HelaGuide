@@ -154,7 +154,91 @@ def test_interaction_ci_with_one_session_per_turn():
     assert lo == pytest.approx(1.0) and hi == pytest.approx(1.0)
 
 
+# ---------------------------------------------------------------- convergence check
+def _hist(final_loss, best_dev):
+    return [{"epoch": 1, "loss": 1.0, "dev": best_dev - 0.05}, {"epoch": 2, "loss": final_loss, "dev": best_dev}]
+
+
+def test_convergence_rule_needs_both_conditions():
+    from context_eval import convergence_check
+    runs_json = {
+        "seed1/window_2": {"xlmr": {"history": _hist(0.05, 0.70)}, "tfidf": {"gold": {}}},
+        "seed2/window_2": {"xlmr": {"history": _hist(0.06, 0.66)}},
+        "seed3/window_2": {"xlmr": {"history": _hist(0.56, 0.46)}},     # 10x loss AND 0.22 dev gap -> flagged
+        "seed1/summary": {"xlmr": {"history": _hist(0.05, 0.80)}},
+        "seed2/summary": {"xlmr": {"history": _hist(0.07, 0.78)}},
+        "seed3/summary": {"xlmr": {"history": _hist(0.50, 0.75)}},      # high loss, dev fine -> not flagged
+        "seed1/window_3": {"xlmr": {"history": _hist(0.03, 0.74)}},
+        "seed2/window_3": {"xlmr": {"history": _hist(0.03, 0.73)}},
+        "seed3/window_3": {"xlmr": {"history": _hist(0.04, 0.60)}},     # dev low, loss fine -> not flagged
+    }
+    keys = [(m, st, sd) for st in ("window_2", "summary", "window_3") for sd in (1, 2, 3) for m in ("xlmr", "tfidf")]
+    rows = {(r["model"], r["strategy"], r["seed"]): r for r in convergence_check(runs_json, keys)}
+    assert rows[("xlmr", "window_2", 3)]["flagged"]
+    assert rows[("xlmr", "window_2", 3)]["loss_ratio"] == pytest.approx(0.56 / 0.055, abs=0.01)
+    assert [k for k, r in rows.items() if r["flagged"]] == [("xlmr", "window_2", 3)]
+    assert rows[("tfidf", "window_2", 1)]["note"].startswith("no training history")
+
+
+# ---------------------------------------------------------------- H2: primary NI CI, secondary McNemar
+def test_h2_verdict_and_conflicts():
+    from context_eval import h2_verdict
+    ni = lambda lo, hi, tok=20: {"ci95_low": lo, "ci95_high": hi, "tokens": tok, "tokens_reference": 50}
+    mc = lambda diff, p: {"diff": diff, "p_holm": p}
+    assert h2_verdict(ni(-0.03, 0.02), mc(-0.01, 0.6), 0.05)[:3] == ("supported", "not significantly worse", "agree")
+    v = h2_verdict(ni(-0.04, -0.01), mc(-0.03, 0.01), 0.05)          # within the margin, but McNemar: worse
+    assert v[0] == "supported" and v[2] == "conflicting" and "margin" in v[3]
+    v = h2_verdict(ni(-0.15, -0.07), mc(-0.10, 0.20), 0.05)          # CI below the margin, McNemar: no difference
+    assert v[0] == "not supported" and v[2] == "conflicting"
+    assert h2_verdict(ni(-0.08, 0.02), mc(-0.03, 0.3), 0.05)[:3] == ("inconclusive", "not significantly worse", "agree")
+    assert h2_verdict(ni(-0.01, 0.02, tok=60), mc(0.0, 1.0), 0.05)[0] == "not supported"     # not cheaper
+
+
+def test_two_level_bootstrap_with_one_seed_equals_session_bootstrap():
+    sid = [0, 0, 1, 1, 2, 2, 3, 3]
+    a, b = np.array([[1, 0, 1, 1, 0, 1, 1, 1]], float), np.array([[1, 1, 1, 1, 1, 1, 0, 1]], float)
+    bs = Bootstrap(sid, n_resamples=300, seed=4)
+    assert bs.two_level_diff_ci(a, b) == bs.diff_ci(a[0], b[0])
+    # more seeds: deterministic, and seeds may differ in number between the two strategies
+    a3 = np.array([[1, 0, 1, 1, 0, 1, 1, 1], [1, 1, 1, 0, 0, 1, 1, 1], [0, 0, 1, 1, 0, 1, 1, 1]], float)
+    assert bs.two_level_diff_ci(a3, b) == Bootstrap(sid, n_resamples=300, seed=4).two_level_diff_ci(a3, b)
+
+
 # ---------------------------------------------------------------- end to end on fake predictions
+def test_end_to_end_with_unequal_seeds_and_a_flagged_run(tmp_path):
+    from fixtures.fake_context_preds import make_fake_preds
+    if not os.path.exists(os.path.join(RESEARCH, "data", "seed_all.json")):
+        pytest.skip("data/seed_all.json missing (python experiments/prepare_labelstudio.py)")
+    preds = tmp_path / "context_v2" / "preds"
+    cwd = os.getcwd()
+    os.chdir(RESEARCH)
+    try:
+        make_fake_preds(str(preds), seeds=(1, 2, 3), max_sessions=3)
+        for m in ("xlmr", "tfidf"):                                    # window_3 has seeds 1-2 only
+            (preds / f"{m}__window_3__seed3.jsonl").unlink()
+        runs_json = {f"seed{sd}/{st}": {"xlmr": {"history": _hist(0.6 if (st, sd) == ("summary", 3) else 0.05,
+                                                                  0.4 if (st, sd) == ("summary", 3) else 0.75)}}
+                     for st in ("current_only", "window_2", "window_3", "keyword_summary", "structured_state",
+                                "summary", "full_history") for sd in (1, 2, 3)}
+        (tmp_path / "context_v2" / "runs.json").write_text(json.dumps(runs_json), encoding="utf-8")
+        main(["--preds-dir", str(preds), "--out-dir", str(tmp_path / "out"), "--no-plots"])
+    finally:
+        os.chdir(cwd)
+    res = json.loads((tmp_path / "out" / "context_jga_results.json").read_text(encoding="utf-8"))
+    assert res["settings"]["seeds_per_run"]["xlmr/window_3"] == [1, 2]
+    assert res["metrics"]["xlmr/window_3/fresh"]["seeds"] == 2 and len(res["metrics"]["xlmr/window_3/fresh"]["jga"]) == 3
+    assert res["convergence_check"]["flagged"] == [["xlmr", "summary", 3]]
+    assert res["sensitivity_excluding_flagged"]["seeds_per_run"]["xlmr/summary"] == [1, 2]
+    ni = [r for r in res["h2_noninferiority"] if r["model"] == "xlmr" and r["strategy"] == "window_3"]
+    assert ni and all(r["seeds"] == 2 and r["seeds_reference"] == 3 for r in ni)
+    assert {r["bucket"] for r in res["token_ratio"]} >= {"all", "pure_si", "pure_en", "mixed"}
+    summary = (tmp_path / "out" / "summary.md").read_text(encoding="utf-8")
+    for text in ("primary: NI", "secondary: McNemar", "Token tax", "Convergence check",
+                 "defined after seeing the failed runs", "flagged runs excluded", "Seeds differ between runs"):
+        assert text in summary, text
+    assert (tmp_path / "out" / "convergence_check.csv").stat().st_size > 0
+
+
 def test_end_to_end_on_fake_predictions(tmp_path):
     from fixtures.fake_context_preds import make_fake_preds
     if not os.path.exists(os.path.join(RESEARCH, "data", "seed_all.json")):
