@@ -4,7 +4,7 @@
 **Project:** AI-Driven Citizen-Service Orchestrator (J26-SE-354)
 **Project folder:** `HelaGuide\components\c1-intent\research\` in the team repo (`data\`, `experiments\`, `docs\`, `results\`, two Colab notebooks; `models\` local only, trained models on Drive). Originally `D:\Research\cs-intent-engine`.
 **Next milestone:** PP1 — due 20 Oct 2026
-**Last updated:** 19 Oct 2026
+**Last updated:** 21 Oct 2026
 
 Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 
@@ -19,10 +19,10 @@ Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 | 3. Annotation & data split | ✅ (guideline doc pending) | Annotation & data split |
 | 4. Language segmentation layer | 🔄 XLM-R trained, 3 seeds (0.973 ± 0.005 on fresh set); module wrap pending | Language segmentation layer |
 | 5. Intent classifier | 🔄 v2 with all 12 intents (`run_v2_seed1`, 1 seed): XLM-R 0.852 acc / 0.791 macro-F1 on all 142 gold turns, ahead of TF-IDF (0.782 / 0.772); 8-intent results over 3 seeds in Observation 7 | Intent classifier |
-| 6. Entity extraction + multi-turn tracking | 🔄 Hybrid extractor + state tracker + XLM-R NER fallback: fresh JGA 0.94 (gold intent), full pipeline 0.84 gold / 0.82–0.84 fresh; topic kept across turns by the intent policy (Observation 11); Rasa pending | Entity extractor + multi-turn tracking |
-| 7. FastAPI service + routing | ✅ for PP1: real engine behind `/v1/intent`, C1-only `/v1/intent/details` with routing, active intent and bot reply, demo page at `/demo`, 66 tests (branch `c1/api`); PostgreSQL sessions pending | FastAPI endpoint + routing |
+| 6. Entity extraction + multi-turn tracking | 🔄 Hybrid extractor + state tracker + XLM-R NER fallback: fresh JGA 0.94 (gold intent), full pipeline 0.84 gold / 0.82–0.84 fresh; topic kept across turns (Observation 11); slot frames, several requests, variant question and condition facts (Observations 12–13); Rasa pending | Entity extractor + multi-turn tracking |
+| 7. FastAPI service + routing | ✅ real engine behind `/v1/intent`, C1-only `/v1/intent/details` with routing, active intent, request lists, conditions and bot reply; `c1/api` merged (#34); demo page at `/demo` with model warm-up (`c1/demo-page`, not merged); 149 tests; PostgreSQL sessions pending | FastAPI endpoint + routing |
 | 8. PP1 demo & slides | 🔄 demo page done; video and slides pending | PP1 demo & slides |
-| 9. Context optimization & trade-off evaluation | 🔄 first experiment done (Observation 8: XLM-R + window_3 recommended) | PP2 – Context optimization & evaluation |
+| 9. Context optimization & trade-off evaluation | 🔄 first experiment done (Observation 8: XLM-R + window_3 recommended); v2 run with 12 intents and a held-out synthetic set trained, JGA and statistics script written, preliminary run on seeds 1–3 (21 Oct 14:45) (Observations 14–15) | PP2 – Context optimization & evaluation |
 
 **Headline results (mean ± std over 3 seeds, 16 Oct; `notes.md` Observations 7–8, `docs\c1_results_log.md`)**
 - Language ID on the fresh, human-written test set: XLM-R **0.973 ± 0.005** vs fastText 0.595 vs heuristic 0.773 (SI/EN words). On Singlish: **0.955** vs 0.262 vs 0.829. At code-switch points: 0.973 vs fastText 0.507
@@ -31,6 +31,7 @@ Status key: ✅ done · 🔄 in progress · ⬜ not started · ⚠️ blocked
 - Context strategies (sessions of joined dialogues): XLM-R + window_3 matches full history on gold (0.896 vs 0.897) with a fixed input size; TF-IDF gets **worse** with more context (full history 0.683)
 - **18 Oct, v2 with all 12 intents (Observation 10, 1 seed):** intent XLM-R 0.852 acc / 0.791 macro-F1 on all 142 gold turns (TF-IDF 0.782 / 0.772); full-pipeline JGA 0.84 gold; entity F1 on fresh 0.783 with rules + XLM-R NER
 - Above the 18 Oct line, the results come from the 8-core-intent silver set
+- **21 Oct, context v2 (Observation 15, intent accuracy, 3 seeds):** XLM-R + window_3 is level with full history on the held-out synthetic set (0.724 vs 0.715) with 44% fewer tokens; full history is still best on fresh (0.900 vs 0.860); TF-IDF is again worst with full history
 
 **Current blockers**
 - ⚠️ C2 confirmation of the two proposed service IDs (`svc:marriage_registration`, `svc:death_certificate`) and the other questions in `docs\c2_open_questions.md` (ready to send)
@@ -325,6 +326,11 @@ label-studio
   - It switches only when another core intent comes at ≥ 0.75 and the message names that service (`SERVICE_KEYWORDS` in `c1_dst.py`). An answer to a pending slot question never switches
   - A complaint is routed to C3 without replacing the active intent
   - ⬜ Not yet measured on gold/fresh dialogues (`dst_eval.py` scores the tracker, not `Session`)
+- ✅ Policy extended (21 Oct, Observation 13):
+  - a switch is also accepted when the message names another service and the current message alone (no history) is that service at ≥ 0.5
+  - complaints are also checked on the current message alone (on a slot answer they need ≥ 0.75), so a complaint after passport turns no longer depends only on the window_3 prediction
+  - several requests per conversation: the old request is filed as completed or pending, and the bot offers to resume a pending one
+  - **variant question:** "i need a NIC" with no variant cue (`VARIANT_KEYWORDS` in `c1_dst.py`) keeps `svc:nic`, sets `variant_pending` and asks which kind; the answer's cue, or a slot only one variant has, picks it
 - ⬜ Tune hyperparameters
 - ⬜ Confusion matrix figure for PP1
 - ✅ Checkpoints on Drive, not git: `MyDrive/c1_models/run_v2_seed1` is the deployment model since 18 Oct (before that `run_seed1`; seed 42 models were lost)
@@ -360,7 +366,11 @@ label-studio
   - Why seqeval: scores whole entities, not individual tokens, which is the standard for NER
 - ✅ Slot carryover across turns (e.g. turn 1 "NIC eka wenas karanna one", turn 2 "Colombo 7" → fills `district`), using the bot's last question for short answers, yes/no and confirmations
 - ✅ Handle corrections ("ne, Gampaha") and intent switches mid-dialogue (after a switch, keep only the slots the new intent uses)
-- ✅ Slot state per intent in `Session` (19 Oct, Observation 11): on a switch, district and applicant_for carry over (also when said under an intent without that slot), and switching back restores the old intent's slots. The tracker itself (and so the JGA numbers) is unchanged
+- ✅ Slot state per intent in `Session` (19 Oct, Observation 11): switching back restores the old intent's slots
+- ✅ Slot frames (20 Oct, Observation 12, replaces the 19 Oct carry-over): a new request starts empty except for the conversation's district, which is *assumed* until the citizen confirms it ("Thama Galle neda?"); `applicant_for` and condition facts carry over only on a back-reference ("eyata", "for her"). Found in a live demo (district and `applicant_for = self` leaked into a new request; "for my daughter" stored as `purpose`). Tracker JGA after the fix: gold 0.979, synthetic 0.750 (was 0.746), fresh 0.92; synthetic `purpose` F1 0.946 → 0.981
+- ✅ Tracker additions (20 Oct, Observation 12): `purpose` only from the keyword list, free text only into the requested slot when no other slot matches, a bare "i" / "mama" is no longer `applicant_for = self`, more family words for `applicant_for`
+- ✅ `Session` additions (21 Oct, Observation 13): towns → district (about 80 towns), "danne na" → `unknown`
+- ✅ Condition facts (`extract_conditions()`): `applicant_age`, `applicant_minor`; never asked for, kept per request, meaning left to C2
 - ✅ Joint goal accuracy (`experiments\dst_eval.py`, gold intent, Observation 9). Gold is the development set for the rules; synthetic and fresh are held out:
 
   | Tracker setting | Gold (dev, 142) | Synthetic (726) | Fresh (50) |
@@ -405,6 +415,15 @@ label-studio
 - ✅ `/v1/intent` is unchanged in shape; it now projects the **active** intent, so a complaint in the middle of a passport request still sends the passport request
 - ✅ Demo page `GET /demo` (`app\static\demo.html`, C1-only, not in the OpenAPI docs): chat that sends C1's reply back as `bot_text`, and per turn shows language tags, intent with lock and confidence, slots (changes highlighted), route, ready, and the contract next to the full state. Presets A, LOCK, SWITCH, B, C, SI, EN
 - ✅ Tests: 66 (19 new in `test_intent_policy.py` and `test_demo_page.py`, with a fake model that misreads follow-up turns)
+
+### What was built (21 Oct)
+- ✅ Tracker and `Session` changes of Observations 12–13 copied to `app\core\dst.py` / `engine.py` (`8dd1f40`, `ad8c4ad`)
+- ✅ `/v1/intent/details` adds `state_version`, `assumed_slots`, `variant_pending`, `completed_requests`, `pending_requests` (`RequestSummary`) and `conditions`; `intent_source` adds `current_message_switch`, `pending_resume`, `variant_answer`, `service_keyword`, `greeting`
+- ✅ `/v1/intent` unchanged in shape; a district of `unknown` is sent as null
+- ✅ Log line adds `source` and `active`
+- ✅ Models load at startup with one warm-up turn (`pipeline.warmup()`, FastAPI lifespan; no-op in stub mode). Demo page committed with a **MULTI** preset (NIC, then passport) and `static/*.html` as package data (`53c8a7b`, branch `c1/demo-page`)
+- ✅ `conditions` and `state_version` added to `c1_contract_proposal.md`
+- ✅ Tests: **149** pass in stub mode (new: `test_slot_frames.py`, `test_multi_requests.py`, `test_conditions_variants.py`)
 
 ### Routing (`/v1/intent/details` → `route`)
 
@@ -467,7 +486,7 @@ So C1 keeps its full 12-intent state internally (in memory for now; PostgreSQL s
 - ⬜ Measure the intent policy on gold and fresh dialogues (JGA through `Session`, with and without the policy)
 
 **Known model limits seen in the service (18 Oct, `run_v2_seed1`):**
-- Complaints are weak: of 6 test complaint messages, each in a new session, only 2 were `feedback_complaint` (0.42, 0.44); the others went to `unsupported_service`, `passport_new` or below the threshold. After a passport turn, window_3 context pulls a complaint to `passport_renew` (0.86); on 19 Oct, after two passport turns, to `passport_new` (0.77). The intent policy cannot route a complaint the model does not predict. Fix after PP1 with more training data, measured on held-out data; a no-retraining option is to check for complaints on the current message only
+- Complaints are weak (model): of 6 test complaint messages, each in a new session, only 2 were `feedback_complaint` (0.42, 0.44); the others went to `unsupported_service`, `passport_new` or below the threshold. After a passport turn, window_3 context pulls a complaint to `passport_renew` (0.86); on 19 Oct, after two passport turns, to `passport_new` (0.77). The intent policy cannot route a complaint the model does not predict. Fix after PP1 with more training data, measured on held-out data; since 21 Oct complaints are also checked on the current message alone, which helps only when the model predicts the complaint from that message
 - `general_question` is rarely predicted: "what documents do I need for a new NIC?" → `nic_update` 0.50, "NIC ekak ganna mona documents da one?" → below the threshold. So `check_requirements` is not in the demo. Inside a conversation with an active intent, a documents question now stays on that intent
 - A short "ow ikmanata one" after an NIC-lost turn flipped to `nic_update` (0.71). Since 19 Oct the active intent is kept unless the message names a service, so this no longer switches
 - An unsure first message can lock (19 Oct): "mata udaw ekak one" → `nic_new` 0.63, above the 0.5 first-turn threshold, so the bot asks for a district instead of "which service?"
@@ -479,7 +498,7 @@ Why FastAPI: fast, async, auto-generates API docs, and the team already uses it 
 ## 8. PP1 demo & slides 🔄 (due 20 Oct)
 
 - ✅ Demo dialogues in `service\scripts\demo_conversation.py` (18 Oct): **A** NIC lost with urgency, district Matara corrected to Galle, ends with nothing missing; **B** complaint → `trust_verification`; **C** driving licence → `fallback`; Sinhala-script birth certificate copy; English new passport
-- ✅ Demo page `http://127.0.0.1:8001/demo` (19 Oct, §7) with these sessions plus **LOCK** (passport kept over misread follow-ups) and **SWITCH** (passport, then NIC with the district carried over). The page's session B is a complaint *after* two passport turns, which the model reads as `passport_new` (§7 known limits); for the demo, show the complaint as a first message (`demo_conversation.py` B)
+- ✅ Demo page `http://127.0.0.1:8001/demo` (19 Oct, §7) with these sessions plus **LOCK** (passport kept over misread follow-ups) and **SWITCH** (passport, then NIC with the district carried over). The page's session B is a complaint *after* two passport turns; on 19 Oct the model read it as `passport_new`, and since 21 Oct complaints are also checked on the current message alone (§5). **MULTI** (NIC, then passport) added 21 Oct
 - 🔄 Test full demo flow end to end (C1 alone ✅ against a live uvicorn and the demo page; through the gateway ⬜)
 - ⬜ Record a backup demo video
 - ⬜ Slides
@@ -507,7 +526,17 @@ This is the core research contribution. First experiment done early: `research\c
 - 🔄 Measure per strategy: intent macro-F1, tokens per turn and GPU/CPU latency done; joint goal accuracy needs slot tracking (§6)
 - ✅ Trade-off curve: `results\context_tradeoff_e15.png`, `results\context_token_growth_e15.png`
 - 🔄 Error analysis: accuracy by turn type (switch vs same-intent) done; individual switch-turn errors not yet analysed
-- **Result:** XLM-R + window_3 is the recommended default: within 0.001 of full history on gold and 0.037 on fresh, with a fixed input size. TF-IDF + structured state or window_2 is the CPU option (about 2 ms per turn)
+- **Result (Observation 8):** XLM-R + window_3 is the recommended default: within 0.001 of full history on gold and 0.037 on fresh, with a fixed input size. TF-IDF + structured state or window_2 is the CPU option (about 2 ms per turn)
+
+### Context v2 (21 Oct, Observations 14–15) 🔄
+- ✅ `experiments\context_strategies.py`: input builders shared by the notebook and the local scripts; new text-only `summary` strategy (earlier sentences with a service or slot cue in any of the three styles, ≤ 48 tokens)
+- ✅ Held-out synthetic test set: 79 dialogues / 199 turns, split by dialogue (`data\synthetic\context_v2_split.json`, seed 0); sessions stitched within each part only
+- ✅ Colab run: 7 strategies × XLM-R (15 epochs) and TF-IDF × seeds 1, 2, 3, 12 intents; one prediction per test turn (`results\context_v2\preds\`, local), summary in `results\context_v2\runs.json`
+- ✅ `experiments\context_eval.py`: JGA per strategy through the tracker, Code-Mixing Index buckets, cluster-bootstrap CIs, McNemar + Holm, H1–H4 verdicts in `summary.md`; 26 tests in `research\tests\` with fake predictions
+- ✅ H3 headline changed to a permutation test within turn-position strata, and `experiments\h3_calibration.py` checks false positives on null data (both committed, `2ea300e`)
+- ⬜ Train seeds 4 and 5 for every strategy (2 of 21 XLM-R runs did not converge; no post-hoc exclusion)
+- ⬜ Run `context_eval.py` and `h3_calibration.py` (a preliminary 3-seed `context_eval.py` run exists, 21 Oct 14:45, before the H3 calibration); write `perturb.py` (H4) and `bench_cpu.py` (scale claim)
+- ⬜ Allow `results\context_v2\runs.json` and the eval outputs in `research\.gitignore`
 
 Why: no existing work measures this trade-off for Sinhala-English code-switched multi-turn dialogue. The curve is the research result.
 
@@ -525,9 +554,10 @@ Team repo: `github.com/Malindup2/HelaGuide`. Rules from `CONTRIBUTING.md`:
 - No names, NIC numbers, phone numbers or addresses anywhere, including test data and logs
 - No Claude co-author lines in commits or PRs
 
-**Branches** (as of 19 Oct 2026). C1 pull requests are merged into `feate-multilingual-intent-entity-engine`, not straight into `main`.
-- **`c1/api`** (current): branched from `c1/support-intents`. Real engine in the service, `/v1/intent/details`, sessions, tests, contract proposal, v2 results (Observation 10). **Pushed**, not merged. The 19 Oct work (demo page, intent policy, Observation 11) is not committed yet
-- Merged into `feate-multilingual-intent-entity-engine`: `c1/synthetic-data` (#22), `c1/context-experiment` (#31), `c1/dst-tracker` (#32), `c1/support-intents` (#33)
+**Branches** (as of 21 Oct 2026). C1 pull requests are merged into `feate-multilingual-intent-entity-engine`, not straight into `main`.
+- **`c1/context-v2`** (current, local only): branched from `c1/demo-page`. Context v2 notebook, `context_strategies.py`, split, `context_eval.py`, research tests (`49f28c5`, `508f132`), H3 permutation test and `h3_calibration.py` (`2ea300e`)
+- **`c1/demo-page`**: demo page and model warm-up (`53c8a7b`). **Pushed**, not merged
+- Merged into `feate-multilingual-intent-entity-engine`: `c1/synthetic-data` (#22), `c1/context-experiment` (#31), `c1/dst-tracker` (#32), `c1/support-intents` (#33), `c1/api` (#34: real engine, details endpoint, intent policy, slot frames, multiple requests, Observations 10–11)
 - `c1/seed-dataset`: **PR #20 → `main`**, open. Its commits are all in `c1/synthetic-data` (#22, merged), so close #20
 - `research\.gitignore` allows the reported result files and charts in `results\` (`baseline_fasttext.json`, `fresh_baselines.json`, `synthetic_tag_quality.json`, `xlmr_results_run_*.json`, `xlmr_results_seed*.json`, `c1_context_results_e*.json`, `context_*_e*.png`, `dst_results.json`, `run1\`); everything else there stays local
 
@@ -573,18 +603,25 @@ Paths are relative to `components\c1-intent\`. Full data file descriptions are i
 | `research\experiments\c1_dst.py` | Hybrid slot extractor, state tracker, service keywords (reference copy of `service\app\core\dst.py`) | ✅ |
 | `research\experiments\c1_engine.py` | Full multi-turn engine and `Session` with the intent policy and bot replies (reference copy of `service\app\core\engine.py`) | ✅ |
 | `research\experiments\dst_eval.py` | JGA and slot evaluation (scores the tracker, not `Session`) | ✅ |
+| `research\experiments\context_strategies.py` | Context strategy input builders, split, session stitching (shared with the notebook) | ✅ |
+| `research\experiments\context_eval.py` | Context v2 analysis: JGA, CMI buckets, statistics, H1–H4 summary | 🔄 preliminary run, seeds 1–3 (21 Oct 14:45) |
+| `research\experiments\h3_calibration.py` | False-positive check of the H3 methods on null data | ✅ `2ea300e` |
+| `research\data\synthetic\context_v2_split.json` | Held-out synthetic test dialogues for context v2 | ✅ |
+| `research\results\context_v2\runs.json`, `preds\` | Context v2 intent results and per-turn predictions (local only for now) | ✅ |
+| `research\tests\` | 26 tests for the context scripts (fake predictions in `fixtures\`) | ✅ |
+| `research\inputs\` | Local copies of the Colab inputs (ignored by `c1-intent\.gitignore`) | — |
 | `research\c1_xlmr_train.ipynb` | Colab: XLM-R training and evaluation (language ID, intent, entities) | ✅ |
 | `research\c1_xlmr_train_v2.ipynb` | Colab: v2 training, 12 intents, window_3, left truncation (Observation 10) | ✅ |
 | `research\c1_context_experiment.ipynb` | Colab: context strategies, accuracy vs tokens and latency | ✅ |
-| `research\docs\notes.md` | Research observations (1, 2, 4–11) | 🔄 |
+| `research\docs\notes.md` | Research observations (1, 2, 4–15) | 🔄 |
 | `research\docs\c1_results_log.md` | Results write-up for the report | 🔄 |
 | `research\docs\TASKS.md` | Short PP1 task list | 🔄 |
 | `research\docs\c2_open_questions.md` | Questions for C2 on service IDs | ✅ ready to send |
-| `research\docs\c1_contract_proposal.md` | Proposed optional contract fields (route, variant, service type / urgency, bot_text) | ✅ ready to send |
+| `research\docs\c1_contract_proposal.md` | Proposed optional contract fields (route, variant, service type / urgency, bot_text, conditions, state_version) | ✅ ready to send |
 | `service\app\core\` | `pipeline.py`, `engine.py`, `dst.py`, `projection.py`, `sessions.py` | ✅ |
 | `service\app\static\demo.html` | Demo page served at `GET /demo` | ✅ |
 | `service\scripts\demo_conversation.py` | Demo conversations against `/v1/intent/details` (scripted bot questions, no engine replies) | ✅ |
-| `service\tests\` | 66 tests, stub mode and a fake model, no torch | ✅ |
+| `service\tests\` | 149 tests, stub mode and a fake model, no torch | ✅ |
 
 ## Decision log
 
@@ -628,3 +665,11 @@ Paths are relative to `components\c1-intent\`. Full data file descriptions are i
 | 19 Oct 2026 | Reply language from the script the user typed, not the turn's language tag | The model tags romanized Sinhala as SI, so Singlish got Sinhala-script replies |
 | 19 Oct 2026 | `/v1/intent` projects the active intent; the contract shape is unchanged | The other components keep getting the request being worked on, also during a complaint or a short answer |
 | 19 Oct 2026 | Demo page served by the C1 service itself (`/demo`), not the shared frontend | `frontend\` belongs to C4; same origin means no CORS or proxy |
+| 21 Oct 2026 | A new request carries only the district, as an assumption the bot confirms; applicant_for and condition facts only on a back-reference ("eyata") | Carrying every slot guessed the applicant for the new request (a daughter's certificate, then "mata passport") |
+| 21 Oct 2026 | Several requests per conversation (completed / pending), with an offer to resume | Citizens ask for more than one service and come back to the first |
+| 21 Oct 2026 | A bare service mention with no variant cue asks "which kind?" instead of trusting the classifier's variant | The variant decides C2's fee and documents, and the model's guess on "i need a NIC" is not reliable |
+| 21 Oct 2026 | Complaints and service switches are also judged on the current message alone | window_3 history turned a mid-conversation complaint into `passport_new` (Observation 11) |
+| 21 Oct 2026 | Condition facts (`applicant_age`, `applicant_minor`) are recorded, never asked for, never interpreted by C1 | What a condition implies is C2's decision from the KG |
+| 21 Oct 2026 | Context v2 holds out 20% of the silver set as a synthetic test set, split by dialogue | Observation 8 had no held-out synthetic data; fresh alone is 50 turns |
+| 21 Oct 2026 | Tracker rules frozen (c1_dst.py at 8dd1f40) before any context-v2 JGA was computed; the preliminary 3-seed run (21 Oct 14:45) used the frozen rules. | So the verdicts cannot be tuned to the results |
+| 21 Oct 2026 | H3 headline: permutation test within turn-position strata | Turn position is confounded with code-mixing (follow-ups mostly monolingual) |
