@@ -155,6 +155,8 @@ def resolve_details(req: DetailsRequest) -> IntentDetails:
         language_tags=result["language_tags"],
         code_switched=result["code_switched"],
         latency_ms=result["latency_ms"],
+        context_strategy=result["context_strategy"],
+        context_tokens=result["context_tokens"],
         intent=project(result, req.session_id, req.text),
     )
 
@@ -185,5 +187,7 @@ def _stub_details(req: DetailsRequest) -> IntentDetails:
         language_tags=[],
         code_switched=intent.language == "mixed",
         latency_ms=0.0,
+        context_strategy="window_3",
+        context_tokens=0,
         intent=intent,
     )

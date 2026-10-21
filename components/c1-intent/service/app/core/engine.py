@@ -192,11 +192,23 @@ class C1Engine:
             x["text"] = text[x["start"]:x["end"]]
         return ents
 
+    @property
+    def context_strategy(self):
+        """How the intent model's input is built: window_<n> = the last n user messages."""
+        return f"window_{self.window}" if self.window else "full_history"
+
+    def _intent_input(self, user_turns):
+        ctx = user_turns if not self.window else user_turns[-self.window:]
+        return self.sep.join(ctx)
+
+    def count_context_tokens(self, user_turns):
+        """Tokens the intent model reads for these turns (its tokenizer, with <s> and </s>, before truncation)."""
+        return len(self.tok_int(self._intent_input(user_turns), truncation=False)["input_ids"])
+
     def classify_intent(self, user_turns):
         """user_turns: the citizen's messages so far, oldest first. Uses the last `window` of them."""
         torch = self.torch
-        ctx = user_turns if not self.window else user_turns[-self.window:]
-        enc = self.tok_int(self.sep.join(ctx), truncation=True, max_length=self.max_len, return_tensors="pt")
+        enc = self.tok_int(self._intent_input(user_turns), truncation=True, max_length=self.max_len, return_tensors="pt")
         with torch.no_grad():
             probs = torch.softmax(self.intent(input_ids=enc["input_ids"].to(self.device),
                                               attention_mask=enc["attention_mask"].to(self.device)).logits[0], -1)
@@ -262,6 +274,7 @@ class Session:
         self.e = engine
         self.turns = []             # every user message (turn_id counts these)
         self.history = []           # what the intent model reads: greetings are left out
+        self.context_tokens = 0     # tokens the intent model read on the last turn (0 when it did not run)
         ner = engine.extract_entities if engine.use_ner else None
         self.tracker = DialogueStateTracker(SlotExtractor(ner=ner))
         self.active_intent = None
@@ -281,6 +294,7 @@ class Session:
     def step(self, text, bot_text=None):
         t0 = time.perf_counter()
         self.turns.append(text)
+        self.context_tokens = 0
         tags = self.e.tag_languages(text)
         language = self.e.language_of(tags)
         if not self.history or len(tags) >= 3 or self.reply_lang is None:
@@ -290,6 +304,7 @@ class Session:
         first = not self.history
         self.history.append(text)
         intent, conf = self.e.classify_intent(self.history)
+        self.context_tokens = self.e.count_context_tokens(self.history)
         current = (intent, conf) if first else self.e.classify_current(text)
         before = self.active_intent
         intent_used, source = self._choose_intent(text, intent, conf, current, bot_text, first)
@@ -343,6 +358,8 @@ class Session:
             "language": language,
             "language_tags": [{"word": w, "tag": t} for w, t in tags],
             "code_switched": {t for _, t in tags if t in ("SI", "EN")} == {"SI", "EN"},
+            "context_strategy": self.e.context_strategy,
+            "context_tokens": self.context_tokens,
             "latency_ms": round((time.perf_counter() - t0) * 1000, 1),
         }
 

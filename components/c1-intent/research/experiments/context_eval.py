@@ -1110,12 +1110,22 @@ def _h4_lines(rows):
 
 
 def _bench_lines(rows):
-    L = ["| strategy | p50 ms | p95 ms | turns/s | peak MB | tokens/conversation |", "|---|---|---|---|---|---|"]
-    for r in rows:
-        L.append(f"| {r.get('strategy')} | {r.get('latency_p50_ms')} | {r.get('latency_p95_ms')} | "
-                 f"{r.get('throughput_turns_per_s')} | {r.get('peak_memory_mb')} | {r.get('tokens_per_conversation')} |")
+    """bench_cpu.py writes deployment_benchmark.csv; summarised here so summary.md has the scale claim."""
     verdict = next((r.get("scale_verdict") for r in rows if r.get("scale_verdict")), None)
-    return [f"**{verdict or 'see table'}**", ""] + L + [""]
+    L = ["Metric: CPU latency per turn at batch size 1 (`experiments/bench_cpu.py`, held-out test sessions), "
+         "throughput of one stream, peak process memory, tokens per turn and per conversation (XLM-R tokenizer). "
+         "Intent-model rows measure each strategy's input on `run_v2_seed1` (cost only); the c1_engine row is the "
+         "deployed engine end to end (language ID, intent, NER, tracker, policy) in its own process. The 4-core "
+         "numbers are an **ESTIMATE** (4 workers × 1 thread, linear scaling assumed), not a measurement.", "",
+         f"**{verdict or 'inconclusive (no deployed-engine row)'}**", "",
+         "| model | strategy | threads | p50 ms | p95 ms | turns/s | 4-core ESTIMATE turns/s | peak MB | tokens/turn | "
+         "tokens/conversation |", "|---|---|---|---|---|---|---|---|---|---|"]
+    for r in rows:
+        L.append(f"| {r.get('model', '')} | {name(r.get('strategy', ''))} | {r.get('threads', '')} | "
+                 f"{r.get('latency_p50_ms')} | {r.get('latency_p95_ms')} | {r.get('throughput_turns_per_s')} | "
+                 f"{r.get('est_4core_turns_per_s') or '-'} | {r.get('peak_memory_mb')} | {r.get('tokens_per_turn')} | "
+                 f"{r.get('tokens_per_conversation')} |")
+    return L + [""]
 
 
 # ------------------------------------------------------------------ outputs

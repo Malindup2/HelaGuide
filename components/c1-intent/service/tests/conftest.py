@@ -37,6 +37,12 @@ class FakeEngine:
         self.min_confidence = min_confidence
         self.fallback = fallback
         self.use_ner = False
+        self.window = 3
+        self.context_strategy = "window_3"
+
+    def count_context_tokens(self, user_turns):
+        """Words of the last 3 messages plus <s>, </s> per message (a stand-in for the XLM-R tokenizer)."""
+        return sum(len(t.split()) + 2 for t in user_turns[-self.window:])
 
     def tag_languages(self, text):
         return [(w, "SI" if is_sinhala(w) else "EN") for w, _, _ in words_with_offsets(text)]

@@ -73,4 +73,9 @@ class IntentDetails(BaseModel):
     language_tags: list[LanguageTag]
     code_switched: bool
     latency_ms: float = Field(ge=0)
+    context_strategy: str = Field(description="How the intent model's input is built: window_3 = the last 3 user "
+                                  "messages (the deployed setting, Observation 8)")
+    context_tokens: int = Field(ge=0, description="Tokens the intent model read this turn: the whole context window "
+                                "including the current message, XLM-R tokenizer with <s> and </s>, before "
+                                "truncation; 0 when the model did not run (a greeting)")
     intent: Intent = Field(description="The same projection /v1/intent returns")
