@@ -1,3 +1,5 @@
+> Active integrated PP1 application: see [UNIFIED-README.md](UNIFIED-README.md). The standalone paths below are historical baseline documentation.
+
 # c4-presentation · Context-Aware Adaptive Guidance Presentation Engine
 
 **Owner:** Dias K. S. S.  ·  **Port:** 8004

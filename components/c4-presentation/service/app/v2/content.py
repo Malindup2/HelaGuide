@@ -91,6 +91,8 @@ def validate_overlay(graph, overlay):
         if expr.kind == "selected_option_of":
             if expr.ref not in branches:
                 raise ValueError("unknown branch reference")
+            if branches[expr.ref].selection != "XOR":
+                raise ValueError("selected-option joins require an XOR branch")
             return {a for o in branches[expr.ref].options for a in o.action_ids}
         return set().union(*(refs(c, depth + 1) for c in expr.children))
     for collection in (overlay.variants, overlay.owners):
@@ -162,7 +164,7 @@ def procedure(graph, overlay=None):
     by_id = {a.action_id: a for a in graph.actions}
     for action_id in action_navigation_order(graph):
         a = by_id[action_id]
-        required = [content[c] for c in a.required_content_ids if c != "content:scope"]
+        required = [content[c] for c in a.required_content_ids if c != "content:scope" or content[c].text != graph.disclaimer]
         v = variants.get(a.action_id)
         text = "\n\n".join(c.text for c in required)
         title = a.action_id.split(":", 1)[-1].replace("_", " ").capitalize()

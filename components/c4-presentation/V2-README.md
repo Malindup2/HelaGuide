@@ -1,3 +1,5 @@
+> Active integrated PP1 application: see [UNIFIED-README.md](UNIFIED-README.md). The standalone paths below are historical baseline documentation.
+
 # C4 V2 research workspace
 
 V2 is an additive implementation on `c4/scaffolding-dimensions`. V1 remains the default frontend route and its API, policy and databases are not migrated. Every implementation file belongs to C4.

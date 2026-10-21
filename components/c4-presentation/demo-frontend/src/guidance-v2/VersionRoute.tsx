@@ -1,8 +1,9 @@
 import {useSyncExternalStore} from 'react';
-import InspectorRoute from '../inspector/InspectorRoute';
+import App from '../App';
 import V2App from './V2App';
 function subscribe(listener:()=>void){window.addEventListener('hashchange',listener);return()=>window.removeEventListener('hashchange',listener);}
+/** One citizen application. Historical V2 links return to the integrated workspace. */
 export default function VersionRoute(){
  const hash=useSyncExternalStore(subscribe,()=>window.location.hash,()=> '');
- return hash.startsWith('#c4-v2')?<V2App key={hash} inspector={hash==='#c4-v2-inspector'}/>:<InspectorRoute/>;
+ return hash==='#c4-v2-inspector'||hash.startsWith('#pipeline-inspector')?<V2App key={hash}/>:<App/>;
 }

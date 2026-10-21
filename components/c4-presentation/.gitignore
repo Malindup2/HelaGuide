@@ -1,3 +1,6 @@
 # Generated audit PDF and rendering previews; retained locally.
 /tmp/pdfs/
 /output/pdf/
+
+# Local integrated-browser verification images.
+/output/unified/

@@ -3,3 +3,24 @@
 .v2-conditional-edge{fill:none;stroke:#735390;stroke-width:2;stroke-dasharray:5 4}.v2-facts{font-size:.9rem;color:#385e50}
 
 .v2-map-mobile{display:none}.v2-map-mobile section{padding:12px;border:1px solid #b8cac4;border-radius:8px;margin:8px 0}.v2-map-mobile small{display:block}.v2-map-mobile p{font-size:.9rem}@media(max-width:640px){.v2-map-canvas{display:none}.v2-map-mobile{display:block}}
+
+/* Integrated workspace inherits the established citizen typography and palette. */
+.unified-guidance .v2-shell{max-width:none;padding:0;font:inherit;color:inherit}
+.unified-guidance .v2-message{border:0;border-radius:0;padding:12px 0 0}
+.unified-guidance .v2-message h2{font-size:1.4rem;line-height:1.3}
+.unified-guidance .v2-shell button{padding:8px 12px;font-size:.9rem;background:#fff;border-color:#c9cec2;color:#293322}
+.unified-guidance .v2-action{border:1px solid #dedfd6;border-radius:14px;padding:22px;margin:18px 0;background:#fff}
+.unified-guidance .v2-prose{max-width:80ch}
+.unified-guidance .v2-summary,.unified-guidance .v2-recap{background:#f2f4ec}
+.unified-guidance .v2-adjustments{border-bottom:1px solid #dedfd6;padding:12px 0}
+.unified-guidance .v2-map-canvas svg{max-height:420px;min-width:500px}
+.unified-guidance .v2-map-node{padding:4px!important;font-size:13px!important}
+.profile-settings{border-top:1px solid #dedfd6;padding-top:20px;margin-top:16px}
+.profile-settings summary{cursor:pointer;font-weight:600}.profile-settings label{display:grid;gap:6px;margin:14px 0}.profile-settings .check-row{display:flex}
+.profile-settings fieldset{border:0;padding:8px 0}.profile-settings details{margin:16px 0}.profile-settings select{max-width:100%}
+@media(max-width:640px){.unified-guidance .v2-action{padding:16px}.unified-guidance .section-heading{display:block}.unified-guidance .v2-message h2{font-size:1.2rem}.profile-settings select{width:100%}}
+
+.unified-guidance .v2-map-enlarged .v2-map-canvas svg{max-height:none;min-width:900px}.v2-map-enlarged .v2-map-canvas{max-height:850px;overflow:auto}
+
+.v2-essential-relationships{border-left:3px solid #9aaa8d;padding:10px 14px;margin:14px 0;font-size:.9rem;background:#f7f8f3}
+@media(max-width:640px){.v2-map>.section-heading>button{display:none}}

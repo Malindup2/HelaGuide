@@ -1,5 +1,6 @@
 import { useState } from "react";
-import GuidanceWorkspace from "./guidance/GuidanceWorkspace";
+import WorkspaceGuidance from "./guidance-v2/WorkspaceGuidance";
+import ProfileSettings from "./profiles/ProfileSettings";
 import { API_BASE } from "./api/client";
 import { useWorkspace } from "./app/useWorkspace";
 import ContextSummary from "./profiles/ContextSummary";
@@ -29,7 +30,7 @@ export default function App() {
       <header className="app-header">
         <div className="brand"><Mark /><div><strong>HelaGuide</strong><span>Adaptive guidance workspace</span></div></div>
         <div className="header-status">
-          <a className="tag" href="/#pipeline-inspector" target="_blank" rel="noreferrer">Pipeline Inspector ↗</a>
+          <a className="tag" href="#pipeline-inspector">Pipeline Inspector ↗</a>
           <span className="tag">C4 Research Demo</span>
           <span className={"connection " + (state.health ? "connected" : "")}>
             <i aria-hidden="true" />
@@ -179,17 +180,16 @@ export default function App() {
               </section>
 
               {active && selected && (
-                <GuidanceWorkspace
+                <WorkspaceGuidance
                   key={JSON.stringify([active.session.session_id, selected.procedure_id, active.kind === "profile" ? active.profile.revision : null])}
                   active={active} procedure={selected}
                   disabled={locked || state.pendingMode !== null}
                   onActivityChange={setGuidanceLocked}
-                  onSessionUpdate={workspace.updateSession}
                 />
               )}
               {!active || !selected ? <p className="helper-text">Select a procedure and open a guest workspace or demo profile to show guidance.</p> : null}
 
-              {active && <div className="panel"><ContextSummary active={active} procedures={state.procedures} /></div>}
+              {active && <div className="panel"><ContextSummary active={active} procedures={state.procedures} /><ProfileSettings key={active.session.session_id} active={active} procedures={state.procedures} onSession={workspace.updateSession}/></div>}
 
               <div className="source-note"><span aria-hidden="true">◇</span><div><strong>Research examples, not official instructions</strong><p>{selected?.disclaimer ?? "The catalogue contains research examples. No government transaction, eligibility decision or application submission occurs here."}</p></div></div>
             </>

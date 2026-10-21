@@ -19,13 +19,13 @@ export type Document = { id: string; title: string; scope: string; synthetic: bo
   sources: {evidence_id: string; source_url: string; text: string; retrieved_at: string | null}[];
   graph_fingerprint: string; content_fingerprint: string; content_origin: string;
 };
-export type Receipt = { rating: string; reward: number | null; eligible: boolean; posterior_revision: number };
-export type Journey = {id: string; decision_id: string; document: Document; current_view: string; root_view: string;
+export type Receipt = { exclusion_reason?: string | null; rating: string; reward: number | null; eligible: boolean; posterior_revision: number };
+export type Journey = {constraints_revoked?:boolean; routing?: 'standard'|'adaptive'; id: string; decision_id: string; document: Document; current_view: string; root_view: string;
   views: Record<string, {id: string; parent: string | null; configuration: Configuration; displayed: string[]; rating: Receipt | null}>;
   available_configurations?: Configuration[]; seen: string[]; focus: string | null; focused_routes?: Record<string,string>; events: unknown[];
   opportunities: Record<string, {id: string; dimension: string; available: boolean; visible: boolean}>; token?: string;
 };
-export type EventInput = {type: 'action_visible' | 'opportunity_visible' | 'navigate' | 'detail_open' | 'detail_close' | 'recap_open' | 'source_open' | 'route_focus' | 'reason'; action_id?: string; opportunity_id?: string; value?: string};
-export type Inspector = {journey: Journey; decision: {context: unknown; configuration: Configuration; policy_revision: number; selection_mode: string;
+export type EventInput = {type: 'action_visible' | 'opportunity_visible' | 'navigate' | 'detail_open' | 'detail_close' | 'recap_open' | 'source_open' | 'route_focus' | 'reason' | 'map_expand' | 'map_collapse'; action_id?: string; opportunity_id?: string; value?: string};
+export type Inspector = {journey: Journey; decision: {context: unknown; effective_context?: unknown; configuration: Configuration; policy_revision: number; selection_mode: string;
   feature_names: string[]; features: number[]; scores: {id: string; mean: number; std: number; sampled: number}[];
   evaluation: {id: string; reasons: string[]}[]; draw_seed: string | number; measurements: unknown}; policy: unknown; history_transfer: unknown};

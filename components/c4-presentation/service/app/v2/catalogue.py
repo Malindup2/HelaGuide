@@ -28,8 +28,8 @@ class Configuration(BaseModel):
 
 class Context(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
-    familiarity: int | None = Field(default=None, ge=1, le=5)
-    confidence: int | None = Field(default=None, ge=1, le=5)
+    familiarity: int | None = Field(default=None, ge=1, le=5, strict=True)
+    confidence: int | None = Field(default=None, ge=1, le=5, strict=True)
     preferences: dict[str, str] = Field(default_factory=dict)
     locks: dict[str, str] = Field(default_factory=dict)
     # Explicit accessibility constraints, not inferred diagnoses.

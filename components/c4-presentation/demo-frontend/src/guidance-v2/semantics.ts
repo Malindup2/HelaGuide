@@ -8,10 +8,11 @@ export function expressionText(expression: Expression, doc: Document): string {
   return expression.children.map(c => expressionText(c, doc)).join(expression.kind === 'all_of' ? ' AND ' : ' OR ');
 }
 export function previousActions(journey: Journey, current: string) {
-  const end = journey.seen.indexOf(current);
-  const prior = end < 0 ? journey.seen : journey.seen.slice(0, end);
-  return prior.map(id => journey.document.actions.find(a => a.id === id)!).filter(a => a &&
-    (!a.branch || !journey.focused_routes?.[a.branch] || journey.focused_routes[a.branch] === a.option));
+  const position=journey.document.actions.findIndex(a=>a.id===current);
+  // Previously displayed preceding guidance remains available on revisits.
+  // Browsing position is not a newly inferred execution dependency.
+  return journey.document.actions.slice(0,Math.max(0,position)).filter(a=>journey.seen.includes(a.id) &&
+    (!a.branch || journey.document.branches.find(b=>b.group_id===a.branch)?.selection!=='XOR' || !journey.focused_routes?.[a.branch] || journey.focused_routes[a.branch] === a.option));
 }
 export function relationshipLines(doc: Document): string[] {
   const title = (id: string) => doc.actions.find(a => a.id === id)?.title ?? id;
@@ -19,5 +20,5 @@ export function relationshipLines(doc: Document): string[] {
     ...doc.joins.map(j => `${title(j.target)} requires ${expressionText(j.requirement, doc)}.`),
     ...doc.parallel.map(p => `${p.action_ids.map(title).join(' and ')} may proceed in parallel as explicitly supplied.`),
     ...doc.parallel_areas.map(p => `${p.map(e => expressionText(e, doc)).join(' and ')} are explicitly parallel work areas.`),
-    ...doc.branches.map(b => `${b.selection}: ${b.options.map(o => o.action_ids.map(title).join(' and ')).join(' / ')}. Conditions determine applicability; browsing does not determine eligibility.`)];
+    ...doc.branches.map(b => `${b.selection==='AND'?'Joint requirements':b.selection==='XOR'?'One alternative route':'One or more applicable options'}: ${b.options.map(o => '('+o.action_ids.map(title).join(' and ')+')').join(b.selection==='AND'?' AND ':' OR ')}. Conditions determine applicability; browsing does not determine eligibility.`)];
 }

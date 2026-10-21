@@ -34,22 +34,31 @@ def approve(graph,artifact,reviewer):
         raise ValueError("a named source reviewer is required")
     overlay=Overlay.model_validate(artifact["overlay"]).model_copy(update={"reviewer":reviewer})
     validate_overlay(graph,overlay)
+    if {v.action_id for v in overlay.variants}!={a.action_id for a in graph.actions}:
+        raise ValueError("approval requires a complete wording variant set")
     result={**artifact,"status":"reviewed","source_fingerprint":graph_fingerprint(graph),"overlay":overlay.model_dump(mode="json")}
     result.pop("digest",None)
     result["digest"]=digest(result)
     return result
 
-def resolve(graph,path):
-    artifact=json.loads(Path(path).read_text(encoding="utf-8-sig"))
+def resolve_artifact(graph,artifact):
+    artifact=dict(artifact)
     checksum=artifact.pop("digest",None)
     if artifact.get("status")!="reviewed" or digest(artifact)!=checksum:
         raise ValueError("unreviewed or changed V2 content artifact")
+    if artifact.get("source_fingerprint")!=graph_fingerprint(graph):
+        raise ValueError("reviewed content source fingerprint mismatch")
     overlay=Overlay.model_validate(artifact["overlay"])
+    if not overlay.reviewer.strip() or overlay.reviewer.upper().startswith("PENDING"):
+        raise ValueError("reviewed content requires a named source reviewer")
     result=procedure(graph,validate_overlay(graph,overlay))
     result["document"]["content_origin"]=artifact.get("origin", "reviewed authored content")
     result["document"].pop("content_fingerprint", None)
     result["document"]["content_fingerprint"]=digest(result["document"])
     return result
+
+def resolve(graph,path):
+    return resolve_artifact(graph,json.loads(Path(path).read_text(encoding="utf-8-sig")))
 
 def output_path(value):
     root=Path(__file__).resolve().parents[3]

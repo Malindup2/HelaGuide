@@ -181,7 +181,7 @@ export default function ProfileOnboarding({
             onChange={(event) => setDraft({ ...draft, personalizationEnabled: event.target.checked })} />
           <span>
             <strong>Enable personalized guidance</strong>
-            <span>Use my stated context and relevant history for adaptive presentation.
+            <span>Use my stated context for adaptive presentation. Interaction evidence is retained separately for research.
               I can turn this off later.</span>
           </span>
         </label>

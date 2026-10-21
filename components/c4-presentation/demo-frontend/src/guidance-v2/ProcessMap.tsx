@@ -1,8 +1,9 @@
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import type { Document } from './types';
 import { expressionText, relationshipLines } from './semantics';
 
-export default function ProcessMap({doc, onAction}: {doc: Document; onAction: (id: string) => void}) {
+export default function ProcessMap({doc, onAction,event}: {doc: Document; onAction: (id: string) => void; event?:(type:'map_expand'|'map_collapse')=>void}) {
+  const [enlarged,setEnlarged]=useState(false);
   const marker = useId().replaceAll(':','');
   // Navigation order is not drawn as edges. Only supplied prerequisite edges are solid.
   const depth=new Map(doc.actions.map(a=>[a.id,0]));
@@ -22,8 +23,8 @@ export default function ProcessMap({doc, onAction}: {doc: Document; onAction: (i
     row.forEach((a,i)=>positions.set(a.id,{x:(width-row.length*310)/2+i*310,y:30+level*170}));
   }
   const height=levels*170+30;
-  return <section className="v2-map" aria-label="Integrated supplied process">
-    <h3>Process and responsibilities</h3>
+  return <section className={"v2-map"+(enlarged?" v2-map-enlarged":"")} aria-label="Integrated supplied process">
+    <div className="section-heading"><h3>Process and responsibilities</h3><button onClick={()=>{setEnlarged(!enlarged);event?.(enlarged?'map_collapse':'map_expand');}}>{enlarged?'Compact map':'Enlarge map'}</button></div>
     <p>All supplied actions and relationships. Arrows describe prerequisites, not completed work.</p>
     {doc.stage_edges.length>0 && <aside className="v2-service-flow"><strong>Service-level dependencies</strong>{doc.stage_edges.map((e,i)=><p key={i}>{doc.stages.find(s=>s.service_id===e.source_id)?.name} → {doc.stages.find(s=>s.service_id===e.target_id)?.name}</p>)}<small>These do not add action-level prerequisites.</small></aside>}
     <div className="v2-map-canvas" tabIndex={0} aria-label="Scrollable process diagram"><svg viewBox={`0 0 ${width} ${height}`} role="group" aria-label="Procedure map. A complete text equivalent follows.">
@@ -44,9 +45,9 @@ export default function ProcessMap({doc, onAction}: {doc: Document; onAction: (i
         {doc.joins.filter(j=>j.target===a.id).map((j,i)=><p key={i}>Requires {expressionText(j.requirement,doc)}</p>)}
       </section>)}
     </div>
-    <div className="v2-map-groups"><p>* Dashed join links describe the requirement expression below; they do not require all alternative routes.</p>
-      {doc.branches.map(b=><section key={b.group_id}><strong>{b.selection === 'XOR' ? 'One applicable route' : `${b.selection} route group`}</strong>
-        {b.options.map(o=><p key={o.option_id}>{o.condition_ids.map(id=>doc.conditions.find(c=>c.condition_id===id)?.text).join(' AND ')}: {o.action_ids.map(id=>doc.actions.find(a=>a.id===id)?.title).join(' · ')}</p>)}
+    <div className="v2-map-groups">{doc.joins.length>0&&<p>* Dashed join links describe the requirement expression below; they do not require all alternative routes.</p>}
+      {doc.branches.map(b=><section key={b.group_id}><strong>{b.selection === 'XOR' ? 'One applicable route' : b.selection==='AND'?'Joint requirements':'One or more applicable options'}</strong>
+        {b.options.map(o=><p key={o.option_id}>{o.condition_ids.map(id=>doc.conditions.find(c=>c.condition_id===id)?.text).join(' AND ')}: {doc.actions.filter(a=>o.action_ids.includes(a.id)).map(a=>a.title).join(' · ')}</p>)}
       </section>)}
       {doc.joins.map((j,i)=><p key={`j${i}`}><strong>{doc.actions.find(a=>a.id===j.target)?.title}:</strong> requires {expressionText(j.requirement,doc)}.</p>)}
       {doc.parallel.map(p=><p key={p.group_id}><strong>Explicit parallel group:</strong> {p.action_ids.map(id=>doc.actions.find(a=>a.id===id)?.title).join(' + ')}</p>)}

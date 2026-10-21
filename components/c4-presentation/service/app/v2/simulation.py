@@ -36,14 +36,14 @@ def probability(config, context, measurements, regime="interaction"):
     # Nonlinear misspecification: the model is not handed this response function.
     return 1/(1+math.exp(-(2.0-1.6*mismatch-redundancy)))
 
-def run(output, *, seed=17, train=40, evaluation=12):
+def run(output, *, seed=17, train=40, evaluation=12, runtime_factory=Runtime, procedures=None):
     output=Path(output).resolve()
     if not output.is_relative_to(C4_ROOT) or "v2" not in output.parts:
         raise ValueError("experiment outputs must remain inside C4/v2 storage")
     if output.exists():
         raise ValueError("refusing to overwrite an experiment; choose a new output directory")
     output.mkdir(parents=True)
-    procedures=registry()
+    procedures=registry() if procedures is None else procedures
     synthetic={k:v for k,v in procedures.items() if v["document"]["synthetic"]}
     heldout=next(k for k in synthetic if "conditional" in k)
     training=[k for k in synthetic if k!=heldout]
@@ -55,7 +55,7 @@ def run(output, *, seed=17, train=40, evaluation=12):
             "limitations":"Synthetic outcomes only. No participant validation. Parameter uncertainty is not calibrated support-fit probability."}
     for variant in ("pairwise","threeway","full"):
         path=output/f"{variant}.sqlite3"
-        runtime=Runtime(path,seed=seed,variant=variant,procedures=procedures)
+        runtime=runtime_factory(path,seed=seed,variant=variant,procedures=procedures)
         trace=[]
         for index,(pid,f,n,uniform) in enumerate(schedule):
             context=Context(familiarity=f,confidence=n)
@@ -67,7 +67,7 @@ def run(output, *, seed=17, train=40, evaluation=12):
             receipt=runtime.rate(j["id"],j["token"],j["current_view"],rating)
             trace.append({"trial":index,"procedure":pid,"context":context.model_dump(),"configuration":config.model_dump(),"p_synthetic":p,"uniform":uniform,"receipt":receipt})
         before=runtime.status();runtime.close()
-        runtime=Runtime(path,seed=seed,variant=variant,procedures=procedures)
+        runtime=runtime_factory(path,seed=seed,variant=variant,procedures=procedures)
         assert runtime.status()==before
         values=[]
         for index,(pid,f,n,regime) in enumerate(tests):
