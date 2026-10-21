@@ -1,0 +1,1281 @@
+{
+  "procedure_id": "synthetic-practice-v2",
+  "review_kind": "internal_fictional_author",
+  "authorship": "AI-assisted fictional content authored and internally compared to supplied graph; not independent expert review",
+  "external_scaffold_expert_review": "pending",
+  "segmentation_note": "Reviewed purpose groups; no inferred phase ordering",
+  "draft": {
+    "schema_version": "c4-guidance-content-3.0",
+    "procedure_id": "synthetic-practice-v2",
+    "language": "en",
+    "source_graph_fingerprint": "edbab5e04baffd245dd51b049c5d250c7cbc6fc19ac181028394e4520ed448b4",
+    "relationship_fingerprint": "c0876e7ee54f599de58201f18ead7083a27670336b8d08b803ecfbda9e076b37",
+    "content_version": "fictional-author-reviewed-2026-10-22.1",
+    "origin": "fictional_authored",
+    "source_limit": "Fictional practice procedure authored for C4 research. All desks and charges are fictional. Viewing guidance never confirms completion. This is not government advice.",
+    "claims": [
+      {
+        "id": "action:obtain_copy:essential:0",
+        "source_kind": "content",
+        "source_id": "content:obtain_copy",
+        "start": 0,
+        "end": 209,
+        "quote": "If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.",
+        "action_ids": [
+          "action:obtain_copy"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:prepare_copy:essential:0",
+        "source_kind": "content",
+        "source_id": "content:prepare_copy",
+        "start": 0,
+        "end": 189,
+        "quote": "If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.",
+        "action_ids": [
+          "action:prepare_copy"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:prepare_form:essential:0",
+        "source_kind": "content",
+        "source_id": "content:prepare_form",
+        "start": 0,
+        "end": 173,
+        "quote": "After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.",
+        "action_ids": [
+          "action:prepare_form"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:register_application:essential:0",
+        "source_kind": "content",
+        "source_id": "content:register_application",
+        "start": 0,
+        "end": 288,
+        "quote": "Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.",
+        "action_ids": [
+          "action:register_application"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:essential:0",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 0,
+        "end": 223,
+        "quote": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:obtain_copy",
+        "heading": {
+          "text": "Obtain the supporting copy from the Records Desk",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:obtain_copy:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "draft",
+          "remainder": {
+            "text": "Use this route when you do not already have the supporting copy.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "draft",
+          "remainder": {
+            "text": "Obtaining a copy is the alternative to preparing one you already have. Both routes address the supporting-copy requirement. Form preparation remains a separate required work area and may proceed independently after registration.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier Records Desk guidance applied when no supporting copy was available and did not replace form preparation.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:no_copy"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:prepare_copy",
+        "heading": {
+          "text": "Prepare the supporting copy you already have",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:prepare_copy:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "draft",
+          "remainder": {
+            "text": "Use this route only when the supporting copy is already available.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "draft",
+          "remainder": {
+            "text": "This route prepares an existing copy; obtaining one at the Records Desk is the alternative. After registration, form preparation can proceed independently. Submission needs the form and the applicable copy route, not both copy alternatives.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier existing-copy guidance applied only if you already had the copy and kept form preparation separate.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:have_copy"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:prepare_form",
+        "heading": {
+          "text": "Prepare the fictional application form after registration",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:prepare_form:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "draft",
+          "remainder": {
+            "text": "The form is one required item for submission.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "draft",
+          "remainder": {
+            "text": "Form preparation is separate from the supporting-copy work. After registration, neither preparation work area has to wait for the other. Submission still requires the form and the applicable supporting copy; doing one does not replace the other.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier form guidance required the completed form as one of the items needed for submission.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:register_application",
+        "heading": {
+          "text": "Register the fictional application before preparation",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:register_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "draft",
+          "remainder": {
+            "text": "Registration comes before the preparation work.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "draft",
+          "remainder": {
+            "text": "Registration is the common prerequisite for preparing the form and the applicable supporting copy. After it, those preparation work areas may proceed independently. The registration, preparation and submission fee mentions describe separate stages; they are not three charges payable at registration.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier registration guidance placed registration before the independent preparation work areas.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:submit_application",
+        "heading": {
+          "text": "Submit the application with both required items",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:submit_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "draft",
+          "remainder": {
+            "text": "Submission follows the required preparation work.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "draft",
+          "remainder": {
+            "text": "The final action brings together the form and the supporting copy. Completing just one preparation is insufficient. Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier submission guidance required the form and supporting copy before submission.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      }
+    ],
+    "attachments": [],
+    "phases": [
+      {
+        "id": "phase:1",
+        "label": {
+          "text": "Open the application journey",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "action_ids": [
+          "action:register_application"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Registration is the common prerequisite for the preparation work areas.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:2",
+        "label": {
+          "text": "Prepare the required items",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form"
+        ],
+        "basis": "purpose",
+        "why_grouped": "The form and applicable copy work belong to preparation; alternatives remain together and independence comes only from verified edges.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:3",
+        "label": {
+          "text": "Bring the required items together",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Submission joins the required preparation work and documents.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "branch_split_note": null
+      }
+    ],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "supplementary": [],
+    "review": null
+  },
+  "content": {
+    "schema_version": "c4-guidance-content-3.0",
+    "procedure_id": "synthetic-practice-v2",
+    "language": "en",
+    "source_graph_fingerprint": "edbab5e04baffd245dd51b049c5d250c7cbc6fc19ac181028394e4520ed448b4",
+    "relationship_fingerprint": "c0876e7ee54f599de58201f18ead7083a27670336b8d08b803ecfbda9e076b37",
+    "content_version": "fictional-author-reviewed-2026-10-22.1",
+    "origin": "fictional_authored",
+    "source_limit": "Fictional practice procedure authored for C4 research. All desks and charges are fictional. Viewing guidance never confirms completion. This is not government advice.",
+    "claims": [
+      {
+        "id": "action:obtain_copy:essential:0",
+        "source_kind": "content",
+        "source_id": "content:obtain_copy",
+        "start": 0,
+        "end": 209,
+        "quote": "If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.",
+        "action_ids": [
+          "action:obtain_copy"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:prepare_copy:essential:0",
+        "source_kind": "content",
+        "source_id": "content:prepare_copy",
+        "start": 0,
+        "end": 189,
+        "quote": "If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.",
+        "action_ids": [
+          "action:prepare_copy"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:prepare_form:essential:0",
+        "source_kind": "content",
+        "source_id": "content:prepare_form",
+        "start": 0,
+        "end": 173,
+        "quote": "After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.",
+        "action_ids": [
+          "action:prepare_form"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:register_application:essential:0",
+        "source_kind": "content",
+        "source_id": "content:register_application",
+        "start": 0,
+        "end": 288,
+        "quote": "Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.",
+        "action_ids": [
+          "action:register_application"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:essential:0",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 0,
+        "end": 223,
+        "quote": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:obtain_copy",
+        "heading": {
+          "text": "Obtain the supporting copy from the Records Desk",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:obtain_copy:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "Use this route when you do not already have the supporting copy.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "Obtaining a copy is the alternative to preparing one you already have. Both routes address the supporting-copy requirement. Form preparation remains a separate required work area and may proceed independently after registration.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier Records Desk guidance applied when no supporting copy was available and did not replace form preparation.",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:no_copy"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:prepare_copy",
+        "heading": {
+          "text": "Prepare the supporting copy you already have",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:prepare_copy:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "Use this route only when the supporting copy is already available.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "This route prepares an existing copy; obtaining one at the Records Desk is the alternative. After registration, form preparation can proceed independently. Submission needs the form and the applicable copy route, not both copy alternatives.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier existing-copy guidance applied only if you already had the copy and kept form preparation separate.",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:have_copy"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:prepare_form",
+        "heading": {
+          "text": "Prepare the fictional application form after registration",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:prepare_form:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "The form is one required item for submission.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "Form preparation is separate from the supporting-copy work. After registration, neither preparation work area has to wait for the other. Submission still requires the form and the applicable supporting copy; doing one does not replace the other.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier form guidance required the completed form as one of the items needed for submission.",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:register_application",
+        "heading": {
+          "text": "Register the fictional application before preparation",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:register_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "Registration comes before the preparation work.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "Registration is the common prerequisite for preparing the form and the applicable supporting copy. After it, those preparation work areas may proceed independently. The registration, preparation and submission fee mentions describe separate stages; they are not three charges payable at registration.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier registration guidance placed registration before the independent preparation work areas.",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:submit_application",
+        "heading": {
+          "text": "Submit the application with both required items",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:submit_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "Submission follows the required preparation work.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "The final action brings together the form and the supporting copy. Completing just one preparation is insufficient. Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier submission guidance required the form and supporting copy before submission.",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      }
+    ],
+    "attachments": [],
+    "phases": [
+      {
+        "id": "phase:1",
+        "label": {
+          "text": "Open the application journey",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "action_ids": [
+          "action:register_application"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Registration is the common prerequisite for the preparation work areas.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:2",
+        "label": {
+          "text": "Prepare the required items",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form"
+        ],
+        "basis": "purpose",
+        "why_grouped": "The form and applicable copy work belong to preparation; alternatives remain together and independence comes only from verified edges.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:3",
+        "label": {
+          "text": "Bring the required items together",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Submission joins the required preparation work and documents.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "branch_split_note": null
+      }
+    ],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "supplementary": [],
+    "review": {
+      "status": "reviewed",
+      "reviewer": "Codex internal fictional author-review (AI-assisted; not human or external expert review)",
+      "reviewed_at": "2026-10-22T00:00:00Z",
+      "scope_note": "Compared authored wording to the supplied fictional Plan, source passages and verified graph. External assessment of scaffold suitability/scenario hypotheses remains pending; this is not expert validation.",
+      "artifact_digest": "426d382bff8305869d4f755e57079b221a5054031234b3635274adcf4dd6cb68",
+      "checks": [
+        {
+          "target": "actions.action:obtain_copy.heading",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Obtain the supporting copy from the Records Desk\" with the required source passages \"If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:obtain_copy.recap",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Earlier Records Desk guidance applied when no supporting copy was available and did not replace form preparation.\" with the required source passages \"If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:obtain_copy.concise",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Use this route when you do not already have the supporting copy.\" with the required source passages \"If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:obtain_copy.concise.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Use this route when you do not already have the supporting copy.\" with the required source passages \"If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:obtain_copy.detailed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Obtaining a copy is the alternative to preparing one you already have. Both routes address the supporting-copy requirement. Form preparation remains a separate required work area and may proceed independently after registration.\" with the required source passages \"If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:obtain_copy.detailed.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Obtaining a copy is the alternative to preparing one you already have. Both routes address the supporting-copy requirement. Form preparation remains a separate required work area and may proceed independently after registration.\" with the required source passages \"If you do not have the fictional supporting copy, obtain it from the fictional Records Desk after registration. Use this route instead of preparing an existing copy. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_copy.heading",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Prepare the supporting copy you already have\" with the required source passages \"If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_copy.recap",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Earlier existing-copy guidance applied only if you already had the copy and kept form preparation separate.\" with the required source passages \"If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_copy.concise",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Use this route only when the supporting copy is already available.\" with the required source passages \"If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_copy.concise.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Use this route only when the supporting copy is already available.\" with the required source passages \"If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_copy.detailed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"This route prepares an existing copy; obtaining one at the Records Desk is the alternative. After registration, form preparation can proceed independently. Submission needs the form and the applicable copy route, not both copy alternatives.\" with the required source passages \"If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_copy.detailed.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"This route prepares an existing copy; obtaining one at the Records Desk is the alternative. After registration, form preparation can proceed independently. Submission needs the form and the applicable copy route, not both copy alternatives.\" with the required source passages \"If you already have the fictional supporting copy, prepare it after registration. Use this route instead of obtaining a copy at the Records Desk. Form preparation can proceed independently.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_form.heading",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Prepare the fictional application form after registration\" with the required source passages \"After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_form.recap",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Earlier form guidance required the completed form as one of the items needed for submission.\" with the required source passages \"After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_form.concise",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"The form is one required item for submission.\" with the required source passages \"After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_form.concise.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"The form is one required item for submission.\" with the required source passages \"After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_form.detailed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Form preparation is separate from the supporting-copy work. After registration, neither preparation work area has to wait for the other. Submission still requires the form and the applicable supporting copy; doing one does not replace the other.\" with the required source passages \"After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:prepare_form.detailed.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Form preparation is separate from the supporting-copy work. After registration, neither preparation work area has to wait for the other. Submission still requires the form and the applicable supporting copy; doing one does not replace the other.\" with the required source passages \"After registration, prepare the fictional application form. It can be prepared independently of the applicable supporting-copy route. Both items are required for submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_application.heading",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Register the fictional application before preparation\" with the required source passages \"Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_application.recap",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Earlier registration guidance placed registration before the independent preparation work areas.\" with the required source passages \"Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_application.concise",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Registration comes before the preparation work.\" with the required source passages \"Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_application.concise.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Registration comes before the preparation work.\" with the required source passages \"Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_application.detailed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Registration is the common prerequisite for preparing the form and the applicable supporting copy. After it, those preparation work areas may proceed independently. The registration, preparation and submission fee mentions describe separate stages; they are not three charges payable at registration.\" with the required source passages \"Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_application.detailed.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Registration is the common prerequisite for preparing the form and the applicable supporting copy. After it, those preparation work areas may proceed independently. The registration, preparation and submission fee mentions describe separate stages; they are not three charges payable at registration.\" with the required source passages \"Register at the fictional Registration Desk before preparing the form or supporting copy. Each of registration, preparation and submission has a fictional LKR 0 fee. After registration, the form and the applicable copy route may proceed independently; both are required before submission.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:submit_application.heading",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Submit the application with both required items\" with the required source passages \"Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:submit_application.recap",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Earlier submission guidance required the form and supporting copy before submission.\" with the required source passages \"Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:submit_application.concise",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Submission follows the required preparation work.\" with the required source passages \"Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:submit_application.concise.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Submission follows the required preparation work.\" with the required source passages \"Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:submit_application.detailed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"The final action brings together the form and the supporting copy. Completing just one preparation is insufficient. Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.\" with the required source passages \"Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:submit_application.detailed.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"The final action brings together the form and the supporting copy. Completing just one preparation is insufficient. Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.\" with the required source passages \"Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:1.label",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Open the application journey\" with Registration is the common prerequisite for the preparation work areas. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:1",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Registration is the common prerequisite for the preparation work areas.\" with Plan stage svc:demo_application and its action membership [\"action:register_application\"]. The label groups a shared purpose and does not create execution order. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:2.label",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Prepare the required items\" with The form and applicable copy work belong to preparation; alternatives remain together and independence comes only from verified edges. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:2",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"The form and applicable copy work belong to preparation; alternatives remain together and independence comes only from verified edges.\" with Plan stage svc:demo_preparation and its action membership [\"action:obtain_copy\", \"action:prepare_copy\", \"action:prepare_form\"]. The label groups a shared purpose and does not create execution order. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:3.label",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Bring the required items together\" with Submission joins the required preparation work and documents. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:3",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Submission joins the required preparation work and documents.\" with Plan stage svc:demo_submission and its action membership [\"action:submit_application\"]. The label groups a shared purpose and does not create execution order. No external or government validation is claimed."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/journeys/guidance:6bbc4d21a55a41fdaa1eb1baedf84456/events",
+  "request": {
+    "event_id": "b0596a08-f0f2-4b70-a7c1-3f66527895f6",
+    "view_id": "view:49c3a32313764aa9be2a411d5ce7d6d6",
+    "type": "navigate",
+    "action_id": "action:register_application"
+  },
+  "status_code": 200,
+  "response": {
+    "event_id": "b0596a08-f0f2-4b70-a7c1-3f66527895f6",
+    "sequence": 1,
+    "server_timestamp": "2026-10-21T19:23:05.252914Z",
+    "reward": null,
+    "policy_updated": false,
+    "learning_eligible": false
+  },
+  "headers": {
+    "X-C4-Token": "documentation-sandbox-only-not-a-production-capability"
+  }
+}

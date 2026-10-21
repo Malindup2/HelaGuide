@@ -17,6 +17,10 @@ class GuidanceRequest(BaseModel):
 
 
 def register_routes(app, runtime):
+    from app.guidance.api import register_routes as content_routes
+    content_routes(app)
+    from app.guidance.frontend_api import register_routes as guidance_routes
+    guidance_routes(app)
     @app.get("/health")
     def health():
         return {"service":"c4-independent-dev", "status":"ok", "storage":"isolated workspace SQLite", "exposure_requires_acknowledgment":True, "version":"c4-workspace-1.0"}
@@ -64,7 +68,13 @@ def register_routes(app, runtime):
 
     @app.post("/workspace/sessions/{session_id}/guidance")
     def guidance(session_id: str, body: GuidanceRequest):
-        return runtime().guidance(session_id, body.procedure_id, body.request_id, body.expected_revision, body.overrides, body.capability_token)
+        # Optional content preflight schedules wording only. The existing V2
+        # decision/document and its attribution remain untouched during migration.
+        prepared = getattr(app.state, "prepared_content", None)
+        result = runtime().guidance(session_id, body.procedure_id, body.request_id, body.expected_revision, body.overrides, body.capability_token)
+        if prepared is not None:
+            result = {**result, "prepared_content": prepared.request(body.procedure_id)}
+        return result
 
     from app.v2.registration import RegistrationPacket
     @app.post("/workspace/procedures")

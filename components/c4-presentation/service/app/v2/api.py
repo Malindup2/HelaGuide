@@ -37,7 +37,11 @@ class Rating(Request):
     rating: Literal["about_right", "need_more", "too_much"]
 
 
-def create_app(path=None, *, mode="simulation", seed=0, runtime=None, runtime_class=Runtime, workspace=False, preparation_options=None):
+def create_app(path=None, *, mode="simulation", seed=0, runtime=None, runtime_class=Runtime, workspace=False, preparation_options=None, prepared_content_options=None, guidance_api_options=None):
+    if prepared_content_options is not None and preparation_options and preparation_options.get("enabled"):
+        raise ValueError("disable legacy generation when using the controlled content handler")
+    if guidance_api_options is not None and (not workspace or prepared_content_options is None):
+        raise ValueError("revised guidance API requires the prepared-content workspace integration")
     @asynccontextmanager
     async def lifespan(app):
         app.state.runtime = runtime or runtime_class(path or Path(__file__).resolve().parents[2] / ".local" / "v2" / mode / "state.sqlite3", mode=mode, seed=seed)
@@ -54,9 +58,27 @@ def create_app(path=None, *, mode="simulation", seed=0, runtime=None, runtime_cl
                 processor = PreparationProcessor(app.state.runtime, directory, **(preparation_options or {}))
                 processor.start()
         app.state.preparation_processor = processor
+        app.state.prepared_content = None
+        if workspace and prepared_content_options is not None:
+            from app.guidance.service import ContentPreparation
+            options = dict(prepared_content_options)
+            demo_fixtures = options.pop("demo_fixtures", False)
+            prepared = ContentPreparation(app.state.runtime, **options)
+            if demo_fixtures:
+                from app.guidance.demo import install_fictional_content
+                install_fictional_content(prepared)
+            prepared.start()
+            app.state.prepared_content = prepared
+        app.state.guidance_api = None
+        if guidance_api_options is not None:
+            from app.guidance.frontend_runtime import GuidanceAPI
+            app.state.guidance_api = GuidanceAPI(app.state.prepared_content, **guidance_api_options)
         try:
             yield
         finally:
+            if app.state.prepared_content is not None:
+                import asyncio
+                await asyncio.to_thread(app.state.prepared_content.close)
             if processor is not None:
                 import asyncio
                 await asyncio.to_thread(processor.close)

@@ -1,0 +1,2114 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/requests",
+  "request": {
+    "request_id": "3be425da-acd3-4a31-bcfb-203f817c9652",
+    "session_id": "guest:9eb7687fc4074c548123edaeeee76131",
+    "procedure_id": "synthetic-linear-v1",
+    "capability_token": "documentation-sandbox-only-not-a-production-capability"
+  },
+  "status_code": 200,
+  "response": {
+    "schema_version": "c4-guidance-api-1.0",
+    "journey_id": "guidance:1a2e19b44fd24e4f8da23aa64c385ac5",
+    "view_id": "view:110cfa056ab4471cbf93728f40624fb6",
+    "parent_view_id": null,
+    "session_id": "guest:9eb7687fc4074c548123edaeeee76131",
+    "procedure_id": "synthetic-linear-v1",
+    "procedure_title": "Synthetic demo: collect a pack",
+    "created_at": "2026-10-21T19:23:04.893999Z",
+    "selection": {
+      "kind": "standard",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "action_schema": "c4-scaffolds-v3.0",
+      "label": "Standard guidance",
+      "scoring_status": "not_run",
+      "policy": null,
+      "learning_eligible": false,
+      "explanation": "Fixed baseline within hard constraints; not a learned recommendation."
+    },
+    "preparation": {
+      "content_state": "published",
+      "preparation_state": "published",
+      "job_state": null,
+      "job_id": null,
+      "error_code": null,
+      "generation_enabled": false,
+      "mode": "demo",
+      "language": "en",
+      "fallback_language": null,
+      "content_schema": "c4-guidance-content-3.0",
+      "artifact_id": "bcb076e9b69b3e1755d88e313a2fee60653ddb6c28614d16afa1d12dfb091746",
+      "review_kind": "internal_fictional_author",
+      "source_kind": "fictional",
+      "content_origin": "fictional_authored",
+      "source_review": {
+        "reviewer": "Codex internal fictional author-review (AI-assisted; not human or external expert review)",
+        "reviewed_at": "2026-10-22T00:00:00Z",
+        "scope_note": "Compared authored wording to the supplied fictional Plan, source passages and verified graph. External assessment of scaffold suitability/scenario hypotheses remains pending; this is not expert validation.",
+        "independent_government_validation": false
+      }
+    },
+    "effective_context": {
+      "schema_version": "c4-effective-guidance-context-1.0",
+      "session_id": "guest:9eb7687fc4074c548123edaeeee76131",
+      "profile_id": null,
+      "personalization_enabled": false,
+      "service_id": "svc:demo_pack",
+      "familiarity": null,
+      "confidence": null,
+      "preferences": {},
+      "constraints": {
+        "locks": {},
+        "no_guided": false,
+        "no_map": false,
+        "no_disclosure": false
+      },
+      "revision": {
+        "identity": 0,
+        "revised": 0
+      },
+      "sources": {
+        "familiarity": "saved_service_report",
+        "confidence": "saved_navigation_default",
+        "preferences": "explicit_revised_settings_or_request",
+        "accessibility": "saved_requirements_union_request"
+      },
+      "legacy": {
+        "preferences_not_imported": {},
+        "pending_preference_review": {},
+        "hard_requirements_unresolved": false,
+        "lock_fingerprint": null,
+        "raw_locks": {
+          "native_or_mapped": {},
+          "unresolved_legacy": {}
+        }
+      },
+      "scoring_use": "Stored for later approved revised encoder. No scoring is run in this phase."
+    },
+    "availability": {
+      "action_schema": "c4-scaffolds-v3.0",
+      "nominal_count": 96,
+      "feasible_count": 48,
+      "candidates": [
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:overview:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.0:guided:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:collect_pack",
+            "action:request_token"
+          ]
+        }
+      ]
+    },
+    "document": {
+      "schema": "c4-render-plan-3.0",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "synthetic": true,
+      "source_kind": "fictional",
+      "source_limit": "Authored C4 research fixture. Not official guidance. Services, evidence, fees and relationships are fictional. Plan provenance timestamps are illustrative; no real source retrieval occurred.",
+      "source_graph_fingerprint": "ecb70e62fd367383359307b2e405ec683243182c2cbeb69971817d01ce8261b3",
+      "relationship_fingerprint": "597e1b7e1bcca754558f3b8a6670d4edd6b2fbdf199e90a02cb6ddbf89d49844",
+      "content_fingerprint": "3a2ac63071aeb52fa0fea6a2e6f7736663533c930e413fe593dd09f2fb0cbd1a",
+      "actions": [
+        {
+          "id": "action:collect_pack",
+          "heading": "Present your token and collect the demo pack",
+          "essential": "After the token request is complete, present the fictional demo token to collect the demo pack.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [],
+          "explanation_visible": "Collection follows completion of the token request.",
+          "explanation_hidden": null,
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:demo_pack",
+          "agency": "Fictional C4 Demo Office",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:collect_pack"
+          ],
+          "disclosure_available": false,
+          "wording_status": "published"
+        },
+        {
+          "id": "action:request_token",
+          "heading": "Request your fictional collection token",
+          "essential": "Request a fictional demo token.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [],
+          "explanation_visible": "The collection instruction later asks you to present this token.",
+          "explanation_hidden": null,
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:demo_token",
+          "agency": "Fictional C4 Demo Office",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:request_token"
+          ],
+          "disclosure_available": false,
+          "wording_status": "published"
+        }
+      ],
+      "facts": [
+        {
+          "id": "source:svc:demo_token:svc:demo_token:fee",
+          "fact_id": "svc:demo_token:fee",
+          "fact": {
+            "kind": "fee",
+            "fact_id": "svc:demo_token:fee",
+            "value": 0.0,
+            "currency": "LKR"
+          },
+          "scope": "stage",
+          "action_id": null,
+          "stage_id": "svc:demo_token",
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [],
+          "evidence_ids": [],
+          "qualification": null,
+          "conditions": [],
+          "status": "source_fallback",
+          "source_context": [],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "source:svc:demo_pack:svc:demo_pack:fee",
+          "fact_id": "svc:demo_pack:fee",
+          "fact": {
+            "kind": "fee",
+            "fact_id": "svc:demo_pack:fee",
+            "value": 0.0,
+            "currency": "LKR"
+          },
+          "scope": "stage",
+          "action_id": null,
+          "stage_id": "svc:demo_pack",
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [],
+          "evidence_ids": [],
+          "qualification": null,
+          "conditions": [],
+          "status": "source_fallback",
+          "source_context": [],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "source:svc:demo_pack:svc:demo_pack:document:token",
+          "fact_id": "svc:demo_pack:document:token",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:demo_pack:document:token",
+            "name": "Fictional demo token"
+          },
+          "scope": "stage",
+          "action_id": null,
+          "stage_id": "svc:demo_pack",
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [],
+          "evidence_ids": [],
+          "qualification": null,
+          "conditions": [],
+          "status": "source_fallback",
+          "source_context": [
+            {
+              "content_id": "content:collect_pack",
+              "text": "After the token request is complete, present the fictional demo token to collect the demo pack.",
+              "evidence_ids": [
+                "evidence:collect_pack"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        }
+      ],
+      "branches": [],
+      "stages": [
+        {
+          "service_id": "svc:demo_token",
+          "display_order": 1,
+          "name": "Synthetic demo: issue a token",
+          "agency": "Fictional C4 Demo Office",
+          "fee_fact_id": "svc:demo_token:fee",
+          "document_fact_ids": []
+        },
+        {
+          "service_id": "svc:demo_pack",
+          "display_order": 2,
+          "name": "Synthetic demo: collect a pack",
+          "agency": "Fictional C4 Demo Office",
+          "fee_fact_id": "svc:demo_pack:fee",
+          "document_fact_ids": [
+            "svc:demo_pack:document:token"
+          ]
+        }
+      ],
+      "stage_edges": [
+        {
+          "edge_id": "stage_dependency:svc:demo_token->svc:demo_pack",
+          "kind": "stage_dependency",
+          "source_id": "svc:demo_token",
+          "target_id": "svc:demo_pack"
+        }
+      ],
+      "edges": [
+        {
+          "edge_id": "prerequisite:token_before_pack",
+          "kind": "requires_completion",
+          "source_id": "action:request_token",
+          "target_id": "action:collect_pack",
+          "evidence_ids": [
+            "evidence:collect_pack"
+          ]
+        }
+      ],
+      "parallel": [],
+      "joins": [],
+      "parallel_areas": [],
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "complete"
+      },
+      "sources": [
+        {
+          "evidence_id": "evidence:collect_pack",
+          "kind": "synthetic_authored",
+          "source_url": "https://example.org/c4/fixtures/linear/pack",
+          "text": "In this fictional scenario, present the demo token to collect a demo pack from the Fictional C4 Demo Office. Pack collection is free. The token request must be completed before pack collection.",
+          "retrieved_at": null
+        },
+        {
+          "evidence_id": "evidence:request_token",
+          "kind": "synthetic_authored",
+          "source_url": "https://example.org/c4/fixtures/linear/token",
+          "text": "In this fictional scenario, request a demo token from the Fictional C4 Demo Office. The token service is free and requires no documents.",
+          "retrieved_at": null
+        }
+      ],
+      "conditions": [],
+      "provenance": [
+        {
+          "fact_id": "svc:demo_pack:document:token",
+          "source_url": "https://example.org/c4/fixtures/linear/pack",
+          "retrieved_at": "2026-10-14T00:00:00Z"
+        },
+        {
+          "fact_id": "svc:demo_pack:fee",
+          "source_url": "https://example.org/c4/fixtures/linear/pack",
+          "retrieved_at": "2026-10-14T00:00:00Z"
+        },
+        {
+          "fact_id": "svc:demo_token:fee",
+          "source_url": "https://example.org/c4/fixtures/linear/token",
+          "retrieved_at": "2026-10-14T00:00:00Z"
+        }
+      ],
+      "map_labels": {
+        "action:collect_pack": "Present your token and collect the demo pack",
+        "action:request_token": "Request your fictional collection token"
+      },
+      "phases": [],
+      "phase_order": [],
+      "supplementary": [],
+      "required_source_notes": [],
+      "relationship_aid": {
+        "mode": "none",
+        "inline_by_action": {},
+        "map": null,
+        "essential_relationships_remain_in_instructions": true
+      },
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:collect_pack",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:request_token",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:request_token",
+        "browsing_action_ids": [
+          "action:request_token",
+          "action:collect_pack"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:collect_pack",
+        "browsing_position": 1,
+        "browsing_count": 2,
+        "unresolved_route_ids": [],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "routes": [],
+      "requirements": {
+        "documents": [
+          {
+            "id": "source:svc:demo_pack:svc:demo_pack:document:token",
+            "fact_id": "svc:demo_pack:document:token",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:demo_pack:document:token",
+              "name": "Fictional demo token"
+            },
+            "scope": "stage",
+            "action_id": null,
+            "stage_id": "svc:demo_pack",
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [],
+            "evidence_ids": [],
+            "qualification": null,
+            "conditions": [],
+            "status": "source_fallback",
+            "source_context": [
+              {
+                "content_id": "content:collect_pack",
+                "text": "After the token request is complete, present the fictional demo token to collect the demo pack.",
+                "evidence_ids": [
+                  "evidence:collect_pack"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "fees": [
+          {
+            "id": "source:svc:demo_token:svc:demo_token:fee",
+            "fact_id": "svc:demo_token:fee",
+            "fact": {
+              "kind": "fee",
+              "fact_id": "svc:demo_token:fee",
+              "value": 0.0,
+              "currency": "LKR"
+            },
+            "scope": "stage",
+            "action_id": null,
+            "stage_id": "svc:demo_token",
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [],
+            "evidence_ids": [],
+            "qualification": null,
+            "conditions": [],
+            "status": "source_fallback",
+            "source_context": [],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "source:svc:demo_pack:svc:demo_pack:fee",
+            "fact_id": "svc:demo_pack:fee",
+            "fact": {
+              "kind": "fee",
+              "fact_id": "svc:demo_pack:fee",
+              "value": 0.0,
+              "currency": "LKR"
+            },
+            "scope": "stage",
+            "action_id": null,
+            "stage_id": "svc:demo_pack",
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [],
+            "evidence_ids": [],
+            "qualification": null,
+            "conditions": [],
+            "status": "source_fallback",
+            "source_context": [],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "total": null,
+        "no_total_reason": "Charges are scoped source facts; no total or alternative-route sum is inferred.",
+        "placement": "Always available outside explanation disclosure; stage facts are not action payments."
+      }
+    },
+    "interaction": {
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:collect_pack",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:request_token",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:request_token",
+        "browsing_action_ids": [
+          "action:request_token",
+          "action:collect_pack"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:collect_pack",
+        "browsing_position": 1,
+        "browsing_count": 2,
+        "unresolved_route_ids": [],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "route_choices": {},
+      "map_visible": false,
+      "explanation_open_action_ids": [],
+      "display_acknowledged_view_ids": [],
+      "recap": {
+        "enabled": false,
+        "items": [],
+        "empty_reason": "recap_off",
+        "label": "Earlier guidance viewed, not confirmed as done"
+      },
+      "event_count": 0,
+      "completion_tracked": false
+    },
+    "controls": {
+      "configuration_adjustment": false,
+      "feedback": false,
+      "research_inspection": true
+    }
+  }
+}

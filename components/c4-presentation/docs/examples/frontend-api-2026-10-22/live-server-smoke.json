@@ -1,0 +1,44 @@
+{
+  "execution": "Real uvicorn app.workspace:app loopback HTTP smoke in fresh isolated storage",
+  "port": 65092,
+  "status": {
+    "schema_version": "c4-guidance-api-1.0",
+    "action_schema": "c4-scaffolds-v3.0",
+    "nominal_configuration_count": 96,
+    "standard_guidance_available": true,
+    "research_previews_enabled": true,
+    "personalized_selection_available": false,
+    "encoder_status": "525_proposed_awaiting_approval",
+    "policy": null,
+    "history_adjustment": "deferred_to_PP2",
+    "pp1_remaining_requirements": [
+      "approved_revised_encoder",
+      "fresh_posterior",
+      "synthetic_training",
+      "held_out_evaluation",
+      "genuine_feasible_LinTS_selection"
+    ],
+    "visibility_policy": null,
+    "contracts": "/openapi.json"
+  },
+  "baseline_procedure": "official-nic_amendment-v3",
+  "baseline_origin": "standard",
+  "preview_configuration": {
+    "navigation": "guided",
+    "explanation": "detailed",
+    "disclosure": "on",
+    "relationships": "map",
+    "recap": "on",
+    "segmentation": "on"
+  },
+  "recap_item_ids": [
+    "action:register_application"
+  ],
+  "actual_event_count": 2,
+  "model_features": null,
+  "model_sampled_scores": null,
+  "policy_unchanged": true,
+  "live_generation_enabled": false,
+  "source_review_kind": "internal_fictional_author",
+  "historical_database_used": false
+}

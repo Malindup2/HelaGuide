@@ -1,0 +1,81 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/profiles",
+  "request": {
+    "profile_id": "profile:66e8e17473784aae980826c9cae2d195",
+    "display_name": "Documentation example",
+    "personalization_enabled": true,
+    "initial_context": {
+      "navigation_capability": 2,
+      "familiarity": [
+        {
+          "service_id": "svc:birth_copy",
+          "score": 1
+        },
+        {
+          "service_id": "svc:nic_amendment",
+          "score": 4
+        }
+      ]
+    }
+  },
+  "status_code": 200,
+  "response": {
+    "profile": {
+      "schema_version": "c4-demo-profile-1.0",
+      "profile_id": "profile:66e8e17473784aae980826c9cae2d195",
+      "display_name": "Documentation example",
+      "session_id": "guest:b7d7744fcbb0438790ed68d368e08952",
+      "created_at": "2026-10-21T19:23:05.234883Z",
+      "updated_at": "2026-10-21T19:23:05.234883Z",
+      "revision": 0,
+      "initial_personalization_enabled": true,
+      "personalization_enabled": true,
+      "creation_fingerprint": "6cad9c04c59cceb60610dd5ceac3f92b11c01f848f3b1ef79552fc7b9a080f22",
+      "personalization_changes": []
+    },
+    "session": {
+      "schema_version": "1.0",
+      "session_id": "guest:b7d7744fcbb0438790ed68d368e08952",
+      "created_at": "2026-10-21T19:23:05.234883Z",
+      "updated_at": "2026-10-21T19:23:05.234883Z",
+      "revision": 3,
+      "settings": {
+        "schema_version": "1.0",
+        "familiarity": [
+          {
+            "service_id": "svc:birth_copy",
+            "score": 1,
+            "source": "self_reported"
+          },
+          {
+            "service_id": "svc:nic_amendment",
+            "score": 4,
+            "source": "self_reported"
+          }
+        ],
+        "navigation_capability": 2,
+        "navigation_source": "self_reported",
+        "preferences": {
+          "presentation_mode": null,
+          "progressive_disclosure": null,
+          "previous_context_recap": null,
+          "relationship_visual": null,
+          "prerequisite_cue": null
+        },
+        "locks": {
+          "presentation_mode": null,
+          "progressive_disclosure": null,
+          "previous_context_recap": null,
+          "relationship_visual": null,
+          "prerequisite_cue": null
+        },
+        "accessibility": {
+          "allow_relationship_visuals": true,
+          "allow_collapsed_content": true,
+          "allow_guided_navigation": true
+        }
+      }
+    }
+  }
+}

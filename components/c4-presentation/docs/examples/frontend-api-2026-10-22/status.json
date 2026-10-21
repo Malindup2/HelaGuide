@@ -1,0 +1,26 @@
+{
+  "method": "GET",
+  "path": "/workspace/guidance/status",
+  "request": null,
+  "status_code": 200,
+  "response": {
+    "schema_version": "c4-guidance-api-1.0",
+    "action_schema": "c4-scaffolds-v3.0",
+    "nominal_configuration_count": 96,
+    "standard_guidance_available": true,
+    "research_previews_enabled": true,
+    "personalized_selection_available": false,
+    "encoder_status": "525_proposed_awaiting_approval",
+    "policy": null,
+    "history_adjustment": "deferred_to_PP2",
+    "pp1_remaining_requirements": [
+      "approved_revised_encoder",
+      "fresh_posterior",
+      "synthetic_training",
+      "held_out_evaluation",
+      "genuine_feasible_LinTS_selection"
+    ],
+    "visibility_policy": null,
+    "contracts": "/openapi.json"
+  }
+}

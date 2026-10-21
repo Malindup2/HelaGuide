@@ -1,0 +1,807 @@
+{
+  "procedure_id": "synthetic-conditional-v1",
+  "review_kind": "internal_fictional_author",
+  "authorship": "AI-assisted fictional content authored and internally compared to supplied graph; not independent expert review",
+  "external_scaffold_expert_review": "pending",
+  "segmentation_note": "Reviewed purpose groups; no inferred phase ordering",
+  "draft": {
+    "schema_version": "c4-guidance-content-3.0",
+    "procedure_id": "synthetic-conditional-v1",
+    "language": "en",
+    "source_graph_fingerprint": "758afc30af4c906f782b14cee4416243c74d919d3dbfe41d3cd811ccead8ca74",
+    "relationship_fingerprint": "3696f32b77ebf76bcd4a15e925178a758f097c7f800f839cf6835c3fb98490c8",
+    "content_version": "fictional-author-reviewed-2026-10-22.1",
+    "origin": "fictional_authored",
+    "source_limit": "Entirely fictional C4 research scenario. This is not a government service or official advice. Example-domain URLs and Plan provenance timestamps are illustrative; no government source was retrieved. Completeness describes only this authored scenario.",
+    "claims": [
+      {
+        "id": "action:counter_collection:essential:0",
+        "source_kind": "content",
+        "source_id": "content:counter_collection",
+        "start": 0,
+        "end": 164,
+        "quote": "Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+        "action_ids": [
+          "action:counter_collection"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:locker_collection:essential:0",
+        "source_kind": "content",
+        "source_id": "content:locker_collection",
+        "start": 0,
+        "end": 158,
+        "quote": "Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+        "action_ids": [
+          "action:locker_collection"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:register_collection:essential:0",
+        "source_kind": "content",
+        "source_id": "content:register_collection",
+        "start": 0,
+        "end": 318,
+        "quote": "Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.",
+        "action_ids": [
+          "action:register_collection"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:counter_collection",
+        "heading": {
+          "text": "Use the counter route with your registration reference",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:counter_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "concise": {
+          "status": "draft",
+          "remainder": {
+            "text": "This route applies only when counter collection is chosen.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "draft",
+          "remainder": {
+            "text": "The counter and locker instructions describe alternative ways to collect the same fictional pack. On this route you present the registration reference at the counter after registration; the locker route is not an additional required visit.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier counter guidance applied only to the counter choice and required the registration reference.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:counter_chosen"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:locker_collection",
+        "heading": {
+          "text": "Use the locker route with your registration reference",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:locker_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "concise": {
+          "status": "draft",
+          "remainder": {
+            "text": "This route applies only when locker collection is chosen.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "draft",
+          "remainder": {
+            "text": "The locker route uses the registration reference after registration. Counter collection is the other alternative, not another action required after this route. The chosen route determines where you use the reference.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier locker guidance applied only to the locker choice and required the registration reference.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:locker_chosen"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:register_collection",
+        "heading": {
+          "text": "Register your collection request and keep its reference",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:register_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "concise": {
+          "status": "draft",
+          "remainder": {
+            "text": "After registration, choose one collection method.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "draft",
+          "remainder": {
+            "text": "Registration supplies the reference used by either collection method. Counter and locker collection are alternatives, so the reference connects registration to your chosen method; it does not mean you must visit both.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier guidance asked you to register, obtain the reference and choose one collection method.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      }
+    ],
+    "attachments": [],
+    "phases": [
+      {
+        "id": "phase:1",
+        "label": {
+          "text": "Arrange your collection reference",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "action_ids": [
+          "action:register_collection"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Registration produces the reference for either collection route.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:2",
+        "label": {
+          "text": "Choose where to collect",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "action_ids": [
+          "action:counter_collection",
+          "action:locker_collection"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Both actions belong to one alternative collection choice, not two visits.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "branch_split_note": null
+      }
+    ],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "supplementary": [],
+    "review": null
+  },
+  "content": {
+    "schema_version": "c4-guidance-content-3.0",
+    "procedure_id": "synthetic-conditional-v1",
+    "language": "en",
+    "source_graph_fingerprint": "758afc30af4c906f782b14cee4416243c74d919d3dbfe41d3cd811ccead8ca74",
+    "relationship_fingerprint": "3696f32b77ebf76bcd4a15e925178a758f097c7f800f839cf6835c3fb98490c8",
+    "content_version": "fictional-author-reviewed-2026-10-22.1",
+    "origin": "fictional_authored",
+    "source_limit": "Entirely fictional C4 research scenario. This is not a government service or official advice. Example-domain URLs and Plan provenance timestamps are illustrative; no government source was retrieved. Completeness describes only this authored scenario.",
+    "claims": [
+      {
+        "id": "action:counter_collection:essential:0",
+        "source_kind": "content",
+        "source_id": "content:counter_collection",
+        "start": 0,
+        "end": 164,
+        "quote": "Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+        "action_ids": [
+          "action:counter_collection"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:locker_collection:essential:0",
+        "source_kind": "content",
+        "source_id": "content:locker_collection",
+        "start": 0,
+        "end": 158,
+        "quote": "Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+        "action_ids": [
+          "action:locker_collection"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:register_collection:essential:0",
+        "source_kind": "content",
+        "source_id": "content:register_collection",
+        "start": 0,
+        "end": 318,
+        "quote": "Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.",
+        "action_ids": [
+          "action:register_collection"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:counter_collection",
+        "heading": {
+          "text": "Use the counter route with your registration reference",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:counter_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "concise": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "This route applies only when counter collection is chosen.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "The counter and locker instructions describe alternative ways to collect the same fictional pack. On this route you present the registration reference at the counter after registration; the locker route is not an additional required visit.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier counter guidance applied only to the counter choice and required the registration reference.",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:counter_chosen"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:locker_collection",
+        "heading": {
+          "text": "Use the locker route with your registration reference",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:locker_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "concise": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "This route applies only when locker collection is chosen.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "The locker route uses the registration reference after registration. Counter collection is the other alternative, not another action required after this route. The chosen route determines where you use the reference.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier locker guidance applied only to the locker choice and required the registration reference.",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:locker_chosen"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:register_collection",
+        "heading": {
+          "text": "Register your collection request and keep its reference",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "essential": {
+          "text": "Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:register_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "concise": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "After registration, choose one collection method.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "detailed": {
+          "status": "reviewed",
+          "remainder": {
+            "text": "Registration supplies the reference used by either collection method. Counter and locker collection are alternatives, so the reference connects registration to your chosen method; it does not mean you must visit both.",
+            "status": "reviewed",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "remainder_role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Earlier guidance asked you to register, obtain the reference and choose one collection method.",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      }
+    ],
+    "attachments": [],
+    "phases": [
+      {
+        "id": "phase:1",
+        "label": {
+          "text": "Arrange your collection reference",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "action_ids": [
+          "action:register_collection"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Registration produces the reference for either collection route.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:2",
+        "label": {
+          "text": "Choose where to collect",
+          "status": "reviewed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "action_ids": [
+          "action:counter_collection",
+          "action:locker_collection"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Both actions belong to one alternative collection choice, not two visits.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "branch_split_note": null
+      }
+    ],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "supplementary": [],
+    "review": {
+      "status": "reviewed",
+      "reviewer": "Codex internal fictional author-review (AI-assisted; not human or external expert review)",
+      "reviewed_at": "2026-10-22T00:00:00Z",
+      "scope_note": "Compared authored wording to the supplied fictional Plan, source passages and verified graph. External assessment of scaffold suitability/scenario hypotheses remains pending; this is not expert validation.",
+      "artifact_digest": "e30d82d3e425a92b0de8058b6b97ac8d577c002909a24721e5d4abf4917c9669",
+      "checks": [
+        {
+          "target": "actions.action:counter_collection.heading",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Use the counter route with your registration reference\" with the required source passages \"Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:counter_collection.recap",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Earlier counter guidance applied only to the counter choice and required the registration reference.\" with the required source passages \"Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:counter_collection.concise",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"This route applies only when counter collection is chosen.\" with the required source passages \"Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:counter_collection.concise.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"This route applies only when counter collection is chosen.\" with the required source passages \"Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:counter_collection.detailed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"The counter and locker instructions describe alternative ways to collect the same fictional pack. On this route you present the registration reference at the counter after registration; the locker route is not an additional required visit.\" with the required source passages \"Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:counter_collection.detailed.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"The counter and locker instructions describe alternative ways to collect the same fictional pack. On this route you present the registration reference at the counter after registration; the locker route is not an additional required visit.\" with the required source passages \"Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:locker_collection.heading",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Use the locker route with your registration reference\" with the required source passages \"Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:locker_collection.recap",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Earlier locker guidance applied only to the locker choice and required the registration reference.\" with the required source passages \"Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:locker_collection.concise",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"This route applies only when locker collection is chosen.\" with the required source passages \"Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:locker_collection.concise.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"This route applies only when locker collection is chosen.\" with the required source passages \"Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:locker_collection.detailed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"The locker route uses the registration reference after registration. Counter collection is the other alternative, not another action required after this route. The chosen route determines where you use the reference.\" with the required source passages \"Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:locker_collection.detailed.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"The locker route uses the registration reference after registration. Counter collection is the other alternative, not another action required after this route. The chosen route determines where you use the reference.\" with the required source passages \"Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_collection.heading",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Register your collection request and keep its reference\" with the required source passages \"Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_collection.recap",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Earlier guidance asked you to register, obtain the reference and choose one collection method.\" with the required source passages \"Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_collection.concise",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"After registration, choose one collection method.\" with the required source passages \"Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_collection.concise.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"After registration, choose one collection method.\" with the required source passages \"Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_collection.detailed",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Registration supplies the reference used by either collection method. Counter and locker collection are alternatives, so the reference connects registration to your chosen method; it does not mean you must visit both.\" with the required source passages \"Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.\" and the verified prerequisite/branch/parallel structure of this fictional graph. The essential layer remains unchanged; this is nonessential relationship clarification. No external or government validation is claimed."
+        },
+        {
+          "target": "actions.action:register_collection.detailed.remainder",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Registration supplies the reference used by either collection method. Counter and locker collection are alternatives, so the reference connects registration to your chosen method; it does not mean you must visit both.\" with the required source passages \"Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.\" and the verified prerequisite/branch/parallel structure of this fictional graph. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:1.label",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Arrange your collection reference\" with Registration produces the reference for either collection route. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:1",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Registration produces the reference for either collection route.\" with Plan stage svc:demo_registration and its action membership [\"action:register_collection\"]. The label groups a shared purpose and does not create execution order. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:2.label",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Choose where to collect\" with Both actions belong to one alternative collection choice, not two visits. No external or government validation is claimed."
+        },
+        {
+          "target": "phases.phase:2",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Both actions belong to one alternative collection choice, not two visits.\" with Plan stage svc:demo_collection and its action membership [\"action:counter_collection\", \"action:locker_collection\"]. The label groups a shared purpose and does not create execution order. No external or government validation is claimed."
+        }
+      ]
+    }
+  }
+}

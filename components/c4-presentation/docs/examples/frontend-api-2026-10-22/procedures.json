@@ -1,0 +1,134 @@
+{
+  "method": "GET",
+  "path": "/workspace/guidance/procedures",
+  "request": null,
+  "status_code": 200,
+  "response": [
+    {
+      "procedure_id": "synthetic-linear-v1",
+      "service_id": "svc:demo_pack",
+      "title": "Synthetic demo: collect a pack",
+      "synthetic": true,
+      "source_origin": "fictional_authored",
+      "source_limit": "Authored C4 research fixture. Not official guidance. Services, evidence, fees and relationships are fictional. Plan provenance timestamps are illustrative; no real source retrieval occurred.",
+      "graph_fingerprint": "ecb70e62fd367383359307b2e405ec683243182c2cbeb69971817d01ce8261b3",
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "complete"
+      }
+    },
+    {
+      "procedure_id": "synthetic-conditional-v1",
+      "service_id": "svc:demo_collection",
+      "title": "Synthetic demo: choose a collection method",
+      "synthetic": true,
+      "source_origin": "fictional_authored",
+      "source_limit": "Entirely fictional C4 research scenario. This is not a government service or official advice. Example-domain URLs and Plan provenance timestamps are illustrative; no government source was retrieved. Completeness describes only this authored scenario.",
+      "graph_fingerprint": "758afc30af4c906f782b14cee4416243c74d919d3dbfe41d3cd811ccead8ca74",
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "complete"
+      }
+    },
+    {
+      "procedure_id": "synthetic-parallel-v1",
+      "service_id": "svc:demo_submission",
+      "title": "Synthetic demo: submit a prepared application",
+      "synthetic": true,
+      "source_origin": "fictional_authored",
+      "source_limit": "Entirely fictional C4 research scenario. This is not a government service or official advice. Example-domain URLs and Plan provenance timestamps are illustrative; no government source was retrieved. Completeness describes only this authored scenario.",
+      "graph_fingerprint": "cb8a5dd35d505dc83986a2b3e5ab7f3b1314577bc5b6ebbd85fdef1bd652eac9",
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "complete"
+      }
+    },
+    {
+      "procedure_id": "official-birth_copy-v3",
+      "service_id": "svc:birth_copy",
+      "title": "Birth certificate copy: receipt-backed submission",
+      "synthetic": false,
+      "source_origin": "bounded_official_source_snapshot_not_independently_validated",
+      "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+      "graph_fingerprint": "7f384d0d51b9e7493bd0afe26d3308ea93afc04e1ec5a09c64b6632af9db7b7a",
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "unknown"
+      }
+    },
+    {
+      "procedure_id": "official-nic_amendment-v3",
+      "service_id": "svc:nic_amendment",
+      "title": "NIC amendment: certifying-officer routes",
+      "synthetic": false,
+      "source_origin": "bounded_official_source_snapshot_not_independently_validated",
+      "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+      "graph_fingerprint": "da6d871ccde4191ebb389a84c4a9a8a143b594f84233a20df07d6ed305cc8626",
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "unknown"
+      }
+    },
+    {
+      "procedure_id": "official-company_pack-v3",
+      "service_id": "svc:company_pack",
+      "title": "Private company: required incorporation document sets",
+      "synthetic": false,
+      "source_origin": "bounded_official_source_snapshot_not_independently_validated",
+      "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+      "graph_fingerprint": "213071cb3b7ffff73c03745e760c988593deb2b1dc15e167794f092186c05436",
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "unknown"
+      }
+    },
+    {
+      "procedure_id": "synthetic-practice-v2",
+      "service_id": "svc:demo_submission",
+      "title": "Practice application: prepare and submit",
+      "synthetic": true,
+      "source_origin": "fictional_authored",
+      "source_limit": "Fictional practice procedure authored for C4 research. All desks and charges are fictional. Viewing guidance never confirms completion. This is not government advice.",
+      "graph_fingerprint": "edbab5e04baffd245dd51b049c5d250c7cbc6fc19ac181028394e4520ed448b4",
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "complete"
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "method": "GET",
+  "path": "/workspace/guidance/context/guest:b7d7744fcbb0438790ed68d368e08952?procedure_id=official-nic_amendment-v3",
+  "request": null,
+  "status_code": 200,
+  "response": {
+    "schema_version": "c4-effective-guidance-context-1.0",
+    "session_id": "guest:b7d7744fcbb0438790ed68d368e08952",
+    "profile_id": "profile:66e8e17473784aae980826c9cae2d195",
+    "personalization_enabled": true,
+    "service_id": "svc:nic_amendment",
+    "familiarity": 4,
+    "confidence": 2,
+    "preferences": {},
+    "constraints": {
+      "locks": {},
+      "no_guided": false,
+      "no_map": false,
+      "no_disclosure": false
+    },
+    "revision": {
+      "identity": 3,
+      "revised": 0
+    },
+    "sources": {
+      "familiarity": "saved_service_report",
+      "confidence": "saved_navigation_default",
+      "preferences": "explicit_revised_settings_or_request",
+      "accessibility": "saved_requirements_union_request"
+    },
+    "legacy": {
+      "preferences_not_imported": {},
+      "pending_preference_review": {},
+      "hard_requirements_unresolved": false,
+      "lock_fingerprint": null,
+      "raw_locks": {
+        "native_or_mapped": {},
+        "unresolved_legacy": {}
+      }
+    },
+    "scoring_use": "Stored for later approved revised encoder. No scoring is run in this phase."
+  }
+}

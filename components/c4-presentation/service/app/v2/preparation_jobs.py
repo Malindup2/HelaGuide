@@ -51,7 +51,8 @@ def job_lock(path):
 
 
 class PreparationProcessor:
-    def __init__(self, runtime, directory, *, enabled=False, provider_factory=None, interval=2):
+    def __init__(self, runtime, directory, *, enabled=False, provider_factory=None, interval=2, handlers=None):
+        self.handlers = handlers or {}
         self.runtime = runtime
         self.directory = Path(directory).resolve()
         root = Path(__file__).resolve().parents[3]
@@ -89,8 +90,15 @@ class PreparationProcessor:
                 payload = json.loads(file.read_text(encoding="utf-8-sig"))
                 if payload.get("status") != "pending_review_preparation":
                     continue
-                graph, overlay = job_entry(payload)
-                key = digest({"graph": graph.model_dump(mode="json"), "overlay": overlay.model_dump(mode="json") if overlay else None, "missing": payload["missing"]})
+                handler = self.handlers.get(payload.get("content_schema"))
+                if payload.get("content_schema") and handler is None:
+                    continue  # Unknown schemas must never enter the legacy generator.
+                if handler is not None:
+                    handler.validate_job(payload)
+                    key = handler.key(payload)
+                else:
+                    graph, overlay = job_entry(payload)
+                    key = digest({"graph": graph.model_dump(mode="json"), "overlay": overlay.model_dump(mode="json") if overlay else None, "missing": payload["missing"]})
                 with self.connect() as db:
                     db.execute("INSERT OR IGNORE INTO preparation_jobs VALUES (?,?, 'queued', NULL, NULL, ?)",
                                (key, json.dumps(payload), datetime.now(timezone.utc).isoformat()))
@@ -106,6 +114,11 @@ class PreparationProcessor:
         with self.connect() as db:
             for key, text in db.execute("SELECT id,payload FROM preparation_jobs WHERE status!='processing'").fetchall():
                 payload = json.loads(text)
+                handler = self.handlers.get(payload.get("content_schema"))
+                if handler is not None:
+                    if handler.published(payload):
+                        db.execute("UPDATE preparation_jobs SET status='published' WHERE id=?", (key,))
+                    continue
                 artifact = approved.get(payload["procedure_id"])
                 if payload["procedure_id"] in prepared and artifact and artifact.get("source_fingerprint") == payload["graph_fingerprint"]:
                     db.execute("UPDATE preparation_jobs SET status='published' WHERE id=?", (key,))
@@ -114,7 +127,7 @@ class PreparationProcessor:
         with self.connect() as db:
             rows = db.execute("SELECT id,payload,status,error_code,updated_at FROM preparation_jobs ORDER BY id").fetchall()
         return [{"id": k, "procedure_id": json.loads(p)["procedure_id"], "graph_fingerprint": json.loads(p)["graph_fingerprint"],
-                 "status": s, "error_code": e, "updated_at": t, "generation_enabled": self.enabled} for k,p,s,e,t in rows]
+                 "status": s, "error_code": e, "updated_at": t, "generation_enabled": self.enabled, "content_schema":json.loads(p).get("content_schema","legacy-v2"), "language":json.loads(p).get("language","en")} for k,p,s,e,t in rows]
 
     def draft(self, key):
         with self.connect() as db:
@@ -134,6 +147,9 @@ class PreparationProcessor:
         self.wake_event.set()
 
     def current(self, payload):
+        handler = self.handlers.get(payload.get("content_schema"))
+        if handler is not None:
+            return handler.current(payload)
         with self.runtime.lock:
             entry = self.runtime.procedures.get(payload["procedure_id"])
             if entry is None:
@@ -161,9 +177,13 @@ class PreparationProcessor:
                         self.update(key, "stale"); continue
                     provider = None
                     try:
-                        graph, overlay = job_entry(payload)
                         provider = self.provider_factory()
-                        artifact = prepare(graph, provider, overlay)
+                        handler = self.handlers.get(payload.get("content_schema"))
+                        if handler is not None:
+                            artifact = handler.prepare(payload, provider)
+                        else:
+                            graph, overlay = job_entry(payload)
+                            artifact = prepare(graph, provider, overlay)
                         if self.current(payload):
                             self.update(key, "pending_review", draft=json.dumps(artifact))
                         else:

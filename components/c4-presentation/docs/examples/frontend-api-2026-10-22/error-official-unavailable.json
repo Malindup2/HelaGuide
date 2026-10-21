@@ -1,0 +1,41 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/research/previews",
+  "request": {
+    "request_id": "cb8f5e86-7c65-426e-aa7f-065daa533431",
+    "session_id": "guest:9eb7687fc4074c548123edaeeee76131",
+    "procedure_id": "official-nic_amendment-v3",
+    "capability_token": "documentation-sandbox-only-not-a-production-capability",
+    "mode": "research_preview",
+    "configuration": {
+      "navigation": "guided",
+      "explanation": "detailed",
+      "disclosure": "on",
+      "relationships": "map",
+      "recap": "on",
+      "segmentation": "on"
+    }
+  },
+  "status_code": 422,
+  "response": {
+    "detail": {
+      "code": "infeasible_configuration",
+      "message": "The requested research preview is unavailable.",
+      "reasons": [
+        "explanation:reviewed_detailed_missing",
+        "disclosure:no_reviewed_remainder_for_selected_depth",
+        "relationships:incomplete_map_or_accessibility",
+        "recap:reviewed_reminders_missing",
+        "segmentation:reviewed_meaningful_groups_missing"
+      ],
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "map",
+        "recap": "on",
+        "segmentation": "on"
+      }
+    }
+  }
+}

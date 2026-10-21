@@ -1,0 +1,21 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/requests",
+  "request": {
+    "request_id": "cb8f5e86-7c65-426e-aa7f-065daa533431",
+    "session_id": "guest:9eb7687fc4074c548123edaeeee76131",
+    "procedure_id": "official-nic_amendment-v3",
+    "capability_token": "documentation-sandbox-only-not-a-production-capability",
+    "mode": "personalized"
+  },
+  "status_code": 503,
+  "response": {
+    "detail": {
+      "code": "revised_policy_unavailable",
+      "message": "The approved revised Shared Gaussian LinTS encoder, fresh posterior, training and evaluation remain mandatory PP1 work. The 515-feature V2 policy is not used here.",
+      "action_schema": "c4-scaffolds-v3.0",
+      "encoder_status": "awaiting_approval",
+      "pp2_history": "deferred"
+    }
+  }
+}

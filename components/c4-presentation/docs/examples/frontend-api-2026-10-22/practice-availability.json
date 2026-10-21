@@ -1,0 +1,1704 @@
+{
+  "method": "GET",
+  "path": "/workspace/guidance/procedures/synthetic-practice-v2/availability?session_id=guest:9eb7687fc4074c548123edaeeee76131",
+  "request": null,
+  "status_code": 200,
+  "response": {
+    "action_schema": "c4-scaffolds-v3.0",
+    "nominal_count": 96,
+    "feasible_count": 96,
+    "candidates": [
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:none:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:none:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:none:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:none:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:inline:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:inline:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:inline:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:inline:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:map:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:map:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:map:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:off:map:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:none:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:none:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:none:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:none:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:inline:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:inline:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:inline:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:inline:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:map:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:map:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:map:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:concise:on:map:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:none:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:none:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:none:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:none:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:inline:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:inline:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:inline:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:inline:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:map:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:map:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:map:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:off:map:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:none:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:none:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:none:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:none:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:inline:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:inline:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:inline:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:inline:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:map:off:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:map:off:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:map:on:off",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:overview:detailed:on:map:on:on",
+        "configuration": {
+          "navigation": "overview",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:none:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:none:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:none:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:none:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:inline:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:inline:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:inline:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:inline:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:map:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:map:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:map:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:off:map:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:none:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:none:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:none:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:none:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:inline:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:inline:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:inline:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:inline:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:map:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:map:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:map:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:concise:on:map:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "concise",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:none:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:none:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:none:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:none:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:inline:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:inline:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:inline:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:inline:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:map:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:map:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:map:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:off:map:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "off",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": []
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:none:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:none:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:none:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:none:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "none",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:inline:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:inline:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:inline:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:inline:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "inline",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:map:off:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:map:off:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "off",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:map:on:off",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "off"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      },
+      {
+        "id": "c4-scaffolds-v3.0:guided:detailed:on:map:on:on",
+        "configuration": {
+          "navigation": "guided",
+          "explanation": "detailed",
+          "disclosure": "on",
+          "relationships": "map",
+          "recap": "on",
+          "segmentation": "on"
+        },
+        "feasible": true,
+        "reasons": [],
+        "disclosable_action_ids": [
+          "action:obtain_copy",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:register_application",
+          "action:submit_application"
+        ]
+      }
+    ],
+    "context": {
+      "schema_version": "c4-effective-guidance-context-1.0",
+      "session_id": "guest:9eb7687fc4074c548123edaeeee76131",
+      "profile_id": null,
+      "personalization_enabled": false,
+      "service_id": "svc:demo_submission",
+      "familiarity": null,
+      "confidence": null,
+      "preferences": {},
+      "constraints": {
+        "locks": {},
+        "no_guided": false,
+        "no_map": false,
+        "no_disclosure": false
+      },
+      "revision": {
+        "identity": 0,
+        "revised": 0
+      },
+      "sources": {
+        "familiarity": "saved_service_report",
+        "confidence": "saved_navigation_default",
+        "preferences": "explicit_revised_settings_or_request",
+        "accessibility": "saved_requirements_union_request"
+      },
+      "legacy": {
+        "preferences_not_imported": {},
+        "pending_preference_review": {},
+        "hard_requirements_unresolved": false,
+        "lock_fingerprint": null,
+        "raw_locks": {
+          "native_or_mapped": {},
+          "unresolved_legacy": {}
+        }
+      },
+      "scoring_use": "Stored for later approved revised encoder. No scoring is run in this phase."
+    },
+    "preparation": {
+      "content_state": "published",
+      "preparation_state": "published",
+      "job_state": null,
+      "job_id": null,
+      "error_code": null,
+      "generation_enabled": false,
+      "mode": "demo",
+      "language": "en",
+      "fallback_language": null,
+      "content_schema": "c4-guidance-content-3.0",
+      "artifact_id": "2449d86823559a2b3db32007d6b48ba7037318621c648eb2f6463cc9b7da3e1a",
+      "review_kind": "internal_fictional_author",
+      "source_kind": "fictional",
+      "content_origin": "fictional_authored",
+      "source_review": {
+        "reviewer": "Codex internal fictional author-review (AI-assisted; not human or external expert review)",
+        "reviewed_at": "2026-10-22T00:00:00Z",
+        "scope_note": "Compared authored wording to the supplied fictional Plan, source passages and verified graph. External assessment of scaffold suitability/scenario hypotheses remains pending; this is not expert validation.",
+        "independent_government_validation": false
+      }
+    }
+  }
+}

@@ -1,0 +1,4563 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "C4 V2 research",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/workspace/guidance/status": {
+      "get": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Status",
+        "operationId": "status_workspace_guidance_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/profiles": {
+      "get": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Profiles",
+        "operationId": "profiles_workspace_guidance_profiles_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DemoProfileResponse"
+                  },
+                  "type": "array",
+                  "title": "Response Profiles Workspace Guidance Profiles Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Create Profile",
+        "operationId": "create_profile_workspace_guidance_profiles_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDemoProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemoProfileResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/profiles/{profile_id}/personalization": {
+      "patch": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Personalization",
+        "operationId": "personalization_workspace_guidance_profiles__profile_id__personalization_patch",
+        "parameters": [
+          {
+            "name": "profile_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Profile Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonalizationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemoProfileResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/guests": {
+      "post": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Guest",
+        "operationId": "guest_workspace_guidance_guests_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/procedures": {
+      "get": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Procedures",
+        "operationId": "procedures_workspace_guidance_procedures_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/context/{session_id}": {
+      "get": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Context",
+        "operationId": "context_workspace_guidance_context__session_id__get",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "procedure_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Procedure Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EffectiveContext"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Edit Context",
+        "operationId": "edit_context_workspace_guidance_context__session_id__patch",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContextPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/profile-context/{session_id}": {
+      "patch": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Edit Profile Context",
+        "operationId": "edit_profile_context_workspace_guidance_profile_context__session_id__patch",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileContextPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/procedures/{procedure_id}/availability": {
+      "get": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Availability",
+        "operationId": "availability_workspace_guidance_procedures__procedure_id__availability_get",
+        "parameters": [
+          {
+            "name": "procedure_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Procedure Id"
+            }
+          },
+          {
+            "name": "session_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "title": "Language"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AvailabilityResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/requests": {
+      "post": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Request Guidance",
+        "operationId": "request_guidance_workspace_guidance_requests_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartGuidance"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidanceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/research/previews": {
+      "post": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Preview",
+        "operationId": "preview_workspace_guidance_research_previews_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreviewGuidance"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidanceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/journeys/{journey_id}": {
+      "get": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Read",
+        "operationId": "read_workspace_guidance_journeys__journey_id__get",
+        "parameters": [
+          {
+            "name": "journey_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Journey Id"
+            }
+          },
+          {
+            "name": "x-c4-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-C4-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidanceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/journeys/{journey_id}/events": {
+      "post": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Event",
+        "operationId": "event_workspace_guidance_journeys__journey_id__events_post",
+        "parameters": [
+          {
+            "name": "journey_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Journey Id"
+            }
+          },
+          {
+            "name": "x-c4-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-C4-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Interaction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/journeys/{journey_id}/views": {
+      "post": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Adjust",
+        "operationId": "adjust_workspace_guidance_journeys__journey_id__views_post",
+        "parameters": [
+          {
+            "name": "journey_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Journey Id"
+            }
+          },
+          {
+            "name": "x-c4-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-C4-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdjustView"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GuidanceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/journeys/{journey_id}/ratings": {
+      "post": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Rate",
+        "operationId": "rate_workspace_guidance_journeys__journey_id__ratings_post",
+        "parameters": [
+          {
+            "name": "journey_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Journey Id"
+            }
+          },
+          {
+            "name": "x-c4-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-C4-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/app__guidance__frontend_contracts__Rating"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/guidance/journeys/{journey_id}/inspector": {
+      "get": {
+        "tags": [
+          "Revised Guidance"
+        ],
+        "summary": "Inspect",
+        "operationId": "inspect_workspace_guidance_journeys__journey_id__inspector_get",
+        "parameters": [
+          {
+            "name": "journey_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Journey Id"
+            }
+          },
+          {
+            "name": "x-c4-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-C4-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessibilityConstraints": {
+        "properties": {
+          "allow_relationship_visuals": {
+            "type": "boolean",
+            "title": "Allow Relationship Visuals",
+            "default": true
+          },
+          "allow_collapsed_content": {
+            "type": "boolean",
+            "title": "Allow Collapsed Content",
+            "default": true
+          },
+          "allow_guided_navigation": {
+            "type": "boolean",
+            "title": "Allow Guided Navigation",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "AccessibilityConstraints",
+        "description": "Explicit functional constraints, not inferred disability labels."
+      },
+      "ActionPrerequisiteEdge": {
+        "properties": {
+          "edge_id": {
+            "type": "string",
+            "pattern": "^prerequisite:[a-z0-9_]+$",
+            "title": "Edge Id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "requires_completion",
+            "title": "Kind",
+            "default": "requires_completion"
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^action:[a-z0-9_]+$",
+            "title": "Source Id"
+          },
+          "target_id": {
+            "type": "string",
+            "pattern": "^action:[a-z0-9_]+$",
+            "title": "Target Id"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string",
+              "pattern": "^evidence:[a-z0-9_]+$"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "edge_id",
+          "source_id",
+          "target_id",
+          "evidence_ids"
+        ],
+        "title": "ActionPrerequisiteEdge"
+      },
+      "AdjustView": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Request Id"
+          },
+          "parent_view_id": {
+            "type": "string",
+            "title": "Parent View Id"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/app__guidance__catalogue__Configuration"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "parent_view_id",
+          "configuration"
+        ],
+        "title": "AdjustView"
+      },
+      "AvailabilityResponse": {
+        "properties": {
+          "action_schema": {
+            "type": "string",
+            "const": "c4-scaffolds-v3.0",
+            "title": "Action Schema"
+          },
+          "nominal_count": {
+            "type": "integer",
+            "const": 96,
+            "title": "Nominal Count"
+          },
+          "feasible_count": {
+            "type": "integer",
+            "maximum": 96.0,
+            "minimum": 0.0,
+            "title": "Feasible Count"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/CandidateAvailability"
+            },
+            "type": "array",
+            "title": "Candidates"
+          },
+          "context": {
+            "$ref": "#/components/schemas/EffectiveContext"
+          },
+          "preparation": {
+            "$ref": "#/components/schemas/PreparationMetadata"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action_schema",
+          "nominal_count",
+          "feasible_count",
+          "candidates",
+          "context",
+          "preparation"
+        ],
+        "title": "AvailabilityResponse"
+      },
+      "BranchGroupNode": {
+        "properties": {
+          "group_id": {
+            "type": "string",
+            "pattern": "^branch:[a-z0-9_]+$",
+            "title": "Group Id"
+          },
+          "service_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+$",
+            "title": "Service Id"
+          },
+          "selection": {
+            "type": "string",
+            "enum": [
+              "AND",
+              "OR",
+              "XOR"
+            ],
+            "title": "Selection"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/BranchOptionNode"
+            },
+            "type": "array",
+            "title": "Options"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string",
+              "pattern": "^evidence:[a-z0-9_]+$"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "group_id",
+          "service_id",
+          "selection",
+          "options",
+          "evidence_ids"
+        ],
+        "title": "BranchGroupNode"
+      },
+      "BranchOptionNode": {
+        "properties": {
+          "option_id": {
+            "type": "string",
+            "pattern": "^option:[a-z0-9_]+$",
+            "title": "Option Id"
+          },
+          "action_ids": {
+            "items": {
+              "type": "string",
+              "pattern": "^action:[a-z0-9_]+$"
+            },
+            "type": "array",
+            "title": "Action Ids"
+          },
+          "condition_ids": {
+            "items": {
+              "type": "string",
+              "pattern": "^condition:[a-z0-9_]+$"
+            },
+            "type": "array",
+            "title": "Condition Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "option_id",
+          "action_ids",
+          "condition_ids"
+        ],
+        "title": "BranchOptionNode"
+      },
+      "CandidateAvailability": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/Configuration-Output"
+          },
+          "feasible": {
+            "type": "boolean",
+            "title": "Feasible"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reasons"
+          },
+          "disclosable_action_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Disclosable Action Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "configuration",
+          "feasible",
+          "reasons",
+          "disclosable_action_ids"
+        ],
+        "title": "CandidateAvailability"
+      },
+      "ConditionNode": {
+        "properties": {
+          "condition_id": {
+            "type": "string",
+            "pattern": "^condition:[a-z0-9_]+$",
+            "title": "Condition Id"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Text"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string",
+              "pattern": "^evidence:[a-z0-9_]+$"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "condition_id",
+          "text",
+          "evidence_ids"
+        ],
+        "title": "ConditionNode"
+      },
+      "Configuration-Output": {
+        "properties": {
+          "navigation": {
+            "type": "string",
+            "enum": [
+              "overview",
+              "guided"
+            ],
+            "title": "Navigation",
+            "default": "overview"
+          },
+          "explanation": {
+            "type": "string",
+            "enum": [
+              "concise",
+              "detailed"
+            ],
+            "title": "Explanation",
+            "default": "concise"
+          },
+          "disclosure": {
+            "type": "string",
+            "enum": [
+              "off",
+              "on"
+            ],
+            "title": "Disclosure",
+            "default": "off"
+          },
+          "relationships": {
+            "type": "string",
+            "enum": [
+              "none",
+              "inline",
+              "map"
+            ],
+            "title": "Relationships",
+            "default": "none"
+          },
+          "recap": {
+            "type": "string",
+            "enum": [
+              "off",
+              "on"
+            ],
+            "title": "Recap",
+            "default": "off"
+          },
+          "segmentation": {
+            "type": "string",
+            "enum": [
+              "off",
+              "on"
+            ],
+            "title": "Segmentation",
+            "default": "off"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "Configuration"
+      },
+      "Constraints": {
+        "properties": {
+          "locks": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Locks"
+          },
+          "no_guided": {
+            "type": "boolean",
+            "title": "No Guided",
+            "default": false
+          },
+          "no_map": {
+            "type": "boolean",
+            "title": "No Map",
+            "default": false
+          },
+          "no_disclosure": {
+            "type": "boolean",
+            "title": "No Disclosure",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "Constraints"
+      },
+      "ContextPatch": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Request Id"
+          },
+          "expected_revision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "preferences": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preferences"
+          },
+          "locks": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Locks"
+          },
+          "accessibility": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Constraints"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "legacy_lock_fingerprint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Legacy Lock Fingerprint"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "expected_revision"
+        ],
+        "title": "ContextPatch"
+      },
+      "CreateDemoProfileRequest": {
+        "properties": {
+          "profile_id": {
+            "type": "string",
+            "pattern": "^profile:[0-9a-f]{32}$",
+            "title": "Profile Id"
+          },
+          "display_name": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1,
+            "title": "Display Name"
+          },
+          "personalization_enabled": {
+            "type": "boolean",
+            "title": "Personalization Enabled",
+            "default": false
+          },
+          "initial_context": {
+            "$ref": "#/components/schemas/InitialProfileContext"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "profile_id",
+          "display_name"
+        ],
+        "title": "CreateDemoProfileRequest",
+        "description": "The client keeps profile_id unchanged when retrying creation."
+      },
+      "DemoProfile": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "c4-demo-profile-1.0",
+            "title": "Schema Version",
+            "default": "c4-demo-profile-1.0"
+          },
+          "profile_id": {
+            "type": "string",
+            "pattern": "^profile:[0-9a-f]{32}$",
+            "title": "Profile Id"
+          },
+          "display_name": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1,
+            "title": "Display Name"
+          },
+          "session_id": {
+            "type": "string",
+            "pattern": "^guest:[0-9a-f]{32}$",
+            "title": "Session Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Revision"
+          },
+          "initial_personalization_enabled": {
+            "type": "boolean",
+            "title": "Initial Personalization Enabled"
+          },
+          "personalization_enabled": {
+            "type": "boolean",
+            "title": "Personalization Enabled"
+          },
+          "creation_fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Creation Fingerprint"
+          },
+          "personalization_changes": {
+            "items": {
+              "$ref": "#/components/schemas/PersonalizationChange"
+            },
+            "type": "array",
+            "title": "Personalization Changes",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "profile_id",
+          "display_name",
+          "session_id",
+          "created_at",
+          "updated_at",
+          "revision",
+          "initial_personalization_enabled",
+          "personalization_enabled",
+          "creation_fingerprint"
+        ],
+        "title": "DemoProfile"
+      },
+      "DemoProfileResponse": {
+        "properties": {
+          "profile": {
+            "$ref": "#/components/schemas/DemoProfile"
+          },
+          "session": {
+            "$ref": "#/components/schemas/GuestSession"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "profile",
+          "session"
+        ],
+        "title": "DemoProfileResponse"
+      },
+      "DocumentFact": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "document",
+            "title": "Kind",
+            "default": "document"
+          },
+          "fact_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$",
+            "title": "Fact Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "fact_id",
+          "name"
+        ],
+        "title": "DocumentFact"
+      },
+      "EffectiveContext": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "c4-effective-guidance-context-1.0",
+            "title": "Schema Version"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "profile_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Id"
+          },
+          "personalization_enabled": {
+            "type": "boolean",
+            "title": "Personalization Enabled"
+          },
+          "service_id": {
+            "type": "string",
+            "title": "Service Id"
+          },
+          "familiarity": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Familiarity"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "preferences": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Preferences"
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/Constraints"
+          },
+          "revision": {
+            "$ref": "#/components/schemas/Revision"
+          },
+          "sources": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Sources"
+          },
+          "legacy": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Legacy"
+          },
+          "scoring_use": {
+            "type": "string",
+            "title": "Scoring Use"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "schema_version",
+          "session_id",
+          "profile_id",
+          "personalization_enabled",
+          "service_id",
+          "familiarity",
+          "confidence",
+          "preferences",
+          "constraints",
+          "revision",
+          "sources",
+          "legacy",
+          "scoring_use"
+        ],
+        "title": "EffectiveContext"
+      },
+      "EvidenceNode": {
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "pattern": "^evidence:[a-z0-9_]+$",
+            "title": "Evidence Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "synthetic_authored",
+              "source_passage"
+            ],
+            "title": "Kind"
+          },
+          "source_url": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Source Url"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Text"
+          },
+          "retrieved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retrieved At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "kind",
+          "source_url",
+          "text",
+          "retrieved_at"
+        ],
+        "title": "EvidenceNode"
+      },
+      "Expression-Output": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "action",
+              "all_of",
+              "any_of",
+              "selected_option_of"
+            ],
+            "title": "Kind"
+          },
+          "ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ref"
+          },
+          "children": {
+            "items": {
+              "$ref": "#/components/schemas/Expression-Output"
+            },
+            "type": "array",
+            "title": "Children"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "Expression"
+      },
+      "FactProvenance": {
+        "properties": {
+          "fact_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$",
+            "title": "Fact Id"
+          },
+          "source_url": {
+            "type": "string",
+            "title": "Source Url"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Retrieved At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "fact_id",
+          "source_url",
+          "retrieved_at"
+        ],
+        "title": "FactProvenance"
+      },
+      "FamiliarityReport": {
+        "properties": {
+          "service_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+$",
+            "title": "Service Id"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "source": {
+            "type": "string",
+            "const": "self_reported",
+            "title": "Source",
+            "default": "self_reported"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "service_id",
+          "score"
+        ],
+        "title": "FamiliarityReport"
+      },
+      "FeeFact": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "fee",
+            "title": "Kind",
+            "default": "fee"
+          },
+          "fact_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$",
+            "title": "Fact Id"
+          },
+          "value": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Value"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "fact_id",
+          "value",
+          "currency"
+        ],
+        "title": "FeeFact"
+      },
+      "FrozenAvailability": {
+        "properties": {
+          "action_schema": {
+            "type": "string",
+            "const": "c4-scaffolds-v3.0",
+            "title": "Action Schema"
+          },
+          "nominal_count": {
+            "type": "integer",
+            "const": 96,
+            "title": "Nominal Count"
+          },
+          "feasible_count": {
+            "type": "integer",
+            "maximum": 96.0,
+            "minimum": 0.0,
+            "title": "Feasible Count"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/CandidateAvailability"
+            },
+            "type": "array",
+            "title": "Candidates"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action_schema",
+          "nominal_count",
+          "feasible_count",
+          "candidates"
+        ],
+        "title": "FrozenAvailability"
+      },
+      "GraphCompleteness": {
+        "properties": {
+          "service_dependencies": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "partial",
+              "unknown"
+            ],
+            "title": "Service Dependencies"
+          },
+          "actions": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "partial",
+              "unknown"
+            ],
+            "title": "Actions"
+          },
+          "content": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "partial",
+              "unknown"
+            ],
+            "title": "Content"
+          },
+          "conditions": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "partial",
+              "unknown"
+            ],
+            "title": "Conditions"
+          },
+          "branch_groups": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "partial",
+              "unknown"
+            ],
+            "title": "Branch Groups"
+          },
+          "prerequisites": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "partial",
+              "unknown"
+            ],
+            "title": "Prerequisites"
+          },
+          "parallel_groups": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "partial",
+              "unknown"
+            ],
+            "title": "Parallel Groups"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "service_dependencies",
+          "actions",
+          "content",
+          "conditions",
+          "branch_groups",
+          "prerequisites",
+          "parallel_groups"
+        ],
+        "title": "GraphCompleteness"
+      },
+      "GuestSession": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "1.0",
+            "title": "Schema Version",
+            "default": "1.0"
+          },
+          "session_id": {
+            "type": "string",
+            "pattern": "^guest:[0-9a-f]{32}$",
+            "title": "Session Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Revision"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/UserSettings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "session_id",
+          "created_at",
+          "updated_at",
+          "revision",
+          "settings"
+        ],
+        "title": "GuestSession"
+      },
+      "GuidanceResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "c4-guidance-api-1.0",
+            "title": "Schema Version",
+            "default": "c4-guidance-api-1.0"
+          },
+          "journey_id": {
+            "type": "string",
+            "title": "Journey Id"
+          },
+          "view_id": {
+            "type": "string",
+            "title": "View Id"
+          },
+          "parent_view_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent View Id"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "procedure_id": {
+            "type": "string",
+            "title": "Procedure Id"
+          },
+          "procedure_title": {
+            "type": "string",
+            "title": "Procedure Title"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "selection": {
+            "$ref": "#/components/schemas/Selection"
+          },
+          "preparation": {
+            "$ref": "#/components/schemas/PreparationMetadata"
+          },
+          "effective_context": {
+            "$ref": "#/components/schemas/EffectiveContext"
+          },
+          "availability": {
+            "$ref": "#/components/schemas/FrozenAvailability"
+          },
+          "document": {
+            "$ref": "#/components/schemas/RenderedDocument"
+          },
+          "interaction": {
+            "$ref": "#/components/schemas/InteractionState"
+          },
+          "controls": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Controls"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "journey_id",
+          "view_id",
+          "parent_view_id",
+          "session_id",
+          "procedure_id",
+          "procedure_title",
+          "created_at",
+          "selection",
+          "preparation",
+          "effective_context",
+          "availability",
+          "document",
+          "interaction",
+          "controls"
+        ],
+        "title": "GuidanceResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "InitialProfileContext": {
+        "properties": {
+          "familiarity": {
+            "items": {
+              "$ref": "#/components/schemas/FamiliarityReport"
+            },
+            "type": "array",
+            "title": "Familiarity"
+          },
+          "navigation_capability": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Navigation Capability"
+          },
+          "preferences": {
+            "$ref": "#/components/schemas/SoftPreferences"
+          },
+          "locks": {
+            "$ref": "#/components/schemas/PresentationLocks"
+          },
+          "accessibility": {
+            "$ref": "#/components/schemas/AccessibilityConstraints"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "InitialProfileContext",
+        "description": "Optional self-reported answers collected during profile creation."
+      },
+      "Interaction": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Event Id"
+          },
+          "view_id": {
+            "type": "string",
+            "title": "View Id"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "view_displayed",
+              "step_visible",
+              "navigate",
+              "step_open",
+              "viewport_changed",
+              "explanation_open",
+              "explanation_close",
+              "route_focus",
+              "map_show",
+              "map_hide",
+              "map_expand",
+              "map_collapse",
+              "recap_open",
+              "recap_close",
+              "overview_peek",
+              "source_open"
+            ],
+            "title": "Type"
+          },
+          "action_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action Id"
+          },
+          "action_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 200,
+            "title": "Action Ids"
+          },
+          "branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch Id"
+          },
+          "option_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Option Ids"
+          },
+          "source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Id"
+          },
+          "client_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Timestamp"
+          },
+          "visible_ratio": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Visible Ratio"
+          },
+          "dwell_ms": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 3600000.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dwell Ms"
+          },
+          "instrumentation_version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instrumentation Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event_id",
+          "view_id",
+          "type"
+        ],
+        "title": "Interaction"
+      },
+      "InteractionState": {
+        "properties": {
+          "navigation": {
+            "$ref": "#/components/schemas/Navigation"
+          },
+          "route_choices": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Route Choices"
+          },
+          "map_visible": {
+            "type": "boolean",
+            "title": "Map Visible"
+          },
+          "explanation_open_action_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Explanation Open Action Ids"
+          },
+          "display_acknowledged_view_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Display Acknowledged View Ids"
+          },
+          "recap": {
+            "$ref": "#/components/schemas/RecapState"
+          },
+          "event_count": {
+            "type": "integer",
+            "title": "Event Count"
+          },
+          "completion_tracked": {
+            "type": "boolean",
+            "const": false,
+            "title": "Completion Tracked"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "navigation",
+          "route_choices",
+          "map_visible",
+          "explanation_open_action_ids",
+          "display_acknowledged_view_ids",
+          "recap",
+          "event_count",
+          "completion_tracked"
+        ],
+        "title": "InteractionState"
+      },
+      "Join-Output": {
+        "properties": {
+          "target": {
+            "type": "string",
+            "title": "Target"
+          },
+          "requirement": {
+            "$ref": "#/components/schemas/Expression-Output"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Evidence Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "target",
+          "requirement",
+          "evidence_ids"
+        ],
+        "title": "Join"
+      },
+      "Navigation": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "overview",
+              "guided"
+            ],
+            "title": "Mode"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/NavigationEntry"
+            },
+            "type": "array",
+            "title": "Entries"
+          },
+          "active_action_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Active Action Id"
+          },
+          "browsing_action_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Browsing Action Ids"
+          },
+          "previous_action_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous Action Id"
+          },
+          "next_action_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Action Id"
+          },
+          "browsing_position": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Browsing Position"
+          },
+          "browsing_count": {
+            "type": "integer",
+            "title": "Browsing Count"
+          },
+          "unresolved_route_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unresolved Route Ids"
+          },
+          "numbering_enabled": {
+            "type": "boolean",
+            "title": "Numbering Enabled"
+          },
+          "order_semantics": {
+            "type": "string",
+            "title": "Order Semantics"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "entries",
+          "active_action_id",
+          "browsing_action_ids",
+          "previous_action_id",
+          "next_action_id",
+          "browsing_position",
+          "browsing_count",
+          "unresolved_route_ids",
+          "numbering_enabled",
+          "order_semantics"
+        ],
+        "title": "Navigation"
+      },
+      "NavigationEntry": {
+        "properties": {
+          "action_id": {
+            "type": "string",
+            "title": "Action Id"
+          },
+          "layer": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Layer"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch Id"
+          },
+          "option_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Option Id"
+          },
+          "route_layer": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Route Layer"
+          },
+          "available_for_navigation": {
+            "type": "boolean",
+            "title": "Available For Navigation"
+          },
+          "orientation_only": {
+            "type": "boolean",
+            "const": true,
+            "title": "Orientation Only"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action_id",
+          "layer",
+          "label",
+          "branch_id",
+          "option_id",
+          "route_layer",
+          "available_for_navigation",
+          "orientation_only"
+        ],
+        "title": "NavigationEntry"
+      },
+      "ParallelGroupNode": {
+        "properties": {
+          "group_id": {
+            "type": "string",
+            "pattern": "^parallel:[a-z0-9_]+$",
+            "title": "Group Id"
+          },
+          "service_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+$",
+            "title": "Service Id"
+          },
+          "action_ids": {
+            "items": {
+              "type": "string",
+              "pattern": "^action:[a-z0-9_]+$"
+            },
+            "type": "array",
+            "title": "Action Ids"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string",
+              "pattern": "^evidence:[a-z0-9_]+$"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "group_id",
+          "service_id",
+          "action_ids",
+          "evidence_ids"
+        ],
+        "title": "ParallelGroupNode"
+      },
+      "PersonalizationChange": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "pattern": "^event:[0-9a-f]{32}$",
+            "title": "Request Id"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "occurred_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Occurred At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "expected_revision",
+          "enabled",
+          "occurred_at"
+        ],
+        "title": "PersonalizationChange"
+      },
+      "PersonalizationRequest": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "pattern": "^event:[0-9a-f]{32}$",
+            "title": "Request Id"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Revision"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "expected_revision",
+          "enabled"
+        ],
+        "title": "PersonalizationRequest",
+        "description": "One explicit setting operation, identified for safe retries."
+      },
+      "Phase": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "label": {
+            "$ref": "#/components/schemas/Text"
+          },
+          "action_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Action Ids"
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "purpose",
+              "actor",
+              "location",
+              "timing",
+              "stage"
+            ],
+            "title": "Basis"
+          },
+          "why_grouped": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Why Grouped"
+          },
+          "adds_orientation": {
+            "type": "boolean",
+            "title": "Adds Orientation",
+            "default": false
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Evidence Ids"
+          },
+          "branch_split_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch Split Note"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "action_ids",
+          "basis",
+          "why_grouped",
+          "evidence_ids"
+        ],
+        "title": "Phase"
+      },
+      "PolicyEvidence": {
+        "properties": {
+          "algorithm": {
+            "type": "string",
+            "const": "shared_gaussian_lints",
+            "title": "Algorithm"
+          },
+          "action_schema": {
+            "type": "string",
+            "const": "c4-scaffolds-v3.0",
+            "title": "Action Schema"
+          },
+          "encoder_schema": {
+            "type": "string",
+            "title": "Encoder Schema"
+          },
+          "model_manifest_fingerprint": {
+            "type": "string",
+            "title": "Model Manifest Fingerprint"
+          },
+          "policy_run_id": {
+            "type": "string",
+            "title": "Policy Run Id"
+          },
+          "posterior_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Posterior Revision"
+          },
+          "decision_id": {
+            "type": "string",
+            "title": "Decision Id"
+          },
+          "training_provenance": {
+            "type": "string",
+            "enum": [
+              "fresh_prior",
+              "synthetic",
+              "participant",
+              "mixed_explicitly_versioned"
+            ],
+            "title": "Training Provenance"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "algorithm",
+          "action_schema",
+          "encoder_schema",
+          "model_manifest_fingerprint",
+          "policy_run_id",
+          "posterior_revision",
+          "decision_id",
+          "training_provenance"
+        ],
+        "title": "PolicyEvidence",
+        "description": "Future producer contract only: no invented values are emitted today."
+      },
+      "PreparationMetadata": {
+        "properties": {
+          "content_state": {
+            "type": "string",
+            "enum": [
+              "published",
+              "source_fallback"
+            ],
+            "title": "Content State"
+          },
+          "preparation_state": {
+            "type": "string",
+            "enum": [
+              "published",
+              "draft",
+              "queued",
+              "pending",
+              "processing",
+              "failed",
+              "stale"
+            ],
+            "title": "Preparation State"
+          },
+          "job_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job State"
+          },
+          "job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Id"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "generation_enabled": {
+            "type": "boolean",
+            "title": "Generation Enabled"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "demo",
+              "dynamic"
+            ],
+            "title": "Mode"
+          },
+          "language": {
+            "type": "string",
+            "title": "Language"
+          },
+          "fallback_language": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fallback Language"
+          },
+          "content_schema": {
+            "type": "string",
+            "const": "c4-guidance-content-3.0",
+            "title": "Content Schema"
+          },
+          "artifact_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Id"
+          },
+          "review_kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Review Kind"
+          },
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "fictional",
+              "bounded_official_source_snapshot"
+            ],
+            "title": "Source Kind"
+          },
+          "content_origin": {
+            "type": "string",
+            "title": "Content Origin"
+          },
+          "source_review": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceReview"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "content_state",
+          "preparation_state",
+          "job_state",
+          "job_id",
+          "error_code",
+          "generation_enabled",
+          "mode",
+          "language",
+          "fallback_language",
+          "content_schema",
+          "artifact_id",
+          "review_kind",
+          "source_kind",
+          "content_origin",
+          "source_review"
+        ],
+        "title": "PreparationMetadata"
+      },
+      "PresentationLocks": {
+        "properties": {
+          "presentation_mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "OVERVIEW",
+                  "GUIDED"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Presentation Mode"
+          },
+          "progressive_disclosure": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progressive Disclosure"
+          },
+          "previous_context_recap": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous Context Recap"
+          },
+          "relationship_visual": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "NONE",
+                  "BRANCH_MAP",
+                  "DEPENDENCY_MAP",
+                  "PARALLEL_MAP"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relationship Visual"
+          },
+          "prerequisite_cue": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prerequisite Cue"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "PresentationLocks",
+        "description": "None means unlocked. False is an explicit OFF lock."
+      },
+      "PreviewGuidance": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Request Id"
+          },
+          "session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Session Id"
+          },
+          "procedure_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Procedure Id"
+          },
+          "capability_token": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 32,
+            "title": "Capability Token"
+          },
+          "language": {
+            "type": "string",
+            "pattern": "^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$",
+            "title": "Language",
+            "default": "en"
+          },
+          "mode": {
+            "type": "string",
+            "const": "research_preview",
+            "title": "Mode",
+            "default": "research_preview"
+          },
+          "expected_context_revision": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Revision"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "context": {
+            "$ref": "#/components/schemas/RequestContext"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/app__guidance__catalogue__Configuration"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "session_id",
+          "procedure_id",
+          "capability_token",
+          "configuration"
+        ],
+        "title": "PreviewGuidance"
+      },
+      "ProcessMap": {
+        "properties": {
+          "labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Labels"
+          },
+          "edges": {
+            "items": {
+              "$ref": "#/components/schemas/ActionPrerequisiteEdge"
+            },
+            "type": "array",
+            "title": "Edges"
+          },
+          "joins": {
+            "items": {
+              "$ref": "#/components/schemas/Join-Output"
+            },
+            "type": "array",
+            "title": "Joins"
+          },
+          "branches": {
+            "items": {
+              "$ref": "#/components/schemas/BranchGroupNode"
+            },
+            "type": "array",
+            "title": "Branches"
+          },
+          "parallel": {
+            "items": {
+              "$ref": "#/components/schemas/ParallelGroupNode"
+            },
+            "type": "array",
+            "title": "Parallel"
+          },
+          "parallel_areas": {
+            "items": {
+              "items": {
+                "$ref": "#/components/schemas/Expression-Output"
+              },
+              "type": "array"
+            },
+            "type": "array",
+            "title": "Parallel Areas"
+          },
+          "stages": {
+            "items": {
+              "$ref": "#/components/schemas/StageNode"
+            },
+            "type": "array",
+            "title": "Stages"
+          },
+          "text_equivalent": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Text Equivalent"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "labels",
+          "edges",
+          "joins",
+          "branches",
+          "parallel",
+          "parallel_areas",
+          "stages",
+          "text_equivalent"
+        ],
+        "title": "ProcessMap"
+      },
+      "ProfileContextPatch": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Request Id"
+          },
+          "expected_identity_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Identity Revision"
+          },
+          "familiarity": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/FamiliarityReport"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Familiarity"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "accessibility": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AccessibilityConstraints"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "expected_identity_revision"
+        ],
+        "title": "ProfileContextPatch"
+      },
+      "RecapItem": {
+        "properties": {
+          "action_id": {
+            "type": "string",
+            "title": "Action Id"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "evidence": {
+            "$ref": "#/components/schemas/VisitEvidence"
+          },
+          "viewed_not_completed": {
+            "type": "boolean",
+            "const": true,
+            "title": "Viewed Not Completed"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action_id",
+          "text",
+          "evidence",
+          "viewed_not_completed"
+        ],
+        "title": "RecapItem"
+      },
+      "RecapState": {
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/RecapItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "empty_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Empty Reason"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "enabled",
+          "items",
+          "empty_reason",
+          "label"
+        ],
+        "title": "RecapState"
+      },
+      "Receipt": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "title": "Event Id"
+          },
+          "sequence": {
+            "type": "integer",
+            "title": "Sequence"
+          },
+          "server_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Server Timestamp"
+          },
+          "reward": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reward"
+          },
+          "policy_updated": {
+            "type": "boolean",
+            "title": "Policy Updated"
+          },
+          "learning_eligible": {
+            "type": "boolean",
+            "title": "Learning Eligible"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event_id",
+          "sequence",
+          "server_timestamp",
+          "reward",
+          "policy_updated",
+          "learning_eligible"
+        ],
+        "title": "Receipt"
+      },
+      "RelationCue": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "relation_id": {
+            "type": "string",
+            "title": "Relation Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "text",
+          "evidence_ids",
+          "relation_id"
+        ],
+        "title": "RelationCue"
+      },
+      "RelationshipAid": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "none",
+              "inline",
+              "map"
+            ],
+            "title": "Mode"
+          },
+          "inline_by_action": {
+            "additionalProperties": {
+              "items": {
+                "$ref": "#/components/schemas/RelationCue"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Inline By Action"
+          },
+          "map": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProcessMap"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "essential_relationships_remain_in_instructions": {
+            "type": "boolean",
+            "const": true,
+            "title": "Essential Relationships Remain In Instructions"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "inline_by_action",
+          "map",
+          "essential_relationships_remain_in_instructions"
+        ],
+        "title": "RelationshipAid"
+      },
+      "RenderedAction": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "heading": {
+            "type": "string",
+            "title": "Heading"
+          },
+          "essential": {
+            "type": "string",
+            "title": "Essential"
+          },
+          "conditions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Conditions"
+          },
+          "actor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/ScopedFact"
+            },
+            "type": "array",
+            "title": "Facts"
+          },
+          "explanation_visible": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation Visible"
+          },
+          "explanation_hidden": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation Hidden"
+          },
+          "recap": {
+            "type": "null",
+            "title": "Recap"
+          },
+          "branch": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch"
+          },
+          "option": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Option"
+          },
+          "service_id": {
+            "type": "string",
+            "title": "Service Id"
+          },
+          "agency": {
+            "type": "string",
+            "title": "Agency"
+          },
+          "condition_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Condition Ids"
+          },
+          "source_content_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Content Ids"
+          },
+          "disclosure_available": {
+            "type": "boolean",
+            "title": "Disclosure Available"
+          },
+          "wording_status": {
+            "type": "string",
+            "title": "Wording Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "heading",
+          "essential",
+          "conditions",
+          "actor",
+          "destination",
+          "facts",
+          "explanation_visible",
+          "explanation_hidden",
+          "branch",
+          "option",
+          "service_id",
+          "agency",
+          "condition_ids",
+          "source_content_ids",
+          "disclosure_available",
+          "wording_status"
+        ],
+        "title": "RenderedAction"
+      },
+      "RenderedDocument": {
+        "properties": {
+          "schema": {
+            "type": "string",
+            "const": "c4-render-plan-3.0",
+            "title": "Schema"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/Configuration-Output"
+          },
+          "synthetic": {
+            "type": "boolean",
+            "title": "Synthetic"
+          },
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "fictional",
+              "bounded_official_source_snapshot"
+            ],
+            "title": "Source Kind"
+          },
+          "source_limit": {
+            "type": "string",
+            "title": "Source Limit"
+          },
+          "source_graph_fingerprint": {
+            "type": "string",
+            "title": "Source Graph Fingerprint"
+          },
+          "relationship_fingerprint": {
+            "type": "string",
+            "title": "Relationship Fingerprint"
+          },
+          "content_fingerprint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Fingerprint"
+          },
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/RenderedAction"
+            },
+            "type": "array",
+            "title": "Actions"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/ScopedFact"
+            },
+            "type": "array",
+            "title": "Facts"
+          },
+          "branches": {
+            "items": {
+              "$ref": "#/components/schemas/BranchGroupNode"
+            },
+            "type": "array",
+            "title": "Branches"
+          },
+          "stages": {
+            "items": {
+              "$ref": "#/components/schemas/StageNode"
+            },
+            "type": "array",
+            "title": "Stages"
+          },
+          "stage_edges": {
+            "items": {
+              "$ref": "#/components/schemas/StageDependencyEdge"
+            },
+            "type": "array",
+            "title": "Stage Edges"
+          },
+          "edges": {
+            "items": {
+              "$ref": "#/components/schemas/ActionPrerequisiteEdge"
+            },
+            "type": "array",
+            "title": "Edges"
+          },
+          "parallel": {
+            "items": {
+              "$ref": "#/components/schemas/ParallelGroupNode"
+            },
+            "type": "array",
+            "title": "Parallel"
+          },
+          "joins": {
+            "items": {
+              "$ref": "#/components/schemas/Join-Output"
+            },
+            "type": "array",
+            "title": "Joins"
+          },
+          "parallel_areas": {
+            "items": {
+              "items": {
+                "$ref": "#/components/schemas/Expression-Output"
+              },
+              "type": "array"
+            },
+            "type": "array",
+            "title": "Parallel Areas"
+          },
+          "completeness": {
+            "$ref": "#/components/schemas/GraphCompleteness"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceNode"
+            },
+            "type": "array",
+            "title": "Sources"
+          },
+          "conditions": {
+            "items": {
+              "$ref": "#/components/schemas/ConditionNode"
+            },
+            "type": "array",
+            "title": "Conditions"
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/FactProvenance"
+            },
+            "type": "array",
+            "title": "Provenance"
+          },
+          "map_labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Map Labels"
+          },
+          "phases": {
+            "items": {
+              "$ref": "#/components/schemas/Phase"
+            },
+            "type": "array",
+            "title": "Phases"
+          },
+          "phase_order": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Phase Order"
+          },
+          "supplementary": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Supplementary"
+          },
+          "required_source_notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Required Source Notes"
+          },
+          "relationship_aid": {
+            "$ref": "#/components/schemas/RelationshipAid"
+          },
+          "navigation": {
+            "$ref": "#/components/schemas/Navigation"
+          },
+          "routes": {
+            "items": {
+              "$ref": "#/components/schemas/RouteChoice"
+            },
+            "type": "array",
+            "title": "Routes"
+          },
+          "requirements": {
+            "$ref": "#/components/schemas/Requirements"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "schema",
+          "configuration",
+          "synthetic",
+          "source_kind",
+          "source_limit",
+          "source_graph_fingerprint",
+          "relationship_fingerprint",
+          "content_fingerprint",
+          "actions",
+          "facts",
+          "branches",
+          "stages",
+          "stage_edges",
+          "edges",
+          "parallel",
+          "joins",
+          "parallel_areas",
+          "completeness",
+          "sources",
+          "conditions",
+          "provenance",
+          "map_labels",
+          "phases",
+          "phase_order",
+          "supplementary",
+          "required_source_notes",
+          "relationship_aid",
+          "navigation",
+          "routes",
+          "requirements"
+        ],
+        "title": "RenderedDocument"
+      },
+      "RequestContext": {
+        "properties": {
+          "familiarity": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Familiarity"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "preferences": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preferences"
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/Constraints"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "RequestContext"
+      },
+      "Requirements": {
+        "properties": {
+          "documents": {
+            "items": {
+              "$ref": "#/components/schemas/ScopedFact"
+            },
+            "type": "array",
+            "title": "Documents"
+          },
+          "fees": {
+            "items": {
+              "$ref": "#/components/schemas/ScopedFact"
+            },
+            "type": "array",
+            "title": "Fees"
+          },
+          "total": {
+            "type": "null",
+            "title": "Total"
+          },
+          "no_total_reason": {
+            "type": "string",
+            "title": "No Total Reason"
+          },
+          "placement": {
+            "type": "string",
+            "title": "Placement"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "documents",
+          "fees",
+          "total",
+          "no_total_reason",
+          "placement"
+        ],
+        "title": "Requirements"
+      },
+      "Revision": {
+        "properties": {
+          "identity": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Identity"
+          },
+          "revised": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Revised"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "identity",
+          "revised"
+        ],
+        "title": "Revision"
+      },
+      "RouteChoice": {
+        "properties": {
+          "branch_id": {
+            "type": "string",
+            "title": "Branch Id"
+          },
+          "selection": {
+            "type": "string",
+            "enum": [
+              "AND",
+              "OR",
+              "XOR"
+            ],
+            "title": "Selection"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "choice_is_not_eligibility_or_completion": {
+            "type": "boolean",
+            "const": true,
+            "title": "Choice Is Not Eligibility Or Completion"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/RouteOption"
+            },
+            "type": "array",
+            "title": "Options"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "branch_id",
+          "selection",
+          "evidence_ids",
+          "choice_is_not_eligibility_or_completion",
+          "options"
+        ],
+        "title": "RouteChoice"
+      },
+      "RouteOption": {
+        "properties": {
+          "option_id": {
+            "type": "string",
+            "title": "Option Id"
+          },
+          "action_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Action Ids"
+          },
+          "condition_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Condition Ids"
+          },
+          "conditions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Conditions"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "option_id",
+          "action_ids",
+          "condition_ids",
+          "conditions",
+          "label"
+        ],
+        "title": "RouteOption"
+      },
+      "ScopedFact": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "fact_id": {
+            "type": "string",
+            "title": "Fact Id"
+          },
+          "fact": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FeeFact"
+              },
+              {
+                "$ref": "#/components/schemas/DocumentFact"
+              }
+            ],
+            "title": "Fact",
+            "discriminator": {
+              "propertyName": "kind",
+              "mapping": {
+                "document": "#/components/schemas/DocumentFact",
+                "fee": "#/components/schemas/FeeFact"
+              }
+            }
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "action",
+              "route",
+              "stage",
+              "service"
+            ],
+            "title": "Scope"
+          },
+          "action_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action Id"
+          },
+          "stage_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stage Id"
+          },
+          "service_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Service Id"
+          },
+          "branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch Id"
+          },
+          "option_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Option Ids"
+          },
+          "condition_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Condition Ids"
+          },
+          "claim_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Claim Ids"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "qualification": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Qualification"
+          },
+          "conditions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Conditions"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "reviewed",
+              "source_fallback"
+            ],
+            "title": "Status"
+          },
+          "source_context": {
+            "items": {
+              "$ref": "#/components/schemas/SourcePassage"
+            },
+            "type": "array",
+            "title": "Source Context"
+          },
+          "applicability_status": {
+            "type": "string",
+            "enum": [
+              "structured_conditions",
+              "consult_source_context"
+            ],
+            "title": "Applicability Status",
+            "default": "consult_source_context"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "fact_id",
+          "fact",
+          "scope",
+          "conditions",
+          "status"
+        ],
+        "title": "ScopedFact"
+      },
+      "Selection": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "constraint_standard",
+              "research_preview",
+              "manual_adjustment",
+              "shared_gaussian_lints"
+            ],
+            "title": "Kind"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/Configuration-Output"
+          },
+          "action_schema": {
+            "type": "string",
+            "const": "c4-scaffolds-v3.0",
+            "title": "Action Schema",
+            "default": "c4-scaffolds-v3.0"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "scoring_status": {
+            "type": "string",
+            "enum": [
+              "not_run",
+              "executed"
+            ],
+            "title": "Scoring Status",
+            "default": "not_run"
+          },
+          "policy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PolicyEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "learning_eligible": {
+            "type": "boolean",
+            "title": "Learning Eligible",
+            "default": false
+          },
+          "explanation": {
+            "type": "string",
+            "title": "Explanation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "configuration",
+          "label",
+          "explanation"
+        ],
+        "title": "Selection"
+      },
+      "SoftPreferences": {
+        "properties": {
+          "presentation_mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "OVERVIEW",
+                  "GUIDED"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Presentation Mode"
+          },
+          "progressive_disclosure": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progressive Disclosure"
+          },
+          "previous_context_recap": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous Context Recap"
+          },
+          "relationship_visual": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "NONE",
+                  "BRANCH_MAP",
+                  "DEPENDENCY_MAP",
+                  "PARALLEL_MAP"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relationship Visual"
+          },
+          "prerequisite_cue": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prerequisite Cue"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "SoftPreferences",
+        "description": "Optional preferences using the existing scaffold vocabulary.\n\nThese fields never become hard constraints unless the user separately\nsets the corresponding PresentationLocks field."
+      },
+      "SourcePassage": {
+        "properties": {
+          "content_id": {
+            "type": "string",
+            "title": "Content Id"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "content_id",
+          "text",
+          "evidence_ids"
+        ],
+        "title": "SourcePassage"
+      },
+      "SourceReview": {
+        "properties": {
+          "reviewer": {
+            "type": "string",
+            "title": "Reviewer"
+          },
+          "reviewed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Reviewed At"
+          },
+          "scope_note": {
+            "type": "string",
+            "title": "Scope Note"
+          },
+          "independent_government_validation": {
+            "type": "boolean",
+            "const": false,
+            "title": "Independent Government Validation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "reviewer",
+          "reviewed_at",
+          "scope_note",
+          "independent_government_validation"
+        ],
+        "title": "SourceReview"
+      },
+      "StageDependencyEdge": {
+        "properties": {
+          "edge_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Edge Id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "stage_dependency",
+            "title": "Kind",
+            "default": "stage_dependency"
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+$",
+            "title": "Source Id"
+          },
+          "target_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+$",
+            "title": "Target Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "edge_id",
+          "source_id",
+          "target_id"
+        ],
+        "title": "StageDependencyEdge"
+      },
+      "StageNode": {
+        "properties": {
+          "service_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+$",
+            "title": "Service Id"
+          },
+          "display_order": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Display Order"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "agency": {
+            "type": "string",
+            "title": "Agency"
+          },
+          "fee_fact_id": {
+            "type": "string",
+            "pattern": "^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$",
+            "title": "Fee Fact Id"
+          },
+          "document_fact_ids": {
+            "items": {
+              "type": "string",
+              "pattern": "^svc:[a-z0-9_]+:[a-z0-9_]+(:[a-z0-9_]+)?$"
+            },
+            "type": "array",
+            "title": "Document Fact Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "service_id",
+          "display_order",
+          "name",
+          "agency",
+          "fee_fact_id",
+          "document_fact_ids"
+        ],
+        "title": "StageNode"
+      },
+      "StartGuidance": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Request Id"
+          },
+          "session_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Session Id"
+          },
+          "procedure_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Procedure Id"
+          },
+          "capability_token": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 32,
+            "title": "Capability Token"
+          },
+          "language": {
+            "type": "string",
+            "pattern": "^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$",
+            "title": "Language",
+            "default": "en"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "personalized"
+            ],
+            "title": "Mode",
+            "default": "standard"
+          },
+          "expected_context_revision": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Revision"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "context": {
+            "$ref": "#/components/schemas/RequestContext"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "session_id",
+          "procedure_id",
+          "capability_token"
+        ],
+        "title": "StartGuidance"
+      },
+      "Text": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "reviewed",
+              "source_fallback"
+            ],
+            "title": "Status",
+            "default": "draft"
+          },
+          "claim_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Claim Ids",
+            "default": []
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Ids",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "Text"
+      },
+      "UserSettings": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "1.0",
+            "title": "Schema Version",
+            "default": "1.0"
+          },
+          "familiarity": {
+            "items": {
+              "$ref": "#/components/schemas/FamiliarityReport"
+            },
+            "type": "array",
+            "title": "Familiarity",
+            "default": []
+          },
+          "navigation_capability": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 5.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Navigation Capability"
+          },
+          "navigation_source": {
+            "type": "string",
+            "const": "self_reported",
+            "title": "Navigation Source",
+            "default": "self_reported"
+          },
+          "preferences": {
+            "$ref": "#/components/schemas/SoftPreferences"
+          },
+          "locks": {
+            "$ref": "#/components/schemas/PresentationLocks"
+          },
+          "accessibility": {
+            "$ref": "#/components/schemas/AccessibilityConstraints"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "UserSettings"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VisitEvidence": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "title": "Event Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "navigate",
+              "step_open",
+              "step_visible"
+            ],
+            "title": "Kind"
+          },
+          "view_id": {
+            "type": "string",
+            "title": "View Id"
+          },
+          "sequence": {
+            "type": "integer",
+            "title": "Sequence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event_id",
+          "kind",
+          "view_id",
+          "sequence"
+        ],
+        "title": "VisitEvidence"
+      },
+      "app__guidance__catalogue__Configuration": {
+        "properties": {
+          "navigation": {
+            "type": "string",
+            "enum": [
+              "overview",
+              "guided"
+            ],
+            "title": "Navigation",
+            "default": "overview"
+          },
+          "explanation": {
+            "type": "string",
+            "enum": [
+              "concise",
+              "detailed"
+            ],
+            "title": "Explanation",
+            "default": "concise"
+          },
+          "disclosure": {
+            "type": "string",
+            "enum": [
+              "off",
+              "on"
+            ],
+            "title": "Disclosure",
+            "default": "off"
+          },
+          "relationships": {
+            "type": "string",
+            "enum": [
+              "none",
+              "inline",
+              "map"
+            ],
+            "title": "Relationships",
+            "default": "none"
+          },
+          "recap": {
+            "type": "string",
+            "enum": [
+              "off",
+              "on"
+            ],
+            "title": "Recap",
+            "default": "off"
+          },
+          "segmentation": {
+            "type": "string",
+            "enum": [
+              "off",
+              "on"
+            ],
+            "title": "Segmentation",
+            "default": "off"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "Configuration"
+      },
+      "app__guidance__frontend_contracts__Rating": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Event Id"
+          },
+          "view_id": {
+            "type": "string",
+            "title": "View Id"
+          },
+          "rating": {
+            "type": "string",
+            "enum": [
+              "fits",
+              "does_not_fit"
+            ],
+            "title": "Rating"
+          },
+          "reasons": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "too_much_explanation",
+                "not_enough_explanation",
+                "navigation_difficult",
+                "diagram_confusing",
+                "requirements_hard_to_find",
+                "other"
+              ]
+            },
+            "type": "array",
+            "maxItems": 6,
+            "title": "Reasons"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event_id",
+          "view_id",
+          "rating"
+        ],
+        "title": "Rating"
+      }
+    }
+  }
+}

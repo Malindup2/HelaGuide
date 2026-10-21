@@ -1,8 +1,8 @@
 # C4 Research and UX Semantics Specification
 
-**Status:** approved as a specification (revision 2, with three implementation safeguards). This approval covers the documentation only. No frontend or backend implementation, model training, database change, content migration, commit or push is authorised by this document.
+**Status:** revision 5: the controlled frontend-ready backend API phase is authorised. Standard source-grounded guidance and explicit research previews use revised content/feasibility with isolated journey/event records. The current frontend and V2 policy remain unchanged. A NEW compatible Shared Gaussian LinTS encoder (525 proposed, awaiting approval), fresh posterior, synthetic training and held-out evaluation are mandatory remaining PP1 deliverables, not replaced by previews. Procedure-specific history score adjustment is deferred to PP2. No training, frontend redesign, historical migration, cleanup, commit or push is authorised in this phase.
 
-**Scope:** `components/c4-presentation/`, branch `c4/scaffolding-dimensions`. The V2 system, its databases and the existing Guidance Card checkpoint are preserved unchanged.
+**Scope:** `components/c4-presentation/`, branch `c4/scaffolding-dimensions`. The active V2 system and Guidance Card stay unchanged during this phase. Historical systems remain reproducible through Git checkpoints and preserved datasets, manifests, artifacts and stores; they need not remain permanent competing runtimes.
 
 ## 0. How to read this document
 
@@ -12,7 +12,7 @@ Each statement carries one of four labels:
 - **[Changes research assumptions]** alters what an action or measurement means, so earlier results and learned state stop being comparable.
 - **[Unsupported today]** cannot be supported by the verified procedure data as it stands.
 
-Based on a read-only inspection of `service/app/v2/*`, the in-memory registry of all seven procedures, the prepared-demo wording, and the current frontend.
+Historical baseline descriptions below are from the earlier read-only inspection of `service/app/v2/*`, the in-memory registry of all seven procedures, the prepared-demo wording, and the current frontend.
 
 ## 1. Research framing and weaknesses I recommend you address
 
@@ -22,7 +22,7 @@ Based on a read-only inspection of `service/app/v2/*`, the in-memory registry of
 - No frontend rule may choose a configuration from a profile label. No claim is made that the policy has learned an effective mapping before an evaluation shows it.
 
 ### 1.2 Weaknesses (updated)
-1. **Numbering versus honest ordering.** Backend order is browsing order. Step numbers are only truthful where verified prerequisites support them (§3.1).
+1. **Numbering versus honest ordering.** Backend order is browsing order. Route-aware numbering must distinguish browsing position from verified execution order (§3.1).
 2. **Feasibility is not benefit.** Feasibility asks "is this meaningful and safe to show", never "will it help". Whether it helps is the experiment's question. Disclosure and Segmentation criteria therefore test *meaning and safety*, not predicted benefit (§3.3, §3.6).
 3. **Mentions are not attribution.** A sentence that names several fees does not make each fee payable at that step (§2.2).
 4. **Rendering is not reading.** A step in the document is not a step the citizen visited (§3.5).
@@ -72,7 +72,7 @@ Notation: `(D1, D2, D3, D4, D5, D6)`. All 96 combinations remain theoretical; fe
 
 **Step numbers [Proposed].** Compute *layers* from verified prerequisite edges (`edges`, joins). Layer 1 holds actions with no prerequisite; layer n+1 holds actions whose latest prerequisite is in layer n.
 - A one-action layer is "Step n".
-- A multi-action layer is "Step n: all of these" with lettered items; the Plan states no order among them, so none is shown.
+- A multi-action layer contains peer browsing items, not an inferred sequence or parallel group. "All of these" is used only when a verified joint requirement supports it. Explicit parallel cues require verified parallel evidence. Conditional alternatives remain separate.
 - Numbering is switched off when `completeness.prerequisites` is not `complete`.
 - Alternative routes are never numbered as consecutive steps. A route group is a choice; steps are numbered **within** the chosen route.
 - Phase membership (D6) never changes step numbers or implies an order.
@@ -211,8 +211,11 @@ Per procedure:
 - `supplementary[]` (optional): reviewed, non-duplicative information with its own evidence IDs.
 
 ### 6.2 Rules
+- Required source passages have explicit claim IDs bound to exact source spans and action ownership. Every non-whitespace part of each required source passage is accounted for by required claims. Always-visible essential/structured fields cover every required claim. Conditions remain source-derived and always visible. ID/span checks prove assignment, NOT semantic entailment; paraphrases still need statement-level named source-fidelity review.
+- The review ledger names each reviewed field/statement, claim/evidence references, result, reviewer, date and scope. The artifact digest binds exact reviewed bytes, graph and relationship fingerprints. A mock cannot be relabelled reviewed.
+- Fact mentions are not attachments. Fee/document attachments explicitly state action, route, stage or service scope and its target/applicability. Plan facts retain stage scope until a reviewed attachment supports a different presentation scope. Never infer action payment from membership or mention; never sum alternatives.
 - Nothing is invented to fill a field; a missing field makes its dependent scaffold infeasible.
-- An LLM may draft wording **offline** from the verified Plan using the existing preparation flow (`v2/preparation.py`: drafts are `PENDING REVIEW`; approval is explicit and bound to exact bytes). No provider call in a citizen request.
+- **Revised approval:** explicit dynamic-preparation mode may initiate an asynchronous provider job on a guidance cache miss. The citizen request never waits for that provider call; it immediately receives safe source-preserving content. Demo mode never generates. This replaces the former blanket prohibition on provider invocation initiated by citizen requests. Every generated draft remains unpublished pending named source review; graph relationships never come from generated text.
 - **Official-source wording requires a recorded source-fidelity review** by a named reviewer, stating what was compared. Until then it is labelled prepared and unreviewed. Nothing implies government approval or independent validation.
 - Fee scope is explicit (§2.2).
 
@@ -224,8 +227,8 @@ Per procedure:
 - At least one fictional step is information-heavy so that a single-step disclosure is testable.
 - All fiction is labelled; no official claims.
 
-### 6.4 Content readiness: feasible now versus after reviewed content
-**Now** means the current prepared records, applying the V3 rules (recorded review required). **After** means after the new wording, remainders, recap lines and phases are drafted offline and reviewed.
+### 6.4 Historical pre-migration content-readiness assessment
+**Now in this historical table** means the pre-migration prepared records, applying the revised rules (recorded review required). **After** means after the new wording, remainders, recap lines and phases are drafted offline and reviewed.
 
 | Dimension | Official three, now | Official three, after review | Practice now | Synthetic fixtures now | Rewritten synthetic, after |
 |---|---|---|---|---|---|
@@ -237,9 +240,23 @@ Per procedure:
 | D5 Recap | no (no reviewed reminders) | yes after review | no (copied sentences, need rewriting) | no (labels) | yes |
 | D6 Segmentation | no (one stage, no reviewed overlay) | only with a reviewed overlay | no (labels not reviewed) | no | yes where grounded |
 
-**Feasible-set size now (V3 rules):** official three about **4** configurations (navigation × inline); practice about **12** (navigation × detailed × none/inline/map). **After review:** up to the full 96 for the rewritten synthetic set; official procedures depend on what the source supports (still no Map until parallel coverage is complete).
+**Pre-migration planning estimates, not validated new-contract candidate counts:** official three about **4** configurations (navigation × inline); practice about **12** (navigation × detailed × none/inline/map). **After review:** up to the full 96 for the rewritten synthetic set; official procedures depend on what the source supports (still no Map until parallel coverage is complete).
 
 **Consequence:** with today's records the adaptive space for the official procedures is small. Widening it needs offline drafting and your named source-fidelity review. That is reported as content readiness, not hidden.
+
+
+### 6.5 Prepared-first cache and explicit preparation-on-miss [Implemented, opt-in]
+
+1. Resolve the registered validated Plan/canonical graph and structural overlay. Match published content by procedure, graph fingerprint, relationship fingerprint, language and content schema. Reuse a compatible publication without enqueueing or creating a provider.
+2. On a miss, enqueue one durable snapshot through the existing `PreparationProcessor` using a schema handler. Immutable atomic snapshot creation and SQLite uniqueness deduplicate concurrent requests; worker claim/OS lock prevents duplicate processing. Generation requires ALL of dynamic mode, explicit on-miss permission and C4_LLM_ENABLED. C4_DEV_LLM_ENABLED alone grants no permission.
+3. Return complete source-preserving fallback immediately. Reduce only unavailable rich scaffold variants; missing Detailed/recap/phases never disables baseline guidance. A provider failure is recorded, cannot publish, and does not silently retry paid calls.
+4. Generated content is schema/reference/coverage/scope validated and stored as a draft; researcher preview is explicitly provisional. A named statement-level review, exact artifact/source binding and an explicit publication step are separate operations. Later/fresh requests see new publications; historical frozen guidance is not rewritten.
+5. States are distinct: pending/queued/processing jobs, draft (worker pending_review), reviewed artifact, published artifact, and per-request source_fallback. Publication is never implied by generation or a preview.
+6. External professional assessment concerns scaffold suitability/scenario hypotheses. It is NOT procedural source review. Fictional author review may compare authored wording to the supplied fictional graph, with explicit internal AI-assisted provenance. It is not human, independent expert or official validation. Official paraphrases still require the approved named human source-fidelity process.
+7. Four checked fictional artifacts pass the real draft/review/publication contracts. Conditional, parallel and practice support 96 configurations each; the two-action token example supports 48 because a redundant per-action segmentation was not manufactured. Original fictional graphs/fees/relationships are unchanged. Proposed additional route charges in section 6.3 are not implemented without source changes and approval.
+8. This phase exposes backend content verification and an opt-in preflight alongside the current workspace response. Existing top-level V2 documents, 515 policy, frozen decisions and frontend retain their checkpoint behavior. Revised content is a separately labelled `prepared_content` response and `/workspace/content/guidance` preview; it is not presented as a new LinTS selection. Subsequent approved runtime/renderer integration must consume these capabilities with revised manifests.
+
+Settings: C4_PREPARED_CONTENT_ENABLED=true, C4_PREPARED_CONTENT_MODE=demo|dynamic, C4_PREPARATION_ON_MISS=false|true, and C4_LLM_ENABLED=false|true. Keep C4_WORKSPACE_CONTENT_MODE=demo to disable the old schema generator. Conflicting old/new generation is rejected. Storage is a dedicated prepared-content registry and job queue, never a historical policy snapshot. See `PREPARED-FIRST-CONTENT.md` for exact commands, review workflow, verification and limits.
 
 ## 7. Examples
 
@@ -298,7 +315,7 @@ Changing D1 is a configuration change. "Peek at overview" is a read-only list (a
 
 **Eligibility (same discipline as V2):** the view is the original, unadjusted, personalised, unrevoked view; its essential layer was displayed; one rating per original view; no change after submission. Manual adjustments, comparison panes, guests and standard routing are recorded but ineligible.
 
-**Effect on training:** each eligible journey contributes one (feature vector, reward) pair. A 0 lowers the posterior mean for that context-and-configuration vector and widens nothing artificially; a 1 raises it. Because only rated journeys train, the experiment records: exposure (which opportunities were displayed), rating rate by configuration, and reasons, to detect selection bias. These are reported, not corrected for in V3's first experiment.
+**Effect on training:** each eligible journey contributes one (feature vector, reward) pair. The Gaussian update fits the observed 0/1 target along the feature direction; a 0 does not guarantee every prediction decreases. The observation contracts posterior uncertainty; it does not widen it artificially. Because only rated journeys train, the experiment records: exposure (which opportunities were displayed), rating rate by configuration, and reasons, to detect selection bias. These are reported, not corrected for in V3's first experiment.
 
 **Known limits stated, not hidden:** a binary reward under a Gaussian linear model is a misspecification already present in V2; non-response and who-chooses-to-rate biases exist; reasons are self-reports. None is called validated.
 
@@ -319,12 +336,14 @@ The seven action indicators (`v2/features.py: ACTION_NAMES`) are `guided, explan
 | Historical journeys | Frozen V2 records stay as they are |
 | Existing evaluation | Not evidence for V3 actions |
 
-### 9.3 Versioned migration [Proposed]
-- **V2 is not edited.** `v2/features.py` has no diff and stays that way. A new `service/app/v3/` package defines `c4-scaffolds-v3.0` and `c4-features-v3.0` (new fingerprint), reusing the unchanged posterior kernel.
-- Separate storage (`service/.local/v3/...`, own table and manifest). V2 refuses mismatched manifests, so V2 data cannot be opened by V3 or vice versa.
-- **Fresh posterior** (your decision). No V2 coefficient or reward is copied or replayed.
-- V2 keeps running unchanged for reproducing earlier results.
-- Interaction terms are listed with their hypotheses for your approval before any coding.
+### 9.3 One consolidated runtime; versioned research isolation
+- The final maintained runtime uses neutral modules, not permanent V1/V2/V3 applications. `app.workspace` remains the single composition root. Revised contracts live in `app/guidance/`; stable numerical learning, profile and preparation modules may be extracted in later approved phases.
+- Temporary side-by-side contracts during verification are allowed. Do not switch the active runtime or remove legacy modules until replacements pass tests and cutover/cleanup are explicitly authorised.
+- Research identifiers remain separate: `c4-scaffolds-v3.0`, `c4-guidance-content-3.0`, new feature/settings/event schemas and new manifest fingerprints. A versioned dataset/store directory does not imply another maintained application.
+- Fresh isolated learning state is mandatory for the revised actions. Never copy/replay V2 coefficients, feedback or experimental outcomes as revised-action training data. Existing stores are never opened for migration or overwritten automatically.
+- Preserve exact historical code checkpoints, environment records, datasets, fingerprints and experimental results for rollback/reproduction. Reproduction uses the matching checkpoint and storage configuration, not an old binary against the new store.
+- The proposed 525-feature design is NOT yet approved. No final encoder feature order, implementation or manifest is introduced in the first controlled phase.
+- Procedure-specific interaction history is a separate secondary selection stage (§9.5), not an encoder feature block or a replacement for Shared Gaussian LinTS.
 
 ### 9.4 Profile and settings migration [Proposed]
 V2 settings must **not** silently become V3 settings. V3 stores them under a versioned schema (`c4-settings-3.0`) in its own store; V2 profiles are read-only inputs to an explicit import adapter (a copy, never a move), following the existing legacy-review pattern in `v2/identity.py`.
@@ -336,12 +355,30 @@ V2 settings must **not** silently become V3 settings. V3 stores them under a ver
 | Accessibility: `allow_collapsed_content = false` | Carried **conservatively** as "step disclosure not allowed" (forces D3 OFF). It restricts, never expands, and the reason is shown for confirmation |
 | Hard lock on navigation or relationships | Offered as "carried over, please confirm"; **not applied until confirmed** |
 | Hard lock on explanation `concise` | Offered for confirmation; `expanded` → `detailed` is shown as a proposed re-mapping, never applied silently |
-| Hard locks on disclosure, recap, summary | **Dropped with a notice** (changed meaning) |
+| Hard locks on disclosure, recap, summary | Retain raw import evidence and mark unresolved; never silently reinterpret or discard a restriction |
 | Soft preferences on navigation or relationships | Imported as **unconfirmed**; excluded from model features until confirmed |
 | Soft preferences on disclosure, recap, summary | **Dropped with a notice** (changed meaning) |
 | Procedure-specific familiarity, navigation confidence | Carried (not scaffold-specific) |
 
-**Safe defaults:** until the owner reviews the import, V3 uses accessibility constraints (conservative) and **no** soft preference or lock for changed dimensions. A profile never silently gains or loses a restriction that changes what it can see. Locks that cannot be satisfied produce the existing explicit error rather than being relaxed.
+**Safe defaults:** unresolved hard requirements block personalised selection until reviewed; a separate guest option remains possible. Soft preferences stay unconfirmed and excluded from scoring. Preserve raw restrictions and record every confirmation/decline; never silently drop or reinterpret a restriction. Unsatisfiable confirmed locks cause an explicit error. Profile import itself is not implemented in the first controlled phase.
+
+### 9.5 Procedure-specific interaction-history secondary scoring
+[Approved PP2 architecture; not PP1 implementation. Estimator and numerical parameters await separate approval.]
+1. Hard feasibility/accessibility produces the candidate set. Shared Gaussian LinTS supplies its original sampled scores and base winner.
+2. A separate history stage examines the same user's earlier compatible procedure/route/content evidence, with a cutoff before the current decision. It checks identity/consent, opportunity, version/context relevance, repetition across journeys, consistency and uncertainty.
+3. Repeated attributable support requests are directional preference evidence, not proof of improved comprehension. Visibility, explanation openings, map visibility and navigation are activity/opportunity evidence; no-response is missing evidence, not satisfaction. Ambiguous passive signals cannot be silently turned into preference labels.
+4. Duplicate clicks and same-visit toggles do not count as independent repeated evidence. Changed action meanings or source versions invalidate affected evidence unless explicitly mapped as compatible.
+5. The stage returns bounded signed candidate contributions, or EXACT zero contributions on abstention. It cannot add infeasible candidates or relax a constraint. Base samples/scores remain frozen. The history contribution is anchored at zero for the base winner; the final winner is the argmax of base score plus contribution using declared deterministic tie order.
+6. Insufficient, contradictory, unrelated, stale or unsupported compositional evidence causes abstention. Statistical uncertainty assumptions, thresholds, repetition/window rules and bound must be approved separately; none is selected in this phase.
+7. Freeze base scores/winner, history evidence IDs/cutoff/schema, gate decisions/abstention reasons, declared bound, contributions and final selection. This is a composite-policy version, independent of the encoder schema.
+8. History does not generate numeric rewards or update the shared posterior. An eligible explicit rating updates the vector of the FINAL system-selected configuration, never the counterfactual base winner. Manual child views remain ineligible for shared learning, though appropriately attributed requests may become future history evidence. The initial design keeps historical request evidence separate from eligible fit rewards to avoid undeclared double counting.
+9. Only tested interfaces/decision-record contracts are authorised now. No history estimator, threshold, adjustment bound, history-derived feature or scoring activation is implemented.
+
+
+### 9.6 Mandatory PP1 revised model and current API separation
+The frontend-ready API supports standard and research_preview now. Personalized mode explicitly returns revised_policy_unavailable until the new model is integrated; it never reuses V2's 515 weights or features. Preview choices, manual children and client events are not synthetic reward observations and never update a posterior. Source structure, hard restrictions and content readiness determine feasibility, not a user-benefit rule.
+
+After encoder approval and frontend implementation, PP1 MUST include Shared Gaussian LinTS with revised six-dimension indicators/interactions (including Segmentation), a fresh versioned posterior, versioned synthetic context/configuration/reward training, held-out evaluation and genuine feasible-set selection. Schema/action meanings and manifests remain independent of historical V2. The API Selection/PolicyEvidence contract reserves real future manifests/scoring provenance; current responses have policy/features/scores absent or null, never placeholders presented as measurements. The same request/render/event envelope can be retained when the genuine adapter is implemented. PP2 history remains separate and deferred.
 
 ## 10. Synthetic scenarios and evaluation (design only)
 
@@ -361,6 +398,8 @@ Simulator performance is not real-user accuracy and is reported as such. The exi
 4. Baselines: fixed standard, fixed minimal, fixed maximal-feasible, uniform random over feasible, expert-label policy.
 5. Metrics: mean simulated reward and regret (inside the simulator only), preference-match rate where labels exist, constraint violations (must be zero), selection diversity. No claim of calibrated probabilities.
 6. Report all seeds, intervals and negative results, including that the V2 run found the minimal baseline above the learned selectors.
+7. **PP2 later:** separately compare the SAME approved Shared LinTS encoder alone versus LinTS plus history. Use frozen-posterior/paired-base-sample tests to isolate the adjustment, then longitudinal arms with their own resulting histories. Include no-history, irrelevant, contradictory, drifting, duplicate, missing-opportunity and incompatible-version cases.
+8. Report activation/abstention, winner-change and harmful-override rates, reward difference, zero constraint violations and sensitivity to evidence/bounds. Removing uncertainty gates is an explicit ablation, not the production policy. Old sampled scores are not action propensities; historical logs alone do not reveal counterfactual rewards.
 
 ## 11. Citizen frontend, desktop and chat layouts
 - **Desktop (about 1024 px and above):** restore the left workspace: Continue as guest and saved profiles, then procedure choices. The three bounded government-source procedures appear first as compact choices (Birth certificate copy, NIC amendment, Private-company documents); synthetic procedures sit under "Research examples". The guidance fills the main column.
@@ -405,20 +444,17 @@ An optional, collapsible, researcher-only panel (half-width side panel on deskto
 | Events | `detail_open/close` tied to optional block IDs; `action_visible` has no dwell | New action-level events and recorded dwell |
 | Profiles | V2 settings only | Versioned V3 settings with confirmation |
 
-## 14. Files and contracts I propose to create or change (after approval)
-- **Documentation:** `components/c4-presentation/docs/C4-RESEARCH-UX-SPECIFICATION.md`.
-- **Backend (new package; V2 untouched):** `service/app/v3/` with `catalogue.py` (new dimensions, combination constraints), `features.py`, `content.py` and `registration.py` (new contract; coverage proof; phase assessment; fee scope), `runtime.py` and `api.py` (new events, `fits`/`does_not_fit`, separate storage), `identity.py` (settings import and confirmation), `preparation.py` (offline drafts with the new fields), `simulation.py`; prepared content under `research/data/v3/prepared/`; tests `service/tests/test_v3_*.py`.
-- **Frontend:** a versioned renderer beside the current card (layer numbering, route choice, step-level disclosure, phases, compact map, reminder recap), restored sidebar shell, researcher inspector, updated comparison, and tests for each dimension and combination.
-- **Frontend-only items valid under V2 that can start sooner if you wish:** fee display without false attribution (procedure-level charges row), layer numbering and route presentation, plain guest guidance with no Support or feedback, restored sidebar, the two-part inspector using existing data.
+## 14. Neutral maintained modules and controlled migration
+The first phase creates only `service/app/guidance/{sources,content,catalogue,feasibility,composition,decision}.py`, its package initializer and contract tests. There is no `app/v3` application. `sources.py` temporarily adapts the existing validated overlay; extracting shared structural types is deferred rather than rewriting them now.
+Future approved phases consolidate the active runtime/API, reusable profiles, Gaussian kernel, preparation worker and renderer into neutral maintained modules. New content/datasets and model manifests remain independently versioned. No legacy module is removed in this phase. See the architecture audit for the later import/test/cutover cleanup gate.
 
-## 15. Implementation phases and tests
-0. **Specification approval** (this step).
-1. **Content preparation (offline, no model change):** rewrite synthetic data; draft essential, remainders, recap and phases for practice and synthetic; draft the official three for **your** source-fidelity review. Tests: schema validation, source-fingerprint binding, coverage proof, no invented field.
-2. **Frontend-only corrections under V2:** fee display, numbering, route presentation, guest simplification, sidebar, inspector. Tests: numbering per procedure, no fee attribution by stage membership, guest has no Support or feedback.
-3. **V3 backend** (new package, database): catalogue, features, runtime, events, rating values, settings import. Tests: disclosure coverage proof, segmentation assessment, combination constraints, encoder norm and fingerprint, eligibility parity with V2, negative rating updates the posterior, isolation from V2 storage, no history transfer, settings migration rules.
-4. **V3 frontend renderer** for all six dimensions and feasible combinations. Tests: each dimension expressed and not expressed by others; the four D2×D3 cases; recap's four viewed states in both layouts; route change; event semantics; read-only comparison.
-5. **Synthetic evaluation** in an isolated store. Tests: reproducibility, evaluation never trains, constraint violations zero.
-6. **Browser verification:** 320, 390, 768 and 1280 widths; guest, personalised, manual, comparison; keyboard-only; 200% zoom; contrast.
+## 15. Dependency-ordered implementation and tests
+1. Amend this specification and implement inactive content/catalogue/feasibility foundations. Validate exact source binding, claim coverage, explicit scopes, review records, recap and grouping. Test source-preserving fallback, pending rejection and all four D2×D3 compositions.
+2. Present the final encoder terms/schema and history uncertainty/evidence/threshold/bound design for separate approval. Do not create an encoder or estimator under assumed approval.
+3. In later approved phases, extract stable services and extend the existing preparation/review pipeline to the new content schema; preserve old behavior until replacement passes tests.
+4. Implement the approved encoder and optional history stage in fresh isolated learning state; then consolidate one runtime/API. Check negative explicit rewards, final-vector attribution, exact history abstention and old-manifest rejection.
+5. Claude integrates the one final frontend with all six revised meanings; test routes, essential visibility, fees, phases, recap and comparison at all supported widths and accessibility settings.
+6. Run separately approved isolated training/evaluation, browser verification and cutover. Only then propose exact legacy cleanup. No automatic deletion, migration, commit or push.
 
 ## 16. Decisions that were open (resolved in §18)
 1. **Dwell time and threshold for "visible":** I propose recording them as declared, versioned parameters and choosing the values with you before implementation (I will not hard-code a value silently).
@@ -437,27 +473,14 @@ An optional, collapsible, researcher-only panel (half-width side panel on deskto
 - **Dwell detection:** the visibility threshold and the dwell time are configurable, versioned and testable parameters stored with each `step_visible` event. I will propose concrete values (with the reasoning) **before** the event instrumentation is implemented, and no value is hard-coded silently.
 - **Source review:** you act as the named internal source-fidelity reviewer for the official-source snapshots. The review record states exactly which sources (URLs, retrieval date, passages) and which drafted statements were compared, the result per statement, the reviewer and the date. Nothing implies independent government verification.
 - **Profile import:** approved as read-only copying from V2 into a separate V3 settings store, with explicit confirmation and no silent reinterpretation of changed scaffold meanings (§9.4).
-- **Encoder:** the revised interaction terms, their hypotheses and the proposed feature schema will be presented for your approval **before any coding**.
+- **Encoder:** the revised interaction terms, their hypotheses and the proposed feature schema require explicit approval before encoder coding; the proposed 525 schema remains unapproved.
 - Earlier decisions stand: supplementary information stays separate when useful, reviewed and non-duplicative; verified Plan stages or reviewed overlays may supply segmentation groups; ordinary guests get no personalised Support controls or feedback controls; V3 gets its own feature schema and a fresh posterior; the first V3 experiment keeps the seven structural measurements.
 
-## 19. Handoff outline
-
-**Codex: first, in the V3 backend, content and ML layer** (no frontend work, nothing run against V2 data):
-1. Create `service/app/v3/` beside V2 (V2 and its databases untouched): action schema `c4-scaffolds-v3.0`, catalogue with the new dimension values, and feasibility with combination constraints.
-2. The prepared-content contract `c4-guidance-content-3.0` as validated models, with the disclosure coverage proof, the Detailed-contains-Concise check, the segmentation assessment (basis, reviewed label, adds-orientation, order honesty) and explicit fee scope.
-3. The V3 runtime and API: separate storage and manifest, fresh posterior, new events (`step_visible` with stored threshold and dwell, `step_open`, `explanation_open/close`, `map_*`, `overview_peek`, `recap_open/close`), `fits`/`does_not_fit` ratings with reward 1/0 and unchanged eligibility.
-4. The read-only V2→V3 settings import with a confirmation record.
-5. **Stop and present** the encoder's interaction terms, hypotheses and feature schema for approval before writing `features.py`; then the encoder, then the offline preparation extensions and the synthetic data rewrite, then the isolated simulation framework.
-6. Tests for each of the above, including V2 untouched and isolation of storage.
-
-**Claude: subsequently, in the citizen frontend** (after the V3 contract and sample content exist):
-1. The V3 renderer for all six dimensions and feasible combinations: layer numbering, route choice and Change route, step-level disclosure, phase grouping, compact map, reminder recap.
-2. Guest standard guidance with no Support or feedback controls; restored desktop sidebar; chat-sized standalone component.
-3. The thumbs-up/thumbs-down feedback and optional reasons for eligible views only.
-4. The two-part researcher inspector and the compact comparison.
-5. Frontend tests for every dimension, the four D2×D3 cases, recap's visible/visited states and fee scope, then a browser verification.
-
-**Preserved:** the V2 system and databases, and the existing Guidance Card checkpoint (`83d02ac` plus the uncommitted redesign).
+## 19. Controlled handoff
+**Earlier phase:** inactive neutral content contracts, source/review/coverage validation, explicit fee attribution, recap/phases, revised 96-action catalogue and candidate-level feasibility, safe composition plans and interfaces for later base/history decision evidence. Tests must use isolated fixtures; do not train, migrate, activate scoring, switch the runtime or change the frontend.
+**Approval gates:** final encoder (525 remains proposed), history estimator and statistical thresholds/bound, instrumentation constants, runtime/storage cutover and cleanup.
+**Claude later:** integrate the approved contracts into the existing Guidance Card and workspace, with source-safe essential layers, per-depth disclosure, reviewed phases/reminders, honest route orientation, maps, guest behavior and Inspector/comparison. Do not create a permanent parallel renderer.
+**Preserved:** current working application and all old stores; Guidance Card checkpoints `83d02ac` and `89805f4`; specification checkpoint `cd8d312`; historical research artifacts. Versioned data/manifest identifiers remain even after runtime consolidation.
 
 ---
 
@@ -477,3 +500,15 @@ Changes made between the first draft and revision 2 (all approved):
 | 8 | Content readiness | One table | Feasible **now** under current prepared records versus feasible **after** reviewed content, with configuration counts (§6.4) |
 
 **Your decisions, recorded:** supplementary information stays separate when useful, reviewed and non-duplicative; verified Plan stages or reviewed overlays may supply segmentation groups; ordinary guests get no personalised Support controls and no feedback controls; official-source wording needs an actual recorded source-fidelity review and nothing implies government or independent approval; V3 gets a separate feature schema and a fresh posterior while V2 is preserved; the first V3 experiment keeps the seven structural measurements.
+
+
+### Revision 3 controlled implementation checkpoint (2026-10-21)
+The inactive neutral `app/guidance` contracts now validate source spans, named statement reviews, fee scope, recap, phases and combination feasibility. Existing registry records have NOT been converted, reviewed or published under this schema. The active workspace, encoder and frontend are unchanged. See `CONTROLLED-CONTRACTS-PHASE.md` for tested scope and pending approvals. The future Inspector must expose frozen base scores, final scores, gate outcomes, abstention/evidence and composite-policy version separately from ordinary explicit-feedback updates.
+
+
+### Revision 4 preparation integration checkpoint (2026-10-22)
+Authorised exception to request-originated generation: cache misses may schedule source-bound asynchronous drafting only in explicit dynamic mode. Demo and normal disabled configurations never invoke a provider. Published-first reuse, complete fallback, separate draft/review/publication, duplicate suppression and isolated persistence are implemented and tested. This does not authorise a scoring/renderer cutover or expert-validation claim. See `PREPARED-FIRST-CONTENT.md`.
+
+
+### Revision 5 frontend API checkpoint (2026-10-22)
+One opt-in API under /workspace/guidance now exposes reused guest/profile identity, revised context settings, catalogue/availability, complete standard guidance, strict research previews, frozen views, route/navigation and actual visit evidence, manual child views, non-learning preview ratings and factual inspection. Read-only availability GETs cannot enqueue provider work. POST cache misses reuse the preparation pipeline; safe fallback remains complete. API flags default off, old routes remain compatible, existing frontend is untouched. Context restrictions and current-source completeness are authoritative; unsupported preview configurations return explicit errors. No new encoder/model/history mechanism is implemented here. See CLAUDE-FRONTEND-HANDOFF.md for schemas, actual HTTP captures, environment commands, limitations and mandatory next PP1 ML phases.

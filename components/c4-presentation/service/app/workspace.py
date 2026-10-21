@@ -30,5 +30,30 @@ def provider_factory():
     from app.core.llm_provider import OpenAIExplanationProvider
     return OpenAIExplanationProvider.from_environment()
 
+# Explicit controlled opt-in. Default startup preserves the checkpoint runtime.
+prepared_options = None
+prepared_flag = os.getenv("C4_PREPARED_CONTENT_ENABLED", "false").lower()
+if prepared_flag not in ("true", "false"):
+    raise ValueError("C4_PREPARED_CONTENT_ENABLED must be true or false")
+if prepared_flag == "true":
+    from app.guidance.service import PreparationSettings
+    settings = PreparationSettings.from_environment()
+    prepared_options = {
+        "directory": os.getenv("C4_PREPARED_CONTENT_DIRECTORY") or Path(__file__).resolve().parents[1]/".local"/"prepared-content"/"workspace",
+        "settings": settings, "provider_factory": provider_factory, "demo_fixtures": settings.mode == "demo"}
+
+if prepared_options is not None and content_mode == "prepare" and llm_enabled == "true":
+    raise ValueError("set C4_WORKSPACE_CONTENT_MODE=demo: only one wording generation schema may be active")
+
+guidance_options = None
+guidance_flag = os.getenv("C4_GUIDANCE_API_ENABLED", "false").lower()
+research_flag = os.getenv("C4_RESEARCH_PREVIEWS_ENABLED", "false").lower()
+if guidance_flag not in ("true", "false") or research_flag not in ("true", "false"):
+    raise ValueError("guidance API/research preview flags must be true or false")
+if guidance_flag == "true":
+    if prepared_options is None:
+        raise ValueError("C4_GUIDANCE_API_ENABLED requires C4_PREPARED_CONTENT_ENABLED=true")
+    guidance_options = {"research_enabled": research_flag == "true"}
+
 app=create_app(path, mode=mode, seed=int(os.getenv("C4_WORKSPACE_SEED", "0")), runtime_class=ActiveRuntime, workspace=True,
-    preparation_options={"enabled":content_mode == "prepare" and llm_enabled == "true", "provider_factory":provider_factory})
+    preparation_options={"enabled":content_mode == "prepare" and llm_enabled == "true", "provider_factory":provider_factory}, prepared_content_options=prepared_options, guidance_api_options=guidance_options)
