@@ -160,29 +160,51 @@ def tracker_settings(ner=None):
 
 def run_dst(dialogues, intents, make_tracker, relaxed=True):
     """intents: predicted intent per user turn (same order as user_turns over dialogues)."""
-    per_slot = collections.defaultdict(lambda: [0, 0, 0])
+    per_slot = new_slot_counts()
     rows, k = [], 0
     for d in dialogues:
         trk = make_tracker()
         trk.reset()
-        core_dialogue = all(s.get("intent") in CORE for _, _, s, _ in user_turns(d))
+        core_dialogue = is_core_dialogue(d)
         for pos, (ti, text, gold, bot) in enumerate(user_turns(d)):
             pred = trk.update(text, intents[k], bot)
             k += 1
-            gs, ps = gold.get("slots", {}) or {}, pred["slots"]
-            slots_ok = states_match(ps, gs, relaxed)
-            rows.append({"id": f"{d['dialogue_id']}/{ti}", "pos": pos, "core": core_dialogue,
-                         "intent_ok": pred["intent"] == gold.get("intent"), "slots_ok": slots_ok,
-                         "pred": pred, "gold": {"intent": gold.get("intent"), "slots": gs}})
-            for slot in set(gs) | set(ps):
-                if slot in gs and slot in ps and values_match(slot, ps[slot], gs[slot], relaxed):
-                    per_slot[slot][0] += 1
-                else:
-                    if slot in ps:
-                        per_slot[slot][1] += 1
-                    if slot in gs:
-                        per_slot[slot][2] += 1
+            rows.append(score_turn(per_slot, f"{d['dialogue_id']}/{ti}", pos, core_dialogue, pred, gold, relaxed))
+    return summarise_rows(rows, per_slot)
 
+
+# ------------------------------------------------------------------ scoring (also used by dialogue_eval.py)
+def new_slot_counts():
+    """{slot: [true positives, false positives, false negatives]}, filled by score_turn."""
+    return collections.defaultdict(lambda: [0, 0, 0])
+
+
+def is_core_dialogue(d):
+    """Every user turn's gold intent is a core service (the "core dialogues" subset)."""
+    return all(s.get("intent") in CORE for _, _, s, _ in user_turns(d))
+
+
+def score_turn(per_slot, row_id, pos, core_dialogue, pred, gold, relaxed=True):
+    """One user turn: adds its slot comparison to per_slot and returns its row for summarise_rows.
+    pred: {"intent", "slots"} as predicted; gold: the turn's gold state ({"intent", "slots"})."""
+    gs, ps = gold.get("slots", {}) or {}, pred["slots"]
+    slots_ok = states_match(ps, gs, relaxed)
+    row = {"id": row_id, "pos": pos, "core": core_dialogue,
+           "intent_ok": pred["intent"] == gold.get("intent"), "slots_ok": slots_ok,
+           "pred": pred, "gold": {"intent": gold.get("intent"), "slots": gs}}
+    for slot in set(gs) | set(ps):
+        if slot in gs and slot in ps and values_match(slot, ps[slot], gs[slot], relaxed):
+            per_slot[slot][0] += 1
+        else:
+            if slot in ps:
+                per_slot[slot][1] += 1
+            if slot in gs:
+                per_slot[slot][2] += 1
+    return row
+
+
+def summarise_rows(rows, per_slot):
+    """JGA, slot JGA, intent accuracy (all / core dialogues / turn 2+), per-slot and micro P/R/F1, first errors."""
     def acc(rs, key):
         return round(sum(key(r) for r in rs) / len(rs), 4) if rs else None
 
