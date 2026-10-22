@@ -80,6 +80,33 @@ def test_first_greeting_with_no_request(chat):
         ("Hi! How can I help?", "unknown", None, "none", [])
 
 
+def test_district_in_first_message_is_carried_unconfirmed(chat):
+    c, llm = chat({"hi, I'm from Galle": ("out_of_scope", 0.2), "I need a birth certificate for my son": (BIRTH, 0.95),
+                   "yes": (BIRTH, 0.9)},
+                  llm_reply(intent=None, act="greet", slots={"district": "Galle"}, reply="Hi! How can I help?"),
+                  # the LLM repeats the carried district: that alone does not confirm it
+                  llm_reply(act="new_request", slots={"applicant_for": "child", "district": "Galle"},
+                            asks="district", reply="Sure. Still in Galle?"),
+                  llm_reply(act="confirm", reply="Great. What do you need it for?", asks="purpose"))
+    first = c.step("hi, I'm from Galle")
+    assert (first.active_intent, first.slots, first.rejections) == (None, {}, [])
+    r = c.step("I need a birth certificate for my son")
+    assert user_content(llm)["state"]["carried_district"] == "Galle"
+    assert r.slots == {"applicant_for": "child", "district": "Galle"}
+    assert r.state["assumed_slots"] == ["district"] and r.ready is False
+    yes = c.step("yes")
+    assert yes.state["assumed_slots"] == [] and yes.slots["district"] == "Galle"
+    assert yes.missing_slots == ["purpose"]
+
+
+def test_first_message_slot_other_than_district_is_rejected(chat):
+    c, _ = chat({"hi, it's for my son": ("out_of_scope", 0.2)},
+                llm_reply(intent=None, act="greet", slots={"applicant_for": "child", "district": "Narnia"}))
+    r = c.step("hi, it's for my son")
+    assert {(x["field"], x["reason"]) for x in r.rejections} == {("applicant_for", "no_intent"),
+                                                                 ("district", "not_a_district")}
+
+
 def test_invalid_intent_falls_back_to_xlmr(chat):
     c, _ = chat({"Galle": (BIRTH, 0.9)}, llm_reply(intent="birth_certificate_please", slots={"district": "Galle"}))
     r = c.step("Galle")

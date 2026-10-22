@@ -22,12 +22,13 @@ import logging
 import time
 from dataclasses import asdict, dataclass, field
 
-from app.core.dst import INTENT_SLOTS, KG_SERVICE_IDS, TOWN_DISTRICT, extract_conditions, merge_conditions
+from app.core.dst import (INTENT_SLOTS, KG_SERVICE_IDS, TOWN_DISTRICT, UNKNOWN_VALUE, extract_conditions,
+                         merge_conditions)
 from app.core.engine import ASK, CORE_INTENTS
 from app.core.llm_client import LLM
 from app.core.prompts import system_prompt, today_colombo, turn_message
 from app.core.settings import DialogueSettings
-from app.core.validator import Rejection, check_turn, confirm_ready, merge_slots
+from app.core.validator import Rejected, Rejection, canonical_value, check_turn, confirm_ready, merge_slots
 
 log = logging.getLogger("c1-intent")
 
@@ -156,10 +157,14 @@ class DialogueManager:
     def _messages(self, chat, before, reply_lang, text, hints):
         n = self.settings.history_turns
         past = chat.history[-2 * n:] if n else []
+        active = before.active_intent
         state = {
-            "active_intent": before.active_intent,
-            "slots": _public(before.states.get(before.active_intent, {})) if before.active_intent else {},
-            "missing_slots": before._missing(before.active_intent) if before.active_intent else [],
+            "active_intent": active,
+            "slots": _public(before.states.get(active, {})) if active else {},
+            "unconfirmed_slots": sorted(before.assumed.get(active, set()) & set(INTENT_SLOTS[active]))
+                                 if active else [],
+            "missing_slots": before._missing(active) if active else [],
+            "carried_district": before.shared.get("district"),
             "tasks": _tasks(before),
             "reply_language": reply_lang,
         }
@@ -201,8 +206,7 @@ class DialogueManager:
 
         merge = None
         if no_slots:
-            if data.get("slot_updates"):
-                rejections.append(Rejection("slot_updates", data["slot_updates"], "no_intent"))
+            rejections += _remember_district(base, live if mode == "hybrid" else None, data.get("slot_updates"))
             intent_used = "none"
         else:
             intent_used = intent
@@ -215,30 +219,40 @@ class DialogueManager:
                     del base.variant_pending[svc]
             if agree:
                 prev = dict(before.states.get(intent, {}))
-                now = live.states.get(intent, {})
-                rules_changes = {k: v for k, v in now.items() if prev.get(k) != v}
-                removed = set(prev) - set(now)                  # e.g. a carried district the citizen denied
+                frame = live.states.get(intent, {})
+                rules_changes = {k: v for k, v in frame.items() if prev.get(k) != v}
+                removed = set(prev) - set(frame)                # e.g. a carried district the citizen denied
+                said = set()        # the rules step already took what was said out of `assumed`
             else:
-                frame = base._load_state(intent, text)
-                prev = dict(frame) if frame is not None else dict(base.tracker.slots)
+                loaded = base._load_state(intent, text)
+                prev = dict(loaded) if loaded is not None else dict(base.tracker.slots)
+                frame = prev
                 base.tracker.intent, base.tracker.slots = intent, dict(prev)
                 base.tracker.conditions = merge_conditions(base.tracker.conditions, extract_conditions(text))
-                rules_changes = {} if mode == "llm" else {
-                    k: v["value"] for k, v in base.tracker.x.extract(text, intent, bot_text, prev).items()
-                    if prev.get(k) != v["value"]}
+                extracted = {} if mode == "llm" else base.tracker.x.extract(text, intent, bot_text, prev)
+                rules_changes = {k: v["value"] for k, v in extracted.items() if prev.get(k) != v["value"]}
                 removed = set()
+                said = set(extracted)
+            # carried (assumed) values, e.g. a district from an earlier request or the first message
+            carried = {k: frame[k] for k in base.tracker.assumed if k in frame}
             merge = merge_slots(intent, data.get("slot_updates"), act, prev, rules_changes,
                                 protect_rules=self.settings.protect_applicant_for)
             rejections += merge.rejections
             slots = merge.slots
             for k in removed - set(merge.accepted):
                 slots.pop(k, None)
+            # a carried value stays assumed until the citizen says it, gives another one, or answers the bot's
+            # "still Galle?" (before.confirming): the LLM repeating the carried value does not confirm it
+            changed = {k for k in merge.accepted if slots.get(k) != carried.get(k)}
+            base.tracker.assumed -= said | changed
+            confirming = before.confirming
+            if confirming in base.tracker.assumed and act in ("confirm", "deny"):
+                base.tracker.assumed.discard(confirming)
+                if act == "deny":
+                    slots.pop(confirming, None)
             if slots.get("town") and TOWN_DISTRICT.get(slots["town"]) != slots.get("district"):
                 del slots["town"]                               # district changed to another one
             base.tracker.intent, base.tracker.slots = intent, dict(slots)
-            # said this turn (in the agree case the rules step already updated `assumed`; its changes include the
-            # carried district, which must stay assumed until confirmed)
-            base.tracker.assumed -= set(merge.accepted) | (set() if agree else set(rules_changes))
             base.states[intent] = dict(slots)
             base.assumed[intent] = set(base.tracker.assumed)
             base.conditions[intent] = dict(base.tracker.conditions)
@@ -274,6 +288,32 @@ class DialogueManager:
 
 
 # ---------------------------------------------------------------- helpers
+def _remember_district(base, live, updates):
+    """No request yet ("hi, I'm from Galle"): keep the district in the conversation's memory (engine `shared`). The
+    next request that needs a district gets it as a carried, unconfirmed value, so the bot asks before using it.
+    live: the rules step's session in hybrid mode (its own memory of the message), else None. -> rejections"""
+    rejections = []
+    if live is not None:
+        base.shared = dict(live.shared)
+    if not isinstance(updates, dict):
+        return [Rejection("slot_updates", updates, "not_an_object")] if updates else []
+    for slot, value in updates.items():
+        if value is None or (isinstance(value, str) and not value.strip()):
+            continue
+        if slot != "district":
+            rejections.append(Rejection(slot, value, "no_intent"))
+            continue
+        try:
+            district, _ = canonical_value("district", value)
+        except Rejected as e:
+            rejections.append(Rejection(slot, value, str(e)))
+            continue
+        if district != UNKNOWN_VALUE:
+            base.shared["district"] = district
+            base.shared.pop("town", None)
+    return rejections
+
+
 def _snapshot(session):
     """A deep copy of an engine Session that shares the engine (models) instead of copying it."""
     return copy.deepcopy(session, {id(session.e): session.e})
