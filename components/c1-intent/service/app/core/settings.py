@@ -10,6 +10,8 @@ C1_LLM_TIMEOUT     seconds per LLM request
 C1_LLM_HISTORY_TURNS  conversation turns (user + bot) sent to the LLM
 C1_LLM_JSON_MODE   true (default): ask for response_format json_object; false: rely on the prompt + JSON parsing
                    (the client also turns it off by itself when the provider rejects it)
+C1_LLM_REASONING_EFFORT  empty (default): not sent; none | minimal | low | medium | high: sent as reasoning_effort
+                   (models that think, e.g. Gemini 2.5 through its OpenAI-compatible endpoint)
 C1_PROTECT_APPLICANT_FOR  true (default): in llm / hybrid mode the rules tracker may not change a known
                    applicant_for either, unless the turn is a correction (the LLM never may); false turns that off
                    for the rules side, so the evaluation can separate the LLM's effect from this tracker fix
@@ -18,6 +20,7 @@ import os
 from dataclasses import dataclass, field
 
 DIALOGUE_MODES = ("rules", "llm", "hybrid")
+REASONING_EFFORTS = ("none", "minimal", "low", "medium", "high")
 DEFAULT_MODE = "rules"
 DEFAULT_BASE_URL = "http://localhost:11434/v1"
 DEFAULT_MODEL = "gemma3"
@@ -38,6 +41,7 @@ class DialogueSettings:
     timeout: float = DEFAULT_TIMEOUT
     history_turns: int = DEFAULT_HISTORY_TURNS
     json_mode: bool = True
+    reasoning_effort: str = ""      # "" = not sent
     protect_applicant_for: bool = True
 
 
@@ -69,6 +73,10 @@ def dialogue_settings() -> DialogueSettings:
     mode = _env("C1_DIALOGUE_MODE", DEFAULT_MODE).lower()
     if mode not in DIALOGUE_MODES:
         raise SettingsError(f"C1_DIALOGUE_MODE must be one of {', '.join(DIALOGUE_MODES)}, got {mode!r}")
+    effort = _env("C1_LLM_REASONING_EFFORT", "").lower()
+    if effort and effort not in REASONING_EFFORTS:
+        raise SettingsError(f"C1_LLM_REASONING_EFFORT must be empty or one of {', '.join(REASONING_EFFORTS)}, "
+                            f"got {effort!r}")
     return DialogueSettings(
         mode=mode,
         base_url=_env("C1_LLM_BASE_URL", DEFAULT_BASE_URL).rstrip("/"),
@@ -77,5 +85,6 @@ def dialogue_settings() -> DialogueSettings:
         timeout=_number("C1_LLM_TIMEOUT", DEFAULT_TIMEOUT, float, 1),
         history_turns=_number("C1_LLM_HISTORY_TURNS", DEFAULT_HISTORY_TURNS, int, 0),
         json_mode=_flag("C1_LLM_JSON_MODE", True),
+        reasoning_effort=effort,
         protect_applicant_for=_flag("C1_PROTECT_APPLICANT_FOR", True),
     )

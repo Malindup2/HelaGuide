@@ -178,6 +178,43 @@ def test_long_transport_errors_are_truncated():
     assert len(str(e.value)) <= len("ConnectError: ") + BODY_CHARS
 
 
+# ---------------------------------------------------------------- reasoning effort and tokens
+def test_reasoning_effort_not_sent_by_default():
+    t = Transport(ok("{}"))
+    client(t).complete_json("sys", [])
+    assert "reasoning_effort" not in t.requests[0]["json"]
+
+
+def test_reasoning_effort_sent_when_set():
+    t = Transport(ok("{}"))
+    client(t, reasoning_effort="low").complete_json("sys", [])
+    assert t.requests[0]["json"]["reasoning_effort"] == "low"
+
+
+def test_reasoning_effort_from_settings():
+    c = OpenAICompatClient.from_settings(DialogueSettings(reasoning_effort="none"))
+    assert c.reasoning_effort == "none"
+
+
+def test_reasoning_tokens_recorded_separately():
+    r = httpx.Response(200, request=REQ, json={"choices": [{"message": {"content": "{}"}}], "usage": {
+        "prompt_tokens": 50, "completion_tokens": 300, "completion_tokens_details": {"reasoning_tokens": 260}}})
+    u = client(Transport(r)).complete_json("sys", []).usage
+    assert (u.prompt_tokens, u.completion_tokens, u.reasoning_tokens, u.total_tokens) == (50, 300, 260, 350)
+
+
+def test_reasoning_tokens_top_level_and_summed_over_repair():
+    first = httpx.Response(200, request=REQ, json={"choices": [{"message": {"content": "oops"}}],
+                                                   "usage": {"completion_tokens": 10, "reasoning_tokens": 7}})
+    second = httpx.Response(200, request=REQ, json={"choices": [{"message": {"content": "{}"}}], "usage": {
+        "completion_tokens": 10, "completion_tokens_details": {"reasoning_tokens": 5}}})
+    assert client(Transport(first, second)).complete_json("sys", []).usage.reasoning_tokens == 12
+
+
+def test_no_reasoning_tokens_is_zero():
+    assert client(Transport(ok("{}"))).complete_json("sys", []).usage.reasoning_tokens == 0
+
+
 # ---------------------------------------------------------------- settings and FakeLLM
 def test_from_settings():
     c = OpenAICompatClient.from_settings(DialogueSettings(base_url="http://h/v1", model="m", timeout=7))
@@ -185,12 +222,12 @@ def test_from_settings():
 
 
 def test_fake_llm_scripts_replies_usage_and_errors():
-    scripted = LLMResult({"reply": "b"}, LLMUsage(1, 2, "m", 3.0, 1))
+    scripted = LLMResult({"reply": "b"}, LLMUsage(1, 2, 0, "m", 3.0, 1))
     fake = FakeLLM({"reply": "a"}, scripted, LLMError("down"))
     out = fake.complete_json("one two", [{"role": "user", "content": "three four five"}])
     assert out.data == {"reply": "a"}
-    assert (out.usage.prompt_tokens, out.usage.completion_tokens, out.usage.model, out.usage.calls) == \
-        (5, 2, "fake-llm", 1)
+    assert (out.usage.prompt_tokens, out.usage.completion_tokens, out.usage.reasoning_tokens, out.usage.model,
+            out.usage.calls) == (5, 2, 0, "fake-llm", 1)
     assert fake.complete_json("s", []) is scripted
     with pytest.raises(LLMError):
         fake.complete_json("s", [])

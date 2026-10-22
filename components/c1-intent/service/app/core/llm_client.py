@@ -6,6 +6,8 @@ most gateways accept, so the provider is just C1_LLM_BASE_URL + C1_LLM_MODEL (sa
 code: components do not import each other). FakeLLM returns scripted replies, for tests: they never call a real LLM.
 
 Every call returns the parsed JSON with its usage (tokens, model, latency): token cost per turn is an SO3 metric.
+Reasoning ("thinking") tokens are recorded separately when the provider reports them. Providers differ on whether
+completion_tokens already includes them (OpenAI-style APIs do), so they are not added to total_tokens.
 """
 from __future__ import annotations
 
@@ -38,6 +40,7 @@ class LLMUsage:
     """Totals over every HTTP call one complete_json() made (a repair retry counts too)."""
     prompt_tokens: int = 0
     completion_tokens: int = 0
+    reasoning_tokens: int = 0       # thinking tokens, when reported (completion_tokens_details.reasoning_tokens)
     model: str = ""
     latency_ms: float = 0.0
     calls: int = 0          # successful chat completions: 1, or 2 after a repair retry
@@ -68,18 +71,20 @@ def parse_json_object(text: str) -> dict:
 
 class OpenAICompatClient:
     def __init__(self, base_url: str, model: str, api_key: str = "", timeout: float = 30.0, json_mode: bool = True,
-                 attempts: int = len(BACKOFF_SECONDS) + 1, post=httpx.post, sleep=time.sleep) -> None:
+                 reasoning_effort: str = "", attempts: int = len(BACKOFF_SECONDS) + 1, post=httpx.post,
+                 sleep=time.sleep) -> None:
         self.base_url = base_url.rstrip("/")
         self.model = model
         self._api_key = api_key
         self.timeout = timeout
         self.json_mode = json_mode      # turned off for good after the provider rejects response_format
+        self.reasoning_effort = reasoning_effort    # "" = not sent
         self.attempts = max(1, attempts)
         self._post, self._sleep = post, sleep      # injectable for tests
 
     @classmethod
     def from_settings(cls, s: DialogueSettings) -> "OpenAICompatClient":
-        return cls(s.base_url, s.model, s.api_key, s.timeout, s.json_mode)
+        return cls(s.base_url, s.model, s.api_key, s.timeout, s.json_mode, s.reasoning_effort)
 
     def complete_json(self, system: str, messages: list[dict]) -> LLMResult:
         """messages: [{"role": "user" | "assistant", "content": ...}], oldest first. One repair retry on bad JSON."""
@@ -111,6 +116,8 @@ class OpenAICompatClient:
             body = {"model": self.model, "temperature": 0, "messages": messages}
             if self.json_mode:
                 body["response_format"] = {"type": "json_object"}
+            if self.reasoning_effort:
+                body["reasoning_effort"] = self.reasoning_effort
             try:
                 r = self._post(f"{self.base_url}/chat/completions", json=body, headers=headers, timeout=self.timeout)
             except httpx.TimeoutException as e:
@@ -127,6 +134,7 @@ class OpenAICompatClient:
                 u = data.get("usage") or {}
                 usage.prompt_tokens += int(u.get("prompt_tokens") or 0)
                 usage.completion_tokens += int(u.get("completion_tokens") or 0)
+                usage.reasoning_tokens += _reasoning_tokens(u)
                 usage.model = data.get("model") or self.model
                 usage.calls += 1
                 return text
@@ -139,6 +147,16 @@ class OpenAICompatClient:
             if r.status_code not in RETRY_STATUS:
                 break       # a bad key, model name or request will not get better by retrying
         raise LLMError(last)
+
+
+def _reasoning_tokens(u: dict) -> int:
+    """completion_tokens_details.reasoning_tokens (OpenAI style), or a top-level reasoning_tokens."""
+    details = u.get("completion_tokens_details")
+    value = details.get("reasoning_tokens") if isinstance(details, dict) else None
+    try:
+        return int(value or u.get("reasoning_tokens") or 0)
+    except (TypeError, ValueError):
+        return 0
 
 
 class FakeLLM:
@@ -162,4 +180,4 @@ class FakeLLM:
             return reply
         prompt = len(system.split()) + sum(len(str(m.get("content", "")).split()) for m in messages)
         completion = len(json.dumps(reply, ensure_ascii=False).split())
-        return LLMResult(dict(reply), LLMUsage(prompt, completion, self.model, self.latency_ms, 1))
+        return LLMResult(dict(reply), LLMUsage(prompt, completion, 0, self.model, self.latency_ms, 1))

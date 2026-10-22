@@ -3,7 +3,8 @@ import pytest
 from app.core.settings import DialogueSettings, SettingsError, dialogue_settings
 
 ENV = ("C1_DIALOGUE_MODE", "C1_LLM_BASE_URL", "C1_LLM_MODEL", "C1_LLM_API_KEY", "C1_LLM_TIMEOUT",
-       "C1_LLM_HISTORY_TURNS", "C1_LLM_JSON_MODE", "C1_PROTECT_APPLICANT_FOR")
+       "C1_LLM_HISTORY_TURNS", "C1_LLM_JSON_MODE", "C1_PROTECT_APPLICANT_FOR",
+       "C1_LLM_REASONING_EFFORT")
 
 
 @pytest.fixture(autouse=True)
@@ -20,6 +21,7 @@ def test_defaults_are_rules_mode_and_local_ollama():
     assert s.api_key == ""
     assert s.json_mode is True
     assert s.protect_applicant_for is True
+    assert s.reasoning_effort == ""
 
 
 def test_reads_env(monkeypatch):
@@ -44,8 +46,15 @@ def test_api_key_is_not_in_repr(monkeypatch):
 
 @pytest.mark.parametrize("name, value", [("C1_DIALOGUE_MODE", "chatty"), ("C1_LLM_TIMEOUT", "soon"),
                                          ("C1_LLM_TIMEOUT", "0"), ("C1_LLM_HISTORY_TURNS", "-1"),
-                                         ("C1_LLM_JSON_MODE", "maybe"), ("C1_PROTECT_APPLICANT_FOR", "sometimes")])
+                                         ("C1_LLM_JSON_MODE", "maybe"), ("C1_PROTECT_APPLICANT_FOR", "sometimes"),
+                                         ("C1_LLM_REASONING_EFFORT", "extreme")])
 def test_bad_values_raise(monkeypatch, name, value):
     monkeypatch.setenv(name, value)
     with pytest.raises(SettingsError, match=name):
         dialogue_settings()
+
+
+@pytest.mark.parametrize("value", ["none", "minimal", "low", "medium", "HIGH"])
+def test_reasoning_effort_values(monkeypatch, value):
+    monkeypatch.setenv("C1_LLM_REASONING_EFFORT", value)
+    assert dialogue_settings().reasoning_effort == value.lower()
