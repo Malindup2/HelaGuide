@@ -37,7 +37,7 @@ Tick items here as they finish, then update the Planner card.
 - [x] Synthetic dialogues for the 4 intents with no training data (`unsupported_service`, `feedback_complaint`, `general_question`, `out_of_scope`): 30 each, `s0276`–`s0395`
 - [x] TF-IDF + LogReg intent baseline: 0.972 gold / 0.953 fresh macro-F1, higher than XLM-R (Observation 7)
 - [x] Context strategies, 6 × 3 seeds, XLM-R and TF-IDF: XLM-R + window_3 is the default (Observation 8)
-- [ ] Tidy `notes.md`: fill the Observation 6 TODO (how the LLM key was used), fix the missing Observation 3, replace the old "Next steps" list
+- [ ] Tidy `notes.md`: fill the Observation 6 TODO (how the LLM key was used), fix the missing Observation 3, replace the old "Next steps" list (duplicate Observations 11–13 merged and renumbered to 12–15 on 21 Oct)
 
 ### Sun 18 Oct: plug into HelaGuide
 - [x] Map the 12 internal intents to the contract (`intent` + `service_id`): `service/app/core/projection.py` (branch `c1/api`)
@@ -46,22 +46,40 @@ Tick items here as they finish, then update the Planner card.
 - [x] Add tests in `service/tests/` (47 on 18 Oct, 66 on 19 Oct; pass in stub mode without torch)
 - [x] Run instructions for the `nlp` env and `service/scripts/demo_conversation.py` (`README.md`)
 - [x] Contract additions written up: `docs/c1_contract_proposal.md`
-- [ ] Open the `c1/api` PR (pushed, not merged)
+- [x] Open and merge the `c1/api` PR (#34, merged into `feate-multilingual-intent-entity-engine` on 21 Oct)
 - [ ] Run `docker compose up --build` and test one request through the gateway
 
 ### Mon 19 Oct: demo and slides
 - [x] Pick the demo dialogue: `demo_conversation.py` sessions A (NIC lost, correction), B (complaint), C (driving licence), Sinhala script, English
 - [x] Demo page at `GET /demo` (`service/app/static/demo.html`): chat plus per-turn language tags, intent, slots, route and the contract next to the full state; preset sessions A, LOCK, SWITCH, B, C, SI, EN
 - [x] Keep the topic across turns (active intent, switch only at ≥ 0.75 with a service keyword, never on a slot answer), slot state per intent, and a bot reply on every turn (Observation 11); `/v1/intent/details` gains `active_intent`, `intent_locked`, `ready`, `reply`
-- [ ] Decide: demo session B no longer shows a complaint, because after two passport turns the model reads it as `passport_new` (0.77). Use the single-message complaint, or classify complaints on the current message only
+- [x] Decide: demo session B (complaint after two passport turns, read as `passport_new` 0.77). Decided 21 Oct: complaints are also checked on the current message alone (Observation 13)
 - [ ] Decide: raise the first-turn lock threshold ("mata udaw ekak one" locks to `nic_new` at 0.63)
-- [ ] Commit the 19 Oct work on `c1/api` (demo page, intent policy, docs)
+- [x] Commit the 19 Oct work: intent policy and docs on `c1/api` (#34); demo page on `c1/demo-page` (`53c8a7b`)
 - [ ] Record a backup demo video
 - [ ] Slides: problem, baseline findings, dataset stats, model results (3-seed means), context trade-off chart (`results/context_tradeoff_e15.png`), integration, progress vs TAF, PP2 plan
 
 ### Tue 20 Oct
 - [ ] Rehearse
 - [ ] PP1
+
+### Wed 21 Oct: multi-request sessions and context v2
+- [x] Slot frames: a new request carries only district (as an assumption the bot confirms), applicant_for only on a back-reference ("eyata") (Observation 12)
+- [x] Several requests per conversation: completed / pending requests, offer to resume, switch on the current message
+- [x] Variant question for a bare "i need a NIC" / passport; `variant_pending`
+- [x] Condition facts (`applicant_age`, `applicant_minor`), towns → district, "danne na" → `unknown`, greetings, `state_version`
+- [x] Model warm-up at startup; demo preset MULTI; `conditions` and `state_version` added to `docs/c1_contract_proposal.md`
+- [x] 149 service tests pass (stub mode)
+- [ ] Open a PR for `c1/demo-page` (pushed, not merged)
+- [x] Rerun `dst_eval.py` after the slot-frame fix: gold 0.979, synthetic 0.750, fresh 0.92 (Observation 12)
+- [x] Context v2 (Observations 14–15): held-out synthetic split (`context_v2_split.json`), text-only `summary` strategy, Colab run 7 strategies × XLM-R/TF-IDF × 3 seeds (intent accuracy in `results/context_v2/runs.json`)
+- [x] `context_eval.py`: JGA per strategy, CMI buckets, bootstrap CIs, McNemar + Holm, H1–H4 summary; 26 tests in `research/tests/`
+- [x] Commit the H3 permutation test (`context_eval.py`) and `h3_calibration.py` (`2ea300e`)
+- [ ] Train seeds 4 and 5 for every strategy (Observation 15, decision 1)
+- [ ] Run `context_eval.py` and `h3_calibration.py` and record the verdicts in Observation 16 (a preliminary 3-seed `context_eval.py` run exists: `results/context_v2/`, 21 Oct 14:45, before the H3 calibration)
+- [ ] Write `perturb.py` (H4 robustness) and `bench_cpu.py` (CPU scale claim)
+- [ ] Allow `results/context_v2/runs.json` (and the eval outputs) in `research/.gitignore`
+- [ ] Push `c1/context-v2` and open the PR
 
 ---
 
@@ -81,7 +99,7 @@ Tick items here as they finish, then update the Planner card.
 - [x] Slot carryover, corrections and intent switches
 - [x] Retrain with support intents using c1_xlmr_train_v2.ipynb (seed 1): `run_v2_seed1`, Observation 10
 - [x] Run dst_eval.py --xlmr-dir models/c1/run_v2_seed1 (`results/dst_results.json`, Observation 10)
-- [ ] Retrain v2 at 15 epochs over 3 seeds (training loss still 0.41 at epoch 8)
+- [ ] Retrain the deployment model (`run_v2_seed1`, 8 epochs) at 15 epochs over 3 seeds (training loss still 0.41 at epoch 8). The context v2 run already trains at 15 epochs, but on 80% of the silver set
 - [ ] Measure the intent policy: run gold and fresh dialogues through `Session` and compare JGA with and without it (Observation 11)
 - [ ] Fix DST errors found on held-out sets after PP1 (date formats, number-only corrections, applicant_for overwrite, new_value in first message), then retest on new data
 - [x] Log latency per request (one log line per request, no message text)
@@ -94,13 +112,13 @@ Tick items here as they finish, then update the Planner card.
   3. Install torch from the CPU wheel index (`--extra-index-url https://download.pytorch.org/whl/cpu`) so the image is about 1 GB larger instead of 2–5 GB with CUDA; build it once to check
 
 ## PP2: context optimization
-First experiment done early (Observation 8, `c1_context_experiment.ipynb`): recommended default is XLM-R + window_3.
+First experiment done early (Observation 8, `c1_context_experiment.ipynb`): recommended default is XLM-R + window_3. Second run (v2, 12 intents, held-out synthetic set, JGA and statistics) in progress: Observations 14–15.
 - [x] Full-history baseline
 - [x] Sliding window (window_2, window_3)
-- [ ] Summarization (only a keyword summary so far; no LLM summary yet)
+- [x] Summarization: text-only extractive `summary` (Observation 14); an LLM summary is future work (API cost)
 - [x] Structured-state carryover (uses gold tags; repeat with predicted tags)
 - [x] Token counting per turn (model tokenizer)
-- [ ] JGA per context strategy (JGA tool done in dst_eval.py; not yet run per strategy)
+- [ ] JGA per context strategy (`context_eval.py` written and tested; preliminary run on seeds 1–3 on 21 Oct 14:45; final run after seeds 4–5)
 - [x] Trade-off curve (`results/context_tradeoff_e15.png`)
 - [ ] Error analysis (accuracy by turn type done; switch-turn errors not yet analysed)
 - [ ] Structured state and keyword summary with **predicted** tags instead of gold tags
@@ -128,3 +146,4 @@ First experiment done early (Observation 8, `c1_context_experiment.ipynb`): reco
 - [x] Hybrid slot extractor, state tracker and JGA (Observation 9)
 - [x] Support-intent data, v2 retrain with 12 intents, full pipeline (Observation 10)
 - [x] C1 service: real engine, `/v1/intent/details`, routing, sessions (18 Oct); demo page and intent policy (Observation 11, 19 Oct)
+- [x] Slot frames, multiple requests, variant question, condition facts (Observations 12–13, 20–21 Oct)

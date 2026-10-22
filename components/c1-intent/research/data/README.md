@@ -25,9 +25,12 @@ Small files only (under a few MB). Large datasets, raw crawls and model weights 
 | `kg_service_map.json` | The 8 core intents mapped to C2 service ids (confirmed or proposed), which attributes the KG holds for each, source pages, and the KG services no intent covers | Hand-built from C2's committed files, 2026-10-14 |
 | `synthetic/synthetic_dialogues.json` | 393 LLM-written training dialogues, 977 user turns, **all 12 intents**: `s0001`–`s0275` for the 8 core intents (~35 each), `s0276`–`s0395` for the 4 support intents (30 each, prompt `v5-support-intents`) | `generate_synthetic.py` (Claude Code 347, Gemini 3.5 Flash Lite 46) |
 | `synthetic/silver_tokens.jsonl` | Training set in the gold format: 977 turns, 5,972 tokens. Language tags from the LLM (897 turns) or hand-checked (80), none from the heuristic; entity spans from slot values | `tag_synthetic.py --build` |
+| `synthetic/context_v2_split.json` | Dialogue-level split of the silver set for the context v2 experiment: 314 train / 79 test dialogues (778 / 199 turns), seed 0, stratified by first-turn intent. The test part is the synthetic test set in `c1_context_experiment.ipynb` and the robustness test | `context_strategies.py --write-split` |
+| `perturb_lexicon.json` | Hand-written lists for the H4 robustness test: Singlish spelling variants, district spellings, romanised ↔ Sinhala-script pairs, one-word Sinhala ↔ English swaps, and perturbation rates | Hand-written (21 Oct); used by `experiments/perturb.py` |
 | `fresh_dialogues.txt` / `.json` | Fresh test set: 23 dialogues written by the author after the model was designed, 50 user turns | Hand-written; `prepare_fresh.py` |
 | `fresh_ls_export.json` | Label Studio export of the fresh set, labelled from scratch (no pre-labels) | Label Studio |
 | `fresh_tokens.jsonl` | Fresh test set in the gold format: 50 turns, 403 tokens | `prepare_fresh.py --from-export` |
+| `regression_rigid_log.json` | The demo conversation that showed the rules-only dialogue as rigid (10 user turns, typos as typed), with the behaviour the LLM dialogue layer must show in hybrid mode (`expect_hybrid`) | Copied from the C1 demo log (22 Oct); replayed by `service/scripts/replay_log.py` |
 
 All files are UTF-8. Sinhala text is stored in Sinhala script, not escaped.
 

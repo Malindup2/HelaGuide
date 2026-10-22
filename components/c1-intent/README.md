@@ -85,9 +85,16 @@ set C1_MIN_CONFIDENCE=0.35
 | `STUB_MODE` | `true` | `false` runs the real engine |
 | `C1_MODEL_DIR` | `research/models/c1/run_v2_seed1` | Folder with `lid/`, `ner/`, `intent/`, `c1_config.json`. Absolute, or relative to the working directory or to `components/c1-intent/` |
 | `C1_MIN_CONFIDENCE` | `0.35` | Below this the intent is not trusted: a mention of an unsupported service gives `unsupported_service`, otherwise the previous topic is kept (or `unknown` on the first turn) |
+| `C1_COMPLETED_DB` | `var/completed_requests.sqlite3` | SQLite file for completed requests (relative to `components/c1-intent/` by default, or to the working directory when set); `off` turns saving off |
 
 If the model folder is missing the service answers 503 with a message saying how to set `C1_MODEL_DIR`.
 Sessions are kept in memory (30 minutes idle, at most 1,000) and are lost on restart.
+
+Completed requests are kept. When a request becomes ready (all slots filled and confirmed), or is finished and
+the citizen moves on to another service, C1 saves it with the time it completed. This works for `/v1/intent`,
+`/v1/intent/details` and `/v1/chat`. A later correction updates the slots and `updated_at`; `completed_at` stays
+the same. List them with `GET /v1/requests/completed` (filters: `session_id`, `endpoint`, `intent`, `limit`), or
+open <http://127.0.0.1:8001/demo/completed>. Slot values are saved as filled, so `var/` is git-ignored.
 
 **3. Start** (from `components/c1-intent/service/`):
 
@@ -127,4 +134,13 @@ python scripts\demo_conversation.py --only A B C
 Sessions: **A** NIC lost (district memory, correction Matara → Galle, urgency), **B** complaint →
 `trust_verification`, **C** driving licence → `fallback`, **SI** Sinhala script (birth certificate copy),
 **EN** English (new passport).
+
+**6. Demo page** (service running): open <http://127.0.0.1:8001/demo>. A chat that calls
+`/v1/intent/details` and shows, per turn, the word-level language tags, the intent and confidence, the
+dialogue state (slots set or corrected this turn are highlighted), the route, and the v1 contract next to the
+full C1 state. Every bot message is C1's own `reply`, and the page sends it back as `bot_text` with the next
+message. The buttons replay demo sessions: **A**, **C**, **SI** and **EN** as above, **B** a complaint in the
+middle of a passport request, **LOCK** (passport kept over misread follow-ups), **SWITCH** (passport, then NIC)
+and **MULTI** (NIC, then passport). Click any of your messages to look at that turn again. The page is C1-only
+(`app/static/demo.html`), needs no build step and is not in the OpenAPI docs.
 

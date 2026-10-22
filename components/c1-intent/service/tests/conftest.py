@@ -13,6 +13,14 @@ from app.core.sessions import SessionStore
 from app.main import app
 
 
+@pytest.fixture(autouse=True)
+def completed_db(monkeypatch, tmp_path):
+    """Every test saves completed requests to its own SQLite file, never to components/c1-intent/var/."""
+    path = tmp_path / "completed_requests.sqlite3"
+    monkeypatch.setenv("C1_COMPLETED_DB", str(path))
+    return path
+
+
 @pytest.fixture
 def client():
     return TestClient(app)
@@ -37,6 +45,12 @@ class FakeEngine:
         self.min_confidence = min_confidence
         self.fallback = fallback
         self.use_ner = False
+        self.window = 3
+        self.context_strategy = "window_3"
+
+    def count_context_tokens(self, user_turns):
+        """Words of the last 3 messages plus <s>, </s> per message (a stand-in for the XLM-R tokenizer)."""
+        return sum(len(t.split()) + 2 for t in user_turns[-self.window:])
 
     def tag_languages(self, text):
         return [(w, "SI" if is_sinhala(w) else "EN") for w, _, _ in words_with_offsets(text)]
@@ -64,6 +78,8 @@ def real_mode(monkeypatch, tmp_path):
     monkeypatch.delenv("C1_MIN_CONFIDENCE", raising=False)
     monkeypatch.setattr(pipeline, "_engine", None)
     monkeypatch.setattr(pipeline, "_store", SessionStore())
+    monkeypatch.setattr(pipeline, "_chat_store", SessionStore())
+    monkeypatch.setattr(pipeline, "_dialogue", None)
     monkeypatch.setattr(pipeline, "_load_engine", lambda path: FakeEngine(
         intents, pipeline.min_confidence(), pipeline.unsupported_service_fallback))
     return intents

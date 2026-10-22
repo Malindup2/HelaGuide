@@ -1,0 +1,12 @@
+# C1-only ignores (the repo root .gitignore is shared; research/.gitignore covers the other local research files)
+# per-turn predictions downloaded from Colab (MyDrive/c1_context_v2/preds/): large and regenerable
+research/results/context_v2/preds/
+# local copies of the Colab notebook inputs (the originals are in research/data/ and research/experiments/)
+research/inputs/
+# LLM smoke test outputs (service/scripts/llm_smoke_test.py): local runs against a real provider
+service/smoke_*.txt
+# regression replay outputs (service/scripts/replay_log.py)
+service/replay_*.txt
+service/replay_*.json
+# completed requests saved by the service (service/app/core/completed.py): local runtime data
+var/

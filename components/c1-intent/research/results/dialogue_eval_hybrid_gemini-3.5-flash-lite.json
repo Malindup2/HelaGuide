@@ -1,0 +1,1127 @@
+{
+ "run_at": "2026-10-22 16:45",
+ "data": "data/fresh_dialogues_states.json",
+ "dialogues": 23,
+ "turns": 50,
+ "model": "gemini-3.5-flash-lite",
+ "reasoning_effort": "low",
+ "history_turns": 6,
+ "pause": 4.0,
+ "limit": null,
+ "eval_retries": 0,
+ "note": "fresh = held-out (the gold set was used to write the rules); gold history at every turn; schema slots only; dates scored on the user's words; strict scoring is the main number",
+ "secondary": "district relaxed: town->district counted correct when the message names a town but no district (the predicted district is not in the gold state, a user message so far named a town in it and no district, and no user message so far named that district)",
+ "setting": "hybrid",
+ "runs_done": 3,
+ "runs_planned": 3,
+ "summary": {
+  "jga": {
+   "mean": 0.7267,
+   "sd": 0.0231,
+   "min": 0.7,
+   "max": 0.74,
+   "n_runs": 3
+  },
+  "jga_district_relaxed": {
+   "mean": 0.8067,
+   "sd": 0.0231,
+   "min": 0.78,
+   "max": 0.82,
+   "n_runs": 3
+  },
+  "slot_jga": {
+   "mean": 0.7267,
+   "sd": 0.0231,
+   "min": 0.7,
+   "max": 0.74,
+   "n_runs": 3
+  },
+  "intent_acc": {
+   "mean": 0.9,
+   "sd": 0.02,
+   "min": 0.88,
+   "max": 0.92,
+   "n_runs": 3
+  },
+  "jga_turn2plus": {
+   "mean": 0.6173,
+   "sd": 0.0428,
+   "min": 0.5926,
+   "max": 0.6667,
+   "n_runs": 3
+  },
+  "slot_f1": {
+   "mean": 0.8307,
+   "sd": 0.0121,
+   "min": 0.8193,
+   "max": 0.8434,
+   "n_runs": 3
+  },
+  "jga_without_failed_dialogues": {
+   "mean": 0.7267,
+   "sd": 0.0231,
+   "min": 0.7,
+   "max": 0.74,
+   "n_runs": 3
+  },
+  "hallucinated_slot_rate": {
+   "mean": 0.3069,
+   "sd": 0.0151,
+   "min": 0.2941,
+   "max": 0.3235,
+   "n_runs": 3
+  },
+  "slot_rejection_rate": {
+   "mean": 0.0818,
+   "sd": 0.0013,
+   "min": 0.0811,
+   "max": 0.0833,
+   "n_runs": 3
+  },
+  "fallback_rate": {
+   "mean": 0.0,
+   "sd": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n_runs": 3
+  },
+  "failed_rate": {
+   "mean": 0.0,
+   "sd": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "n_runs": 3
+  },
+  "llm_ms_mean": {
+   "mean": 4367.102,
+   "sd": 484.378,
+   "min": 3933.232,
+   "max": 4889.716,
+   "n_runs": 3
+  },
+  "tokens_per_turn": {
+   "mean": 1933.34,
+   "sd": 15.2025,
+   "min": 1917.98,
+   "max": 1948.38,
+   "n_runs": 3
+  }
+ },
+ "runs": [
+  {
+   "turns": 50,
+   "core_dialogue_turns": 50,
+   "jga": 0.74,
+   "slot_jga": 0.74,
+   "intent_acc": 0.9,
+   "jga_core_dialogues": 0.74,
+   "slot_jga_core_dialogues": 0.74,
+   "jga_turn2plus": 0.6667,
+   "per_slot": {
+    "applicant_for": {
+     "precision": 0.8125,
+     "recall": 1.0,
+     "f1": 0.8966,
+     "support": 13
+    },
+    "change_field": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 6
+    },
+    "date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 4
+    },
+    "date_of_birth": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 0
+    },
+    "district": {
+     "precision": 0.4,
+     "recall": 1.0,
+     "f1": 0.5714,
+     "support": 4
+    },
+    "new_value": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 2
+    },
+    "purpose": {
+     "precision": 0.8,
+     "recall": 1.0,
+     "f1": 0.8889,
+     "support": 4
+    },
+    "service_mentioned": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 0
+    },
+    "service_type": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 1
+    },
+    "travel_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 1
+    }
+   },
+   "slot_micro": {
+    "precision": 0.7292,
+    "recall": 1.0,
+    "f1": 0.8434,
+    "support": 35
+   },
+   "district_relaxed": {
+    "definition": "district relaxed: town->district counted correct when the message names a town but no district (the predicted district is not in the gold state, a user message so far named a town in it and no district, and no user message so far named that district)",
+    "turns_relaxed": 4,
+    "jga": 0.82,
+    "slot_jga": 0.82,
+    "slot_f1": 0.8861
+   },
+   "errors": [
+    {
+     "id": "f001/0",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "date_of_birth": "week",
+       "applicant_for": "child"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "child"
+      }
+     }
+    },
+    {
+     "id": "f001/2",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "date_of_birth": "week",
+       "applicant_for": "child"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "child"
+      }
+     }
+    },
+    {
+     "id": "f002/2",
+     "pred": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "45/2 Temple rd, Panadura",
+       "district": "Kalutara"
+      }
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "45/2 Temple rd, Panadura"
+      }
+     }
+    },
+    {
+     "id": "f002/4",
+     "pred": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "54/2 Temple rd, Panadura",
+       "district": "Kalutara"
+      }
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "54/2 Temple rd, Panadura"
+      }
+     }
+    },
+    {
+     "id": "f005/0",
+     "pred": {
+      "intent": "passport_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     },
+     "gold": {
+      "intent": "passport_renew",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f007/0",
+     "pred": {
+      "intent": "unsupported_service",
+      "slots": {
+       "service_mentioned": "kasadeta"
+      }
+     },
+     "gold": {
+      "intent": "marriage_registration",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f009/2",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self",
+       "district": "Colombo"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     }
+    },
+    {
+     "id": "f009/3",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self",
+       "district": "Colombo"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     }
+    },
+    {
+     "id": "f013/2",
+     "pred": {
+      "intent": "birth_cert_copy",
+      "slots": {
+       "applicant_for": "child",
+       "purpose": "NIC"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "child"
+      }
+     }
+    },
+    {
+     "id": "f017/0",
+     "pred": {
+      "intent": "passport_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     },
+     "gold": {
+      "intent": "passport_renew",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f017/2",
+     "pred": {
+      "intent": "passport_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     },
+     "gold": {
+      "intent": "passport_renew",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f021/2",
+     "pred": {
+      "intent": "death_cert_copy",
+      "slots": {
+       "district": "Gampaha"
+      }
+     },
+     "gold": {
+      "intent": "death_cert_copy",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f021/3",
+     "pred": {
+      "intent": "death_cert_copy",
+      "slots": {
+       "district": "Gampaha"
+      }
+     },
+     "gold": {
+      "intent": "death_cert_copy",
+      "slots": {}
+     }
+    }
+   ],
+   "jga_without_failed_dialogues": 0.74,
+   "intent_switch": {
+    "turns": 2,
+    "correct": 1,
+    "accuracy": 0.5,
+    "note": "few turns: anecdotal"
+   },
+   "llm": {
+    "turns": 50,
+    "answered": 50,
+    "failed": 0,
+    "fallback": 0,
+    "hallucinated_slot_rate": 0.2941,
+    "llm_slots_set": 34,
+    "hallucinated_slots": 10,
+    "slot_rejection_rate": 0.0811,
+    "slot_updates_proposed": 37,
+    "slot_updates_rejected": 3,
+    "rejections_per_turn": 0.08,
+    "conflicts": 7,
+    "fallback_rate": 0.0,
+    "failed_rate": 0.0
+   },
+   "dates": {
+    "words": 7,
+    "raw": 0,
+    "iso_fallback": 0
+   },
+   "latency_ms": {
+    "nlu_mean": 135.444,
+    "llm_mean": 3933.232,
+    "llm_p50": 3848.5,
+    "llm_p95": 6495.7,
+    "llm_max": 9523.0
+   },
+   "tokens_per_answered_turn": {
+    "prompt_tokens": 1801.32,
+    "completion_tokens": 117.12,
+    "reasoning_tokens": 0.0,
+    "provider_total_tokens": 1948.38
+   },
+   "tokens_total": {
+    "prompt_tokens": 90066,
+    "completion_tokens": 5856,
+    "provider_total_tokens": 97419
+   }
+  },
+  {
+   "turns": 50,
+   "core_dialogue_turns": 50,
+   "jga": 0.74,
+   "slot_jga": 0.74,
+   "intent_acc": 0.92,
+   "jga_core_dialogues": 0.74,
+   "slot_jga_core_dialogues": 0.74,
+   "jga_turn2plus": 0.5926,
+   "per_slot": {
+    "applicant_for": {
+     "precision": 0.8667,
+     "recall": 1.0,
+     "f1": 0.9286,
+     "support": 13
+    },
+    "change_field": {
+     "precision": 1.0,
+     "recall": 0.8333,
+     "f1": 0.9091,
+     "support": 6
+    },
+    "date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 4
+    },
+    "date_of_birth": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 0
+    },
+    "district": {
+     "precision": 0.4,
+     "recall": 1.0,
+     "f1": 0.5714,
+     "support": 4
+    },
+    "new_value": {
+     "precision": 0.6667,
+     "recall": 1.0,
+     "f1": 0.8,
+     "support": 2
+    },
+    "purpose": {
+     "precision": 0.8,
+     "recall": 1.0,
+     "f1": 0.8889,
+     "support": 4
+    },
+    "service_mentioned": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 0
+    },
+    "service_type": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 1
+    },
+    "travel_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 1
+    }
+   },
+   "slot_micro": {
+    "precision": 0.7234,
+    "recall": 0.9714,
+    "f1": 0.8293,
+    "support": 35
+   },
+   "district_relaxed": {
+    "definition": "district relaxed: town->district counted correct when the message names a town but no district (the predicted district is not in the gold state, a user message so far named a town in it and no district, and no user message so far named that district)",
+    "turns_relaxed": 4,
+    "jga": 0.82,
+    "slot_jga": 0.82,
+    "slot_f1": 0.8718
+   },
+   "errors": [
+    {
+     "id": "f001/0",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "date_of_birth": "week",
+       "applicant_for": "child"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "child"
+      }
+     }
+    },
+    {
+     "id": "f001/2",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "date_of_birth": "week",
+       "applicant_for": "child"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "child"
+      }
+     }
+    },
+    {
+     "id": "f002/2",
+     "pred": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "45/2 Temple rd, Panadura",
+       "district": "Kalutara"
+      }
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "45/2 Temple rd, Panadura"
+      }
+     }
+    },
+    {
+     "id": "f002/4",
+     "pred": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "54/2 Temple rd, Panadura",
+       "district": "Kalutara"
+      }
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "54/2 Temple rd, Panadura"
+      }
+     }
+    },
+    {
+     "id": "f005/0",
+     "pred": {
+      "intent": "passport_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     },
+     "gold": {
+      "intent": "passport_renew",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f005/2",
+     "pred": {
+      "intent": "passport_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "name"
+      }
+     }
+    },
+    {
+     "id": "f009/2",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self",
+       "district": "Colombo"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     }
+    },
+    {
+     "id": "f009/3",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self",
+       "district": "Colombo"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     }
+    },
+    {
+     "id": "f011/2",
+     "pred": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "photo",
+       "new_value": "200012345678"
+      }
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "photo"
+      }
+     }
+    },
+    {
+     "id": "f013/2",
+     "pred": {
+      "intent": "birth_cert_copy",
+      "slots": {
+       "applicant_for": "child",
+       "purpose": "NIC"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "child"
+      }
+     }
+    },
+    {
+     "id": "f021/2",
+     "pred": {
+      "intent": "death_cert_copy",
+      "slots": {
+       "district": "Gampaha"
+      }
+     },
+     "gold": {
+      "intent": "death_cert_copy",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f021/3",
+     "pred": {
+      "intent": "death_cert_copy",
+      "slots": {
+       "district": "Gampaha"
+      }
+     },
+     "gold": {
+      "intent": "death_cert_copy",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f023/2",
+     "pred": {
+      "intent": "general_question",
+      "slots": {
+       "service_mentioned": "nic_replace_lost"
+      }
+     },
+     "gold": {
+      "intent": "nic_replace_lost",
+      "slots": {}
+     }
+    }
+   ],
+   "jga_without_failed_dialogues": 0.74,
+   "intent_switch": {
+    "turns": 2,
+    "correct": 0,
+    "accuracy": 0.0,
+    "note": "few turns: anecdotal"
+   },
+   "llm": {
+    "turns": 50,
+    "answered": 50,
+    "failed": 0,
+    "fallback": 0,
+    "hallucinated_slot_rate": 0.303,
+    "llm_slots_set": 33,
+    "hallucinated_slots": 10,
+    "slot_rejection_rate": 0.0833,
+    "slot_updates_proposed": 36,
+    "slot_updates_rejected": 3,
+    "rejections_per_turn": 0.12,
+    "conflicts": 7,
+    "fallback_rate": 0.0,
+    "failed_rate": 0.0
+   },
+   "dates": {
+    "words": 7,
+    "raw": 0,
+    "iso_fallback": 0
+   },
+   "latency_ms": {
+    "nlu_mean": 273.146,
+    "llm_mean": 4889.716,
+    "llm_p50": 3705.5,
+    "llm_p95": 13834.7,
+    "llm_max": 17762.6
+   },
+   "tokens_per_answered_turn": {
+    "prompt_tokens": 1801.86,
+    "completion_tokens": 116.22,
+    "reasoning_tokens": 0.0,
+    "provider_total_tokens": 1933.66
+   },
+   "tokens_total": {
+    "prompt_tokens": 90093,
+    "completion_tokens": 5811,
+    "provider_total_tokens": 96683
+   }
+  },
+  {
+   "turns": 50,
+   "core_dialogue_turns": 50,
+   "jga": 0.7,
+   "slot_jga": 0.7,
+   "intent_acc": 0.88,
+   "jga_core_dialogues": 0.7,
+   "slot_jga_core_dialogues": 0.7,
+   "jga_turn2plus": 0.5926,
+   "per_slot": {
+    "applicant_for": {
+     "precision": 0.8125,
+     "recall": 1.0,
+     "f1": 0.8966,
+     "support": 13
+    },
+    "change_field": {
+     "precision": 1.0,
+     "recall": 0.8333,
+     "f1": 0.9091,
+     "support": 6
+    },
+    "date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 4
+    },
+    "date_of_birth": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 0
+    },
+    "district": {
+     "precision": 0.4,
+     "recall": 1.0,
+     "f1": 0.5714,
+     "support": 4
+    },
+    "new_value": {
+     "precision": 0.6667,
+     "recall": 1.0,
+     "f1": 0.8,
+     "support": 2
+    },
+    "purpose": {
+     "precision": 0.8,
+     "recall": 1.0,
+     "f1": 0.8889,
+     "support": 4
+    },
+    "service_mentioned": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 0
+    },
+    "service_type": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 1
+    },
+    "travel_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 1
+    }
+   },
+   "slot_micro": {
+    "precision": 0.7083,
+    "recall": 0.9714,
+    "f1": 0.8193,
+    "support": 35
+   },
+   "district_relaxed": {
+    "definition": "district relaxed: town->district counted correct when the message names a town but no district (the predicted district is not in the gold state, a user message so far named a town in it and no district, and no user message so far named that district)",
+    "turns_relaxed": 4,
+    "jga": 0.78,
+    "slot_jga": 0.78,
+    "slot_f1": 0.8608
+   },
+   "errors": [
+    {
+     "id": "f001/0",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "date_of_birth": "week",
+       "applicant_for": "child"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "child"
+      }
+     }
+    },
+    {
+     "id": "f001/2",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "date_of_birth": "week",
+       "applicant_for": "child"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "child"
+      }
+     }
+    },
+    {
+     "id": "f002/2",
+     "pred": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "45/2 Temple rd, Panadura",
+       "district": "Kalutara"
+      }
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "45/2 Temple rd, Panadura"
+      }
+     }
+    },
+    {
+     "id": "f002/4",
+     "pred": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "54/2 Temple rd, Panadura",
+       "district": "Kalutara"
+      }
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "address",
+       "new_value": "54/2 Temple rd, Panadura"
+      }
+     }
+    },
+    {
+     "id": "f005/0",
+     "pred": {
+      "intent": "passport_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     },
+     "gold": {
+      "intent": "passport_renew",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f005/2",
+     "pred": {
+      "intent": "unknown",
+      "slots": {}
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "name"
+      }
+     }
+    },
+    {
+     "id": "f007/0",
+     "pred": {
+      "intent": "unsupported_service",
+      "slots": {
+       "service_mentioned": "kasadeta"
+      }
+     },
+     "gold": {
+      "intent": "marriage_registration",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f009/2",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self",
+       "district": "Colombo"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     }
+    },
+    {
+     "id": "f009/3",
+     "pred": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self",
+       "district": "Colombo"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     }
+    },
+    {
+     "id": "f011/2",
+     "pred": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "photo",
+       "new_value": "200012345678"
+      }
+     },
+     "gold": {
+      "intent": "nic_update",
+      "slots": {
+       "change_field": "photo"
+      }
+     }
+    },
+    {
+     "id": "f013/2",
+     "pred": {
+      "intent": "birth_cert_copy",
+      "slots": {
+       "applicant_for": "child",
+       "purpose": "NIC"
+      }
+     },
+     "gold": {
+      "intent": "nic_new",
+      "slots": {
+       "applicant_for": "child"
+      }
+     }
+    },
+    {
+     "id": "f017/0",
+     "pred": {
+      "intent": "passport_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     },
+     "gold": {
+      "intent": "passport_renew",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f017/2",
+     "pred": {
+      "intent": "passport_new",
+      "slots": {
+       "applicant_for": "self"
+      }
+     },
+     "gold": {
+      "intent": "passport_renew",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f021/2",
+     "pred": {
+      "intent": "death_cert_copy",
+      "slots": {
+       "district": "Gampaha"
+      }
+     },
+     "gold": {
+      "intent": "death_cert_copy",
+      "slots": {}
+     }
+    },
+    {
+     "id": "f021/3",
+     "pred": {
+      "intent": "death_cert_copy",
+      "slots": {
+       "district": "Gampaha"
+      }
+     },
+     "gold": {
+      "intent": "death_cert_copy",
+      "slots": {}
+     }
+    }
+   ],
+   "jga_without_failed_dialogues": 0.7,
+   "intent_switch": {
+    "turns": 2,
+    "correct": 0,
+    "accuracy": 0.0,
+    "note": "few turns: anecdotal"
+   },
+   "llm": {
+    "turns": 50,
+    "answered": 50,
+    "failed": 0,
+    "fallback": 0,
+    "hallucinated_slot_rate": 0.3235,
+    "llm_slots_set": 34,
+    "hallucinated_slots": 11,
+    "slot_rejection_rate": 0.0811,
+    "slot_updates_proposed": 37,
+    "slot_updates_rejected": 3,
+    "rejections_per_turn": 0.08,
+    "conflicts": 7,
+    "fallback_rate": 0.0,
+    "failed_rate": 0.0
+   },
+   "dates": {
+    "words": 7,
+    "raw": 0,
+    "iso_fallback": 0
+   },
+   "latency_ms": {
+    "nlu_mean": 357.756,
+    "llm_mean": 4278.358,
+    "llm_p50": 3732.6,
+    "llm_p95": 4756.8,
+    "llm_max": 35615.0
+   },
+   "tokens_per_answered_turn": {
+    "prompt_tokens": 1801.32,
+    "completion_tokens": 116.66,
+    "reasoning_tokens": 0.0,
+    "provider_total_tokens": 1917.98
+   },
+   "tokens_total": {
+    "prompt_tokens": 90066,
+    "completion_tokens": 5833,
+    "provider_total_tokens": 95899
+   }
+  }
+ ]
+}

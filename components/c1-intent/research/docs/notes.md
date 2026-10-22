@@ -417,4 +417,148 @@ Same span-level metric as Observation 7. "Extractive types" are district, dates 
 **Not measured yet.** The policy changes multi-turn behaviour, but `dst_eval.py` scores the tracker directly, not `Session`, so Observations 9–10 are unchanged. Next: run the gold and fresh dialogues through `Session` and compare JGA with and without the policy.
 
 Tests: 17 in `service/tests/test_intent_policy.py`, using a fake model that misreads every follow-up turn. 66 service tests in total, all passing.
- 
+
+**Superseded (Observation 12, 20 Oct):** a switch no longer carries `applicant_for` unless the message points back to the same person, and the carried district is only an assumption that the bot confirms.
+
+
+## Observation 12: cross-intent slot leakage and requested-slot bias (2026-10-20)
+
+**Found in a live demo:** NIC lost (Galle, normal) → "also i need birth certificate" → bot asks purpose → "for my daughter".
+- Slots leaked across the intent switch: district and applicant_for=self carried into the new request without evidence.
+- Requested-slot bias: because the bot asked for *purpose*, the whole answer was stored as purpose, even though it was applicant_for evidence ("my daughter").
+
+**Fixes:**
+- Each request gets its own slot frame. On a switch, only district carries over, marked *assumed* and confirmed ("Still in Galle, right?").
+- applicant_for carries over only on a back-reference ("eyata", "eyage", "එයාට", "එයාගේ", "for her/him").
+- Free text goes into the requested slot only if it doesn't match another slot's keywords. purpose is accepted only from a keyword list.
+- A bare subject pronoun ("i", "mama", "මම") is no longer treated as evidence for applicant_for=self.
+
+**Effect (full tracker, gold intent, JGA):**
+| Set | Before | After |
+|---|---|---|
+| gold (dev) | 0.979 | 0.979 |
+| synthetic (held out for the rules) | 0.746 | 0.750 |
+| fresh (held out) | 0.92 | 0.92 |
+
+Synthetic purpose F1 0.946 → 0.981; new_value F1 0.552 → 0.561.
+
+**Lesson:** the first version of the guard dropped new_value F1 to 0.48, because it blocked addresses and names ("No. 45, Temple Road", "my husband's surname"). Narrowing it to "a different change field or a non-self person word" fixed this. Guards against leakage need to be narrow, or they hurt free-text slots.
+
+**Still open:** a bare service mention ("i need a NIC") is classified as nic_replace_lost (0.86–0.88). The model guesses a variant instead of asking. Fix: ask for the variant in the intent policy (done, Observation 13).
+
+
+## Observation 13: several requests per conversation, variant question, condition facts (2026-10-21)
+
+**Problem.** Observation 11 kept one topic per conversation. Real conversations are messier:
+- A citizen asks for two services ("NIC, then passport"), or comes back to the first one.
+- "i need a NIC" names the service but not the kind of request. The classifier then guessed `nic_new` / `nic_update` / `nic_replace_lost`.
+- Citizens mention facts that are not slots ("she is 14 years still", "under 18"). These change C2's rules, but C1 had nowhere to keep them.
+
+**Change (no retraining).** Tracker in `c1_dst.py` (commit `8dd1f40`), `Session` in `c1_engine.py` (`ad8c4ad`), both copied to the service.
+- **Slot frames** (Observation 12) are kept per request: going back to an earlier request restores its own slots, and condition facts follow the same back-reference rule as `applicant_for`.
+- **Several requests.** On a switch, the old request is filed as *completed* (all slots filled) or *pending*. Once the new request is ready, the bot offers to finish the pending one, and "ow" resumes it.
+- **Switching on the current message.** A switch is also accepted when the message names another service and the current message alone (no history) is that service at ≥ 0.5. The windowed rule from Observation 11 (≥ 0.75 plus a keyword, never on a slot answer) still applies.
+- **Complaints** are also checked on the current message alone. This answers the Observation 11 limit, where window_3 history turned a mid-conversation complaint into `passport_new`. On an answer to a pending slot question, a complaint needs ≥ 0.75.
+- **Variant question.** A new request that names NIC or passport with no variant cue (`VARIANT_KEYWORDS`) keeps the service but marks the variant pending (`variant_pending`, `ready: false`), and asks "Aluth NIC ekak da, wenas karanna da, nathi una ekak da?". The answer picks the variant by its cue, or by a slot only one variant has ("nangita" → `applicant_for` → `passport_new`).
+- **Condition facts.** `extract_conditions()` reads `applicant_age` / `applicant_minor` ("wayasa 14i", "under 18"). Address, date and ID numbers are not read as ages. Facts are kept per request, never asked for and never change routing. Their meaning (e.g. consent for a minor) is C2's decision.
+- **Smaller changes in `Session`** (not used by `dst_eval.py`):
+  - About 80 towns map to their district (Moratuwa → Colombo).
+  - "danne na" to a slot question fills the slot with `unknown`, so it is not asked again.
+  - Greetings get a greeting and change nothing.
+- Sibling, parent and spouse words, with case endings, were added to `applicant_for` in the tracker.
+- **`state_version`** goes up only when the active request's intent, slots, conditions or pending variant change. The gateway can then call C2 again only when needed.
+- **Service:** `/v1/intent/details` adds `state_version`, `assumed_slots`, `variant_pending`, `completed_requests`, `pending_requests` and `conditions`, plus new `intent_source` values. `/v1/intent` is unchanged; an `unknown` district is sent as null. The models load at startup with one warm-up turn (`53c8a7b`). The demo page adds a **MULTI** preset (NIC, then passport).
+
+**Not measured.** The tracker JGA after the slot-frame fix is in Observation 12 (gold 0.979, synthetic 0.750, fresh 0.92). The `Session` policy, which holds the rest of these changes, is still not scored on gold or fresh dialogues (Observation 11).
+
+Tests: 149 service tests pass in stub mode (new: `test_slot_frames.py`, `test_multi_requests.py`, `test_conditions_variants.py`).
+
+
+## Observation 14: context strategies v2, setup (2026-10-21)
+
+**Methodology correction:** the 977-turn synthetic set is *held out for the tracker rules* but is the intent model's *training data*. Earlier synthetic intent numbers therefore measure the rules, not intent generalisation. For v2, synthetic is split by dialogue (seed 0, stratified by intent; data/synthetic/context_v2_split.json): 314 train / 79 test dialogues (778 / 199 turns). Sessions are stitched within each part only; dev = 10% of the train part per seed.
+
+**Changes from Observation 8:** 12 intents (v2), seeds 1/2/3, 15 epochs, per-turn predictions saved (enables JGA, CMI buckets, paired tests). New `summary` strategy: an extractive summary of earlier turns keeping Sinhala/Singlish/English service and slot cues, capped at 48 XLM-R tokens, reading text only.
+
+**Caveat:** `keyword_summary` and `structured_state` read **gold** language/entity tags at test time (an oracle, as in Obs 8), so their scores are an upper bound. `summary` and the window strategies read text only.
+
+**Trade-off:** ~700 training turns vs ~880 for run_v2, so absolute numbers aren't directly comparable with Obs 8/10. The comparison between strategies is what matters.
+
+LLM summary strategy: future work (not run, to avoid API cost).
+
+### Analysis (`context_eval.py`)
+`experiments/context_eval.py` (CPU, reads the saved predictions; 26 tests in `research/tests/` with fake predictions) does the following:
+- runs every prediction through the rules tracker and scores **JGA per strategy**
+- splits turns by **Code-Mixing Index** (pure SI, pure EN, low CMI, high CMI) and by script
+- reports cluster-bootstrap CIs over sessions and exact McNemar tests with Holm correction
+- writes `summary.md` with verdicts for:
+  - **H1:** current_only is worse than every context strategy
+  - **H2:** window / state / summary are not worse than full_history, at fewer tokens (non-inferiority margin)
+  - **H3:** the drop from reducing context differs between high-CMI and monolingual turns
+  - **H4:** robustness
+  - **scale:** the CPU deployment claim
+
+Decision rules:
+- They are written in the script before JGA is computed.
+- Gold is the development set for the tracker rules, so it never decides a verdict.
+- The oracle strategies are reported as upper bounds.
+- Turn position is confounded with code-mixing: short follow-ups are mostly monolingual, first requests mostly code-mixed. So the H3 headline is a **permutation test within position strata** (committed, `2ea300e`). `experiments/h3_calibration.py` (committed, `2ea300e`) checks how often each H3 method fires on null data.
+
+
+## Observation 15: context strategies v2, first run (3 seeds) and decisions (2026-10-21)
+
+**Run:** 42 prediction files (2 models × 7 strategies × seeds 1–3), 391 test turns each (gold 142, synthetic 199, fresh 50). All checks passed: same turns in the same order, so pairing is valid.
+
+**Failed seeds:** 2 of 21 XLM-R runs didn't converge.
+- window_2 seed 3: final loss 0.56 vs ~0.07 for the other seeds.
+- summary seed 3: loss flat for 6 epochs, still falling at epoch 15 (cut off).
+- structured_state seed 3 converged but is weak (dev F1 0.52 vs 0.74/0.81). Kept.
+XLM-R fine-tuning on small data is known to be unstable. These seeds cause the high std for window_2 and summary.
+
+**Early pattern (not final):** XLM-R window_3 ≈ full_history on held-out JGA at ~43% fewer tokens. current_only is clearly worse. TF-IDF gets worse beyond a short window: held-out JGA rises from 0.386 (current_only) to 0.551 (window_3), then falls to 0.430 (full_history) (replicates Observation 8).
+
+**Token tax:** the LLM tokenizer (cl100k) uses 2.0–2.4× more tokens than XLM-R for the same Sinhala-English text (current_only 25.4 vs 12.4 per turn; full_history 128.6 vs 52.5).
+
+**Decisions (made before seeing any more results):** these were made after seeing the 3-seed results and a re-scoring without the two failed seeds. Without them, XLM-R window_2's H2 verdict flips to "not supported" (CI [−0.082, −0.002]) and the H3 effect disappears.
+1. No post-hoc exclusion. Add seeds 4 and 5 for all strategies. The primary analysis uses all 5 seeds (mean ± std and median; `context_eval.py` doesn't report the median yet).
+2. Convergence rule, applied to every XLM-R run as a sensitivity check (TF-IDF has no loss curve): flagged if final loss > 3× the median of the other seeds AND best-epoch dev F1 ≥ 0.10 below their median. The rule was written after seeing the failures, so it's reported only as sensitivity. On seeds 1–3 it flags exactly window_2 s3 and summary s3. Near miss: window_3 s3 (loss 0.110 > 3 × 0.031, but dev F1 only 0.097 below).
+3. H2 primary decision = non-inferiority bootstrap CI (margin 0.05, resampling sessions and seeds). McNemar is secondary. Needs a code change: `context_eval.py` currently resamples sessions only (seeds averaged) and also requires McNemar to be non-significant. Under the CI-first rule, the 3-seed XLM-R window_2 result is already "not supported" (CI low −0.127).
+4. H3 is not reported until the permutation test is calibrated (the uncalibrated "supported" result depended on the failed window_2 seed).
+
+### Intent accuracy so far (mean ± std over 3 seeds, from `runs.json`)
+
+| Strategy | Tokens/turn (synthetic / fresh) | XLM-R gold | XLM-R synthetic | XLM-R fresh | TF-IDF synthetic | TF-IDF fresh |
+|---|---|---|---|---|---|---|
+| current_only | 11.8 / 14.6 | 0.472 ± 0.024 | 0.533 ± 0.023 | 0.593 ± 0.031 | 0.492 ± 0.013 | 0.567 ± 0.023 |
+| window_2 | 21.1 / 26.0 | 0.650 ± 0.125 | 0.605 ± 0.087 | 0.853 ± 0.042 | 0.606 ± 0.010 | **0.853 ± 0.012** |
+| window_3 | 28.9 / 35.2 | **0.796 ± 0.037** | 0.724 ± 0.039 | 0.860 ± 0.020 | **0.658 ± 0.013** | 0.813 ± 0.023 |
+| keyword_summary (oracle) | 22.4 / 26.2 | 0.615 ± 0.060 | 0.620 ± 0.016 | 0.840 ± 0.035 | 0.548 ± 0.027 | 0.793 ± 0.012 |
+| structured_state (oracle) | 33.9 / 24.8 | 0.749 ± 0.035 | **0.744 ± 0.056** | 0.860 ± 0.035 | 0.610 ± 0.014 | 0.813 ± 0.023 |
+| summary (new) | 40.4 / 43.6 | 0.749 ± 0.112 | 0.702 ± 0.064 | 0.887 ± 0.050 | 0.531 ± 0.010 | 0.753 ± 0.042 |
+| full_history | 51.8 / 55.3 | 0.723 ± 0.018 | 0.715 ± 0.014 | **0.900 ± 0.000** | 0.506 ± 0.028 | 0.667 ± 0.046 |
+
+Gold n = 142, synthetic n = 199, fresh n = 50. GPU latency is about 9 ms per turn for XLM-R with every strategy; TF-IDF takes about 2–3 ms.
+
+**First reading (intent only; the verdicts come from `context_eval.py`):**
+1. **Context is still needed.** current_only is the worst strategy for both models on every test set.
+2. **XLM-R + window_3 holds up with 12 intents.**
+   - On the held-out synthetic set it is level with full history (0.724 vs 0.715), with 44% fewer tokens.
+   - On gold it is ahead (0.796 vs 0.723).
+   - On fresh, full history is still best (0.900 vs 0.860), as in Observation 8.
+3. **TF-IDF again gets worse with more context.** Full history is its weakest context strategy (fresh 0.667), and window_2 / window_3 are its best.
+4. **The new text-only summary is not better than a window.**
+   - It uses more tokens than window_3 (40–44 vs 29–35), because whole earlier sentences are kept.
+   - XLM-R is close to full history on fresh (0.887) but unstable on gold (± 0.112).
+   - For TF-IDF it is one of the weakest strategies.
+5. **Some XLM-R runs are unstable.** window_2 on gold ranges ± 0.125 and summary ± 0.112 across seeds. Single-seed context results would mislead.
+6. **Scores are lower than in Observation 8** (gold window_3 0.896 there). The task is now harder: 12 intents instead of 8, support intents included, and less training data after holding out 20% of the silver set.
+
+**Still to do:**
+- train seeds 4 and 5 for every strategy (decision 1)
+- `context_eval.py`: add the median, and make the H2 bootstrap resample seeds as well as sessions (decisions 1 and 3); first run on seeds 1–3 done, outputs in `results/context_v2/` (uncommitted)
+- ~~write and run `h3_calibration.py`, then commit Stage 2b (the permutation test)~~ done: `2ea300e`
+- re-run `context_eval.py` on all 5 seeds
+- write `perturb.py` (H4) and `bench_cpu.py` (scale claim)
+- commit `results/context_v2/runs.json` (now ignored by `research/.gitignore`), so these numbers are traceable in git
+
+Final numbers → Observation 16.
