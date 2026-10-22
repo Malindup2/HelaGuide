@@ -3,7 +3,7 @@ import pytest
 from app.core.settings import DialogueSettings, SettingsError, dialogue_settings
 
 ENV = ("C1_DIALOGUE_MODE", "C1_LLM_BASE_URL", "C1_LLM_MODEL", "C1_LLM_API_KEY", "C1_LLM_TIMEOUT",
-       "C1_LLM_HISTORY_TURNS", "C1_LLM_JSON_MODE")
+       "C1_LLM_HISTORY_TURNS", "C1_LLM_JSON_MODE", "C1_PROTECT_APPLICANT_FOR")
 
 
 @pytest.fixture(autouse=True)
@@ -19,6 +19,7 @@ def test_defaults_are_rules_mode_and_local_ollama():
     assert s.base_url == "http://localhost:11434/v1"
     assert s.api_key == ""
     assert s.json_mode is True
+    assert s.protect_applicant_for is True
 
 
 def test_reads_env(monkeypatch):
@@ -28,9 +29,10 @@ def test_reads_env(monkeypatch):
     monkeypatch.setenv("C1_LLM_TIMEOUT", "12.5")
     monkeypatch.setenv("C1_LLM_HISTORY_TURNS", "4")
     monkeypatch.setenv("C1_LLM_JSON_MODE", "False")
+    monkeypatch.setenv("C1_PROTECT_APPLICANT_FOR", "0")
     s = dialogue_settings()
-    assert (s.mode, s.base_url, s.model, s.timeout, s.history_turns, s.json_mode) == \
-        ("hybrid", "https://example.test/v1", "qwen2.5", 12.5, 4, False)
+    assert (s.mode, s.base_url, s.model, s.timeout, s.history_turns, s.json_mode, s.protect_applicant_for) == \
+        ("hybrid", "https://example.test/v1", "qwen2.5", 12.5, 4, False, False)
 
 
 def test_api_key_is_not_in_repr(monkeypatch):
@@ -42,7 +44,7 @@ def test_api_key_is_not_in_repr(monkeypatch):
 
 @pytest.mark.parametrize("name, value", [("C1_DIALOGUE_MODE", "chatty"), ("C1_LLM_TIMEOUT", "soon"),
                                          ("C1_LLM_TIMEOUT", "0"), ("C1_LLM_HISTORY_TURNS", "-1"),
-                                         ("C1_LLM_JSON_MODE", "maybe")])
+                                         ("C1_LLM_JSON_MODE", "maybe"), ("C1_PROTECT_APPLICANT_FOR", "sometimes")])
 def test_bad_values_raise(monkeypatch, name, value):
     monkeypatch.setenv(name, value)
     with pytest.raises(SettingsError, match=name):

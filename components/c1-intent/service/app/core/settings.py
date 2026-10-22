@@ -10,6 +10,9 @@ C1_LLM_TIMEOUT     seconds per LLM request
 C1_LLM_HISTORY_TURNS  conversation turns (user + bot) sent to the LLM
 C1_LLM_JSON_MODE   true (default): ask for response_format json_object; false: rely on the prompt + JSON parsing
                    (the client also turns it off by itself when the provider rejects it)
+C1_PROTECT_APPLICANT_FOR  true (default): in llm / hybrid mode the rules tracker may not change a known
+                   applicant_for either, unless the turn is a correction (the LLM never may); false turns that off
+                   for the rules side, so the evaluation can separate the LLM's effect from this tracker fix
 """
 import os
 from dataclasses import dataclass, field
@@ -35,6 +38,7 @@ class DialogueSettings:
     timeout: float = DEFAULT_TIMEOUT
     history_turns: int = DEFAULT_HISTORY_TURNS
     json_mode: bool = True
+    protect_applicant_for: bool = True
 
 
 def _env(name, default):
@@ -73,4 +77,5 @@ def dialogue_settings() -> DialogueSettings:
         timeout=_number("C1_LLM_TIMEOUT", DEFAULT_TIMEOUT, float, 1),
         history_turns=_number("C1_LLM_HISTORY_TURNS", DEFAULT_HISTORY_TURNS, int, 0),
         json_mode=_flag("C1_LLM_JSON_MODE", True),
+        protect_applicant_for=_flag("C1_PROTECT_APPLICANT_FOR", True),
     )

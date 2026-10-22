@@ -1,6 +1,6 @@
 import pytest
 
-from app.core.validator import (INTENTS, OTHER, Rejected, canonical_value, check_turn, merge_slots)
+from app.core.validator import (INTENTS, OTHER, Rejected, canonical_value, check_turn, confirm_ready, merge_slots)
 
 BIRTH = "birth_cert_copy"
 
@@ -28,11 +28,16 @@ def test_valid_turn_passes():
     assert t.rejections == []
 
 
-@pytest.mark.parametrize("bad", ["driving_licence", None, "Birth_Cert_Copy", 3])
+@pytest.mark.parametrize("bad", ["driving_licence", "Birth_Cert_Copy", 3])
 def test_invalid_intent_falls_back_to_xlmr(bad):
     t = check_turn(llm(active_intent=bad), "passport_new")
     assert (t.intent, t.intent_source) == ("passport_new", "nlu_fallback")
     assert ("active_intent", "unknown_intent") in reasons(t)
+
+
+def test_null_intent_means_no_request_and_is_not_a_rejection():
+    t = check_turn(llm(active_intent=None, dialogue_act="greet"), "unknown")
+    assert (t.intent, t.intent_source, t.rejections) == ("unknown", "nlu_fallback", [])
 
 
 def test_invalid_intent_and_unknown_xlmr_gives_unknown():
@@ -56,7 +61,9 @@ def test_bad_act_tasks_reply_and_ready_are_rejected():
     ("district", "කුරුණෑගල", ("Kurunegala", None)),
     ("district", "Moratuwa", ("Colombo", None)),            # a town -> its district
     ("travel_date", "mid December", ("mid December", None)),
-    ("date_of_birth", "2001-04-12", ("2001-04-12", None)),
+    ("date_of_birth", "2001-04-12", ("2001-04-12", None)),      # ISO first
+    ("travel_date", "2026-12-15", ("2026-12-15", None)),
+    ("date", "15/12/2026", ("15/12/2026", None)),                # date matcher as fallback
     ("applicant_for", "parent", ("parent", None)),
     ("applicant_for", "my mother", ("parent", None)),
     ("change_field", "Address", ("address", None)),
@@ -77,6 +84,8 @@ def test_canonical_values(slot, value, expected):
 @pytest.mark.parametrize("slot, value, reason", [
     ("district", "Narnia", "not_a_district"),
     ("travel_date", "soon-ish", "not_a_date"),
+    ("travel_date", "2026-02-30", "not_a_date"),                 # ISO shape, not a real day
+    ("travel_date", "next friday", "not_a_date"),                # the prompt asks the LLM to resolve these
     ("applicant_for", "the neighbour's cat", "not_an_enum_value"),
     ("purpose", ["school"], "not_a_string"),
     ("purpose", True, "not_a_string"),
@@ -168,6 +177,16 @@ def test_applicant_for_protected_from_rules_overwrite():
     assert [(r.reason, r.source) for r in m.rejections] == [("protected_without_correction", "rules")]
 
 
+def test_rules_protection_can_be_turned_off_but_llm_stays_protected():
+    m = merge_slots(BIRTH, {}, "new_request", {"applicant_for": "parent"}, rules_changes={"applicant_for": "self"},
+                    protect_rules=False)
+    assert m.slots["applicant_for"] == "self" and m.rejections == []
+    m = merge_slots(BIRTH, {"applicant_for": "child"}, "slot_answer", {"applicant_for": "parent"},
+                    protect_rules=False)
+    assert m.slots["applicant_for"] == "parent"
+    assert [(r.reason, r.source) for r in m.rejections] == [("protected_without_correction", "llm")]
+
+
 def test_applicant_for_changes_on_correction():
     m = merge_slots(BIRTH, {"applicant_for": "child"}, "correction", {"applicant_for": "parent"})
     assert m.slots["applicant_for"] == "child" and m.rejections == []
@@ -189,3 +208,20 @@ def test_conflict_log_has_no_values(caplog):
 def test_intent_without_slots_is_never_ready():
     m = merge_slots("out_of_scope", {"district": "Galle"}, "out_of_scope", {})
     assert m.slots == {} and not m.ready
+
+
+@pytest.mark.parametrize("claim, ready, expected, rejected", [
+    (True, True, True, False), (False, True, False, False), (True, False, False, True), (False, False, False, False)])
+def test_ready_to_confirm_only_when_nothing_is_missing(claim, ready, expected, rejected):
+    value, rejection = confirm_ready(claim, ready)
+    assert value is expected
+    assert (rejection is not None) is rejected
+    if rejection:
+        assert (rejection.field, rejection.reason) == ("ready_to_confirm", "slots_missing")
+
+
+def test_ready_comes_from_missing_slots():
+    m = merge_slots(BIRTH, {"district": "Galle"}, "slot_answer", {"applicant_for": "child"})
+    assert m.missing_slots == ["purpose"] and m.ready is False
+    m = merge_slots(BIRTH, {"purpose": "visa"}, "slot_answer", m.slots)
+    assert m.missing_slots == [] and m.ready is True

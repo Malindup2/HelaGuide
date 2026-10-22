@@ -10,17 +10,22 @@ Two steps, because the slot frame depends on the intent:
 Slot rules:
   - the slot must belong to the intent (INTENT_SLOTS); null / empty values mean "not mentioned" and are skipped
   - district    district gazetteer (25 districts, EN / romanized / SI), else a known town -> its district
-  - date slots  the date matcher must find a date in the value ("2026-12-15", "mid December", "ලබන මාසේ")
+  - date slots  an ISO date YYYY-MM-DD (what the prompt asks for) that exists on the calendar; otherwise the
+                date matcher must find a date in the value ("mid December", "ලබන මාසේ")
   - enums       applicant_for, change_field, urgency, service_type: the canonical value or one of its keywords
   - purpose, issue  their taxonomy (PURPOSES, ISSUES) if one matches, else "other" with the raw text in `raw`
   - service_mentioned  the service gazetteer if one matches, else the text; new_value: the text
   - "unknown" (the citizen does not know) is accepted for any slot
 Conflicts (the rules tracker and the LLM set the same slot this turn to different values): the rules value is
 kept when it came from an extractive match (district gazetteer / town, date matcher), else the LLM value wins.
-applicant_for, once known, changes only when the dialogue act is "correction" (by the rules or the LLM).
+applicant_for, once known, changes only when the dialogue act is "correction". This always holds for the LLM; for
+the rules tracker only with protect_rules=True (C1_PROTECT_APPLICANT_FOR, so the evaluation can separate the two).
+`ready` is recomputed from missing_slots; the LLM's ready_to_confirm counts only when nothing is missing.
 """
 import logging
+import re
 from dataclasses import dataclass, field
+from datetime import date
 
 from app.core.dst import (APPLICANT, CHANGE_FIELD, DATE_SLOTS, INTENT_SLOTS, ISSUES, NORMAL, PURPOSES, SERVICES,
                          UNKNOWN_VALUE, URGENT, canon_value, find_date, find_district, find_town, gaz_find, has_any,
@@ -43,6 +48,7 @@ ENUMS = {   # slot -> [(canonical value, keywords)], checked in order
     "service_type": [("normal", NORMAL), ("urgent", URGENT + ["one_day"])],
 }
 TAXONOMIES = {"purpose": PURPOSES, "issue": ISSUES}     # no match -> "other" + raw text
+_ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 
 class Rejected(ValueError):
@@ -100,7 +106,8 @@ def check_turn(llm: dict, nlu_intent: str) -> TurnCheck:
 
     intent, source = llm.get("active_intent"), "llm"
     if intent not in INTENTS:
-        rejections.append(Rejection("active_intent", intent, "unknown_intent"))
+        if intent is not None:      # null = no request yet (a greeting): not a mistake, nothing to reject
+            rejections.append(Rejection("active_intent", intent, "unknown_intent"))
         intent, source = (nlu_intent if nlu_intent in INTENTS else "unknown"), "nlu_fallback"
 
     tasks, raw_tasks = [], llm.get("tasks") or []
@@ -150,6 +157,12 @@ def canonical_value(slot: str, value) -> tuple[str, str | None]:
             return town[1], None
         raise Rejected("not_a_district")
     if slot in DATE_SLOTS:
+        if _ISO_DATE.fullmatch(text):
+            try:
+                date.fromisoformat(text)
+            except ValueError:
+                raise Rejected("not_a_date") from None
+            return text, None
         hit = find_date(words)
         if not hit:
             raise Rejected("not_a_date")
@@ -179,11 +192,13 @@ def _same(slot, a, b):
     return canon_value(slot, a) == canon_value(slot, b)
 
 
-def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes: dict | None = None) -> SlotMerge:
+def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes: dict | None = None,
+                protect_rules: bool = True) -> SlotMerge:
     """
     The intent's slots after this turn: prev, then the rules tracker's changes this turn (rules_changes; empty in
     llm-only mode), then the LLM's checked updates under the conflict policy.
     prev: the intent's slots before this turn. rules_changes: {slot: value} the tracker set or changed this turn.
+    protect_rules: also undo a rules-tracker change to applicant_for without a correction (LLM changes always are).
     """
     rules_changes = dict(rules_changes or {})
     allowed = INTENT_SLOTS.get(intent, [])
@@ -224,6 +239,8 @@ def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes
         if old in (None, UNKNOWN_VALUE) or slots.get(slot) == old or act == "correction":
             continue
         source = "llm" if accepted.get(slot) == slots.get(slot) else "rules"
+        if source == "rules" and not protect_rules:
+            continue
         rejections.append(Rejection(slot, slots.get(slot), "protected_without_correction", source))
         accepted.pop(slot, None)
         slots[slot] = old
@@ -232,3 +249,10 @@ def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes
         log.info("validator conflict: intent=%s slot=%s kept=%s (%s)", intent, c.slot, c.kept, c.reason)
     missing = [s for s in allowed if s not in slots]
     return SlotMerge(slots, accepted, raw, missing, bool(allowed) and not missing, proposed, rejections, conflicts)
+
+
+def confirm_ready(ready_claim: bool, ready: bool) -> tuple[bool, Rejection | None]:
+    """ready_to_confirm: the LLM's claim, only when every slot is filled (`ready`, from missing_slots)."""
+    if ready_claim and not ready:
+        return False, Rejection("ready_to_confirm", True, "slots_missing")
+    return ready_claim and ready, None
