@@ -10,8 +10,9 @@ helps on a turn where XLM-R is wrong and only costs on a turn where it is right,
 and the chosen gate is the g with the largest net (ties: the lower g). If no g has a positive net, the gate is 0.0
 (gating off). The grid is fixed in advance: GRID below.
 
-Data: the gold dialogues (data/seed_all.json, 142 user turns). Not the synthetic set: the deployed intent model
-(run_v2_seed1) was trained on it, so its confidence there is inflated (to be confirmed from the training notebook).
+Data: the gold dialogues (data/seed_all.json, 142 user turns). Not the synthetic set: the intent head of the
+deployed model (run_v2_seed1) was trained on the synthetic silver set (Observation 10), so its confidence there is
+inflated.
 The gold set was used to write the rules, but the gate depends only on XLM-R's confidence, so that does not bias it.
 XLM-R's input is built as in the service (engine.Session): the last 3 user messages, greetings left out; greeting
 turns get no prediction and are not counted. The gate catches unsure errors only, not confident ones (in the rigid
