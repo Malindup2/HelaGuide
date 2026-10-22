@@ -71,14 +71,16 @@ def engine():
     return FakeEngine(dict(XLMR), 0.35, pipeline.unsupported_service_fallback)
 
 
-def run(settings, answers=PERFECT, runs=1, errors=None, checkpoint=None, sleeps=None):
-    eng, inner = engine(), ByMessageLLM(answers, errors)
+def run(settings, answers=PERFECT, runs=1, errors=None, checkpoint=None, sleeps=None, dialogues=DIALOGUES,
+        xlmr=None):
+    eng = FakeEngine(dict(xlmr or XLMR), 0.35, pipeline.unsupported_service_fallback)
+    inner = ByMessageLLM(answers, errors)
     llm = de.EvalLLM(inner, pause=0, sleep=(sleeps.append if sleeps is not None else lambda s: None))
 
     def make_manager(setting):
         return DialogueManager(llm if setting != "rules" else None, DialogueSettings(mode=setting))
 
-    results, stopped = de.evaluate(DIALOGUES, settings, runs, make_manager, eng.new_session, llm, checkpoint,
+    results, stopped = de.evaluate(dialogues, settings, runs, make_manager, eng.new_session, llm, checkpoint,
                                    log=lambda *a: None)
     return results, stopped, inner, llm
 
@@ -223,6 +225,57 @@ def test_print_table_runs():
     assert lines[0].split()[:3] == ["setting", "runs", "JGA"] and lines[1].split()[:3] == ["llm", "1", "1.000"]
 
 
-@pytest.mark.parametrize("model, slug", [("gemini-3.5-flash-lite", "gemini-3.5-flash-lite"), ("qwen2.5:7b", "qwen2.5-7b")])
+@pytest.mark.parametrize("model, slug", [("gemini-3.5-flash-lite", "gemini-3.5-flash-lite"),
+                                         ("qwen2.5:7b", "qwen2.5-7b")])
 def test_model_slug(model, slug):
     assert de.model_slug(model) == slug
+
+
+# ---------------------------------------------------------------- secondary: district relaxed
+DC = "death_cert_copy"
+TOWN_DIALOGUES = [
+    {"dialogue_id": "r1", "turns": [       # gold labels no district for a town (as in the fresh set)
+        {"speaker": "user", "text": "need a copy of a death certificate", "state": {"intent": DC, "slots": {}}},
+        {"speaker": "bot", "text": "where was the death registered?"},
+        {"speaker": "user", "text": "Negombo", "state": {"intent": DC, "slots": {}}},
+    ]},
+    {"dialogue_id": "r2", "turns": [       # the user names the district itself: not relaxed
+        {"speaker": "user", "text": "death certificate copy please", "state": {"intent": DC, "slots": {}}},
+        {"speaker": "bot", "text": "where was the death registered?"},
+        {"speaker": "user", "text": "Gampaha", "state": {"intent": DC, "slots": {}}},
+    ]},
+]
+TOWN_XLMR = {t["text"]: (DC, 0.9) for d in TOWN_DIALOGUES for t in d["turns"] if t["speaker"] == "user"}
+TOWN_ANSWERS = {"need a copy of a death certificate": reply(DC, act="new_request"),
+                "death certificate copy please": reply(DC, act="new_request"),
+                "Negombo": reply(DC, {"district": "Negombo"}), "Gampaha": reply(DC, {"district": "Gampaha"})}
+
+
+def test_place_names():
+    assert de.place_names("45/2 Temple rd, Panadura") == ("Kalutara", None)
+    assert de.place_names("I live in Galle") == (None, "Galle")
+    assert de.place_names("Moratuwa, Colombo district") == (None, "Colombo")    # names a district: not from a town
+    assert de.place_names("for my daughter") == (None, None)
+
+
+@pytest.mark.parametrize("pred, gold, towns, named, expected", [
+    ({"district": "Gampaha"}, {}, {"Gampaha"}, set(), True),
+    ({"district": "Gampaha"}, {"district": "Gampaha"}, {"Gampaha"}, set(), False),   # gold has a district
+    ({"district": "Gampaha"}, {}, {"Gampaha"}, {"Gampaha"}, False),                  # the user named it too
+    ({"district": "Colombo"}, {}, {"Gampaha"}, set(), False),                        # not the town's district
+    ({}, {}, {"Gampaha"}, set(), False),
+])
+def test_district_from_town(pred, gold, towns, named, expected):
+    assert de.district_from_town(pred, gold, towns, named) is expected
+
+
+def test_district_relaxed_is_secondary_and_strict_stays_the_main_number():
+    r = run(["llm"], TOWN_ANSWERS, dialogues=TOWN_DIALOGUES, xlmr=TOWN_XLMR)[0]["llm"][0]
+    # r1 turn 2: district Gampaha from the town Negombo, not in gold -> strict wrong, relaxed right
+    # r2 turn 2: the user named Gampaha, gold has none -> wrong in both
+    assert r["jga"] == 0.5
+    rel = r["district_relaxed"]
+    assert (rel["jga"], rel["turns_relaxed"]) == (0.75, 1)
+    assert rel["definition"].startswith("district relaxed: town->district counted correct when the message names a "
+                                        "town but no district")
+    assert de.aggregate([r])["jga_district_relaxed"]["mean"] == 0.75

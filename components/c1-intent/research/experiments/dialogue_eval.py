@@ -23,6 +23,10 @@ Scoring
     itself (counted as iso_fallback).
   - A failed turn (the LLM could not answer after the eval retries) counts as wrong in the main numbers, with no
     slots; jga_without_failed_dialogues leaves out every dialogue with a failed turn.
+  - Strict scoring is the main number. Secondary, labelled "district relaxed" (decided before any run): the gold
+    labels name a district only where the user wrote it, but the engine (and the LLM, as prompted) also fills the
+    district of a named town ("Panadura" -> Kalutara). DISTRICT_RELAXED below says when such a district is not
+    counted as wrong.
   - Also: intent-switch accuracy (turns whose gold intent differs from the previous turn's; few turns, anecdotal),
     hallucinated slot rate (LLM-set slots not in the gold state), validator rejection rate, fallback / failed rate,
     latency (NLU / LLM) and tokens. Turns to completion is not measured: with gold history a dialogue's length is
@@ -61,12 +65,15 @@ sys.path.insert(0, str(SERVICE))
 from dst_eval import is_core_dialogue, load_json, new_slot_counts, score_turn, summarise_rows, user_turns  # noqa: E402
 
 from app.core.dialogue import DialogueManager  # noqa: E402
-from app.core.dst import DATE_SLOTS, INTENT_SLOTS  # noqa: E402
+from app.core.dst import DATE_SLOTS, INTENT_SLOTS, find_district, find_town, words_with_offsets  # noqa: E402
 from app.core.llm_client import LLMError, OpenAICompatClient  # noqa: E402
 from app.core.settings import REASONING_EFFORTS, dialogue_settings  # noqa: E402
 from app.core.validator import is_iso_date  # noqa: E402
 
 SETTINGS = ("rules", "llm", "hybrid")
+DISTRICT_RELAXED = ("district relaxed: town->district counted correct when the message names a town but no district "
+                    "(the predicted district is not in the gold state, a user message so far named a town in it and "
+                    "no district, and no user message so far named that district)")
 RETRY_WAITS = (30, 60, 60)          # eval only: waits before the 1st, 2nd, 3rd extra try
 QUOTA_WAIT = 65
 _QUOTA = re.compile(r"exceeded (?:your )?(?:current )?quota|quota (?:has been )?exceeded", re.IGNORECASE)
@@ -153,12 +160,30 @@ def schema_slots(intent, slots, raw_slots):
     return out, dates
 
 
+def place_names(text):
+    """-> (district of the town the message names, if it names no district; the district it names), each or None."""
+    words = list(words_with_offsets(text))
+    named = find_district(words)
+    town = find_town(words)
+    return (town[1] if town and not named else None), (named[2] if named else None)
+
+
+def district_from_town(pred_slots, gold_slots, town_districts, named_districts):
+    """DISTRICT_RELAXED for one turn: the predicted district came from a town, and gold has none."""
+    d = pred_slots.get("district")
+    return bool(d) and "district" not in gold_slots and d in town_districts and d not in named_districts
+
+
 def run_dialogue(manager, new_engine_session, dialogue, llm=None):
     """One dialogue, gold history at every turn. -> per-turn records (see score_run). Raises StopRun."""
     chat = manager.new_session(new_engine_session())
     core = is_core_dialogue(dialogue)
     records, prev_gold = [], None
+    town_districts, named_districts = set(), set()
     for pos, (ti, text, gold, bot) in enumerate(user_turns(dialogue)):
+        from_town, named = place_names(text)
+        town_districts |= {from_town} - {None}
+        named_districts |= {named} - {None}
         chat.history = gold_history(dialogue, ti)
         chat.last_bot_text = bot
         if llm is not None:
@@ -173,6 +198,7 @@ def run_dialogue(manager, new_engine_session, dialogue, llm=None):
             "id": f"{dialogue['dialogue_id']}/{ti}", "dialogue_id": dialogue["dialogue_id"], "pos": pos,
             "core": core, "text": text, "gold": gold_state, "prev_gold_intent": prev_gold,
             "pred": {"intent": r.internal_intent, "slots": slots}, "dates": dates,
+            "district_from_town": district_from_town(slots, gold_state["slots"], town_districts, named_districts),
             "dialogue_source": r.dialogue_source, "failed": failed, "error": llm.last_error if failed else None,
             "dialogue_act": r.dialogue_act, "reply": r.reply,
             "llm_slots": [k for k in r.llm_slots if k in slots],
@@ -204,6 +230,7 @@ def score_run(records):
         pred = {"intent": "failed", "slots": {}} if rec["failed"] else rec["pred"]
         rows.append(score_turn(per_slot, rec["id"], rec["pos"], rec["core"], pred, rec["gold"]))
     res = summarise_rows(rows, per_slot)
+    res["district_relaxed"] = _district_relaxed(records)
     res.pop("errors")
     res["errors"] = [{"id": r["id"], "pred": r["pred"], "gold": r["gold"]} for r in rows
                      if not (r["intent_ok"] and r["slots_ok"])]
@@ -241,7 +268,8 @@ def score_run(records):
     answered = [rec for rec in records if rec["dialogue_source"] == "llm"]
     res["latency_ms"] = {
         "nlu_mean": _mean([rec["nlu_ms"] for rec in records]),
-        "llm_mean": _mean([rec["llm_ms"] for rec in answered]), "llm_p50": _pct([rec["llm_ms"] for rec in answered], .5),
+        "llm_mean": _mean([rec["llm_ms"] for rec in answered]),
+        "llm_p50": _pct([rec["llm_ms"] for rec in answered], .5),
         "llm_p95": _pct([rec["llm_ms"] for rec in answered], .95),
         "llm_max": max((rec["llm_ms"] for rec in answered), default=None),
     }
@@ -254,7 +282,25 @@ def score_run(records):
     return res
 
 
-HEADLINE = {"jga": ("jga",), "slot_jga": ("slot_jga",), "intent_acc": ("intent_acc",),
+def _district_relaxed(records):
+    """The DISTRICT_RELAXED secondary scores: the same scoring, town-derived districts left out of the prediction."""
+    per_slot, rows = new_slot_counts(), []
+    for rec in records:
+        if rec["failed"]:
+            pred = {"intent": "failed", "slots": {}}
+        else:
+            slots = {k: v for k, v in rec["pred"]["slots"].items()
+                     if not (k == "district" and rec["district_from_town"])}
+            pred = {"intent": rec["pred"]["intent"], "slots": slots}
+        rows.append(score_turn(per_slot, rec["id"], rec["pos"], rec["core"], pred, rec["gold"]))
+    res = summarise_rows(rows, per_slot)
+    return {"definition": DISTRICT_RELAXED, "turns_relaxed": sum(rec["district_from_town"] and not rec["failed"]
+                                                                 for rec in records),
+            "jga": res["jga"], "slot_jga": res["slot_jga"], "slot_f1": res["slot_micro"]["f1"]}
+
+
+HEADLINE = {"jga": ("jga",), "jga_district_relaxed": ("district_relaxed", "jga"), "slot_jga": ("slot_jga",),
+            "intent_acc": ("intent_acc",),
             "jga_turn2plus": ("jga_turn2plus",), "slot_f1": ("slot_micro", "f1"),
             "jga_without_failed_dialogues": ("jga_without_failed_dialogues",),
             "hallucinated_slot_rate": ("llm", "hallucinated_slot_rate"),
@@ -338,7 +384,8 @@ def evaluate(dialogues, settings, runs, make_manager, new_engine_session, llm=No
 
 
 def print_table(summary, log=print):
-    cols = [("JGA", "jga"), ("slot JGA", "slot_jga"), ("intent", "intent_acc"), ("slot F1", "slot_f1"),
+    cols = [("JGA", "jga"), ("JGA district relaxed", "jga_district_relaxed"), ("slot JGA", "slot_jga"),
+            ("intent", "intent_acc"), ("slot F1", "slot_f1"),
             ("halluc.", "hallucinated_slot_rate"), ("rejected", "slot_rejection_rate"), ("failed", "failed_rate"),
             ("LLM ms", "llm_ms_mean"), ("tok/turn", "tokens_per_turn")]
     def cell(a, whole):
@@ -414,7 +461,8 @@ def main():
             "reasoning_effort": base.reasoning_effort or None, "history_turns": base.history_turns,
             "pause": a.pause, "limit": a.limit, "eval_retries": llm.retries if llm else 0,
             "note": "fresh = held-out (the gold set was used to write the rules); gold history at every turn; "
-                    "schema slots only; dates scored on the user's words"}
+                    "schema slots only; dates scored on the user's words; strict scoring is the main number",
+            "secondary": DISTRICT_RELAXED}
     for setting, runs in results.items():
         name = f"dialogue_eval_{setting}" + ("" if setting == "rules" else f"_{slug}") + \
                (f"_limit{a.limit}" if a.limit else "") + ".json"
