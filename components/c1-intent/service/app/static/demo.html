@@ -6,7 +6,8 @@
 <title>C1 Intent Demo</title>
 <!--
   C1-only demo page, served by the C1 service at GET /demo. Calls POST /v1/intent/details on the same origin
-  and shows each turn: language tags, intent, dialogue state, route and the v1 contract projection.
+  (the default) or POST /v1/chat (the dialogue layer, C1_DIALOGUE_MODE) and shows each turn: language tags,
+  intent, dialogue state, route and the v1 contract projection; in chat mode also who replied (dialogue_source).
   No build step and no external files, so it works offline.
 -->
 <style>
@@ -87,6 +88,7 @@ main { display: grid; grid-template-columns: minmax(320px, 420px) 1fr; height: c
 .composer input[type=text]:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
 .composer .opts { display: flex; gap: 12px; font-size: 12px; color: var(--muted); align-items: center; flex-wrap: wrap; }
 .composer .opts label { display: flex; gap: 4px; align-items: center; cursor: pointer; }
+.composer select { font: inherit; font-size: 12px; padding: 3px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); }
 
 /* analysis column */
 .analysis { overflow-y: auto; padding: 18px 22px 40px; min-height: 0; }
@@ -175,6 +177,12 @@ pre { margin: 0; font-family: var(--mono); font-size: 12.5px; background: var(--
         <button class="primary" id="send" type="submit">Send</button>
       </div>
       <div class="opts">
+        <label title="Changing it starts a new session: chat sessions are separate from /v1/intent ones">Endpoint
+          <select id="endpoint">
+            <option value="details">/v1/intent/details · engine</option>
+            <option value="chat">/v1/chat · dialogue layer</option>
+          </select>
+        </label>
         <span class="spacer"></span>
         <button type="button" id="reset">New session</button>
         <span class="mono" id="sid"></span>
@@ -189,7 +197,8 @@ pre { margin: 0; font-family: var(--mono); font-size: 12.5px; background: var(--
 
 <script>
 "use strict";
-const API = "/v1/intent/details";
+const API = { details: "/v1/intent/details", chat: "/v1/chat" };
+const endpoint = () => $("endpoint").value;     // "details" (default) or "chat"
 
 // Demo sessions: the user's messages only. C1's own reply after each turn is shown and sent back as bot_text.
 const PRESETS = [
@@ -233,6 +242,13 @@ const SOURCE_TEXT = {
   greeting: "greeting → model not run",
   unknown: "below threshold, no topic yet",
 };
+
+const DIALOGUE_SOURCE_TEXT = {
+  llm: "LLM reply, checked by the validator",
+  rules: "the engine's own reply (rules mode)",
+  rules_fallback: "the LLM failed, the engine replied",
+};
+const sourceLabel = (d) => `${d.dialogue_source}${d.error ? ` (${d.error})` : ""} · ${d.dialogue_mode}`;
 
 const $ = (id) => document.getElementById(id);
 const el = (tag, attrs = {}, ...kids) => {
@@ -279,17 +295,18 @@ function setBusy(on) {
   $("text").disabled = on;
 }
 
-// one turn: send the message with C1's previous reply as bot_text, then show C1's new reply
+// one turn: send the message with C1's previous reply as bot_text (details), or just the message (chat: C1 keeps
+// its own last reply), then show C1's new reply
 async function sendTurn(text) {
-  const idx = turns.length, botText = pendingBot;
+  const idx = turns.length, chat = endpoint() === "chat", botText = chat ? null : pendingBot;
   const bubble = el("div", { class: "msg user", onclick: () => select(idx) }, text, el("span", { class: "meta" }, "…"));
   addBubble(bubble);
   let res;
   try {
-    const r = await fetch(API, {
+    const r = await fetch(API[endpoint()], {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionId, text, bot_text: botText }),
+      body: JSON.stringify(chat ? { session_id: sessionId, text } : { session_id: sessionId, text, bot_text: botText }),
     });
     const body = await r.json().catch(() => ({}));
     if (!r.ok) throw new Error(`${r.status}: ${typeof body.detail === "string" ? body.detail : JSON.stringify(body.detail ?? body)}`);
@@ -299,11 +316,14 @@ async function sendTurn(text) {
     addBubble(el("div", { class: "msg error" }, String(e.message || e)));
     return null;
   }
-  turns.push({ text, botText, res });
+  turns.push({ text, botText, res, endpoint: chat ? "chat" : "details" });
   bubble.querySelector(".meta").textContent =
     `${res.internal_intent}${res.intent_locked ? " 🔒" : ""} · ${Math.round(res.confidence * 100)}% · ${res.route}`;
   pendingBot = res.reply;
-  botSays(res.reply, res.ready ? "ready · request complete" : null);
+  const notes = [];
+  if (res.dialogue_source) notes.push(sourceLabel(res));
+  if (res.ready) notes.push("ready · request complete");
+  botSays(res.reply, notes.join(" · ") || null);
   select(idx);
   return res;
 }
@@ -361,7 +381,9 @@ function render() {
     step("4 · Route", d.route),
     step("Ready", d.ready ? "yes" : "no"),
     step("Latency", `${Math.round(d.latency_ms)} ms`),
-    step("Context", `${d.context_strategy} · ${d.context_tokens} tokens`),
+    d.dialogue_source
+      ? step("Reply by", sourceLabel(d))
+      : step("Context", `${d.context_strategy} · ${d.context_tokens} tokens`),
   ));
 
   const grid = el("div", { class: "grid" });
@@ -414,15 +436,46 @@ function render() {
     el("div", { class: "legend" }, el("span", { style: "--c: var(--warn-soft)" }, "set or corrected this turn")),
   ));
 
-  // other requests in the conversation
-  if (d.completed_requests.length || d.pending_requests.length) {
+  // dialogue layer (/v1/chat only)
+  if (d.dialogue_source) {
+    const u = d.llm_usage;
+    grid.append(el("div", { class: "card" },
+      el("h3", {}, "Dialogue layer · /v1/chat"),
+      el("dl", { class: "kv" },
+        el("dt", {}, "mode"), el("dd", { class: "mono" }, d.dialogue_mode),
+        el("dt", {}, "reply by"), el("dd", {}, `${d.dialogue_source}: ${DIALOGUE_SOURCE_TEXT[d.dialogue_source] || ""}`),
+        d.error ? [el("dt", {}, "error"), el("dd", { class: "mono" }, d.error)] : null,
+        el("dt", {}, "dialogue act"), el("dd", { class: "mono" }, d.dialogue_act ?? "—"),
+        el("dt", {}, "tasks"), el("dd", { class: "mono" }, d.tasks.join(", ") || "—"),
+        Object.keys(d.raw_slots).length
+          ? [el("dt", {}, "user's words"), el("dd", { class: "mono" }, Object.entries(d.raw_slots).map(([k, v]) => `${k}: ${v}`).join(", "))]
+          : null,
+        el("dt", {}, "ready to confirm"), el("dd", {}, d.ready_to_confirm ? "yes" : "no"),
+        el("dt", {}, "time"), el("dd", {}, `NLU ${Math.round(d.nlu_ms)} ms · LLM ${Math.round(d.llm_ms)} ms`),
+        u ? [el("dt", {}, "tokens"), el("dd", { class: "mono" },
+          `${u.prompt_tokens} in · ${u.completion_tokens} out · ${u.provider_total_tokens} total · ${u.model}`)] : null,
+        d.conflicts.length
+          ? [el("dt", {}, "conflicts"), el("dd", { class: "mono" }, d.conflicts.map((x) => `${x.slot}: kept ${x.kept}`).join(", "))]
+          : null,
+        d.rejections.length
+          ? [el("dt", {}, "rejected"), el("dd", { class: "mono" }, d.rejections.map((x) => `${x.field}: ${x.reason}`).join(", "))]
+          : null,
+      ),
+    ));
+  }
+
+  // other requests in the conversation. /v1/chat has no request lists: its open tasks other than the active one
+  // are shown as pending (the response carries their names, not their slots)
+  const completed = d.completed_requests ?? [];
+  const pending = d.pending_requests ?? (d.tasks ?? []).filter((x) => x !== d.active_intent).map((x) => ({ intent: x }));
+  if (completed.length || pending.length) {
     const req = (r, status) => el("tr", {},
       el("td", {}, status), el("td", { class: "mono" }, r.intent),
-      el("td", { class: "mono" }, Object.entries(r.slots).map(([k, v]) => `${k}=${v}`).join(", ") || "—"));
+      el("td", { class: "mono" }, r.slots ? Object.entries(r.slots).map(([k, v]) => `${k}=${v}`).join(", ") || "—" : "—"));
     grid.append(el("div", { class: "card" },
       el("h3", {}, "Other requests"),
       el("table", { class: "slots" },
-        d.completed_requests.map((r) => req(r, "completed")), d.pending_requests.map((r) => req(r, "pending"))),
+        completed.map((r) => req(r, "completed")), pending.map((r) => req(r, "pending"))),
     ));
   }
 
@@ -449,7 +502,7 @@ function render() {
     el("h3", {}, "What the other components receive"),
     el("div", { class: "split" },
       el("div", {}, el("h4", {}, "v1 contract · POST /v1/intent"), el("pre", {}, JSON.stringify(c, null, 2))),
-      el("div", {}, el("h4", {}, "Full C1 state · POST /v1/intent/details"), el("pre", {}, JSON.stringify(full, null, 2))),
+      el("div", {}, el("h4", {}, `Full C1 state · POST ${API[t.endpoint]}`), el("pre", {}, JSON.stringify(full, null, 2))),
     ),
     el("div", { style: "font-size:13px;margin-top:10px" }, "Not carried by the v1 contract (see docs/c1_contract_proposal.md):"),
     el("ul", { class: "lost" }, lost.map((s) => el("li", {}, s))),
@@ -457,15 +510,18 @@ function render() {
 
   // timeline
   if (turns.length > 1) {
+    const chatSession = turns.some((tt) => tt.endpoint === "chat");    // "Reply by" only in chat sessions
+    const heads = ["#", "Message", "Intent", "Conf.", "Route", "Slots", ...(chatSession ? ["Reply by"] : []), "ms"];
     grid.append(el("div", { class: "card wide" },
       el("h3", {}, "Session so far"),
       el("table", { class: "timeline" },
-        el("tr", {}, ["#", "Message", "Intent", "Conf.", "Route", "Slots", "ms"].map((h) => el("th", {}, h))),
+        el("tr", {}, heads.map((h) => el("th", {}, h))),
         turns.map((tt, j) => el("tr", { class: j === selected ? "sel" : "", onclick: () => select(j) },
           el("td", {}, tt.res.turn_id), el("td", {}, tt.text),
           el("td", { class: "mono" }, tt.res.internal_intent), el("td", {}, tt.res.confidence.toFixed(2)),
           el("td", {}, tt.res.route),
           el("td", { class: "mono" }, Object.entries(tt.res.slots).map(([k, v]) => `${k}=${v}`).join(", ") || "—"),
+          chatSession ? el("td", { class: "mono" }, tt.res.dialogue_source ?? "—") : null,
           el("td", {}, Math.round(tt.res.latency_ms)),
         )),
       ),
@@ -502,6 +558,7 @@ function initTheme() {
 for (const p of PRESETS) $("presets").append(el("button", { type: "button", title: p[1], onclick: () => playPreset(p) }, `${p[0]} · ${p[1]}`));
 $("composer").addEventListener("submit", onSubmit);
 $("reset").addEventListener("click", () => newSession());
+$("endpoint").addEventListener("change", () => newSession(endpoint() === "chat" ? "chat" : "ui"));
 initTheme();
 newSession();
 checkHealth();
