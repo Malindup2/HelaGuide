@@ -4,6 +4,7 @@ C1 entry point. Stub mode returns contracts/examples/intent.example.json; real m
 """
 import logging
 import os
+import sqlite3
 import threading
 from pathlib import Path
 
@@ -11,13 +12,14 @@ from helaguide_common.config import get_settings
 from helaguide_common.contracts import Intent, UtteranceRequest
 from helaguide_common.examples import load_example
 
+from app.core import completed
 from app.core.dialogue import DialogueManager
 from app.core.dst import INTENT_SLOTS, SERVICES, gaz_find
 from app.core.llm_client import OpenAICompatClient
 from app.core.projection import project
 from app.core.sessions import SessionStore
 from app.core.settings import SettingsError, dialogue_settings
-from app.models.details import ChatRequest, ChatResponse, DetailsRequest, IntentDetails
+from app.models.details import ChatRequest, ChatResponse, CompletedRequest, DetailsRequest, IntentDetails
 
 COMPONENT_DIR = Path(__file__).resolve().parents[3]      # components/c1-intent/
 DEFAULT_MODEL_DIR = "research/models/c1/run_v2_seed1"
@@ -121,7 +123,31 @@ def _step(session_id: str, text: str, bot_text: str | None = None) -> dict:
     log.info("session=%s turn=%s intent=%s source=%s active=%s route=%s latency_ms=%.1f",
              session_id, result["turn_id"], result["intent"], source, result["active_intent"], result["route"],
              result["latency_ms"])
+    _save_completed(session_id, "intent", result)
     return result
+
+
+def _save_completed(session_id: str, endpoint: str, state: dict) -> None:
+    """Save the turn's completed requests (app/core/completed.py). A storage error is logged, never fails the turn."""
+    try:
+        store = completed.get_store()
+        if store and store.record(session_id, endpoint, state):
+            log.info("completed request saved: session=%s endpoint=%s turn=%s", session_id, endpoint, state["turn_id"])
+    except (sqlite3.Error, OSError) as e:
+        log.warning("completed request not saved: session=%s (%s)", session_id, type(e).__name__)
+
+
+def completed_requests(session_id: str | None = None, endpoint: str | None = None, intent: str | None = None,
+                       limit: int = 50) -> list[CompletedRequest]:
+    """Saved completed requests, newest first; empty when saving is off (C1_COMPLETED_DB=off)."""
+    store = completed.get_store()
+    if store is None:
+        return []
+    try:
+        rows = store.list(session_id, endpoint, intent, limit)
+    except (sqlite3.Error, OSError) as e:
+        raise EngineUnavailable(f"completed requests store cannot be read ({type(e).__name__})") from None
+    return [CompletedRequest(**r) for r in rows]
 
 
 def resolve(req: UtteranceRequest) -> Intent:
@@ -230,6 +256,7 @@ def resolve_chat(req: ChatRequest) -> ChatResponse:
     log.info("chat session=%s turn=%s mode=%s source=%s%s intent=%s active=%s route=%s latency_ms=%.1f llm_ms=%.1f",
              req.session_id, st["turn_id"], r.dialogue_mode, r.dialogue_source, f" ({r.error})" if r.error else "",
              r.internal_intent, r.active_intent, r.route, r.latency_ms, r.llm_ms)
+    _save_completed(req.session_id, "chat", st)
     return ChatResponse(
         session_id=req.session_id, turn_id=st["turn_id"], state_version=st["state_version"], reply=r.reply,
         dialogue_mode=r.dialogue_mode, dialogue_source=r.dialogue_source, dialogue_act=r.dialogue_act,

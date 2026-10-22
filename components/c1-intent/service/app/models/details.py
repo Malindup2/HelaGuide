@@ -3,6 +3,7 @@ C1-only models for POST /v1/intent/details and POST /v1/chat. Not part of the te
 `Intent` is embedded unchanged, and the extra fields are proposed for a later contract version in
 research/docs/c1_contract_proposal.md.
 """
+from datetime import datetime
 from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -158,3 +159,22 @@ class ChatResponse(BaseModel):
     llm_usage: LLMUsageOut | None = Field(description="Tokens and latency of the LLM call; None on rules turns")
     error: str | None = Field(description="Exception class of a rules_fallback turn (never its message)")
     intent: Intent = Field(description="The contract projection of this turn, as /v1/intent would send it")
+
+
+# ---------------------------------------------------------------- GET /v1/requests/completed (C1-only)
+class CompletedRequest(BaseModel):
+    """A saved completed request (app/core/completed.py)."""
+    model_config = ConfigDict(extra="forbid")
+
+    id: int
+    session_id: str
+    endpoint: Literal["intent", "chat"] = Field(description="intent: /v1/intent and /v1/intent/details (shared "
+                                                "sessions); chat: /v1/chat")
+    intent: str = Field(description="One of the core schema-v1.1 intents")
+    service_id: str | None
+    slots: dict[str, str]
+    conditions: Conditions = Field(default_factory=dict)
+    turn_id: int = Field(ge=0, description="The turn the request was first complete")
+    completed_at: datetime = Field(description="When the request was first complete (UTC)")
+    updated_at: datetime = Field(description="Last change to its slots or conditions (UTC); equals completed_at "
+                                 "when it was never changed")

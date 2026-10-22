@@ -8,3 +8,5 @@ service/smoke_*.txt
 # regression replay outputs (service/scripts/replay_log.py)
 service/replay_*.txt
 service/replay_*.json
+# completed requests saved by the service (service/app/core/completed.py): local runtime data
+var/

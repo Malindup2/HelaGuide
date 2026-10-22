@@ -1,9 +1,11 @@
-from fastapi import APIRouter
+from typing import Literal
+
+from fastapi import APIRouter, Query
 
 from helaguide_common.contracts import Intent, UtteranceRequest
 
 from app.core import pipeline
-from app.models.details import ChatRequest, ChatResponse, DetailsRequest, IntentDetails
+from app.models.details import ChatRequest, ChatResponse, CompletedRequest, DetailsRequest, IntentDetails
 
 router = APIRouter(prefix="/v1", tags=["intent"])
 
@@ -27,3 +29,15 @@ def chat(req: ChatRequest) -> ChatResponse:
     """C1-only: one chat turn with a natural reply. C1_DIALOGUE_MODE picks who replies: rules (default, the
     engine's own reply), llm, or hybrid (LLM + NLU hints + validator). Chat sessions are separate from /v1/intent."""
     return pipeline.resolve_chat(req)
+
+
+@router.get("/requests/completed", response_model=list[CompletedRequest], tags=["c1-internal"])
+def completed_requests(
+    session_id: str | None = None,
+    endpoint: Literal["intent", "chat"] | None = None,
+    intent: str | None = None,
+    limit: int = Query(50, ge=1, le=500),
+) -> list[CompletedRequest]:
+    """C1-only: requests the chatbot completed (all slots filled and confirmed), newest first, with when.
+    Saved by every /v1/intent, /v1/intent/details and /v1/chat turn; kept across restarts (C1_COMPLETED_DB)."""
+    return pipeline.completed_requests(session_id, endpoint, intent, limit)

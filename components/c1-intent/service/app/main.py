@@ -12,6 +12,7 @@ from app.core import pipeline
 from app.core.pipeline import EngineUnavailable
 
 DEMO_PAGE = Path(__file__).parent / "static" / "demo.html"
+COMPLETED_PAGE = Path(__file__).parent / "static" / "completed.html"
 
 settings = get_settings(service_name="c1-intent")
 log = setup_logging(settings.service_name, settings.log_level)
@@ -46,3 +47,9 @@ async def health() -> dict:
 async def demo() -> FileResponse:
     """C1-only demo page: a chat that calls /v1/intent/details and shows each turn's analysis."""
     return FileResponse(DEMO_PAGE, media_type="text/html")
+
+
+@app.get("/demo/completed", include_in_schema=False)
+async def demo_completed() -> FileResponse:
+    """C1-only page listing the saved completed requests (GET /v1/requests/completed) with when they finished."""
+    return FileResponse(COMPLETED_PAGE, media_type="text/html")

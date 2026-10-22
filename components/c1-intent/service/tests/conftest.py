@@ -13,6 +13,14 @@ from app.core.sessions import SessionStore
 from app.main import app
 
 
+@pytest.fixture(autouse=True)
+def completed_db(monkeypatch, tmp_path):
+    """Every test saves completed requests to its own SQLite file, never to components/c1-intent/var/."""
+    path = tmp_path / "completed_requests.sqlite3"
+    monkeypatch.setenv("C1_COMPLETED_DB", str(path))
+    return path
+
+
 @pytest.fixture
 def client():
     return TestClient(app)

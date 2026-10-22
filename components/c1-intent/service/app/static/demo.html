@@ -162,6 +162,7 @@ pre { margin: 0; font-family: var(--mono); font-size: 12.5px; background: var(--
   <span class="sub">Sinhala · English · code-switched, multi-turn</span>
   <span class="spacer"></span>
   <span id="mode" class="badge">checking service…</span>
+  <a id="completed-link" href="/demo/completed" target="_blank" style="color:var(--accent);font-size:13px">Completed requests ↗</a>
   <button id="theme" title="Toggle light / dark">◐</button>
 </header>
 
@@ -272,6 +273,7 @@ function newSession(tag = "ui") {
   pendingBot = null;
   selected = -1;
   $("sid").textContent = sessionId;
+  $("completed-link").href = `/demo/completed?session_id=${encodeURIComponent(sessionId)}`;
   $("log").replaceChildren(el("div", { class: "empty", id: "empty" },
     "Type a message in Sinhala, Singlish or English, or play one of the demo sessions above."));
   $("analysis").replaceChildren(el("div", { class: "placeholder" },
@@ -322,10 +324,21 @@ async function sendTurn(text) {
   pendingBot = res.reply;
   const notes = [];
   if (res.dialogue_source) notes.push(sourceLabel(res));
-  if (res.ready) notes.push("ready · request complete");
+  if (res.ready) notes.push(`ready · request complete${await savedNote(res.active_intent, chat)}`);
   botSays(res.reply, notes.join(" · ") || null);
   select(idx);
   return res;
+}
+
+// " · saved 14:02:31": when C1 saved this completed request (GET /v1/requests/completed), "" if it is not there
+async function savedNote(intent, chat) {
+  try {
+    const q = new URLSearchParams({ session_id: sessionId, endpoint: chat ? "chat" : "intent", intent, limit: "1" });
+    const [row] = await (await fetch(`/v1/requests/completed?${q}`)).json();
+    return row ? ` · saved ${new Date(row.completed_at).toLocaleTimeString()}` : "";
+  } catch {
+    return "";
+  }
 }
 
 async function onSubmit(ev) {
