@@ -93,5 +93,8 @@ def test_table_has_reply_source_and_checks():
     results = replay_log.replay(TURNS, DialogueManager(FakeLLM(*GOOD), DialogueSettings(mode="hybrid")),
                                 engine().new_session)
     text = replay_log.table(TURNS, results)
-    assert text.splitlines()[0].split()[:5] == ["#", "Message", "Intent", "Conf", "Route"]
+    head = text.splitlines()[0]
+    assert head.split()[:5] == ["#", "Message", "Intent", "XLM-R", "said"]
+    assert head.index("Intent") < head.index("XLM-R said") < head.index("Route")
+    assert "birth_cert_copy 0.95" in text.splitlines()[4]          # turn 1: XLM-R's own prediction
     assert "reply [llm] Hari!" in text and "expect ok" in text and "FAIL" not in text

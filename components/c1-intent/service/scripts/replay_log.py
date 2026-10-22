@@ -1,9 +1,10 @@
 """
 Regression replay: sends a logged conversation (default: research/data/regression_rigid_log.json) through
 DialogueManager in rules, llm and hybrid mode with the real engine, and prints one table per mode like the demo log
-(message, intent, confidence, route, slots, tasks) with the reply and dialogue_source of each turn. Every turn is
-checked against the file's expect_hybrid; the checks are printed for every mode, so the rules table shows what the
-LLM layer has to fix. Model outputs are not committed: save them as replay_*.txt / replay_*.json (git-ignored).
+(message, final intent, XLM-R's own top prediction and its confidence, route, slots, tasks) with the reply and
+dialogue_source of each turn. Every turn is checked against the file's expect_hybrid; the checks are printed for
+every mode, so the rules table shows what the LLM layer has to fix. Model outputs are not committed: save them as
+replay_*.txt / replay_*.json (git-ignored).
 
 Needs the real engine (pip install -e ".[research]" and the model folder, see ../README.md). Run from service/:
 
@@ -71,11 +72,11 @@ def _short(text, n):
 
 def table(turns, results):
     """The demo-log table, the reply and source under each row, then the expect_hybrid checks."""
-    rows = [("#", "Message", "Intent", "Conf", "Route", "Slots", "Tasks")]
+    rows = [("#", "Message", "Intent", "XLM-R said", "Route", "Slots", "Tasks")]
     for i, (t, r) in enumerate(zip(turns, results)):
         slots = ", ".join(f"{k}={v}" for k, v in r.slots.items()) or "—"
-        rows.append((str(i), t["text"], r.internal_intent, f"{r.confidence:.2f}", r.route, slots,
-                     ", ".join(r.tasks) or "—"))
+        xlmr = f"{r.intent_model_output} {r.confidence:.2f}"       # XLM-R's own prediction, not the final intent
+        rows.append((str(i), t["text"], r.internal_intent, xlmr, r.route, slots, ", ".join(r.tasks) or "—"))
     widths = [max(len(row[c]) for row in rows) for c in range(len(rows[0]) - 1)]
     lines = []
     for j, row in enumerate(rows):
