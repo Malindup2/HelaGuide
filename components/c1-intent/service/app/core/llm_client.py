@@ -122,6 +122,9 @@ class OpenAICompatClient:
                 r = self._post(f"{self.base_url}/chat/completions", json=body, headers=headers, timeout=self.timeout)
             except httpx.TimeoutException as e:
                 raise LLMError(f"LLM timed out after {self.timeout}s") from e   # a retry would double the wait
+            except httpx.ConnectError as e:
+                # nothing is listening (Ollama not started, wrong URL): a retry only delays the rules fallback
+                raise LLMError(f"ConnectError: {str(e)[:BODY_CHARS]}") from e
             except httpx.HTTPError as e:
                 last = f"{type(e).__name__}: {str(e)[:BODY_CHARS]}"
                 continue

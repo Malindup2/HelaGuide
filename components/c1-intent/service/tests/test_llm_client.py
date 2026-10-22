@@ -118,9 +118,17 @@ def test_timeout_raises_without_retry():
     assert len(t.requests) == 1
 
 
-def test_connection_error_is_retried():
+def test_refused_connection_fails_at_once():
     t = Transport(httpx.ConnectError("refused", request=REQ), ok('{"x": 2}'))
+    with pytest.raises(LLMError, match="ConnectError"):
+        client(t).complete_json("sys", [])
+    assert len(t.requests) == 1
+
+
+def test_other_transport_errors_are_retried():
+    t = Transport(httpx.RemoteProtocolError("server hung up", request=REQ), ok('{"x": 2}'))
     assert client(t).complete_json("sys", []).data == {"x": 2}
+    assert len(t.requests) == 2
 
 
 # ---------------------------------------------------------------- JSON mode
@@ -172,10 +180,11 @@ def test_error_messages_truncate_body_and_never_show_headers():
 
 
 def test_long_transport_errors_are_truncated():
-    t = Transport(*[httpx.ConnectError("y" * 1000, request=REQ)] * 3)
-    with pytest.raises(LLMError) as e:
-        client(t).complete_json("sys", [])
-    assert len(str(e.value)) <= len("ConnectError: ") + BODY_CHARS
+    for error, name in ((httpx.ConnectError, "ConnectError"), (httpx.ReadError, "ReadError")):
+        t = Transport(*[error("y" * 1000, request=REQ)] * 3)
+        with pytest.raises(LLMError) as e:
+            client(t).complete_json("sys", [])
+        assert len(str(e.value)) <= len(name + ": ") + BODY_CHARS
 
 
 # ---------------------------------------------------------------- reasoning effort and tokens
