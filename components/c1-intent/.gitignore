@@ -5,3 +5,6 @@ research/results/context_v2/preds/
 research/inputs/
 # LLM smoke test outputs (service/scripts/llm_smoke_test.py): local runs against a real provider
 service/smoke_*.txt
+# regression replay outputs (service/scripts/replay_log.py)
+service/replay_*.txt
+service/replay_*.json

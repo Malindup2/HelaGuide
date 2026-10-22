@@ -30,6 +30,7 @@ Small files only (under a few MB). Large datasets, raw crawls and model weights 
 | `fresh_dialogues.txt` / `.json` | Fresh test set: 23 dialogues written by the author after the model was designed, 50 user turns | Hand-written; `prepare_fresh.py` |
 | `fresh_ls_export.json` | Label Studio export of the fresh set, labelled from scratch (no pre-labels) | Label Studio |
 | `fresh_tokens.jsonl` | Fresh test set in the gold format: 50 turns, 403 tokens | `prepare_fresh.py --from-export` |
+| `regression_rigid_log.json` | The demo conversation that showed the rules-only dialogue as rigid (10 user turns, typos as typed), with the behaviour the LLM dialogue layer must show in hybrid mode (`expect_hybrid`) | Copied from the C1 demo log (22 Oct); replayed by `service/scripts/replay_log.py` |
 
 All files are UTF-8. Sinhala text is stored in Sinhala script, not escaped.
 
