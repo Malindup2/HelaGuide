@@ -21,9 +21,17 @@ import httpx
 
 from app.core.settings import DialogueSettings
 
-RETRY_STATUS = (429, 500, 502, 503, 504)
-# short waits: a citizen is waiting for the reply, and a failed turn falls back to the rules path anyway
-BACKOFF_SECONDS = (1.0, 3.0)
+# Retries are short: a citizen is waiting for the reply, and a failed turn falls back to the rules path anyway.
+#   429 "quota exceeded"      no retry (a retry only burns more quota)
+#   other 429 (rate limit)    one retry, after the provider's retry delay (Retry-After / retryDelay), at most 5 s
+#   5xx, transport errors     one retry after 1 s
+#   timeout, refused connect  no retry (see _chat)
+ATTEMPTS = 2
+RETRY_WAIT = 1.0
+MAX_RETRY_WAIT = 5.0
+SERVER_ERRORS = (500, 502, 503, 504)
+_QUOTA_EXCEEDED = re.compile(r"exceeded (?:your )?(?:current )?quota|quota (?:has been )?exceeded", re.IGNORECASE)
+_RETRY_DELAY = re.compile(r'"retryDelay"\s*:\s*"(\d+(?:\.\d+)?)s"')     # Gemini: error.details[].retryDelay
 REPAIR_MESSAGE = "That was not valid JSON. Return only the JSON object, with no other text."
 BODY_CHARS = 200        # response bodies in error messages are cut to this; headers are never included
 _FENCE = re.compile(r"^\s*```(?:json)?\s*(.*?)\s*```\s*$", re.DOTALL)
@@ -74,7 +82,7 @@ def parse_json_object(text: str) -> dict:
 
 class OpenAICompatClient:
     def __init__(self, base_url: str, model: str, api_key: str = "", timeout: float = 30.0, json_mode: bool = True,
-                 reasoning_effort: str = "", attempts: int = len(BACKOFF_SECONDS) + 1, post=httpx.post,
+                 reasoning_effort: str = "", attempts: int = ATTEMPTS, post=httpx.post,
                  sleep=time.sleep) -> None:
         self.base_url = base_url.rstrip("/")
         self.model = model
@@ -111,11 +119,12 @@ class OpenAICompatClient:
     def _chat(self, messages: list[dict], usage: LLMUsage) -> str:
         """One chat completion (with retries); adds its token counts to `usage`. Returns the message text."""
         headers = {"Authorization": f"Bearer {self._api_key}"} if self._api_key else {}
-        last, attempt = "", 0
+        last, attempt, wait = "", 0, 0.0
         while attempt < self.attempts:
-            if attempt:
-                self._sleep(BACKOFF_SECONDS[min(attempt - 1, len(BACKOFF_SECONDS) - 1)])
+            if wait:
+                self._sleep(wait)
             attempt += 1
+            wait = RETRY_WAIT
             body = {"model": self.model, "temperature": 0, "messages": messages}
             if self.json_mode:
                 body["response_format"] = {"type": "json_object"}
@@ -149,11 +158,28 @@ class OpenAICompatClient:
             if r.status_code == 400 and "response_format" in body and _NO_JSON_MODE.search(r.text):
                 # JSON mode not supported here: drop it for this and every later call, rely on prompt + parsing
                 self.json_mode = False
-                attempt -= 1        # this retry is free, and happens at most once per client
+                attempt, wait = attempt - 1, 0.0    # this retry is free and immediate, at most once per client
                 continue
-            if r.status_code not in RETRY_STATUS:
+            if r.status_code == 429:
+                if _QUOTA_EXCEEDED.search(r.text):
+                    break       # quota used up: retrying only burns more of it
+                wait = retry_delay(r)
+                continue
+            if r.status_code not in SERVER_ERRORS:
                 break       # a bad key, model name or request will not get better by retrying
         raise LLMError(last)
+
+
+def retry_delay(r: httpx.Response) -> float:
+    """Seconds to wait before retrying a 429: the Retry-After header or Gemini's retryDelay, capped at
+    MAX_RETRY_WAIT; RETRY_WAIT when the provider gives none."""
+    raw = r.headers.get("retry-after")
+    m = None if raw else _RETRY_DELAY.search(r.text)
+    try:
+        seconds = float(raw if raw else m.group(1)) if (raw or m) else RETRY_WAIT
+    except ValueError:      # Retry-After can also be an HTTP date: not worth parsing here
+        seconds = RETRY_WAIT
+    return min(max(seconds, 0.0), MAX_RETRY_WAIT)
 
 
 def _reasoning_tokens(u: dict) -> int:

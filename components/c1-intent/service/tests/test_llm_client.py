@@ -34,8 +34,22 @@ class Transport:
         return item
 
 
-def client(transport, **kw):
-    return OpenAICompatClient("http://llm.test/v1/", "test-model", post=transport, sleep=lambda s: None, **kw)
+def client(transport, sleep=None, **kw):
+    return OpenAICompatClient("http://llm.test/v1/", "test-model", post=transport,
+                              sleep=sleep if sleep is not None else (lambda s: None), **kw)
+
+
+class Sleeps(list):
+    """Records the waits instead of sleeping."""
+
+    def __call__(self, seconds):
+        self.append(seconds)
+
+
+GEMINI_QUOTA = ('{"error": {"code": 429, "message": "You exceeded your current quota, please check your plan and '
+                'billing details.", "status": "RESOURCE_EXHAUSTED"}}')
+GEMINI_RATE = ('{"error": {"code": 429, "message": "Too many requests", "status": "RESOURCE_EXHAUSTED", "details": '
+               '[{"@type": "type.googleapis.com/google.rpc.RetryInfo", "retryDelay": "%ss"}]}}')
 
 
 # ---------------------------------------------------------------- JSON and usage
@@ -91,10 +105,58 @@ def test_invalid_json_twice_raises():
 
 
 # ---------------------------------------------------------------- retries
-def test_retries_on_429_and_5xx_then_succeeds():
-    t = Transport(error(429, "slow down"), error(503, "busy"), ok('{"x": 1}'))
-    assert client(t).complete_json("sys", []).data == {"x": 1}
-    assert len(t.requests) == 3
+def test_429_quota_exceeded_fails_at_once():
+    sleeps = Sleeps()
+    t = Transport(error(429, GEMINI_QUOTA), ok('{"x": 1}'))
+    with pytest.raises(LLMError, match="429"):
+        client(t, sleep=sleeps).complete_json("sys", [])
+    assert len(t.requests) == 1 and sleeps == []
+
+
+def test_429_rate_limit_retried_once_with_default_wait():
+    sleeps = Sleeps()
+    t = Transport(error(429, "slow down"), ok('{"x": 1}'))
+    assert client(t, sleep=sleeps).complete_json("sys", []).data == {"x": 1}
+    assert len(t.requests) == 2 and sleeps == [1.0]
+
+
+def test_429_rate_limit_only_retried_once():
+    t = Transport(error(429, "slow down"), error(429, "slow down"), ok('{"x": 1}'))
+    with pytest.raises(LLMError, match="429"):
+        client(t).complete_json("sys", [])
+    assert len(t.requests) == 2
+
+
+@pytest.mark.parametrize("delay, waited", [("2", 2.0), ("2.5", 2.5), ("37", 5.0)])
+def test_429_uses_gemini_retry_delay_capped_at_5s(delay, waited):
+    sleeps = Sleeps()
+    t = Transport(error(429, GEMINI_RATE % delay), ok('{"x": 1}'))
+    client(t, sleep=sleeps).complete_json("sys", [])
+    assert sleeps == [waited]
+
+
+@pytest.mark.parametrize("header, waited", [("3", 3.0), ("120", 5.0), ("Wed, 21 Oct 2026 07:28:00 GMT", 1.0)])
+def test_429_uses_retry_after_header_capped_at_5s(header, waited):
+    sleeps = Sleeps()
+    r = httpx.Response(429, text="slow down", headers={"Retry-After": header}, request=REQ)
+    client(Transport(r, ok('{"x": 1}')), sleep=sleeps).complete_json("sys", [])
+    assert sleeps == [waited]
+
+
+@pytest.mark.parametrize("status", [500, 502, 503, 504])
+def test_5xx_retried_once_after_1s(status):
+    sleeps = Sleeps()
+    t = Transport(error(status, "busy"), ok('{"x": 1}'))
+    assert client(t, sleep=sleeps).complete_json("sys", []).data == {"x": 1}
+    assert len(t.requests) == 2 and sleeps == [1.0]
+
+
+def test_5xx_gives_up_after_2_attempts():
+    sleeps = Sleeps()
+    t = Transport(*[error(503, "high demand")] * 3)
+    with pytest.raises(LLMError, match="503"):
+        client(t, sleep=sleeps).complete_json("sys", [])
+    assert len(t.requests) == 2 and sleeps == [1.0]
 
 
 def test_no_retry_on_4xx():
@@ -102,13 +164,6 @@ def test_no_retry_on_4xx():
     with pytest.raises(LLMError, match="401"):
         client(t).complete_json("sys", [])
     assert len(t.requests) == 1
-
-
-def test_gives_up_after_attempts():
-    t = Transport(*[error(500, "err")] * 3)
-    with pytest.raises(LLMError, match="500"):
-        client(t).complete_json("sys", [])
-    assert len(t.requests) == 3
 
 
 def test_timeout_raises_without_retry():
