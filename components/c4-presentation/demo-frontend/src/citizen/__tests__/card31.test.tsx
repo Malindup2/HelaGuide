@@ -122,3 +122,23 @@ describe('content 3.1: fallback, structure and scan-friendly facts', () => {
     expect(screen.getAllByText(/\d of \d/).length).toBeGreaterThan(0);
   });
 });
+
+describe('accessibility', () => {
+  it('returns focus to the control that opened a sheet, even when React replays effects (StrictMode)', async () => {
+    const { StrictMode } = await import('react');
+    render(<StrictMode><GuidanceCard response={v31Rich()} emit={vi.fn()} /></StrictMode>);
+    const opener = screen.getByRole('button', { name: /Sources/ });
+    opener.focus();
+    fireEvent.click(opener);
+    expect(screen.getByRole('button', { name: 'Close Sources and scope' })).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Close Sources and scope' }));
+    expect(document.activeElement).toBe(opener);
+  });
+
+  it('gives every visible control an accessible name', () => {
+    render(<GuidanceCard response={v31Rich()} emit={vi.fn()} />);
+    const controls = [...document.querySelectorAll('button, a[href], input, select, summary')];
+    const unnamed = controls.filter(el => !(el.getAttribute('aria-label') || el.textContent?.trim() || el.getAttribute('title') || (el as HTMLInputElement).labels?.length));
+    expect(unnamed.map(el => el.outerHTML.slice(0, 80))).toEqual([]);
+  });
+});

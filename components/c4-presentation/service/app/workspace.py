@@ -67,7 +67,8 @@ if guidance_options is not None and os.getenv("C4_PP1_POLICY_ENABLED", "false").
     guidance_options["policy_options"] = {"directory": policy_directory,
         "seed": int(os.getenv("C4_PP1_POLICY_SEED", "0")),
         "mode": os.getenv("C4_PP1_POLICY_MODE", "simulation"),
-        "checkpoint": os.getenv("C4_PP1_CHECKPOINT") or None}
+        "checkpoint": os.getenv("C4_PP1_CHECKPOINT") or None,
+        "exploration": float(os.getenv("C4_PP1_EXPLORATION", "1.0"))}
     guidance_options["experiment_directory"] = os.getenv("C4_PP1_EXPERIMENT_DIRECTORY") or None
 
 app=create_app(path, mode=mode, seed=int(os.getenv("C4_WORKSPACE_SEED", "0")), runtime_class=ActiveRuntime, workspace=True,

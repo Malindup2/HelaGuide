@@ -15,6 +15,7 @@ from app.v2.measurements import measurements
 
 
 def now():return datetime.now(timezone.utc).isoformat()
+def doc_fingerprint(content):return content.fingerprint if content else None
 def token_hash(value):return hashlib.sha256(value.encode()).hexdigest()
 
 class ApiFailure(Exception):
@@ -33,7 +34,7 @@ class GuidanceAPI:
         if policy_options is not None:
             if not self.flavour.supports_policy:raise ValueError('no PP1 policy is compatible with content schema '+self.flavour.content_schema+'; a fresh policy with a matching manifest must be trained first')
             from app.guidance.policy import PolicyStore
-            self.policy = PolicyStore(**policy_options)
+            self.policy = PolicyStore(**policy_options,profile=self.flavour.policy_profile)
         self.visibility_policy=visibility_policy
         if visibility_policy is not None:
             if set(visibility_policy)!={'version','min_visible_ratio','min_dwell_ms'} or not visibility_policy['version'] or not 0<visibility_policy['min_visible_ratio']<=1 or visibility_policy['min_dwell_ms']<=0:
@@ -179,6 +180,7 @@ class GuidanceAPI:
                 config=body.configuration;kind='research_preview';label='Research preview - not a learned selection'
             elif learned:
                 config,decision=self.policy.select(db,measurements(source.graph,source.relationships),context,[Configuration(**c['configuration']) for c in feasible])
+                if self.flavour.feasibility_fingerprint:decision.update(content_schema=self.flavour.content_schema,action_schema=self.flavour.action_schema,feasibility_fingerprint=availability['feasibility_fingerprint'],content_fingerprint=doc_fingerprint(content))
                 kind='shared_gaussian_lints';label='Personalized guidance - Shared Gaussian LinTS'
             else:
                 config=Configuration(**feasible[0]['configuration']);kind='standard' if config==Configuration() else 'constraint_standard';label='Standard guidance'

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { GuidanceError, guidanceApi, newId, newToken } from './api';
-import type { Availability, Configuration, Dimension, GuidanceResponse, InspectorRecord } from './types';
+import type { Availability, Configuration, Dimension, GuidanceResponse, InspectorRecord, LearningReport } from './types';
 import { DIMENSIONS, DIMENSION_TEXT, feasibleFor, originOf, reasonText } from './model';
 import GuidanceCard from './card/GuidanceCard';
 import { Sheet } from './ui';
@@ -111,3 +111,35 @@ function Record({ record }: { record: InspectorRecord }) {
   </div>;
 }
 
+
+const BASELINES: [Exclude<keyof import('./types').RewardBlock, 'greedy'>, string][] = [['reward', 'Learned selection (LinTS 525)'], ['standard', 'Standard guidance'], ['minimal', 'Minimal support'], ['maximal', 'Maximal support'],
+  ['fixed_best', 'Best single configuration (hindsight)'], ['random', 'Random feasible'], ['oracle', 'Simulator oracle']];
+const PLOTS: [string, string][] = [['learning-curve-test.png', 'Learning curves on the final test cases'], ['learning-curve-dev.png', 'Learning curves on the development cases'],
+  ['sensitivity-test.png', 'Result under each simulator assumption'], ['families-test.png', 'Result for each scenario family'], ['selection-mismatch.png', 'Under-support, over-support and what was selected']];
+const pm = (i: { mean: number; ci95_half_width: number | null }) => `${i.mean.toFixed(3)}${i.ci95_half_width != null ? ` ± ${i.ci95_half_width.toFixed(3)}` : ''}`;
+
+/** Real synthetic learning evidence from the completed experiment folder. Clearly not real-citizen evidence. */
+export function EvidenceSheet({ onClose }: { onClose: () => void }) {
+  const [report, setReport] = useState<LearningReport | null>(null), [error, setError] = useState('');
+  useEffect(() => { let live = true; guidanceApi.learning().then(r => { if (live) setReport(r); }).catch(e => { if (live) setError(e instanceof GuidanceError && e.status === 404 ? 'No completed synthetic study is configured for this server.' : 'The learning report could not be read.'); }); return () => { live = false; }; }, []);
+  const rows = report ? report.aggregates.filter(a => a.variant === '525' && a.training_assumption === 'balanced').sort((a, b) => a.episode - b.episode) : [];
+  const last = rows.at(-1), greedy = last?.test.balanced.greedy, tuned = report?.aggregates.find(a => a.variant === '525' && a.training_assumption === 'balanced@x0.25' && a.episode === last?.episode);
+  return <Sheet title="Research learning evidence" onClose={onClose} variant="panel">
+    {error && <p role="alert">{error}</p>}{!report && !error && <p role="status">Reading the completed study…</p>}
+    {report && last && <div className="cz-inspector">
+      <p className="cz-note"><b>Synthetic evaluation only.</b> Rewards come from an author-defined hypothetical model. This is not evidence about real citizens, expert judgement or measured comprehension.</p>
+      <p className="cz-fine">{report.seeds.length} independent runs (seeds {report.seeds.join(', ')}) · feature schema {report.feature_schema} · final test: {report.splits.test_cases} cases, including procedures never seen in training ({report.splits.test_unseen_procedures.join(', ')}).</p>
+      <table className="cz-matrix"><caption>Final test cases, {last.episode} training observations per run</caption><thead><tr><th scope="col">Selector</th><th scope="col">Simulated expected reward</th></tr></thead>
+        <tbody>{BASELINES.map(([k, label]) => <tr key={k}><th scope="row">{label}</th><td>{pm(last.test.balanced[k])}</td></tr>)}
+          {tuned && <tr><th scope="row">Learned selection, exploration 0.25 (chosen on development cases)</th><td>{pm(tuned.test.balanced.reward)}</td></tr>}
+          {greedy && <tr><th scope="row">Diagnostic only: always take the highest posterior mean (not LinTS)</th><td>{pm(greedy)}</td></tr>}</tbody></table>
+      <table className="cz-matrix"><caption>Learned selection by training budget (balanced world)</caption><thead><tr><th scope="col">Observations</th><th scope="col">Development</th><th scope="col">Final test</th></tr></thead>
+        <tbody>{rows.map(r => <tr key={r.episode}><th scope="row">{r.episode}</th><td>{pm(r.dev.balanced.reward)}</td><td>{pm(r.test.balanced.reward)}</td></tr>)}</tbody></table>
+      <h3 className="cz-subhead">Assumptions compared</h3>
+      <ul className="cz-textlist">{Object.entries(report.simulator.assumptions).map(([k, v]) => <li key={k}><b>{k.replaceAll('_', ' ')}</b>: {v.note}</li>)}</ul>
+      {PLOTS.map(([file, label]) => <figure key={file}><img src={guidanceApi.learningArtifactUrl(file)} alt={label} style={{ maxWidth: '100%' }} /><figcaption className="cz-fine">{label}</figcaption></figure>)}
+      <h3 className="cz-subhead">Limitations</h3>
+      <ul className="cz-textlist">{report.limitations.map(l => <li key={l}>{l}</li>)}</ul>
+    </div>}
+  </Sheet>;
+}

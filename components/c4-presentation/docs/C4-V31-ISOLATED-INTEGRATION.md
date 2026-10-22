@@ -6,7 +6,7 @@ Status: development configuration only. The 3.0 application, its content, the tr
 Set `C4_GUIDANCE_CONTENT_SCHEMA=c4-guidance-content-3.1` and give the runtime its own directories:
 - `C4_PREPARED_CONTENT_DIRECTORY` must contain `prepared-content` and `v31`, for example `service/.local/prepared-content/frontend31-<time>/v31`.
 - `C4_WORKSPACE_DATABASE` should be a new file. Do not reuse a 3.0 database.
-- Do not set `C4_PP1_POLICY_ENABLED`. A 3.1 runtime refuses any policy at start-up.
+- A policy is optional. With `C4_PP1_POLICY_ENABLED=true` the 3.1 runtime needs its own `pp1-learning` folder and only accepts a 3.1 checkpoint (see `C4-RUN-AND-REPRODUCE.md`). A 3.0 store or checkpoint is refused.
 
 ## What is versioned
 | Item | 3.0 (unchanged default) | 3.1 (isolated) |
@@ -33,10 +33,5 @@ Set `C4_GUIDANCE_CONTENT_SCHEMA=c4-guidance-content-3.1` and give the runtime it
 - The earlier unreviewed drafts are kept in `research/data/guidance/fictional-v31-candidates/`.
 - Official procedures have no 3.1 content and stay on source fallback (4 feasible configurations each).
 
-## Next steps for a fresh compatible Shared LinTS model (not done here)
-1. Make `features.py` accept a version: build `SPEC` with `FEATURE_SCHEMA31` and `ACTION_SCHEMA31` so the encoder produces `FEATURE_FINGERPRINT31`. Keep the 525 structure unless a research change is approved separately.
-2. Add a 3.1 policy store whose manifest is `manifest31()`, in a new directory such as `service/.local/pp1-learning/v31-...`. Start from the prior; never load a 3.0 posterior.
-3. Let `Flavour` for 3.1 set `supports_policy=True` only once that store exists and its manifest check passes; keep the start-up refusal until then.
-4. Put `config_key31` and `feasibility_fingerprint` into stored decisions so decisions are tied to 3.1 meanings.
-5. Re-derive the synthetic evaluation for 3.1 (new scenarios, since D3 means something new), keep the 3.0 results as separate evidence, then evaluate against the same baselines.
-6. Review the official procedures' source fidelity before drafting any 3.1 content for them.
+## Policy status (updated)
+The fresh 3.1-compatible Shared LinTS policy now exists (`policy.PolicyProfile` plus `v31_pipeline.PROFILE_31`), was trained on the 3.1 synthetic study and is wired into the runtime. See `PP1-V31-RESULTS.md`, `C4-ARCHITECTURE.md` and `C4-RUN-AND-REPRODUCE.md`. The 3.0 posterior, checkpoints and results remain untouched and cannot load into 3.1.

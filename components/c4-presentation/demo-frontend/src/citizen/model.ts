@@ -48,8 +48,12 @@ export function formatAmount(f: { value?: number; currency?: string }): string {
 export function entryOf(doc: Doc, id: string): NavigationEntry | undefined { return doc.navigation.entries.find(e => e.action_id === id); }
 export function byId(doc: Doc, id: string): RenderedAction | undefined { return doc.actions.find(a => a.id === id); }
 
+/** Fictional examples carry a "Synthetic demo:" prefix in their data; the card already says the example is fictional. */
+export const plainName = (name: string) => name.replace(/^Synthetic demo: /, '');
+
 export function stageName(doc: Doc, fact: ScopedFact): string | null {
-  return doc.stages.find(s => s.service_id === (fact.stage_id ?? fact.service_id))?.name ?? null;
+  const name = doc.stages.find(s => s.service_id === (fact.stage_id ?? fact.service_id))?.name;
+  return name ? plainName(name) : null;
 }
 
 /** Where a fact came from, in words. A stage fee is never presented as payable at a particular step. */

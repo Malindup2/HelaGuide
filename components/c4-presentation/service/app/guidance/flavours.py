@@ -12,6 +12,7 @@ from app.guidance.content import GuidanceContent
 from app.guidance.content_v31 import SCHEMA31, GuidanceContent31, evaluate31
 from app.guidance.demo import install_fictional_content
 from app.guidance.feasibility import evaluate
+from app.guidance.policy import PROFILE_30
 from app.guidance.registry import CONTENT_SCHEMA, ContentRegistry, cache_key
 
 
@@ -30,13 +31,14 @@ class Flavour:
     config_key: Callable
     feasibility_fingerprint: Callable | None
     supports_policy: bool
+    policy_profile: Any = None
     policy_manifest: Callable | None = None
 
 
 FLAVOUR_30 = Flavour("3.0", CONTENT_SCHEMA, ACTION_SCHEMA, "c4-render-plan-3.0", GuidanceContent, evaluate, compose, ContentRegistry, cache_key,
-                     install_fictional_content, lambda c: c.key, None, True)
+                     install_fictional_content, lambda c: c.key, None, True, PROFILE_30)
 FLAVOUR_31 = Flavour("3.1", SCHEMA31, p31.ACTION_SCHEMA31, p31.RENDER_SCHEMA31, GuidanceContent31, evaluate31, p31.compose31, p31.ContentRegistry31,
-                     p31.cache_key31, p31.install_fictional_content31, p31.config_key31, p31.feasibility_fingerprint, False, p31.manifest31)
+                     p31.cache_key31, p31.install_fictional_content31, p31.config_key31, p31.feasibility_fingerprint, True, p31.PROFILE_31, p31.manifest31)
 
 
 def by_content_schema(value: str | None) -> Flavour:

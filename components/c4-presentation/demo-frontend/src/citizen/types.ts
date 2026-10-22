@@ -128,3 +128,16 @@ export interface InspectorRecord {
   features: unknown; sampled_scores: unknown; policy: unknown; posterior_updates: number; scoring_status: string;
   pp2_history_adjustment: string; visibility_policy: unknown; note: string;
 }
+
+export interface Interval { mean: number; ci95_half_width: number | null; n_seeds: number; min: number; max: number }
+export type RewardBlock = Record<'reward' | 'regret' | 'standard' | 'minimal' | 'maximal' | 'fixed_best' | 'random' | 'oracle', Interval> & { greedy?: Interval };
+export interface LearningAggregate {
+  variant: string; training_assumption: string; episode: number; n_seeds: number;
+  dev: Record<string, RewardBlock | Interval | number> & { balanced: RewardBlock }; test: Record<string, RewardBlock | Interval | number> & { balanced: RewardBlock };
+}
+/** Completed synthetic study (c4-pp1-experiment-3.1). Synthetic evaluation only; never real-citizen evidence. */
+export interface LearningReport {
+  schema: string; label: string; feature_schema: string; seeds: number[]; budgets_per_independent_run: number[]; limitations: string[];
+  splits: { train_procedures: string[]; dev_procedures: string[]; test_unseen_procedures: string[]; dev_cases: number; test_cases: number };
+  simulator: { schema: string; assumptions: Record<string, { note: string }> }; aggregates: LearningAggregate[];
+}

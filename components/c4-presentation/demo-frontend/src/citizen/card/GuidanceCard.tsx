@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Configuration, EventBody, GuidanceResponse, RatingReason, RenderedAction, Route, RouteOption } from '../types';
 import type { Layer } from '../model';
-import { byId, entryOf, headingOf, layersOf, originOf, paragraphs, phaseGroups, phaseOf, procedureFacts } from '../model';
+import { byId, entryOf, headingOf, layersOf, originOf, paragraphs, phaseGroups, phaseOf, plainName, procedureFacts } from '../model';
 import { ChevronIcon, ExpandIcon, InfoIcon, ListIcon, SlidersIcon, Sheet } from '../ui';
 import { Facts, Marker, SourceWording, StepBody } from './StepParts';
 import RouteChoice from './Routes';
@@ -157,7 +157,7 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
 
   return <section ref={root} className="cz" aria-label="Procedural guidance" data-origin={origin.kind} data-kind={selection.kind} data-busy={busy || undefined}>
     <header className="cz-head">
-      <div className="cz-titlerow"><h2>{response.procedure_title}</h2>
+      <div className="cz-titlerow"><h2>{plainName(response.procedure_title)}</h2>
         <span className={`cz-origin cz-origin-${origin.kind}`} title={origin.note}>{origin.label}</span></div>
       <p className="cz-meta">{agencies.join(' · ')}{agencies.length > 0 && ' · '}<span>{doc.synthetic ? 'Fictional example, not an official service' : 'Official-source snapshot, not live or independently verified'}</span></p>
       <div className="cz-tools">

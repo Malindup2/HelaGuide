@@ -10,6 +10,7 @@ from pathlib import Path
 from app.guidance import features
 from app.guidance.catalogue import CATALOGUE, Configuration, Constraints
 from app.guidance.content_v31 import SCHEMA31, GuidanceContent31, evaluate31, validate_content31
+from app.guidance.policy import PolicyProfile
 from app.guidance.sources import ProcedureSource, digest
 
 ACTION_SCHEMA31 = "c4-scaffolds-v3.1"
@@ -34,6 +35,9 @@ def manifest31(variant="525", *, exploration=1.0):
     from app.guidance import policy
     return {**policy.manifest(variant, exploration=exploration), "action": ACTION_SCHEMA31, "features": FEATURE_SCHEMA31,
             "feature_fingerprint": FEATURE_FINGERPRINT31, "content": SCHEMA31}
+
+
+PROFILE_31 = PolicyProfile("3.1", manifest31, ACTION_SCHEMA31, FEATURE_SCHEMA31, FEATURE_FINGERPRINT31, config_key31)
 
 
 def cache_key31(source: ProcedureSource, language: str) -> str:

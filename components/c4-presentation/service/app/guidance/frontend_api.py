@@ -23,7 +23,7 @@ def register_routes(app):
         result=api()
         return {'schema_version':API_SCHEMA,'action_schema':result.flavour.action_schema,'content_schema':result.flavour.content_schema,'nominal_configuration_count':96,
                 'standard_guidance_available':True,'research_previews_enabled':result.research_enabled,
-                'personalized_selection_available':result.policy is not None,'encoder_status':'c4-features-pp1-1.0-525' if result.policy else 'approved_525_policy_disabled',
+                'personalized_selection_available':result.policy is not None,'encoder_status':result.policy.profile.encoder_schema if result.policy else 'approved_525_policy_disabled',
                 'policy':result.policy.status() if result.policy else None,'history_adjustment':'deferred_to_PP2',
                 'pp1_remaining_requirements':[] if result.policy else ['enable_isolated_PP1_policy'],
                 'visibility_policy':result.visibility_policy,'contracts':'/openapi.json'}
@@ -59,7 +59,7 @@ def register_routes(app):
         from pathlib import Path
         from fastapi.responses import FileResponse
         learning_report()
-        if artifact not in ('learning.svg','baselines.svg','regret.svg','distribution.svg','ablation.svg','constraints.svg','report.html'):
+        if artifact not in ('learning.svg','baselines.svg','regret.svg','distribution.svg','ablation.svg','constraints.svg','report.html','learning-curve-dev.png','learning-curve-test.png','sensitivity-test.png','families-test.png','selection-mismatch.png','summary.md'):
             raise HTTPException(404,'Unknown learning artifact')
         path=Path(api().experiment_directory)/artifact
         if not path.is_file():raise HTTPException(404,'Artifact unavailable; generate plots first')

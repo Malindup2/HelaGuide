@@ -15,11 +15,14 @@ export type SheetVariant = 'bottom' | 'panel' | 'modal';
 /** One accessible dialog. Bottom sheet on phones, side panel or centred modal on wide screens. Focus returns on close. */
 export function Sheet({ title, onClose, children, variant = 'bottom' }: { title: string; onClose: () => void; children: ReactNode; variant?: SheetVariant }) {
   const ref = useRef<HTMLDialogElement>(null);
+  const opener = useRef<HTMLElement | null>(null);
   useEffect(() => {
-    const dialog = ref.current, previous = document.activeElement as HTMLElement | null;
+    const dialog = ref.current;
     if (!dialog) return;
+    // Remember the control that opened the sheet once. React StrictMode replays this effect, and a second read would see the sheet's own focus.
+    opener.current ??= document.activeElement as HTMLElement | null;
     if (typeof dialog.showModal === 'function') { if (!dialog.open) dialog.showModal(); } else dialog.setAttribute('open', '');
-    return () => { previous?.focus?.(); };
+    return () => { if (opener.current?.isConnected) opener.current.focus(); };
   }, []);
   return <dialog ref={ref} className={`cz-sheet cz-sheet-${variant}`} aria-label={title} onClose={onClose} onCancel={onClose}
     onClick={e => { if (e.target === ref.current) onClose(); }}>

@@ -171,22 +171,18 @@ def test_fictional_3_1_counts_after_internal_review(running):
                 assert any(c['feasible'] and c['configuration']['explanation'] == e and c['configuration']['disclosure'] == d for c in availability['candidates'])
 
 
-def test_personalized_selection_is_unavailable_and_never_reuses_a_3_0_policy(running):
+def test_personalized_selection_is_unavailable_without_a_policy_and_never_reuses_a_3_0_policy(running):
     client, runtime = running
     result = request(client, guest(client), mode='personalized')
     assert result.status_code == 503 and result.json()['detail']['code'] == 'revised_policy_unavailable'
-    assert 'content-3.1' in result.json()['detail']['message'] and result.json()['detail']['action_schema'] == ACTION_SCHEMA31
+    assert result.json()['detail']['action_schema'] == ACTION_SCHEMA31
     assert not runtime.state['decisions']
 
 
-def test_policy_options_are_refused_for_3_1_and_flavours_cannot_be_mixed(entries, tmp_path):
+def test_flavours_cannot_be_mixed(entries):
     directory = C4 / 'service' / '.local' / 'prepared-content' / 'v31-tests' / uuid4().hex[:8] / 'v31'
     runtime = WorkspaceRuntime(procedures=entries)
     try:
-        with pytest.raises(ValueError, match='no PP1 policy is compatible'):
-            with TestClient(create_app(runtime=runtime, workspace=True, prepared_content_options={'directory': directory, 'demo_fixtures': True, 'flavour': FLAVOUR_31},
-                                       guidance_api_options={'flavour': FLAVOUR_31, 'policy_options': {'directory': str(tmp_path)}})):
-                pass
         with pytest.raises(ValueError, match='same content schema'):
             with TestClient(create_app(runtime=runtime, workspace=True, prepared_content_options={'directory': directory, 'demo_fixtures': True, 'flavour': FLAVOUR_31},
                                        guidance_api_options={'flavour': FLAVOUR_30})):
@@ -232,4 +228,4 @@ def test_manifest_versions_are_enforced_not_bypassed():
 
 def test_default_runtime_is_still_3_0(entries):
     assert FLAVOUR_30.content_schema == 'c4-guidance-content-3.0' and FLAVOUR_30.action_schema == 'c4-scaffolds-v3.0' and FLAVOUR_30.supports_policy
-    assert not FLAVOUR_31.supports_policy and FLAVOUR_31.policy_manifest()['content'] == 'c4-guidance-content-3.1'
+    assert FLAVOUR_31.supports_policy and FLAVOUR_31.policy_profile.name == '3.1' and FLAVOUR_31.policy_manifest()['content'] == 'c4-guidance-content-3.1'

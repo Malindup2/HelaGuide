@@ -1,0 +1,417 @@
+{
+  "label": "SYNTHETIC-TRAINED MODEL; decisions are genuine model selections, not previews",
+  "checkpoint": "seed-51-525-n5000.npz",
+  "policy_start": {
+    "posterior_revision": 5000,
+    "training_provenance": "synthetic",
+    "accepted_feedback_count": 0,
+    "manifest_fingerprint": "c6a9dc91aa4acb1a0f901a9018465d84201c8cf5b96afe5f3f1433b65695bb59"
+  },
+  "A_guest": {
+    "kind": "standard",
+    "configuration": {
+      "navigation": "overview",
+      "explanation": "concise",
+      "disclosure": "off",
+      "relationships": "none",
+      "recap": "off",
+      "segmentation": "off"
+    },
+    "feasible": 96,
+    "context": {
+      "familiarity": null,
+      "confidence": null,
+      "preferences": {}
+    },
+    "procedure": "synthetic-practice-v2",
+    "learning_eligible": false,
+    "controls": {
+      "configuration_adjustment": false,
+      "feedback": false,
+      "research_inspection": true
+    },
+    "note": "standard guidance, no support control, no feedback"
+  },
+  "B_compact_candidate": {
+    "profile": "familiarity 5, confidence 5",
+    "linear": {
+      "kind": "shared_gaussian_lints",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "off",
+        "relationships": "map",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "feasible": 48,
+      "context": {
+        "familiarity": 5,
+        "confidence": 5,
+        "preferences": {}
+      },
+      "procedure": "synthetic-linear-v1",
+      "learning_eligible": true,
+      "top_sampled": [
+        {
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "sampled_score": 0.5324,
+          "posterior_mean": 0.3927
+        },
+        {
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "sampled_score": 0.5074,
+          "posterior_mean": 0.4121
+        },
+        {
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "sampled_score": 0.5013,
+          "posterior_mean": 0.423
+        }
+      ],
+      "posterior_revision": 5000,
+      "feasibility_fingerprint": "200040433ce4c77e"
+    },
+    "birth_copy_official": {
+      "kind": "shared_gaussian_lints",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "feasible": 4,
+      "context": {
+        "familiarity": 5,
+        "confidence": 5,
+        "preferences": {}
+      },
+      "procedure": "official-birth_copy-v3",
+      "learning_eligible": true,
+      "top_sampled": [
+        {
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "sampled_score": 0.4955,
+          "posterior_mean": 0.4508
+        },
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "sampled_score": 0.4624,
+          "posterior_mean": 0.4398
+        },
+        {
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "sampled_score": 0.4615,
+          "posterior_mean": 0.4463
+        }
+      ],
+      "posterior_revision": 5000,
+      "feasibility_fingerprint": "eefb54c6e4a69dc3"
+    }
+  },
+  "C_rich_candidate": {
+    "profile": "familiarity 1, confidence 1",
+    "practice": {
+      "kind": "shared_gaussian_lints",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "map",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "feasible": 96,
+      "context": {
+        "familiarity": 1,
+        "confidence": 1,
+        "preferences": {}
+      },
+      "procedure": "synthetic-practice-v2",
+      "learning_eligible": true,
+      "top_sampled": [
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "sampled_score": 0.6837,
+          "posterior_mean": 0.5446
+        },
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "sampled_score": 0.6813,
+          "posterior_mean": 0.5093
+        },
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "sampled_score": 0.6762,
+          "posterior_mean": 0.5624
+        }
+      ],
+      "posterior_revision": 5000,
+      "feasibility_fingerprint": "ca7a2972617924af"
+    }
+  },
+  "D_same_citizen_other_procedure": {
+    "profile": "same citizen (confidence 1); familiarity 4 for the linear procedure, unset for the conditional one",
+    "linear_familiarity_4": {
+      "kind": "shared_gaussian_lints",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "feasible": 48,
+      "context": {
+        "familiarity": 4,
+        "confidence": 1,
+        "preferences": {}
+      },
+      "procedure": "synthetic-linear-v1",
+      "learning_eligible": true,
+      "top_sampled": [
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "sampled_score": 0.6507,
+          "posterior_mean": 0.4523
+        },
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "sampled_score": 0.6158,
+          "posterior_mean": 0.4576
+        },
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "sampled_score": 0.5874,
+          "posterior_mean": 0.4727
+        }
+      ],
+      "posterior_revision": 5000,
+      "feasibility_fingerprint": "200040433ce4c77e"
+    },
+    "conditional_unset_familiarity": {
+      "kind": "shared_gaussian_lints",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "feasible": 96,
+      "context": {
+        "familiarity": null,
+        "confidence": 1,
+        "preferences": {}
+      },
+      "procedure": "synthetic-conditional-v1",
+      "learning_eligible": true,
+      "top_sampled": [
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "sampled_score": 0.6579,
+          "posterior_mean": 0.5836
+        },
+        {
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "sampled_score": 0.6337,
+          "posterior_mean": 0.503
+        },
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "sampled_score": 0.6246,
+          "posterior_mean": 0.5246
+        }
+      ],
+      "posterior_revision": 5000,
+      "feasibility_fingerprint": "e5ada24d7e4eb675"
+    }
+  },
+  "E_feedback": {
+    "selection": {
+      "kind": "shared_gaussian_lints",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "feasible": 96,
+      "context": {
+        "familiarity": 1,
+        "confidence": 1,
+        "preferences": {}
+      },
+      "procedure": "synthetic-practice-v2",
+      "learning_eligible": true,
+      "top_sampled": [
+        {
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "sampled_score": 0.7227,
+          "posterior_mean": 0.6163
+        },
+        {
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "sampled_score": 0.7088,
+          "posterior_mean": 0.5148
+        },
+        {
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "sampled_score": 0.6103,
+          "posterior_mean": 0.4716
+        }
+      ],
+      "posterior_revision": 5000,
+      "feasibility_fingerprint": "ca7a2972617924af"
+    },
+    "revision_before": 5000,
+    "receipt": {
+      "reward": 1,
+      "policy_updated": true,
+      "learning_eligible": true
+    },
+    "revision_after": 5001,
+    "idempotent_retry_same_receipt": true,
+    "second_rating_status": 409,
+    "manual_adjustment_kind": "manual_adjustment",
+    "manual_rating_updated_policy": false,
+    "revision_after_manual": 5001
+  },
+  "policy_end": {
+    "posterior_revision": 5001,
+    "accepted_feedback_count": 1,
+    "training_provenance": "synthetic"
+  }
+}

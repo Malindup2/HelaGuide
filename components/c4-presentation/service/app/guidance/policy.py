@@ -6,7 +6,9 @@ import hashlib
 import io
 import json
 import sqlite3
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Callable
 from uuid import uuid4
 import numpy as np
 from scipy.linalg import solve_triangular
@@ -30,9 +32,24 @@ def manifest(variant="525", *, exploration=1.0):
             "noise": 1.0, "exploration": exploration, "reward_center": 0.5}
 
 
+@dataclass(frozen=True)
+class PolicyProfile:
+    """Which meanings a policy is bound to. The default is the historical 3.0 profile; the 3.1 pipeline supplies its own."""
+    name: str
+    manifest: Callable
+    action_schema: str
+    encoder_schema: str
+    feature_fingerprint: str
+    config_key: Callable
+
+
+PROFILE_30 = PolicyProfile("3.0", manifest, ACTION_SCHEMA, features.SCHEMA, features.FINGERPRINT, lambda c: c.key)
+
+
 class Model:
-    def __init__(self, variant="525", *, exploration=1.0):
-        self.manifest = manifest(variant, exploration=exploration)
+    def __init__(self, variant="525", *, exploration=1.0, profile=PROFILE_30):
+        self.profile = profile
+        self.manifest = profile.manifest(variant, exploration=exploration)
         self.kernel = _GaussianPosterior(features.VARIANTS[variant], PolicyConfig(exploration_scale=exploration))
 
     @property
@@ -45,10 +62,10 @@ class Model:
         return stream.getvalue()
 
     @classmethod
-    def restore(cls, blob, expected=None):
+    def restore(cls, blob, expected=None, profile=PROFILE_30):
         with np.load(io.BytesIO(blob), allow_pickle=False) as data:
             meta = json.loads(str(data["manifest"]))
-            model = cls(meta["variant"], exploration=meta["exploration"])
+            model = cls(meta["variant"], exploration=meta["exploration"], profile=profile)
             if meta != model.manifest or expected is not None and meta != expected:
                 raise ValueError("incompatible PP1 checkpoint manifest")
             a = np.array(data["precision"], dtype=float); b = np.array(data["b"], dtype=float)
@@ -85,7 +102,8 @@ class PolicyStore:
     SQLite rollback journals (never WAL) permit an atomic attached-database commit.
     Every operation reloads under BEGIN IMMEDIATE; no stale in-memory model writer.
     """
-    def __init__(self, directory, *, seed=0, mode="simulation", checkpoint=None):
+    def __init__(self, directory, *, seed=0, mode="simulation", checkpoint=None, profile=PROFILE_30, exploration=1.0):
+        self.profile = profile
         directory = Path(directory).resolve()
         if not directory.is_relative_to(C4_ROOT) or "pp1-learning" not in directory.parts:
             raise ValueError("PP1 model needs isolated C4/pp1-learning storage")
@@ -93,7 +111,7 @@ class PolicyStore:
         if type(seed) is not int or not 0 <= seed < 2**63: raise ValueError("invalid seed")
         directory.mkdir(parents=True, exist_ok=True)
         self.path = directory / "policy.sqlite3"
-        self.expected = manifest()
+        self.expected = profile.manifest(exploration=exploration)
         self.seed, self.mode = seed, mode
         initial = Path(checkpoint).resolve() if checkpoint else None
         if initial and not initial.is_relative_to(C4_ROOT): raise ValueError("checkpoint outside C4")
@@ -109,10 +127,10 @@ class PolicyStore:
             row = db.execute("SELECT body FROM pp1_manifest").fetchone()
             if row and json.loads(row[0]) != expected: raise ValueError("existing PP1 state manifest differs; choose a fresh directory")
             if not row:
-                model = Model.restore(initial_blob, self.expected) if initial_blob else Model()
+                model = Model.restore(initial_blob, self.expected, profile) if initial_blob else Model(exploration=exploration, profile=profile)
                 db.execute("INSERT INTO pp1_manifest VALUES (?)", (json.dumps(expected),))
                 db.execute("INSERT INTO posterior VALUES (1,?,0,?,?)", (model.state(), "pp1-run:" + uuid4().hex, model.revision))
-            Model.restore(db.execute("SELECT state FROM posterior").fetchone()[0], self.expected)
+            Model.restore(db.execute("SELECT state FROM posterior").fetchone()[0], self.expected, profile)
 
     def attach(self, db):
         if "pp1" not in {r[1] for r in db.execute("PRAGMA database_list")}:
@@ -121,12 +139,12 @@ class PolicyStore:
     def _load(self, db):
         self.attach(db)
         row = db.execute("SELECT state,counter,run,initial_revision FROM pp1.posterior WHERE id=1").fetchone()
-        return Model.restore(row[0], self.expected), row
+        return Model.restore(row[0], self.expected, self.profile), row
 
     def status(self):
         with sqlite3.connect(self.path) as db:
             blob, counter, run, initial_revision = db.execute("SELECT state,counter,run,initial_revision FROM posterior WHERE id=1").fetchone()
-            model = Model.restore(blob, self.expected)
+            model = Model.restore(blob, self.expected, self.profile)
             return {"manifest": self.expected, "manifest_fingerprint": digest(self.expected), "policy_run_id": run,
                     "posterior_revision": model.revision, "accepted_feedback_count": db.execute("SELECT count(*) FROM updates").fetchone()[0],
                     "initial_training_revision": initial_revision, "decision_count": counter,
@@ -137,21 +155,21 @@ class PolicyStore:
         model, row = self._load(db)
         counter = row[1]
         seed = int(np.random.SeedSequence([self.seed, counter]).generate_state(1, dtype=np.uint64)[0])
-        matrix = np.array([features.encode(measurements, context, c) for c in configs])
+        matrix = np.array([features.encode(measurements, context, c, self.expected["variant"]) for c in configs])
         index, scores, means, std = model.score(matrix, seed)
         db.execute("UPDATE pp1.posterior SET counter=counter+1 WHERE id=1")
         provenance = "synthetic" if model.revision else "fresh_prior"
         if self.mode == "participant" and model.revision > row[3]:
             provenance = "mixed_explicitly_versioned" if row[3] else "participant"
-        evidence = {"algorithm": "shared_gaussian_lints", "action_schema": ACTION_SCHEMA,
-            "encoder_schema": features.SCHEMA, "model_manifest_fingerprint": digest(model.manifest),
+        evidence = {"algorithm": "shared_gaussian_lints", "action_schema": self.profile.action_schema,
+            "encoder_schema": self.profile.encoder_schema, "model_manifest_fingerprint": digest(model.manifest),
             "policy_run_id": row[2], "posterior_revision": model.revision, "decision_id": "decision:" + uuid4().hex,
             "training_provenance": provenance}
-        record = {"policy": evidence, "seed": seed, "decision_number": counter, "feature_fingerprint": features.FINGERPRINT,
+        record = {"policy": evidence, "seed": seed, "decision_number": counter, "feature_fingerprint": self.profile.feature_fingerprint,
             "selected_features": matrix[index].tolist(), "selected_feature_digest": digest(matrix[index].tolist()),
-            "candidates": [{"configuration": c.model_dump(), "id": c.key, "sampled_score": float(s), "posterior_mean": float(m), "posterior_std": float(v)}
+            "candidates": [{"configuration": c.model_dump(), "id": self.profile.config_key(c), "sampled_score": float(s), "posterior_mean": float(m), "posterior_std": float(v)}
                            for c, s, m, v in zip(configs, scores, means, std)],
-            "manifest": model.manifest, "selected_id": configs[index].key}
+            "manifest": model.manifest, "selected_id": self.profile.config_key(configs[index])}
         return configs[index], record
 
     def update(self, db, journey, event_id, reward):

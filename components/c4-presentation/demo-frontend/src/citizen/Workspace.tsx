@@ -11,7 +11,7 @@ import { useJourney } from './useJourney';
 import { useApiStatus } from './useApiStatus';
 import GuidanceCard from './card/GuidanceCard';
 import ProfileContext from './ProfileContext';
-import { CompareSheet, InspectorSheet, PreviewChooser } from './Research';
+import { CompareSheet, EvidenceSheet, InspectorSheet, PreviewChooser } from './Research';
 import { MenuIcon } from './ui';
 import type { ApiStatus, Availability, Configuration } from './types';
 import './citizen.css';
@@ -31,7 +31,7 @@ function friendly(e: GuidanceError): string {
 
 function Stage({ active, procedure, status, research, onSession }: { active: ActiveIdentity; procedure: ProcedureSummary; status: ApiStatus | null; research: boolean; onSession: Parameters<typeof ProfileContext>[0]['onSession'] }) {
   const sessionId = active.session.session_id, journey = useJourney({ sessionId, procedureId: procedure.procedure_id, status });
-  const [compare, setCompare] = useState(false), [inspect, setInspect] = useState(false), [fetched, setFetched] = useState<Availability | null>(null);
+  const [compare, setCompare] = useState(false), [inspect, setInspect] = useState(false), [evidence, setEvidence] = useState(false), [fetched, setFetched] = useState<Availability | null>(null);
   const personalised = active.kind === 'profile' && active.profile.personalization_enabled;
   const { response } = journey, previewsOn = research && !!status?.research_previews_enabled;
   useEffect(() => {
@@ -64,9 +64,11 @@ function Stage({ active, procedure, status, research, onSession }: { active: Act
       <PreviewChooser availability={availability} busy={journey.busy} onStart={c => void journey.start({ kind: 'preview', configuration: c })} />
       <div className="cz-fbrow">
         <button type="button" className="cz-chip" disabled={!response || !response.controls.research_inspection} onClick={() => setInspect(true)}>Open inspector</button>
-        <button type="button" className="cz-chip" onClick={() => setCompare(true)}>Compare standard and preview</button></div>
+        <button type="button" className="cz-chip" onClick={() => setCompare(true)}>Compare standard and preview</button>
+        <button type="button" className="cz-chip" onClick={() => setEvidence(true)}>Learning evidence</button></div>
     </section>}
     {inspect && response && journey.token() && <InspectorSheet journeyId={response.journey_id} token={journey.token()!} onClose={() => setInspect(false)} />}
+    {evidence && <EvidenceSheet onClose={() => setEvidence(false)} />}
     {compare && <CompareSheet sessionId={sessionId} procedureId={procedure.procedure_id} previewConfig={lastConfig} onClose={() => setCompare(false)} />}
   </section>;
 }

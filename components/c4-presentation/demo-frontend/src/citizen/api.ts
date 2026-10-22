@@ -1,6 +1,6 @@
 import { API_BASE } from '../api/client';
 import type {
-  ApiStatus, Availability, Configuration, EffectiveContext, EventBody, GuidanceResponse, InspectorRecord, ProcedureInfo, RatingReason, Receipt,
+  ApiStatus, Availability, Configuration, EffectiveContext, EventBody, GuidanceResponse, InspectorRecord, LearningReport, ProcedureInfo, RatingReason, Receipt,
 } from './types';
 
 const BASE = '/workspace/guidance';
@@ -73,6 +73,8 @@ export class GuidanceApi {
   rate(id: string, token: string, body: { event_id: string; view_id: string; rating: 'fits' | 'does_not_fit'; reasons: RatingReason[] }) {
     return this.request<Receipt>(`/journeys/${encodeURIComponent(id)}/ratings`, 'POST', { token, body });
   }
+  learning(signal?: AbortSignal) { return this.request<LearningReport>('/research/learning', 'GET', { signal }); }
+  learningArtifactUrl(name: string) { return `${this.baseUrl}${BASE}/research/learning/${name}`; }
   inspector(id: string, token: string, signal?: AbortSignal) { return this.request<InspectorRecord>(`/journeys/${encodeURIComponent(id)}/inspector`, 'GET', { token, signal }); }
   /** Saved service familiarity, navigation confidence and accessibility, through the existing profile services. */
   patchProfileContext(sessionId: string, body: { request_id: string; expected_identity_revision: number; familiarity?: { service_id: string; score: number | null; source: 'self_reported' }[]; confidence?: number | null; accessibility?: { allow_relationship_visuals: boolean; allow_collapsed_content: boolean; allow_guided_navigation: boolean } }) {

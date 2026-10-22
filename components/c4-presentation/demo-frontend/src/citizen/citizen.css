@@ -16,7 +16,7 @@ body { background: var(--cz-paper); color: var(--cz-ink); }
 button, summary { font: inherit; color: inherit; cursor: pointer; }
 button:disabled { opacity: .45; cursor: not-allowed; }
 .gc-icon { width: 15px; height: 15px; flex: none; }
-.cz-link { border: 0; background: none; padding: 2px 0; font-size: .8125rem; text-decoration: underline; text-underline-offset: 3px; text-align: left; }
+.cz-link { display: inline-flex; align-items: center; min-height: 24px; border: 0; background: none; padding: 2px 0; font-size: .8125rem; text-decoration: underline; text-underline-offset: 3px; text-align: left; }
 .cz-btn { min-height: 40px; padding: 0 16px; border: 1px solid var(--cz-ink); border-radius: 10px; background: var(--cz-ink); color: #fff; font-weight: 600; font-size: .875rem; }
 .cz-btn-quiet { background: #fff; color: var(--cz-ink); border-color: var(--cz-grey-line); }
 .cz-btn-quiet:hover:not(:disabled) { background: var(--cz-orange-wash); border-color: var(--cz-orange-line); }
