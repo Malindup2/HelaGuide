@@ -70,14 +70,19 @@ JOURNEYS = [
             note="does NOT require svc:passport first -- you already hold the passport being altered"),
     Journey("J9", "How do I register for VAT?",
             "svc:value_added_tax",
-            ["svc:nic", "svc:taxpayer_identification_number_tin", "svc:value_added_tax"],
-            note="real-world processes usually need a TIN first; checking whether the graph agrees"),
+            ["svc:birth_certificate", "svc:nic", "svc:taxpayer_identification_number_tin",
+             "svc:value_added_tax"],
+            note="birth_certificate is transitively required: VAT needs a TIN, and a TIN needs an "
+                 "nic, which itself needs a birth certificate. Real-world processes usually need a "
+                 "TIN first; checking whether the graph agrees"),
     Journey("J10", "I need a taxpayer identification number",
             "svc:taxpayer_identification_number_tin",
-            ["svc:nic", "svc:taxpayer_identification_number_tin"],
-            note="ground truth omits svc:passport even though the graph lists it as a prerequisite -- "
-                 "a citizen's TIN application needs the NIC; passport is realistically an alternate ID "
-                 "for foreign nationals, not a universal prerequisite"),
+            ["svc:birth_certificate", "svc:nic", "svc:taxpayer_identification_number_tin"],
+            note="birth_certificate is transitively required: a TIN needs an nic, and an nic needs "
+                 "a birth certificate. Ground truth omits svc:passport even though an earlier, now-fixed "
+                 "extraction bug had the graph listing it as a prerequisite -- a citizen's TIN "
+                 "application needs the NIC; passport is realistically an alternate ID for foreign "
+                 "nationals, not a universal prerequisite"),
 ]
 
 

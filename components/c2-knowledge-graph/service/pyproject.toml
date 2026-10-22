@@ -28,11 +28,11 @@ db = ["psycopg[binary]>=3.1"]
 graph = ["neo4j>=5.20"]
 # Stage 2 language-model extraction: pip install -e ".[extract,db]"
 extract = ["httpx>=0.27"]
+# Stage 4 community maintenance (Leiden clustering + value-change staleness): pip install -e ".[community,graph,extract,db]"
+community = ["python-igraph>=0.11", "leidenalg>=0.10"]
 # heavy research libraries: uncomment as you need them, install with .[research]
 research = [
     # "neo4j>=5.20",
-    # "python-igraph>=0.11",
-    # "leidenalg>=0.10",
 ]
 
 [tool.setuptools.packages.find]

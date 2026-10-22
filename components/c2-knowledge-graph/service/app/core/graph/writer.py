@@ -62,6 +62,10 @@ class WriteReport:
     same: int = 0
     failed: list[tuple[int, str]] = field(default_factory=list)
     by_predicate: dict[str, int] = field(default_factory=dict)
+    # Services whose fact set genuinely changed this run (a new fact, or a fact whose value
+    # changed) -- the input Stage 4's value-change trigger needs: which services to check for
+    # staleness even when no REQUIRES edge moved. "same" verdicts never add to this set.
+    changed_services: set[str] = field(default_factory=set)
 
     @property
     def written(self) -> int:
@@ -99,9 +103,28 @@ def _agency_id(name: str) -> str:
     return f"agency:{slug(name, 60)}"
 
 
+# Services are NOT merged by word overlap the way agencies are: a similarity scan over all
+# 186 real service IDs found 19 pairs sharing most of their words that are genuinely
+# DIFFERENT services ("death occurring in a hospital" vs "...in a house", Kandyan vs Muslim
+# marriage correction). A fuzzy matcher would wrongly collapse those. So this stays an
+# explicit, curated list -- add a pair only after confirming, the way the one entry below
+# was confirmed (the TVRS page and the IRD downloads page produced the same real service
+# under two section titles, with its prerequisites on one node and its documents on the
+# other).
+SERVICE_ALIASES: dict[str, str] = {
+    "svc:tourist_vat_refund_scheme_tvrs": "svc:tourist_vat_refund_scheme",
+}
+
+
+def canonical_service(service_id: str) -> str:
+    return SERVICE_ALIASES.get(service_id, service_id)
+
+
 def _write_fact(tx, f: dict) -> str:
     """One approved fact, one transaction. Returns 'new', 'same' or 'changed'."""
-    sid = f["service_id"]
+    sid = canonical_service(f["service_id"])
+    if sid != f["service_id"]:
+        f = dict(f, service_id=sid)
     tx.run("MERGE (s:Service {service_id: $sid})", sid=sid)
     tx.run("MERGE (p:SourcePage {url: $url})", url=f["source_url"])
 
@@ -239,6 +262,7 @@ class GraphWriter:
                 setattr(report, verdict, getattr(report, verdict) + 1)
                 if verdict != "same":
                     report.by_predicate[f["predicate"]] = report.by_predicate.get(f["predicate"], 0) + 1
+                    report.changed_services.add(canonical_service(f["service_id"]))
         return report
 
     def summary(self) -> dict:

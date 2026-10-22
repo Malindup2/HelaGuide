@@ -2,7 +2,8 @@
 
 Audited against the proposal (`SO1`–`SO5`, Table 3's evaluation metrics, FR/NFR tables) and
 `PLAN.md`'s own 70%-completeness definition. Last checked: **18 October 2026**, against the
-live graph (2,385 nodes, 3,762 relationships — verified by query, not estimated).
+live graph (2,532 nodes, 3,984 relationships, including 142 real `Community` nodes from the
+new SO3 mechanism — verified by query, not estimated).
 
 **Rule for this file:** a line only gets a ✅ when there is a real, checked number or a real,
 run command behind it. "The mechanism works" is not the same as "the target is met" — mark
@@ -16,9 +17,9 @@ those 🟡, not ✅.
 |---|---|---|---|---|
 | SO1 | Change classification | 95% accuracy, labelled test set, zero tokens on unchanged pages | ✅ **measured 18 Oct** — see `so1_classification.md` | **100% (9/9)**, 0 false positives |
 | SO2 | Typed extraction with provenance | 90%/80% precision-recall, <4,500 tokens/page | 🟡 **precision measured**, recall partial — see `so2_extraction.md` | **Precision 99.2% (123/124)**. Recall: 1 real miss found in a 2-of-10-page partial check, not yet a full number |
-| SO3 | Value-change summary regeneration | Zero stale facts, <10% rebuild cost | ⬜ **not in scope for PP2** — correctly deferred per `PLAN.md` §1 and the proposal's own Appendix B ("the real service graph does not yet exist") | Needs Leiden communities first — next milestone |
-| SO4 | Entity resolution + temporal versioning | 95% merge precision, 90% recall | ✅ **agency-level measured 18 Oct** — see `so4_entity_resolution.md`. 🟡 service-level: not built | **Agency: 100%/100% (3/3 merges correct)**. Service-level resolution doesn't exist — 1 real unmerged duplicate found (`tourist_vat_refund_scheme`) |
-| SO5 | Dependency-ordered workflow + evaluation | 85% exact match, 95% set match vs. ground truth, no LLM judge | ✅ **measured 18 Oct** — see `so5_workflow.md` | **Graph: 80%/80% (8/10)**, below target with 2 specific understood causes. **Lexical baseline: 0%/0%** |
+| SO3 | Value-change summary regeneration (**the proposal's actual novel claim**) | Zero stale facts, <10% rebuild cost | ✅ **built and measured 18 Oct** — see `so3_community_maintenance.md` | **0/20 stale (target: 0)**, 2.9% of a full-rebuild token cost (target: under 10%). Status-quo baseline (membership-delta only) left 20/20 stale on the same real events, same graph, same code path |
+| SO4 | Entity resolution + temporal versioning | 95% merge precision, 90% recall | ✅ **measured 18 Oct, both levels** — see `so4_entity_resolution.md` | **Agency: 100%/100% (3/3 merges correct)**. Service-level: `canonical_service()` built (curated alias list, not fuzzy — a similarity scan found 19 false positives), 1 real duplicate (`tourist_vat_refund_scheme`) fixed in code and retroactively merged in the live graph |
+| SO5 | Dependency-ordered workflow + evaluation | 85% exact match, 95% set match vs. ground truth, no LLM judge | ✅ **measured 18 Oct** — see `so5_workflow.md` | **Graph: 100%/100% (10/10)**, both targets cleared, after fixing 2 real bugs found during this evaluation (missing VAT→TIN edge, wrong TIN→passport edge). **Lexical baseline: 0%/0%** |
 
 ## 2. Evaluation metrics (Table 3)
 
@@ -26,10 +27,10 @@ those 🟡, not ✅.
 |---|---|
 | Token cost per update | ✅ **done 18 Oct** — 909,593 tokens / 244 pages total (real, B1-style); a real repeat-crawl event showed 57% of previously-seen pages cost zero tokens. See `token_cost_and_latency.md` for what this is and isn't (a real number, not a controlled B1/B2 ablation) |
 | Update latency | ✅ **done 18 Oct** — unchanged page 22.8ms median (no LLM call) vs changed page 11.8s median, ~500x apart. Real timings, see `token_cost_and_latency.md` |
-| Stale-fact count | ⬜ N/A until SO3 (deferred) |
-| Partition fidelity (ARI/NMI) | ⬜ N/A until SO3 (deferred) |
-| **Workflow correctness (exact/set match)** | ✅ **done 18 Oct** — graph 80%/80%, lexical baseline 0%/0%, see `so5_workflow.md` |
-| Query-side traversal latency/memory | 🟡 partial — `/v1/plan` measured once (153ms for a 3-step plan), not yet measured across varying graph sizes the way the proposal's Figure 5 does |
+| Stale-fact count | ✅ **done 18 Oct** — 0/20 with the trigger vs 20/20 without, same real events, see `so3_community_maintenance.md` |
+| Partition fidelity (ARI/NMI) | ⬜ **still not done** — needs a controlled re-cluster-vs-full-reference comparison at varying batch sizes, which the SO3 ablation above does not attempt (it tests staleness/cost, not partition quality) |
+| **Workflow correctness (exact/set match)** | ✅ **done 18 Oct** — graph 100%/100% (both targets cleared), lexical baseline 0%/0%, see `so5_workflow.md` |
+| Query-side traversal latency/memory | ✅ **done 18 Oct** — Appendix B.3 reproduced: the real `build_plan` DFS algorithm, on synthetic graphs of varying size (100–50,000 nodes), stays within 1.1x latency while a whole-graph alternative grows 758x over the same range. See `b3_traversal_cost.md`. The real `/v1/plan` endpoint's own single measured latency (153ms, 3-step plan, real Neo4j round-trips) stays in `token_cost_and_latency.md` — the two are not the same number and are not conflated |
 
 ## 3. Requirements worth a direct check
 
@@ -43,35 +44,54 @@ those 🟡, not ✅.
 | NFR9 | No personal/citizen data collected | ✅ true by construction — only public service facts |
 | NFR8 | Every fact carries source URL + retrieval timestamp | ✅ confirmed throughout — this was the whole grounding design |
 
-## 4. What's left, now that all six priority items have a real result
+## 4. What's left
 
 1. ~~Wire `/v1/plan` to the real graph.~~ ✅ done. Not yet behind the actual gateway
    container (`gateway/`) — only verified directly against the C2 service. Routing the
    gateway's own `/v1/plan` passthrough to this is a small remaining step.
-2. ~~Build ground-truth journeys, score exact/set match (SO5).~~ ✅ done — 80%/80%, 2 named
-   causes, both pointing at the same underlying problem (case/variant mixing and
-   free-text prerequisites not becoming edges).
+2. ~~Build ground-truth journeys, score exact/set match (SO5).~~ ✅ done — 100%/100%,
+   both real bugs found during scoring (missing VAT→TIN edge, wrong TIN→passport edge)
+   fixed in code and in the live graph, re-verified by re-running the scorer.
 3. ~~Measure SO1.~~ ✅ done — 100%, exceeds target.
 4. ~~Measure SO2.~~ 🟡 precision done (99.2%), recall only partially checked (2 of 10
    pages) — finishing the other 8 pages is the one real number still missing.
-5. ~~Measure SO4.~~ ✅ agency-level done (100%/100%). Service-level resolution doesn't
-   exist as a mechanism — building `canonical_service()` (mirroring `canonical_agency`)
-   would fix the one confirmed case (`tourist_vat_refund_scheme`) and is a scoped,
-   concrete next step, not yet started.
+5. ~~Measure SO4.~~ ✅ done, both levels — agency 100%/100%, service-level
+   `canonical_service()` built and the one confirmed case (`tourist_vat_refund_scheme`)
+   fixed in code and merged in the live graph.
 6. ~~Check NFR7.~~ ✅ checked — 2,385 of 4,000, stated as a known shortfall, not addressed
    today (see §3).
 
-**What's actually left to reach full coverage of this list:** finish SO2's recall check
-(8 more pages), and decide whether to build `canonical_service()` before 26 Oct or name it
-as a limitation for the report, same as NFR7.
+**What's actually left to reach full coverage of this list:**
+- Finish SO2's recall check (8 more pages) — the one real number still missing from
+  sections 1–3.
+- Wire the gateway container's `/v1/plan` passthrough to this service (item 1 above) —
+  currently only verified directly against the C2 service, not through `gateway/`.
+- FR14 cycle detection isn't yet exercised against a real cyclic case in this graph
+  (implemented, unverified — see §3).
+- FR16/C3 correction path is still `NotImplementedError`, correctly deferred — it's a
+  two-way integration point with C3, not solo work.
+- ~~Query-side traversal latency across varying graph sizes.~~ ✅ done — `b3_traversal_cost.md`,
+  reproducing Appendix B.3 against the real `build_plan` algorithm on synthetic graphs.
+- ~~Appendix B.2 / SO3 (the value-change trigger, the proposal's actual novel claim).~~
+  ✅ **built 18 Oct** — real Leiden clustering (`app/core/graph/community.py`), stable
+  membership-hash community identity, both staleness triggers, the escalation guard, all
+  real code, not scaffolding. See `so3_community_maintenance.md`: 0/20 stale with the
+  trigger vs 20/20 without, 2.9% of a full-rebuild token cost. 9 new tests
+  (`tests/test_community.py`), including 4 against the live graph.
+- NFR7 (≥4,000 nodes) stays a named, accepted shortfall at 2,385 unless a 5th department
+  is added before the deadline — explicitly not rushed, per the reasoning in §3.
 
-## 5. What's correctly NOT on this list
+## 5. What's still genuinely not done, now that SO3 exists
 
-Community detection, Leiden clustering, the real value-change staleness trigger, ARI/NMI,
-the escalation guard (FR12), and the B1/B2/B3 full baseline comparison. All of these need
-SO3 first, and SO3 is deferred to the next milestone by design — not a gap in PP2, a scope
-decision made before the proposal was even submitted (Appendix B.4: "the real service graph
-does not yet exist").
+- **Partition fidelity (ARI/NMI)** against Leiden's own reproducibility ceiling (§3.4) —
+  this needs running Leiden twice on the same graph and measuring agreement, then
+  comparing the incremental method's agreement to that ceiling. Not yet built.
+- **A controlled B1/B2 ablation at varying graph sizes** ("reported against B1 and B2 as a
+  function of graph size," Table 3) — the SO3 result above is one graph, one size, one
+  real run, not a scaling study.
+- **20 independently observed real value changes over time** — the SO3 ablation's 20
+  events are simulated (asserted directly, the same way a real write would report them),
+  not 20 separately re-run extraction passes. Stated plainly in `so3_community_maintenance.md`.
 
 ---
 

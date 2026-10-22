@@ -29,18 +29,19 @@ for b, v in zip(bars, values):
     ax.text(b.get_x() + b.get_width() / 2, v * 1.3, label, ha="center", fontsize=9.5)
 ax.text(0.5, 0.92, "~500x apart", transform=ax.transAxes, ha="center", fontsize=9, color="#52514e")
 
-# ---- panel 2: token cost, real repeat-crawl event ----
+# ---- panel 2: token cost, real repeat-crawl event, real with-and-without ablation ----
+# from research/experiments/crawler_ablation.py, run 67a7606f9c7b (236 pages, 19 Oct 2026)
 ax = axes[1]
-labels = ["If every previously-seen\npage were re-extracted", "What this component\nactually spent"]
-values = [134 * 3728 / 1000, 0]
+labels = ["Status quo\n(always extract)", "Proposed\n(fingerprint-gated)"]
+values = [1164.479, 494.779]
 colors = ["#b4b2a9", "#1d9e75"]
 bars = ax.bar(labels, values, color=colors, width=0.5)
 ax.set_ylabel("tokens (thousands)")
-ax.set_title("Token cost on one real repeat-crawl\n134 of 236 pages (57%) were unchanged")
+ax.set_title("Token cost on one real repeat-crawl\n57.5% fewer tokens, 236 pages, 134 unchanged")
 for b, v in zip(bars, values):
-    ax.text(b.get_x() + b.get_width() / 2, v + 10, f"{v:.0f}k" if v else "0", ha="center", fontsize=9.5)
+    ax.text(b.get_x() + b.get_width() / 2, v + 20, f"{v:.0f}k", ha="center", fontsize=9.5)
 
-fig.suptitle("Real measurements from the project's actual logs — 18 October 2026, not modelled", fontsize=10, y=1.04)
+fig.suptitle("Real measurements from the project's actual logs — 19 October 2026, not modelled", fontsize=10, y=1.04)
 fig.tight_layout()
 out = Path(__file__).resolve().parents[1] / "docs" / "figures" / "pp2_token_latency_figure.png"
 fig.savefig(out, dpi=200, bbox_inches="tight")
