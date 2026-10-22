@@ -39,6 +39,7 @@ from app.core.extraction.vocabulary import (
     canonical_qualifier,
     canonical_variant,
     known_variant,
+    names_a_third_party,
 )
 
 # Characters of page text sent to the model. Pages seen so far are about 18k including the
@@ -287,6 +288,8 @@ def build_facts(data: PageExtraction, page_text: str, service_id: str, source_ur
                                            p.evidence, detail=detail))
     for key, doc in documents.items():
         required = doc.detail.get("service_id")
+        if required and names_a_third_party(doc.evidence):
+            continue  # a director's, a deceased person's, a spouse's -- not the applicant's own
         if required and required != service_id and key not in prereqs:
             prereqs[key] = make("prerequisite", key, required, doc.evidence, detail={
                 "origin": "derived_from_document", "requires_service": required,

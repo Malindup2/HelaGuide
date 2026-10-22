@@ -806,3 +806,19 @@ def test_a_year_near_rupees_does_not_get_mistaken_for_the_fee():
     from app.core.extraction.ontology import parse_amount
 
     assert parse_amount("rupees are the currency of Sri Lanka")[0] is None
+
+
+def test_tin_certificate_maps_to_the_tin_service():
+    from app.core.extraction.vocabulary import canonical_document
+
+    c = canonical_document("TIN Certificate")
+    assert c.service_id == "svc:taxpayer_identification_number_tin"
+
+
+def test_a_directors_passport_is_not_the_applicants_own_prerequisite():
+    from app.core.extraction.vocabulary import names_a_third_party
+
+    assert names_a_third_party("Photocopies of valid Passports of Directors")
+    assert names_a_third_party("A certified copy of the deceased's birth certificate")
+    assert not names_a_third_party("Original passport of the applicant")
+    assert not names_a_third_party("Passport")

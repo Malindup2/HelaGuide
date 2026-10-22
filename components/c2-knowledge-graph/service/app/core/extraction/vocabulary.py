@@ -55,8 +55,23 @@ _DOCUMENTS: tuple[tuple[str, Canonical], ...] = (
     ("authorization letter", Canonical("authorization_letter")),
     ("authorisation letter", Canonical("authorization_letter")),
     ("temporary travel document", Canonical("temporary_travel_document")),
+    ("tin certificate", Canonical("tin_certificate", "svc:taxpayer_identification_number_tin")),
+    ("taxpayer identification number", Canonical("tin_certificate", "svc:taxpayer_identification_number_tin")),
     ("passport", Canonical("passport", "svc:passport")),
 )
+
+# A document naming someone OTHER than the applicant is never the applicant's own
+# prerequisite -- "Photocopies of valid Passports of Directors" on a company's TIN
+# registration page is not a reason to tell an individual citizen to get a passport first.
+# Real bug found 18 Oct 2026: svc:taxpayer_identification_number_tin derived "requires
+# svc:passport" from exactly this sentence.
+_THIRD_PARTY = re.compile(
+    r"(?i)\bof\s+(directors?|the\s+company|the\s+deceased|the\s+decease|shareholders?|"
+    r"partners?|the\s+applicant'?s?\s+(?:spouse|parent|guardian))\b")
+
+
+def names_a_third_party(text: str) -> bool:
+    return bool(_THIRD_PARTY.search(text or ""))
 
 # Words that mark a variant of a service; checked in this order against the model's label.
 _VARIANTS: tuple[tuple[str, str], ...] = (
