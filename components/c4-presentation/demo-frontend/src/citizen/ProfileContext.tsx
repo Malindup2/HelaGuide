@@ -20,15 +20,18 @@ export default function ProfileContext({ active, procedure, onSession }: { activ
   const save = async () => {
     setSaving(true); setError(''); setNote('');
     try {
+      // The backend checks the settings revision (session revision + saved-settings revision), which GET /context reports; the session's own revision is a different number.
+      const latest = await guidanceApi.context(session.session_id, procedure.procedure_id);
       const result = await guidanceApi.patchProfileContext(session.session_id, {
-        request_id: newId(), expected_identity_revision: session.revision,
+        request_id: newId(), expected_identity_revision: latest.revision.identity,
         familiarity: [{ service_id: procedure.requested_service_id, score: form.familiarity ? Number(form.familiarity) : null, source: 'self_reported' }],
         confidence: form.confidence ? Number(form.confidence) : null,
         accessibility: { allow_guided_navigation: form.guided, allow_relationship_visuals: form.maps, allow_collapsed_content: form.collapse },
       });
       onSession(parseSession((result as { session: unknown }).session));
+      setCtx(await guidanceApi.context(session.session_id, procedure.procedure_id));
       setNote('Saved. Request guidance again to use these settings.');
-    } catch (e) { setError(e instanceof GuidanceError ? e.message : 'The settings could not be saved.'); } finally { setSaving(false); }
+    } catch (e) { setError(e instanceof GuidanceError ? (e.status === 409 ? 'These settings changed in another window. They have been reloaded; please check them and save again.' : e.message) : 'The settings could not be saved.'); } finally { setSaving(false); }
   };
   const restrictions = ctx ? [ctx.constraints.no_guided && 'guided steps off', ctx.constraints.no_map && 'maps off', ctx.constraints.no_disclosure && 'show/hide explanation off'].filter(Boolean) : [];
   const rate = (n: number | null) => n === null ? 'not set' : `${n} of 5`;

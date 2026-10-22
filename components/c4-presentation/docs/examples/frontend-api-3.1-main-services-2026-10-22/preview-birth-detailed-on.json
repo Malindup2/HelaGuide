@@ -1,0 +1,3973 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/research/previews",
+  "request": {
+    "request_id": "4e497d8c-5df9-4c67-8a24-4c7a4c2d7545",
+    "session_id": "guest:e292a13ccd5f4561b1258996a234c3bd",
+    "procedure_id": "official-birth_copy-v4",
+    "capability_token": "documentation-sandbox-only-not-a-production-capability",
+    "mode": "research_preview",
+    "configuration": {
+      "navigation": "overview",
+      "explanation": "detailed",
+      "disclosure": "on",
+      "relationships": "none",
+      "recap": "off",
+      "segmentation": "off"
+    },
+    "allow_provisional": false
+  },
+  "status_code": 200,
+  "response": {
+    "schema_version": "c4-guidance-api-1.0",
+    "journey_id": "guidance:83d9914b5ea04c0aaac177bf5a245df0",
+    "view_id": "view:bea7215e31f04ccda0bf65ccc3eff777",
+    "parent_view_id": null,
+    "session_id": "guest:e292a13ccd5f4561b1258996a234c3bd",
+    "procedure_id": "official-birth_copy-v4",
+    "procedure_title": "Birth certificate copy: counter application",
+    "created_at": "2026-10-22T07:04:39.314634Z",
+    "selection": {
+      "kind": "research_preview",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "action_schema": "c4-scaffolds-v3.1",
+      "label": "Research preview - not a learned selection",
+      "scoring_status": "not_run",
+      "policy": null,
+      "learning_eligible": false,
+      "explanation": "Explicit researcher choice; no scoring or model update."
+    },
+    "preparation": {
+      "content_state": "demo_accepted",
+      "preparation_state": "draft",
+      "job_state": "queued",
+      "job_id": "6bf4668a8d330d331eda95688119ca81d3fc58c6ee8708b748cf0f64decd4d56",
+      "error_code": null,
+      "generation_enabled": false,
+      "mode": "demo",
+      "language": "en",
+      "fallback_language": "source_language",
+      "content_schema": "c4-guidance-content-3.1",
+      "artifact_id": null,
+      "review_kind": "project_owner_demo_acceptance_automatic_checks",
+      "source_kind": "bounded_official_source_snapshot",
+      "content_origin": "demo_mock",
+      "source_review": {
+        "reviewer": "LOCAL RESEARCH DEMO: accepted for demo use by the project owner. AI-assisted wording checked by automatic source-grounding checks only; no external expert, government or independent review.",
+        "reviewed_at": "2026-10-22T07:04:39.311674Z",
+        "scope_note": "Demo acceptance is a project-level authorisation for this local research demonstration. It is not external validation, and the original provenance (demo_mock, no review record) is unchanged.",
+        "independent_government_validation": false
+      }
+    },
+    "effective_context": {
+      "schema_version": "c4-effective-guidance-context-1.0",
+      "session_id": "guest:e292a13ccd5f4561b1258996a234c3bd",
+      "profile_id": null,
+      "personalization_enabled": false,
+      "service_id": "svc:birth_certificate_copy",
+      "familiarity": null,
+      "confidence": null,
+      "preferences": {},
+      "constraints": {
+        "locks": {},
+        "no_guided": false,
+        "no_map": false,
+        "no_disclosure": false
+      },
+      "revision": {
+        "identity": 0,
+        "revised": 0
+      },
+      "sources": {
+        "familiarity": "saved_service_report",
+        "confidence": "saved_navigation_default",
+        "preferences": "explicit_revised_settings_or_request",
+        "accessibility": "saved_requirements_union_request"
+      },
+      "legacy": {
+        "preferences_not_imported": {},
+        "pending_preference_review": {},
+        "hard_requirements_unresolved": false,
+        "lock_fingerprint": null,
+        "raw_locks": {
+          "native_or_mapped": {},
+          "unresolved_legacy": {}
+        }
+      },
+      "scoring_use": "Familiarity, confidence and confirmed revised preferences enter the PP1 encoder; constraints filter candidates. Identity/history are not features."
+    },
+    "availability": {
+      "action_schema": "c4-scaffolds-v3.1",
+      "feasibility_fingerprint": "5ff9b1f0680ce380ac3227fd89a6b1df23fa424b0317fe32335890ddb7130c54",
+      "nominal_count": 96,
+      "feasible_count": 64,
+      "candidates": [
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:form",
+            "action:complete",
+            "action:pay_known",
+            "action:submit_known",
+            "action:pay_search",
+            "action:submit_search"
+          ]
+        }
+      ]
+    },
+    "document": {
+      "schema": "c4-render-plan-3.1",
+      "content_schema": "c4-guidance-content-3.1",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "synthetic": false,
+      "source_kind": "bounded_official_source_snapshot",
+      "source_limit": "Manually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+      "source_graph_fingerprint": "c4bdb41605f86da82cbd0d5087a6723c6bc426fa4d840f111b77226702bdff87",
+      "relationship_fingerprint": "f98af1946348539194891fa68b1fa2cc54d294f79ca29aefa8a8ca61a6e4876f",
+      "content_fingerprint": "4d6cf66a82c46c9cfdc7a8e3706321f0807c79e3ec800ee335936592916c0ec1",
+      "actions": [
+        {
+          "id": "action:complete",
+          "heading": "Complete the application",
+          "essential": "Complete the application for the Divisional Secretariat of the place of birth. If you know the birth certificate number and registration date, give them: this decides which charge applies, because a search of the records costs more than a copy from a known entry.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [
+            {
+              "id": "attachment:action:complete:document:0",
+              "fact_id": "svc:birth_certificate_copy:document:0",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_certificate_copy:document:0",
+                "name": "Completed application form"
+              },
+              "scope": "action",
+              "action_id": "action:complete",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:complete:document:0"
+              ],
+              "evidence_ids": [
+                "evidence:rgd"
+              ],
+              "qualification": null,
+              "role": "prepare",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:complete",
+                  "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_known",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_search",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "If you are not sure of the number or date, you can still apply; you then follow the search route in the next step.",
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:birth_certificate_copy",
+          "agency": "Registrar General's Department",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:complete",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:form",
+          "heading": "Get the application form",
+          "essential": "Get the application form from the Registrar Division of any Divisional Secretariat, or download it from the website of the Registrar General's Department. You can collect it from any office; you submit it later to the one for the place of birth.",
+          "conditions": [],
+          "actor": null,
+          "destination": "Registrar Division of any Divisional Secretariat",
+          "facts": [],
+          "explanation_visible": null,
+          "explanation_hidden": "You do not have to collect it from the office where you will submit it: the Registrar Division of any Divisional Secretariat can give it to you.",
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:birth_certificate_copy",
+          "agency": "Registrar General's Department",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:form",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Get the application form from the Registrar Division of any Divisional Secretariat, or download it from the Registrar General's Department website.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:pay_known",
+          "heading": "Pay the charge for a known entry",
+          "essential": "When the birth certificate number and registration date are known, the charge is Rs. 120 per copy. Pay it at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip: you submit it with the application. ATM and online payments are not accepted.",
+          "conditions": [
+            "The birth certificate number and registration date are known, so no search of the records is needed."
+          ],
+          "actor": null,
+          "destination": "Divisional Secretariat or the Registrar General's Bank of Ceylon branch, Battaramulla",
+          "facts": [
+            {
+              "id": "attachment:action:pay_known:fee",
+              "fact_id": "svc:birth_certificate_copy:fee",
+              "fact": {
+                "kind": "fee",
+                "fact_id": "svc:birth_certificate_copy:fee",
+                "value": 120.0,
+                "currency": "LKR"
+              },
+              "scope": "action",
+              "action_id": "action:pay_known",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:pay_known:fee:0"
+              ],
+              "evidence_ids": [
+                "evidence:charges"
+              ],
+              "qualification": "Per copy. ATM and online payments are not accepted.",
+              "role": "pay",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:pay_known",
+                  "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                  "evidence_ids": [
+                    "evidence:charges"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            },
+            {
+              "id": "attachment:action:pay_known:document:1",
+              "fact_id": "svc:birth_certificate_copy:document:1",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_certificate_copy:document:1",
+                "name": "Bank slip (payment receipt)"
+              },
+              "scope": "action",
+              "action_id": "action:pay_known",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:pay_known:document:1"
+              ],
+              "evidence_ids": [
+                "evidence:charges"
+              ],
+              "qualification": null,
+              "role": "keep",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:pay_known",
+                  "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                  "evidence_ids": [
+                    "evidence:charges"
+                  ]
+                },
+                {
+                  "content_id": "content:pay_search",
+                  "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                  "evidence_ids": [
+                    "evidence:search"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_known",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_search",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "The charge is per copy, so multiply by the number of copies you want before you pay.",
+          "recap": null,
+          "branch": "branch:birth_fee",
+          "option": "option:known",
+          "service_id": "svc:birth_certificate_copy",
+          "agency": "Registrar General's Department",
+          "condition_ids": [
+            "condition:known"
+          ],
+          "source_content_ids": [
+            "content:pay_known",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:pay_search",
+          "heading": "Pay the charge when a search is needed",
+          "essential": "When a search of the records for up to two years is needed, the charge is Rs. 250 for the first copy and Rs. 120 for each additional copy. Pay it at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip: you submit it with the application. ATM and online payments are not accepted.",
+          "conditions": [
+            "The number or date is not known, so a search of the records for up to two years is needed."
+          ],
+          "actor": null,
+          "destination": "Divisional Secretariat or the Registrar General's Bank of Ceylon branch, Battaramulla",
+          "facts": [
+            {
+              "id": "attachment:action:pay_search:document:1",
+              "fact_id": "svc:birth_certificate_copy:document:1",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_certificate_copy:document:1",
+                "name": "Bank slip (payment receipt)"
+              },
+              "scope": "action",
+              "action_id": "action:pay_search",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:pay_search:document:0"
+              ],
+              "evidence_ids": [
+                "evidence:search"
+              ],
+              "qualification": null,
+              "role": "keep",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:pay_known",
+                  "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                  "evidence_ids": [
+                    "evidence:charges"
+                  ]
+                },
+                {
+                  "content_id": "content:pay_search",
+                  "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                  "evidence_ids": [
+                    "evidence:search"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_known",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_search",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "The Rs. 250 first-copy charge applies because a search of the records is required; it is not charged when the number and date are known.",
+          "recap": null,
+          "branch": "branch:birth_fee",
+          "option": "option:search",
+          "service_id": "svc:birth_certificate_copy",
+          "agency": "Registrar General's Department",
+          "condition_ids": [
+            "condition:search"
+          ],
+          "source_content_ids": [
+            "content:pay_search",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:submit_known",
+          "heading": "Submit the application and bank slip",
+          "essential": "Take the completed application and the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+          "conditions": [
+            "The birth certificate number and registration date are known, so no search of the records is needed."
+          ],
+          "actor": null,
+          "destination": "Divisional Secretariat of the place of birth",
+          "facts": [
+            {
+              "id": "attachment:action:submit_known:document:0",
+              "fact_id": "svc:birth_certificate_copy:document:0",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_certificate_copy:document:0",
+                "name": "Completed application form"
+              },
+              "scope": "action",
+              "action_id": "action:submit_known",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:submit_known:document:0"
+              ],
+              "evidence_ids": [
+                "evidence:rgd"
+              ],
+              "qualification": null,
+              "role": "submit",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:complete",
+                  "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_known",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_search",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            },
+            {
+              "id": "attachment:action:submit_known:document:1",
+              "fact_id": "svc:birth_certificate_copy:document:1",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_certificate_copy:document:1",
+                "name": "Bank slip (payment receipt)"
+              },
+              "scope": "action",
+              "action_id": "action:submit_known",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:submit_known:document:1"
+              ],
+              "evidence_ids": [
+                "evidence:rgd"
+              ],
+              "qualification": null,
+              "role": "submit",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:pay_known",
+                  "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                  "evidence_ids": [
+                    "evidence:charges"
+                  ]
+                },
+                {
+                  "content_id": "content:pay_search",
+                  "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                  "evidence_ids": [
+                    "evidence:search"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_known",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_search",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            },
+            {
+              "id": "attachment:action:submit_known:document:2",
+              "fact_id": "svc:birth_certificate_copy:document:2",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_certificate_copy:document:2",
+                "name": "Stamped, self-addressed envelope"
+              },
+              "scope": "action",
+              "action_id": "action:submit_known",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:submit_known:document:2"
+              ],
+              "evidence_ids": [
+                "evidence:rgd"
+              ],
+              "qualification": "Only if you want the copies sent by post.",
+              "role": "bring",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:submit_known",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_search",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "The copies are issued only if the birth is found in the register, so a notification on Form B38 is a possible outcome rather than an error.",
+          "recap": null,
+          "branch": "branch:birth_fee",
+          "option": "option:known",
+          "service_id": "svc:birth_certificate_copy",
+          "agency": "Registrar General's Department",
+          "condition_ids": [
+            "condition:known"
+          ],
+          "source_content_ids": [
+            "content:submit_known",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:submit_search",
+          "heading": "Submit the application and bank slip",
+          "essential": "Take the completed application and the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+          "conditions": [
+            "The number or date is not known, so a search of the records for up to two years is needed."
+          ],
+          "actor": null,
+          "destination": "Divisional Secretariat of the place of birth",
+          "facts": [
+            {
+              "id": "attachment:action:submit_search:document:0",
+              "fact_id": "svc:birth_certificate_copy:document:0",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_certificate_copy:document:0",
+                "name": "Completed application form"
+              },
+              "scope": "action",
+              "action_id": "action:submit_search",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:submit_search:document:0"
+              ],
+              "evidence_ids": [
+                "evidence:rgd"
+              ],
+              "qualification": null,
+              "role": "submit",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:complete",
+                  "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_known",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_search",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            },
+            {
+              "id": "attachment:action:submit_search:document:1",
+              "fact_id": "svc:birth_certificate_copy:document:1",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_certificate_copy:document:1",
+                "name": "Bank slip (payment receipt)"
+              },
+              "scope": "action",
+              "action_id": "action:submit_search",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:submit_search:document:1"
+              ],
+              "evidence_ids": [
+                "evidence:rgd"
+              ],
+              "qualification": null,
+              "role": "submit",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:pay_known",
+                  "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                  "evidence_ids": [
+                    "evidence:charges"
+                  ]
+                },
+                {
+                  "content_id": "content:pay_search",
+                  "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                  "evidence_ids": [
+                    "evidence:search"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_known",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_search",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            },
+            {
+              "id": "attachment:action:submit_search:document:2",
+              "fact_id": "svc:birth_certificate_copy:document:2",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_certificate_copy:document:2",
+                "name": "Stamped, self-addressed envelope"
+              },
+              "scope": "action",
+              "action_id": "action:submit_search",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:submit_search:document:2"
+              ],
+              "evidence_ids": [
+                "evidence:rgd"
+              ],
+              "qualification": "Only if you want the copies sent by post.",
+              "role": "bring",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:submit_known",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                },
+                {
+                  "content_id": "content:submit_search",
+                  "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                  "evidence_ids": [
+                    "evidence:rgd"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "The copies are issued only if the birth is found in the register, so a notification on Form B38 is a possible outcome rather than an error.",
+          "recap": null,
+          "branch": "branch:birth_fee",
+          "option": "option:search",
+          "service_id": "svc:birth_certificate_copy",
+          "agency": "Registrar General's Department",
+          "condition_ids": [
+            "condition:search"
+          ],
+          "source_content_ids": [
+            "content:submit_search",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "supplement_role": "clarification"
+        }
+      ],
+      "facts": [
+        {
+          "id": "attachment:action:complete:document:0",
+          "fact_id": "svc:birth_certificate_copy:document:0",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_certificate_copy:document:0",
+            "name": "Completed application form"
+          },
+          "scope": "action",
+          "action_id": "action:complete",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:complete:document:0"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ],
+          "qualification": null,
+          "role": "prepare",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:complete",
+              "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_known",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_search",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:pay_known:fee",
+          "fact_id": "svc:birth_certificate_copy:fee",
+          "fact": {
+            "kind": "fee",
+            "fact_id": "svc:birth_certificate_copy:fee",
+            "value": 120.0,
+            "currency": "LKR"
+          },
+          "scope": "action",
+          "action_id": "action:pay_known",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:pay_known:fee:0"
+          ],
+          "evidence_ids": [
+            "evidence:charges"
+          ],
+          "qualification": "Per copy. ATM and online payments are not accepted.",
+          "role": "pay",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:pay_known",
+              "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+              "evidence_ids": [
+                "evidence:charges"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:pay_known:document:1",
+          "fact_id": "svc:birth_certificate_copy:document:1",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_certificate_copy:document:1",
+            "name": "Bank slip (payment receipt)"
+          },
+          "scope": "action",
+          "action_id": "action:pay_known",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:pay_known:document:1"
+          ],
+          "evidence_ids": [
+            "evidence:charges"
+          ],
+          "qualification": null,
+          "role": "keep",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:pay_known",
+              "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+              "evidence_ids": [
+                "evidence:charges"
+              ]
+            },
+            {
+              "content_id": "content:pay_search",
+              "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+              "evidence_ids": [
+                "evidence:search"
+              ]
+            },
+            {
+              "content_id": "content:submit_known",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_search",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:submit_known:document:0",
+          "fact_id": "svc:birth_certificate_copy:document:0",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_certificate_copy:document:0",
+            "name": "Completed application form"
+          },
+          "scope": "action",
+          "action_id": "action:submit_known",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:submit_known:document:0"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ],
+          "qualification": null,
+          "role": "submit",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:complete",
+              "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_known",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_search",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:submit_known:document:1",
+          "fact_id": "svc:birth_certificate_copy:document:1",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_certificate_copy:document:1",
+            "name": "Bank slip (payment receipt)"
+          },
+          "scope": "action",
+          "action_id": "action:submit_known",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:submit_known:document:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ],
+          "qualification": null,
+          "role": "submit",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:pay_known",
+              "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+              "evidence_ids": [
+                "evidence:charges"
+              ]
+            },
+            {
+              "content_id": "content:pay_search",
+              "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+              "evidence_ids": [
+                "evidence:search"
+              ]
+            },
+            {
+              "content_id": "content:submit_known",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_search",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:submit_known:document:2",
+          "fact_id": "svc:birth_certificate_copy:document:2",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_certificate_copy:document:2",
+            "name": "Stamped, self-addressed envelope"
+          },
+          "scope": "action",
+          "action_id": "action:submit_known",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:submit_known:document:2"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ],
+          "qualification": "Only if you want the copies sent by post.",
+          "role": "bring",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:submit_known",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_search",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:pay_search:document:1",
+          "fact_id": "svc:birth_certificate_copy:document:1",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_certificate_copy:document:1",
+            "name": "Bank slip (payment receipt)"
+          },
+          "scope": "action",
+          "action_id": "action:pay_search",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:pay_search:document:0"
+          ],
+          "evidence_ids": [
+            "evidence:search"
+          ],
+          "qualification": null,
+          "role": "keep",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:pay_known",
+              "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+              "evidence_ids": [
+                "evidence:charges"
+              ]
+            },
+            {
+              "content_id": "content:pay_search",
+              "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+              "evidence_ids": [
+                "evidence:search"
+              ]
+            },
+            {
+              "content_id": "content:submit_known",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_search",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:submit_search:document:0",
+          "fact_id": "svc:birth_certificate_copy:document:0",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_certificate_copy:document:0",
+            "name": "Completed application form"
+          },
+          "scope": "action",
+          "action_id": "action:submit_search",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:submit_search:document:0"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ],
+          "qualification": null,
+          "role": "submit",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:complete",
+              "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_known",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_search",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:submit_search:document:1",
+          "fact_id": "svc:birth_certificate_copy:document:1",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_certificate_copy:document:1",
+            "name": "Bank slip (payment receipt)"
+          },
+          "scope": "action",
+          "action_id": "action:submit_search",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:submit_search:document:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ],
+          "qualification": null,
+          "role": "submit",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:pay_known",
+              "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+              "evidence_ids": [
+                "evidence:charges"
+              ]
+            },
+            {
+              "content_id": "content:pay_search",
+              "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+              "evidence_ids": [
+                "evidence:search"
+              ]
+            },
+            {
+              "content_id": "content:submit_known",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_search",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:submit_search:document:2",
+          "fact_id": "svc:birth_certificate_copy:document:2",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_certificate_copy:document:2",
+            "name": "Stamped, self-addressed envelope"
+          },
+          "scope": "action",
+          "action_id": "action:submit_search",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:submit_search:document:2"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ],
+          "qualification": "Only if you want the copies sent by post.",
+          "role": "bring",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:submit_known",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            },
+            {
+              "content_id": "content:submit_search",
+              "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+              "evidence_ids": [
+                "evidence:rgd"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        }
+      ],
+      "branches": [
+        {
+          "group_id": "branch:birth_fee",
+          "service_id": "svc:birth_certificate_copy",
+          "selection": "XOR",
+          "options": [
+            {
+              "option_id": "option:known",
+              "action_ids": [
+                "action:pay_known",
+                "action:submit_known"
+              ],
+              "condition_ids": [
+                "condition:known"
+              ]
+            },
+            {
+              "option_id": "option:search",
+              "action_ids": [
+                "action:pay_search",
+                "action:submit_search"
+              ],
+              "condition_ids": [
+                "condition:search"
+              ]
+            }
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        }
+      ],
+      "stages": [
+        {
+          "service_id": "svc:birth_certificate_copy",
+          "display_order": 1,
+          "name": "Birth certificate copy: counter application",
+          "agency": "Registrar General's Department",
+          "fee_fact_id": "svc:birth_certificate_copy:fee",
+          "document_fact_ids": [
+            "svc:birth_certificate_copy:document:0",
+            "svc:birth_certificate_copy:document:1",
+            "svc:birth_certificate_copy:document:2"
+          ]
+        }
+      ],
+      "stage_edges": [],
+      "edges": [
+        {
+          "edge_id": "prerequisite:0",
+          "kind": "requires_completion",
+          "source_id": "action:form",
+          "target_id": "action:complete",
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:1",
+          "kind": "requires_completion",
+          "source_id": "action:complete",
+          "target_id": "action:submit_known",
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:2",
+          "kind": "requires_completion",
+          "source_id": "action:complete",
+          "target_id": "action:submit_search",
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:3",
+          "kind": "requires_completion",
+          "source_id": "action:pay_known",
+          "target_id": "action:submit_known",
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:4",
+          "kind": "requires_completion",
+          "source_id": "action:pay_search",
+          "target_id": "action:submit_search",
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        }
+      ],
+      "parallel": [],
+      "joins": [],
+      "parallel_areas": [],
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "unknown"
+      },
+      "sources": [
+        {
+          "evidence_id": "evidence:atm",
+          "kind": "source_passage",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "text": "Short source anchor: Payments made via Automated Teller Machines (ATMs) or Online payments will not be accepted",
+          "retrieved_at": "2026-10-22T09:00:00Z"
+        },
+        {
+          "evidence_id": "evidence:charges",
+          "kind": "source_passage",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/charges",
+          "text": "Short source anchor: a search of records is not required",
+          "retrieved_at": "2026-10-22T09:00:00Z"
+        },
+        {
+          "evidence_id": "evidence:rgd",
+          "kind": "source_passage",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "text": "Short source anchor: Get the form from the Registrar Division of any DS",
+          "retrieved_at": "2026-10-22T09:00:00Z"
+        },
+        {
+          "evidence_id": "evidence:search",
+          "kind": "source_passage",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/charges",
+          "text": "Short source anchor: a search of records for a period of not more than two years is required",
+          "retrieved_at": "2026-10-22T09:00:00Z"
+        }
+      ],
+      "conditions": [
+        {
+          "condition_id": "condition:known",
+          "text": "The birth certificate number and registration date are known, so no search of the records is needed.",
+          "evidence_ids": [
+            "evidence:charges"
+          ]
+        },
+        {
+          "condition_id": "condition:search",
+          "text": "The number or date is not known, so a search of the records for up to two years is needed.",
+          "evidence_ids": [
+            "evidence:search"
+          ]
+        }
+      ],
+      "provenance": [
+        {
+          "fact_id": "svc:birth_certificate_copy:document:0",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "retrieved_at": "2026-10-22T09:00:00Z"
+        },
+        {
+          "fact_id": "svc:birth_certificate_copy:document:1",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "retrieved_at": "2026-10-22T09:00:00Z"
+        },
+        {
+          "fact_id": "svc:birth_certificate_copy:document:2",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "retrieved_at": "2026-10-22T09:00:00Z"
+        },
+        {
+          "fact_id": "svc:birth_certificate_copy:fee",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/charges",
+          "retrieved_at": "2026-10-22T09:00:00Z"
+        }
+      ],
+      "map_labels": {
+        "action:complete": "Complete the application",
+        "action:form": "Get the application form",
+        "action:pay_known": "Pay the charge for a known entry",
+        "action:pay_search": "Pay the charge when a search is needed",
+        "action:submit_known": "Submit the application and bank slip",
+        "action:submit_search": "Submit the application and bank slip"
+      },
+      "phases": [],
+      "phase_order": [],
+      "supplementary": [],
+      "required_source_notes": [],
+      "relationship_aid": {
+        "mode": "none",
+        "inline_by_action": {},
+        "map": null,
+        "essential_relationships_remain_in_instructions": true
+      },
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:complete",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:form",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:pay_known",
+            "layer": 1,
+            "label": "Within this route: 1",
+            "branch_id": "branch:birth_fee",
+            "option_id": "option:known",
+            "route_layer": 1,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:pay_search",
+            "layer": 1,
+            "label": "Within this route: 1",
+            "branch_id": "branch:birth_fee",
+            "option_id": "option:search",
+            "route_layer": 1,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:submit_known",
+            "layer": 3,
+            "label": "Within this route: 2",
+            "branch_id": "branch:birth_fee",
+            "option_id": "option:known",
+            "route_layer": 2,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:submit_search",
+            "layer": 3,
+            "label": "Within this route: 2",
+            "branch_id": "branch:birth_fee",
+            "option_id": "option:search",
+            "route_layer": 2,
+            "available_for_navigation": false,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:form",
+        "browsing_action_ids": [
+          "action:form",
+          "action:complete"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:complete",
+        "browsing_position": 1,
+        "browsing_count": 2,
+        "unresolved_route_ids": [
+          "branch:birth_fee"
+        ],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "routes": [
+        {
+          "branch_id": "branch:birth_fee",
+          "selection": "XOR",
+          "evidence_ids": [
+            "evidence:rgd"
+          ],
+          "choice_is_not_eligibility_or_completion": true,
+          "options": [
+            {
+              "option_id": "option:known",
+              "action_ids": [
+                "action:pay_known",
+                "action:submit_known"
+              ],
+              "condition_ids": [
+                "condition:known"
+              ],
+              "conditions": [
+                "The birth certificate number and registration date are known, so no search of the records is needed."
+              ],
+              "label": "The birth certificate number and registration date are known, so no search of the records is needed."
+            },
+            {
+              "option_id": "option:search",
+              "action_ids": [
+                "action:pay_search",
+                "action:submit_search"
+              ],
+              "condition_ids": [
+                "condition:search"
+              ],
+              "conditions": [
+                "The number or date is not known, so a search of the records for up to two years is needed."
+              ],
+              "label": "The number or date is not known, so a search of the records for up to two years is needed."
+            }
+          ]
+        }
+      ],
+      "requirements": {
+        "documents": [
+          {
+            "id": "attachment:action:complete:document:0",
+            "fact_id": "svc:birth_certificate_copy:document:0",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_certificate_copy:document:0",
+              "name": "Completed application form"
+            },
+            "scope": "action",
+            "action_id": "action:complete",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:complete:document:0"
+            ],
+            "evidence_ids": [
+              "evidence:rgd"
+            ],
+            "qualification": null,
+            "role": "prepare",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:complete",
+                "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_known",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_search",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:pay_known:document:1",
+            "fact_id": "svc:birth_certificate_copy:document:1",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_certificate_copy:document:1",
+              "name": "Bank slip (payment receipt)"
+            },
+            "scope": "action",
+            "action_id": "action:pay_known",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:pay_known:document:1"
+            ],
+            "evidence_ids": [
+              "evidence:charges"
+            ],
+            "qualification": null,
+            "role": "keep",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:pay_known",
+                "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                "evidence_ids": [
+                  "evidence:charges"
+                ]
+              },
+              {
+                "content_id": "content:pay_search",
+                "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                "evidence_ids": [
+                  "evidence:search"
+                ]
+              },
+              {
+                "content_id": "content:submit_known",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_search",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:submit_known:document:0",
+            "fact_id": "svc:birth_certificate_copy:document:0",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_certificate_copy:document:0",
+              "name": "Completed application form"
+            },
+            "scope": "action",
+            "action_id": "action:submit_known",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:submit_known:document:0"
+            ],
+            "evidence_ids": [
+              "evidence:rgd"
+            ],
+            "qualification": null,
+            "role": "submit",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:complete",
+                "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_known",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_search",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:submit_known:document:1",
+            "fact_id": "svc:birth_certificate_copy:document:1",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_certificate_copy:document:1",
+              "name": "Bank slip (payment receipt)"
+            },
+            "scope": "action",
+            "action_id": "action:submit_known",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:submit_known:document:1"
+            ],
+            "evidence_ids": [
+              "evidence:rgd"
+            ],
+            "qualification": null,
+            "role": "submit",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:pay_known",
+                "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                "evidence_ids": [
+                  "evidence:charges"
+                ]
+              },
+              {
+                "content_id": "content:pay_search",
+                "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                "evidence_ids": [
+                  "evidence:search"
+                ]
+              },
+              {
+                "content_id": "content:submit_known",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_search",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:submit_known:document:2",
+            "fact_id": "svc:birth_certificate_copy:document:2",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_certificate_copy:document:2",
+              "name": "Stamped, self-addressed envelope"
+            },
+            "scope": "action",
+            "action_id": "action:submit_known",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:submit_known:document:2"
+            ],
+            "evidence_ids": [
+              "evidence:rgd"
+            ],
+            "qualification": "Only if you want the copies sent by post.",
+            "role": "bring",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:submit_known",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_search",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:pay_search:document:1",
+            "fact_id": "svc:birth_certificate_copy:document:1",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_certificate_copy:document:1",
+              "name": "Bank slip (payment receipt)"
+            },
+            "scope": "action",
+            "action_id": "action:pay_search",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:pay_search:document:0"
+            ],
+            "evidence_ids": [
+              "evidence:search"
+            ],
+            "qualification": null,
+            "role": "keep",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:pay_known",
+                "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                "evidence_ids": [
+                  "evidence:charges"
+                ]
+              },
+              {
+                "content_id": "content:pay_search",
+                "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                "evidence_ids": [
+                  "evidence:search"
+                ]
+              },
+              {
+                "content_id": "content:submit_known",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_search",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:submit_search:document:0",
+            "fact_id": "svc:birth_certificate_copy:document:0",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_certificate_copy:document:0",
+              "name": "Completed application form"
+            },
+            "scope": "action",
+            "action_id": "action:submit_search",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:submit_search:document:0"
+            ],
+            "evidence_ids": [
+              "evidence:rgd"
+            ],
+            "qualification": null,
+            "role": "submit",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:complete",
+                "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_known",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_search",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:submit_search:document:1",
+            "fact_id": "svc:birth_certificate_copy:document:1",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_certificate_copy:document:1",
+              "name": "Bank slip (payment receipt)"
+            },
+            "scope": "action",
+            "action_id": "action:submit_search",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:submit_search:document:1"
+            ],
+            "evidence_ids": [
+              "evidence:rgd"
+            ],
+            "qualification": null,
+            "role": "submit",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:pay_known",
+                "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                "evidence_ids": [
+                  "evidence:charges"
+                ]
+              },
+              {
+                "content_id": "content:pay_search",
+                "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                "evidence_ids": [
+                  "evidence:search"
+                ]
+              },
+              {
+                "content_id": "content:submit_known",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_search",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:submit_search:document:2",
+            "fact_id": "svc:birth_certificate_copy:document:2",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_certificate_copy:document:2",
+              "name": "Stamped, self-addressed envelope"
+            },
+            "scope": "action",
+            "action_id": "action:submit_search",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:submit_search:document:2"
+            ],
+            "evidence_ids": [
+              "evidence:rgd"
+            ],
+            "qualification": "Only if you want the copies sent by post.",
+            "role": "bring",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:submit_known",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              },
+              {
+                "content_id": "content:submit_search",
+                "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+                "evidence_ids": [
+                  "evidence:rgd"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "fees": [
+          {
+            "id": "attachment:action:pay_known:fee",
+            "fact_id": "svc:birth_certificate_copy:fee",
+            "fact": {
+              "kind": "fee",
+              "fact_id": "svc:birth_certificate_copy:fee",
+              "value": 120.0,
+              "currency": "LKR"
+            },
+            "scope": "action",
+            "action_id": "action:pay_known",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:pay_known:fee:0"
+            ],
+            "evidence_ids": [
+              "evidence:charges"
+            ],
+            "qualification": "Per copy. ATM and online payments are not accepted.",
+            "role": "pay",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:pay_known",
+                "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+                "evidence_ids": [
+                  "evidence:charges"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "total": null,
+        "no_total_reason": "Charges are scoped source facts; no total or alternative-route sum is inferred.",
+        "placement": "Always available outside explanation disclosure; stage facts are not action payments."
+      }
+    },
+    "interaction": {
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:complete",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:form",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:pay_known",
+            "layer": 1,
+            "label": "Within this route: 1",
+            "branch_id": "branch:birth_fee",
+            "option_id": "option:known",
+            "route_layer": 1,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:pay_search",
+            "layer": 1,
+            "label": "Within this route: 1",
+            "branch_id": "branch:birth_fee",
+            "option_id": "option:search",
+            "route_layer": 1,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:submit_known",
+            "layer": 3,
+            "label": "Within this route: 2",
+            "branch_id": "branch:birth_fee",
+            "option_id": "option:known",
+            "route_layer": 2,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:submit_search",
+            "layer": 3,
+            "label": "Within this route: 2",
+            "branch_id": "branch:birth_fee",
+            "option_id": "option:search",
+            "route_layer": 2,
+            "available_for_navigation": false,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:form",
+        "browsing_action_ids": [
+          "action:form",
+          "action:complete"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:complete",
+        "browsing_position": 1,
+        "browsing_count": 2,
+        "unresolved_route_ids": [
+          "branch:birth_fee"
+        ],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "route_choices": {},
+      "map_visible": false,
+      "explanation_open_action_ids": [],
+      "display_acknowledged_view_ids": [],
+      "recap": {
+        "enabled": false,
+        "items": [],
+        "empty_reason": "recap_off",
+        "label": "Earlier guidance viewed, not confirmed as done"
+      },
+      "event_count": 0,
+      "completion_tracked": false
+    },
+    "controls": {
+      "configuration_adjustment": true,
+      "feedback": true,
+      "research_inspection": true
+    }
+  }
+}

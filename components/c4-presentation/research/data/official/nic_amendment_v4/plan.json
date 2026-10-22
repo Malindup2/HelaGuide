@@ -1,0 +1,115 @@
+{
+  "plan_id": "official-nic_amendment-v4",
+  "requested_service_id": "svc:nic_amendment_card",
+  "generated_at": "2026-10-22T09:00:00Z",
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:nic_amendment_card",
+      "name": "NIC amendment: estate and non-estate routes",
+      "agency": "Department for Registration of Persons",
+      "fee": {
+        "value": 500,
+        "currency": "LKR",
+        "fact_id": "svc:nic_amendment_card:fee"
+      },
+      "documents": [
+        {
+          "name": "Completed application (Form D.R.P/1,7,8)",
+          "fact_id": "svc:nic_amendment_card:document:0"
+        },
+        {
+          "name": "Previously used National Identity card",
+          "fact_id": "svc:nic_amendment_card:document:1"
+        },
+        {
+          "name": "Birth certificate or certified birth-register extract",
+          "fact_id": "svc:nic_amendment_card:document:2"
+        },
+        {
+          "name": "ICAO-standard photograph taken within the last 6 months",
+          "fact_id": "svc:nic_amendment_card:document:3"
+        },
+        {
+          "name": "Receipt for the application fee",
+          "fact_id": "svc:nic_amendment_card:document:4"
+        },
+        {
+          "name": "Probable age certificate or register search results, with proof of name and date of birth",
+          "fact_id": "svc:nic_amendment_card:document:5"
+        },
+        {
+          "name": "Affidavit, recognised written evidence and register search results (applicants over 40)",
+          "fact_id": "svc:nic_amendment_card:document:6"
+        },
+        {
+          "name": "Citizenship certificate (born abroad to a Sri Lankan parent)",
+          "fact_id": "svc:nic_amendment_card:document:7"
+        },
+        {
+          "name": "Dual citizenship certificate",
+          "fact_id": "svc:nic_amendment_card:document:8"
+        },
+        {
+          "name": "Clergy documents",
+          "fact_id": "svc:nic_amendment_card:document:9"
+        },
+        {
+          "name": "Attested marriage certificate (using a husband's name or surname)",
+          "fact_id": "svc:nic_amendment_card:document:10"
+        }
+      ],
+      "depends_on": []
+    }
+  ],
+  "provenance": {
+    "svc:nic_amendment_card:fee": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:0": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:1": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:2": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:3": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:4": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:5": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:6": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:7": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:8": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:9": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:nic_amendment_card:document:10": {
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    }
+  }
+}

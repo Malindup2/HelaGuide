@@ -53,11 +53,12 @@ describe('step-first layout', () => {
 });
 
 describe('provisional demo wording is labelled and sits beside the same structure rules', () => {
-  it('shows an unmistakable provisional notice and no claim of review', () => {
+  it('keeps the provisional state out of the card body and states it in Sources, with no claim of review', () => {
     render(<GuidanceCard response={provisional('provisional-nic-compact')} emit={vi.fn()} />);
-    const note = document.querySelector('.cz-provisional')!;
-    expect(note.textContent).toMatch(/Provisional demo wording/);
-    expect(note.textContent).toMatch(/No person or authority has reviewed it/);
+    expect(document.querySelector('.cz-provisional')).toBeNull();
+    expect(document.querySelector('.cz-meta')!.textContent).toMatch(/Prototype guidance/);
+    fireEvent.click(screen.getByRole('button', { name: /Sources/ }));
+    expect(document.querySelector('dialog')!.textContent).toMatch(/No person or authority has reviewed it/);
     expect(document.body.textContent).not.toMatch(/approved by|government approved|expert reviewed/i);
   });
 

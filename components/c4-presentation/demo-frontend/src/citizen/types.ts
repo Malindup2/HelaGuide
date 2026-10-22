@@ -85,6 +85,8 @@ export interface Doc {
   conditions: { condition_id: string; text: string }[]; map_labels: Record<string, string>; phases: Phase[]; phase_order: string[];
   supplementary: unknown[]; required_source_notes: string[]; relationship_aid: RelationshipAid; navigation: NavigationState;
   routes: Route[]; requirements: Requirements;
+  /** Verified action prerequisites (source requires completion before target). */
+  edges?: { source_id: string; target_id: string }[];
 }
 export interface Candidate { id: string; configuration: Configuration; feasible: boolean; reasons: string[]; disclosable_action_ids: string[] }
 export interface Availability { action_schema: string; nominal_count: number; feasible_count: number; candidates: Candidate[]; feasibility_fingerprint?: string | null }

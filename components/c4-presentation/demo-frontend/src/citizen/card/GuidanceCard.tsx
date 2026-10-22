@@ -161,9 +161,7 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
     <header className="cz-head">
       <div className="cz-titlerow"><h2>{plainName(response.procedure_title)}</h2>
         <span className={`cz-origin cz-origin-${origin.kind}`} title={origin.note}>{origin.label}</span></div>
-      <p className="cz-meta">{agencies.join(' · ')}{agencies.length > 0 && ' · '}<span>{doc.synthetic ? 'Fictional example, not an official service' : 'Official-source snapshot, not live or independently verified'}</span></p>
-      {response.preparation.content_state === 'demo_accepted' && <p className="cz-provisional" role="note"><b>Local research demo wording.</b> AI-assisted and checked only by automatic source-grounding checks. The project owner accepted it for this demonstration; no expert or government body has reviewed it.</p>}
-      {response.preparation.content_state === 'provisional_demo' && <p className="cz-provisional" role="note"><b>Provisional demo wording.</b> Written with AI assistance and checked only by automatic source-grounding checks. No person or authority has reviewed it.</p>}
+      <p className="cz-meta">{agencies.join(' · ')}{agencies.length > 0 && ' · '}<span>{doc.synthetic ? 'Fictional example, not an official service' : ['demo_accepted', 'provisional_demo'].includes(response.preparation.content_state) ? 'Prototype guidance · see Sources' : 'Official-source snapshot, not live or independently verified'}</span></p>
       <div className="cz-tools">
         {adjustable && <button type="button" className="cz-chip" onClick={() => setSheet('support')}><SlidersIcon />Support</button>}
         <button type="button" className="cz-chip" onClick={() => setSheet('sources')}><InfoIcon />Sources</button>

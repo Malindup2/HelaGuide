@@ -1,0 +1,1 @@
+Real responses from the isolated 3.1 runtime in LOCAL RESEARCH DEMO acceptance mode with a private copy of the trained Shared LinTS checkpoint (research/export_demo_accepted_examples.py). The wording is AI-assisted, source-grounded and accepted by the project owner for this demonstration; it has no external review. Capability token is a documentation sandbox value.

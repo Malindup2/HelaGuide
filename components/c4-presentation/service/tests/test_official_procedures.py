@@ -49,8 +49,8 @@ def test_mixed_catalogue_keeps_existing_fingerprints_and_safety():
     old, old_safety = load_demo_procedures()
     mixed, mixed_safety = load_registered_procedures()
     assert mixed[:3] == old
-    assert len(mixed) == 6
-    assert len({g.plan_id for g in mixed}) == 6
+    assert len(mixed) == 9
+    assert len({g.plan_id for g in mixed}) == 9
     assert all(mixed_safety[k] == v for k, v in old_safety.items())
 
 
@@ -106,7 +106,7 @@ def test_catalogue_upgrade_preserves_saved_policy_and_presentation(tmp_path):
         before = client.get("/dev/v1/policy").json()
     app = create_app(provider=FakeProvider(failure="offline_test"), database_path=path, include_official_examples=True)
     with TestClient(app) as client:
-        assert len(client.get("/dev/v1/procedures").json()) == 6
+        assert len(client.get("/dev/v1/procedures").json()) == 9
         assert app.state.runtime.presentations[original_spec["exposure_id"]].model_dump(mode="json") == original_spec
         after = client.get("/dev/v1/policy").json()
         for field in ("policy_run_id", "posterior_fingerprint", "posterior_revision", "accepted_feedback_count", "prior_digest"):

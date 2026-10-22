@@ -125,7 +125,7 @@ def test_provisional_previews_are_labelled_and_never_claim_a_review(demo):
     assert 'provisional wording' in j['selection']['label']
     assert all(a['wording_status'] == 'provisional' for a in j['document']['actions'])
     assert j['availability']['feasible_count'] > 4
-    assert demo.get(ROOT + '/status').json()['demo_provisional_content'] == sorted(OFFICIAL)
+    assert demo.get(ROOT + '/status').json()['demo_provisional_content'] == sorted(OFFICIAL + ('official-birth_copy-v4', 'official-nic_amendment-v4', 'official-tin_registration-v1'))
 
 
 def test_provisional_wording_is_never_stored_in_the_strict_registry(demo, entries):

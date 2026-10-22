@@ -71,3 +71,11 @@ export const accepted = (name: string) => {
   if (!hit) throw new Error(`missing capture ${name}`);
   return clone<GuidanceResponse>(hit[1].response as GuidanceResponse);
 };
+
+// The three main services (birth certificate copy v4, NIC amendment v4, TIN registration): real responses with the trained policy copy (research/export_demo_accepted_examples.py --set main).
+const M = import.meta.glob('../../../../docs/examples/frontend-api-3.1-main-services-2026-10-22/*.json', { eager: true, import: 'default' }) as Record<string, { response: unknown }>;
+export const mainService = (name: string) => {
+  const hit = Object.entries(M).find(([path]) => path.endsWith(`/${name}.json`));
+  if (!hit) throw new Error(`missing capture ${name}`);
+  return clone<GuidanceResponse>(hit[1].response as GuidanceResponse);
+};

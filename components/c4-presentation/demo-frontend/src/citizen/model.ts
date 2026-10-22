@@ -103,7 +103,9 @@ export function layersOf(doc: Doc, subset?: Set<string>): Layer[] {
     const ids = r.options.flatMap(o => o.action_ids).filter(inSubset);
     if (ids.length === 0) continue;
     const known = ids.map(layerOf).filter((n): n is number => n !== null);
-    layer(known.length ? Math.min(...known) : null).routes.push(r);
+    // A route is one choice, so it sits after every verified prerequisite that any of its steps has outside the route.
+    const outside = (doc.edges ?? []).filter(e => ids.includes(e.target_id) && !ids.includes(e.source_id)).map(e => layerOf(e.source_id)).filter((n): n is number => n !== null);
+    layer(known.length ? Math.max(Math.min(...known), outside.length ? Math.max(...outside) + 1 : 0) : null).routes.push(r);
   }
   for (const l of map.values()) l.peers.sort((a, b) => (order.get(a.id) ?? 99) - (order.get(b.id) ?? 99) || a.id.localeCompare(b.id));
   return [...map.values()].sort((a, b) => (a.layer ?? 99) - (b.layer ?? 99));

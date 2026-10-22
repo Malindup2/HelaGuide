@@ -14,7 +14,7 @@ CHECKPOINT = C4 / 'service' / '.local' / 'pp1-learning' / 'v31-study-20261022-a'
 ROOT = '/workspace/guidance'
 TOKEN = 'live-demo-accepted-capability-' + 'x' * 16
 H = {'X-C4-Token': TOKEN}
-OFFICIAL = ('official-birth_copy-v3', 'official-nic_amendment-v3', 'official-company_pack-v3')
+SETS = {'main': ('official-birth_copy-v4', 'official-nic_amendment-v4', 'official-tin_registration-v1'), 'earlier': ('official-birth_copy-v3', 'official-nic_amendment-v3', 'official-company_pack-v3')}
 BASE = {'navigation': 'overview', 'explanation': 'concise', 'disclosure': 'off', 'relationships': 'none', 'recap': 'off', 'segmentation': 'off'}
 
 
@@ -23,7 +23,9 @@ def main():
     ap.add_argument('--base', default='http://127.0.0.1:8021')
     ap.add_argument('--output', required=True)
     ap.add_argument('--draws', type=int, default=20)
+    ap.add_argument('--set', choices=sorted(SETS), default='main')
     args = ap.parse_args()
+    OFFICIAL = SETS[args.set]
     out = Path(args.output).resolve()
     if out.exists():
         raise SystemExit('refusing to overwrite ' + str(out))
@@ -61,7 +63,7 @@ def main():
     report['guest_standard'] = standard
     report['lints_selection_frequencies'] = {k: dict(v) for k, v in selections.items()}
 
-    pid = 'official-nic_amendment-v3'
+    pid = OFFICIAL[1]
     sid = profile(pid, 3, 3)
     j = request(pid, sid, mode='personalized').json()
     ins = c.get(ROOT + '/journeys/' + j['journey_id'] + '/inspector', headers=H).json()

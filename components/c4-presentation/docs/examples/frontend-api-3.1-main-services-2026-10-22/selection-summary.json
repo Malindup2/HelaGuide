@@ -1,0 +1,1252 @@
+{
+  "selections": [
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 6
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-nic_amendment-v4",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 6
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-tin_registration-v1",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "checkpoint_sha256_before": "71a7768f2eb83565fcc277311b9dcf1b93188cc5ff322dd74b05a69edf1ace43",
+  "status": {
+    "content_schema": "c4-guidance-content-3.1",
+    "action_schema": "c4-scaffolds-v3.1",
+    "encoder_status": "c4-features-pp1-1.1-525",
+    "personalized_selection_available": true,
+    "demo_accepted_content": [
+      "official-birth_copy-v3",
+      "official-birth_copy-v4",
+      "official-company_pack-v3",
+      "official-nic_amendment-v3",
+      "official-nic_amendment-v4",
+      "official-tin_registration-v1"
+    ],
+    "demo_provisional_content": [],
+    "policy": {
+      "training_provenance": "synthetic",
+      "posterior_revision": 5001,
+      "manifest_fingerprint": "77bb028ef16de1528833746f91f5692ec19306a9b3c394c3f18eb584905d0620",
+      "accepted_feedback_count": 1
+    }
+  },
+  "feasible_counts": {
+    "official-birth_copy-v4": {
+      "feasible_after_demo_acceptance": 64,
+      "content_state": "demo_accepted",
+      "nominal": 96,
+      "maps_feasible": false,
+      "segmentation_feasible": true,
+      "detailed_feasible": true,
+      "disclosure_on_feasible": true
+    },
+    "official-nic_amendment-v4": {
+      "feasible_after_demo_acceptance": 64,
+      "content_state": "demo_accepted",
+      "nominal": 96,
+      "maps_feasible": false,
+      "segmentation_feasible": true,
+      "detailed_feasible": true,
+      "disclosure_on_feasible": true
+    },
+    "official-tin_registration-v1": {
+      "feasible_after_demo_acceptance": 64,
+      "content_state": "demo_accepted",
+      "nominal": 96,
+      "maps_feasible": false,
+      "segmentation_feasible": true,
+      "detailed_feasible": true,
+      "disclosure_on_feasible": true
+    }
+  },
+  "guest_standard": {
+    "official-birth_copy-v4": {
+      "kind": "standard",
+      "learning_eligible": false,
+      "content_state": "demo_accepted",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      }
+    },
+    "official-nic_amendment-v4": {
+      "kind": "standard",
+      "learning_eligible": false,
+      "content_state": "demo_accepted",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      }
+    },
+    "official-tin_registration-v1": {
+      "kind": "standard",
+      "learning_eligible": false,
+      "content_state": "demo_accepted",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      }
+    }
+  },
+  "lints_selection_frequencies": {
+    "official-birth_copy-v4/experienced": {
+      "{\"disclosure\": \"off\", \"explanation\": \"concise\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 14,
+      "{\"disclosure\": \"on\", \"explanation\": \"concise\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 3,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 3
+    },
+    "official-birth_copy-v4/novice": {
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"guided\", \"recap\": \"on\", \"relationships\": \"none\", \"segmentation\": \"on\"}": 15,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 2,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"guided\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 3
+    },
+    "official-nic_amendment-v4/experienced": {
+      "{\"disclosure\": \"on\", \"explanation\": \"concise\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 7,
+      "{\"disclosure\": \"off\", \"explanation\": \"concise\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 9,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 4
+    },
+    "official-nic_amendment-v4/novice": {
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"guided\", \"recap\": \"on\", \"relationships\": \"none\", \"segmentation\": \"on\"}": 16,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"guided\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 3,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"guided\", \"recap\": \"on\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 1
+    },
+    "official-tin_registration-v1/experienced": {
+      "{\"disclosure\": \"off\", \"explanation\": \"concise\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 7,
+      "{\"disclosure\": \"on\", \"explanation\": \"concise\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 10,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 3
+    },
+    "official-tin_registration-v1/novice": {
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"guided\", \"recap\": \"on\", \"relationships\": \"none\", \"segmentation\": \"on\"}": 9,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"guided\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 5,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"overview\", \"recap\": \"on\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 1,
+      "{\"disclosure\": \"on\", \"explanation\": \"detailed\", \"navigation\": \"overview\", \"recap\": \"off\", \"relationships\": \"inline\", \"segmentation\": \"on\"}": 5
+    }
+  },
+  "inspection_sample": {
+    "selection_kind": "shared_gaussian_lints",
+    "scoring_status": "executed",
+    "candidates_scored": 64,
+    "feasible_count": 64,
+    "feature_count": 525,
+    "feature_fingerprint": "d317181b58e833b9c57119f6c9b511a412846600611b0743fb4848f03fd96baf",
+    "decision_content_state": "demo_accepted",
+    "manifest_fingerprint": "77bb028ef16de1528833746f91f5692ec19306a9b3c394c3f18eb584905d0620"
+  },
+  "feedback": {
+    "revision_before": 5001,
+    "revision_after_first_rating": 5002,
+    "first_status": 200,
+    "replay_status": 200,
+    "replay_identical": true,
+    "second_distinct_rating_status": 409,
+    "manual_adjustment_status": 200,
+    "manual_view_rating_status": 200,
+    "original_view_rating_after_adjusting_status": 409,
+    "guest_rating_status": 403,
+    "revision_after_all": 5002,
+    "updates_from_this_check": 1,
+    "event_ack_status": 200
+  },
+  "checkpoint_sha256_after": "71a7768f2eb83565fcc277311b9dcf1b93188cc5ff322dd74b05a69edf1ace43",
+  "original_checkpoint_unchanged": true
+}

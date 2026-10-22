@@ -24,6 +24,8 @@ export function SupportControls({ response, busy, onChange }: { response: Guidan
 function statusText(r: GuidanceResponse): string {
   const p = r.preparation;
   if (p.content_state === 'source_fallback') return 'This guidance uses the wording of a bounded official-source snapshot. No reviewed explanation has been published for it, so richer explanation, disclosure, recap and phases are not offered.';
+  if (p.content_state === 'demo_accepted') return 'Wording for this service was written with AI assistance from the official pages listed under Source passages and checked only by automatic source-grounding checks. The project owner accepted it for this local research demonstration. No expert, agency or government body has reviewed it, and it is not official guidance.';
+  if (p.content_state === 'provisional_demo') return 'Provisional demo wording, written with AI assistance and checked only by automatic source-grounding checks. No person or authority has reviewed it.';
   if (p.review_kind === 'internal_fictional_author') return 'Fictional example. Its wording was prepared and checked in an internal, AI-assisted author review. It has not been reviewed by a human expert or by any government body.';
   return `Published wording (${p.content_origin.replaceAll('_', ' ')}).`;
 }

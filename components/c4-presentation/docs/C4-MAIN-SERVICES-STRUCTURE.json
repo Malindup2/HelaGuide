@@ -1,0 +1,662 @@
+{
+ "official-birth_copy-v3": {
+  "graph_fingerprint": "7f384d0d51b9e7493bd0afe26d3308ea93afc04e1ec5a09c64b6632af9db7b7a",
+  "actions": 2,
+  "prerequisites": 1,
+  "branch_groups": 0,
+  "facts": 3,
+  "measurements": {
+   "feature_schema_version": "1.0",
+   "measurement_version": "c4-structural-v2.1",
+   "normalization_method": "x_over_x_plus_scale_v1",
+   "lexical_rule": "nfc_unicode_lmn_runs_v1",
+   "unicode_data_version": "14.0.0",
+   "graph_schema_version": "1.0",
+   "plan_id": "official-birth_copy-v3",
+   "requested_service_id": "svc:birth_copy",
+   "generated_at": "2026-10-19T14:19:11Z",
+   "synthetic": false,
+   "disclaimer": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+   "measurement_scope": "whole_procedure",
+   "step_unit": "action",
+   "dependency_layer": "action",
+   "dependency_depth_unit": "edge",
+   "source_completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "unknown"
+   },
+   "step_count": {
+    "observed": 2,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 2,
+    "normalized_observed": 0.16666666666666666,
+    "normalized_exact": 0.16666666666666666
+   },
+   "information_volume": {
+    "observed": 156,
+    "completeness": "complete",
+    "scale": 200.0,
+    "exact_value": 156,
+    "normalized_observed": 0.43820224719101125,
+    "normalized_exact": 0.43820224719101125
+   },
+   "branch_count": {
+    "observed": 0,
+    "completeness": "complete",
+    "scale": 3.0,
+    "exact_value": 0,
+    "normalized_observed": 0.0,
+    "normalized_exact": 0.0
+   },
+   "condition_count": {
+    "observed": 0,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 0,
+    "normalized_observed": 0.0,
+    "normalized_exact": 0.0
+   },
+   "dependency_count": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 1,
+    "normalized_observed": 0.09090909090909091,
+    "normalized_exact": 0.09090909090909091
+   },
+   "dependency_depth": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 1,
+    "normalized_observed": 0.16666666666666666,
+    "normalized_exact": 0.16666666666666666
+   },
+   "parallel_group_count": {
+    "observed": 0,
+    "completeness": "unknown",
+    "scale": 3.0,
+    "exact_value": null,
+    "normalized_observed": 0.0,
+    "normalized_exact": null
+   },
+   "diagnostics": {
+    "stage_count": 1,
+    "observed_stage_dependency_count": 0,
+    "observed_stage_dependency_depth": 0,
+    "and_group_count": 0,
+    "or_group_count": 0,
+    "xor_group_count": 0,
+    "branch_option_count": 0,
+    "referenced_content_count": 3,
+    "referenced_fact_count": 3,
+    "unreferenced_content_count": 0,
+    "unreferenced_condition_count": 0,
+    "information": {
+     "stage_label_units": 10,
+     "required_content_units": 140,
+     "supplementary_content_units": 0,
+     "condition_units": 0,
+     "fact_units": 6,
+     "total": 156
+    }
+   }
+  }
+ },
+ "official-birth_copy-v4": {
+  "graph_fingerprint": "c4bdb41605f86da82cbd0d5087a6723c6bc426fa4d840f111b77226702bdff87",
+  "actions": 6,
+  "prerequisites": 5,
+  "branch_groups": 1,
+  "facts": 4,
+  "measurements": {
+   "feature_schema_version": "1.0",
+   "measurement_version": "c4-structural-v2.1",
+   "normalization_method": "x_over_x_plus_scale_v1",
+   "lexical_rule": "nfc_unicode_lmn_runs_v1",
+   "unicode_data_version": "14.0.0",
+   "graph_schema_version": "1.0",
+   "plan_id": "official-birth_copy-v4",
+   "requested_service_id": "svc:birth_certificate_copy",
+   "generated_at": "2026-10-22T09:00:00Z",
+   "synthetic": false,
+   "disclaimer": "Manually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+   "measurement_scope": "whole_procedure",
+   "step_unit": "action",
+   "dependency_layer": "action",
+   "dependency_depth_unit": "edge",
+   "source_completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "unknown"
+   },
+   "step_count": {
+    "observed": 6,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 6,
+    "normalized_observed": 0.375,
+    "normalized_exact": 0.375
+   },
+   "information_volume": {
+    "observed": 429,
+    "completeness": "complete",
+    "scale": 200.0,
+    "exact_value": 429,
+    "normalized_observed": 0.6820349761526232,
+    "normalized_exact": 0.6820349761526232
+   },
+   "branch_count": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 3.0,
+    "exact_value": 1,
+    "normalized_observed": 0.25,
+    "normalized_exact": 0.25
+   },
+   "condition_count": {
+    "observed": 2,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 2,
+    "normalized_observed": 0.2857142857142857,
+    "normalized_exact": 0.2857142857142857
+   },
+   "dependency_count": {
+    "observed": 5,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 5,
+    "normalized_observed": 0.3333333333333333,
+    "normalized_exact": 0.3333333333333333
+   },
+   "dependency_depth": {
+    "observed": 2,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 2,
+    "normalized_observed": 0.2857142857142857,
+    "normalized_exact": 0.2857142857142857
+   },
+   "parallel_group_count": {
+    "observed": 0,
+    "completeness": "unknown",
+    "scale": 3.0,
+    "exact_value": null,
+    "normalized_observed": 0.0,
+    "normalized_exact": null
+   },
+   "diagnostics": {
+    "stage_count": 1,
+    "observed_stage_dependency_count": 0,
+    "observed_stage_dependency_depth": 0,
+    "and_group_count": 0,
+    "or_group_count": 0,
+    "xor_group_count": 1,
+    "branch_option_count": 2,
+    "referenced_content_count": 7,
+    "referenced_fact_count": 4,
+    "unreferenced_content_count": 0,
+    "unreferenced_condition_count": 0,
+    "information": {
+     "stage_label_units": 9,
+     "required_content_units": 370,
+     "supplementary_content_units": 0,
+     "condition_units": 37,
+     "fact_units": 13,
+     "total": 429
+    }
+   }
+  }
+ },
+ "official-nic_amendment-v3": {
+  "graph_fingerprint": "da6d871ccde4191ebb389a84c4a9a8a143b594f84233a20df07d6ed305cc8626",
+  "actions": 3,
+  "prerequisites": 1,
+  "branch_groups": 1,
+  "facts": 2,
+  "measurements": {
+   "feature_schema_version": "1.0",
+   "measurement_version": "c4-structural-v2.1",
+   "normalization_method": "x_over_x_plus_scale_v1",
+   "lexical_rule": "nfc_unicode_lmn_runs_v1",
+   "unicode_data_version": "14.0.0",
+   "graph_schema_version": "1.0",
+   "plan_id": "official-nic_amendment-v3",
+   "requested_service_id": "svc:nic_amendment",
+   "generated_at": "2026-10-19T14:19:11Z",
+   "synthetic": false,
+   "disclaimer": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+   "measurement_scope": "whole_procedure",
+   "step_unit": "action",
+   "dependency_layer": "action",
+   "dependency_depth_unit": "edge",
+   "source_completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "unknown"
+   },
+   "step_count": {
+    "observed": 3,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 3,
+    "normalized_observed": 0.23076923076923078,
+    "normalized_exact": 0.23076923076923078
+   },
+   "information_volume": {
+    "observed": 233,
+    "completeness": "complete",
+    "scale": 200.0,
+    "exact_value": 233,
+    "normalized_observed": 0.5381062355658198,
+    "normalized_exact": 0.5381062355658198
+   },
+   "branch_count": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 3.0,
+    "exact_value": 1,
+    "normalized_observed": 0.25,
+    "normalized_exact": 0.25
+   },
+   "condition_count": {
+    "observed": 2,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 2,
+    "normalized_observed": 0.2857142857142857,
+    "normalized_exact": 0.2857142857142857
+   },
+   "dependency_count": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 1,
+    "normalized_observed": 0.09090909090909091,
+    "normalized_exact": 0.09090909090909091
+   },
+   "dependency_depth": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 1,
+    "normalized_observed": 0.16666666666666666,
+    "normalized_exact": 0.16666666666666666
+   },
+   "parallel_group_count": {
+    "observed": 0,
+    "completeness": "unknown",
+    "scale": 3.0,
+    "exact_value": null,
+    "normalized_observed": 0.0,
+    "normalized_exact": null
+   },
+   "diagnostics": {
+    "stage_count": 1,
+    "observed_stage_dependency_count": 0,
+    "observed_stage_dependency_depth": 0,
+    "and_group_count": 0,
+    "or_group_count": 0,
+    "xor_group_count": 1,
+    "branch_option_count": 2,
+    "referenced_content_count": 4,
+    "referenced_fact_count": 2,
+    "unreferenced_content_count": 0,
+    "unreferenced_condition_count": 0,
+    "information": {
+     "stage_label_units": 10,
+     "required_content_units": 196,
+     "supplementary_content_units": 0,
+     "condition_units": 22,
+     "fact_units": 5,
+     "total": 233
+    }
+   }
+  }
+ },
+ "official-nic_amendment-v4": {
+  "graph_fingerprint": "4069dcff0f7ec079f97a5b8c44ab331f81e453b4ad7f11364cc7a188da0ceb88",
+  "actions": 7,
+  "prerequisites": 5,
+  "branch_groups": 1,
+  "facts": 12,
+  "measurements": {
+   "feature_schema_version": "1.0",
+   "measurement_version": "c4-structural-v2.1",
+   "normalization_method": "x_over_x_plus_scale_v1",
+   "lexical_rule": "nfc_unicode_lmn_runs_v1",
+   "unicode_data_version": "14.0.0",
+   "graph_schema_version": "1.0",
+   "plan_id": "official-nic_amendment-v4",
+   "requested_service_id": "svc:nic_amendment_card",
+   "generated_at": "2026-10-22T09:00:00Z",
+   "synthetic": false,
+   "disclaimer": "Manually curated official-source snapshot retrieved 22 October 2026 from the Amending National Identity card section of the Department for Registration of Persons page; not independently validated, not live output, and not an official application service. Scope: amending an existing card under the normal service through a certifying officer, with the one-day service mentioned only as a separate in-person option. First-issue and lost-card procedures are different services. The age threshold for the affidavit requirement is 40 in this section but 50 in the page's first-issue section, and the affidavit paragraph contains a stray '(delete)' marker, so that requirement should be confirmed with the department. Verify current requirements with the department.",
+   "measurement_scope": "whole_procedure",
+   "step_unit": "action",
+   "dependency_layer": "action",
+   "dependency_depth_unit": "edge",
+   "source_completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "unknown"
+   },
+   "step_count": {
+    "observed": 7,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 7,
+    "normalized_observed": 0.4117647058823529,
+    "normalized_exact": 0.4117647058823529
+   },
+   "information_volume": {
+    "observed": 579,
+    "completeness": "complete",
+    "scale": 200.0,
+    "exact_value": 579,
+    "normalized_observed": 0.7432605905006419,
+    "normalized_exact": 0.7432605905006419
+   },
+   "branch_count": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 3.0,
+    "exact_value": 1,
+    "normalized_observed": 0.25,
+    "normalized_exact": 0.25
+   },
+   "condition_count": {
+    "observed": 2,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 2,
+    "normalized_observed": 0.2857142857142857,
+    "normalized_exact": 0.2857142857142857
+   },
+   "dependency_count": {
+    "observed": 5,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 5,
+    "normalized_observed": 0.3333333333333333,
+    "normalized_exact": 0.3333333333333333
+   },
+   "dependency_depth": {
+    "observed": 3,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 3,
+    "normalized_observed": 0.375,
+    "normalized_exact": 0.375
+   },
+   "parallel_group_count": {
+    "observed": 0,
+    "completeness": "unknown",
+    "scale": 3.0,
+    "exact_value": null,
+    "normalized_observed": 0.0,
+    "normalized_exact": null
+   },
+   "diagnostics": {
+    "stage_count": 1,
+    "observed_stage_dependency_count": 0,
+    "observed_stage_dependency_depth": 0,
+    "and_group_count": 0,
+    "or_group_count": 0,
+    "xor_group_count": 1,
+    "branch_option_count": 2,
+    "referenced_content_count": 9,
+    "referenced_fact_count": 12,
+    "unreferenced_content_count": 0,
+    "unreferenced_condition_count": 0,
+    "information": {
+     "stage_label_units": 12,
+     "required_content_units": 412,
+     "supplementary_content_units": 46,
+     "condition_units": 22,
+     "fact_units": 87,
+     "total": 579
+    }
+   }
+  }
+ },
+ "official-company_pack-v3": {
+  "graph_fingerprint": "213071cb3b7ffff73c03745e760c988593deb2b1dc15e167794f092186c05436",
+  "actions": 5,
+  "prerequisites": 4,
+  "branch_groups": 0,
+  "facts": 6,
+  "measurements": {
+   "feature_schema_version": "1.0",
+   "measurement_version": "c4-structural-v2.1",
+   "normalization_method": "x_over_x_plus_scale_v1",
+   "lexical_rule": "nfc_unicode_lmn_runs_v1",
+   "unicode_data_version": "14.0.0",
+   "graph_schema_version": "1.0",
+   "plan_id": "official-company_pack-v3",
+   "requested_service_id": "svc:company_pack",
+   "generated_at": "2026-10-19T14:19:11Z",
+   "synthetic": false,
+   "disclaimer": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+   "measurement_scope": "whole_procedure",
+   "step_unit": "action",
+   "dependency_layer": "action",
+   "dependency_depth_unit": "edge",
+   "source_completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "unknown"
+   },
+   "step_count": {
+    "observed": 5,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 5,
+    "normalized_observed": 0.3333333333333333,
+    "normalized_exact": 0.3333333333333333
+   },
+   "information_volume": {
+    "observed": 255,
+    "completeness": "complete",
+    "scale": 200.0,
+    "exact_value": 255,
+    "normalized_observed": 0.5604395604395604,
+    "normalized_exact": 0.5604395604395604
+   },
+   "branch_count": {
+    "observed": 0,
+    "completeness": "complete",
+    "scale": 3.0,
+    "exact_value": 0,
+    "normalized_observed": 0.0,
+    "normalized_exact": 0.0
+   },
+   "condition_count": {
+    "observed": 0,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 0,
+    "normalized_observed": 0.0,
+    "normalized_exact": 0.0
+   },
+   "dependency_count": {
+    "observed": 4,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 4,
+    "normalized_observed": 0.2857142857142857,
+    "normalized_exact": 0.2857142857142857
+   },
+   "dependency_depth": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 1,
+    "normalized_observed": 0.16666666666666666,
+    "normalized_exact": 0.16666666666666666
+   },
+   "parallel_group_count": {
+    "observed": 0,
+    "completeness": "unknown",
+    "scale": 3.0,
+    "exact_value": null,
+    "normalized_observed": 0.0,
+    "normalized_exact": null
+   },
+   "diagnostics": {
+    "stage_count": 1,
+    "observed_stage_dependency_count": 0,
+    "observed_stage_dependency_depth": 0,
+    "and_group_count": 0,
+    "or_group_count": 0,
+    "xor_group_count": 0,
+    "branch_option_count": 0,
+    "referenced_content_count": 6,
+    "referenced_fact_count": 6,
+    "unreferenced_content_count": 0,
+    "unreferenced_condition_count": 0,
+    "information": {
+     "stage_label_units": 12,
+     "required_content_units": 226,
+     "supplementary_content_units": 0,
+     "condition_units": 0,
+     "fact_units": 17,
+     "total": 255
+    }
+   }
+  }
+ },
+ "official-tin_registration-v1": {
+  "graph_fingerprint": "8d05371879be06f16cced25886aabe4479a42eb3a08f291ceb94f51475efaf37",
+  "actions": 6,
+  "prerequisites": 3,
+  "branch_groups": 1,
+  "facts": 14,
+  "measurements": {
+   "feature_schema_version": "1.0",
+   "measurement_version": "c4-structural-v2.1",
+   "normalization_method": "x_over_x_plus_scale_v1",
+   "lexical_rule": "nfc_unicode_lmn_runs_v1",
+   "unicode_data_version": "14.0.0",
+   "graph_schema_version": "1.0",
+   "plan_id": "official-tin_registration-v1",
+   "requested_service_id": "svc:tin_registration",
+   "generated_at": "2026-10-22T09:00:00Z",
+   "synthetic": false,
+   "disclaimer": "Manually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+   "measurement_scope": "whole_procedure",
+   "step_unit": "action",
+   "dependency_layer": "action",
+   "dependency_depth_unit": "edge",
+   "source_completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "unknown"
+   },
+   "step_count": {
+    "observed": 6,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 6,
+    "normalized_observed": 0.375,
+    "normalized_exact": 0.375
+   },
+   "information_volume": {
+    "observed": 635,
+    "completeness": "complete",
+    "scale": 200.0,
+    "exact_value": 635,
+    "normalized_observed": 0.7604790419161677,
+    "normalized_exact": 0.7604790419161677
+   },
+   "branch_count": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 3.0,
+    "exact_value": 1,
+    "normalized_observed": 0.25,
+    "normalized_exact": 0.25
+   },
+   "condition_count": {
+    "observed": 3,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 3,
+    "normalized_observed": 0.375,
+    "normalized_exact": 0.375
+   },
+   "dependency_count": {
+    "observed": 3,
+    "completeness": "complete",
+    "scale": 10.0,
+    "exact_value": 3,
+    "normalized_observed": 0.23076923076923078,
+    "normalized_exact": 0.23076923076923078
+   },
+   "dependency_depth": {
+    "observed": 1,
+    "completeness": "complete",
+    "scale": 5.0,
+    "exact_value": 1,
+    "normalized_observed": 0.16666666666666666,
+    "normalized_exact": 0.16666666666666666
+   },
+   "parallel_group_count": {
+    "observed": 0,
+    "completeness": "unknown",
+    "scale": 3.0,
+    "exact_value": null,
+    "normalized_observed": 0.0,
+    "normalized_exact": null
+   },
+   "diagnostics": {
+    "stage_count": 1,
+    "observed_stage_dependency_count": 0,
+    "observed_stage_dependency_depth": 0,
+    "and_group_count": 0,
+    "or_group_count": 0,
+    "xor_group_count": 1,
+    "branch_option_count": 3,
+    "referenced_content_count": 7,
+    "referenced_fact_count": 14,
+    "unreferenced_content_count": 0,
+    "unreferenced_condition_count": 0,
+    "information": {
+     "stage_label_units": 9,
+     "required_content_units": 497,
+     "supplementary_content_units": 0,
+     "condition_units": 19,
+     "fact_units": 110,
+     "total": 635
+    }
+   }
+  }
+ }
+}

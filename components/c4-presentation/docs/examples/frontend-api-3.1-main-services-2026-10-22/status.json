@@ -1,0 +1,54 @@
+{
+  "method": "GET",
+  "path": "/workspace/guidance/status",
+  "request": null,
+  "status_code": 200,
+  "response": {
+    "schema_version": "c4-guidance-api-1.0",
+    "action_schema": "c4-scaffolds-v3.1",
+    "content_schema": "c4-guidance-content-3.1",
+    "nominal_configuration_count": 96,
+    "standard_guidance_available": true,
+    "research_previews_enabled": true,
+    "personalized_selection_available": true,
+    "encoder_status": "c4-features-pp1-1.1-525",
+    "policy": {
+      "manifest": {
+        "model": "c4-shared-gaussian-pp1-1.0",
+        "action": "c4-scaffolds-v3.1",
+        "features": "c4-features-pp1-1.1-525",
+        "feature_fingerprint": "d317181b58e833b9c57119f6c9b511a412846600611b0743fb4848f03fd96baf",
+        "variant": "525",
+        "dimension": 525,
+        "content": "c4-guidance-content-3.1",
+        "reward": "fits-1-does-not-fit-0-pp1",
+        "prior_precision": 1.0,
+        "noise": 1.0,
+        "exploration": 0.25,
+        "reward_center": 0.5
+      },
+      "manifest_fingerprint": "77bb028ef16de1528833746f91f5692ec19306a9b3c394c3f18eb584905d0620",
+      "policy_run_id": "pp1-run:ad11921bb638449582a5cca554f50e46",
+      "posterior_revision": 5000,
+      "accepted_feedback_count": 0,
+      "initial_training_revision": 5000,
+      "decision_count": 0,
+      "posterior_fingerprint": "71a7768f2eb83565fcc277311b9dcf1b93188cc5ff322dd74b05a69edf1ace43",
+      "mode": "simulation",
+      "training_provenance": "synthetic"
+    },
+    "history_adjustment": "deferred_to_PP2",
+    "pp1_remaining_requirements": [],
+    "visibility_policy": null,
+    "demo_provisional_content": [],
+    "demo_accepted_content": [
+      "official-birth_copy-v3",
+      "official-birth_copy-v4",
+      "official-company_pack-v3",
+      "official-nic_amendment-v3",
+      "official-nic_amendment-v4",
+      "official-tin_registration-v1"
+    ],
+    "contracts": "/openapi.json"
+  }
+}

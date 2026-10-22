@@ -1,0 +1,51 @@
+{
+  "plan_id": "official-birth_copy-v4",
+  "requested_service_id": "svc:birth_certificate_copy",
+  "generated_at": "2026-10-22T09:00:00Z",
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:birth_certificate_copy",
+      "name": "Birth certificate copy: counter application",
+      "agency": "Registrar General's Department",
+      "fee": {
+        "value": 120,
+        "currency": "LKR",
+        "fact_id": "svc:birth_certificate_copy:fee"
+      },
+      "documents": [
+        {
+          "name": "Completed application form",
+          "fact_id": "svc:birth_certificate_copy:document:0"
+        },
+        {
+          "name": "Bank slip (payment receipt)",
+          "fact_id": "svc:birth_certificate_copy:document:1"
+        },
+        {
+          "name": "Stamped, self-addressed envelope",
+          "fact_id": "svc:birth_certificate_copy:document:2"
+        }
+      ],
+      "depends_on": []
+    }
+  ],
+  "provenance": {
+    "svc:birth_certificate_copy:fee": {
+      "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/charges",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:birth_certificate_copy:document:0": {
+      "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:birth_certificate_copy:document:1": {
+      "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:birth_certificate_copy:document:2": {
+      "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    }
+  }
+}

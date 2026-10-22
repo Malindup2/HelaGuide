@@ -12,8 +12,8 @@ export function Facts({ facts, doc, label = true, names = { documents: 'Document
     return <span className={`cz-tag${fee ? ' cz-fee' : ''}`} key={f.id}>{fee ? <FeeIcon /> : <DocIcon />}
       {fee ? <b>{formatAmount(f.fact)}</b> : f.fact.name}{note && <small>{note}</small>}</span>;
   };
-  const row = (name: string, list: ScopedFact[], fee: boolean) => <p key={name + fee}>{label && <span className="cz-k">{name}</span>}{list.map(f => tag(f, fee))}
-    {list.filter(f => f.qualification).map(f => <small className="cz-qual" key={f.id + 'q'}>{f.qualification}</small>)}</p>;
+  const row = (name: string, list: ScopedFact[], fee: boolean) => <p key={name + fee}>{label && <span className="cz-k">{name}</span>}
+    <span className="cz-items">{list.map(f => <span className="cz-item" key={f.id} data-note={f.qualification ? '' : undefined}>{tag(f, fee)}{f.qualification && <small className="cz-qual">{f.qualification}</small>}</span>)}</span></p>;
   const docs = facts.filter(f => f.fact.kind === 'document'), fees = facts.filter(f => f.fact.kind === 'fee');
   const rows = [];
   if (byRole) {
@@ -70,7 +70,7 @@ export function StepBody({ action, doc, config, open, onToggle, hideConditions =
   // A fallback heading is the instruction's own first sentence; show it once rather than twice. Nothing is dropped.
   const essential = (() => {
     const ps = paragraphs(action.essential, doc.source_limit);
-    if (heading && ps[0]?.startsWith(heading)) { const rest = ps[0].slice(heading.length).replace(/^[.\s]+/, ''); return rest ? [rest, ...ps.slice(1)] : ps.slice(1); }
+    if (!supplement && heading && ps[0]?.startsWith(heading)) { const rest = ps[0].slice(heading.length).replace(/^[.\s]+/, ''); return rest ? [rest, ...ps.slice(1)] : ps.slice(1); }
     return ps;
   })();
   return <div className="cz-body" id={`cz-body-${action.id}`}>

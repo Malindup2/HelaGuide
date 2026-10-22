@@ -1,0 +1,1571 @@
+{
+  "procedure_id": "official-tin_registration-v1",
+  "status": "provisional_demo_only",
+  "label": "Provisional demo wording. AI-assisted, checked only by automatic source-grounding checks. No human, expert or government review. Not independently validated guidance.",
+  "provenance": "Authored with AI assistance from the official pages cited in the planner inputs (research/data/official/tin_registration). No human, expert or government review; accepted by the project owner for the local research demonstration only.",
+  "automatic_checks": {
+    "procedure_id": "official-tin_registration-v1",
+    "structural": "passed",
+    "grounding_and_contradiction_issues": [],
+    "passed": true
+  },
+  "content": {
+    "schema_version": "c4-guidance-content-3.1",
+    "procedure_id": "official-tin_registration-v1",
+    "language": "en",
+    "source_graph_fingerprint": "a2b1caad6f6d4aca830345c99240ad247e14da91346882ff6f5eac2d2c4f2fbc",
+    "relationship_fingerprint": "4a580fddffda560762133fbf48d4267dcfdf329119790ebc9f2627a3d63923bc",
+    "content_version": "demo-accepted-v4-1",
+    "origin": "demo_mock",
+    "source_limit": "Manually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+    "claims": [
+      {
+        "id": "action:individual_docs:claim:0",
+        "source_kind": "content",
+        "source_id": "content:individual_docs",
+        "start": 0,
+        "end": 350,
+        "quote": "Individuals prepare their NIC (Sri Lankans) or valid passport (foreign nationals). Add the business registration certificate if a proprietorship is to be added, and proof of address (a utility bill, a bank statement or passbook, or a Grama Niladhari certificate) if the address is different from the NIC. Foreign nationals need a local address proof.",
+        "action_ids": [
+          "action:individual_docs"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:individual_docs:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 997,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+        "action_ids": [
+          "action:individual_docs"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:individual_docs:document:0",
+        "source_kind": "content",
+        "source_id": "content:individual_docs",
+        "start": 20,
+        "end": 81,
+        "quote": "their NIC (Sri Lankans) or valid passport (foreign nationals)",
+        "action_ids": [
+          "action:individual_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:individual_docs:document:1",
+        "source_kind": "content",
+        "source_id": "content:individual_docs",
+        "start": 87,
+        "end": 124,
+        "quote": "the business registration certificate",
+        "action_ids": [
+          "action:individual_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:individual_docs:qualification:1",
+        "source_kind": "content",
+        "source_id": "content:individual_docs",
+        "start": 125,
+        "end": 159,
+        "quote": "if a proprietorship is to be added",
+        "action_ids": [
+          "action:individual_docs"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:individual_docs:document:2",
+        "source_kind": "content",
+        "source_id": "content:individual_docs",
+        "start": 165,
+        "end": 262,
+        "quote": "proof of address (a utility bill, a bank statement or passbook, or a Grama Niladhari certificate)",
+        "action_ids": [
+          "action:individual_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:individual_docs:qualification:2",
+        "source_kind": "content",
+        "source_id": "content:individual_docs",
+        "start": 263,
+        "end": 303,
+        "quote": "if the address is different from the NIC",
+        "action_ids": [
+          "action:individual_docs"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:individual_submit:claim:0",
+        "source_kind": "content",
+        "source_id": "content:individual_submit",
+        "start": 0,
+        "end": 362,
+        "quote": "Submit your TIN registration through the IRD e-Services portal, which the 2026 taxpayer guideline names as the way to obtain a TIN. The department's registration page also describes registering in person or by post; the IRD Call Centre on 1944 can confirm which options you can use. The older service description lists no application form fee and no service fee.",
+        "action_ids": [
+          "action:individual_submit"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:individual_submit:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 997,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+        "action_ids": [
+          "action:individual_submit"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:individual_submit:fee:0",
+        "source_kind": "content",
+        "source_id": "content:individual_submit",
+        "start": 319,
+        "end": 361,
+        "quote": "no application form fee and no service fee",
+        "action_ids": [
+          "action:individual_submit"
+        ],
+        "required": false,
+        "kind": "fee",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:individual_submit:qualification:0",
+        "source_kind": "content",
+        "source_id": "content:individual_submit",
+        "start": 283,
+        "end": 318,
+        "quote": "The older service description lists",
+        "action_ids": [
+          "action:individual_submit"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:individual_submit:destination",
+        "source_kind": "content",
+        "source_id": "content:individual_submit",
+        "start": 29,
+        "end": 62,
+        "quote": "through the IRD e-Services portal",
+        "action_ids": [
+          "action:individual_submit"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:partnership_docs:claim:0",
+        "source_kind": "content",
+        "source_id": "content:partnership_docs",
+        "start": 0,
+        "end": 146,
+        "quote": "Partnerships prepare the partnership registration certificate and the NIC (Sri Lankans) or valid passport (foreign nationals) of all the partners.",
+        "action_ids": [
+          "action:partnership_docs"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:partnership_docs:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 997,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+        "action_ids": [
+          "action:partnership_docs"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:partnership_docs:document:0",
+        "source_kind": "content",
+        "source_id": "content:partnership_docs",
+        "start": 21,
+        "end": 61,
+        "quote": "the partnership registration certificate",
+        "action_ids": [
+          "action:partnership_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:partnership_docs:document:1",
+        "source_kind": "content",
+        "source_id": "content:partnership_docs",
+        "start": 66,
+        "end": 145,
+        "quote": "the NIC (Sri Lankans) or valid passport (foreign nationals) of all the partners",
+        "action_ids": [
+          "action:partnership_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:partnership_submit:claim:0",
+        "source_kind": "content",
+        "source_id": "content:partnership_submit",
+        "start": 0,
+        "end": 362,
+        "quote": "Submit your TIN registration through the IRD e-Services portal, which the 2026 taxpayer guideline names as the way to obtain a TIN. The department's registration page also describes registering in person or by post; the IRD Call Centre on 1944 can confirm which options you can use. The older service description lists no application form fee and no service fee.",
+        "action_ids": [
+          "action:partnership_submit"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:partnership_submit:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 997,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+        "action_ids": [
+          "action:partnership_submit"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:partnership_submit:fee:0",
+        "source_kind": "content",
+        "source_id": "content:partnership_submit",
+        "start": 319,
+        "end": 361,
+        "quote": "no application form fee and no service fee",
+        "action_ids": [
+          "action:partnership_submit"
+        ],
+        "required": false,
+        "kind": "fee",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:partnership_submit:qualification:0",
+        "source_kind": "content",
+        "source_id": "content:partnership_submit",
+        "start": 283,
+        "end": 318,
+        "quote": "The older service description lists",
+        "action_ids": [
+          "action:partnership_submit"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:partnership_submit:destination",
+        "source_kind": "content",
+        "source_id": "content:partnership_submit",
+        "start": 29,
+        "end": 62,
+        "quote": "through the IRD e-Services portal",
+        "action_ids": [
+          "action:partnership_submit"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:company_docs:claim:0",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 0,
+        "end": 537,
+        "quote": "Registered companies prepare the Certificate of Incorporation (Form 2A, 2D, 42, 41 etc.), Form 01, 05 or 40 certified by the Registrar of Companies, all Form 20s certified by the Registrar of Companies, the NIC or valid passport of all directors, and the Articles of Association. Form 13 certified by the Registrar of Companies is needed if applicable, and Form 18 certified by the Registrar of Companies where applicable. A Board of Investment registration certificate and the relevant agreement are listed for companies that have them.",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 997,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:document:0",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 29,
+        "end": 88,
+        "quote": "the Certificate of Incorporation (Form 2A, 2D, 42, 41 etc.)",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:document:1",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 90,
+        "end": 147,
+        "quote": "Form 01, 05 or 40 certified by the Registrar of Companies",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:document:2",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 149,
+        "end": 201,
+        "quote": "all Form 20s certified by the Registrar of Companies",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:document:3",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 203,
+        "end": 245,
+        "quote": "the NIC or valid passport of all directors",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:document:4",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 251,
+        "end": 278,
+        "quote": "the Articles of Association",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:document:5",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 280,
+        "end": 351,
+        "quote": "Form 13 certified by the Registrar of Companies is needed if applicable",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:qualification:5",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 338,
+        "end": 351,
+        "quote": "if applicable",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:document:6",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 357,
+        "end": 421,
+        "quote": "Form 18 certified by the Registrar of Companies where applicable",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:qualification:6",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 405,
+        "end": 421,
+        "quote": "where applicable",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:document:7",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 423,
+        "end": 496,
+        "quote": "A Board of Investment registration certificate and the relevant agreement",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_docs:qualification:7",
+        "source_kind": "content",
+        "source_id": "content:company_docs",
+        "start": 508,
+        "end": 536,
+        "quote": "for companies that have them",
+        "action_ids": [
+          "action:company_docs"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_submit:claim:0",
+        "source_kind": "content",
+        "source_id": "content:company_submit",
+        "start": 0,
+        "end": 362,
+        "quote": "Submit your TIN registration through the IRD e-Services portal, which the 2026 taxpayer guideline names as the way to obtain a TIN. The department's registration page also describes registering in person or by post; the IRD Call Centre on 1944 can confirm which options you can use. The older service description lists no application form fee and no service fee.",
+        "action_ids": [
+          "action:company_submit"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:company_submit:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 997,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+        "action_ids": [
+          "action:company_submit"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:docs"
+        ]
+      },
+      {
+        "id": "action:company_submit:fee:0",
+        "source_kind": "content",
+        "source_id": "content:company_submit",
+        "start": 319,
+        "end": 361,
+        "quote": "no application form fee and no service fee",
+        "action_ids": [
+          "action:company_submit"
+        ],
+        "required": false,
+        "kind": "fee",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:company_submit:qualification:0",
+        "source_kind": "content",
+        "source_id": "content:company_submit",
+        "start": 283,
+        "end": 318,
+        "quote": "The older service description lists",
+        "action_ids": [
+          "action:company_submit"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      },
+      {
+        "id": "action:company_submit:destination",
+        "source_kind": "content",
+        "source_id": "content:company_submit",
+        "start": 29,
+        "end": 62,
+        "quote": "through the IRD e-Services portal",
+        "action_ids": [
+          "action:company_submit"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:reg"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:individual_docs",
+        "heading": {
+          "text": "Prepare your identity and address documents",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Individuals prepare their NIC (Sri Lankans) or valid passport (foreign nationals). Add the business registration certificate if a proprietorship is to be added, and proof of address (a utility bill, a bank statement or passbook, or a Grama Niladhari certificate) if the address is different from the NIC. Foreign nationals need a local address proof.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:individual_docs:claim:0",
+            "action:individual_docs:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "concise": {
+          "text": "Prepare your NIC or passport, plus proof of address if it differs from your NIC.",
+          "status": "draft",
+          "claim_ids": [
+            "action:individual_docs:claim:0",
+            "action:individual_docs:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "detailed": {
+          "text": "Prepare your NIC if you are a Sri Lankan, or a valid passport if you are a foreign national. Add the business registration certificate only if a proprietorship is to be added, and proof of address (a utility bill, a bank statement or passbook, or a Grama Niladhari certificate) only if your address is different from the one on your NIC. Foreign nationals need a local address proof.",
+          "status": "draft",
+          "claim_ids": [
+            "action:individual_docs:claim:0",
+            "action:individual_docs:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The older service description says that photocopies of the supporting documents accompany the application.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:docs"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at the documents an individual needs.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:a_individual"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:individual_docs:document:0",
+          "attachment:action:individual_docs:document:1",
+          "attachment:action:individual_docs:document:2"
+        ]
+      },
+      {
+        "id": "action:individual_submit",
+        "heading": {
+          "text": "Submit your TIN registration",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Submit your TIN registration through the IRD e-Services portal, which the 2026 taxpayer guideline names as the way to obtain a TIN. The department's registration page also describes registering in person or by post; the IRD Call Centre on 1944 can confirm which options you can use. The older service description lists no application form fee and no service fee.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:individual_submit:claim:0",
+            "action:individual_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "concise": {
+          "text": "Submit your TIN registration through the IRD e-Services portal.",
+          "status": "draft",
+          "claim_ids": [
+            "action:individual_submit:claim:0",
+            "action:individual_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "detailed": {
+          "text": "Submit your TIN registration through the IRD e-Services portal, which the 2026 taxpayer guideline names as the way to obtain a TIN. The department's registration page also describes registering in person or by post, and the IRD Call Centre on 1944 can confirm which options you can use. The older service description lists no application form fee and no service fee.",
+          "status": "draft",
+          "claim_ids": [
+            "action:individual_submit:claim:0",
+            "action:individual_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Registering for a TIN is separate from registering for tax types. After you have a TIN you register only for the taxes that apply to you, such as income tax or VAT, so do not assume you must register for all of them.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:reg"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at how to submit the registration.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "IRD e-Services portal",
+          "status": "draft",
+          "claim_ids": [
+            "action:individual_submit:destination"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:a_individual"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:individual_submit:fee"
+        ]
+      },
+      {
+        "id": "action:partnership_docs",
+        "heading": {
+          "text": "Prepare your partnership documents",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Partnerships prepare the partnership registration certificate and the NIC (Sri Lankans) or valid passport (foreign nationals) of all the partners.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:partnership_docs:claim:0",
+            "action:partnership_docs:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "concise": {
+          "text": "Prepare the partnership registration certificate and every partner's NIC or passport.",
+          "status": "draft",
+          "claim_ids": [
+            "action:partnership_docs:claim:0",
+            "action:partnership_docs:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "detailed": {
+          "text": "Prepare the partnership registration certificate, and the NIC of every partner who is a Sri Lankan or a valid passport for every partner who is a foreign national. The identity documents are needed for all the partners, not only for the person submitting the registration.",
+          "status": "draft",
+          "claim_ids": [
+            "action:partnership_docs:claim:0",
+            "action:partnership_docs:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Collect the partners' identity documents early, since you need them all before you can submit.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:docs"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at the documents a partnership needs.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:b_partnership"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:partnership_docs:document:3",
+          "attachment:action:partnership_docs:document:4"
+        ]
+      },
+      {
+        "id": "action:partnership_submit",
+        "heading": {
+          "text": "Submit your TIN registration",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Submit your TIN registration through the IRD e-Services portal, which the 2026 taxpayer guideline names as the way to obtain a TIN. The department's registration page also describes registering in person or by post; the IRD Call Centre on 1944 can confirm which options you can use. The older service description lists no application form fee and no service fee.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:partnership_submit:claim:0",
+            "action:partnership_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "concise": {
+          "text": "Submit your partnership's TIN registration through the IRD e-Services portal.",
+          "status": "draft",
+          "claim_ids": [
+            "action:partnership_submit:claim:0",
+            "action:partnership_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "detailed": {
+          "text": "Submit the partnership's TIN registration through the IRD e-Services portal, which the 2026 taxpayer guideline names as the way to obtain a TIN. The department's registration page also describes registering in person or by post, and the IRD Call Centre on 1944 can confirm which options you can use. The older service description lists no application form fee and no service fee.",
+          "status": "draft",
+          "claim_ids": [
+            "action:partnership_submit:claim:0",
+            "action:partnership_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Registering for a TIN is separate from registering for tax types. After you have a TIN you register only for the taxes that apply to you, such as income tax or VAT, so do not assume you must register for all of them.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:reg"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at how to submit the registration.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "IRD e-Services portal",
+          "status": "draft",
+          "claim_ids": [
+            "action:partnership_submit:destination"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:b_partnership"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:partnership_submit:fee"
+        ]
+      },
+      {
+        "id": "action:company_docs",
+        "heading": {
+          "text": "Prepare your company documents",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Registered companies prepare the Certificate of Incorporation (Form 2A, 2D, 42, 41 etc.), Form 01, 05 or 40 certified by the Registrar of Companies, all Form 20s certified by the Registrar of Companies, the NIC or valid passport of all directors, and the Articles of Association. Form 13 certified by the Registrar of Companies is needed if applicable, and Form 18 certified by the Registrar of Companies where applicable. A Board of Investment registration certificate and the relevant agreement are listed for companies that have them.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:company_docs:claim:0",
+            "action:company_docs:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "concise": {
+          "text": "Prepare your Certificate of Incorporation, the certified company forms and the directors' identity documents.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_docs:claim:0",
+            "action:company_docs:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "detailed": {
+          "text": "Prepare the Certificate of Incorporation (Form 2A, 2D, 42, 41 etc.), Form 01, 05 or 40 certified by the Registrar of Companies, all Form 20s certified by the Registrar of Companies, the NIC or valid passport of all directors, and the Articles of Association. Add Form 13 only if it applies to your company, Form 18 only where it applies, and a Board of Investment registration certificate with its agreement only if your company has them.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_docs:claim:0",
+            "action:company_docs:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Not every form the guideline names applies to every company: Form 13 and Form 18 are marked as applicable only in some cases.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:docs"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at the documents a registered company needs.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:c_company"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:company_docs:document:5",
+          "attachment:action:company_docs:document:6",
+          "attachment:action:company_docs:document:7",
+          "attachment:action:company_docs:document:8",
+          "attachment:action:company_docs:document:9",
+          "attachment:action:company_docs:document:10",
+          "attachment:action:company_docs:document:11",
+          "attachment:action:company_docs:document:12"
+        ]
+      },
+      {
+        "id": "action:company_submit",
+        "heading": {
+          "text": "Submit your TIN registration",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Submit your TIN registration through the IRD e-Services portal, which the 2026 taxpayer guideline names as the way to obtain a TIN. The department's registration page also describes registering in person or by post; the IRD Call Centre on 1944 can confirm which options you can use. The older service description lists no application form fee and no service fee.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the 2026 Inland Revenue Department taxpayer guideline (TIN section) and its registration overview page, cross-checked against an older Government Information Centre service description supplied for this project; not independently validated, not live output, and not an official application service. Scope: obtaining a TIN as an individual, a partnership or a registered company. Other entity types (institutions, branches, joint ventures, projects, trusts) have separate document lists in the guideline and are not covered. Counter hours, the 20-minute service time and the old tax-category names in the older description are historical and are not used. The registration overview page was last updated in 2020. In the 2026 guideline the wording of the Form 18 condition was only partly readable in the copy used, so that document is marked as applying only where applicable. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:company_submit:claim:0",
+            "action:company_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "concise": {
+          "text": "Submit your company's TIN registration through the IRD e-Services portal.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_submit:claim:0",
+            "action:company_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "detailed": {
+          "text": "Submit the company's TIN registration through the IRD e-Services portal, which the 2026 taxpayer guideline names as the way to obtain a TIN. The department's registration page also describes registering in person or by post, and the IRD Call Centre on 1944 can confirm which options you can use. The older service description lists no application form fee and no service fee.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_submit:claim:0",
+            "action:company_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Registering for a TIN is separate from registering for tax types. After you have a TIN you register only for the taxes that apply to you, such as income tax or VAT, so do not assume you must register for all of them.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:reg"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at how to submit the registration.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "IRD e-Services portal",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_submit:destination"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:c_company"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:company_submit:fee"
+        ]
+      }
+    ],
+    "attachments": [
+      {
+        "id": "attachment:action:individual_docs:document:0",
+        "fact_id": "svc:tin_registration:document:0",
+        "scope": "action",
+        "action_id": "action:individual_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:individual_docs:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:individual_docs:document:1",
+        "fact_id": "svc:tin_registration:document:1",
+        "scope": "action",
+        "action_id": "action:individual_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:individual_docs:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": {
+          "text": "Only if a proprietorship is to be added.",
+          "status": "draft",
+          "claim_ids": [
+            "action:individual_docs:qualification:1"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:individual_docs:document:2",
+        "fact_id": "svc:tin_registration:document:2",
+        "scope": "action",
+        "action_id": "action:individual_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:individual_docs:document:2"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": {
+          "text": "Only if the address is different from the NIC. Foreign nationals need a local address proof.",
+          "status": "draft",
+          "claim_ids": [
+            "action:individual_docs:qualification:2"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:individual_submit:fee",
+        "fact_id": "svc:tin_registration:fee",
+        "scope": "action",
+        "action_id": "action:individual_submit",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:individual_submit:fee:0"
+        ],
+        "evidence_ids": [
+          "evidence:reg"
+        ],
+        "qualification": {
+          "text": "As listed in the older GIC service description; the 2026 guideline does not restate a fee.",
+          "status": "draft",
+          "claim_ids": [
+            "action:individual_submit:qualification:0"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "status": "draft",
+        "role": "charge"
+      },
+      {
+        "id": "attachment:action:partnership_docs:document:3",
+        "fact_id": "svc:tin_registration:document:3",
+        "scope": "action",
+        "action_id": "action:partnership_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:partnership_docs:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:partnership_docs:document:4",
+        "fact_id": "svc:tin_registration:document:4",
+        "scope": "action",
+        "action_id": "action:partnership_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:partnership_docs:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:partnership_submit:fee",
+        "fact_id": "svc:tin_registration:fee",
+        "scope": "action",
+        "action_id": "action:partnership_submit",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:partnership_submit:fee:0"
+        ],
+        "evidence_ids": [
+          "evidence:reg"
+        ],
+        "qualification": {
+          "text": "As listed in the older GIC service description; the 2026 guideline does not restate a fee.",
+          "status": "draft",
+          "claim_ids": [
+            "action:partnership_submit:qualification:0"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "status": "draft",
+        "role": "charge"
+      },
+      {
+        "id": "attachment:action:company_docs:document:5",
+        "fact_id": "svc:tin_registration:document:5",
+        "scope": "action",
+        "action_id": "action:company_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_docs:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_docs:document:6",
+        "fact_id": "svc:tin_registration:document:6",
+        "scope": "action",
+        "action_id": "action:company_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_docs:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_docs:document:7",
+        "fact_id": "svc:tin_registration:document:7",
+        "scope": "action",
+        "action_id": "action:company_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_docs:document:2"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_docs:document:8",
+        "fact_id": "svc:tin_registration:document:8",
+        "scope": "action",
+        "action_id": "action:company_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_docs:document:3"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_docs:document:9",
+        "fact_id": "svc:tin_registration:document:9",
+        "scope": "action",
+        "action_id": "action:company_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_docs:document:4"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_docs:document:10",
+        "fact_id": "svc:tin_registration:document:10",
+        "scope": "action",
+        "action_id": "action:company_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_docs:document:5"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": {
+          "text": "Only if it applies to your company.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_docs:qualification:5"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_docs:document:11",
+        "fact_id": "svc:tin_registration:document:11",
+        "scope": "action",
+        "action_id": "action:company_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_docs:document:6"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": {
+          "text": "Only where it applies to your company.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_docs:qualification:6"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_docs:document:12",
+        "fact_id": "svc:tin_registration:document:12",
+        "scope": "action",
+        "action_id": "action:company_docs",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_docs:document:7"
+        ],
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "qualification": {
+          "text": "Only for companies that have them.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_docs:qualification:7"
+          ],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_submit:fee",
+        "fact_id": "svc:tin_registration:fee",
+        "scope": "action",
+        "action_id": "action:company_submit",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_submit:fee:0"
+        ],
+        "evidence_ids": [
+          "evidence:reg"
+        ],
+        "qualification": {
+          "text": "As listed in the older GIC service description; the 2026 guideline does not restate a fee.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_submit:qualification:0"
+          ],
+          "evidence_ids": [
+            "evidence:reg"
+          ]
+        },
+        "status": "draft",
+        "role": "charge"
+      }
+    ],
+    "phases": [
+      {
+        "id": "phase:documents",
+        "label": {
+          "text": "Prepare your documents",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "action_ids": [
+          "action:individual_docs",
+          "action:partnership_docs",
+          "action:company_docs"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Each applicant category first assembles its own documents.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "branch_split_note": "Only the steps for your applicant category apply to you."
+      },
+      {
+        "id": "phase:submit",
+        "label": {
+          "text": "Submit your registration",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:docs"
+          ]
+        },
+        "action_ids": [
+          "action:individual_submit",
+          "action:partnership_submit",
+          "action:company_submit"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Submission follows once the documents for your category are ready.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:docs"
+        ],
+        "branch_split_note": "Only the steps for your applicant category apply to you."
+      }
+    ],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "review": null
+  }
+}

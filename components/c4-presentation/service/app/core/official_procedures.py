@@ -15,13 +15,15 @@ from app.models.scaffolds import ContentSafety
 
 OFFICIAL_ROOT = Path(__file__).resolve().parents[3] / "research" / "data" / "official"
 OFFICIAL_EXAMPLES = ("birth_copy", "nic_amendment", "company_pack")
+# The three main demonstration services (new immutable versions; the three above stay registered as earlier research evidence).
+OFFICIAL_MAIN = ("birth_copy_v4", "nic_amendment_v4", "tin_registration")
 
 
-def load_official_procedures(root: str | Path | None = None):
+def load_official_procedures(root: str | Path | None = None, names=OFFICIAL_EXAMPLES):
     directory = OFFICIAL_ROOT if root is None else Path(root)
     graphs = []
     safety = {}
-    for name in OFFICIAL_EXAMPLES:
+    for name in names:
         graph = build_procedure_graph(load_procedure_input(
             directory / name / "plan.json", directory / name / "enrichment.json",
         ))
@@ -40,6 +42,8 @@ def load_registered_procedures():
     """Append examples without changing existing synthetic IDs/fingerprints."""
     synthetic, synthetic_safety = load_demo_procedures()
     official, official_safety = load_official_procedures()
+    main, main_safety = load_official_procedures(names=OFFICIAL_MAIN)
+    official, official_safety = official + main, {**official_safety, **main_safety}
     if set(synthetic_safety) & set(official_safety):
         raise ValueError("Duplicate catalogue fingerprint")
     return synthetic + official, {**synthetic_safety, **official_safety}

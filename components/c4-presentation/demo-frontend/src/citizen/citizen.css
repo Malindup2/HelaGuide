@@ -244,7 +244,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 /* Facts that belong to one step, shown as one small neutral card */
 .cz-atstep { display: grid; gap: 6px; padding: 8px 10px; border: 1px solid var(--cz-line); border-radius: 10px; background: var(--cz-paper); }
 .cz-qual { display: block; flex-basis: 100%; margin-left: 90px; color: var(--cz-muted); font-size: .75rem; }
-@media (max-width: 480px) { .cz-qual { margin-left: 0; } }
 .cz-service { display: grid; gap: 4px; padding: 6px 2px; color: var(--cz-muted); }
 .cz-service-h { margin: 0; font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .cz-provisional { padding: 6px 10px; border-left: 3px solid var(--cz-orange-line); border-radius: 0 6px 6px 0; background: var(--cz-orange-wash); font-size: .8125rem; }
@@ -252,3 +251,23 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 
 .cz-check { display: flex; gap: 8px; align-items: flex-start; font-size: .8125rem; color: var(--cz-muted); }
 .cz-check input { margin-top: 3px; accent-color: var(--cz-orange); }
+
+/* Final minimal white pass: white page and steps, thin grey rules, orange only for selection and optional support. */
+:root, body, .cz-app, .cz-main { background: #fff; }
+.cz { max-width: 760px; }
+.cz-step { border-color: #ececec; border-radius: 10px; padding: 14px 16px; gap: 8px; }
+.cz-stephead h3, .cz-stephead h4, .cz-focus h3 { font-size: 1rem; font-weight: 650; }
+.cz-opt[data-chosen="true"] { border-left: 0; padding-left: 0; background: none; }
+.cz-opt[data-chosen="true"] .cz-opt-cond { color: var(--cz-orange-deep); }
+.cz-cues li { border-left: 2px solid var(--cz-grey-line); background: var(--cz-paper); }
+.cz-atstep { gap: 8px; padding: 10px 12px; border-color: #eee; background: #fafafa; }
+.cz-facts p { align-items: flex-start; flex-wrap: nowrap; gap: 10px; }
+.cz-k { flex: 0 0 70px; padding-top: 5px; }
+.cz-items { display: flex; flex: 1; min-width: 0; flex-wrap: wrap; gap: 6px 8px; }
+.cz-item { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; max-width: 100%; }
+.cz-item[data-note] { flex-basis: 100%; }
+.cz-qual { display: block; margin: 0 0 2px 2px; flex-basis: auto; color: var(--cz-muted); font-size: .75rem; }
+.cz-expl { background: #fafafa; }
+.cz-route .cz-atstep { margin: 2px 0; }
+@media (max-width: 480px) { .cz-facts p { flex-wrap: wrap; gap: 4px 10px; } .cz-k { flex-basis: 100%; padding-top: 0; } .cz-step { padding: 12px; } }
+.cz-tag { flex-wrap: nowrap; align-items: flex-start; } .cz-tag .gc-icon { margin-top: 2px; } .cz-tag small { flex-basis: auto; }

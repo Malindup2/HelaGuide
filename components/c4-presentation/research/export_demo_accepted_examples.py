@@ -20,14 +20,17 @@ ROOT = '/workspace/guidance'
 TOKEN = 'documentation-sandbox-only-not-a-production-capability'
 CHECKPOINT = C4 / 'service' / '.local' / 'pp1-learning' / 'v31-study-20261022-a' / 'seed-23-x0.25-525-n5000.npz'
 BASE = {'navigation': 'overview', 'explanation': 'concise', 'disclosure': 'off', 'relationships': 'none', 'recap': 'off', 'segmentation': 'off'}
-OFFICIAL = {'birth': 'official-birth_copy-v3', 'nic': 'official-nic_amendment-v3', 'company': 'official-company_pack-v3'}
+PRESETS = {'main': {'birth': 'official-birth_copy-v4', 'nic': 'official-nic_amendment-v4', 'tin': 'official-tin_registration-v1'},
+           'earlier': {'birth': 'official-birth_copy-v3', 'nic': 'official-nic_amendment-v3', 'company': 'official-company_pack-v3'}}
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', required=True)
     parser.add_argument('--draws', type=int, default=12)
+    parser.add_argument('--set', choices=sorted(PRESETS), default='main')
     args = parser.parse_args()
+    OFFICIAL = PRESETS[args.set]
     output = Path(args.output).resolve()
     if not output.is_relative_to(C4) or output.exists():
         raise ValueError('Choose a new output directory inside C4; never overwrite an export.')

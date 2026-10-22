@@ -1,0 +1,131 @@
+{
+  "plan_id": "official-tin_registration-v1",
+  "requested_service_id": "svc:tin_registration",
+  "generated_at": "2026-10-22T09:00:00Z",
+  "steps": [
+    {
+      "order": 1,
+      "service_id": "svc:tin_registration",
+      "name": "Taxpayer ID (TIN): by applicant category",
+      "agency": "Inland Revenue Department",
+      "fee": {
+        "value": 0,
+        "currency": "LKR",
+        "fact_id": "svc:tin_registration:fee"
+      },
+      "documents": [
+        {
+          "name": "NIC (Sri Lankans) or valid passport (foreign nationals)",
+          "fact_id": "svc:tin_registration:document:0"
+        },
+        {
+          "name": "Business registration certificate (if a proprietorship is to be added)",
+          "fact_id": "svc:tin_registration:document:1"
+        },
+        {
+          "name": "Proof of address: utility bill, bank statement or passbook, or Grama Niladhari certificate",
+          "fact_id": "svc:tin_registration:document:2"
+        },
+        {
+          "name": "Partnership registration certificate",
+          "fact_id": "svc:tin_registration:document:3"
+        },
+        {
+          "name": "NIC or valid passport of every partner",
+          "fact_id": "svc:tin_registration:document:4"
+        },
+        {
+          "name": "Certificate of Incorporation (Form 2A, 2D, 42, 41 etc.)",
+          "fact_id": "svc:tin_registration:document:5"
+        },
+        {
+          "name": "Form 01, 05 or 40 certified by the Registrar of Companies",
+          "fact_id": "svc:tin_registration:document:6"
+        },
+        {
+          "name": "All Form 20s certified by the Registrar of Companies",
+          "fact_id": "svc:tin_registration:document:7"
+        },
+        {
+          "name": "NIC or valid passport of all directors",
+          "fact_id": "svc:tin_registration:document:8"
+        },
+        {
+          "name": "Articles of Association",
+          "fact_id": "svc:tin_registration:document:9"
+        },
+        {
+          "name": "Form 13 certified by the Registrar of Companies (if applicable)",
+          "fact_id": "svc:tin_registration:document:10"
+        },
+        {
+          "name": "Form 18 certified by the Registrar of Companies (where applicable)",
+          "fact_id": "svc:tin_registration:document:11"
+        },
+        {
+          "name": "Board of Investment registration certificate and relevant agreement",
+          "fact_id": "svc:tin_registration:document:12"
+        }
+      ],
+      "depends_on": []
+    }
+  ],
+  "provenance": {
+    "svc:tin_registration:fee": {
+      "source_url": "https://gic.gov.lk/",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:0": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:1": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:2": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:3": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:4": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:5": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:6": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:7": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:8": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:9": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:10": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:11": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    "svc:tin_registration:document:12": {
+      "source_url": "https://www.ird.gov.lk/en/Downloads/SiteAssets/TPR_Guidelines_2026_E.pdf",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    }
+  }
+}

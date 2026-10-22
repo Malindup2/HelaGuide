@@ -82,7 +82,7 @@ export default function Workspace() {
   const active = state.active, selected = state.procedures.find(p => p.procedure_id === state.selectedId);
   const personalised = active?.kind === 'profile' && active.profile.personalization_enabled;
   const busy = state.busy !== null || state.loading || state.pendingMode !== null;
-  const official = state.procedures.filter(p => !p.synthetic), fictional = state.procedures.filter(p => p.synthetic);
+  const real = state.procedures.filter(p => !p.synthetic), earlier = real.filter(p => /-v3$/.test(p.procedure_id)), official = real.filter(p => !/-v3$/.test(p.procedure_id)), fictional = state.procedures.filter(p => p.synthetic);
 
   const procedureButton = (p: ProcedureSummary) => { const [first, rest] = split(p.title), fiction = first === 'Synthetic demo' && !!rest, main = fiction ? rest.charAt(0).toUpperCase() + rest.slice(1) : first, sub = fiction ? 'Fictional example' : rest;
     return <button type="button" key={p.procedure_id} className="cz-pick" aria-pressed={p.procedure_id === state.selectedId} disabled={busy}
@@ -109,6 +109,7 @@ export default function Workspace() {
         </section>
         <section aria-labelledby="cz-proc-h"><h2 id="cz-proc-h">Procedure</h2>
           <p className="cz-group">Official-source procedures</p>{official.map(procedureButton)}
+          {earlier.length > 0 && <><p className="cz-group">Earlier versions (research comparison)</p>{earlier.map(procedureButton)}</>}
           <p className="cz-group">Research examples (fictional)</p>{fictional.map(procedureButton)}
         </section>
         <p className="cz-fine">Demo profiles are saved for this demonstration only. They are not accounts or verified identities.</p>

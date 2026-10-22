@@ -1,0 +1,1269 @@
+{
+  "procedure_id": "official-birth_copy-v4",
+  "status": "provisional_demo_only",
+  "label": "Provisional demo wording. AI-assisted, checked only by automatic source-grounding checks. No human, expert or government review. Not independently validated guidance.",
+  "provenance": "Authored with AI assistance from the official pages cited in the planner inputs (research/data/official/birth_copy_v4). No human, expert or government review; accepted by the project owner for the local research demonstration only.",
+  "automatic_checks": {
+    "procedure_id": "official-birth_copy-v4",
+    "structural": "passed",
+    "grounding_and_contradiction_issues": [],
+    "passed": true
+  },
+  "content": {
+    "schema_version": "c4-guidance-content-3.1",
+    "procedure_id": "official-birth_copy-v4",
+    "language": "en",
+    "source_graph_fingerprint": "c4bdb41605f86da82cbd0d5087a6723c6bc426fa4d840f111b77226702bdff87",
+    "relationship_fingerprint": "f98af1946348539194891fa68b1fa2cc54d294f79ca29aefa8a8ca61a6e4876f",
+    "content_version": "demo-accepted-v4-1",
+    "origin": "demo_mock",
+    "source_limit": "Manually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+    "claims": [
+      {
+        "id": "action:form:claim:0",
+        "source_kind": "content",
+        "source_id": "content:form",
+        "start": 0,
+        "end": 147,
+        "quote": "Get the application form from the Registrar Division of any Divisional Secretariat, or download it from the Registrar General's Department website.",
+        "action_ids": [
+          "action:form"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:form:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 690,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+        "action_ids": [
+          "action:form"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:form:destination",
+        "source_kind": "content",
+        "source_id": "content:form",
+        "start": 34,
+        "end": 82,
+        "quote": "Registrar Division of any Divisional Secretariat",
+        "action_ids": [
+          "action:form"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:complete:claim:0",
+        "source_kind": "content",
+        "source_id": "content:complete",
+        "start": 0,
+        "end": 197,
+        "quote": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.",
+        "action_ids": [
+          "action:complete"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:complete:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 690,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+        "action_ids": [
+          "action:complete"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:complete:document:0",
+        "source_kind": "content",
+        "source_id": "content:complete",
+        "start": 0,
+        "end": 24,
+        "quote": "Complete the application",
+        "action_ids": [
+          "action:complete"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:pay_known:claim:0",
+        "source_kind": "content",
+        "source_id": "content:pay_known",
+        "start": 0,
+        "end": 252,
+        "quote": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+        "action_ids": [
+          "action:pay_known"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:charges"
+        ]
+      },
+      {
+        "id": "action:pay_known:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 690,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+        "action_ids": [
+          "action:pay_known"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:pay_known:fee:0",
+        "source_kind": "content",
+        "source_id": "content:pay_known",
+        "start": 65,
+        "end": 85,
+        "quote": "pay Rs. 120 per copy",
+        "action_ids": [
+          "action:pay_known"
+        ],
+        "required": false,
+        "kind": "fee",
+        "evidence_ids": [
+          "evidence:charges"
+        ]
+      },
+      {
+        "id": "action:pay_known:qualification:0",
+        "source_kind": "content",
+        "source_id": "content:pay_known",
+        "start": 209,
+        "end": 251,
+        "quote": "Payments by ATM or online are not accepted",
+        "action_ids": [
+          "action:pay_known"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:charges"
+        ]
+      },
+      {
+        "id": "action:pay_known:document:1",
+        "source_kind": "content",
+        "source_id": "content:pay_known",
+        "start": 189,
+        "end": 207,
+        "quote": "keep the bank slip",
+        "action_ids": [
+          "action:pay_known"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:charges"
+        ]
+      },
+      {
+        "id": "action:pay_known:destination",
+        "source_kind": "content",
+        "source_id": "content:pay_known",
+        "start": 86,
+        "end": 183,
+        "quote": "at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla",
+        "action_ids": [
+          "action:pay_known"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:charges"
+        ]
+      },
+      {
+        "id": "action:submit_known:claim:0",
+        "source_kind": "content",
+        "source_id": "content:submit_known",
+        "start": 0,
+        "end": 295,
+        "quote": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+        "action_ids": [
+          "action:submit_known"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_known:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 690,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+        "action_ids": [
+          "action:submit_known"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_known:document:0",
+        "source_kind": "content",
+        "source_id": "content:submit_known",
+        "start": 7,
+        "end": 32,
+        "quote": "the completed application",
+        "action_ids": [
+          "action:submit_known"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_known:document:1",
+        "source_kind": "content",
+        "source_id": "content:submit_known",
+        "start": 38,
+        "end": 51,
+        "quote": "the bank slip",
+        "action_ids": [
+          "action:submit_known"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_known:document:2",
+        "source_kind": "content",
+        "source_id": "content:submit_known",
+        "start": 135,
+        "end": 169,
+        "quote": "a stamped, self-addressed envelope",
+        "action_ids": [
+          "action:submit_known"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_known:qualification:2",
+        "source_kind": "content",
+        "source_id": "content:submit_known",
+        "start": 105,
+        "end": 125,
+        "quote": "For delivery by post",
+        "action_ids": [
+          "action:submit_known"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_known:destination",
+        "source_kind": "content",
+        "source_id": "content:submit_known",
+        "start": 52,
+        "end": 103,
+        "quote": "to the Divisional Secretariat of the place of birth",
+        "action_ids": [
+          "action:submit_known"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:pay_search:claim:0",
+        "source_kind": "content",
+        "source_id": "content:pay_search",
+        "start": 0,
+        "end": 328,
+        "quote": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.",
+        "action_ids": [
+          "action:pay_search"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:search"
+        ]
+      },
+      {
+        "id": "action:pay_search:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 690,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+        "action_ids": [
+          "action:pay_search"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:pay_search:document:0",
+        "source_kind": "content",
+        "source_id": "content:pay_search",
+        "start": 265,
+        "end": 283,
+        "quote": "keep the bank slip",
+        "action_ids": [
+          "action:pay_search"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:search"
+        ]
+      },
+      {
+        "id": "action:pay_search:destination",
+        "source_kind": "content",
+        "source_id": "content:pay_search",
+        "start": 162,
+        "end": 259,
+        "quote": "at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla",
+        "action_ids": [
+          "action:pay_search"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:search"
+        ]
+      },
+      {
+        "id": "action:submit_search:claim:0",
+        "source_kind": "content",
+        "source_id": "content:submit_search",
+        "start": 0,
+        "end": 295,
+        "quote": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+        "action_ids": [
+          "action:submit_search"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_search:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 690,
+        "quote": "Manually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+        "action_ids": [
+          "action:submit_search"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_search:document:0",
+        "source_kind": "content",
+        "source_id": "content:submit_search",
+        "start": 7,
+        "end": 32,
+        "quote": "the completed application",
+        "action_ids": [
+          "action:submit_search"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_search:document:1",
+        "source_kind": "content",
+        "source_id": "content:submit_search",
+        "start": 38,
+        "end": 51,
+        "quote": "the bank slip",
+        "action_ids": [
+          "action:submit_search"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_search:document:2",
+        "source_kind": "content",
+        "source_id": "content:submit_search",
+        "start": 135,
+        "end": 169,
+        "quote": "a stamped, self-addressed envelope",
+        "action_ids": [
+          "action:submit_search"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_search:qualification:2",
+        "source_kind": "content",
+        "source_id": "content:submit_search",
+        "start": 105,
+        "end": 125,
+        "quote": "For delivery by post",
+        "action_ids": [
+          "action:submit_search"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      },
+      {
+        "id": "action:submit_search:destination",
+        "source_kind": "content",
+        "source_id": "content:submit_search",
+        "start": 52,
+        "end": 103,
+        "quote": "to the Divisional Secretariat of the place of birth",
+        "action_ids": [
+          "action:submit_search"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:rgd"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:form",
+        "heading": {
+          "text": "Get the application form",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Get the application form from the Registrar Division of any Divisional Secretariat, or download it from the Registrar General's Department website.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:form:claim:0",
+            "action:form:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "concise": {
+          "text": "Collect the form from any Divisional Secretariat, or download it from the department's website.",
+          "status": "draft",
+          "claim_ids": [
+            "action:form:claim:0",
+            "action:form:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "detailed": {
+          "text": "Get the application form from the Registrar Division of any Divisional Secretariat, or download it from the website of the Registrar General's Department. You can collect it from any office; you submit it later to the one for the place of birth.",
+          "status": "draft",
+          "claim_ids": [
+            "action:form:claim:0",
+            "action:form:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "You do not have to collect it from the office where you will submit it: the Registrar Division of any Divisional Secretariat can give it to you.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:rgd"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at where to get the application form.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Registrar Division of any Divisional Secretariat",
+          "status": "draft",
+          "claim_ids": [
+            "action:form:destination"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:complete",
+        "heading": {
+          "text": "Complete the application",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Complete the application for the Divisional Secretariat of the place of birth, giving the birth certificate number and registration date if you know them, because this decides which charge applies.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:complete:claim:0",
+            "action:complete:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "concise": {
+          "text": "Fill in the form, giving the birth certificate number and registration date if you know them.",
+          "status": "draft",
+          "claim_ids": [
+            "action:complete:claim:0",
+            "action:complete:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "detailed": {
+          "text": "Complete the application for the Divisional Secretariat of the place of birth. If you know the birth certificate number and registration date, give them: this decides which charge applies, because a search of the records costs more than a copy from a known entry.",
+          "status": "draft",
+          "claim_ids": [
+            "action:complete:claim:0",
+            "action:complete:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "If you are not sure of the number or date, you can still apply; you then follow the search route in the next step.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:rgd"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at completing the application and why the number and date matter.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": [
+          "attachment:action:complete:document:0"
+        ]
+      },
+      {
+        "id": "action:pay_known",
+        "heading": {
+          "text": "Pay the charge for a known entry",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:charges"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "If the birth certificate number and registration date are known, pay Rs. 120 per copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:pay_known:claim:0",
+            "action:pay_known:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:charges"
+          ]
+        },
+        "concise": {
+          "text": "Pay Rs. 120 per copy and keep the bank slip.",
+          "status": "draft",
+          "claim_ids": [
+            "action:pay_known:claim:0",
+            "action:pay_known:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:charges"
+          ]
+        },
+        "detailed": {
+          "text": "When the birth certificate number and registration date are known, the charge is Rs. 120 per copy. Pay it at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip: you submit it with the application. ATM and online payments are not accepted.",
+          "status": "draft",
+          "claim_ids": [
+            "action:pay_known:claim:0",
+            "action:pay_known:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:charges"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The charge is per copy, so multiply by the number of copies you want before you pay.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:charges"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at paying Rs. 120 per copy and keeping the bank slip.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:charges"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Divisional Secretariat or the Registrar General's Bank of Ceylon branch, Battaramulla",
+          "status": "draft",
+          "claim_ids": [
+            "action:pay_known:destination"
+          ],
+          "evidence_ids": [
+            "evidence:charges"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:known"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:pay_known:fee",
+          "attachment:action:pay_known:document:1"
+        ]
+      },
+      {
+        "id": "action:submit_known",
+        "heading": {
+          "text": "Submit the application and bank slip",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:submit_known:claim:0",
+            "action:submit_known:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "concise": {
+          "text": "Submit the completed application and bank slip to the Divisional Secretariat of the place of birth.",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_known:claim:0",
+            "action:submit_known:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "detailed": {
+          "text": "Take the completed application and the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_known:claim:0",
+            "action:submit_known:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The copies are issued only if the birth is found in the register, so a notification on Form B38 is a possible outcome rather than an error.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:rgd"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at submitting the application and bank slip, and what you receive.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Divisional Secretariat of the place of birth",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_known:destination"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:known"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:submit_known:document:0",
+          "attachment:action:submit_known:document:1",
+          "attachment:action:submit_known:document:2"
+        ]
+      },
+      {
+        "id": "action:pay_search",
+        "heading": {
+          "text": "Pay the charge when a search is needed",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:search"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "If the number or date is not known and a search of the records for up to two years is needed, pay Rs. 250 for the first copy and Rs. 120 for each additional copy at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip. Payments by ATM or online are not accepted.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:pay_search:claim:0",
+            "action:pay_search:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:search"
+          ]
+        },
+        "concise": {
+          "text": "Pay Rs. 250 for the first copy and Rs. 120 for each extra copy, and keep the bank slip.",
+          "status": "draft",
+          "claim_ids": [
+            "action:pay_search:claim:0",
+            "action:pay_search:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:search"
+          ]
+        },
+        "detailed": {
+          "text": "When a search of the records for up to two years is needed, the charge is Rs. 250 for the first copy and Rs. 120 for each additional copy. Pay it at the Divisional Secretariat or at the Registrar General's Bank of Ceylon branch at Battaramulla, and keep the bank slip: you submit it with the application. ATM and online payments are not accepted.",
+          "status": "draft",
+          "claim_ids": [
+            "action:pay_search:claim:0",
+            "action:pay_search:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:search"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The Rs. 250 first-copy charge applies because a search of the records is required; it is not charged when the number and date are known.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:search"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at paying when a search is needed and keeping the bank slip.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:search"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Divisional Secretariat or the Registrar General's Bank of Ceylon branch, Battaramulla",
+          "status": "draft",
+          "claim_ids": [
+            "action:pay_search:destination"
+          ],
+          "evidence_ids": [
+            "evidence:search"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:search"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:pay_search:document:1"
+        ]
+      },
+      {
+        "id": "action:submit_search",
+        "heading": {
+          "text": "Submit the application and bank slip",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Submit the completed application with the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.\n\nManually curated official-source snapshot retrieved 22 October 2026 from the Registrar General's Department pages on obtaining certified copies and on charges; not independently validated, not live output, and not an official application service. Scope: the counter application for a certified copy of a birth certificate through a Divisional Secretariat. The separate online eBMD application, with its own payment instructions, is a different channel and is not covered. An older Government Information Centre page lists Rs. 100 and Rs. 200 for the same two cases; the Registrar General's Department figures of Rs. 120 and Rs. 250 are used. Verify current requirements with the department.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:submit_search:claim:0",
+            "action:submit_search:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "concise": {
+          "text": "Submit the completed application and bank slip to the Divisional Secretariat of the place of birth.",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_search:claim:0",
+            "action:submit_search:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "detailed": {
+          "text": "Take the completed application and the bank slip to the Divisional Secretariat of the place of birth. For delivery by post, enclose a stamped, self-addressed envelope. If the birth is registered you receive as many copies as you paid for; if it is not registered you are notified on Form B38.",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_search:claim:0",
+            "action:submit_search:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The copies are issued only if the birth is found in the register, so a notification on Form B38 is a possible outcome rather than an error.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:rgd"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "You looked at submitting the application and bank slip, and what you receive.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Divisional Secretariat of the place of birth",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_search:destination"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:search"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:submit_search:document:0",
+          "attachment:action:submit_search:document:1",
+          "attachment:action:submit_search:document:2"
+        ]
+      }
+    ],
+    "attachments": [
+      {
+        "id": "attachment:action:complete:document:0",
+        "fact_id": "svc:birth_certificate_copy:document:0",
+        "scope": "action",
+        "action_id": "action:complete",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:complete:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:rgd"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:pay_known:fee",
+        "fact_id": "svc:birth_certificate_copy:fee",
+        "scope": "action",
+        "action_id": "action:pay_known",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:pay_known:fee:0"
+        ],
+        "evidence_ids": [
+          "evidence:charges"
+        ],
+        "qualification": {
+          "text": "Per copy. ATM and online payments are not accepted.",
+          "status": "draft",
+          "claim_ids": [
+            "action:pay_known:qualification:0"
+          ],
+          "evidence_ids": [
+            "evidence:charges"
+          ]
+        },
+        "status": "draft",
+        "role": "pay"
+      },
+      {
+        "id": "attachment:action:pay_known:document:1",
+        "fact_id": "svc:birth_certificate_copy:document:1",
+        "scope": "action",
+        "action_id": "action:pay_known",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:pay_known:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:charges"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "keep"
+      },
+      {
+        "id": "attachment:action:submit_known:document:0",
+        "fact_id": "svc:birth_certificate_copy:document:0",
+        "scope": "action",
+        "action_id": "action:submit_known",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_known:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:rgd"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "submit"
+      },
+      {
+        "id": "attachment:action:submit_known:document:1",
+        "fact_id": "svc:birth_certificate_copy:document:1",
+        "scope": "action",
+        "action_id": "action:submit_known",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_known:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:rgd"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "submit"
+      },
+      {
+        "id": "attachment:action:submit_known:document:2",
+        "fact_id": "svc:birth_certificate_copy:document:2",
+        "scope": "action",
+        "action_id": "action:submit_known",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_known:document:2"
+        ],
+        "evidence_ids": [
+          "evidence:rgd"
+        ],
+        "qualification": {
+          "text": "Only if you want the copies sent by post.",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_known:qualification:2"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "status": "draft",
+        "role": "bring"
+      },
+      {
+        "id": "attachment:action:pay_search:document:1",
+        "fact_id": "svc:birth_certificate_copy:document:1",
+        "scope": "action",
+        "action_id": "action:pay_search",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:pay_search:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:search"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "keep"
+      },
+      {
+        "id": "attachment:action:submit_search:document:0",
+        "fact_id": "svc:birth_certificate_copy:document:0",
+        "scope": "action",
+        "action_id": "action:submit_search",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_search:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:rgd"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "submit"
+      },
+      {
+        "id": "attachment:action:submit_search:document:1",
+        "fact_id": "svc:birth_certificate_copy:document:1",
+        "scope": "action",
+        "action_id": "action:submit_search",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_search:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:rgd"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "submit"
+      },
+      {
+        "id": "attachment:action:submit_search:document:2",
+        "fact_id": "svc:birth_certificate_copy:document:2",
+        "scope": "action",
+        "action_id": "action:submit_search",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_search:document:2"
+        ],
+        "evidence_ids": [
+          "evidence:rgd"
+        ],
+        "qualification": {
+          "text": "Only if you want the copies sent by post.",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_search:qualification:2"
+          ],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "status": "draft",
+        "role": "bring"
+      }
+    ],
+    "phases": [
+      {
+        "id": "phase:prepare",
+        "label": {
+          "text": "Get and complete the form",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "action_ids": [
+          "action:form",
+          "action:complete"
+        ],
+        "basis": "purpose",
+        "why_grouped": "The form must be obtained and completed before it can be submitted.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:rgd"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:pay_submit",
+        "label": {
+          "text": "Pay and submit",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:rgd"
+          ]
+        },
+        "action_ids": [
+          "action:pay_known",
+          "action:submit_known",
+          "action:pay_search",
+          "action:submit_search"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Payment and submission follow once the application is complete; the two fee cases are alternatives.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:rgd"
+        ],
+        "branch_split_note": null
+      }
+    ],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "review": null
+  }
+}

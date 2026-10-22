@@ -1,0 +1,313 @@
+{
+  "schema_version": "1.0",
+  "plan_id": "official-nic_amendment-v4",
+  "base_generated_at": "2026-10-22T09:00:00Z",
+  "synthetic": false,
+  "disclaimer": "Manually curated official-source snapshot retrieved 22 October 2026 from the Amending National Identity card section of the Department for Registration of Persons page; not independently validated, not live output, and not an official application service. Scope: amending an existing card under the normal service through a certifying officer, with the one-day service mentioned only as a separate in-person option. First-issue and lost-card procedures are different services. The age threshold for the affidavit requirement is 40 in this section but 50 in the page's first-issue section, and the affidavit paragraph contains a stray '(delete)' marker, so that requirement should be confirmed with the department. Verify current requirements with the department.",
+  "actions": [
+    {
+      "action_id": "action:docs_core",
+      "service_id": "svc:nic_amendment_card",
+      "required_content_ids": [
+        "content:docs_core",
+        "content:scope"
+      ],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:docs_extra",
+      "service_id": "svc:nic_amendment_card",
+      "required_content_ids": [
+        "content:docs_extra",
+        "content:scope"
+      ],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:estate_certify",
+      "service_id": "svc:nic_amendment_card",
+      "required_content_ids": [
+        "content:estate_certify",
+        "content:scope"
+      ],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:estate_receive",
+      "service_id": "svc:nic_amendment_card",
+      "required_content_ids": [
+        "content:estate_receive",
+        "content:scope"
+      ],
+      "supplementary_content_ids": [
+        "content:one_day"
+      ],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:gn_certify",
+      "service_id": "svc:nic_amendment_card",
+      "required_content_ids": [
+        "content:gn_certify",
+        "content:scope"
+      ],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:ds_countersign",
+      "service_id": "svc:nic_amendment_card",
+      "required_content_ids": [
+        "content:ds_countersign",
+        "content:scope"
+      ],
+      "supplementary_content_ids": [],
+      "condition_ids": []
+    },
+    {
+      "action_id": "action:gn_receive",
+      "service_id": "svc:nic_amendment_card",
+      "required_content_ids": [
+        "content:gn_receive",
+        "content:scope"
+      ],
+      "supplementary_content_ids": [
+        "content:one_day"
+      ],
+      "condition_ids": []
+    }
+  ],
+  "content": [
+    {
+      "content_id": "content:scope",
+      "role": "required",
+      "text": "Manually curated official-source snapshot retrieved 22 October 2026 from the Amending National Identity card section of the Department for Registration of Persons page; not independently validated, not live output, and not an official application service. Scope: amending an existing card under the normal service through a certifying officer, with the one-day service mentioned only as a separate in-person option. First-issue and lost-card procedures are different services. The age threshold for the affidavit requirement is 40 in this section but 50 in the page's first-issue section, and the affidavit paragraph contains a stray '(delete)' marker, so that requirement should be confirmed with the department. Verify current requirements with the department.",
+      "evidence_ids": [
+        "evidence:amend"
+      ],
+      "fact_ids": []
+    },
+    {
+      "content_id": "content:one_day",
+      "role": "supplementary",
+      "text": "The department also offers a one-day service in person at its Head Office in Battaramulla or at the Galle Provincial Office. It is arranged separately and has its own fee, so read the one-day section of the department's page before you choose it.",
+      "evidence_ids": [
+        "evidence:amend"
+      ],
+      "fact_ids": []
+    },
+    {
+      "content_id": "content:docs_core",
+      "role": "required",
+      "text": "Prepare the completed amendment application (Form D.R.P/1,7,8), the previously used National Identity card, a birth certificate or a birth-register extract certified by the Additional District Registrar, and an ICAO-standard photograph taken within the last 6 months.",
+      "evidence_ids": [
+        "evidence:docs"
+      ],
+      "fact_ids": [
+        "svc:nic_amendment_card:document:0",
+        "svc:nic_amendment_card:document:1",
+        "svc:nic_amendment_card:document:2",
+        "svc:nic_amendment_card:document:3"
+      ]
+    },
+    {
+      "content_id": "content:docs_extra",
+      "role": "required",
+      "text": "Some applicants must add further evidence: a probable age certificate or register search results with proof of name and date of birth if there is no birth certificate; an affidavit, recognised written evidence and register search results for applicants over 40 with neither; a citizenship certificate for those born abroad to a Sri Lankan parent; a dual citizenship certificate where it applies; clergy documents where they apply; and an attested marriage certificate when using a husband's name or surname.",
+      "evidence_ids": [
+        "evidence:docs"
+      ],
+      "fact_ids": [
+        "svc:nic_amendment_card:document:10",
+        "svc:nic_amendment_card:document:5",
+        "svc:nic_amendment_card:document:6",
+        "svc:nic_amendment_card:document:7",
+        "svc:nic_amendment_card:document:8",
+        "svc:nic_amendment_card:document:9"
+      ]
+    },
+    {
+      "content_id": "content:estate_certify",
+      "role": "required",
+      "text": "If you live on an estate, forward the application through the Estate Superintendent, who certifies it. Pay the Rs. 500 amended-card fee through the certifying officer and keep the receipt. Registered-post delivery under the normal service adds Rs. 120.",
+      "evidence_ids": [
+        "evidence:amend"
+      ],
+      "fact_ids": [
+        "svc:nic_amendment_card:document:4",
+        "svc:nic_amendment_card:fee"
+      ]
+    },
+    {
+      "content_id": "content:estate_receive",
+      "role": "required",
+      "text": "After certification the application goes to the District Secretariat's ID card division, which forwards it to the Department. Under the normal service the amended card is then sent to you by registered post.",
+      "evidence_ids": [
+        "evidence:amend"
+      ],
+      "fact_ids": []
+    },
+    {
+      "content_id": "content:gn_certify",
+      "role": "required",
+      "text": "If you do not live on an estate, forward the application through the Grama Niladhari for your area of residence, who certifies it. Pay the Rs. 500 amended-card fee through the certifying officer and keep the receipt. Registered-post delivery under the normal service adds Rs. 120.",
+      "evidence_ids": [
+        "evidence:amend"
+      ],
+      "fact_ids": [
+        "svc:nic_amendment_card:document:4",
+        "svc:nic_amendment_card:fee"
+      ]
+    },
+    {
+      "content_id": "content:ds_countersign",
+      "role": "required",
+      "text": "The Divisional Secretary must countersign the application certified by the Grama Niladhari; the countersignature is mandatory.",
+      "evidence_ids": [
+        "evidence:countersign"
+      ],
+      "fact_ids": []
+    },
+    {
+      "content_id": "content:gn_receive",
+      "role": "required",
+      "text": "After certification the application goes to the District Secretariat's ID card division, which forwards it to the Department. Under the normal service the amended card is then sent to you by registered post.",
+      "evidence_ids": [
+        "evidence:amend"
+      ],
+      "fact_ids": []
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "evidence:amend",
+      "kind": "source_passage",
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "text": "Short source anchor: It is mandatory for every applicant to forward the application through the relevant certifying officer",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    {
+      "evidence_id": "evidence:countersign",
+      "kind": "source_passage",
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "text": "Short source anchor: Counter signature of the Divisional Secretary is mandatory",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    },
+    {
+      "evidence_id": "evidence:docs",
+      "kind": "source_passage",
+      "source_url": "https://drp.gov.lk/en/normal.php",
+      "text": "Short source anchor: Duly completed application (Form D.R.P/1,7,8)",
+      "retrieved_at": "2026-10-22T09:00:00Z"
+    }
+  ],
+  "conditions": [
+    {
+      "condition_id": "condition:estate",
+      "text": "The applicant is an estate resident seeking an NIC amendment.",
+      "evidence_ids": [
+        "evidence:amend"
+      ]
+    },
+    {
+      "condition_id": "condition:non_estate",
+      "text": "The applicant is not an estate resident and seeks an NIC amendment.",
+      "evidence_ids": [
+        "evidence:amend"
+      ]
+    }
+  ],
+  "prerequisites": [
+    {
+      "prerequisite_id": "prerequisite:0",
+      "kind": "requires_completion",
+      "required_action_id": "action:docs_core",
+      "dependent_action_id": "action:estate_certify",
+      "evidence_ids": [
+        "evidence:amend"
+      ]
+    },
+    {
+      "prerequisite_id": "prerequisite:1",
+      "kind": "requires_completion",
+      "required_action_id": "action:docs_core",
+      "dependent_action_id": "action:gn_certify",
+      "evidence_ids": [
+        "evidence:amend"
+      ]
+    },
+    {
+      "prerequisite_id": "prerequisite:2",
+      "kind": "requires_completion",
+      "required_action_id": "action:gn_certify",
+      "dependent_action_id": "action:ds_countersign",
+      "evidence_ids": [
+        "evidence:amend"
+      ]
+    },
+    {
+      "prerequisite_id": "prerequisite:3",
+      "kind": "requires_completion",
+      "required_action_id": "action:estate_certify",
+      "dependent_action_id": "action:estate_receive",
+      "evidence_ids": [
+        "evidence:amend"
+      ]
+    },
+    {
+      "prerequisite_id": "prerequisite:4",
+      "kind": "requires_completion",
+      "required_action_id": "action:ds_countersign",
+      "dependent_action_id": "action:gn_receive",
+      "evidence_ids": [
+        "evidence:amend"
+      ]
+    }
+  ],
+  "branch_groups": [
+    {
+      "group_id": "branch:nic_route",
+      "service_id": "svc:nic_amendment_card",
+      "selection": "XOR",
+      "options": [
+        {
+          "option_id": "option:estate",
+          "action_ids": [
+            "action:estate_certify",
+            "action:estate_receive"
+          ],
+          "condition_ids": [
+            "condition:estate"
+          ]
+        },
+        {
+          "option_id": "option:non_estate",
+          "action_ids": [
+            "action:gn_certify",
+            "action:ds_countersign",
+            "action:gn_receive"
+          ],
+          "condition_ids": [
+            "condition:non_estate"
+          ]
+        }
+      ],
+      "evidence_ids": [
+        "evidence:amend"
+      ]
+    }
+  ],
+  "parallel_groups": [],
+  "completeness": {
+    "service_dependencies": "complete",
+    "actions": "complete",
+    "content": "complete",
+    "conditions": "complete",
+    "branch_groups": "complete",
+    "prerequisites": "complete",
+    "parallel_groups": "unknown"
+  }
+}

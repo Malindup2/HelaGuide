@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import GuidanceCard from '../card/GuidanceCard';
 import { accepted } from './examples';
 
@@ -17,11 +17,13 @@ describe('demo-accepted cached wording in ordinary journeys (real responses, tra
     const r = accepted(`standard-${key}`);
     render(<GuidanceCard response={r} emit={vi.fn()} />);
     expect(r.preparation.content_state).toBe('demo_accepted');
-    const note = document.querySelector('.cz-provisional')!;
-    expect(note.textContent).toMatch(/Local research demo wording/);
-    expect(note.textContent).toMatch(/no expert or government body has reviewed it/);
+    expect(document.querySelector('.cz-provisional')).toBeNull();                           // no repeated banner on the card
+    expect(document.querySelector('.cz-meta')!.textContent).toMatch(/Prototype guidance/);
+    fireEvent.click(screen.getByRole('button', { name: /Sources/ }));
+    const sheet = document.querySelector('dialog')!.textContent!;
+    expect(sheet).toMatch(/accepted it for this local research demonstration/);
+    expect(sheet).toMatch(/No expert, agency or government body has reviewed it/);
     expect(document.body.textContent).not.toMatch(/approved by (an? )?(expert|government)|expert reviewed|independently validated guidance/i);
-    expect(document.body.textContent).not.toContain('Provisional demo wording');
     expect(r.selection.kind).toBe('standard');
   });
 

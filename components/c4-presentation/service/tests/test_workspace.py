@@ -112,7 +112,7 @@ def test_workspace_api_existing_profile_contract_and_policy(entries):
     r=WorkspaceRuntime(procedures=entries)
     with TestClient(create_app(runtime=r,workspace=True)) as client:
         assert client.get("/health").json()["status"]=="ok"
-        assert len(client.get("/dev/v1/procedures").json())==7
+        assert len(client.get("/dev/v1/procedures").json())==10
         p=profile(r);sid=p["session"]["session_id"]
         assert client.get("/dev/v1/demo-profiles").json()[0]["profile_id"]==p["profile"]["profile_id"]
         response=client.post(f"/workspace/sessions/{sid}/guidance",json={"procedure_id":"synthetic-practice-v2","request_id":str(uuid4()),"expected_revision":r.settings(sid)["settings_revision"]})
