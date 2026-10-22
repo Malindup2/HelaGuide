@@ -166,7 +166,7 @@ class DialogueManager:
             "missing_slots": before._missing(active) if active else [],
             "carried_district": before.shared.get("district"),
             "tasks": _tasks(before),
-            "reply_language": reply_lang,
+            "reply_language_hint": reply_lang,      # a hint only (prompts.REPLY_LANGUAGE)
         }
         return [*past, {"role": "user", "content": turn_message(state, text, hints)}]
 

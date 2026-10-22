@@ -278,6 +278,20 @@ def test_hybrid_sends_hints_and_state(chat):
     assert hints["tracker_slot_updates"] == {"applicant_for": "child"}
 
 
+def test_reply_language_follows_the_message_and_engine_language_is_a_hint(chat):
+    # known engine issue: a typo in English ("licese") can make the engine's guess "mixed" (Singlish)
+    text = "also i need to get a driving licese"
+    c, llm = chat({text: (BIRTH, 0.9)}, llm_reply())
+    c.step(text)
+    system = llm.calls[0][0]
+    assert "Reply in the language and script the user wrote this message in" in system
+    assert "English -> English; Sinhala script -> Sinhala script" in system
+    assert "romanized Sinhala or Singlish" in system and "-> Singlish" in system
+    assert "reply_language_hint in the user content is only the engine's guess" in system
+    state = user_content(llm)["state"]
+    assert "reply_language_hint" in state and "reply_language" not in state
+
+
 def test_asks_slot_gives_the_tracker_its_own_question(chat):
     c, _ = chat({"Galle": (BIRTH, 0.9)}, llm_reply(slots={"district": "Galle"}, asks="purpose",
                                                     reply="What do you need the certificate for?"))

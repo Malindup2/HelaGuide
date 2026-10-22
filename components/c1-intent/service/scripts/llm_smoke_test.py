@@ -11,13 +11,17 @@ Needs the real engine (pip install -e ".[research]" and the model folder, see ..
     set C1_LLM_REASONING_EFFORT=low
     set C1_LLM_API_KEY=...
     python scripts/llm_smoke_test.py > smoke_low.txt
+    python scripts/llm_smoke_test.py --model <another model> --effort none --timeout 60 > smoke_other.txt
 
+--model, --effort and --timeout override C1_LLM_MODEL, C1_LLM_REASONING_EFFORT and C1_LLM_TIMEOUT for one run; the
+summary at the end (mean / max LLM latency, mean tokens per answered turn, fallbacks) is for comparing models.
 Model names change and old ones are retired (a 404 from the endpoint): check the current list in Google AI Studio.
 smoke_*.txt outputs are git-ignored. Exit code 1 when any turn fell back to the rules path.
 """
 import argparse
 import json
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # service/, for `app`
@@ -25,7 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # service/, for
 from app.core import pipeline                                   # noqa: E402
 from app.core.dialogue import DialogueManager                   # noqa: E402
 from app.core.llm_client import OpenAICompatClient              # noqa: E402
-from app.core.settings import dialogue_settings                 # noqa: E402
+from app.core.settings import REASONING_EFFORTS, dialogue_settings      # noqa: E402
 
 # turns 1-4 and 7 of the rigid log (research/docs/c1_llm_dialogue_claude_code_prompt.md)
 TURNS = ["I need a birth certifcate", "my mom", "kurunegala", "business reg purpose",
@@ -48,16 +52,25 @@ class RecordingClient:
             raise
 
 
+def _mean(values):
+    return round(sum(values) / len(values), 1) if values else "-"
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.strip().splitlines()[0])
+    ap.add_argument("--model", help="model name (default: C1_LLM_MODEL)")
+    ap.add_argument("--effort", choices=REASONING_EFFORTS, help="reasoning effort (default: C1_LLM_REASONING_EFFORT)")
+    ap.add_argument("--timeout", type=float, help="seconds per LLM request (default: C1_LLM_TIMEOUT)")
     ap.add_argument("--json", action="store_true", help="print each turn's full result as JSON")
     args = ap.parse_args()
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")     # Sinhala in the Windows console
+    if args.timeout is not None and args.timeout < 1:
+        ap.error("--timeout must be at least 1")
 
     settings = dialogue_settings()
-    if settings.mode != "hybrid":
-        settings = type(settings)(**{**vars(settings), "mode": "hybrid"})
+    overrides = {"mode": "hybrid", "model": args.model, "reasoning_effort": args.effort, "timeout": args.timeout}
+    settings = replace(settings, **{k: v for k, v in overrides.items() if v is not None})
     print(f"base url  {settings.base_url}")
     print(f"model     {settings.model}")
     print(f"reasoning effort {settings.reasoning_effort or 'not sent'}")
@@ -74,12 +87,10 @@ def main():
     chat = DialogueManager(recorder, settings).new_session(engine.new_session())
 
     fallbacks = 0
-    totals = {"prompt_tokens": 0, "completion_tokens": 0, "reasoning_tokens": 0, "provider_total_tokens": 0}
+    ok = []     # (llm_ms, prompt, completion, reasoning, unexplained or None) of the turns the LLM answered
     for i, text in enumerate(TURNS):
         r = chat.step(text)
         u = r.llm_usage or {}
-        for k in totals:
-            totals[k] += u.get(k, 0)
         fallbacks += r.dialogue_source != "llm"
         print(f"[{i}] user    {text}")
         print(f"    reply   {r.reply}")
@@ -95,19 +106,27 @@ def main():
             print(f"    checks  conflicts {[(c['slot'], c['kept']) for c in r.conflicts]} | rejected "
                   f"{[(x['field'], x['reason']) for x in r.rejections]}")
         p, c, total = u.get("prompt_tokens", 0), u.get("completion_tokens", 0), u.get("provider_total_tokens", 0)
+        unexplained = total - p - c if total else None
         print(f"    usage   prompt {p} | completion {c} | reasoning {u.get('reasoning_tokens', 0)} | provider total "
-              f"{total} (unexplained {total - p - c if total else '-'}) | calls {u.get('calls', 0)} | "
+              f"{total} (unexplained {'-' if unexplained is None else unexplained}) | calls {u.get('calls', 0)} | "
               f"model {u.get('model', '-')}")
         print(f"    latency {r.latency_ms} ms (nlu {r.nlu_ms}, llm {r.llm_ms})\n")
+        if r.dialogue_source == "llm":
+            ok.append((r.llm_ms, p, c, u.get("reasoning_tokens", 0), unexplained))
         if args.json:
             out = {k: v for k, v in vars(r).items() if k != "state"}
             print(json.dumps(out, ensure_ascii=False, indent=1))
 
-    print(f"tokens    prompt {totals['prompt_tokens']} | completion {totals['completion_tokens']} | "
-          f"reasoning {totals['reasoning_tokens']} | provider total {totals['provider_total_tokens']}")
     kept = "kept" if client.json_mode else ("dropped (provider rejected it)" if settings.json_mode else "off")
+    llm_ms = [x[0] for x in ok]
+    unexplained = [x[4] for x in ok if x[4] is not None]
     print(f"json mode {kept}")
-    print(f"fallbacks {fallbacks} of {len(TURNS)} turns")
+    print(f"summary   {settings.model} | effort {settings.reasoning_effort or '-'} | "
+          f"answered {len(ok)} of {len(TURNS)} | fallbacks {fallbacks}")
+    print(f"          llm latency mean {_mean(llm_ms)} ms, max {max(llm_ms) if llm_ms else '-'} ms "
+          f"(answered turns only)")
+    print(f"          tokens per answered turn: prompt {_mean([x[1] for x in ok])} | completion "
+          f"{_mean([x[2] for x in ok])} | reasoning {_mean([x[3] for x in ok])} | unexplained {_mean(unexplained)}")
     sys.exit(1 if fallbacks else 0)
 
 

@@ -37,8 +37,9 @@ SLOT_HELP = {
     "service_mentioned": "which service the user is talking about",
     "issue": "what went wrong",
 }
-REPLY_LANGUAGE = {"en": "English", "si": "Sinhala in Sinhala script",
-                  "mixed": "Singlish: romanized Sinhala mixed with English, the way the user writes"}
+# the engine's guess, sent as reply_language_hint. Only a hint: known engine issue, a typo in an English message
+# ("also i need to get a driving licese") can be tagged as Sinhala, so the guess becomes "mixed" (Singlish)
+REPLY_LANGUAGE = {"en": "English", "si": "Sinhala in Sinhala script", "mixed": "Singlish"}
 
 
 def today_colombo() -> date:
@@ -82,7 +83,7 @@ Today is {today.isoformat()} ({today.strftime("%A")}) in Sri Lanka.
 {_catalogue()}
 
 How to talk:
-- Reply in the language given as reply_language in the user content ({"; ".join(f"{k} = {v}" for k, v in REPLY_LANGUAGE.items())}). Keep replies short and natural.
+- Reply in the language and script the user wrote this message in: English -> English; Sinhala script -> Sinhala script; romanized Sinhala or Singlish (Sinhala words in Latin letters, often mixed with English) -> Singlish. reply_language_hint in the user content is only the engine's guess ({"; ".join(f"{k} = {v}" for k, v in REPLY_LANGUAGE.items())}) and can be wrong; use it only when the message does not show the language, e.g. a one-word answer like "Galle". Keep replies short and natural.
 - Pick up slots whenever the user mentions them, in any order, several at once. Never ask again for a slot that is already filled.
 - Ask for at most one missing slot per reply, in the order listed for the service, conversationally.
 - If the user starts a new request, handle it and keep the unfinished one in tasks.
