@@ -11,10 +11,13 @@ from helaguide_common.config import get_settings
 from helaguide_common.contracts import Intent, UtteranceRequest
 from helaguide_common.examples import load_example
 
+from app.core.dialogue import DialogueManager
 from app.core.dst import INTENT_SLOTS, SERVICES, gaz_find
+from app.core.llm_client import OpenAICompatClient
 from app.core.projection import project
 from app.core.sessions import SessionStore
-from app.models.details import DetailsRequest, IntentDetails
+from app.core.settings import SettingsError, dialogue_settings
+from app.models.details import ChatRequest, ChatResponse, DetailsRequest, IntentDetails
 
 COMPONENT_DIR = Path(__file__).resolve().parents[3]      # components/c1-intent/
 DEFAULT_MODEL_DIR = "research/models/c1/run_v2_seed1"
@@ -33,6 +36,10 @@ class EngineUnavailable(Exception):
 _engine = None
 _engine_lock = threading.Lock()
 _store = SessionStore()
+# /v1/chat has its own conversations: a chat session never changes what /v1/intent returns for the same session_id
+_chat_store = SessionStore()
+_dialogue = None            # (settings, DialogueManager) for the current C1_DIALOGUE_MODE / C1_LLM_* settings
+_dialogue_lock = threading.Lock()
 
 
 def model_dir() -> Path:
@@ -190,4 +197,62 @@ def _stub_details(req: DetailsRequest) -> IntentDetails:
         context_strategy="window_3",
         context_tokens=0,
         intent=intent,
+    )
+
+
+# ---------------------------------------------------------------- POST /v1/chat (C1-only)
+def dialogue_manager() -> DialogueManager:
+    """The manager for the current settings, rebuilt when they change. One LLM client per settings, so what it
+    learns (JSON mode turned off by the provider) lasts across turns. A conversation keeps the manager it started
+    with."""
+    global _dialogue
+    try:
+        settings = dialogue_settings()
+    except SettingsError as e:
+        raise EngineUnavailable(f"C1 dialogue settings: {e}") from None
+    with _dialogue_lock:
+        if _dialogue is None or _dialogue[0] != settings:
+            llm = None if settings.mode == "rules" else OpenAICompatClient.from_settings(settings)
+            _dialogue = (settings, DialogueManager(llm, settings))
+            log.info("dialogue mode=%s model=%s", settings.mode, settings.model if llm else "-")
+        return _dialogue[1]
+
+
+def resolve_chat(req: ChatRequest) -> ChatResponse:
+    """One chat turn: the dialogue layer in C1_DIALOGUE_MODE (rules by default: the engine's own reply)."""
+    if get_settings().stub_mode:
+        return _stub_chat(req)
+    manager = dialogue_manager()
+    engine = get_engine()
+    r = _chat_store.step(req.session_id, lambda: manager.new_session(engine.new_session()), req.text)
+    st = r.state
+    # no message text and no slot values in logs (privacy)
+    log.info("chat session=%s turn=%s mode=%s source=%s%s intent=%s active=%s route=%s latency_ms=%.1f llm_ms=%.1f",
+             req.session_id, st["turn_id"], r.dialogue_mode, r.dialogue_source, f" ({r.error})" if r.error else "",
+             r.internal_intent, r.active_intent, r.route, r.latency_ms, r.llm_ms)
+    return ChatResponse(
+        session_id=req.session_id, turn_id=st["turn_id"], state_version=st["state_version"], reply=r.reply,
+        dialogue_mode=r.dialogue_mode, dialogue_source=r.dialogue_source, dialogue_act=r.dialogue_act,
+        internal_intent=r.internal_intent, intent_model_output=r.intent_model_output, confidence=r.confidence,
+        intent_source=r.intent_source, active_intent=r.active_intent, tasks=r.tasks, slots=r.slots,
+        raw_slots=r.raw_slots, missing_slots=r.missing_slots, assumed_slots=st["assumed_slots"], ready=r.ready,
+        ready_to_confirm=r.ready_to_confirm, route=r.route, language=r.language, language_tags=r.language_tags,
+        code_switched=r.code_switched, conflicts=r.conflicts, rejections=r.rejections, llm_proposed=r.llm_proposed,
+        latency_ms=r.latency_ms, nlu_ms=r.nlu_ms, llm_ms=r.llm_ms, llm_usage=r.llm_usage, error=r.error,
+        intent=project(st, req.session_id, req.text),
+    )
+
+
+def _stub_chat(req: ChatRequest) -> ChatResponse:
+    """Stub mode: the canned passport turn of _stub_details, as a rules turn."""
+    d = _stub_details(DetailsRequest(session_id=req.session_id, text=req.text))
+    return ChatResponse(
+        session_id=d.session_id, turn_id=d.turn_id, state_version=d.state_version, reply=d.reply,
+        dialogue_mode="rules", dialogue_source="rules", dialogue_act=None, internal_intent=d.internal_intent,
+        intent_model_output=d.intent_model_output, confidence=d.confidence, intent_source=d.intent_source,
+        active_intent=d.active_intent, tasks=[d.active_intent], slots=d.slots, raw_slots={},
+        missing_slots=d.missing_slots, assumed_slots=d.assumed_slots, ready=d.ready, ready_to_confirm=False,
+        route=d.route, language=d.language, language_tags=d.language_tags, code_switched=d.code_switched,
+        conflicts=[], rejections=[], llm_proposed=0, latency_ms=0.0, nlu_ms=0.0, llm_ms=0.0, llm_usage=None,
+        error=None, intent=d.intent,
     )

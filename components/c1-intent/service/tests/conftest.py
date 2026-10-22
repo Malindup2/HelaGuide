@@ -70,6 +70,8 @@ def real_mode(monkeypatch, tmp_path):
     monkeypatch.delenv("C1_MIN_CONFIDENCE", raising=False)
     monkeypatch.setattr(pipeline, "_engine", None)
     monkeypatch.setattr(pipeline, "_store", SessionStore())
+    monkeypatch.setattr(pipeline, "_chat_store", SessionStore())
+    monkeypatch.setattr(pipeline, "_dialogue", None)
     monkeypatch.setattr(pipeline, "_load_engine", lambda path: FakeEngine(
         intents, pipeline.min_confidence(), pipeline.unsupported_service_fallback))
     return intents

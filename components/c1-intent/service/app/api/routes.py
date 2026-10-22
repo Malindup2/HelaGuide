@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from helaguide_common.contracts import Intent, UtteranceRequest
 
 from app.core import pipeline
-from app.models.details import DetailsRequest, IntentDetails
+from app.models.details import ChatRequest, ChatResponse, DetailsRequest, IntentDetails
 
 router = APIRouter(prefix="/v1", tags=["intent"])
 
@@ -20,3 +20,10 @@ def resolve_intent_details(req: DetailsRequest) -> IntentDetails:
     """C1-only: the full analysis (internal intent, route, slots, language tags). Not part of the contract.
     Shares sessions with /v1/intent. bot_text is the bot's last question, if any."""
     return pipeline.resolve_details(req)
+
+
+@router.post("/chat", response_model=ChatResponse, tags=["c1-internal"])
+def chat(req: ChatRequest) -> ChatResponse:
+    """C1-only: one chat turn with a natural reply. C1_DIALOGUE_MODE picks who replies: rules (default, the
+    engine's own reply), llm, or hybrid (LLM + NLU hints + validator). Chat sessions are separate from /v1/intent."""
+    return pipeline.resolve_chat(req)

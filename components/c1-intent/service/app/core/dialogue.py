@@ -55,6 +55,7 @@ class DialogueResult:
     language_tags: list[dict]
     code_switched: bool
     dialogue_source: str            # llm | rules | rules_fallback
+    dialogue_mode: str = "rules"    # C1_DIALOGUE_MODE of the manager that ran the turn
     conflicts: list[dict] = field(default_factory=list)
     rejections: list[dict] = field(default_factory=list)
     llm_proposed: int = 0           # LLM slot updates with a value (rejection-rate denominator)
@@ -134,6 +135,7 @@ class DialogueManager:
             missing_slots=result["missing_slots"], ready=result["ready"],
             ready_to_confirm=checks["ready_to_confirm"], route=result["route"], language=result["language"],
             language_tags=result["language_tags"], code_switched=result["code_switched"], dialogue_source="llm",
+            dialogue_mode=self.settings.mode,
             conflicts=[asdict(c) for c in merge.conflicts] if merge else [],
             rejections=[asdict(r) for r in checks["rejections"]],
             llm_proposed=merge.proposed if merge else 0,
@@ -151,6 +153,7 @@ class DialogueManager:
             slots=rules["slots"], raw_slots={}, missing_slots=rules["missing_slots"], ready=rules["ready"],
             ready_to_confirm=False, route=rules["route"], language=rules["language"],
             language_tags=rules["language_tags"], code_switched=rules["code_switched"], dialogue_source=source,
+            dialogue_mode=self.settings.mode,
             latency_ms=_ms(t0), nlu_ms=nlu_ms, llm_ms=llm_ms, error=error, state=rules)
 
     # ---------------------------------------------------------------- prompt
