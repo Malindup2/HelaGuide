@@ -12,6 +12,9 @@ C1_LLM_JSON_MODE   true (default): ask for response_format json_object; false: r
                    (the client also turns it off by itself when the provider rejects it)
 C1_LLM_REASONING_EFFORT  empty (default): not sent; none | minimal | low | medium | high: sent as reasoning_effort
                    (models that think, e.g. Gemini 2.5 through its OpenAI-compatible endpoint)
+C1_HINT_MIN_CONFIDENCE  0.0 (default: off) to 1.0. hybrid mode: when XLM-R's confidence this turn is below it, the
+                   intent hints (XLM-R's and the tracker's intent) are marked weak; entities and the tracker's slot
+                   changes are always sent. An ablation setting for the evaluation
 C1_PROTECT_APPLICANT_FOR  true (default): in llm / hybrid mode the rules tracker may not change a known
                    applicant_for either, unless the turn is a correction (the LLM never may); false turns that off
                    for the rules side, so the evaluation can separate the LLM's effect from this tracker fix
@@ -42,6 +45,7 @@ class DialogueSettings:
     history_turns: int = DEFAULT_HISTORY_TURNS
     json_mode: bool = True
     reasoning_effort: str = ""      # "" = not sent
+    hint_min_confidence: float = 0.0    # 0 = intent hints are never marked weak
     protect_applicant_for: bool = True
 
 
@@ -69,6 +73,13 @@ def _number(name, default, cast, minimum):
     return value
 
 
+def _unit(name, default):
+    value = _number(name, default, float, 0)
+    if value > 1:
+        raise SettingsError(f"{name} must be between 0 and 1, got {value}")
+    return value
+
+
 def dialogue_settings() -> DialogueSettings:
     mode = _env("C1_DIALOGUE_MODE", DEFAULT_MODE).lower()
     if mode not in DIALOGUE_MODES:
@@ -86,5 +97,6 @@ def dialogue_settings() -> DialogueSettings:
         history_turns=_number("C1_LLM_HISTORY_TURNS", DEFAULT_HISTORY_TURNS, int, 0),
         json_mode=_flag("C1_LLM_JSON_MODE", True),
         reasoning_effort=effort,
+        hint_min_confidence=_unit("C1_HINT_MIN_CONFIDENCE", 0.0),
         protect_applicant_for=_flag("C1_PROTECT_APPLICANT_FOR", True),
     )

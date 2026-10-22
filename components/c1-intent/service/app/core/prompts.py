@@ -3,7 +3,8 @@ Prompts for the LLM dialogue layer. The services, slots and allowed values are g
 tables (dst.INTENT_SLOTS, the validator's enums, dst.PURPOSES ...), never written out by hand, so the prompt and
 the validator cannot drift apart.
 
-    system_prompt(today)                         -> the instructions + the service catalogue + the JSON format
+    system_prompt(today, weak_hints=False)       -> the instructions + the service catalogue + the JSON format
+                                                    (weak_hints: add the line on weak intent hints, hint gating on)
     turn_message(state, message, hints=None)     -> the user content for this turn (hints=None in llm-only mode)
 """
 import json
@@ -50,9 +51,9 @@ def _values(slot):
     if slot in ENUMS:
         return " | ".join(canon for canon, _ in ENUMS[slot])
     if slot == "purpose":
-        return " | ".join(c for c, _ in PURPOSES) + f" | {OTHER} (then the user's words)"
+        return " | ".join(c for c, _ in PURPOSES) + f" | {OTHER} (then also give the user's words in slot_raw)"
     if slot == "issue":
-        return " | ".join(c for c, _ in ISSUES) + f" | {OTHER} (then the user's words)"
+        return " | ".join(c for c, _ in ISSUES) + f" | {OTHER} (then also give the user's words in slot_raw)"
     if slot in ("date", "travel_date", "date_of_birth"):
         return "YYYY-MM-DD"
     return None
@@ -75,7 +76,13 @@ def _catalogue():
     return "\n".join(lines)
 
 
-def system_prompt(today: date | None = None) -> str:
+WEAK_HINTS = ('- nlu_hints.intent_hint = "weak" means XLM-R was unsure about this message: xlmr_intent and '
+              'tracker_intent are unreliable, especially when the user is answering a slot question you asked. Decide '
+              'the intent from the message and the conversation; the entities and tracker_slot_updates are still '
+              'reliable.\n')
+
+
+def system_prompt(today: date | None = None, weak_hints: bool = False) -> str:
     today = today or today_colombo()
     return f"""You are HelaGuide, a friendly assistant that helps Sri Lankan citizens with government services.
 Today is {today.isoformat()} ({today.strftime("%A")}) in Sri Lanka.
@@ -93,16 +100,19 @@ How to talk:
 - Change a filled slot only when the user corrects it (dialogue_act = correction).
 - carried_district is a district the user mentioned earlier. When a new request needs a district, ask to confirm it ("Still in Galle?") instead of assuming it. Slots in unconfirmed_slots were carried over the same way: confirm them before treating them as known; the user's yes / no is dialogue_act confirm / deny.
 - If the user does not know a value, set that slot to "unknown".
-
+- Never mention internal labels to the user: not "other", not slot or intent names (applicant_for, purpose, birth_cert_copy, ...). Say it in plain words.
+{WEAK_HINTS if weak_hints else ""}
 Slot values:
 - Use only the values listed above for slots that have them. Districts by their English name.
 - Dates are ISO YYYY-MM-DD. Resolve relative dates yourself from today's date ("next friday", "ලබන මාසේ", "mid December" = the 15th).
 - slot_updates holds only the slots this message gives or changes, for active_intent. Leave everything else out.
+- When purpose or issue is "other", put the user's own words for it in slot_raw, e.g. "slot_raw": {{"purpose": "business registration"}}.
 
 Return only this JSON object, no other text:
 {{"reply": "...", "dialogue_act": "{'|'.join(DIALOGUE_ACTS)}",
   "active_intent": "<one of the intents above, or null>", "tasks": ["<unfinished service intents>"],
-  "slot_updates": {{"slot": "value"}}, "asks_slot": "<the slot your reply asks for, or null>",
+  "slot_updates": {{"slot": "value"}}, "slot_raw": {{"slot": "<the user's words, only for an other value>"}},
+  "asks_slot": "<the slot your reply asks for, or null>",
   "ready_to_confirm": false}}"""
 
 

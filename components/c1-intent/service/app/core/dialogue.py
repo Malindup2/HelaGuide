@@ -108,7 +108,8 @@ class DialogueManager:
         t1 = time.perf_counter()
         try:
             hints = self._hints(before, live, rules, text) if mode == "hybrid" else None
-            out = self.llm.complete_json(system_prompt(self.today()),
+            gated = mode == "hybrid" and self.settings.hint_min_confidence > 0
+            out = self.llm.complete_json(system_prompt(self.today(), weak_hints=gated),
                                          self._messages(chat, before, live.reply_lang, text, hints))
         except Exception as e:      # LLMError, or anything else: the demo must never crash because of the LLM
             log.warning("LLM failed (%s): rules_fallback for this turn", type(e).__name__)
@@ -173,12 +174,14 @@ class DialogueManager:
         }
         return [*past, {"role": "user", "content": turn_message(state, text, hints)}]
 
-    @staticmethod
-    def _hints(before, live, rules, text):
-        """What XLM-R and the rules tracker made of this message (hybrid mode)."""
+    def _hints(self, before, live, rules, text):
+        """What XLM-R and the rules tracker made of this message (hybrid mode). With C1_HINT_MIN_CONFIDENCE above
+        XLM-R's confidence the intent hints are marked weak; entities and slot changes are always sent."""
         intent = rules["intent"]
         old, new = before.states.get(intent, {}), live.states.get(intent, {})
+        weak = rules["intent_confidence"] < self.settings.hint_min_confidence
         return {
+            **({"intent_hint": "weak"} if weak else {}),
             "language_tags": " ".join(f"{t['word']}/{t['tag']}" for t in rules["language_tags"]),
             "xlmr_intent": rules["intent_model_output"],
             "xlmr_confidence": rules["intent_confidence"],
@@ -239,7 +242,8 @@ class DialogueManager:
             # carried (assumed) values, e.g. a district from an earlier request or the first message
             carried = {k: frame[k] for k in base.tracker.assumed if k in frame}
             merge = merge_slots(intent, data.get("slot_updates"), act, prev, rules_changes,
-                                protect_rules=self.settings.protect_applicant_for)
+                                protect_rules=self.settings.protect_applicant_for, raw_values=data.get("slot_raw"),
+                                message=text)
             rejections += merge.rejections
             slots = merge.slots
             for k in removed - set(merge.accepted):

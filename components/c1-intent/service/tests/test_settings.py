@@ -4,7 +4,7 @@ from app.core.settings import DialogueSettings, SettingsError, dialogue_settings
 
 ENV = ("C1_DIALOGUE_MODE", "C1_LLM_BASE_URL", "C1_LLM_MODEL", "C1_LLM_API_KEY", "C1_LLM_TIMEOUT",
        "C1_LLM_HISTORY_TURNS", "C1_LLM_JSON_MODE", "C1_PROTECT_APPLICANT_FOR",
-       "C1_LLM_REASONING_EFFORT")
+       "C1_LLM_REASONING_EFFORT", "C1_HINT_MIN_CONFIDENCE")
 
 
 @pytest.fixture(autouse=True)
@@ -58,3 +58,16 @@ def test_bad_values_raise(monkeypatch, name, value):
 def test_reasoning_effort_values(monkeypatch, value):
     monkeypatch.setenv("C1_LLM_REASONING_EFFORT", value)
     assert dialogue_settings().reasoning_effort == value.lower()
+
+
+def test_hint_min_confidence(monkeypatch):
+    assert dialogue_settings().hint_min_confidence == 0.0
+    monkeypatch.setenv("C1_HINT_MIN_CONFIDENCE", "0.5")
+    assert dialogue_settings().hint_min_confidence == 0.5
+
+
+@pytest.mark.parametrize("value", ["1.5", "-0.1", "half"])
+def test_hint_min_confidence_must_be_between_0_and_1(monkeypatch, value):
+    monkeypatch.setenv("C1_HINT_MIN_CONFIDENCE", value)
+    with pytest.raises(SettingsError, match="C1_HINT_MIN_CONFIDENCE"):
+        dialogue_settings()

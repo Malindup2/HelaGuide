@@ -225,3 +225,35 @@ def test_ready_comes_from_missing_slots():
     assert m.missing_slots == ["purpose"] and m.ready is False
     m = merge_slots(BIRTH, {"purpose": "visa"}, "slot_answer", m.slots)
     assert m.missing_slots == [] and m.ready is True
+
+
+# ---------------------------------------------------------------- raw text for a bare "other"
+def test_bare_other_takes_the_llms_slot_raw():
+    m = merge_slots(BIRTH, {"purpose": "other"}, "slot_answer", {}, raw_values={"purpose": " business reg "},
+                    message="business reg purpose")
+    assert (m.slots["purpose"], m.raw) == (OTHER, {"purpose": "business reg"})
+
+
+@pytest.mark.parametrize("raw_values", [None, {}, {"purpose": ""}, {"purpose": "other"}, {"purpose": 5}])
+def test_bare_other_without_usable_slot_raw_takes_the_message(raw_values):
+    m = merge_slots(BIRTH, {"purpose": "Other"}, "slot_answer", {}, raw_values=raw_values,
+                    message="  business   reg purpose ")
+    assert (m.slots["purpose"], m.raw) == (OTHER, {"purpose": "business reg purpose"})
+
+
+def test_other_with_words_keeps_its_own_words_and_slot_raw_only_matters_for_other():
+    m = merge_slots(BIRTH, {"purpose": "business registration", "district": "Galle"}, "slot_answer", {},
+                    raw_values={"purpose": "ignored", "district": "ignored"}, message="x")
+    assert m.raw == {"purpose": "business registration"} and m.slots["district"] == "Galle"
+
+
+def test_issue_other_too_but_not_free_text_slots():
+    m = merge_slots("feedback_complaint", {"issue": "other", "service_mentioned": "other"}, "slot_answer", {},
+                    message="they were rude")
+    assert m.raw == {"issue": "they were rude"} and m.slots["service_mentioned"] == "other"
+
+
+def test_slot_raw_not_an_object_is_rejected():
+    m = merge_slots(BIRTH, {"purpose": "other"}, "slot_answer", {}, raw_values=["business"], message="biz")
+    assert m.raw == {"purpose": "biz"}
+    assert ("slot_raw", "not_an_object") in reasons(m)

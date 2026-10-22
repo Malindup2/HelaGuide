@@ -16,9 +16,10 @@ BIRTH, PASSPORT = "birth_cert_copy", "passport_new"
 TODAY = date(2026, 10, 22)
 
 
-def llm_reply(intent=BIRTH, act="slot_answer", slots=None, reply="Hari!", tasks=None, asks=None, ready=False):
+def llm_reply(intent=BIRTH, act="slot_answer", slots=None, reply="Hari!", tasks=None, asks=None, ready=False,
+              **extra):
     return {"reply": reply, "dialogue_act": act, "active_intent": intent, "tasks": tasks or [],
-            "slot_updates": slots or {}, "asks_slot": asks, "ready_to_confirm": ready}
+            "slot_updates": slots or {}, "asks_slot": asks, "ready_to_confirm": ready, **extra}
 
 
 @pytest.fixture
@@ -290,6 +291,59 @@ def test_reply_language_follows_the_message_and_engine_language_is_a_hint(chat):
     assert "reply_language_hint in the user content is only the engine's guess" in system
     state = user_content(llm)["state"]
     assert "reply_language_hint" in state and "reply_language" not in state
+
+
+def test_bare_other_purpose_keeps_the_users_words(chat):
+    c, _ = chat({"business reg purpose": (BIRTH, 0.61)}, llm_reply(slots={"purpose": "other"}))
+    r = c.step("business reg purpose")
+    assert (r.slots["purpose"], r.raw_slots) == (OTHER, {"purpose": "business reg purpose"})
+
+
+def test_slot_raw_from_the_llm_is_used(chat):
+    c, _ = chat({"business reg purpose": (BIRTH, 0.61)},
+                llm_reply(slots={"purpose": "other"}, slot_raw={"purpose": "business registration"}))
+    assert c.step("business reg purpose").raw_slots == {"purpose": "business registration"}
+
+
+def test_prompt_forbids_internal_labels_and_asks_for_slot_raw(chat):
+    c, llm = chat({"Galle": (BIRTH, 0.9)}, llm_reply())
+    c.step("Galle")
+    system = llm.calls[0][0]
+    assert "Never mention internal labels to the user" in system
+    assert '"slot_raw"' in system and "put the user's own words for it in slot_raw" in system
+
+
+# ---------------------------------------------------------------- hint gating (C1_HINT_MIN_CONFIDENCE)
+def test_hints_are_never_weak_by_default(chat):
+    c, llm = chat({"school": (BIRTH, 0.1)}, llm_reply())
+    c.step("school")
+    assert "intent_hint" not in user_content(llm)["nlu_hints"]
+    assert 'intent_hint = "weak"' not in llm.calls[0][0]         # default prompt unchanged
+
+
+def test_low_confidence_intent_hint_is_weak_and_slot_evidence_still_sent(chat):
+    # 0.4: above the engine's own threshold (0.35), so the tracker still works for the intent, but below the gate
+    c, llm = chat({"for school, in Galle": (BIRTH, 0.4)}, llm_reply(), hint_min_confidence=0.5)
+    c.step("for school, in Galle")
+    hints = user_content(llm)["nlu_hints"]
+    assert hints["intent_hint"] == "weak"
+    assert (hints["xlmr_intent"], hints["tracker_intent"]) == (BIRTH, BIRTH)
+    assert hints["entities"] == {"district": "Galle", "purpose": "school"}
+    assert hints["tracker_slot_updates"] == {"district": "Galle", "purpose": "school admission"}
+    assert 'nlu_hints.intent_hint = "weak" means XLM-R was unsure' in llm.calls[0][0]
+
+
+def test_confident_intent_hint_is_not_weak(chat):
+    c, llm = chat({"Galle": (BIRTH, 0.5)}, llm_reply(), hint_min_confidence=0.5)
+    c.step("Galle")
+    assert "intent_hint" not in user_content(llm)["nlu_hints"]
+    assert 'intent_hint = "weak"' in llm.calls[0][0]             # the rule is there; this turn's hint is not weak
+
+
+def test_llm_mode_ignores_hint_gating(chat):
+    c, llm = chat({"Galle": (BIRTH, 0.1)}, llm_reply(), mode="llm", hint_min_confidence=0.5)
+    c.step("Galle")
+    assert "nlu_hints" not in user_content(llm) and 'intent_hint = "weak"' not in llm.calls[0][0]
 
 
 def test_asks_slot_gives_the_tracker_its_own_question(chat):

@@ -13,7 +13,8 @@ Slot rules:
   - date slots  an ISO date YYYY-MM-DD (what the prompt asks for) that exists on the calendar; otherwise the
                 date matcher must find a date in the value ("mid December", "ලබන මාසේ")
   - enums       applicant_for, change_field, urgency, service_type: the canonical value or one of its keywords
-  - purpose, issue  their taxonomy (PURPOSES, ISSUES) if one matches, else "other" with the raw text in `raw`
+  - purpose, issue  their taxonomy (PURPOSES, ISSUES) if one matches, else "other" with the raw text in `raw`;
+                a bare "other" takes its raw text from the LLM's slot_raw, else from the user's message
   - service_mentioned  the service gazetteer if one matches, else the text; new_value: the text
   - "unknown" (the citizen does not know) is accepted for any slot
 Conflicts (the rules tracker and the LLM set the same slot this turn to different values): the rules value is
@@ -193,12 +194,14 @@ def _same(slot, a, b):
 
 
 def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes: dict | None = None,
-                protect_rules: bool = True) -> SlotMerge:
+                protect_rules: bool = True, raw_values=None, message: str | None = None) -> SlotMerge:
     """
     The intent's slots after this turn: prev, then the rules tracker's changes this turn (rules_changes; empty in
     llm-only mode), then the LLM's checked updates under the conflict policy.
     prev: the intent's slots before this turn. rules_changes: {slot: value} the tracker set or changed this turn.
     protect_rules: also undo a rules-tracker change to applicant_for without a correction (LLM changes always are).
+    raw_values: the LLM's slot_raw ({slot: the user's words}); message: this turn's user text. Both only give the raw
+    text of a bare "other" for purpose / issue.
     """
     rules_changes = dict(rules_changes or {})
     allowed = INTENT_SLOTS.get(intent, [])
@@ -208,6 +211,10 @@ def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes
         if updates not in (None, ""):
             rejections.append(Rejection("slot_updates", updates, "not_an_object"))
         updates = {}
+    if not isinstance(raw_values, dict):
+        if raw_values not in (None, ""):
+            rejections.append(Rejection("slot_raw", raw_values, "not_an_object"))
+        raw_values = {}
 
     for slot, value in updates.items():
         if value is None or (isinstance(value, str) and not value.strip()):
@@ -221,6 +228,8 @@ def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes
         except Rejected as e:
             rejections.append(Rejection(slot, value, str(e)))
             continue
+        if canon == OTHER and raw_text is None and slot in TAXONOMIES:
+            raw_text = _raw_for_other(raw_values.get(slot), message)
         accepted[slot] = canon
         if slot in rules_changes and not _same(slot, rules_changes[slot], canon):
             rules_value = rules_changes[slot]
@@ -249,6 +258,14 @@ def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes
         log.info("validator conflict: intent=%s slot=%s kept=%s (%s)", intent, c.slot, c.kept, c.reason)
     missing = [s for s in allowed if s not in slots]
     return SlotMerge(slots, accepted, raw, missing, bool(allowed) and not missing, proposed, rejections, conflicts)
+
+
+def _raw_for_other(raw, message):
+    """The user's words for a bare "other": the LLM's slot_raw when it is real text, else the message itself."""
+    if isinstance(raw, str) and raw.strip() and raw.strip().lower() != OTHER:
+        return raw.strip()[:MAX_VALUE_CHARS]
+    message = " ".join((message or "").split())
+    return message[:MAX_VALUE_CHARS] or None
 
 
 def confirm_ready(ready_claim: bool, ready: bool) -> tuple[bool, Rejection | None]:
