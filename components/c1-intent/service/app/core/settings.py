@@ -8,6 +8,8 @@ C1_LLM_MODEL       model name at that endpoint
 C1_LLM_API_KEY     not needed for Ollama; never logged
 C1_LLM_TIMEOUT     seconds per LLM request
 C1_LLM_HISTORY_TURNS  conversation turns (user + bot) sent to the LLM
+C1_LLM_JSON_MODE   true (default): ask for response_format json_object; false: rely on the prompt + JSON parsing
+                   (the client also turns it off by itself when the provider rejects it)
 """
 import os
 from dataclasses import dataclass, field
@@ -32,10 +34,20 @@ class DialogueSettings:
     api_key: str = field(default="", repr=False)     # repr=False: never printed with the settings
     timeout: float = DEFAULT_TIMEOUT
     history_turns: int = DEFAULT_HISTORY_TURNS
+    json_mode: bool = True
 
 
 def _env(name, default):
     return os.environ.get(name, "").strip() or default
+
+
+def _flag(name, default):
+    raw = _env(name, "true" if default else "false").lower()
+    if raw in ("true", "1", "yes", "on"):
+        return True
+    if raw in ("false", "0", "no", "off"):
+        return False
+    raise SettingsError(f"{name} must be true or false, got {raw!r}")
 
 
 def _number(name, default, cast, minimum):
@@ -60,4 +72,5 @@ def dialogue_settings() -> DialogueSettings:
         api_key=os.environ.get("C1_LLM_API_KEY", "").strip(),
         timeout=_number("C1_LLM_TIMEOUT", DEFAULT_TIMEOUT, float, 1),
         history_turns=_number("C1_LLM_HISTORY_TURNS", DEFAULT_HISTORY_TURNS, int, 0),
+        json_mode=_flag("C1_LLM_JSON_MODE", True),
     )

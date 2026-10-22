@@ -12,6 +12,7 @@ dependencies = [
     "uvicorn[standard]>=0.29",
     "pydantic>=2.6",
     "pydantic-settings>=2.2",
+    "httpx>=0.27",          # LLM client (C1_DIALOGUE_MODE=llm / hybrid)
     # helaguide-common is installed from ../../../shared (see README)
 ]
 
