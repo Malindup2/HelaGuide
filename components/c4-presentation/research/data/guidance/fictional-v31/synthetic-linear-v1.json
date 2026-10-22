@@ -44,9 +44,45 @@
         "evidence_ids": [
           "evidence:request_token"
         ]
+      },
+      {
+        "id": "action:collect_pack:document:0",
+        "source_kind": "content",
+        "source_id": "content:collect_pack",
+        "start": 49,
+        "end": 69,
+        "quote": "fictional demo token",
+        "action_ids": [
+          "action:collect_pack"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:collect_pack"
+        ]
       }
     ],
-    "attachments": [],
+    "attachments": [
+      {
+        "id": "attachment:action:collect_pack:svc:demo_pack:document:token",
+        "fact_id": "svc:demo_pack:document:token",
+        "scope": "action",
+        "action_id": "action:collect_pack",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:collect_pack:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:collect_pack"
+        ],
+        "qualification": null,
+        "status": "draft"
+      }
+    ],
     "phases": [],
     "phase_order": [],
     "phase_order_basis": "none",
@@ -117,7 +153,9 @@
         "actor": null,
         "destination": null,
         "visible_condition_ids": [],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:collect_pack:svc:demo_pack:document:token"
+        ]
       },
       {
         "id": "action:request_token",
@@ -228,9 +266,45 @@
         "evidence_ids": [
           "evidence:request_token"
         ]
+      },
+      {
+        "id": "action:collect_pack:document:0",
+        "source_kind": "content",
+        "source_id": "content:collect_pack",
+        "start": 49,
+        "end": 69,
+        "quote": "fictional demo token",
+        "action_ids": [
+          "action:collect_pack"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:collect_pack"
+        ]
       }
     ],
-    "attachments": [],
+    "attachments": [
+      {
+        "id": "attachment:action:collect_pack:svc:demo_pack:document:token",
+        "fact_id": "svc:demo_pack:document:token",
+        "scope": "action",
+        "action_id": "action:collect_pack",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:collect_pack:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:collect_pack"
+        ],
+        "qualification": null,
+        "status": "reviewed"
+      }
+    ],
     "phases": [],
     "phase_order": [],
     "phase_order_basis": "none",
@@ -301,7 +375,9 @@
         "actor": null,
         "destination": null,
         "visible_condition_ids": [],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:collect_pack:svc:demo_pack:document:token"
+        ]
       },
       {
         "id": "action:request_token",
@@ -375,7 +451,7 @@
       "reviewer": "Claude Sonnet 5.5 internal fictional author-review (AI-assisted; not human, external-expert or government review)",
       "reviewed_at": "2026-10-22T12:00:00Z",
       "scope_note": "Compared the 3.1 Concise, Detailed and supplement wording, plus headings, reminders and phase labels, to the supplied fictional Plan passages. Claim coverage and Concise/Detailed/supplement separation were also checked automatically. This is internal AI-assisted author review for isolated fictional demonstration only; it is not human, external expert, government or independent validation, and says nothing about whether any scaffold helps.",
-      "artifact_digest": "a23d3ed451510e7d6f40746f4a0b283f7cefc3c4f9bc63782fc25021c70a8daf",
+      "artifact_digest": "824f577d5ef8a7b328bea0d9d60b0158a60f1c0b84be3d5ddebe815e6890e613",
       "checks": [
         {
           "target": "actions.action:collect_pack.heading",
@@ -474,6 +550,17 @@
           ],
           "result": "matched",
           "note": "Internal AI-assisted fictional author-review only. Compared \"The token request is the prerequisite for collection. Reading this guidance does not establish that it is complete.\" with the fictional source passage \"Request a fictional demo token.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+        },
+        {
+          "target": "attachments.attachment:action:collect_pack:svc:demo_pack:document:token",
+          "claim_ids": [
+            "action:collect_pack:document:0"
+          ],
+          "evidence_ids": [
+            "evidence:collect_pack"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. The fictional source passage for this action names \"fictional demo token\" as part of what the action involves, and the Plan assigns that document to this action's own stage. Fees are not attached: no passage attributes a fee to a single action. Not human or external expert review."
         }
       ]
     }

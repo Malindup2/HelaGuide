@@ -3,7 +3,7 @@ import { cueView, formatAmount, paragraphs, scopeNote } from '../model';
 import { ChevronIcon, DocIcon, FeeIcon } from '../ui';
 
 /** Documents and charges exactly as scoped by the backend. A stage or service fact is never shown as a step payment. */
-export function Facts({ facts, doc, label = true }: { facts: ScopedFact[]; doc: Doc; label?: boolean }) {
+export function Facts({ facts, doc, label = true, names = { documents: 'Documents', fees: 'Charges' } }: { facts: ScopedFact[]; doc: Doc; label?: boolean; names?: { documents: string; fees: string } }) {
   const docs = facts.filter(f => f.fact.kind === 'document'), fees = facts.filter(f => f.fact.kind === 'fee');
   if (facts.length === 0) return null;
   const tag = (f: ScopedFact, fee: boolean) => {
@@ -12,8 +12,8 @@ export function Facts({ facts, doc, label = true }: { facts: ScopedFact[]; doc: 
       {fee ? <b>{formatAmount(f.fact)}</b> : f.fact.name}{note && <small>{note}</small>}{f.qualification && <small>{f.qualification}</small>}</span>;
   };
   return <div className="cz-facts">
-    {docs.length > 0 && <p>{label && <span className="cz-k">Documents</span>}{docs.map(f => tag(f, false))}</p>}
-    {fees.length > 0 && <p>{label && <span className="cz-k">{fees.every(f => f.scope === 'action' || f.scope === 'route') ? 'Charge' : 'Charges'}</span>}{fees.map(f => tag(f, true))}</p>}
+    {docs.length > 0 && <p>{label && <span className="cz-k">{names.documents}</span>}{docs.map(f => tag(f, false))}</p>}
+    {fees.length > 0 && <p>{label && <span className="cz-k">{fees.every(f => f.scope === 'action' || f.scope === 'route') ? 'Charge' : names.fees}</span>}{fees.map(f => tag(f, true))}</p>}
   </div>;
 }
 
@@ -56,12 +56,15 @@ export function StepBody({ action, doc, config, open, onToggle, hideConditions =
   return <div className="cz-body" id={`cz-body-${action.id}`}>
     {conditions.length > 0 && <p className="cz-cond"><b>Applies when</b> {conditions.join(' and ')}</p>}
     {essential.map((p, i) => <p key={i} className="cz-essential">{p}</p>)}
-    {(action.destination || action.actor || agencies) && <div className="cz-facts">
-      {agencies && <p><span className="cz-k">Agency</span><span className="cz-tag">{action.agency}</span></p>}
-      {action.destination && <p><span className="cz-k">Where</span><span className="cz-tag">{action.destination}</span></p>}
-      {action.actor && <p><span className="cz-k">Who</span><span className="cz-tag">{action.actor}</span></p>}</div>}
-    {showFacts && <Facts facts={action.facts} doc={doc} />}
-    {showFacts && <SourceWording facts={action.facts} doc={doc} />}
+    {(action.destination || action.actor || agencies || (showFacts && action.facts.length > 0)) && <section className="cz-atstep" aria-label="At this step">
+      <p className="cz-atstep-h">At this step</p>
+      {(action.destination || action.actor || agencies) && <div className="cz-facts">
+        {agencies && <p><span className="cz-k">Agency</span><span className="cz-tag">{action.agency}</span></p>}
+        {action.destination && <p><span className="cz-k">Where</span><span className="cz-tag">{action.destination}</span></p>}
+        {action.actor && <p><span className="cz-k">Who</span><span className="cz-tag">{action.actor}</span></p>}</div>}
+      {showFacts && <Facts facts={action.facts} doc={doc} names={{ documents: 'Bring', fees: 'Charges' }} />}
+    </section>}
+    {showFacts && !action.source_wording && <SourceWording facts={action.facts} doc={doc} />}
     {cues.length > 0 && <ul className="cz-cues" data-support="relationships">{cues.map(c => { const v = cueView(c); return <li key={c.relation_id + c.text}><b>{v.label}</b> {v.body}</li>; })}</ul>}
     {action.source_wording && <details className="cz-more cz-source"><summary>What the source says</summary>{paragraphs(action.source_wording, doc.source_limit).map((p, i) => <p key={i}>{p}</p>)}</details>}
     {action.explanation_visible && <div className="cz-expl" data-support="explanation">{(detailed || supplement) && <span className="cz-label">{supplement ? 'More information' : 'In more detail'}</span>}

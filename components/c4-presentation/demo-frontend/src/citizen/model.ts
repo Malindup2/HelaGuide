@@ -131,7 +131,7 @@ export function cueView(cue: RelationCue): { label: string; body: string } {
   const after = (prefix: string) => cue.text.startsWith(prefix) ? cue.text.slice(prefix.length) : cue.text;
   switch (cue.kind) {
     case 'before': return { label: 'Before this', body: after('Before this: ') };
-    case 'join': return { label: 'Also required', body: cue.text.includes(': ') ? cue.text.slice(cue.text.indexOf(': ') + 2) : cue.text };
+    case 'join': return { label: 'Also required', body: (cue.text.includes(': ') ? cue.text.slice(cue.text.indexOf(': ') + 2) : cue.text).replaceAll(' OR ', ' or ') };
     case 'parallel': return { label: 'Can be done alongside', body: after('Verified parallel work: ') };
     case 'parallel_area': return { label: 'Can be done alongside', body: after('These verified work areas may proceed independently: ') };
     default: return { label: 'Related', body: cue.text };

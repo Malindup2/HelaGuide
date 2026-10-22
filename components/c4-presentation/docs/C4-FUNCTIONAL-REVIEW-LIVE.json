@@ -1,0 +1,207 @@
+{
+  "status": {
+    "action_schema": "c4-scaffolds-v3.1",
+    "content_schema": "c4-guidance-content-3.1",
+    "encoder_status": "c4-features-pp1-1.1-525",
+    "personalized_selection_available": true
+  },
+  "policy_revision_at_start": 5000,
+  "guest_standard": {
+    "kind": "standard",
+    "configuration": {
+      "navigation": "overview",
+      "explanation": "concise",
+      "disclosure": "off",
+      "relationships": "none",
+      "recap": "off",
+      "segmentation": "off"
+    },
+    "controls": {
+      "feedback": false,
+      "configuration_adjustment": false
+    },
+    "submit_step": {
+      "heading": "Submit the application with both required items",
+      "primary": "Submit at the fictional Submission Desk with both the completed form and the supporting copy.",
+      "supplement_visible": "Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.",
+      "supplement_hidden": null,
+      "documents_at_step": [
+        "Fictional completed application form",
+        "Fictional supporting copy"
+      ],
+      "destination": "Fictional Submission Desk",
+      "has_source_wording": true
+    }
+  },
+  "compact_candidate_experienced": {
+    "kind": "shared_gaussian_lints",
+    "configuration": {
+      "navigation": "overview",
+      "explanation": "concise",
+      "disclosure": "on",
+      "relationships": "inline",
+      "recap": "off",
+      "segmentation": "on"
+    },
+    "controls": {
+      "feedback": true,
+      "configuration_adjustment": true
+    },
+    "submit_step": {
+      "heading": "Submit the application with both required items",
+      "primary": "Submit at the fictional Submission Desk with both the completed form and the supporting copy.",
+      "supplement_visible": null,
+      "supplement_hidden": "Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.",
+      "documents_at_step": [
+        "Fictional completed application form",
+        "Fictional supporting copy"
+      ],
+      "destination": "Fictional Submission Desk",
+      "has_source_wording": true
+    }
+  },
+  "rich_novice": {
+    "kind": "shared_gaussian_lints",
+    "configuration": {
+      "navigation": "guided",
+      "explanation": "detailed",
+      "disclosure": "on",
+      "relationships": "map",
+      "recap": "on",
+      "segmentation": "on"
+    },
+    "controls": {
+      "feedback": true,
+      "configuration_adjustment": true
+    },
+    "submit_step": {
+      "heading": "Submit the application with both required items",
+      "primary": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the completed form and the supporting copy; completing just one is insufficient.",
+      "supplement_visible": null,
+      "supplement_hidden": "Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.",
+      "documents_at_step": [
+        "Fictional completed application form",
+        "Fictional supporting copy"
+      ],
+      "destination": "Fictional Submission Desk",
+      "has_source_wording": true
+    },
+    "register_step": {
+      "heading": "Register the fictional application before preparation",
+      "primary": "Register at the fictional Registration Desk before you prepare the form or the supporting copy. After registration, the form and the applicable copy route can proceed independently; both are required before submission.",
+      "supplement_visible": null,
+      "supplement_hidden": "The registration, preparation and submission fees are separate stage charges; they are not three charges payable at registration.",
+      "documents_at_step": [],
+      "destination": "Fictional Registration Desk",
+      "has_source_wording": true
+    }
+  },
+  "four_combinations": {
+    "concise+off": {
+      "register": {
+        "heading": "Register the fictional application before preparation",
+        "primary": "Register at the fictional Registration Desk first. The form and the copy come after.",
+        "supplement_visible": "The registration, preparation and submission fees are separate stage charges; they are not three charges payable at registration.",
+        "supplement_hidden": null,
+        "documents_at_step": [],
+        "destination": "Fictional Registration Desk",
+        "has_source_wording": true
+      },
+      "submit": {
+        "heading": "Submit the application with both required items",
+        "primary": "Submit at the fictional Submission Desk with both the completed form and the supporting copy.",
+        "supplement_visible": "Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.",
+        "supplement_hidden": null,
+        "documents_at_step": [
+          "Fictional completed application form",
+          "Fictional supporting copy"
+        ],
+        "destination": "Fictional Submission Desk",
+        "has_source_wording": true
+      }
+    },
+    "concise+on": {
+      "register": {
+        "heading": "Register the fictional application before preparation",
+        "primary": "Register at the fictional Registration Desk first. The form and the copy come after.",
+        "supplement_visible": null,
+        "supplement_hidden": "The registration, preparation and submission fees are separate stage charges; they are not three charges payable at registration.",
+        "documents_at_step": [],
+        "destination": "Fictional Registration Desk",
+        "has_source_wording": true
+      },
+      "submit": {
+        "heading": "Submit the application with both required items",
+        "primary": "Submit at the fictional Submission Desk with both the completed form and the supporting copy.",
+        "supplement_visible": null,
+        "supplement_hidden": "Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.",
+        "documents_at_step": [
+          "Fictional completed application form",
+          "Fictional supporting copy"
+        ],
+        "destination": "Fictional Submission Desk",
+        "has_source_wording": true
+      }
+    },
+    "detailed+off": {
+      "register": {
+        "heading": "Register the fictional application before preparation",
+        "primary": "Register at the fictional Registration Desk before you prepare the form or the supporting copy. After registration, the form and the applicable copy route can proceed independently; both are required before submission.",
+        "supplement_visible": "The registration, preparation and submission fees are separate stage charges; they are not three charges payable at registration.",
+        "supplement_hidden": null,
+        "documents_at_step": [],
+        "destination": "Fictional Registration Desk",
+        "has_source_wording": true
+      },
+      "submit": {
+        "heading": "Submit the application with both required items",
+        "primary": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the completed form and the supporting copy; completing just one is insufficient.",
+        "supplement_visible": "Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.",
+        "supplement_hidden": null,
+        "documents_at_step": [
+          "Fictional completed application form",
+          "Fictional supporting copy"
+        ],
+        "destination": "Fictional Submission Desk",
+        "has_source_wording": true
+      }
+    },
+    "detailed+on": {
+      "register": {
+        "heading": "Register the fictional application before preparation",
+        "primary": "Register at the fictional Registration Desk before you prepare the form or the supporting copy. After registration, the form and the applicable copy route can proceed independently; both are required before submission.",
+        "supplement_visible": null,
+        "supplement_hidden": "The registration, preparation and submission fees are separate stage charges; they are not three charges payable at registration.",
+        "documents_at_step": [],
+        "destination": "Fictional Registration Desk",
+        "has_source_wording": true
+      },
+      "submit": {
+        "heading": "Submit the application with both required items",
+        "primary": "Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the completed form and the supporting copy; completing just one is insufficient.",
+        "supplement_visible": null,
+        "supplement_hidden": "Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.",
+        "documents_at_step": [
+          "Fictional completed application form",
+          "Fictional supporting copy"
+        ],
+        "destination": "Fictional Submission Desk",
+        "has_source_wording": true
+      }
+    }
+  },
+  "feedback": {
+    "original_view_update": {
+      "reward": 1,
+      "policy_updated": true,
+      "learning_eligible": true
+    },
+    "revision_before": 5000,
+    "revision_after_original_rating": 5001,
+    "manual_view_kind": "manual_adjustment",
+    "manual_rating_updated_policy": false,
+    "parent_rating_after_adjusting_http_status": 409,
+    "guest_rating_http_status": 403,
+    "revision_after_manual_and_guest": 5001
+  }
+}

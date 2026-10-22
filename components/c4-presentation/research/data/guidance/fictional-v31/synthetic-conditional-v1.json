@@ -60,9 +60,112 @@
         "evidence_ids": [
           "evidence:collection_rules"
         ]
+      },
+      {
+        "id": "action:counter_collection:destination:0",
+        "source_kind": "content",
+        "source_id": "content:counter_collection",
+        "start": 121,
+        "end": 138,
+        "quote": "fictional counter",
+        "action_ids": [
+          "action:counter_collection"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:counter_collection:document:1",
+        "source_kind": "content",
+        "source_id": "content:counter_collection",
+        "start": 81,
+        "end": 113,
+        "quote": "fictional registration reference",
+        "action_ids": [
+          "action:counter_collection"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:locker_collection:destination:2",
+        "source_kind": "content",
+        "source_id": "content:locker_collection",
+        "start": 116,
+        "end": 132,
+        "quote": "fictional locker",
+        "action_ids": [
+          "action:locker_collection"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:locker_collection:document:3",
+        "source_kind": "content",
+        "source_id": "content:locker_collection",
+        "start": 76,
+        "end": 108,
+        "quote": "fictional registration reference",
+        "action_ids": [
+          "action:locker_collection"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
       }
     ],
-    "attachments": [],
+    "attachments": [
+      {
+        "id": "attachment:action:counter_collection:svc:demo_collection:document:reference",
+        "fact_id": "svc:demo_collection:document:reference",
+        "scope": "action",
+        "action_id": "action:counter_collection",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:counter_collection:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "qualification": null,
+        "status": "draft"
+      },
+      {
+        "id": "attachment:action:locker_collection:svc:demo_collection:document:reference",
+        "fact_id": "svc:demo_collection:document:reference",
+        "scope": "action",
+        "action_id": "action:locker_collection",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:locker_collection:document:3"
+        ],
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "qualification": null,
+        "status": "draft"
+      }
+    ],
     "phases": [
       {
         "id": "phase:1",
@@ -175,11 +278,22 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional counter",
+          "status": "draft",
+          "claim_ids": [
+            "action:counter_collection:destination:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
         "visible_condition_ids": [
           "condition:counter_chosen"
         ],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:counter_collection:svc:demo_collection:document:reference"
+        ]
       },
       {
         "id": "action:locker_collection",
@@ -243,11 +357,22 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional locker",
+          "status": "draft",
+          "claim_ids": [
+            "action:locker_collection:destination:2"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
         "visible_condition_ids": [
           "condition:locker_chosen"
         ],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:locker_collection:svc:demo_collection:document:reference"
+        ]
       },
       {
         "id": "action:register_collection",
@@ -374,9 +499,112 @@
         "evidence_ids": [
           "evidence:collection_rules"
         ]
+      },
+      {
+        "id": "action:counter_collection:destination:0",
+        "source_kind": "content",
+        "source_id": "content:counter_collection",
+        "start": 121,
+        "end": 138,
+        "quote": "fictional counter",
+        "action_ids": [
+          "action:counter_collection"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:counter_collection:document:1",
+        "source_kind": "content",
+        "source_id": "content:counter_collection",
+        "start": 81,
+        "end": 113,
+        "quote": "fictional registration reference",
+        "action_ids": [
+          "action:counter_collection"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:locker_collection:destination:2",
+        "source_kind": "content",
+        "source_id": "content:locker_collection",
+        "start": 116,
+        "end": 132,
+        "quote": "fictional locker",
+        "action_ids": [
+          "action:locker_collection"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:locker_collection:document:3",
+        "source_kind": "content",
+        "source_id": "content:locker_collection",
+        "start": 76,
+        "end": 108,
+        "quote": "fictional registration reference",
+        "action_ids": [
+          "action:locker_collection"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
       }
     ],
-    "attachments": [],
+    "attachments": [
+      {
+        "id": "attachment:action:counter_collection:svc:demo_collection:document:reference",
+        "fact_id": "svc:demo_collection:document:reference",
+        "scope": "action",
+        "action_id": "action:counter_collection",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:counter_collection:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "qualification": null,
+        "status": "reviewed"
+      },
+      {
+        "id": "attachment:action:locker_collection:svc:demo_collection:document:reference",
+        "fact_id": "svc:demo_collection:document:reference",
+        "scope": "action",
+        "action_id": "action:locker_collection",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:locker_collection:document:3"
+        ],
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "qualification": null,
+        "status": "reviewed"
+      }
+    ],
     "phases": [
       {
         "id": "phase:1",
@@ -489,11 +717,22 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional counter",
+          "status": "reviewed",
+          "claim_ids": [
+            "action:counter_collection:destination:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
         "visible_condition_ids": [
           "condition:counter_chosen"
         ],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:counter_collection:svc:demo_collection:document:reference"
+        ]
       },
       {
         "id": "action:locker_collection",
@@ -557,11 +796,22 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional locker",
+          "status": "reviewed",
+          "claim_ids": [
+            "action:locker_collection:destination:2"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
         "visible_condition_ids": [
           "condition:locker_chosen"
         ],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:locker_collection:svc:demo_collection:document:reference"
+        ]
       },
       {
         "id": "action:register_collection",
@@ -635,7 +885,7 @@
       "reviewer": "Claude Sonnet 5.5 internal fictional author-review (AI-assisted; not human, external-expert or government review)",
       "reviewed_at": "2026-10-22T12:00:00Z",
       "scope_note": "Compared the 3.1 Concise, Detailed and supplement wording, plus headings, reminders and phase labels, to the supplied fictional Plan passages. Claim coverage and Concise/Detailed/supplement separation were also checked automatically. This is internal AI-assisted author review for isolated fictional demonstration only; it is not human, external expert, government or independent validation, and says nothing about whether any scaffold helps.",
-      "artifact_digest": "32b9f3dbb2b154c7b7f5673068f9a5a4aefcaf65917dcd223180d959fff83a80",
+      "artifact_digest": "83abb9ea4eba83c8d91f680a72d06979402935e113497cc347ba11a1b619b583",
       "checks": [
         {
           "target": "actions.action:counter_collection.heading",
@@ -819,6 +1069,50 @@
           ],
           "result": "matched",
           "note": "Internal AI-assisted fictional author-review only. Compared \"Counter and locker collection are alternatives, so the reference connects registration to your chosen method; it does not mean you must visit both.\" with the fictional source passage \"Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+        },
+        {
+          "target": "actions.action:counter_collection.destination",
+          "claim_ids": [
+            "action:counter_collection:destination:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. \"Fictional counter\" names the desk or place stated in the fictional source passage for this action. Nothing added. Not human or external expert review."
+        },
+        {
+          "target": "actions.action:locker_collection.destination",
+          "claim_ids": [
+            "action:locker_collection:destination:2"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. \"Fictional locker\" names the desk or place stated in the fictional source passage for this action. Nothing added. Not human or external expert review."
+        },
+        {
+          "target": "attachments.attachment:action:counter_collection:svc:demo_collection:document:reference",
+          "claim_ids": [
+            "action:counter_collection:document:1"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. The fictional source passage for this action names \"fictional registration reference\" as part of what the action involves, and the Plan assigns that document to this action's own stage. Fees are not attached: no passage attributes a fee to a single action. Not human or external expert review."
+        },
+        {
+          "target": "attachments.attachment:action:locker_collection:svc:demo_collection:document:reference",
+          "claim_ids": [
+            "action:locker_collection:document:3"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. The fictional source passage for this action names \"fictional registration reference\" as part of what the action involves, and the Plan assigns that document to this action's own stage. Fees are not attached: no passage attributes a fee to a single action. Not human or external expert review."
         }
       ]
     }

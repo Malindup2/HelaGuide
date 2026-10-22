@@ -92,9 +92,128 @@
         "evidence_ids": [
           "evidence:application_rules"
         ]
+      },
+      {
+        "id": "action:register_application:destination:0",
+        "source_kind": "content",
+        "source_id": "content:register_application",
+        "start": 16,
+        "end": 43,
+        "quote": "fictional Registration Desk",
+        "action_ids": [
+          "action:register_application"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:obtain_copy:destination:1",
+        "source_kind": "content",
+        "source_id": "content:obtain_copy",
+        "start": 69,
+        "end": 91,
+        "quote": "fictional Records Desk",
+        "action_ids": [
+          "action:obtain_copy"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:destination:2",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 14,
+        "end": 39,
+        "quote": "fictional Submission Desk",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:document:3",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 129,
+        "end": 153,
+        "quote": "fictional completed form",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:document:4",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 158,
+        "end": 173,
+        "quote": "supporting copy",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
       }
     ],
-    "attachments": [],
+    "attachments": [
+      {
+        "id": "attachment:action:submit_application:svc:demo_submission:document:form",
+        "fact_id": "svc:demo_submission:document:form",
+        "scope": "action",
+        "action_id": "action:submit_application",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_application:document:3"
+        ],
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "qualification": null,
+        "status": "draft"
+      },
+      {
+        "id": "attachment:action:submit_application:svc:demo_submission:document:copy",
+        "fact_id": "svc:demo_submission:document:copy",
+        "scope": "action",
+        "action_id": "action:submit_application",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_application:document:4"
+        ],
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "qualification": null,
+        "status": "draft"
+      }
+    ],
     "phases": [
       {
         "id": "phase:1",
@@ -229,7 +348,16 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional Records Desk",
+          "status": "draft",
+          "claim_ids": [
+            "action:obtain_copy:destination:1"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
         "visible_condition_ids": [
           "condition:no_copy"
         ],
@@ -431,7 +559,16 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional Registration Desk",
+          "status": "draft",
+          "claim_ids": [
+            "action:register_application:destination:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
         "visible_condition_ids": [],
         "visible_attachment_ids": []
       },
@@ -497,9 +634,21 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional Submission Desk",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_application:destination:2"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
         "visible_condition_ids": [],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:submit_application:svc:demo_submission:document:form",
+          "attachment:action:submit_application:svc:demo_submission:document:copy"
+        ]
       }
     ],
     "review": null
@@ -592,9 +741,128 @@
         "evidence_ids": [
           "evidence:application_rules"
         ]
+      },
+      {
+        "id": "action:register_application:destination:0",
+        "source_kind": "content",
+        "source_id": "content:register_application",
+        "start": 16,
+        "end": 43,
+        "quote": "fictional Registration Desk",
+        "action_ids": [
+          "action:register_application"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:obtain_copy:destination:1",
+        "source_kind": "content",
+        "source_id": "content:obtain_copy",
+        "start": 69,
+        "end": 91,
+        "quote": "fictional Records Desk",
+        "action_ids": [
+          "action:obtain_copy"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:destination:2",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 14,
+        "end": 39,
+        "quote": "fictional Submission Desk",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:document:3",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 129,
+        "end": 153,
+        "quote": "fictional completed form",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:document:4",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 158,
+        "end": 173,
+        "quote": "supporting copy",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
       }
     ],
-    "attachments": [],
+    "attachments": [
+      {
+        "id": "attachment:action:submit_application:svc:demo_submission:document:form",
+        "fact_id": "svc:demo_submission:document:form",
+        "scope": "action",
+        "action_id": "action:submit_application",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_application:document:3"
+        ],
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "qualification": null,
+        "status": "reviewed"
+      },
+      {
+        "id": "attachment:action:submit_application:svc:demo_submission:document:copy",
+        "fact_id": "svc:demo_submission:document:copy",
+        "scope": "action",
+        "action_id": "action:submit_application",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_application:document:4"
+        ],
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "qualification": null,
+        "status": "reviewed"
+      }
+    ],
     "phases": [
       {
         "id": "phase:1",
@@ -729,7 +997,16 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional Records Desk",
+          "status": "reviewed",
+          "claim_ids": [
+            "action:obtain_copy:destination:1"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
         "visible_condition_ids": [
           "condition:no_copy"
         ],
@@ -931,7 +1208,16 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional Registration Desk",
+          "status": "reviewed",
+          "claim_ids": [
+            "action:register_application:destination:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
         "visible_condition_ids": [],
         "visible_attachment_ids": []
       },
@@ -997,9 +1283,21 @@
           ]
         },
         "actor": null,
-        "destination": null,
+        "destination": {
+          "text": "Fictional Submission Desk",
+          "status": "reviewed",
+          "claim_ids": [
+            "action:submit_application:destination:2"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
         "visible_condition_ids": [],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:submit_application:svc:demo_submission:document:form",
+          "attachment:action:submit_application:svc:demo_submission:document:copy"
+        ]
       }
     ],
     "review": {
@@ -1007,7 +1305,7 @@
       "reviewer": "Claude Sonnet 5.5 internal fictional author-review (AI-assisted; not human, external-expert or government review)",
       "reviewed_at": "2026-10-22T12:00:00Z",
       "scope_note": "Compared the 3.1 Concise, Detailed and supplement wording, plus headings, reminders and phase labels, to the supplied fictional Plan passages. Claim coverage and Concise/Detailed/supplement separation were also checked automatically. This is internal AI-assisted author review for isolated fictional demonstration only; it is not human, external expert, government or independent validation, and says nothing about whether any scaffold helps.",
-      "artifact_digest": "31117025a470ed909e8e9fb0139255bb50a6cf326cf617c0140866d9ea3f76bd",
+      "artifact_digest": "409b06ba612000882556928cf6d016383fb35a0454d5f13ed5befed0e0bfa21c",
       "checks": [
         {
           "target": "actions.action:obtain_copy.heading",
@@ -1307,6 +1605,61 @@
           ],
           "result": "matched",
           "note": "Internal AI-assisted fictional author-review only. Compared \"Use the applicable copy route where alternatives are supplied; the join requires the form and that route, not both copy alternatives.\" with the fictional source passage \"Submit to the fictional Submission Desk only after preparing the form and completing the applicable copy route. Include both the fictional completed form and supporting copy. Completing just one preparation is insufficient.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+        },
+        {
+          "target": "actions.action:obtain_copy.destination",
+          "claim_ids": [
+            "action:obtain_copy:destination:1"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. \"Fictional Records Desk\" names the desk or place stated in the fictional source passage for this action. Nothing added. Not human or external expert review."
+        },
+        {
+          "target": "actions.action:register_application.destination",
+          "claim_ids": [
+            "action:register_application:destination:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. \"Fictional Registration Desk\" names the desk or place stated in the fictional source passage for this action. Nothing added. Not human or external expert review."
+        },
+        {
+          "target": "actions.action:submit_application.destination",
+          "claim_ids": [
+            "action:submit_application:destination:2"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. \"Fictional Submission Desk\" names the desk or place stated in the fictional source passage for this action. Nothing added. Not human or external expert review."
+        },
+        {
+          "target": "attachments.attachment:action:submit_application:svc:demo_submission:document:form",
+          "claim_ids": [
+            "action:submit_application:document:3"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. The fictional source passage for this action names \"fictional completed form\" as part of what the action involves, and the Plan assigns that document to this action's own stage. Fees are not attached: no passage attributes a fee to a single action. Not human or external expert review."
+        },
+        {
+          "target": "attachments.attachment:action:submit_application:svc:demo_submission:document:copy",
+          "claim_ids": [
+            "action:submit_application:document:4"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. The fictional source passage for this action names \"supporting copy\" as part of what the action involves, and the Plan assigns that document to this action's own stage. Fees are not attached: no passage attributes a fee to a single action. Not human or external expert review."
         }
       ]
     }

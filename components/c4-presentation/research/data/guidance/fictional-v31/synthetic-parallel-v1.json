@@ -76,9 +76,80 @@
         "evidence_ids": [
           "evidence:application_rules"
         ]
+      },
+      {
+        "id": "action:submit_application:document:0",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 95,
+        "end": 131,
+        "quote": "fictional completed application form",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:document:1",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 140,
+        "end": 165,
+        "quote": "fictional supporting copy",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
       }
     ],
-    "attachments": [],
+    "attachments": [
+      {
+        "id": "attachment:action:submit_application:svc:demo_submission:document:form",
+        "fact_id": "svc:demo_submission:document:form",
+        "scope": "action",
+        "action_id": "action:submit_application",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_application:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "qualification": null,
+        "status": "draft"
+      },
+      {
+        "id": "attachment:action:submit_application:svc:demo_submission:document:copy",
+        "fact_id": "svc:demo_submission:document:copy",
+        "scope": "action",
+        "action_id": "action:submit_application",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_application:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "qualification": null,
+        "status": "draft"
+      }
+    ],
     "phases": [
       {
         "id": "phase:1",
@@ -412,7 +483,10 @@
         "actor": null,
         "destination": null,
         "visible_condition_ids": [],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:submit_application:svc:demo_submission:document:form",
+          "attachment:action:submit_application:svc:demo_submission:document:copy"
+        ]
       }
     ],
     "review": null
@@ -489,9 +563,80 @@
         "evidence_ids": [
           "evidence:application_rules"
         ]
+      },
+      {
+        "id": "action:submit_application:document:0",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 95,
+        "end": 131,
+        "quote": "fictional completed application form",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:document:1",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 140,
+        "end": 165,
+        "quote": "fictional supporting copy",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
       }
     ],
-    "attachments": [],
+    "attachments": [
+      {
+        "id": "attachment:action:submit_application:svc:demo_submission:document:form",
+        "fact_id": "svc:demo_submission:document:form",
+        "scope": "action",
+        "action_id": "action:submit_application",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_application:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "qualification": null,
+        "status": "reviewed"
+      },
+      {
+        "id": "attachment:action:submit_application:svc:demo_submission:document:copy",
+        "fact_id": "svc:demo_submission:document:copy",
+        "scope": "action",
+        "action_id": "action:submit_application",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:submit_application:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "qualification": null,
+        "status": "reviewed"
+      }
+    ],
     "phases": [
       {
         "id": "phase:1",
@@ -825,7 +970,10 @@
         "actor": null,
         "destination": null,
         "visible_condition_ids": [],
-        "visible_attachment_ids": []
+        "visible_attachment_ids": [
+          "attachment:action:submit_application:svc:demo_submission:document:form",
+          "attachment:action:submit_application:svc:demo_submission:document:copy"
+        ]
       }
     ],
     "review": {
@@ -833,7 +981,7 @@
       "reviewer": "Claude Sonnet 5.5 internal fictional author-review (AI-assisted; not human, external-expert or government review)",
       "reviewed_at": "2026-10-22T12:00:00Z",
       "scope_note": "Compared the 3.1 Concise, Detailed and supplement wording, plus headings, reminders and phase labels, to the supplied fictional Plan passages. Claim coverage and Concise/Detailed/supplement separation were also checked automatically. This is internal AI-assisted author review for isolated fictional demonstration only; it is not human, external expert, government or independent validation, and says nothing about whether any scaffold helps.",
-      "artifact_digest": "483a08a01ae40afac46913fbcf701eca2aeb57c90c85900a8375f8633a768cbd",
+      "artifact_digest": "437d7f935d04ad150f3e581b4b65cb1bc2ac5699002dea806511cd01c518e1da",
       "checks": [
         {
           "target": "actions.action:prepare_copy.heading",
@@ -1084,6 +1232,28 @@
           ],
           "result": "matched",
           "note": "Internal AI-assisted fictional author-review only. Compared \"This is an all-required dependency, not a choice between the two items.\" with the fictional source passage \"Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+        },
+        {
+          "target": "attachments.attachment:action:submit_application:svc:demo_submission:document:form",
+          "claim_ids": [
+            "action:submit_application:document:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. The fictional source passage for this action names \"fictional completed application form\" as part of what the action involves, and the Plan assigns that document to this action's own stage. Fees are not attached: no passage attributes a fee to a single action. Not human or external expert review."
+        },
+        {
+          "target": "attachments.attachment:action:submit_application:svc:demo_submission:document:copy",
+          "claim_ids": [
+            "action:submit_application:document:1"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "matched",
+          "note": "Internal AI-assisted fictional author-review only. The fictional source passage for this action names \"fictional supporting copy\" as part of what the action involves, and the Plan assigns that document to this action's own stage. Fees are not attached: no passage attributes a fee to a single action. Not human or external expert review."
         }
       ]
     }

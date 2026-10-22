@@ -175,7 +175,9 @@ def compose31(source: ProcedureSource, content: GuidanceContent31 | None, config
         item["qualification"] = f.qualification.text if f.qualification and f.qualification.status != "draft" else None
         item["conditions"] = [conditions[c] for c in f.condition_ids]
         attachments.append(item)
-        scoped.add(f.fact_id)
+        # A document needed at one step stays in the whole-service list too (what to bring overall); a fee never appears twice.
+        if not (f.scope == "action" and facts[f.fact_id]["kind"] == "document"):
+            scoped.add(f.fact_id)
     for stage in g.stages:
         for fid in (stage.fee_fact_id, *stage.document_fact_ids):
             if fid not in scoped:
