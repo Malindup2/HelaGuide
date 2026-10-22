@@ -221,7 +221,16 @@ def test_reasoning_tokens_top_level_and_summed_over_repair():
 
 
 def test_no_reasoning_tokens_is_zero():
-    assert client(Transport(ok("{}"))).complete_json("sys", []).usage.reasoning_tokens == 0
+    u = client(Transport(ok("{}"))).complete_json("sys", []).usage
+    assert (u.reasoning_tokens, u.provider_total_tokens) == (0, 0)
+
+
+def test_provider_total_tokens_kept_and_summed_over_repair():
+    def reply(content, total):
+        return httpx.Response(200, request=REQ, json={"choices": [{"message": {"content": content}}], "usage": {
+            "prompt_tokens": 100, "completion_tokens": 20, "total_tokens": total}})
+    u = client(Transport(reply("oops", 400), reply("{}", 150))).complete_json("sys", []).usage
+    assert (u.prompt_tokens, u.completion_tokens, u.total_tokens, u.provider_total_tokens) == (200, 40, 240, 550)
 
 
 # ---------------------------------------------------------------- settings and FakeLLM

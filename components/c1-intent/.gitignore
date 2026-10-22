@@ -3,3 +3,5 @@
 research/results/context_v2/preds/
 # local copies of the Colab notebook inputs (the originals are in research/data/ and research/experiments/)
 research/inputs/
+# LLM smoke test outputs (service/scripts/llm_smoke_test.py): local runs against a real provider
+service/smoke_*.txt

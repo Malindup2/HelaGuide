@@ -44,6 +44,9 @@ class LLMUsage:
     model: str = ""
     latency_ms: float = 0.0
     calls: int = 0          # successful chat completions: 1, or 2 after a repair retry
+    # usage.total_tokens as the provider reports it (0 if absent). More than prompt + completion means tokens the
+    # other fields do not show, e.g. thinking that a provider bills but does not report as reasoning_tokens
+    provider_total_tokens: int = 0
 
     @property
     def total_tokens(self) -> int:
@@ -138,6 +141,7 @@ class OpenAICompatClient:
                 usage.prompt_tokens += int(u.get("prompt_tokens") or 0)
                 usage.completion_tokens += int(u.get("completion_tokens") or 0)
                 usage.reasoning_tokens += _reasoning_tokens(u)
+                usage.provider_total_tokens += int(u.get("total_tokens") or 0)
                 usage.model = data.get("model") or self.model
                 usage.calls += 1
                 return text
