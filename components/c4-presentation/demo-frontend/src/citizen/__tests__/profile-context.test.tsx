@@ -31,4 +31,22 @@ describe('saving profile context', () => {
     expect(sent).toEqual([session.revision + 7, session.revision + 9, session.revision + 11]);
     expect(apiStatus()).toBeTruthy();
   });
+
+  it('sends optional soft preferences through the context endpoint with the current revision, leaving unanswered dimensions out', async () => {
+    const session = parseSession(guestSession());
+    const calls: { preferences: Record<string, string>; revision: { identity: number; revised: number } }[] = [];
+    vi.spyOn(guidanceApi, 'context').mockImplementation(async () => ctx(session.revision + 3, 2) as never);
+    vi.spyOn(guidanceApi, 'patchProfileContext').mockImplementation(async () => ({ session: guestSession() }));
+    vi.spyOn(guidanceApi, 'patchContext').mockImplementation(async (_id, body) => { calls.push({ preferences: body.preferences, revision: body.expected_revision }); return {}; });
+    const procedure = { procedure_id: 'official-nic_amendment-v4', requested_service_id: 'svc:nic_amendment_card' } as never;
+    render(<ProfileContext active={{ kind: 'profile', session, profile: {} } as never} procedure={procedure} onSession={vi.fn()} />);
+    await waitFor(() => screen.getByText(/familiarity 2 of 5/));
+    fireEvent.click(screen.getByText('Edit saved settings'));
+    fireEvent.click(screen.getByText('Presentation preferences (optional)'));
+    expect((screen.getByLabelText('Navigation') as HTMLSelectElement).value).toBe('');             // unanswered stays "No preference"
+    fireEvent.change(screen.getByLabelText('Explanation'), { target: { value: 'detailed' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Save settings' }));
+    await waitFor(() => expect(calls.length).toBe(1));
+    expect(calls[0]).toEqual({ preferences: { explanation: 'detailed' }, revision: { identity: session.revision + 3, revised: 0 } });
+  });
 });

@@ -15,7 +15,7 @@
     "language": "en",
     "source_graph_fingerprint": "213071cb3b7ffff73c03745e760c988593deb2b1dc15e167794f092186c05436",
     "relationship_fingerprint": "2b0cd24614b4e82abf19c940b9f182ba53988ed56af1ae09a19168118ebfdd6e",
-    "content_version": "provisional-demo-1",
+    "content_version": "demo-accepted-v3-2",
     "origin": "demo_mock",
     "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
     "claims": [
@@ -344,7 +344,7 @@
         },
         "supplement": {
           "text": {
-            "text": "A separate fee for this action is not supplied. This example covers document preparation only.",
+            "text": "The other three required sets are Form 1, Form 18 and Form 19.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [
@@ -415,7 +415,7 @@
         },
         "supplement": {
           "text": {
-            "text": "No order is asserted among the four preparation steps. This example stops before payment, incorporation and later obligations.",
+            "text": "The source does not state an order among the four preparation steps.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [
@@ -486,7 +486,7 @@
         },
         "supplement": {
           "text": {
-            "text": "This step concerns the director consent document. No separate fee for this action is supplied in the snapshot.",
+            "text": "The other three required sets are the Articles of Association, Form 1 and Form 19.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [
@@ -629,7 +629,7 @@
         },
         "supplement": {
           "text": {
-            "text": "No separate fee for this action is supplied in the snapshot.",
+            "text": "The other three required sets are the Articles of Association, Form 1 and Form 18.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [

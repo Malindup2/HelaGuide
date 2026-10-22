@@ -6,10 +6,11 @@ import hmac
 import json
 from datetime import datetime, timezone
 from uuid import uuid4
-from app.guidance.catalogue import CATALOGUE, Configuration, Constraints
+from app.guidance.catalogue import CATALOGUE, DIMENSIONS, Configuration, Constraints
 from app.guidance.flavours import FLAVOUR_30
 from app.guidance.frontend_contracts import GuidanceResponse, RequestContext, Selection
 from app.guidance.frontend_presentation import render, navigation, interaction_projection, eligible_ids
+from app.guidance.inspector_summary import summarize
 from app.guidance.journey_store import JourneyStore
 from app.guidance.sources import ProcedureSource, digest
 from app.v2.measurements import measurements
@@ -70,18 +71,22 @@ class GuidanceAPI:
         constraints=Constraints(locks=locks,no_guided=not access.allow_guided_navigation or extra.get('no_guided',False) or request.constraints.no_guided,
             no_map=not access.allow_relationship_visuals or extra.get('no_map',False) or request.constraints.no_map,
             no_disclosure=not access.allow_collapsed_content or extra.get('no_disclosure',False) or request.constraints.no_disclosure)
+        # The profile's saved "preferred layout" (OVERVIEW/GUIDED) is the one legacy preference whose meaning is identical in 3.1, so it is
+        # imported as a SOFT navigation preference until the citizen revises their preferences explicitly (then the revised set is authoritative, so "no preference" can be chosen). Other legacy meanings stay review items.
+        saved_navigation=saved['preferences'].get('navigation')
+        imported={'navigation':saved_navigation} if saved_navigation in DIMENSIONS['navigation'] and native['revision']==0 and 'navigation' not in native['preferences'] else {}
         profile=next((p for p in self.runtime.profiles.values() if p.session_id==sid),None)
         service_id=source.graph.requested_service_id
         return {'schema_version':'c4-effective-guidance-context-1.0','session_id':sid,'profile_id':profile.profile_id if profile else None,
             'personalization_enabled':bool(profile and profile.personalization_enabled), 'service_id':service_id,
             'familiarity':request.familiarity if 'familiarity' in request.model_fields_set else session.settings.familiarity_for(service_id),
             'confidence':request.confidence if 'confidence' in request.model_fields_set else session.settings.navigation_capability,
-            'preferences':request.preferences if request.preferences is not None else native['preferences'],
+            'preferences':request.preferences if request.preferences is not None else {**imported,**native['preferences']},
             'constraints':constraints.model_dump(),'revision':{'identity':saved['settings_revision'],'revised':native['revision']},
             'sources':{'familiarity':'request_override' if 'familiarity' in request.model_fields_set else 'saved_service_report',
                        'confidence':'request_override' if 'confidence' in request.model_fields_set else 'saved_navigation_default',
-                       'preferences':'explicit_revised_settings_or_request','accessibility':'saved_requirements_union_request'},
-            'legacy':{'preferences_not_imported':saved['preferences'],'pending_preference_review':saved['legacy_review'],
+                       'preferences':'saved_layout_preference_and_explicit_revised_settings' if imported else 'explicit_revised_settings_or_request','accessibility':'saved_requirements_union_request'},
+            'legacy':{'preferences_not_imported':{k:v for k,v in saved['preferences'].items() if k not in imported},'pending_preference_review':saved['legacy_review'],
                       'hard_requirements_unresolved':unresolved,'lock_fingerprint':fingerprint,'raw_locks':raw_locks},
             'scoring_use':'Familiarity, confidence and confirmed revised preferences enter the PP1 encoder; constraints filter candidates. Identity/history are not features.'}
 
@@ -360,7 +365,7 @@ class GuidanceAPI:
                     'created_at':j['created_at'],'source_graph_fingerprint':source.graph_fingerprint,
                     'content_fingerprint':j['views'][j['current_view_id']]['document']['content_fingerprint'],
                     'effective_context':context,'measurements':measurements(source.graph,source.relationships).model_dump(mode='json'),
-                    'availability':j['availability'],'views':[{k:v[k] for k in ('id','parent_view_id','created_at','selection')} for v in j['views'].values()],
+                    'summary':summarize(j,source,measurements(source.graph,source.relationships).model_dump(mode='json'),events),'availability':j['availability'],'views':[{k:v[k] for k in ('id','parent_view_id','created_at','selection')} for v in j['views'].values()],
                     'events':events,'features':{'names':__import__('app.guidance.features',fromlist=['NAMES']).NAMES,'selected':j['decision']['selected_features'],'fingerprint':j['decision']['feature_fingerprint']} if j.get('decision') else None,
                     'sampled_scores':j['decision']['candidates'] if j.get('decision') else None,
                     'policy':j['decision'] if j.get('decision') else None,'posterior_updates':sum(bool(e.get('policy_updated')) for e in events),

@@ -35,6 +35,8 @@ FACTS = {
         ("action:nic_estate", "document", "amendment application", "svc:nic_amendment:document:0", None, "submit"),
         ("action:nic_gn", "destination", "Grama Niladhari for the area of residence", None, "Grama Niladhari for your area", None),
         ("action:nic_gn", "document", "amendment application", "svc:nic_amendment:document:0", None, "submit"),
+        ("action:nic_estate", "fee", "amended-card issue fee is LKR 500 and can be paid through the certifying officer", "svc:nic_amendment:fee", None, "pay"),
+        ("action:nic_gn", "fee", "amended-card issue fee is LKR 500 and can be paid through the certifying officer", "svc:nic_amendment:fee", None, "pay"),
         ("action:nic_ds", "destination", "Divisional Secretary", None, "Divisional Secretary", None),
         ("action:nic_ds", "document", "application certified through the Grama Niladhari", "svc:nic_amendment:document:0", None, "bring")],
     "official-company_pack-v3": [
@@ -48,31 +50,56 @@ FACTS = {
 # fee qualifications: (action, phrase in passage, text shown)
 QUALIFICATIONS = {
     ("official-birth_copy-v3", "action:birth_pay"): ("The cited counter-submission route excludes ATM and online payments", "The counter route excludes ATM and online payments."),
+    ("official-nic_amendment-v3", "action:nic_estate"): ("Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee", "Paid through the certifying officer. Registered-post delivery under the normal service adds LKR 120 and is not part of this fee."),
+    ("official-nic_amendment-v3", "action:nic_gn"): ("Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee", "Paid through the certifying officer. Registered-post delivery under the normal service adds LKR 120 and is not part of this fee."),
     ("official-company_pack-v3", "action:company_form"): ("excluding VAT and other charges; payment is outside this preparation step", "Excludes VAT and other charges. Payment is outside this step."),
 }
 # Small, source-grounded edits where the cached drafts were too thin (Detailed barely richer than Concise) or repeated a fact that now sits on a step or route card.
 # Every sentence is supported by the source passages or the verified graph (prerequisite edges, route structure); the automatic checks still gate the result.
 OVERRIDES = {
     ("official-birth_copy-v3", "action:birth_pay"): {
-        "detailed": "Pay the copy charge for one certificate copy through the Divisional Secretariat or the specified bank route, and keep the receipt. You submit the receipt with the completed request form in the next step.",
-        "supplement": "This does not describe the separate online application service."},
+        "heading": "Pay the copy charge",
+        "concise": "Pay the LKR 120 charge for one copy and keep the receipt.",
+        "detailed": "Pay the charge for one certified copy through the Divisional Secretariat or the specified bank route, and keep the receipt: you submit it with the completed request form in the next step. This route applies when the registration number and date are known.",
+        "supplement": "Searching for a record is outside this route, so check that you have the registration number and date before you pay.",
+        "recap": "You looked at paying the copy charge and keeping the receipt."},
+    ("official-birth_copy-v3", "action:birth_submit"): {
+        "concise": "Take the completed form and the payment receipt to the relevant Divisional Secretariat.",
+        "detailed": "Submit the completed request form together with the payment receipt you kept to the relevant Divisional Secretariat. A certificate is issued only if the registration is found.",
+        "supplement": "Submitting the request does not guarantee a certificate, and postal delivery is not covered by this route.",
+        "recap": "You looked at submitting the form and receipt, and when a certificate is issued."},
+    ("official-nic_amendment-v3", "action:nic_estate"): {
+        "heading": "Apply through the Estate Superintendent",
+        "concise": "Forward your application through the Estate Superintendent and pay the fee there.",
+        "detailed": "If you are an estate resident, forward the amendment application through the Estate Superintendent. You can pay the amended-card issue fee through the certifying officer. This is the only step on the estate route, because the countersignature step applies to the non-estate route.",
+        "supplement": "Estate residents have a single step; non-estate residents also need the Divisional Secretary's countersignature.",
+        "recap": "You looked at the estate route: forwarding the application through the Estate Superintendent."},
+    ("official-nic_amendment-v3", "action:nic_gn"): {
+        "heading": "Apply through your Grama Niladhari",
+        "concise": "Forward your application through your Grama Niladhari and pay the fee there.",
+        "detailed": "If you are not an estate resident, forward the amendment application through the Grama Niladhari for your area of residence. You can pay the amended-card issue fee through the certifying officer. After this step the Divisional Secretary must countersign the certified application.",
+        "supplement": "Non-estate residents have two steps: certification through the Grama Niladhari, then the Divisional Secretary's countersignature.",
+        "recap": "You looked at the non-estate route: forwarding the application through the Grama Niladhari."},
+    ("official-nic_amendment-v3", "action:nic_ds"): {
+        "heading": "Get the Divisional Secretary's countersignature",
+        "concise": "Ask the Divisional Secretary to countersign the application your Grama Niladhari certified.",
+        "detailed": "For the non-estate route, the Divisional Secretary must countersign the application that was certified through the Grama Niladhari. The countersignature is required in addition to that certification and follows it.",
+        "supplement": "The estate route has no countersignature step.",
+        "recap": "You looked at the Divisional Secretary's countersignature on the certified application."},
     ("official-company_pack-v3", "action:company_articles"): {
-        "detailed": "Prepare two copies of the Articles of Association for the manual application. This is one of four document sets, and all four are required for the format check that follows."},
+        "detailed": "Prepare two copies of the Articles of Association for the manual application. This is one of four document sets, and all four are required for the format check that follows.",
+        "supplement": "The other three required sets are Form 1, Form 18 and Form 19."},
     ("official-company_pack-v3", "action:company_directors"): {
-        "detailed": "Prepare Form 18 director consent documentation for the application. It is one of the four required document sets, which are submitted together for the format check."},
+        "detailed": "Prepare Form 18 director consent documentation for the application. It is one of the four required document sets, which are submitted together for the format check.",
+        "supplement": "The other three required sets are the Articles of Association, Form 1 and Form 19."},
     ("official-company_pack-v3", "action:company_secretary"): {
-        "detailed": "Prepare Form 19 secretary consent documentation for the application. It is one of the four required document sets, which are submitted together for the format check."},
+        "detailed": "Prepare Form 19 secretary consent documentation for the application. It is one of the four required document sets, which are submitted together for the format check.",
+        "supplement": "The other three required sets are the Articles of Association, Form 1 and Form 18."},
     ("official-company_pack-v3", "action:company_form"): {
         "detailed": "Use the approved company name to prepare Form 1 for the incorporation application. It is one of the four required document sets, which are submitted together for the format check.",
         "supplement": "The recorded charge covers Form 1 only. It does not include the Articles, the director and secretary forms or any other charge."},
     ("official-company_pack-v3", "action:company_check"): {
-        "supplement": "No order is asserted among the four preparation steps. This example stops before payment, incorporation and later obligations."},
-    ("official-nic_amendment-v3", "action:nic_estate"): {
-        "detailed": "If you are an estate resident, forward the amendment application through the Estate Superintendent. This is the only step on the estate route.",
-        "supplement": "This example covers routing the application through its certifying officer, not preparing the full application or obtaining the card."},
-    ("official-nic_amendment-v3", "action:nic_gn"): {
-        "detailed": "If you are not an estate resident, forward the amendment application through the Grama Niladhari for your area. The Divisional Secretary's countersignature is required in the next step.",
-        "supplement": "This example covers routing the application, not preparing the full application or obtaining the card."},
+        "supplement": "The source does not state an order among the four preparation steps."},
 }
 PHASES = {"official-company_pack-v3": [("phase:prepare", "Prepare the four document sets", ["action:company_articles", "action:company_directors", "action:company_form", "action:company_secretary"]),
                                        ("phase:submit", "Submit for the format check", ["action:company_check"])]}
@@ -116,6 +143,7 @@ def build(pid, entry, wording):
         concise, detailed, extra, summary = slot("action_explanation")["concise"], slot("action_explanation")["plain"], slot("action_explanation")["extra_plain"], slot("action_summary")["plain"]
         tail = " ".join(sentences(extra)[1:])
         over = OVERRIDES.get((pid, aid), {})
+        heading, concise, summary = over.get("heading", heading), over.get("concise", concise), over.get("recap", summary)
         detailed = over.get("detailed", detailed)
         tail = over.get("supplement", tail)
         text = lambda t, claim_ids=(): {"text": t, "status": "draft", "claim_ids": list(claim_ids), "evidence_ids": ev}
@@ -148,27 +176,13 @@ def build(pid, entry, wording):
                "claim_ids": [claim["id"]], "evidence_ids": ev, "qualification": qualification, "status": "draft", "role": role}
         attachments.append(att)
         by[aid]["visible_attachment_ids"].append(att["id"])
-    if pid == "official-nic_amendment-v3":
-        # One fee for the whole choice of routes: both route passages state the same LKR 500 issue fee, so it is attached to the route group, not to either route's step.
-        estate = next(x for x in g.actions if x.action_id == "action:nic_estate")
-        cid = estate.required_content_ids[0]
-        text = passages[cid].text
-        fee_phrase, q_phrase = "amended-card issue fee is LKR 500 and can be paid through the certifying officer", "Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee"
-        ev = list(passages[cid].evidence_ids)
-        for key, phrase, kind in (("fee", fee_phrase, "fee"), ("q", q_phrase, "qualification")):
-            s = text.index(phrase)
-            claims.append({"id": f"route:nic:{key}", "source_kind": "content", "source_id": cid, "start": s, "end": s + len(phrase), "quote": phrase, "action_ids": ["action:nic_estate"], "required": False, "kind": kind, "evidence_ids": ev})
-        branch = g.branch_groups[0]
-        attachments.append({"id": "attachment:route:nic:fee", "fact_id": "svc:nic_amendment:fee", "scope": "route", "action_id": None, "stage_id": None, "service_id": None, "branch_id": branch.group_id,
-                            "option_ids": [o.option_id for o in branch.options], "condition_ids": [c for o in branch.options for c in o.condition_ids], "claim_ids": ["route:nic:fee"], "evidence_ids": ev,
-                            "qualification": {"text": "Can be paid through the certifying officer. Postal delivery adds LKR 120 and is not part of this fee.", "status": "draft", "claim_ids": ["route:nic:q"], "evidence_ids": ev}, "status": "draft", "role": "pay"})
     phases = []
     for pidx, label, members in PHASES.get(pid, []):
         ev = list(passages[g.actions[0].required_content_ids[0]].evidence_ids)
         phases.append({"id": pidx, "label": {"text": label, "status": "draft", "claim_ids": [], "evidence_ids": ev}, "action_ids": members, "basis": "purpose",
                        "why_grouped": "Verified prerequisites: the four preparation actions all feed the format check.", "adds_orientation": True, "evidence_ids": ev, "branch_split_note": None})
     content = {"schema_version": "c4-guidance-content-3.1", "procedure_id": pid, "language": "en", "source_graph_fingerprint": src.graph_fingerprint, "relationship_fingerprint": src.relationship_fingerprint,
-               "content_version": "provisional-demo-1", "origin": "demo_mock", "source_limit": g.disclaimer, "claims": claims, "actions": actions, "attachments": attachments, "phases": phases,
+               "content_version": "demo-accepted-v3-2", "origin": "demo_mock", "source_limit": g.disclaimer, "claims": claims, "actions": actions, "attachments": attachments, "phases": phases,
                "phase_order": [], "phase_order_basis": "none", "phase_order_evidence_ids": [], "review": None}
     model = GuidanceContent31.model_validate(content)
     report = provisional.check(src, model)
@@ -177,7 +191,18 @@ def build(pid, entry, wording):
             "automatic_checks": report, "content": content}, report
 
 
+def archive_previous():
+    """Keep the earlier demo-accepted wording byte-for-byte (copied, never moved) so nothing already shown or captured is lost. The loader ignores this folder."""
+    folder = OUT / "archive"
+    for pid in FACTS:
+        source, target = OUT / (pid + ".json"), folder / (pid + ".demo-accepted-v1.json")
+        if source.exists() and not target.exists():
+            folder.mkdir(exist_ok=True)
+            target.write_bytes(source.read_bytes())
+
+
 def main():
+    archive_previous()
     wording = prepared_wording()
     entries = workspace_registry()
     for pid in FACTS:

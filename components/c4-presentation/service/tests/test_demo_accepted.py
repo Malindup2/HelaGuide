@@ -146,8 +146,8 @@ def test_nic_routes_and_action_facts_remain_attributed_in_ordinary_journeys(acce
     j = ask(accepted, 'official-nic_amendment-v3', personalised(accepted, 'official-nic_amendment-v3'))
     doc = j['document']
     assert len(doc['routes']) == 1 and sorted(len(o['action_ids']) for o in doc['routes'][0]['options']) == [1, 2]
-    assert len([f for f in doc['facts'] if f['scope'] == 'route']) == 1
-    assert all(f['fact']['kind'] != 'fee' for a in doc['actions'] for f in a['facts'])
+    assert not [f for f in doc['facts'] if f['scope'] == 'route']                                    # the fee is paid through the certifying officer, so it sits on the certification steps
+    assert {a['id'] for a in doc['actions'] if any(f['fact']['kind'] == 'fee' for f in a['facts'])} == {'action:nic_estate', 'action:nic_gn'}
 
 
 def test_a_map_is_refused_in_ordinary_journeys_and_only_available_as_an_explicit_relaxed_preview(accepted):

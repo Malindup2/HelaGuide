@@ -73,6 +73,10 @@ export class GuidanceApi {
   rate(id: string, token: string, body: { event_id: string; view_id: string; rating: 'fits' | 'does_not_fit'; reasons: RatingReason[] }) {
     return this.request<Receipt>(`/journeys/${encodeURIComponent(id)}/ratings`, 'POST', { token, body });
   }
+  /** Optional soft preferences (the supported six dimensions). The dictionary replaces the saved one; an absent dimension means "no preference". */
+  patchContext(sessionId: string, body: { request_id: string; expected_revision: { identity: number; revised: number }; preferences: Record<string, string> }) {
+    return this.request<unknown>(`/context/${encodeURIComponent(sessionId)}`, 'PATCH', { body });
+  }
   learning(signal?: AbortSignal) { return this.request<LearningReport>('/research/learning', 'GET', { signal }); }
   learningArtifactUrl(name: string) { return `${this.baseUrl}${BASE}/research/learning/${name}`; }
   inspector(id: string, token: string, signal?: AbortSignal) { return this.request<InspectorRecord>(`/journeys/${encodeURIComponent(id)}/inspector`, 'GET', { token, signal }); }

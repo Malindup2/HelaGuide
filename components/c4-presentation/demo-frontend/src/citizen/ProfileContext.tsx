@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react';
 import { parseSession } from '../api/client';
 import type { ActiveIdentity, GuestSession, ProcedureSummary } from '../api/types';
 import { GuidanceError, guidanceApi, newId } from './api';
+import { DIMENSION_TEXT } from './model';
 import type { EffectiveContext } from './types';
 
 /** The saved context that applies to this procedure, with origins, and an editor that uses the existing profile services. */
 export default function ProfileContext({ active, procedure, onSession }: { active: ActiveIdentity; procedure: ProcedureSummary; onSession: (s: GuestSession) => void }) {
   const session = active.session, [ctx, setCtx] = useState<EffectiveContext | null>(null), [error, setError] = useState(''), [note, setNote] = useState(''), [saving, setSaving] = useState(false);
-  const acc = session.settings.accessibility;
+  const acc = session.settings.accessibility, [prefs, setPrefs] = useState<Record<string, string>>({});
   const [form, setForm] = useState({ familiarity: '', confidence: '', guided: acc.allow_guided_navigation, maps: acc.allow_relationship_visuals, collapse: acc.allow_collapsed_content });
   useEffect(() => {
     let live = true;
     guidanceApi.context(session.session_id, procedure.procedure_id)
-      .then(c => { if (live) { setCtx(c); setError(''); setForm({ familiarity: c.familiarity?.toString() ?? '', confidence: c.confidence?.toString() ?? '', guided: !c.constraints.no_guided, maps: !c.constraints.no_map, collapse: !c.constraints.no_disclosure }); } })
+      .then(c => { if (live) { setCtx(c); setPrefs(c.preferences ?? {}); setError(''); setForm({ familiarity: c.familiarity?.toString() ?? '', confidence: c.confidence?.toString() ?? '', guided: !c.constraints.no_guided, maps: !c.constraints.no_map, collapse: !c.constraints.no_disclosure }); } })
       .catch(e => { if (live) setError(e instanceof GuidanceError ? e.message : 'The saved context could not be read.'); });
     return () => { live = false; };
   }, [session.session_id, session.revision, procedure.procedure_id]);
@@ -29,6 +30,12 @@ export default function ProfileContext({ active, procedure, onSession }: { activ
         accessibility: { allow_guided_navigation: form.guided, allow_relationship_visuals: form.maps, allow_collapsed_content: form.collapse },
       });
       onSession(parseSession((result as { session: unknown }).session));
+      // Optional soft preferences go through the existing context endpoint, with the revision that GET /context reports right now.
+      const current = await guidanceApi.context(session.session_id, procedure.procedure_id);
+      const wanted = Object.fromEntries(Object.entries(prefs).filter(([, v]) => v));
+      if (JSON.stringify(Object.entries(wanted).sort()) !== JSON.stringify(Object.entries(current.preferences ?? {}).sort())) {
+        await guidanceApi.patchContext(session.session_id, { request_id: newId(), expected_revision: current.revision, preferences: wanted });
+      }
       setCtx(await guidanceApi.context(session.session_id, procedure.procedure_id));
       setNote('Saved. Request guidance again to use these settings.');
     } catch (e) { setError(e instanceof GuidanceError ? (e.status === 409 ? 'These settings changed in another window. They have been reloaded; please check them and save again.' : e.message) : 'The settings could not be saved.'); } finally { setSaving(false); }
@@ -43,7 +50,14 @@ export default function ProfileContext({ active, procedure, onSession }: { activ
         <label><span>Familiarity with this service</span><select value={form.familiarity} onChange={e => setForm({ ...form, familiarity: e.target.value })}><option value="">Not set</option>{[1, 2, 3, 4, 5].map(n => <option key={n}>{n}</option>)}</select></label>
         <label><span>Confidence following instructions</span><select value={form.confidence} onChange={e => setForm({ ...form, confidence: e.target.value })}><option value="">Not set</option>{[1, 2, 3, 4, 5].map(n => <option key={n}>{n}</option>)}</select></label>
       </div>
-      <fieldset className="cz-reasons"><legend className="cz-fine">Accessibility</legend>
+      <details className="cz-prefs"><summary>Presentation preferences (optional)</summary>
+        <p className="cz-fine">Gentle hints only. They never lock your guidance, and leaving a choice blank lets the system decide.</p>
+        <div className="cz-grid">{(Object.keys(DIMENSION_TEXT) as (keyof typeof DIMENSION_TEXT)[]).map(dim =>
+          <label key={dim}><span>{DIMENSION_TEXT[dim].title}</span>
+            <select value={prefs[dim] ?? ''} onChange={e => setPrefs({ ...prefs, [dim]: e.target.value })}>
+              <option value="">No preference</option>{Object.entries(DIMENSION_TEXT[dim].values).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>)}</div>
+      </details>
+      <fieldset className="cz-reasons"><legend className="cz-fine">Accessibility and display requirements (always respected)</legend>
         <label><input type="checkbox" checked={form.guided} onChange={e => setForm({ ...form, guided: e.target.checked })} /><span>Allow guided, one-step-at-a-time navigation</span></label>
         <label><input type="checkbox" checked={form.maps} onChange={e => setForm({ ...form, maps: e.target.checked })} /><span>Allow process maps</span></label>
         <label><input type="checkbox" checked={form.collapse} onChange={e => setForm({ ...form, collapse: e.target.checked })} /><span>Allow show/hide explanations</span></label></fieldset>

@@ -144,9 +144,10 @@ def test_nic_provisional_steps_routes_and_route_fee_are_exact(demo, entries):
     assert sorted(len(v) for v in options.values()) == [1, 2]                      # estate: one step; non-estate: two steps
     assert doc['relationship_aid']['map'] is not None
     assert sorted((e['source_id'], e['target_id']) for e in doc['edges']) == sorted((e.source_id, e.target_id) for e in graph.action_prerequisites)   # no invented dependency
-    route_fees = [f for f in doc['facts'] if f['scope'] == 'route']
-    assert len(route_fees) == 1 and route_fees[0]['fact']['kind'] == 'fee' and 'LKR 120' in route_fees[0]['qualification']
-    assert all(f['fact']['kind'] != 'fee' for a in doc['actions'] for f in a['facts'])   # the fee belongs to the choice of routes, not to a step
+    assert not [f for f in doc['facts'] if f['scope'] == 'route']
+    fees = {a['id']: [f for f in a['facts'] if f['fact']['kind'] == 'fee'] for a in doc['actions']}
+    assert {k for k, v in fees.items() if v} == {'action:nic_estate', 'action:nic_gn'}      # paid through the certifying officer on each route's certification step
+    assert all(f['role'] == 'pay' and 'LKR 120' in f['qualification'] for v in fees.values() for f in v)
 
 
 def test_company_fee_is_shown_as_a_charge_with_its_qualification_not_as_a_payment(demo):

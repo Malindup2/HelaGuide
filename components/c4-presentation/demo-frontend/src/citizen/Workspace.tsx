@@ -1,3 +1,4 @@
+import { isEarlier, listed } from './visibility';
 import { useEffect, useState } from 'react';
 import { API_BASE } from '../api/client';
 import type { ActiveIdentity, ProcedureSummary } from '../api/types';
@@ -82,7 +83,7 @@ export default function Workspace() {
   const active = state.active, selected = state.procedures.find(p => p.procedure_id === state.selectedId);
   const personalised = active?.kind === 'profile' && active.profile.personalization_enabled;
   const busy = state.busy !== null || state.loading || state.pendingMode !== null;
-  const real = state.procedures.filter(p => !p.synthetic), earlier = real.filter(p => /-v3$/.test(p.procedure_id)), official = real.filter(p => !/-v3$/.test(p.procedure_id)), fictional = state.procedures.filter(p => p.synthetic);
+  const shown = listed(state.procedures), real = shown.filter(p => !p.synthetic), earlier = real.filter(isEarlier), official = real.filter(p => !isEarlier(p)), fictional = shown.filter(p => p.synthetic);
 
   const procedureButton = (p: ProcedureSummary) => { const [first, rest] = split(p.title), fiction = first === 'Synthetic demo' && !!rest, main = fiction ? rest.charAt(0).toUpperCase() + rest.slice(1) : first, sub = fiction ? 'Fictional example' : rest;
     return <button type="button" key={p.procedure_id} className="cz-pick" aria-pressed={p.procedure_id === state.selectedId} disabled={busy}
@@ -123,7 +124,7 @@ export default function Workspace() {
         {state.pendingMode && <div className="cz-alert" role="status"><b>A personalisation change needs confirmation.</b>
           <button type="button" className="cz-btn cz-btn-quiet" disabled={state.busy !== null} onClick={() => void workspace.retryPendingMode()}>Retry original setting request</button></div>}
         {state.loading ? <p role="status" className="cz-fine">Opening your workspace…</p>
-          : state.health && state.view === 'create' ? <ProfileOnboarding key={state.pendingCreation?.profile_id ?? 'new-profile'} procedures={state.procedures} pending={state.pendingCreation} busy={busy}
+          : state.health && state.view === 'create' ? <ProfileOnboarding key={state.pendingCreation?.profile_id ?? 'new-profile'} procedures={listed(state.procedures)} pending={state.pendingCreation} busy={busy}
             onSubmit={draft => void workspace.submitProfile(draft)} onCancel={workspace.closeCreation} onDiscard={workspace.discardPendingCreation} />
           : state.health ? (active && selected
             ? <Stage key={`${active.session.session_id}:${selected.procedure_id}:${active.kind === 'profile' ? active.profile.revision : ''}`} active={active} procedure={selected} status={status} research={research} onSession={workspace.updateSession} />

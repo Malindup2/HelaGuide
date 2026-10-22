@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { GuidanceError, guidanceApi, newId, newToken } from './api';
-import type { Availability, Configuration, Dimension, GuidanceResponse, InspectorRecord, LearningReport } from './types';
+import type { Availability, Configuration, Dimension, GuidanceResponse, InspectorRecord, InspectorSummary, LearningReport } from './types';
 import { DIMENSIONS, DIMENSION_TEXT, feasibleFor, originOf, reasonText } from './model';
 import GuidanceCard from './card/GuidanceCard';
 import { Sheet } from './ui';
@@ -79,12 +79,39 @@ export function InspectorSheet({ journeyId, token, onClose }: { journeyId: strin
   </Sheet>;
 }
 
+const MAP_STATUS: Record<string, string> = { accessibility_restriction: 'Not offered: accessibility setting', explicit_lock: 'Not offered: explicit lock', no_verified_relationship_data: 'Not offered: no verified relationships',
+  coverage_incomplete: 'Not offered: source coverage incomplete', not_feasible_other_reason: 'Not offered: other rule', feasible_not_selected: 'Offered, not selected', selected: 'Offered and selected' };
+
+/** Plain-language account of one stored decision. Every value is copied from the record; no cause is attributed to any single feature. */
+function DecisionSummary({ summary: s }: { summary: InspectorSummary }) {
+  const restrictions = [s.hard_restrictions.no_guided && 'guided navigation off', s.hard_restrictions.no_map && 'diagrams off', s.hard_restrictions.no_disclosure && 'show/hide off', ...Object.entries(s.hard_restrictions.locks).map(([k, v]) => `lock ${k}=${v}`)].filter(Boolean);
+  const prefs = Object.entries(s.effective_context.soft_preferences).map(([k, v]) => `${k}: ${v}`);
+  return <section className="cz-summary" aria-label="Decision summary">
+    <h3 className="cz-subhead">Decision summary</h3>
+    <p>{s.explanation}</p>
+    <dl className="cz-dl">
+      <dt>Result</dt><dd>{s.personalized ? 'Personalized (Shared Gaussian LinTS)' : s.kind.replaceAll('_', ' ')}</dd>
+      <dt>Citizen context</dt><dd>Familiarity {s.effective_context.familiarity ?? 'not set'} · confidence {s.effective_context.confidence ?? 'not set'} · personalization {s.effective_context.personalization_enabled ? 'on' : 'off'}</dd>
+      <dt>Soft preferences</dt><dd>{prefs.length ? prefs.join(' · ') : 'none stated (left unknown)'}</dd>
+      <dt>Hard restrictions</dt><dd>{restrictions.length ? restrictions.join(' · ') : 'none'}</dd>
+      <dt>Structure</dt><dd>{Object.entries(s.structure).map(([k, v]) => `${k.replaceAll('_', ' ')} ${v.observed}${v.completeness === 'complete' ? '' : ` (${v.completeness})`}`).join(' · ')}</dd>
+      <dt>Feasible configurations</dt><dd>{s.feasible_count} of {s.nominal_count}</dd>
+      <dt>Selected</dt><dd>{s.selected_description}{s.adjusted_by_citizen && <> · later adjusted to {Object.values(s.displayed_configuration).join(' / ')}</>}</dd>
+      <dt>Sampled score</dt><dd>{s.sampled_score === null ? 'not scored' : `${s.sampled_score.toFixed(4)} (posterior mean ${s.posterior_mean?.toFixed(4)}; a sampled score, not a probability)`}</dd>
+      <dt>Model</dt><dd>{s.policy ? `${s.policy.algorithm} · ${s.policy.action_schema} · ${s.policy.encoder_schema} · revision ${s.policy.posterior_revision} · ${s.policy.training_provenance} · decision …${s.policy.decision_id.slice(-8)}` : 'no model decision'}</dd>
+      <dt>Process map</dt><dd>{MAP_STATUS[s.map.status] ?? s.map.status}. {s.map.detail}</dd>
+      <dt>Learning</dt><dd>{s.learning.eligible ? 'Eligible. ' : 'Not eligible. '}{s.learning.reason}</dd>
+    </dl>
+  </section>;
+}
+
 function Record({ record }: { record: InspectorRecord }) {
   const ctx = record.effective_context, av = record.availability, selected = record.views.at(-1)?.selection;
   const infeasible = av.candidates.filter(c => !c.feasible), grouped = new Map<string, number>();
   for (const c of infeasible) for (const r of c.reasons) grouped.set(r, (grouped.get(r) ?? 0) + 1);
   const m = record.measurements as Record<string, { observed?: number; completeness?: string; normalized_observed?: number }>;
   return <div className="cz-inspector">
+    <DecisionSummary summary={record.summary} />
     <h3 className="cz-subhead">A. Record of the completed request</h3>
     <p className="cz-fine">Reconstructed from the stored request. It is not a live trace.</p>
     <dl className="cz-dl">

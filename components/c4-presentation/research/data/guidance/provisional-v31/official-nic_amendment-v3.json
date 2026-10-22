@@ -15,7 +15,7 @@
     "language": "en",
     "source_graph_fingerprint": "da6d871ccde4191ebb389a84c4a9a8a143b594f84233a20df07d6ed305cc8626",
     "relationship_fingerprint": "0b7a0bcd1014fd376d1afbf6fe9aa345afe31734d5c23e6eca2e53397417e1a8",
-    "content_version": "provisional-demo-1",
+    "content_version": "demo-accepted-v3-2",
     "origin": "demo_mock",
     "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
     "claims": [
@@ -180,39 +180,7 @@
         ]
       },
       {
-        "id": "action:nic_ds:destination:4",
-        "source_kind": "content",
-        "source_id": "content:nic_ds",
-        "start": 39,
-        "end": 59,
-        "quote": "Divisional Secretary",
-        "action_ids": [
-          "action:nic_ds"
-        ],
-        "required": false,
-        "kind": "destination",
-        "evidence_ids": [
-          "evidence:nic_routes"
-        ]
-      },
-      {
-        "id": "action:nic_ds:document:5",
-        "source_kind": "content",
-        "source_id": "content:nic_ds",
-        "start": 86,
-        "end": 135,
-        "quote": "application certified through the Grama Niladhari",
-        "action_ids": [
-          "action:nic_ds"
-        ],
-        "required": false,
-        "kind": "document",
-        "evidence_ids": [
-          "evidence:nic_routes"
-        ]
-      },
-      {
-        "id": "route:nic:fee",
+        "id": "action:nic_estate:fee:4",
         "source_kind": "content",
         "source_id": "content:nic_estate",
         "start": 97,
@@ -228,7 +196,7 @@
         ]
       },
       {
-        "id": "route:nic:q",
+        "id": "action:nic_estate:qualification:4",
         "source_kind": "content",
         "source_id": "content:nic_estate",
         "start": 179,
@@ -242,13 +210,77 @@
         "evidence_ids": [
           "evidence:nic_routes"
         ]
+      },
+      {
+        "id": "action:nic_gn:fee:5",
+        "source_kind": "content",
+        "source_id": "content:nic_gn",
+        "start": 120,
+        "end": 200,
+        "quote": "amended-card issue fee is LKR 500 and can be paid through the certifying officer",
+        "action_ids": [
+          "action:nic_gn"
+        ],
+        "required": false,
+        "kind": "fee",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_gn:qualification:5",
+        "source_kind": "content",
+        "source_id": "content:nic_gn",
+        "start": 202,
+        "end": 299,
+        "quote": "Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee",
+        "action_ids": [
+          "action:nic_gn"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_ds:destination:6",
+        "source_kind": "content",
+        "source_id": "content:nic_ds",
+        "start": 39,
+        "end": 59,
+        "quote": "Divisional Secretary",
+        "action_ids": [
+          "action:nic_ds"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_ds:document:7",
+        "source_kind": "content",
+        "source_id": "content:nic_ds",
+        "start": 86,
+        "end": 135,
+        "quote": "application certified through the Grama Niladhari",
+        "action_ids": [
+          "action:nic_ds"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
       }
     ],
     "actions": [
       {
         "id": "action:nic_ds",
         "heading": {
-          "text": "Obtain the Divisional Secretary’s countersignature",
+          "text": "Get the Divisional Secretary's countersignature",
           "status": "draft",
           "claim_ids": [],
           "evidence_ids": [
@@ -268,7 +300,7 @@
           ]
         },
         "concise": {
-          "text": "Non-estate route: obtain the countersignature after certification.",
+          "text": "Ask the Divisional Secretary to countersign the application your Grama Niladhari certified.",
           "status": "draft",
           "claim_ids": [
             "action:nic_ds:claim:0",
@@ -279,7 +311,7 @@
           ]
         },
         "detailed": {
-          "text": "For the non-estate route, obtain the Divisional Secretary’s countersignature on the application certified through the Grama Niladhari. This is required in addition to that certification.",
+          "text": "For the non-estate route, the Divisional Secretary must countersign the application that was certified through the Grama Niladhari. The countersignature is required in addition to that certification and follows it.",
           "status": "draft",
           "claim_ids": [
             "action:nic_ds:claim:0",
@@ -291,7 +323,7 @@
         },
         "supplement": {
           "text": {
-            "text": "This is another step in the same route, not an alternative to Grama Niladhari certification. No separate countersignature fee is specified in this snapshot; that does not establish that it is free.",
+            "text": "The estate route has no countersignature step.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [
@@ -302,7 +334,7 @@
           "adds_information": true
         },
         "recap": {
-          "text": "Non-estate route: obtain the countersignature after certification.",
+          "text": "You looked at the Divisional Secretary's countersignature on the certified application.",
           "status": "draft",
           "claim_ids": [],
           "evidence_ids": [
@@ -314,7 +346,7 @@
           "text": "Divisional Secretary",
           "status": "draft",
           "claim_ids": [
-            "action:nic_ds:destination:4"
+            "action:nic_ds:destination:6"
           ],
           "evidence_ids": [
             "evidence:nic_routes"
@@ -350,7 +382,7 @@
           ]
         },
         "concise": {
-          "text": "Estate residents use the Estate Superintendent route.",
+          "text": "Forward your application through the Estate Superintendent and pay the fee there.",
           "status": "draft",
           "claim_ids": [
             "action:nic_estate:claim:0",
@@ -361,7 +393,7 @@
           ]
         },
         "detailed": {
-          "text": "If you are an estate resident, forward the amendment application through the Estate Superintendent. This is the only step on the estate route.",
+          "text": "If you are an estate resident, forward the amendment application through the Estate Superintendent. You can pay the amended-card issue fee through the certifying officer. This is the only step on the estate route, because the countersignature step applies to the non-estate route.",
           "status": "draft",
           "claim_ids": [
             "action:nic_estate:claim:0",
@@ -373,7 +405,7 @@
         },
         "supplement": {
           "text": {
-            "text": "This example covers routing the application through its certifying officer, not preparing the full application or obtaining the card.",
+            "text": "Estate residents have a single step; non-estate residents also need the Divisional Secretary's countersignature.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [
@@ -384,7 +416,7 @@
           "adds_information": true
         },
         "recap": {
-          "text": "Estate residents use the Estate Superintendent route.",
+          "text": "You looked at the estate route: forwarding the application through the Estate Superintendent.",
           "status": "draft",
           "claim_ids": [],
           "evidence_ids": [
@@ -406,7 +438,8 @@
           "condition:estate"
         ],
         "visible_attachment_ids": [
-          "attachment:action:nic_estate:svc:nic_amendment:document:0"
+          "attachment:action:nic_estate:svc:nic_amendment:document:0",
+          "attachment:action:nic_estate:svc:nic_amendment:fee"
         ]
       },
       {
@@ -432,7 +465,7 @@
           ]
         },
         "concise": {
-          "text": "Non-estate residents use their local Grama Niladhari.",
+          "text": "Forward your application through your Grama Niladhari and pay the fee there.",
           "status": "draft",
           "claim_ids": [
             "action:nic_gn:claim:0",
@@ -443,7 +476,7 @@
           ]
         },
         "detailed": {
-          "text": "If you are not an estate resident, forward the amendment application through the Grama Niladhari for your area. The Divisional Secretary's countersignature is required in the next step.",
+          "text": "If you are not an estate resident, forward the amendment application through the Grama Niladhari for your area of residence. You can pay the amended-card issue fee through the certifying officer. After this step the Divisional Secretary must countersign the certified application.",
           "status": "draft",
           "claim_ids": [
             "action:nic_gn:claim:0",
@@ -455,7 +488,7 @@
         },
         "supplement": {
           "text": {
-            "text": "This example covers routing the application, not preparing the full application or obtaining the card.",
+            "text": "Non-estate residents have two steps: certification through the Grama Niladhari, then the Divisional Secretary's countersignature.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [
@@ -466,7 +499,7 @@
           "adds_information": true
         },
         "recap": {
-          "text": "Non-estate residents use their local Grama Niladhari.",
+          "text": "You looked at the non-estate route: forwarding the application through the Grama Niladhari.",
           "status": "draft",
           "claim_ids": [],
           "evidence_ids": [
@@ -488,7 +521,8 @@
           "condition:non_estate"
         ],
         "visible_attachment_ids": [
-          "attachment:action:nic_gn:svc:nic_amendment:document:0"
+          "attachment:action:nic_gn:svc:nic_amendment:document:0",
+          "attachment:action:nic_gn:svc:nic_amendment:fee"
         ]
       }
     ],
@@ -534,6 +568,64 @@
         "role": "submit"
       },
       {
+        "id": "attachment:action:nic_estate:svc:nic_amendment:fee",
+        "fact_id": "svc:nic_amendment:fee",
+        "scope": "action",
+        "action_id": "action:nic_estate",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:nic_estate:fee:4"
+        ],
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ],
+        "qualification": {
+          "text": "Paid through the certifying officer. Registered-post delivery under the normal service adds LKR 120 and is not part of this fee.",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_estate:qualification:4"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "status": "draft",
+        "role": "pay"
+      },
+      {
+        "id": "attachment:action:nic_gn:svc:nic_amendment:fee",
+        "fact_id": "svc:nic_amendment:fee",
+        "scope": "action",
+        "action_id": "action:nic_gn",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:nic_gn:fee:5"
+        ],
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ],
+        "qualification": {
+          "text": "Paid through the certifying officer. Registered-post delivery under the normal service adds LKR 120 and is not part of this fee.",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_gn:qualification:5"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "status": "draft",
+        "role": "pay"
+      },
+      {
         "id": "attachment:action:nic_ds:svc:nic_amendment:document:0",
         "fact_id": "svc:nic_amendment:document:0",
         "scope": "action",
@@ -544,7 +636,7 @@
         "option_ids": [],
         "condition_ids": [],
         "claim_ids": [
-          "action:nic_ds:document:5"
+          "action:nic_ds:document:7"
         ],
         "evidence_ids": [
           "evidence:nic_routes"
@@ -552,41 +644,6 @@
         "qualification": null,
         "status": "draft",
         "role": "bring"
-      },
-      {
-        "id": "attachment:route:nic:fee",
-        "fact_id": "svc:nic_amendment:fee",
-        "scope": "route",
-        "action_id": null,
-        "stage_id": null,
-        "service_id": null,
-        "branch_id": "branch:nic_amendment",
-        "option_ids": [
-          "option:estate",
-          "option:non_estate"
-        ],
-        "condition_ids": [
-          "condition:estate",
-          "condition:non_estate"
-        ],
-        "claim_ids": [
-          "route:nic:fee"
-        ],
-        "evidence_ids": [
-          "evidence:nic_routes"
-        ],
-        "qualification": {
-          "text": "Can be paid through the certifying officer. Postal delivery adds LKR 120 and is not part of this fee.",
-          "status": "draft",
-          "claim_ids": [
-            "route:nic:q"
-          ],
-          "evidence_ids": [
-            "evidence:nic_routes"
-          ]
-        },
-        "status": "draft",
-        "role": "pay"
       }
     ],
     "phases": [],

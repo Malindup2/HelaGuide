@@ -126,7 +126,17 @@ export interface EventBody {
   visible_ratio?: number | null; dwell_ms?: number | null; instrumentation_version?: string | null;
 }
 export type RatingReason = 'too_much_explanation' | 'not_enough_explanation' | 'navigation_difficult' | 'diagram_confusing' | 'requirements_hard_to_find' | 'other';
+export interface InspectorSummary {
+  kind: string; personalized: boolean; label: string; selected_configuration: Configuration; selected_description: string; displayed_configuration: Configuration; adjusted_by_citizen: boolean;
+  effective_context: { familiarity: number | null; confidence: number | null; personalization_enabled: boolean; soft_preferences: Record<string, string>; preference_origin: string | null };
+  hard_restrictions: { no_guided: boolean; no_map: boolean; no_disclosure: boolean; locks: Record<string, string> };
+  structure: Record<string, { observed: number; completeness: string }>; feasible_count: number; nominal_count: number;
+  sampled_score: number | null; posterior_mean: number | null;
+  policy: { algorithm: string; action_schema: string; encoder_schema: string; posterior_revision: number; decision_id: string; model_manifest_fingerprint: string; training_provenance: string } | null;
+  learning: { eligible: boolean; reason: string }; map: { status: string; detail: string; map_configurations_feasible: number }; explanation: string;
+}
 export interface InspectorRecord {
+  summary: InspectorSummary;
   schema_version: string; record_kind: string; journey_id: string; created_at: string; source_graph_fingerprint: string; content_fingerprint: string;
   effective_context: EffectiveContext; measurements: Record<string, unknown>; availability: Availability;
   views: { id: string; parent_view_id: string | null; created_at: string; selection: Selection }[];

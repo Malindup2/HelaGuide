@@ -1,0 +1,460 @@
+{
+  "procedure_id": "official-birth_copy-v3",
+  "status": "provisional_demo_only",
+  "label": "Provisional demo wording. AI-assisted, checked only by automatic source-grounding checks. No human, expert or government review. Not independently validated guidance.",
+  "provenance": "Derived from research/data/prepared-demo (assistant-authored demo wording, styles concise, plain, extra_plain) and the official-source passages. No human review. A few Detailed/supplement sentences were tightened afterwards (OVERRIDES in the build script) to avoid repeating facts shown on step cards; each is derived from the source passages or verified graph and passes the same checks.",
+  "automatic_checks": {
+    "procedure_id": "official-birth_copy-v3",
+    "structural": "passed",
+    "grounding_and_contradiction_issues": [],
+    "passed": true
+  },
+  "content": {
+    "schema_version": "c4-guidance-content-3.1",
+    "procedure_id": "official-birth_copy-v3",
+    "language": "en",
+    "source_graph_fingerprint": "7f384d0d51b9e7493bd0afe26d3308ea93afc04e1ec5a09c64b6632af9db7b7a",
+    "relationship_fingerprint": "58dcc1d7e653053f256d9a0ab2affb81113cd094cab6db5392d7e24d2dc87146",
+    "content_version": "provisional-demo-1",
+    "origin": "demo_mock",
+    "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+    "claims": [
+      {
+        "id": "action:birth_pay:claim:0",
+        "source_kind": "content",
+        "source_id": "content:birth_pay",
+        "start": 0,
+        "end": 250,
+        "quote": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service.",
+        "action_ids": [
+          "action:birth_pay"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_pay:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 524,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:birth_pay"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_submit:claim:0",
+        "source_kind": "content",
+        "source_id": "content:birth_submit",
+        "start": 0,
+        "end": 193,
+        "quote": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+        "action_ids": [
+          "action:birth_submit"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_submit:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 524,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:birth_submit"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_pay:destination:0",
+        "source_kind": "content",
+        "source_id": "content:birth_pay",
+        "start": 43,
+        "end": 93,
+        "quote": "Divisional Secretariat or the specified bank route",
+        "action_ids": [
+          "action:birth_pay"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_pay:fee:1",
+        "source_kind": "content",
+        "source_id": "content:birth_pay",
+        "start": 8,
+        "end": 30,
+        "quote": "applicable copy charge",
+        "action_ids": [
+          "action:birth_pay"
+        ],
+        "required": false,
+        "kind": "fee",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_pay:qualification:1",
+        "source_kind": "content",
+        "source_id": "content:birth_pay",
+        "start": 118,
+        "end": 185,
+        "quote": "The cited counter-submission route excludes ATM and online payments",
+        "action_ids": [
+          "action:birth_pay"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_pay:document:2",
+        "source_kind": "content",
+        "source_id": "content:birth_pay",
+        "start": 98,
+        "end": 116,
+        "quote": "retain the receipt",
+        "action_ids": [
+          "action:birth_pay"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_submit:destination:3",
+        "source_kind": "content",
+        "source_id": "content:birth_submit",
+        "start": 66,
+        "end": 97,
+        "quote": "relevant Divisional Secretariat",
+        "action_ids": [
+          "action:birth_submit"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_submit:document:4",
+        "source_kind": "content",
+        "source_id": "content:birth_submit",
+        "start": 11,
+        "end": 33,
+        "quote": "completed request form",
+        "action_ids": [
+          "action:birth_submit"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      },
+      {
+        "id": "action:birth_submit:document:5",
+        "source_kind": "content",
+        "source_id": "content:birth_submit",
+        "start": 43,
+        "end": 58,
+        "quote": "payment receipt",
+        "action_ids": [
+          "action:birth_submit"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:birth_request"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:birth_pay",
+        "heading": {
+          "text": "Pay for the certificate copy",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:birth_pay:claim:0",
+            "action:birth_pay:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "concise": {
+          "text": "Pay the copy charge and keep the receipt.",
+          "status": "draft",
+          "claim_ids": [
+            "action:birth_pay:claim:0",
+            "action:birth_pay:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "detailed": {
+          "text": "Pay the copy charge for one certificate copy through the Divisional Secretariat or the specified bank route, and keep the receipt. You submit the receipt with the completed request form in the next step.",
+          "status": "draft",
+          "claim_ids": [
+            "action:birth_pay:claim:0",
+            "action:birth_pay:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "This does not describe the separate online application service.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:birth_request"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Pay the copy charge and keep the receipt.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Divisional Secretariat or the specified bank route",
+          "status": "draft",
+          "claim_ids": [
+            "action:birth_pay:destination:0"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "visible_condition_ids": [],
+        "visible_attachment_ids": [
+          "attachment:action:birth_pay:svc:birth_copy:fee",
+          "attachment:action:birth_pay:svc:birth_copy:document:1"
+        ]
+      },
+      {
+        "id": "action:birth_submit",
+        "heading": {
+          "text": "Submit the form and receipt",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:birth_submit:claim:0",
+            "action:birth_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "concise": {
+          "text": "Submit the completed form with the payment receipt.",
+          "status": "draft",
+          "claim_ids": [
+            "action:birth_submit:claim:0",
+            "action:birth_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "detailed": {
+          "text": "Take the completed request form and payment receipt to the relevant Divisional Secretariat. Paying the copy charge comes before this submission.",
+          "status": "draft",
+          "claim_ids": [
+            "action:birth_submit:claim:0",
+            "action:birth_submit:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The certificate can be issued only if the registration is found. Submitting the request does not guarantee a certificate. This example does not cover record searches or postal delivery.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:birth_request"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Submit the completed form with the payment receipt.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Relevant Divisional Secretariat",
+          "status": "draft",
+          "claim_ids": [
+            "action:birth_submit:destination:3"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "visible_condition_ids": [],
+        "visible_attachment_ids": [
+          "attachment:action:birth_submit:svc:birth_copy:document:0",
+          "attachment:action:birth_submit:svc:birth_copy:document:1"
+        ]
+      }
+    ],
+    "attachments": [
+      {
+        "id": "attachment:action:birth_pay:svc:birth_copy:fee",
+        "fact_id": "svc:birth_copy:fee",
+        "scope": "action",
+        "action_id": "action:birth_pay",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:birth_pay:fee:1"
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "qualification": {
+          "text": "The counter route excludes ATM and online payments.",
+          "status": "draft",
+          "claim_ids": [
+            "action:birth_pay:qualification:1"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        },
+        "status": "draft",
+        "role": "pay"
+      },
+      {
+        "id": "attachment:action:birth_pay:svc:birth_copy:document:1",
+        "fact_id": "svc:birth_copy:document:1",
+        "scope": "action",
+        "action_id": "action:birth_pay",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:birth_pay:document:2"
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "keep"
+      },
+      {
+        "id": "attachment:action:birth_submit:svc:birth_copy:document:0",
+        "fact_id": "svc:birth_copy:document:0",
+        "scope": "action",
+        "action_id": "action:birth_submit",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:birth_submit:document:4"
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "submit"
+      },
+      {
+        "id": "attachment:action:birth_submit:svc:birth_copy:document:1",
+        "fact_id": "svc:birth_copy:document:1",
+        "scope": "action",
+        "action_id": "action:birth_submit",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:birth_submit:document:5"
+        ],
+        "evidence_ids": [
+          "evidence:birth_request"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "submit"
+      }
+    ],
+    "phases": [],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "review": null
+  }
+}

@@ -1,0 +1,598 @@
+{
+  "procedure_id": "official-nic_amendment-v3",
+  "status": "provisional_demo_only",
+  "label": "Provisional demo wording. AI-assisted, checked only by automatic source-grounding checks. No human, expert or government review. Not independently validated guidance.",
+  "provenance": "Derived from research/data/prepared-demo (assistant-authored demo wording, styles concise, plain, extra_plain) and the official-source passages. No human review. A few Detailed/supplement sentences were tightened afterwards (OVERRIDES in the build script) to avoid repeating facts shown on step cards; each is derived from the source passages or verified graph and passes the same checks.",
+  "automatic_checks": {
+    "procedure_id": "official-nic_amendment-v3",
+    "structural": "passed",
+    "grounding_and_contradiction_issues": [],
+    "passed": true
+  },
+  "content": {
+    "schema_version": "c4-guidance-content-3.1",
+    "procedure_id": "official-nic_amendment-v3",
+    "language": "en",
+    "source_graph_fingerprint": "da6d871ccde4191ebb389a84c4a9a8a143b594f84233a20df07d6ed305cc8626",
+    "relationship_fingerprint": "0b7a0bcd1014fd376d1afbf6fe9aa345afe31734d5c23e6eca2e53397417e1a8",
+    "content_version": "provisional-demo-1",
+    "origin": "demo_mock",
+    "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+    "claims": [
+      {
+        "id": "action:nic_ds:claim:0",
+        "source_kind": "content",
+        "source_id": "content:nic_ds",
+        "start": 0,
+        "end": 136,
+        "quote": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+        "action_ids": [
+          "action:nic_ds"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_ds:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 569,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:nic_ds"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_estate:claim:0",
+        "source_kind": "content",
+        "source_id": "content:nic_estate",
+        "start": 0,
+        "end": 277,
+        "quote": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+        "action_ids": [
+          "action:nic_estate"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_estate:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 569,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:nic_estate"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_gn:claim:0",
+        "source_kind": "content",
+        "source_id": "content:nic_gn",
+        "start": 0,
+        "end": 300,
+        "quote": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+        "action_ids": [
+          "action:nic_gn"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_gn:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 569,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:nic_gn"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_estate:destination:0",
+        "source_kind": "content",
+        "source_id": "content:nic_estate",
+        "start": 70,
+        "end": 91,
+        "quote": "Estate Superintendent",
+        "action_ids": [
+          "action:nic_estate"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_estate:document:1",
+        "source_kind": "content",
+        "source_id": "content:nic_estate",
+        "start": 36,
+        "end": 57,
+        "quote": "amendment application",
+        "action_ids": [
+          "action:nic_estate"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_gn:destination:2",
+        "source_kind": "content",
+        "source_id": "content:nic_gn",
+        "start": 73,
+        "end": 114,
+        "quote": "Grama Niladhari for the area of residence",
+        "action_ids": [
+          "action:nic_gn"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_gn:document:3",
+        "source_kind": "content",
+        "source_id": "content:nic_gn",
+        "start": 39,
+        "end": 60,
+        "quote": "amendment application",
+        "action_ids": [
+          "action:nic_gn"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_ds:destination:4",
+        "source_kind": "content",
+        "source_id": "content:nic_ds",
+        "start": 39,
+        "end": 59,
+        "quote": "Divisional Secretary",
+        "action_ids": [
+          "action:nic_ds"
+        ],
+        "required": false,
+        "kind": "destination",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "action:nic_ds:document:5",
+        "source_kind": "content",
+        "source_id": "content:nic_ds",
+        "start": 86,
+        "end": 135,
+        "quote": "application certified through the Grama Niladhari",
+        "action_ids": [
+          "action:nic_ds"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "route:nic:fee",
+        "source_kind": "content",
+        "source_id": "content:nic_estate",
+        "start": 97,
+        "end": 177,
+        "quote": "amended-card issue fee is LKR 500 and can be paid through the certifying officer",
+        "action_ids": [
+          "action:nic_estate"
+        ],
+        "required": false,
+        "kind": "fee",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      },
+      {
+        "id": "route:nic:q",
+        "source_kind": "content",
+        "source_id": "content:nic_estate",
+        "start": 179,
+        "end": 276,
+        "quote": "Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee",
+        "action_ids": [
+          "action:nic_estate"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:nic_ds",
+        "heading": {
+          "text": "Obtain the Divisional Secretary’s countersignature",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:nic_ds:claim:0",
+            "action:nic_ds:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "concise": {
+          "text": "Non-estate route: obtain the countersignature after certification.",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_ds:claim:0",
+            "action:nic_ds:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "detailed": {
+          "text": "For the non-estate route, obtain the Divisional Secretary’s countersignature on the application certified through the Grama Niladhari. This is required in addition to that certification.",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_ds:claim:0",
+            "action:nic_ds:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "This is another step in the same route, not an alternative to Grama Niladhari certification. No separate countersignature fee is specified in this snapshot; that does not establish that it is free.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:nic_routes"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Non-estate route: obtain the countersignature after certification.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Divisional Secretary",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_ds:destination:4"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:non_estate"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:nic_ds:svc:nic_amendment:document:0"
+        ]
+      },
+      {
+        "id": "action:nic_estate",
+        "heading": {
+          "text": "Apply through the Estate Superintendent",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:nic_estate:claim:0",
+            "action:nic_estate:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "concise": {
+          "text": "Estate residents use the Estate Superintendent route.",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_estate:claim:0",
+            "action:nic_estate:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "detailed": {
+          "text": "If you are an estate resident, forward the amendment application through the Estate Superintendent. This is the only step on the estate route.",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_estate:claim:0",
+            "action:nic_estate:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "This example covers routing the application through its certifying officer, not preparing the full application or obtaining the card.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:nic_routes"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Estate residents use the Estate Superintendent route.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Estate Superintendent",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_estate:destination:0"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:estate"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:nic_estate:svc:nic_amendment:document:0"
+        ]
+      },
+      {
+        "id": "action:nic_gn",
+        "heading": {
+          "text": "Apply through your Grama Niladhari",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:nic_gn:claim:0",
+            "action:nic_gn:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "concise": {
+          "text": "Non-estate residents use their local Grama Niladhari.",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_gn:claim:0",
+            "action:nic_gn:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "detailed": {
+          "text": "If you are not an estate resident, forward the amendment application through the Grama Niladhari for your area. The Divisional Secretary's countersignature is required in the next step.",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_gn:claim:0",
+            "action:nic_gn:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "This example covers routing the application, not preparing the full application or obtaining the card.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:nic_routes"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Non-estate residents use their local Grama Niladhari.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "actor": null,
+        "destination": {
+          "text": "Grama Niladhari for your area",
+          "status": "draft",
+          "claim_ids": [
+            "action:nic_gn:destination:2"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "visible_condition_ids": [
+          "condition:non_estate"
+        ],
+        "visible_attachment_ids": [
+          "attachment:action:nic_gn:svc:nic_amendment:document:0"
+        ]
+      }
+    ],
+    "attachments": [
+      {
+        "id": "attachment:action:nic_estate:svc:nic_amendment:document:0",
+        "fact_id": "svc:nic_amendment:document:0",
+        "scope": "action",
+        "action_id": "action:nic_estate",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:nic_estate:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "submit"
+      },
+      {
+        "id": "attachment:action:nic_gn:svc:nic_amendment:document:0",
+        "fact_id": "svc:nic_amendment:document:0",
+        "scope": "action",
+        "action_id": "action:nic_gn",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:nic_gn:document:3"
+        ],
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "submit"
+      },
+      {
+        "id": "attachment:action:nic_ds:svc:nic_amendment:document:0",
+        "fact_id": "svc:nic_amendment:document:0",
+        "scope": "action",
+        "action_id": "action:nic_ds",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:nic_ds:document:5"
+        ],
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "bring"
+      },
+      {
+        "id": "attachment:route:nic:fee",
+        "fact_id": "svc:nic_amendment:fee",
+        "scope": "route",
+        "action_id": null,
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": "branch:nic_amendment",
+        "option_ids": [
+          "option:estate",
+          "option:non_estate"
+        ],
+        "condition_ids": [
+          "condition:estate",
+          "condition:non_estate"
+        ],
+        "claim_ids": [
+          "route:nic:fee"
+        ],
+        "evidence_ids": [
+          "evidence:nic_routes"
+        ],
+        "qualification": {
+          "text": "Can be paid through the certifying officer. Postal delivery adds LKR 120 and is not part of this fee.",
+          "status": "draft",
+          "claim_ids": [
+            "route:nic:q"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        "status": "draft",
+        "role": "pay"
+      }
+    ],
+    "phases": [],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "review": null
+  }
+}

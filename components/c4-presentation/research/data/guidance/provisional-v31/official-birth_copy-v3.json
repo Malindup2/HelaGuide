@@ -15,7 +15,7 @@
     "language": "en",
     "source_graph_fingerprint": "7f384d0d51b9e7493bd0afe26d3308ea93afc04e1ec5a09c64b6632af9db7b7a",
     "relationship_fingerprint": "58dcc1d7e653053f256d9a0ab2affb81113cd094cab6db5392d7e24d2dc87146",
-    "content_version": "provisional-demo-1",
+    "content_version": "demo-accepted-v3-2",
     "origin": "demo_mock",
     "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
     "claims": [
@@ -200,7 +200,7 @@
       {
         "id": "action:birth_pay",
         "heading": {
-          "text": "Pay for the certificate copy",
+          "text": "Pay the copy charge",
           "status": "draft",
           "claim_ids": [],
           "evidence_ids": [
@@ -220,7 +220,7 @@
           ]
         },
         "concise": {
-          "text": "Pay the copy charge and keep the receipt.",
+          "text": "Pay the LKR 120 charge for one copy and keep the receipt.",
           "status": "draft",
           "claim_ids": [
             "action:birth_pay:claim:0",
@@ -231,7 +231,7 @@
           ]
         },
         "detailed": {
-          "text": "Pay the copy charge for one certificate copy through the Divisional Secretariat or the specified bank route, and keep the receipt. You submit the receipt with the completed request form in the next step.",
+          "text": "Pay the charge for one certified copy through the Divisional Secretariat or the specified bank route, and keep the receipt: you submit it with the completed request form in the next step. This route applies when the registration number and date are known.",
           "status": "draft",
           "claim_ids": [
             "action:birth_pay:claim:0",
@@ -243,7 +243,7 @@
         },
         "supplement": {
           "text": {
-            "text": "This does not describe the separate online application service.",
+            "text": "Searching for a record is outside this route, so check that you have the registration number and date before you pay.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [
@@ -254,7 +254,7 @@
           "adds_information": true
         },
         "recap": {
-          "text": "Pay the copy charge and keep the receipt.",
+          "text": "You looked at paying the copy charge and keeping the receipt.",
           "status": "draft",
           "claim_ids": [],
           "evidence_ids": [
@@ -301,7 +301,7 @@
           ]
         },
         "concise": {
-          "text": "Submit the completed form with the payment receipt.",
+          "text": "Take the completed form and the payment receipt to the relevant Divisional Secretariat.",
           "status": "draft",
           "claim_ids": [
             "action:birth_submit:claim:0",
@@ -312,7 +312,7 @@
           ]
         },
         "detailed": {
-          "text": "Take the completed request form and payment receipt to the relevant Divisional Secretariat. Paying the copy charge comes before this submission.",
+          "text": "Submit the completed request form together with the payment receipt you kept to the relevant Divisional Secretariat. A certificate is issued only if the registration is found.",
           "status": "draft",
           "claim_ids": [
             "action:birth_submit:claim:0",
@@ -324,7 +324,7 @@
         },
         "supplement": {
           "text": {
-            "text": "The certificate can be issued only if the registration is found. Submitting the request does not guarantee a certificate. This example does not cover record searches or postal delivery.",
+            "text": "Submitting the request does not guarantee a certificate, and postal delivery is not covered by this route.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [
@@ -335,7 +335,7 @@
           "adds_information": true
         },
         "recap": {
-          "text": "Submit the completed form with the payment receipt.",
+          "text": "You looked at submitting the form and receipt, and when a certificate is issued.",
           "status": "draft",
           "claim_ids": [],
           "evidence_ids": [
