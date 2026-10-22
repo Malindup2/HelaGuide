@@ -305,6 +305,38 @@ def test_slot_raw_from_the_llm_is_used(chat):
     assert c.step("business reg purpose").raw_slots == {"purpose": "business registration"}
 
 
+def test_iso_date_keeps_the_users_words_until_the_date_changes(chat):
+    pp = "passport_new"
+    c, llm = chat({"travelling next month": (pp, 0.9), "for my daughter": (pp, 0.9), "no, a bit later": (pp, 0.9),
+                   "actually mid December": (pp, 0.9)},
+                  llm_reply(pp, slots={"travel_date": "2026-11-20"}, slot_raw={"travel_date": "next month"}),
+                  llm_reply(pp, slots={"applicant_for": "child"}),
+                  llm_reply(pp, "correction", slots={"travel_date": "2026-12-01"}),
+                  llm_reply(pp, "correction", slots={"travel_date": "mid December"}), mode="llm")
+    r = c.step("travelling next month")
+    assert (r.slots["travel_date"], r.raw_slots) == ("2026-11-20", {"travel_date": "next month"})
+    assert c.step("for my daughter").raw_slots == {"travel_date": "next month"}       # kept while unchanged
+    r = c.step("no, a bit later")
+    assert r.slots["travel_date"] == "2026-12-01" and r.raw_slots == {}          # new date, no date words: old ones go
+    r = c.step("actually mid December")
+    assert r.slots["travel_date"] == "mid December" and r.raw_slots == {}        # words are the value itself
+
+
+def test_hybrid_date_found_by_the_rules_wins_as_the_users_words(chat):
+    pp = "passport_new"
+    c, _ = chat({"travelling next month": (pp, 0.9)},
+                llm_reply(pp, slots={"travel_date": "2026-11-20"}, slot_raw={"travel_date": "next month"}))
+    r = c.step("travelling next month")
+    assert (r.slots["travel_date"], r.raw_slots) == ("next month", {})     # extractive rules value, already words
+    assert [(x["slot"], x["kept"]) for x in r.conflicts] == [("travel_date", "rules")]
+
+
+def test_prompt_asks_for_the_users_date_words(chat):
+    c, llm = chat({"Galle": (BIRTH, 0.9)}, llm_reply())
+    c.step("Galle")
+    assert '"slot_raw": {"travel_date": "next month"}' in llm.calls[0][0]
+
+
 def test_prompt_forbids_internal_labels_and_asks_for_slot_raw(chat):
     c, llm = chat({"Galle": (BIRTH, 0.9)}, llm_reply())
     c.step("Galle")

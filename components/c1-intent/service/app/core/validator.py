@@ -11,7 +11,9 @@ Slot rules:
   - the slot must belong to the intent (INTENT_SLOTS); null / empty values mean "not mentioned" and are skipped
   - district    district gazetteer (25 districts, EN / romanized / SI), else a known town -> its district
   - date slots  an ISO date YYYY-MM-DD (what the prompt asks for) that exists on the calendar; otherwise the
-                date matcher must find a date in the value ("mid December", "ලබන මාසේ")
+                date matcher must find a date in the value ("mid December", "ලබන මාසේ"). An ISO date keeps the
+                user's words for it in `raw` (the date words in the LLM's slot_raw, else in the message): the
+                evaluation scores dates on the words, since the gold labels are the user's words
   - enums       applicant_for, change_field, urgency, service_type: the canonical value or one of its keywords
   - purpose, issue  their taxonomy (PURPOSES, ISSUES) if one matches, else "other" with the raw text in `raw`;
                 a bare "other" takes its raw text from the LLM's slot_raw, else from the user's message
@@ -201,7 +203,7 @@ def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes
     prev: the intent's slots before this turn. rules_changes: {slot: value} the tracker set or changed this turn.
     protect_rules: also undo a rules-tracker change to applicant_for without a correction (LLM changes always are).
     raw_values: the LLM's slot_raw ({slot: the user's words}); message: this turn's user text. Both only give the raw
-    text of a bare "other" for purpose / issue.
+    text of a bare "other" for purpose / issue, and the user's words for an ISO date.
     """
     rules_changes = dict(rules_changes or {})
     allowed = INTENT_SLOTS.get(intent, [])
@@ -230,6 +232,8 @@ def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes
             continue
         if canon == OTHER and raw_text is None and slot in TAXONOMIES:
             raw_text = _raw_for_other(raw_values.get(slot), message)
+        elif slot in DATE_SLOTS and is_iso_date(canon):
+            raw_text = _date_words(raw_values.get(slot)) or _date_words(message)
         accepted[slot] = canon
         if slot in rules_changes and not _same(slot, rules_changes[slot], canon):
             rules_value = rules_changes[slot]
@@ -258,6 +262,18 @@ def merge_slots(intent: str, updates, act: str | None, prev: dict, rules_changes
         log.info("validator conflict: intent=%s slot=%s kept=%s (%s)", intent, c.slot, c.kept, c.reason)
     missing = [s for s in allowed if s not in slots]
     return SlotMerge(slots, accepted, raw, missing, bool(allowed) and not missing, proposed, rejections, conflicts)
+
+
+def is_iso_date(value) -> bool:
+    return isinstance(value, str) and bool(_ISO_DATE.fullmatch(value))
+
+
+def _date_words(text):
+    """The date words in a text ("we travel next month" -> "next month"), or None."""
+    if not isinstance(text, str) or not text.strip():
+        return None
+    hit = find_date(list(words_with_offsets(text)))
+    return hit[0] if hit else None
 
 
 def _raw_for_other(raw, message):

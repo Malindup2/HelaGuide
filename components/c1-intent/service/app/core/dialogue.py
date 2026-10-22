@@ -22,13 +22,14 @@ import logging
 import time
 from dataclasses import asdict, dataclass, field
 
-from app.core.dst import (INTENT_SLOTS, KG_SERVICE_IDS, TOWN_DISTRICT, UNKNOWN_VALUE, extract_conditions,
-                         merge_conditions)
+from app.core.dst import (DATE_SLOTS, INTENT_SLOTS, KG_SERVICE_IDS, TOWN_DISTRICT, UNKNOWN_VALUE,
+                         extract_conditions, merge_conditions)
 from app.core.engine import ASK, CORE_INTENTS
 from app.core.llm_client import LLM
 from app.core.prompts import system_prompt, today_colombo, turn_message
 from app.core.settings import DialogueSettings
-from app.core.validator import Rejected, Rejection, canonical_value, check_turn, confirm_ready, merge_slots
+from app.core.validator import (OTHER, Rejected, Rejection, canonical_value, check_turn, confirm_ready, is_iso_date,
+                                merge_slots)
 
 log = logging.getLogger("c1-intent")
 
@@ -46,7 +47,7 @@ class DialogueResult:
     active_intent: str | None
     tasks: list[str]                # active request first, then the unfinished ones
     slots: dict[str, str]
-    raw_slots: dict[str, str]       # slot -> the user's words, for values stored as "other"
+    raw_slots: dict[str, str]       # slot -> the user's words, for values stored as "other" and ISO dates
     missing_slots: list[str]
     ready: bool                     # from missing_slots, assumed slots and a pending variant (engine rule)
     ready_to_confirm: bool          # the LLM's claim, only when ready (False in rules mode)
@@ -264,9 +265,11 @@ class DialogueManager:
             base.assumed[intent] = set(base.tracker.assumed)
             base.conditions[intent] = dict(base.tracker.conditions)
             raw = chat.raw.setdefault(intent, {})
+            for k in merge.accepted:            # a value set this turn replaces its old words, or has none
+                raw.pop(k, None)
             raw.update(merge.raw)
-            for k in list(raw):
-                if slots.get(k) != "other":
+            for k in list(raw):                 # words only for values still stored as other / an ISO date
+                if not (slots.get(k) == OTHER or (k in DATE_SLOTS and is_iso_date(slots.get(k)))):
                     del raw[k]
             if act in NO_SLOT_ACTS and not merge.accepted and not rules_changes:
                 intent_used = "none"    # a plain greeting / small talk: reported like the engine's greeting turn

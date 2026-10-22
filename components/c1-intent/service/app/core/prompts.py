@@ -107,11 +107,12 @@ Slot values:
 - Dates are ISO YYYY-MM-DD. Resolve relative dates yourself from today's date ("next friday", "ලබන මාසේ", "mid December" = the 15th).
 - slot_updates holds only the slots this message gives or changes, for active_intent. Leave everything else out.
 - When purpose or issue is "other", put the user's own words for it in slot_raw, e.g. "slot_raw": {{"purpose": "business registration"}}.
+- When you set a date slot, also put the user's own words for the date in slot_raw, e.g. "slot_raw": {{"travel_date": "next month"}}.
 
 Return only this JSON object, no other text:
 {{"reply": "...", "dialogue_act": "{'|'.join(DIALOGUE_ACTS)}",
   "active_intent": "<one of the intents above, or null>", "tasks": ["<unfinished service intents>"],
-  "slot_updates": {{"slot": "value"}}, "slot_raw": {{"slot": "<the user's words, only for an other value>"}},
+  "slot_updates": {{"slot": "value"}}, "slot_raw": {{"slot": "<the user's words, only for an other value or a date>"}},
   "asks_slot": "<the slot your reply asks for, or null>",
   "ready_to_confirm": false}}"""
 

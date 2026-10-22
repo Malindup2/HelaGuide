@@ -257,3 +257,37 @@ def test_slot_raw_not_an_object_is_rejected():
     m = merge_slots(BIRTH, {"purpose": "other"}, "slot_answer", {}, raw_values=["business"], message="biz")
     assert m.raw == {"purpose": "biz"}
     assert ("slot_raw", "not_an_object") in reasons(m)
+
+
+# ---------------------------------------------------------------- the user's words for an ISO date
+PASSPORT = "passport_new"
+
+
+def test_iso_date_keeps_the_date_words_from_slot_raw():
+    m = merge_slots(PASSPORT, {"travel_date": "2026-11-20"}, "slot_answer", {},
+                    raw_values={"travel_date": "next month"}, message="we go next month to Dubai")
+    assert (m.slots["travel_date"], m.raw) == ("2026-11-20", {"travel_date": "next month"})
+
+
+@pytest.mark.parametrize("raw_values", [None, {"travel_date": "soon"}, {"travel_date": 3}])
+def test_iso_date_without_usable_slot_raw_takes_the_date_words_of_the_message(raw_values):
+    m = merge_slots(PASSPORT, {"travel_date": "2026-11-20"}, "slot_answer", {}, raw_values=raw_values,
+                    message="we are travelling next month")
+    assert m.raw == {"travel_date": "next month"}
+
+
+def test_iso_date_with_no_date_words_anywhere_has_no_raw():
+    m = merge_slots(PASSPORT, {"travel_date": "2026-11-20"}, "slot_answer", {}, message="the usual time")
+    assert m.slots["travel_date"] == "2026-11-20" and m.raw == {}
+
+
+def test_date_given_as_words_needs_no_raw():
+    m = merge_slots(PASSPORT, {"travel_date": "mid December"}, "slot_answer", {}, message="mid December")
+    assert (m.slots["travel_date"], m.raw) == ("mid December", {})
+
+
+def test_extractive_rules_date_wins_and_keeps_no_llm_words():
+    m = merge_slots(PASSPORT, {"travel_date": "2026-11-20"}, "slot_answer", {},
+                    rules_changes={"travel_date": "next week"}, raw_values={"travel_date": "next month"},
+                    message="next week")
+    assert (m.slots["travel_date"], m.raw) == ("next week", {})

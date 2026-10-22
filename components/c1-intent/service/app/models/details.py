@@ -138,7 +138,8 @@ class ChatResponse(BaseModel):
     active_intent: str | None
     tasks: list[str] = Field(description="The active request first, then the unfinished ones")
     slots: dict[str, str]
-    raw_slots: dict[str, str] = Field(description="The user's words for slots stored as \"other\"")
+    raw_slots: dict[str, str] = Field(description="The user's words for slots stored as \"other\" and for dates "
+                                      "(stored as YYYY-MM-DD)")
     missing_slots: list[str]
     assumed_slots: list[str] = Field(description="Carried-over slots the citizen has not confirmed yet")
     ready: bool = Field(description="All slots of active_intent are filled and confirmed")
