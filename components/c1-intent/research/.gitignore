@@ -11,6 +11,7 @@ results/*
 !results/context_*_e*.png
 !results/dst_results.json
 !results/gate_calibration.json
+!results/dialogue_eval_*.json
 !results/run1/
 data/backup_v0/
 data/backup_v1_0/
