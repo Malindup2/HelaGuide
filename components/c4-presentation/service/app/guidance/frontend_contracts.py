@@ -60,6 +60,7 @@ class StartGuidance(DTO):
 class PreviewGuidance(StartGuidance):
     mode: Literal["research_preview"] = "research_preview"
     configuration: Configuration
+    allow_provisional: bool = False   # honoured only when the server runs the explicit demo-provisional mode
 
 class AdjustView(DTO):
     request_id: str = Field(min_length=8,max_length=128)
@@ -141,6 +142,7 @@ class ScopedFact(DTO):
     claim_ids: list[str] = Field(default_factory=list)
     evidence_ids: list[str] = Field(default_factory=list)
     qualification: str | None = None
+    role: str | None = None
     conditions: list[str]
     status: Literal["draft","reviewed","source_fallback"]
     source_context: list[SourcePassage] = Field(default_factory=list)
@@ -182,7 +184,7 @@ class SourceReview(DTO):
     independent_government_validation: Literal[False]
 
 class PreparationMetadata(DTO):
-    content_state: Literal["published","source_fallback"]
+    content_state: Literal["published","source_fallback","provisional_demo","demo_accepted"]
     preparation_state: Literal["published","draft","queued","pending","processing","failed","stale"]
     job_state: str | None
     job_id: str | None

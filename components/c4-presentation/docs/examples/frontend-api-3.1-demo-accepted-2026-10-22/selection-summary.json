@@ -1,0 +1,940 @@
+{
+  "selections": [
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-birth_copy-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "support_elements": 1
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-nic_amendment-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "off"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 3
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "experienced",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 2
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "guided",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "on",
+        "segmentation": "on"
+      },
+      "support_elements": 5
+    },
+    {
+      "procedure": "official-company_pack-v3",
+      "citizen": "novice",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "detailed",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "on"
+      },
+      "support_elements": 4
+    }
+  ]
+}

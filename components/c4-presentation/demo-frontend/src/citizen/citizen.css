@@ -243,5 +243,12 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 
 /* Facts that belong to one step, shown as one small neutral card */
 .cz-atstep { display: grid; gap: 6px; padding: 8px 10px; border: 1px solid var(--cz-line); border-radius: 10px; background: var(--cz-paper); }
-.cz-atstep-h { margin: 0; font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--cz-orange-deep); }
+.cz-qual { display: block; flex-basis: 100%; margin-left: 90px; color: var(--cz-muted); font-size: .75rem; }
+@media (max-width: 480px) { .cz-qual { margin-left: 0; } }
+.cz-service { display: grid; gap: 4px; padding: 6px 2px; color: var(--cz-muted); }
+.cz-service-h { margin: 0; font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.cz-provisional { padding: 6px 10px; border-left: 3px solid var(--cz-orange-line); border-radius: 0 6px 6px 0; background: var(--cz-orange-wash); font-size: .8125rem; }
 .cz-atstep .cz-tag { background: #fff; }
+
+.cz-check { display: flex; gap: 8px; align-items: flex-start; font-size: .8125rem; color: var(--cz-muted); }
+.cz-check input { margin-top: 3px; accent-color: var(--cz-orange); }

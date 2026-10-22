@@ -24,6 +24,11 @@ class Supplement(Record):
     adds_information: bool = False
 
 
+class Attachment31(Attachment):
+    """3.0 attachment plus what the citizen does with the fact at this step (shown as Bring, Prepare, Submit, Keep, Pay or Charge)."""
+    role: Literal["bring", "prepare", "submit", "keep", "pay", "charge"] = "bring"
+
+
 class Action31(Record):
     id: str
     heading: Text
@@ -50,7 +55,7 @@ class GuidanceContent31(Record):
     source_limit: str
     claims: tuple[Claim, ...]
     actions: tuple[Action31, ...]
-    attachments: tuple[Attachment, ...] = ()
+    attachments: tuple[Attachment31, ...] = ()
     phases: tuple[Phase, ...] = ()
     phase_order: tuple[str, ...] = ()
     phase_order_basis: Literal["none", "stage_edges", "reviewed_overlay"] = "none"
@@ -69,7 +74,7 @@ def to_v30(content: GuidanceContent31) -> GuidanceContent:
                            visible_condition_ids=a.visible_condition_ids, visible_attachment_ids=a.visible_attachment_ids) for a in content.actions)
     plain = GuidanceContent(procedure_id=content.procedure_id, language=content.language, source_graph_fingerprint=content.source_graph_fingerprint,
                             relationship_fingerprint=content.relationship_fingerprint, content_version=content.content_version, origin=content.origin,
-                            source_limit=content.source_limit, claims=content.claims, actions=actions, attachments=content.attachments, phases=content.phases,
+                            source_limit=content.source_limit, claims=content.claims, actions=actions, attachments=tuple(Attachment.model_validate(a.model_dump(exclude={"role"})) for a in content.attachments), phases=content.phases,
                             phase_order=content.phase_order, phase_order_basis=content.phase_order_basis, phase_order_evidence_ids=content.phase_order_evidence_ids)
     if content.review is None:
         return plain
@@ -126,7 +131,7 @@ def validate_content31(source: ProcedureSource, content: GuidanceContent31) -> G
     return content
 
 
-def evaluate31(source: ProcedureSource, content: GuidanceContent31 | None = None, constraints: Constraints | None = None, *, assume_reviewed: bool = False):
+def evaluate31(source: ProcedureSource, content: GuidanceContent31 | None = None, constraints: Constraints | None = None, *, assume_reviewed: bool = False, relax_map: bool = False):
     """Feasibility with D2 and D3 independent. assume_reviewed is a HYPOTHETICAL dry run: drafts count as reviewed, nothing is persisted."""
     constraints = constraints or Constraints()
     g = source.graph
@@ -136,7 +141,8 @@ def evaluate31(source: ProcedureSource, content: GuidanceContent31 | None = None
     actions = () if content is None else content.actions
     coverage = g.completeness.model_dump()
     structural = all(coverage.get(k) == "complete" for k in ("actions", "conditions", "prerequisites", "branch_groups", "service_dependencies"))
-    full_map = structural and coverage.get("parallel_groups") == "complete"
+    # relax_map (provisional research preview only): a map of verified branches and prerequisites is truthful when only parallel coverage is unknown, because it claims nothing about parallelism.
+    full_map = structural and (relax_map or coverage.get("parallel_groups") == "complete")
     has_relations = bool(g.action_prerequisites or g.branch_groups or g.parallel_groups or g.stage_dependencies or (source.relationships and (source.relationships.joins or source.relationships.parallel_areas)))
     detailed = bool(actions) and all(ok(a.concise) and ok(a.detailed) for a in actions)
     recap = len(g.actions) > 1 and bool(actions) and all(ok(a.recap) for a in actions)

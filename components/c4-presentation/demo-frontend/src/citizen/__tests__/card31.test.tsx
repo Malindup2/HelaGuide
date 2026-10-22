@@ -21,7 +21,7 @@ describe('content 3.1: D2 chooses the primary explanation, D3 only the supplemen
     expect(step().textContent).toContain(a.essential);
     expect(step().textContent).toContain(a.explanation_visible!);
     expect(step().querySelector('.cz-label')?.textContent).toBe('More information');
-    expect(screen.queryByRole('button', { name: 'More' })).toBeNull();
+    expect(screen.queryByRole('button', { name: /More guidance/ })).toBeNull();
     expect(a.essential.length).toBeLessThan(100);
   });
 
@@ -35,7 +35,7 @@ describe('content 3.1: D2 chooses the primary explanation, D3 only the supplemen
     const open = structuredClone(r); open.interaction.explanation_open_action_ids = [a.id];
     rerender(<GuidanceCard response={open} emit={emit} />);
     expect(step().textContent).toContain(a.explanation_hidden!);
-    expect(step().querySelector('button.cz-toggle')?.textContent).toBe('Less');
+    expect(step().querySelector('button.cz-toggle')?.textContent).toBe('Less guidance');
   });
 
   it('Detailed has a fuller primary than Concise in both D3 states, and D3 never changes the primary', () => {
@@ -75,15 +75,16 @@ describe('content 3.1: D2 chooses the primary explanation, D3 only the supplemen
     }
   });
 
-  it('carries the exact source wording alongside, as a quiet reference and not instead of the instruction', () => {
+  it('keeps the exact source wording out of the step and reachable through Sources', () => {
     const r = v31Combo('concise', 'on'), a = register(r);
     render(<GuidanceCard response={r} emit={vi.fn()} />);
-    const source = step().querySelector('details.cz-source')!;
-    expect(source.querySelector('summary')?.textContent).toBe('What the source says');
-    expect(source.textContent).toContain(a.source_wording!.split('\n\n')[0]);
+    expect(step().querySelector('details')).toBeNull();
+    expect(step().textContent).not.toContain('What the source says');
+    fireEvent.click(screen.getByRole('button', { name: /Sources/ }));
+    const sheet = document.querySelector('dialog')!;
+    expect(sheet.textContent).toContain('Source wording, step by step');
+    expect(sheet.textContent).toContain(a.source_wording!.split('\n\n')[0]);
     expect(a.essential).not.toBe(a.source_wording);
-    const text = step().textContent ?? '';
-    expect(text.indexOf(a.essential)).toBeLessThan(text.indexOf('What the source says'));
   });
 });
 
@@ -93,7 +94,7 @@ describe('content 3.1: fallback, structure and scan-friendly facts', () => {
     render(<GuidanceCard response={r} emit={vi.fn()} />);
     expect(document.querySelector('details.cz-source')).toBeNull();
     expect(screen.queryByText('More information')).toBeNull();
-    expect(screen.queryByRole('button', { name: 'More' })).toBeNull();
+    expect(screen.queryByRole('button', { name: /More guidance/ })).toBeNull();
     expect(screen.getAllByText(/not live or independently verified/).length).toBeGreaterThan(0);
   });
 
@@ -101,7 +102,7 @@ describe('content 3.1: fallback, structure and scan-friendly facts', () => {
     const r = v31Standard();
     render(<GuidanceCard response={r} emit={vi.fn()} />);
     expect(screen.getAllByText('LKR 0').length).toBeGreaterThanOrEqual(3);
-    expect(document.querySelectorAll('.cz-reqs').length).toBe(1);
+    expect(document.querySelectorAll('.cz-service').length).toBe(1);
     expect(screen.queryByText('Agency')).toBeNull();
     expect(screen.getByText(/no fixed order/)).toBeTruthy();
   });

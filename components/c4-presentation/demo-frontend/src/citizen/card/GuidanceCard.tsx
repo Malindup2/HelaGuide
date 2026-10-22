@@ -3,7 +3,7 @@ import type { Configuration, EventBody, GuidanceResponse, RatingReason, Rendered
 import type { Layer } from '../model';
 import { byId, entryOf, headingOf, layersOf, originOf, paragraphs, phaseGroups, phaseOf, plainName, procedureFacts } from '../model';
 import { ChevronIcon, ExpandIcon, InfoIcon, ListIcon, SlidersIcon, Sheet } from '../ui';
-import { Facts, Marker, SourceWording, StepBody } from './StepParts';
+import { Facts, Marker, StepBody } from './StepParts';
 import RouteChoice from './Routes';
 import ProcessGraph from './ProcessGraph';
 import { SourcesContent, SupportControls } from './Sheets';
@@ -116,8 +116,9 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
     .map(a => { const rl = entryOf(doc, a.id)?.route_layer; return stepArticle(a, numbered && rl ? `${rl}` : '', 'route', o.conditions); })}</div>;
   const inRoute = (o: RouteOption) => o.action_ids.map(id => byId(doc, id)).filter((a): a is RenderedAction => !!a)
     .sort((x, y) => (entryOf(doc, x.id)?.route_layer ?? 0) - (entryOf(doc, y.id)?.route_layer ?? 0) || x.id.localeCompare(y.id));
-  const routePreview = (o: RouteOption) => <ul className="cz-preview">{inRoute(o).map(a => <li key={a.id}>{headingOf(a, doc.source_limit)}</li>)}</ul>;
-  const routeBlock = (route: Route) => <RouteChoice key={route.branch_id} route={route} selected={routes[route.branch_id] ?? []} onChoose={ids => chooseRoute(route, ids)} steps={routeSteps} preview={routePreview} />;
+  const routePreview = (o: RouteOption) => <ol className="cz-preview" aria-label="Steps on this route">{inRoute(o).map(a => <li key={a.id}>{headingOf(a, doc.source_limit)}</li>)}</ol>;
+  const routeFacts = (route: Route) => doc.facts.filter(f => f.scope === 'route' && f.branch_id === route.branch_id);
+  const routeBlock = (route: Route) => <RouteChoice key={route.branch_id} route={route} selected={routes[route.branch_id] ?? []} onChoose={ids => chooseRoute(route, ids)} steps={routeSteps} preview={routePreview} facts={routeFacts(route)} doc={doc} />;
 
   const layerList = (layers: Layer[]) => <ol className="cz-layers">{layers.map(l => {
     const many = l.peers.length + l.routes.length > 1;
@@ -143,11 +144,12 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
     <details className="cz-more"><summary>Text version of the map</summary><ul>{doc.relationship_aid.map.text_equivalent.map((t, i) => <li key={i}>{t}</li>)}</ul></details>
   </section>;
 
-  const factsPanel = (procedure.documents.length + procedure.fees.length > 0) && <section className="cz-reqs" aria-label="Documents and charges">
+  // Only facts that no step or route can claim stay here, as one slim row. Facts that belong to a step are shown at that step instead.
+  const factsPanel = (procedure.documents.length + procedure.fees.length > 0) && <aside className="cz-service" aria-label="For the whole service">
+    <p className="cz-service-h">For the whole service</p>
     <Facts facts={[...procedure.documents, ...procedure.fees]} doc={doc} />
-    {procedure.fees.length > 1 && <p className="cz-fine">Each charge is listed on its own. They are not added up.</p>}
-    <SourceWording facts={[...procedure.documents, ...procedure.fees]} doc={doc} />
-  </section>;
+    {procedure.fees.length > 1 && <p className="cz-fine">Charges are listed separately and are not added together.</p>}
+  </aside>;
 
   const phase = phaseOf(doc, activeId);
   const activeAction = activeId ? byId(doc, activeId) : null;
@@ -160,6 +162,8 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
       <div className="cz-titlerow"><h2>{plainName(response.procedure_title)}</h2>
         <span className={`cz-origin cz-origin-${origin.kind}`} title={origin.note}>{origin.label}</span></div>
       <p className="cz-meta">{agencies.join(' · ')}{agencies.length > 0 && ' · '}<span>{doc.synthetic ? 'Fictional example, not an official service' : 'Official-source snapshot, not live or independently verified'}</span></p>
+      {response.preparation.content_state === 'demo_accepted' && <p className="cz-provisional" role="note"><b>Local research demo wording.</b> AI-assisted and checked only by automatic source-grounding checks. The project owner accepted it for this demonstration; no expert or government body has reviewed it.</p>}
+      {response.preparation.content_state === 'provisional_demo' && <p className="cz-provisional" role="note"><b>Provisional demo wording.</b> Written with AI assistance and checked only by automatic source-grounding checks. No person or authority has reviewed it.</p>}
       <div className="cz-tools">
         {adjustable && <button type="button" className="cz-chip" onClick={() => setSheet('support')}><SlidersIcon />Support</button>}
         <button type="button" className="cz-chip" onClick={() => setSheet('sources')}><InfoIcon />Sources</button>
@@ -179,7 +183,7 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
         {browsing.length > 1 && <details className="cz-steplist"><summary>Steps <ChevronIcon /></summary>
           <ol>{browsing.map(id => { const a = byId(doc, id)!; return <li key={id}><button type="button" aria-current={id === activeId ? 'step' : undefined} onClick={() => go(id)}>{headingOf(a, doc.source_limit)}</button></li>; })}</ol></details>}
       </nav>
-      {doc.routes.map(r => <RouteChoice key={r.branch_id} route={r} selected={routes[r.branch_id] ?? []} onChoose={ids => chooseRoute(r, ids)} compact />)}
+      {doc.routes.map(r => <RouteChoice key={r.branch_id} route={r} selected={routes[r.branch_id] ?? []} onChoose={ids => chooseRoute(r, ids)} preview={routePreview} facts={routeFacts(r)} doc={doc} compact />)}
       {activeAction
         ? <article className="cz-step cz-focus" data-step-id={activeAction.id} aria-labelledby={`cz-fh-${activeAction.id}`}>
           {activeRoute && <p className="cz-routehead"><Marker text={String.fromCharCode(65 + activeRoute.options.findIndex(o => o.action_ids.includes(activeAction.id)))} kind="route" />

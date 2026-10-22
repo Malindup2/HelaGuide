@@ -1,0 +1,2741 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/research/previews",
+  "request": {
+    "request_id": "8d839386-0393-47ee-a94e-7d2f31fb668a",
+    "session_id": "guest:d5367a10100f4cb8883319aee6b9407d",
+    "procedure_id": "official-nic_amendment-v3",
+    "capability_token": "documentation-sandbox-only-not-a-production-capability",
+    "mode": "research_preview",
+    "configuration": {
+      "navigation": "overview",
+      "explanation": "concise",
+      "disclosure": "off",
+      "relationships": "none",
+      "recap": "off",
+      "segmentation": "off"
+    },
+    "allow_provisional": false
+  },
+  "status_code": 200,
+  "response": {
+    "schema_version": "c4-guidance-api-1.0",
+    "journey_id": "guidance:dcf363708b5648489ea904acf6ddc639",
+    "view_id": "view:9beae26bb4da4422bd42641c2d78081d",
+    "parent_view_id": null,
+    "session_id": "guest:d5367a10100f4cb8883319aee6b9407d",
+    "procedure_id": "official-nic_amendment-v3",
+    "procedure_title": "NIC amendment: certifying-officer routes",
+    "created_at": "2026-10-22T05:10:45.715123Z",
+    "selection": {
+      "kind": "research_preview",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "action_schema": "c4-scaffolds-v3.1",
+      "label": "Research preview - not a learned selection",
+      "scoring_status": "not_run",
+      "policy": null,
+      "learning_eligible": false,
+      "explanation": "Explicit researcher choice; no scoring or model update."
+    },
+    "preparation": {
+      "content_state": "demo_accepted",
+      "preparation_state": "draft",
+      "job_state": "queued",
+      "job_id": "98413e934e841d13208a308af5c70144451a4c459c69631c794e8432e2fa625e",
+      "error_code": null,
+      "generation_enabled": false,
+      "mode": "demo",
+      "language": "en",
+      "fallback_language": "source_language",
+      "content_schema": "c4-guidance-content-3.1",
+      "artifact_id": null,
+      "review_kind": "project_owner_demo_acceptance_automatic_checks",
+      "source_kind": "bounded_official_source_snapshot",
+      "content_origin": "demo_mock",
+      "source_review": {
+        "reviewer": "LOCAL RESEARCH DEMO: accepted for demo use by the project owner. AI-assisted wording checked by automatic source-grounding checks only; no external expert, government or independent review.",
+        "reviewed_at": "2026-10-22T05:10:45.662442Z",
+        "scope_note": "Demo acceptance is a project-level authorisation for this local research demonstration. It is not external validation, and the original provenance (demo_mock, no review record) is unchanged.",
+        "independent_government_validation": false
+      }
+    },
+    "effective_context": {
+      "schema_version": "c4-effective-guidance-context-1.0",
+      "session_id": "guest:d5367a10100f4cb8883319aee6b9407d",
+      "profile_id": null,
+      "personalization_enabled": false,
+      "service_id": "svc:nic_amendment",
+      "familiarity": null,
+      "confidence": null,
+      "preferences": {},
+      "constraints": {
+        "locks": {},
+        "no_guided": false,
+        "no_map": false,
+        "no_disclosure": false
+      },
+      "revision": {
+        "identity": 0,
+        "revised": 0
+      },
+      "sources": {
+        "familiarity": "saved_service_report",
+        "confidence": "saved_navigation_default",
+        "preferences": "explicit_revised_settings_or_request",
+        "accessibility": "saved_requirements_union_request"
+      },
+      "legacy": {
+        "preferences_not_imported": {},
+        "pending_preference_review": {},
+        "hard_requirements_unresolved": false,
+        "lock_fingerprint": null,
+        "raw_locks": {
+          "native_or_mapped": {},
+          "unresolved_legacy": {}
+        }
+      },
+      "scoring_use": "Familiarity, confidence and confirmed revised preferences enter the PP1 encoder; constraints filter candidates. Identity/history are not features."
+    },
+    "availability": {
+      "action_schema": "c4-scaffolds-v3.1",
+      "feasibility_fingerprint": "1062da119865ba0d25455cb3388b75739ea220cadc1a8669611d3345197b61a8",
+      "nominal_count": 96,
+      "feasible_count": 32,
+      "candidates": [
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:nic_ds",
+            "action:nic_estate",
+            "action:nic_gn"
+          ]
+        }
+      ]
+    },
+    "document": {
+      "schema": "c4-render-plan-3.1",
+      "content_schema": "c4-guidance-content-3.1",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "synthetic": false,
+      "source_kind": "bounded_official_source_snapshot",
+      "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+      "source_graph_fingerprint": "da6d871ccde4191ebb389a84c4a9a8a143b594f84233a20df07d6ed305cc8626",
+      "relationship_fingerprint": "0b7a0bcd1014fd376d1afbf6fe9aa345afe31734d5c23e6eca2e53397417e1a8",
+      "content_fingerprint": "4fe90f96c8d6a7e2261babc009ff211eac1ab637b3caa30c65bba1936a940447",
+      "actions": [
+        {
+          "id": "action:nic_ds",
+          "heading": "Obtain the Divisional Secretary’s countersignature",
+          "essential": "Non-estate route: obtain the countersignature after certification.",
+          "conditions": [
+            "The applicant is not an estate resident and seeks an NIC amendment."
+          ],
+          "actor": null,
+          "destination": "Divisional Secretary",
+          "facts": [
+            {
+              "id": "attachment:action:nic_ds:svc:nic_amendment:document:0",
+              "fact_id": "svc:nic_amendment:document:0",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:nic_amendment:document:0",
+                "name": "NIC amendment application"
+              },
+              "scope": "action",
+              "action_id": "action:nic_ds",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:nic_ds:document:5"
+              ],
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ],
+              "qualification": null,
+              "role": "bring",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:nic_ds",
+                  "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+                  "evidence_ids": [
+                    "evidence:nic_routes"
+                  ]
+                },
+                {
+                  "content_id": "content:nic_estate",
+                  "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                  "evidence_ids": [
+                    "evidence:nic_routes"
+                  ]
+                },
+                {
+                  "content_id": "content:nic_gn",
+                  "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                  "evidence_ids": [
+                    "evidence:nic_routes"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": "This is another step in the same route, not an alternative to Grama Niladhari certification. No separate countersignature fee is specified in this snapshot; that does not establish that it is free.",
+          "explanation_hidden": null,
+          "recap": null,
+          "branch": "branch:nic_amendment",
+          "option": "option:non_estate",
+          "service_id": "svc:nic_amendment",
+          "agency": "Department for Registration of Persons",
+          "condition_ids": [
+            "condition:non_estate"
+          ],
+          "source_content_ids": [
+            "content:nic_ds",
+            "content:scope"
+          ],
+          "disclosure_available": false,
+          "wording_status": "provisional",
+          "source_wording": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:nic_estate",
+          "heading": "Apply through the Estate Superintendent",
+          "essential": "Estate residents use the Estate Superintendent route.",
+          "conditions": [
+            "The applicant is an estate resident seeking an NIC amendment."
+          ],
+          "actor": null,
+          "destination": "Estate Superintendent",
+          "facts": [
+            {
+              "id": "attachment:action:nic_estate:svc:nic_amendment:document:0",
+              "fact_id": "svc:nic_amendment:document:0",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:nic_amendment:document:0",
+                "name": "NIC amendment application"
+              },
+              "scope": "action",
+              "action_id": "action:nic_estate",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:nic_estate:document:1"
+              ],
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ],
+              "qualification": null,
+              "role": "submit",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:nic_ds",
+                  "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+                  "evidence_ids": [
+                    "evidence:nic_routes"
+                  ]
+                },
+                {
+                  "content_id": "content:nic_estate",
+                  "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                  "evidence_ids": [
+                    "evidence:nic_routes"
+                  ]
+                },
+                {
+                  "content_id": "content:nic_gn",
+                  "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                  "evidence_ids": [
+                    "evidence:nic_routes"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": "This example covers routing the application through its certifying officer, not preparing the full application or obtaining the card.",
+          "explanation_hidden": null,
+          "recap": null,
+          "branch": "branch:nic_amendment",
+          "option": "option:estate",
+          "service_id": "svc:nic_amendment",
+          "agency": "Department for Registration of Persons",
+          "condition_ids": [
+            "condition:estate"
+          ],
+          "source_content_ids": [
+            "content:nic_estate",
+            "content:scope"
+          ],
+          "disclosure_available": false,
+          "wording_status": "provisional",
+          "source_wording": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:nic_gn",
+          "heading": "Apply through your Grama Niladhari",
+          "essential": "Non-estate residents use their local Grama Niladhari.",
+          "conditions": [
+            "The applicant is not an estate resident and seeks an NIC amendment."
+          ],
+          "actor": null,
+          "destination": "Grama Niladhari for your area",
+          "facts": [
+            {
+              "id": "attachment:action:nic_gn:svc:nic_amendment:document:0",
+              "fact_id": "svc:nic_amendment:document:0",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:nic_amendment:document:0",
+                "name": "NIC amendment application"
+              },
+              "scope": "action",
+              "action_id": "action:nic_gn",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:nic_gn:document:3"
+              ],
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ],
+              "qualification": null,
+              "role": "submit",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:nic_ds",
+                  "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+                  "evidence_ids": [
+                    "evidence:nic_routes"
+                  ]
+                },
+                {
+                  "content_id": "content:nic_estate",
+                  "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                  "evidence_ids": [
+                    "evidence:nic_routes"
+                  ]
+                },
+                {
+                  "content_id": "content:nic_gn",
+                  "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                  "evidence_ids": [
+                    "evidence:nic_routes"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": "This example covers routing the application, not preparing the full application or obtaining the card.",
+          "explanation_hidden": null,
+          "recap": null,
+          "branch": "branch:nic_amendment",
+          "option": "option:non_estate",
+          "service_id": "svc:nic_amendment",
+          "agency": "Department for Registration of Persons",
+          "condition_ids": [
+            "condition:non_estate"
+          ],
+          "source_content_ids": [
+            "content:nic_gn",
+            "content:scope"
+          ],
+          "disclosure_available": false,
+          "wording_status": "provisional",
+          "source_wording": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: routing an amendment application through its certifying officer, not preparing the full application or obtaining the card. Recorded LKR 500 is the amendment issue fee only; normal registered post adds LKR 120. Other services or penalties are excluded. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        }
+      ],
+      "facts": [
+        {
+          "id": "attachment:action:nic_estate:svc:nic_amendment:document:0",
+          "fact_id": "svc:nic_amendment:document:0",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:nic_amendment:document:0",
+            "name": "NIC amendment application"
+          },
+          "scope": "action",
+          "action_id": "action:nic_estate",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:nic_estate:document:1"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ],
+          "qualification": null,
+          "role": "submit",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:nic_ds",
+              "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            },
+            {
+              "content_id": "content:nic_estate",
+              "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            },
+            {
+              "content_id": "content:nic_gn",
+              "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:nic_gn:svc:nic_amendment:document:0",
+          "fact_id": "svc:nic_amendment:document:0",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:nic_amendment:document:0",
+            "name": "NIC amendment application"
+          },
+          "scope": "action",
+          "action_id": "action:nic_gn",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:nic_gn:document:3"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ],
+          "qualification": null,
+          "role": "submit",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:nic_ds",
+              "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            },
+            {
+              "content_id": "content:nic_estate",
+              "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            },
+            {
+              "content_id": "content:nic_gn",
+              "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:nic_ds:svc:nic_amendment:document:0",
+          "fact_id": "svc:nic_amendment:document:0",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:nic_amendment:document:0",
+            "name": "NIC amendment application"
+          },
+          "scope": "action",
+          "action_id": "action:nic_ds",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:nic_ds:document:5"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ],
+          "qualification": null,
+          "role": "bring",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:nic_ds",
+              "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            },
+            {
+              "content_id": "content:nic_estate",
+              "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            },
+            {
+              "content_id": "content:nic_gn",
+              "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:route:nic:fee",
+          "fact_id": "svc:nic_amendment:fee",
+          "fact": {
+            "kind": "fee",
+            "fact_id": "svc:nic_amendment:fee",
+            "value": 500.0,
+            "currency": "LKR"
+          },
+          "scope": "route",
+          "action_id": null,
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": "branch:nic_amendment",
+          "option_ids": [
+            "option:estate",
+            "option:non_estate"
+          ],
+          "condition_ids": [
+            "condition:estate",
+            "condition:non_estate"
+          ],
+          "claim_ids": [
+            "route:nic:fee"
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ],
+          "qualification": "Can be paid through the certifying officer. Postal delivery adds LKR 120 and is not part of this fee.",
+          "role": "pay",
+          "conditions": [
+            "The applicant is an estate resident seeking an NIC amendment.",
+            "The applicant is not an estate resident and seeks an NIC amendment."
+          ],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:nic_estate",
+              "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            },
+            {
+              "content_id": "content:nic_gn",
+              "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+              "evidence_ids": [
+                "evidence:nic_routes"
+              ]
+            }
+          ],
+          "applicability_status": "structured_conditions"
+        }
+      ],
+      "branches": [
+        {
+          "group_id": "branch:nic_amendment",
+          "service_id": "svc:nic_amendment",
+          "selection": "XOR",
+          "options": [
+            {
+              "option_id": "option:estate",
+              "action_ids": [
+                "action:nic_estate"
+              ],
+              "condition_ids": [
+                "condition:estate"
+              ]
+            },
+            {
+              "option_id": "option:non_estate",
+              "action_ids": [
+                "action:nic_ds",
+                "action:nic_gn"
+              ],
+              "condition_ids": [
+                "condition:non_estate"
+              ]
+            }
+          ],
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        }
+      ],
+      "stages": [
+        {
+          "service_id": "svc:nic_amendment",
+          "display_order": 1,
+          "name": "NIC amendment: certifying-officer routes",
+          "agency": "Department for Registration of Persons",
+          "fee_fact_id": "svc:nic_amendment:fee",
+          "document_fact_ids": [
+            "svc:nic_amendment:document:0"
+          ]
+        }
+      ],
+      "stage_edges": [],
+      "edges": [
+        {
+          "edge_id": "prerequisite:0",
+          "kind": "requires_completion",
+          "source_id": "action:nic_gn",
+          "target_id": "action:nic_ds",
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        }
+      ],
+      "parallel": [],
+      "joins": [],
+      "parallel_areas": [],
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "unknown"
+      },
+      "sources": [
+        {
+          "evidence_id": "evidence:nic_routes",
+          "kind": "source_passage",
+          "source_url": "https://drp.gov.lk/en/normal.php",
+          "text": "Short source anchor: Counter signature of the Divisional Secretary is mandatory",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "conditions": [
+        {
+          "condition_id": "condition:estate",
+          "text": "The applicant is an estate resident seeking an NIC amendment.",
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        },
+        {
+          "condition_id": "condition:non_estate",
+          "text": "The applicant is not an estate resident and seeks an NIC amendment.",
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ]
+        }
+      ],
+      "provenance": [
+        {
+          "fact_id": "svc:nic_amendment:document:0",
+          "source_url": "https://drp.gov.lk/en/normal.php",
+          "retrieved_at": "2026-10-19T16:02:34Z"
+        },
+        {
+          "fact_id": "svc:nic_amendment:fee",
+          "source_url": "https://drp.gov.lk/en/normal.php",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "map_labels": {
+        "action:nic_ds": "Obtain the Divisional Secretary’s countersignature",
+        "action:nic_estate": "Apply through the Estate Superintendent",
+        "action:nic_gn": "Apply through your Grama Niladhari"
+      },
+      "phases": [],
+      "phase_order": [],
+      "supplementary": [],
+      "required_source_notes": [],
+      "relationship_aid": {
+        "mode": "none",
+        "inline_by_action": {},
+        "map": null,
+        "essential_relationships_remain_in_instructions": true
+      },
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:nic_ds",
+            "layer": 2,
+            "label": "Within this route: 2",
+            "branch_id": "branch:nic_amendment",
+            "option_id": "option:non_estate",
+            "route_layer": 2,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:nic_estate",
+            "layer": 1,
+            "label": "Within this route: 1",
+            "branch_id": "branch:nic_amendment",
+            "option_id": "option:estate",
+            "route_layer": 1,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:nic_gn",
+            "layer": 1,
+            "label": "Within this route: 1",
+            "branch_id": "branch:nic_amendment",
+            "option_id": "option:non_estate",
+            "route_layer": 1,
+            "available_for_navigation": false,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": null,
+        "browsing_action_ids": [],
+        "previous_action_id": null,
+        "next_action_id": null,
+        "browsing_position": null,
+        "browsing_count": 0,
+        "unresolved_route_ids": [
+          "branch:nic_amendment"
+        ],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "routes": [
+        {
+          "branch_id": "branch:nic_amendment",
+          "selection": "XOR",
+          "evidence_ids": [
+            "evidence:nic_routes"
+          ],
+          "choice_is_not_eligibility_or_completion": true,
+          "options": [
+            {
+              "option_id": "option:estate",
+              "action_ids": [
+                "action:nic_estate"
+              ],
+              "condition_ids": [
+                "condition:estate"
+              ],
+              "conditions": [
+                "The applicant is an estate resident seeking an NIC amendment."
+              ],
+              "label": "The applicant is an estate resident seeking an NIC amendment."
+            },
+            {
+              "option_id": "option:non_estate",
+              "action_ids": [
+                "action:nic_ds",
+                "action:nic_gn"
+              ],
+              "condition_ids": [
+                "condition:non_estate"
+              ],
+              "conditions": [
+                "The applicant is not an estate resident and seeks an NIC amendment."
+              ],
+              "label": "The applicant is not an estate resident and seeks an NIC amendment."
+            }
+          ]
+        }
+      ],
+      "requirements": {
+        "documents": [
+          {
+            "id": "attachment:action:nic_estate:svc:nic_amendment:document:0",
+            "fact_id": "svc:nic_amendment:document:0",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:nic_amendment:document:0",
+              "name": "NIC amendment application"
+            },
+            "scope": "action",
+            "action_id": "action:nic_estate",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:nic_estate:document:1"
+            ],
+            "evidence_ids": [
+              "evidence:nic_routes"
+            ],
+            "qualification": null,
+            "role": "submit",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:nic_ds",
+                "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              },
+              {
+                "content_id": "content:nic_estate",
+                "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              },
+              {
+                "content_id": "content:nic_gn",
+                "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:nic_gn:svc:nic_amendment:document:0",
+            "fact_id": "svc:nic_amendment:document:0",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:nic_amendment:document:0",
+              "name": "NIC amendment application"
+            },
+            "scope": "action",
+            "action_id": "action:nic_gn",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:nic_gn:document:3"
+            ],
+            "evidence_ids": [
+              "evidence:nic_routes"
+            ],
+            "qualification": null,
+            "role": "submit",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:nic_ds",
+                "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              },
+              {
+                "content_id": "content:nic_estate",
+                "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              },
+              {
+                "content_id": "content:nic_gn",
+                "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:nic_ds:svc:nic_amendment:document:0",
+            "fact_id": "svc:nic_amendment:document:0",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:nic_amendment:document:0",
+              "name": "NIC amendment application"
+            },
+            "scope": "action",
+            "action_id": "action:nic_ds",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:nic_ds:document:5"
+            ],
+            "evidence_ids": [
+              "evidence:nic_routes"
+            ],
+            "qualification": null,
+            "role": "bring",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:nic_ds",
+                "text": "The non-estate route also requires the Divisional Secretary's countersignature on the application certified through the Grama Niladhari.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              },
+              {
+                "content_id": "content:nic_estate",
+                "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              },
+              {
+                "content_id": "content:nic_gn",
+                "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "fees": [
+          {
+            "id": "attachment:route:nic:fee",
+            "fact_id": "svc:nic_amendment:fee",
+            "fact": {
+              "kind": "fee",
+              "fact_id": "svc:nic_amendment:fee",
+              "value": 500.0,
+              "currency": "LKR"
+            },
+            "scope": "route",
+            "action_id": null,
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": "branch:nic_amendment",
+            "option_ids": [
+              "option:estate",
+              "option:non_estate"
+            ],
+            "condition_ids": [
+              "condition:estate",
+              "condition:non_estate"
+            ],
+            "claim_ids": [
+              "route:nic:fee"
+            ],
+            "evidence_ids": [
+              "evidence:nic_routes"
+            ],
+            "qualification": "Can be paid through the certifying officer. Postal delivery adds LKR 120 and is not part of this fee.",
+            "role": "pay",
+            "conditions": [
+              "The applicant is an estate resident seeking an NIC amendment.",
+              "The applicant is not an estate resident and seeks an NIC amendment."
+            ],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:nic_estate",
+                "text": "For an estate resident, forward the amendment application through the Estate Superintendent. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              },
+              {
+                "content_id": "content:nic_gn",
+                "text": "For a non-estate resident, forward the amendment application through the Grama Niladhari for the area of residence. The amended-card issue fee is LKR 500 and can be paid through the certifying officer. Normal registered-post delivery adds LKR 120; that postal charge is outside the recorded base fee.",
+                "evidence_ids": [
+                  "evidence:nic_routes"
+                ]
+              }
+            ],
+            "applicability_status": "structured_conditions"
+          }
+        ],
+        "total": null,
+        "no_total_reason": "Charges are scoped source facts; no total or alternative-route sum is inferred.",
+        "placement": "Always available outside explanation disclosure; stage facts are not action payments."
+      }
+    },
+    "interaction": {
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:nic_ds",
+            "layer": 2,
+            "label": "Within this route: 2",
+            "branch_id": "branch:nic_amendment",
+            "option_id": "option:non_estate",
+            "route_layer": 2,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:nic_estate",
+            "layer": 1,
+            "label": "Within this route: 1",
+            "branch_id": "branch:nic_amendment",
+            "option_id": "option:estate",
+            "route_layer": 1,
+            "available_for_navigation": false,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:nic_gn",
+            "layer": 1,
+            "label": "Within this route: 1",
+            "branch_id": "branch:nic_amendment",
+            "option_id": "option:non_estate",
+            "route_layer": 1,
+            "available_for_navigation": false,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": null,
+        "browsing_action_ids": [],
+        "previous_action_id": null,
+        "next_action_id": null,
+        "browsing_position": null,
+        "browsing_count": 0,
+        "unresolved_route_ids": [
+          "branch:nic_amendment"
+        ],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "route_choices": {},
+      "map_visible": false,
+      "explanation_open_action_ids": [],
+      "display_acknowledged_view_ids": [],
+      "recap": {
+        "enabled": false,
+        "items": [],
+        "empty_reason": "recap_off",
+        "label": "Earlier guidance viewed, not confirmed as done"
+      },
+      "event_count": 0,
+      "completion_tracked": false
+    },
+    "controls": {
+      "configuration_adjustment": true,
+      "feedback": true,
+      "research_inspection": true
+    }
+  }
+}

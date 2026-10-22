@@ -128,7 +128,8 @@
           "evidence:application_rules"
         ],
         "qualification": null,
-        "status": "draft"
+        "status": "draft",
+        "role": "submit"
       },
       {
         "id": "attachment:action:submit_application:svc:demo_submission:document:copy",
@@ -147,7 +148,8 @@
           "evidence:application_rules"
         ],
         "qualification": null,
-        "status": "draft"
+        "status": "draft",
+        "role": "submit"
       }
     ],
     "phases": [
@@ -253,7 +255,7 @@
           ]
         },
         "detailed": {
-          "text": "After registration, prepare the fictional supporting copy. It does not require the form to be prepared first, and it is required for submission.",
+          "text": "After registration, prepare the fictional supporting copy. Nothing in the source requires the form to be prepared first, so you can do this before, after or alongside the form.",
           "status": "draft",
           "claim_ids": [
             "action:prepare_copy:essential:0"
@@ -319,7 +321,7 @@
           ]
         },
         "detailed": {
-          "text": "After registration, prepare the fictional completed application form. It does not require the supporting copy to be prepared first, and it is required for submission.",
+          "text": "After registration, prepare the fictional completed application form. Nothing in the source requires the supporting copy to be prepared first, so you can do this before, after or alongside the copy.",
           "status": "draft",
           "claim_ids": [
             "action:prepare_form:essential:0"
@@ -385,7 +387,7 @@
           ]
         },
         "detailed": {
-          "text": "Register the fictional application before preparing its two required items. After registration, preparing the form and preparing the supporting copy can proceed independently, in either order or concurrently. Both must be done before submission.",
+          "text": "Register the fictional application first, before preparing either required item. After registration, preparing the form and preparing the supporting copy can be done independently, in either order or at the same time. Both must be finished before you submit.",
           "status": "draft",
           "claim_ids": [
             "action:register_application:essential:0"
@@ -451,7 +453,7 @@
           ]
         },
         "detailed": {
-          "text": "Submit the fictional application only after both preparation actions are complete. Include the completed form and the supporting copy; completing only one is insufficient.",
+          "text": "Submit the fictional application only after both preparation actions are complete. Hand in the completed application form together with the supporting copy. Completing only one of them is not enough.",
           "status": "draft",
           "claim_ids": [
             "action:submit_application:essential:0"
@@ -615,7 +617,8 @@
           "evidence:application_rules"
         ],
         "qualification": null,
-        "status": "reviewed"
+        "status": "reviewed",
+        "role": "submit"
       },
       {
         "id": "attachment:action:submit_application:svc:demo_submission:document:copy",
@@ -634,7 +637,8 @@
           "evidence:application_rules"
         ],
         "qualification": null,
-        "status": "reviewed"
+        "status": "reviewed",
+        "role": "submit"
       }
     ],
     "phases": [
@@ -740,7 +744,7 @@
           ]
         },
         "detailed": {
-          "text": "After registration, prepare the fictional supporting copy. It does not require the form to be prepared first, and it is required for submission.",
+          "text": "After registration, prepare the fictional supporting copy. Nothing in the source requires the form to be prepared first, so you can do this before, after or alongside the form.",
           "status": "reviewed",
           "claim_ids": [
             "action:prepare_copy:essential:0"
@@ -806,7 +810,7 @@
           ]
         },
         "detailed": {
-          "text": "After registration, prepare the fictional completed application form. It does not require the supporting copy to be prepared first, and it is required for submission.",
+          "text": "After registration, prepare the fictional completed application form. Nothing in the source requires the supporting copy to be prepared first, so you can do this before, after or alongside the copy.",
           "status": "reviewed",
           "claim_ids": [
             "action:prepare_form:essential:0"
@@ -872,7 +876,7 @@
           ]
         },
         "detailed": {
-          "text": "Register the fictional application before preparing its two required items. After registration, preparing the form and preparing the supporting copy can proceed independently, in either order or concurrently. Both must be done before submission.",
+          "text": "Register the fictional application first, before preparing either required item. After registration, preparing the form and preparing the supporting copy can be done independently, in either order or at the same time. Both must be finished before you submit.",
           "status": "reviewed",
           "claim_ids": [
             "action:register_application:essential:0"
@@ -938,7 +942,7 @@
           ]
         },
         "detailed": {
-          "text": "Submit the fictional application only after both preparation actions are complete. Include the completed form and the supporting copy; completing only one is insufficient.",
+          "text": "Submit the fictional application only after both preparation actions are complete. Hand in the completed application form together with the supporting copy. Completing only one of them is not enough.",
           "status": "reviewed",
           "claim_ids": [
             "action:submit_application:essential:0"
@@ -981,7 +985,7 @@
       "reviewer": "Claude Sonnet 5.5 internal fictional author-review (AI-assisted; not human, external-expert or government review)",
       "reviewed_at": "2026-10-22T12:00:00Z",
       "scope_note": "Compared the 3.1 Concise, Detailed and supplement wording, plus headings, reminders and phase labels, to the supplied fictional Plan passages. Claim coverage and Concise/Detailed/supplement separation were also checked automatically. This is internal AI-assisted author review for isolated fictional demonstration only; it is not human, external expert, government or independent validation, and says nothing about whether any scaffold helps.",
-      "artifact_digest": "437d7f935d04ad150f3e581b4b65cb1bc2ac5699002dea806511cd01c518e1da",
+      "artifact_digest": "dd56fba773ca77dc664e55bca8a67b741c85ac34fd69446d5455db9eb805d966",
       "checks": [
         {
           "target": "actions.action:prepare_copy.heading",
@@ -1129,7 +1133,7 @@
             "evidence:application_rules"
           ],
           "result": "matched",
-          "note": "Internal AI-assisted fictional author-review only. Compared \"After registration, prepare the fictional supporting copy. It does not require the form to be prepared first, and it is required for submission.\" with the fictional source passage \"After registration, prepare the fictional supporting copy. This action does not require the application form to be prepared first. The copy is required for submission.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+          "note": "Internal AI-assisted fictional author-review only. Compared \"After registration, prepare the fictional supporting copy. Nothing in the source requires the form to be prepared first, so you can do this before, af\" with the fictional source passage. It restates the passage and adds plain clarifications of order, documents and places that the same fictional procedure states; no new requirement, fee or place. Not human or external expert review."
         },
         {
           "target": "actions.action:prepare_copy.supplement",
@@ -1160,7 +1164,7 @@
             "evidence:application_rules"
           ],
           "result": "matched",
-          "note": "Internal AI-assisted fictional author-review only. Compared \"After registration, prepare the fictional completed application form. It does not require the supporting copy to be prepared first, and it is required\" with the fictional source passage \"After registration, prepare the fictional completed application form. This action does not require the supporting copy to be prepared first. The form is required for submission.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+          "note": "Internal AI-assisted fictional author-review only. Compared \"After registration, prepare the fictional completed application form. Nothing in the source requires the supporting copy to be prepared first, so you \" with the fictional source passage. It restates the passage and adds plain clarifications of order, documents and places that the same fictional procedure states; no new requirement, fee or place. Not human or external expert review."
         },
         {
           "target": "actions.action:prepare_form.supplement",
@@ -1191,7 +1195,7 @@
             "evidence:application_rules"
           ],
           "result": "matched",
-          "note": "Internal AI-assisted fictional author-review only. Compared \"Register the fictional application before preparing its two required items. After registration, preparing the form and preparing the supporting copy c\" with the fictional source passage \"Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in eith\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Register the fictional application first, before preparing either required item. After registration, preparing the form and preparing the supporting c\" with the fictional source passage. It restates the passage and adds plain clarifications of order, documents and places that the same fictional procedure states; no new requirement, fee or place. Not human or external expert review."
         },
         {
           "target": "actions.action:register_application.supplement",
@@ -1222,7 +1226,7 @@
             "evidence:application_rules"
           ],
           "result": "matched",
-          "note": "Internal AI-assisted fictional author-review only. Compared \"Submit the fictional application only after both preparation actions are complete. Include the completed form and the supporting copy; completing only\" with the fictional source passage \"Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Submit the fictional application only after both preparation actions are complete. Hand in the completed application form together with the supporting\" with the fictional source passage. It restates the passage and adds plain clarifications of order, documents and places that the same fictional procedure states; no new requirement, fee or place. Not human or external expert review."
         },
         {
           "target": "actions.action:submit_application.supplement",

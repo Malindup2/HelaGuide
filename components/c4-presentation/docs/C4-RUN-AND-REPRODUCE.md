@@ -12,6 +12,7 @@ $env:C4_GUIDANCE_CONTENT_SCHEMA = "c4-guidance-content-3.1"
 $env:C4_PREPARED_CONTENT_ENABLED = "true"; $env:C4_PREPARED_CONTENT_MODE = "demo"; $env:C4_PREPARATION_ON_MISS = "false"; $env:C4_LLM_ENABLED = "false"
 $env:C4_PREPARED_CONTENT_DIRECTORY = "$PWD\.local\prepared-content\final\v31"
 $env:C4_GUIDANCE_API_ENABLED = "true"; $env:C4_RESEARCH_PREVIEWS_ENABLED = "true"
+$env:C4_DEMO_ACCEPTED_CONTENT = "true"   # LOCAL RESEARCH DEMO ONLY: ordinary journeys use the cached, source-grounded official wording (see docs/C4-DEMO-ACCEPTANCE.md). Omit for strict reviewed-only behaviour.
 $env:C4_PP1_POLICY_ENABLED = "true"
 $env:C4_PP1_POLICY_DIRECTORY = "$PWD\.local\pp1-learning\v31-live-final"
 $env:C4_PP1_CHECKPOINT = "$PWD\.local\pp1-learning\v31-study-20261022-a\seed-23-x0.25-525-n5000.npz"

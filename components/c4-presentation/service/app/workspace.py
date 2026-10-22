@@ -59,6 +59,10 @@ if guidance_flag == "true":
     if prepared_options is None:
         raise ValueError("C4_GUIDANCE_API_ENABLED requires C4_PREPARED_CONTENT_ENABLED=true")
     guidance_options = {"research_enabled": research_flag == "true", "flavour": flavour}
+    if os.getenv("C4_DEMO_PROVISIONAL_CONTENT", "false").lower() == "true":
+        guidance_options["demo_provisional"] = True
+    if os.getenv("C4_DEMO_ACCEPTED_CONTENT", "false").lower() == "true":
+        guidance_options["demo_accepted"] = True
 
 if guidance_options is not None and os.getenv("C4_PP1_POLICY_ENABLED", "false").lower() == "true":
     policy_directory = os.getenv("C4_PP1_POLICY_DIRECTORY")

@@ -1,0 +1,2438 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/research/previews",
+  "request": {
+    "request_id": "c298bbc7-e4c3-415e-904c-18b8db2e9071",
+    "session_id": "guest:d5367a10100f4cb8883319aee6b9407d",
+    "procedure_id": "official-birth_copy-v3",
+    "capability_token": "documentation-sandbox-only-not-a-production-capability",
+    "mode": "research_preview",
+    "configuration": {
+      "navigation": "overview",
+      "explanation": "concise",
+      "disclosure": "on",
+      "relationships": "none",
+      "recap": "off",
+      "segmentation": "off"
+    },
+    "allow_provisional": false
+  },
+  "status_code": 200,
+  "response": {
+    "schema_version": "c4-guidance-api-1.0",
+    "journey_id": "guidance:444b050d1a9040b0ade6db321823ba23",
+    "view_id": "view:983b6d29ec7249edbee40bc1876c1bce",
+    "parent_view_id": null,
+    "session_id": "guest:d5367a10100f4cb8883319aee6b9407d",
+    "procedure_id": "official-birth_copy-v3",
+    "procedure_title": "Birth certificate copy: receipt-backed submission",
+    "created_at": "2026-10-22T05:10:41.194899Z",
+    "selection": {
+      "kind": "research_preview",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "action_schema": "c4-scaffolds-v3.1",
+      "label": "Research preview - not a learned selection",
+      "scoring_status": "not_run",
+      "policy": null,
+      "learning_eligible": false,
+      "explanation": "Explicit researcher choice; no scoring or model update."
+    },
+    "preparation": {
+      "content_state": "demo_accepted",
+      "preparation_state": "draft",
+      "job_state": "queued",
+      "job_id": "7d09d19c2991f79c4b168f1ce89247e9cac1a7d36a57a873f516e142bd662a1c",
+      "error_code": null,
+      "generation_enabled": false,
+      "mode": "demo",
+      "language": "en",
+      "fallback_language": "source_language",
+      "content_schema": "c4-guidance-content-3.1",
+      "artifact_id": null,
+      "review_kind": "project_owner_demo_acceptance_automatic_checks",
+      "source_kind": "bounded_official_source_snapshot",
+      "content_origin": "demo_mock",
+      "source_review": {
+        "reviewer": "LOCAL RESEARCH DEMO: accepted for demo use by the project owner. AI-assisted wording checked by automatic source-grounding checks only; no external expert, government or independent review.",
+        "reviewed_at": "2026-10-22T05:10:41.190983Z",
+        "scope_note": "Demo acceptance is a project-level authorisation for this local research demonstration. It is not external validation, and the original provenance (demo_mock, no review record) is unchanged.",
+        "independent_government_validation": false
+      }
+    },
+    "effective_context": {
+      "schema_version": "c4-effective-guidance-context-1.0",
+      "session_id": "guest:d5367a10100f4cb8883319aee6b9407d",
+      "profile_id": null,
+      "personalization_enabled": false,
+      "service_id": "svc:birth_copy",
+      "familiarity": null,
+      "confidence": null,
+      "preferences": {},
+      "constraints": {
+        "locks": {},
+        "no_guided": false,
+        "no_map": false,
+        "no_disclosure": false
+      },
+      "revision": {
+        "identity": 0,
+        "revised": 0
+      },
+      "sources": {
+        "familiarity": "saved_service_report",
+        "confidence": "saved_navigation_default",
+        "preferences": "explicit_revised_settings_or_request",
+        "accessibility": "saved_requirements_union_request"
+      },
+      "legacy": {
+        "preferences_not_imported": {},
+        "pending_preference_review": {},
+        "hard_requirements_unresolved": false,
+        "lock_fingerprint": null,
+        "raw_locks": {
+          "native_or_mapped": {},
+          "unresolved_legacy": {}
+        }
+      },
+      "scoring_use": "Familiarity, confidence and confirmed revised preferences enter the PP1 encoder; constraints filter candidates. Identity/history are not features."
+    },
+    "availability": {
+      "action_schema": "c4-scaffolds-v3.1",
+      "feasibility_fingerprint": "e3f1214e7ff97d18a5e4317eb1d1fecfdb3850bcefad6e7c4b7a6f805810228e",
+      "nominal_count": 96,
+      "feasible_count": 32,
+      "candidates": [
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": false,
+          "reasons": [
+            "relationships:incomplete_map_or_accessibility",
+            "segmentation:reviewed_meaningful_groups_missing"
+          ],
+          "disclosable_action_ids": [
+            "action:birth_pay",
+            "action:birth_submit"
+          ]
+        }
+      ]
+    },
+    "document": {
+      "schema": "c4-render-plan-3.1",
+      "content_schema": "c4-guidance-content-3.1",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "synthetic": false,
+      "source_kind": "bounded_official_source_snapshot",
+      "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+      "source_graph_fingerprint": "7f384d0d51b9e7493bd0afe26d3308ea93afc04e1ec5a09c64b6632af9db7b7a",
+      "relationship_fingerprint": "58dcc1d7e653053f256d9a0ab2affb81113cd094cab6db5392d7e24d2dc87146",
+      "content_fingerprint": "05eae055d586de3335ebd90590f8330129edacfcc1c6fac5203287eb29da167e",
+      "actions": [
+        {
+          "id": "action:birth_pay",
+          "heading": "Pay for the certificate copy",
+          "essential": "Pay the copy charge and keep the receipt.",
+          "conditions": [],
+          "actor": null,
+          "destination": "Divisional Secretariat or the specified bank route",
+          "facts": [
+            {
+              "id": "attachment:action:birth_pay:svc:birth_copy:fee",
+              "fact_id": "svc:birth_copy:fee",
+              "fact": {
+                "kind": "fee",
+                "fact_id": "svc:birth_copy:fee",
+                "value": 120.0,
+                "currency": "LKR"
+              },
+              "scope": "action",
+              "action_id": "action:birth_pay",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:birth_pay:fee:1"
+              ],
+              "evidence_ids": [
+                "evidence:birth_request"
+              ],
+              "qualification": "The counter route excludes ATM and online payments.",
+              "role": "pay",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:birth_pay",
+                  "text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service.",
+                  "evidence_ids": [
+                    "evidence:birth_request"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            },
+            {
+              "id": "attachment:action:birth_pay:svc:birth_copy:document:1",
+              "fact_id": "svc:birth_copy:document:1",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_copy:document:1",
+                "name": "Payment receipt"
+              },
+              "scope": "action",
+              "action_id": "action:birth_pay",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:birth_pay:document:2"
+              ],
+              "evidence_ids": [
+                "evidence:birth_request"
+              ],
+              "qualification": null,
+              "role": "keep",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:birth_submit",
+                  "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+                  "evidence_ids": [
+                    "evidence:birth_request"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "This does not describe the separate online application service.",
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:birth_copy",
+          "agency": "Registrar General's Department",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:birth_pay",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:birth_submit",
+          "heading": "Submit the form and receipt",
+          "essential": "Submit the completed form with the payment receipt.",
+          "conditions": [],
+          "actor": null,
+          "destination": "Relevant Divisional Secretariat",
+          "facts": [
+            {
+              "id": "attachment:action:birth_submit:svc:birth_copy:document:0",
+              "fact_id": "svc:birth_copy:document:0",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_copy:document:0",
+                "name": "Completed application"
+              },
+              "scope": "action",
+              "action_id": "action:birth_submit",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:birth_submit:document:4"
+              ],
+              "evidence_ids": [
+                "evidence:birth_request"
+              ],
+              "qualification": null,
+              "role": "submit",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:birth_submit",
+                  "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+                  "evidence_ids": [
+                    "evidence:birth_request"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            },
+            {
+              "id": "attachment:action:birth_submit:svc:birth_copy:document:1",
+              "fact_id": "svc:birth_copy:document:1",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:birth_copy:document:1",
+                "name": "Payment receipt"
+              },
+              "scope": "action",
+              "action_id": "action:birth_submit",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:birth_submit:document:5"
+              ],
+              "evidence_ids": [
+                "evidence:birth_request"
+              ],
+              "qualification": null,
+              "role": "submit",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:birth_submit",
+                  "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+                  "evidence_ids": [
+                    "evidence:birth_request"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "The certificate can be issued only if the registration is found. Submitting the request does not guarantee a certificate. This example does not cover record searches or postal delivery.",
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:birth_copy",
+          "agency": "Registrar General's Department",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:birth_submit",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: one certified birth copy, registration number and date known, submitted to the relevant Divisional Secretariat; postal delivery and record searches excluded. Recorded fee is LKR 120 per copy for this scope. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        }
+      ],
+      "facts": [
+        {
+          "id": "attachment:action:birth_pay:svc:birth_copy:fee",
+          "fact_id": "svc:birth_copy:fee",
+          "fact": {
+            "kind": "fee",
+            "fact_id": "svc:birth_copy:fee",
+            "value": 120.0,
+            "currency": "LKR"
+          },
+          "scope": "action",
+          "action_id": "action:birth_pay",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:birth_pay:fee:1"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ],
+          "qualification": "The counter route excludes ATM and online payments.",
+          "role": "pay",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:birth_pay",
+              "text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service.",
+              "evidence_ids": [
+                "evidence:birth_request"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:birth_pay:svc:birth_copy:document:1",
+          "fact_id": "svc:birth_copy:document:1",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_copy:document:1",
+            "name": "Payment receipt"
+          },
+          "scope": "action",
+          "action_id": "action:birth_pay",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:birth_pay:document:2"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ],
+          "qualification": null,
+          "role": "keep",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:birth_submit",
+              "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+              "evidence_ids": [
+                "evidence:birth_request"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:birth_submit:svc:birth_copy:document:0",
+          "fact_id": "svc:birth_copy:document:0",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_copy:document:0",
+            "name": "Completed application"
+          },
+          "scope": "action",
+          "action_id": "action:birth_submit",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:birth_submit:document:4"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ],
+          "qualification": null,
+          "role": "submit",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:birth_submit",
+              "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+              "evidence_ids": [
+                "evidence:birth_request"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:birth_submit:svc:birth_copy:document:1",
+          "fact_id": "svc:birth_copy:document:1",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:birth_copy:document:1",
+            "name": "Payment receipt"
+          },
+          "scope": "action",
+          "action_id": "action:birth_submit",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:birth_submit:document:5"
+          ],
+          "evidence_ids": [
+            "evidence:birth_request"
+          ],
+          "qualification": null,
+          "role": "submit",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:birth_submit",
+              "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+              "evidence_ids": [
+                "evidence:birth_request"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        }
+      ],
+      "branches": [],
+      "stages": [
+        {
+          "service_id": "svc:birth_copy",
+          "display_order": 1,
+          "name": "Birth certificate copy: receipt-backed submission",
+          "agency": "Registrar General's Department",
+          "fee_fact_id": "svc:birth_copy:fee",
+          "document_fact_ids": [
+            "svc:birth_copy:document:0",
+            "svc:birth_copy:document:1"
+          ]
+        }
+      ],
+      "stage_edges": [],
+      "edges": [
+        {
+          "edge_id": "prerequisite:0",
+          "kind": "requires_completion",
+          "source_id": "action:birth_pay",
+          "target_id": "action:birth_submit",
+          "evidence_ids": [
+            "evidence:birth_request"
+          ]
+        }
+      ],
+      "parallel": [],
+      "joins": [],
+      "parallel_areas": [],
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "unknown"
+      },
+      "sources": [
+        {
+          "evidence_id": "evidence:birth_request",
+          "kind": "source_passage",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "text": "Short source anchor: submitting the receipt",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "conditions": [],
+      "provenance": [
+        {
+          "fact_id": "svc:birth_copy:document:0",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:birth_copy:document:1",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:birth_copy:fee",
+          "source_url": "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "map_labels": {
+        "action:birth_pay": "Pay for the certificate copy",
+        "action:birth_submit": "Submit the form and receipt"
+      },
+      "phases": [],
+      "phase_order": [],
+      "supplementary": [],
+      "required_source_notes": [],
+      "relationship_aid": {
+        "mode": "none",
+        "inline_by_action": {},
+        "map": null,
+        "essential_relationships_remain_in_instructions": true
+      },
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:birth_pay",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:birth_submit",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:birth_pay",
+        "browsing_action_ids": [
+          "action:birth_pay",
+          "action:birth_submit"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:birth_submit",
+        "browsing_position": 1,
+        "browsing_count": 2,
+        "unresolved_route_ids": [],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "routes": [],
+      "requirements": {
+        "documents": [
+          {
+            "id": "attachment:action:birth_pay:svc:birth_copy:document:1",
+            "fact_id": "svc:birth_copy:document:1",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_copy:document:1",
+              "name": "Payment receipt"
+            },
+            "scope": "action",
+            "action_id": "action:birth_pay",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:birth_pay:document:2"
+            ],
+            "evidence_ids": [
+              "evidence:birth_request"
+            ],
+            "qualification": null,
+            "role": "keep",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:birth_submit",
+                "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+                "evidence_ids": [
+                  "evidence:birth_request"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:birth_submit:svc:birth_copy:document:0",
+            "fact_id": "svc:birth_copy:document:0",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_copy:document:0",
+              "name": "Completed application"
+            },
+            "scope": "action",
+            "action_id": "action:birth_submit",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:birth_submit:document:4"
+            ],
+            "evidence_ids": [
+              "evidence:birth_request"
+            ],
+            "qualification": null,
+            "role": "submit",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:birth_submit",
+                "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+                "evidence_ids": [
+                  "evidence:birth_request"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:birth_submit:svc:birth_copy:document:1",
+            "fact_id": "svc:birth_copy:document:1",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:birth_copy:document:1",
+              "name": "Payment receipt"
+            },
+            "scope": "action",
+            "action_id": "action:birth_submit",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:birth_submit:document:5"
+            ],
+            "evidence_ids": [
+              "evidence:birth_request"
+            ],
+            "qualification": null,
+            "role": "submit",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:birth_submit",
+                "text": "Submit the completed request form with the payment receipt to the relevant Divisional Secretariat. Issuance depends on the registration being found; submission does not guarantee a certificate.",
+                "evidence_ids": [
+                  "evidence:birth_request"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "fees": [
+          {
+            "id": "attachment:action:birth_pay:svc:birth_copy:fee",
+            "fact_id": "svc:birth_copy:fee",
+            "fact": {
+              "kind": "fee",
+              "fact_id": "svc:birth_copy:fee",
+              "value": 120.0,
+              "currency": "LKR"
+            },
+            "scope": "action",
+            "action_id": "action:birth_pay",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:birth_pay:fee:1"
+            ],
+            "evidence_ids": [
+              "evidence:birth_request"
+            ],
+            "qualification": "The counter route excludes ATM and online payments.",
+            "role": "pay",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:birth_pay",
+                "text": "Pay the applicable copy charge through the Divisional Secretariat or the specified bank route and retain the receipt. The cited counter-submission route excludes ATM and online payments; this does not describe the separate online application service.",
+                "evidence_ids": [
+                  "evidence:birth_request"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "total": null,
+        "no_total_reason": "Charges are scoped source facts; no total or alternative-route sum is inferred.",
+        "placement": "Always available outside explanation disclosure; stage facts are not action payments."
+      }
+    },
+    "interaction": {
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:birth_pay",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:birth_submit",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:birth_pay",
+        "browsing_action_ids": [
+          "action:birth_pay",
+          "action:birth_submit"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:birth_submit",
+        "browsing_position": 1,
+        "browsing_count": 2,
+        "unresolved_route_ids": [],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "route_choices": {},
+      "map_visible": false,
+      "explanation_open_action_ids": [],
+      "display_acknowledged_view_ids": [],
+      "recap": {
+        "enabled": false,
+        "items": [],
+        "empty_reason": "recap_off",
+        "label": "Earlier guidance viewed, not confirmed as done"
+      },
+      "event_count": 0,
+      "completion_tracked": false
+    },
+    "controls": {
+      "configuration_adjustment": true,
+      "feedback": true,
+      "research_inspection": true
+    }
+  }
+}

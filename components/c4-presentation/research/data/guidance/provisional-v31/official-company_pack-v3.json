@@ -1,0 +1,841 @@
+{
+  "procedure_id": "official-company_pack-v3",
+  "status": "provisional_demo_only",
+  "label": "Provisional demo wording. AI-assisted, checked only by automatic source-grounding checks. No human, expert or government review. Not independently validated guidance.",
+  "provenance": "Derived from research/data/prepared-demo (assistant-authored demo wording, styles concise, plain, extra_plain) and the official-source passages. No human review. A few Detailed/supplement sentences were tightened afterwards (OVERRIDES in the build script) to avoid repeating facts shown on step cards; each is derived from the source passages or verified graph and passes the same checks.",
+  "automatic_checks": {
+    "procedure_id": "official-company_pack-v3",
+    "structural": "passed",
+    "grounding_and_contradiction_issues": [],
+    "passed": true
+  },
+  "content": {
+    "schema_version": "c4-guidance-content-3.1",
+    "procedure_id": "official-company_pack-v3",
+    "language": "en",
+    "source_graph_fingerprint": "213071cb3b7ffff73c03745e760c988593deb2b1dc15e167794f092186c05436",
+    "relationship_fingerprint": "2b0cd24614b4e82abf19c940b9f182ba53988ed56af1ae09a19168118ebfdd6e",
+    "content_version": "provisional-demo-1",
+    "origin": "demo_mock",
+    "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+    "claims": [
+      {
+        "id": "action:company_articles:claim:0",
+        "source_kind": "content",
+        "source_id": "content:company_articles",
+        "start": 0,
+        "end": 77,
+        "quote": "Prepare two copies of the Articles of Association for the manual application.",
+        "action_ids": [
+          "action:company_articles"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_articles:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 844,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:company_articles"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ]
+      },
+      {
+        "id": "action:company_check:claim:0",
+        "source_kind": "content",
+        "source_id": "content:company_check",
+        "start": 0,
+        "end": 279,
+        "quote": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+        "action_ids": [
+          "action:company_check"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_check:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 844,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:company_check"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ]
+      },
+      {
+        "id": "action:company_directors:claim:0",
+        "source_kind": "content",
+        "source_id": "content:company_directors",
+        "start": 0,
+        "end": 67,
+        "quote": "Prepare Form 18 director consent documentation for the application.",
+        "action_ids": [
+          "action:company_directors"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_directors:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 844,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:company_directors"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ]
+      },
+      {
+        "id": "action:company_form:claim:0",
+        "source_kind": "content",
+        "source_id": "content:company_form",
+        "start": 0,
+        "end": 189,
+        "quote": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+        "action_ids": [
+          "action:company_form"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_form:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 844,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:company_form"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ]
+      },
+      {
+        "id": "action:company_secretary:claim:0",
+        "source_kind": "content",
+        "source_id": "content:company_secretary",
+        "start": 0,
+        "end": 68,
+        "quote": "Prepare Form 19 secretary consent documentation for the application.",
+        "action_ids": [
+          "action:company_secretary"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_secretary:claim:1",
+        "source_kind": "content",
+        "source_id": "content:scope",
+        "start": 0,
+        "end": 844,
+        "quote": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+        "action_ids": [
+          "action:company_secretary"
+        ],
+        "required": true,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:company_docs",
+          "evidence:company_fee"
+        ]
+      },
+      {
+        "id": "action:company_articles:document:0",
+        "source_kind": "content",
+        "source_id": "content:company_articles",
+        "start": 26,
+        "end": 49,
+        "quote": "Articles of Association",
+        "action_ids": [
+          "action:company_articles"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_directors:document:1",
+        "source_kind": "content",
+        "source_id": "content:company_directors",
+        "start": 8,
+        "end": 15,
+        "quote": "Form 18",
+        "action_ids": [
+          "action:company_directors"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_secretary:document:2",
+        "source_kind": "content",
+        "source_id": "content:company_secretary",
+        "start": 8,
+        "end": 15,
+        "quote": "Form 19",
+        "action_ids": [
+          "action:company_secretary"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_form:document:3",
+        "source_kind": "content",
+        "source_id": "content:company_form",
+        "start": 8,
+        "end": 14,
+        "quote": "Form 1",
+        "action_ids": [
+          "action:company_form"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_form:fee:4",
+        "source_kind": "content",
+        "source_id": "content:company_form",
+        "start": 74,
+        "end": 113,
+        "quote": "recorded Form 1 base charge is LKR 4000",
+        "action_ids": [
+          "action:company_form"
+        ],
+        "required": false,
+        "kind": "fee",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_form:qualification:4",
+        "source_kind": "content",
+        "source_id": "content:company_form",
+        "start": 115,
+        "end": 188,
+        "quote": "excluding VAT and other charges; payment is outside this preparation step",
+        "action_ids": [
+          "action:company_form"
+        ],
+        "required": false,
+        "kind": "qualification",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      },
+      {
+        "id": "action:company_check:document:5",
+        "source_kind": "content",
+        "source_id": "content:company_check",
+        "start": 61,
+        "end": 86,
+        "quote": "approved name certificate",
+        "action_ids": [
+          "action:company_check"
+        ],
+        "required": false,
+        "kind": "document",
+        "evidence_ids": [
+          "evidence:company_docs"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "action:company_articles",
+        "heading": {
+          "text": "Prepare the Articles of Association",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Prepare two copies of the Articles of Association for the manual application.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:company_articles:claim:0",
+            "action:company_articles:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "concise": {
+          "text": "Prepare two copies of the Articles of Association.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_articles:claim:0",
+            "action:company_articles:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "detailed": {
+          "text": "Prepare two copies of the Articles of Association for the manual application. This is one of four document sets, and all four are required for the format check that follows.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_articles:claim:0",
+            "action:company_articles:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "A separate fee for this action is not supplied. This example covers document preparation only.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Prepare two copies of the Articles of Association.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": [
+          "attachment:action:company_articles:svc:company_pack:document:4"
+        ]
+      },
+      {
+        "id": "action:company_check",
+        "heading": {
+          "text": "Submit the complete set for a format check",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:company_check:claim:0",
+            "action:company_check:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "concise": {
+          "text": "Submit all four prepared document sets and the approved name certificate.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_check:claim:0",
+            "action:company_check:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "detailed": {
+          "text": "Once all four sets are prepared, submit them with the approved name certificate for the format check. All preparation steps feed into this check.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_check:claim:0",
+            "action:company_check:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "No order is asserted among the four preparation steps. This example stops before payment, incorporation and later obligations.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Submit all four prepared document sets and the approved name certificate.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": [
+          "attachment:action:company_check:svc:company_pack:document:0"
+        ]
+      },
+      {
+        "id": "action:company_directors",
+        "heading": {
+          "text": "Prepare director consent — Form 18",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Prepare Form 18 director consent documentation for the application.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:company_directors:claim:0",
+            "action:company_directors:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "concise": {
+          "text": "Prepare the Form 18 director consent documentation.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_directors:claim:0",
+            "action:company_directors:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "detailed": {
+          "text": "Prepare Form 18 director consent documentation for the application. It is one of the four required document sets, which are submitted together for the format check.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_directors:claim:0",
+            "action:company_directors:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "This step concerns the director consent document. No separate fee for this action is supplied in the snapshot.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Prepare the Form 18 director consent documentation.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": [
+          "attachment:action:company_directors:svc:company_pack:document:2"
+        ]
+      },
+      {
+        "id": "action:company_form",
+        "heading": {
+          "text": "Prepare Form 1",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:company_form:claim:0",
+            "action:company_form:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "concise": {
+          "text": "After name approval, prepare Form 1.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_form:claim:0",
+            "action:company_form:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "detailed": {
+          "text": "Use the approved company name to prepare Form 1 for the incorporation application. It is one of the four required document sets, which are submitted together for the format check.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_form:claim:0",
+            "action:company_form:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The recorded charge covers Form 1 only. It does not include the Articles, the director and secretary forms or any other charge.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "After name approval, prepare Form 1.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": [
+          "attachment:action:company_form:svc:company_pack:document:1",
+          "attachment:action:company_form:svc:company_pack:fee"
+        ]
+      },
+      {
+        "id": "action:company_secretary",
+        "heading": {
+          "text": "Prepare secretary consent — Form 19",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Prepare Form 19 secretary consent documentation for the application.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:company_secretary:claim:0",
+            "action:company_secretary:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "concise": {
+          "text": "Prepare the Form 19 secretary consent documentation.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_secretary:claim:0",
+            "action:company_secretary:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "detailed": {
+          "text": "Prepare Form 19 secretary consent documentation for the application. It is one of the four required document sets, which are submitted together for the format check.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_secretary:claim:0",
+            "action:company_secretary:claim:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "No separate fee for this action is supplied in the snapshot.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": true
+        },
+        "recap": {
+          "text": "Prepare the Form 19 secretary consent documentation.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": [
+          "attachment:action:company_secretary:svc:company_pack:document:3"
+        ]
+      }
+    ],
+    "attachments": [
+      {
+        "id": "attachment:action:company_articles:svc:company_pack:document:4",
+        "fact_id": "svc:company_pack:document:4",
+        "scope": "action",
+        "action_id": "action:company_articles",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_articles:document:0"
+        ],
+        "evidence_ids": [
+          "evidence:company_docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_directors:svc:company_pack:document:2",
+        "fact_id": "svc:company_pack:document:2",
+        "scope": "action",
+        "action_id": "action:company_directors",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_directors:document:1"
+        ],
+        "evidence_ids": [
+          "evidence:company_docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_secretary:svc:company_pack:document:3",
+        "fact_id": "svc:company_pack:document:3",
+        "scope": "action",
+        "action_id": "action:company_secretary",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_secretary:document:2"
+        ],
+        "evidence_ids": [
+          "evidence:company_docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_form:svc:company_pack:document:1",
+        "fact_id": "svc:company_pack:document:1",
+        "scope": "action",
+        "action_id": "action:company_form",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_form:document:3"
+        ],
+        "evidence_ids": [
+          "evidence:company_docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "prepare"
+      },
+      {
+        "id": "attachment:action:company_form:svc:company_pack:fee",
+        "fact_id": "svc:company_pack:fee",
+        "scope": "action",
+        "action_id": "action:company_form",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_form:fee:4"
+        ],
+        "evidence_ids": [
+          "evidence:company_docs"
+        ],
+        "qualification": {
+          "text": "Excludes VAT and other charges. Payment is outside this step.",
+          "status": "draft",
+          "claim_ids": [
+            "action:company_form:qualification:4"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "status": "draft",
+        "role": "charge"
+      },
+      {
+        "id": "attachment:action:company_check:svc:company_pack:document:0",
+        "fact_id": "svc:company_pack:document:0",
+        "scope": "action",
+        "action_id": "action:company_check",
+        "stage_id": null,
+        "service_id": null,
+        "branch_id": null,
+        "option_ids": [],
+        "condition_ids": [],
+        "claim_ids": [
+          "action:company_check:document:5"
+        ],
+        "evidence_ids": [
+          "evidence:company_docs"
+        ],
+        "qualification": null,
+        "status": "draft",
+        "role": "submit"
+      }
+    ],
+    "phases": [
+      {
+        "id": "phase:prepare",
+        "label": {
+          "text": "Prepare the four document sets",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "action_ids": [
+          "action:company_articles",
+          "action:company_directors",
+          "action:company_form",
+          "action:company_secretary"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Verified prerequisites: the four preparation actions all feed the format check.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:company_docs"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:submit",
+        "label": {
+          "text": "Submit for the format check",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        "action_ids": [
+          "action:company_check"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Verified prerequisites: the four preparation actions all feed the format check.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:company_docs"
+        ],
+        "branch_split_note": null
+      }
+    ],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "review": null
+  }
+}

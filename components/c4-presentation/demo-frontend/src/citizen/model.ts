@@ -68,7 +68,9 @@ export function scopeNote(doc: Doc, fact: ScopedFact): string | null {
 export function procedureFacts(doc: Doc) {
   const attached = new Set(doc.actions.flatMap(a => a.facts.map(f => f.id)));
   const only = (list: ScopedFact[]) => list.filter(f => !attached.has(f.id));
-  return { documents: only(doc.requirements.documents), fees: only(doc.requirements.fees) };
+  // A fact attached to a route group is shown with that choice, so it is not repeated in the whole-service strip.
+  const unclaimed = (list: ScopedFact[]) => only(list).filter(f => f.scope !== 'route');
+  return { documents: unclaimed(doc.requirements.documents), fees: unclaimed(doc.requirements.fees) };
 }
 
 /** Dependency layer for drawing. After a route is chosen the backend leaves other routes' layers empty; place them from their verified edges. */

@@ -38,6 +38,8 @@ export function SourcesContent({ response, onSource }: { response: GuidanceRespo
     <p>{statusText(response)}</p>
     {review && <p className="cz-fine">Review record: {review.reviewer} ({review.reviewed_at.slice(0, 10)}). {review.scope_note}{review.independent_government_validation ? '' : ' No independent or government validation.'}</p>}
     {incomplete.length > 0 && <p className="cz-fine">Coverage is not complete for: {incomplete.map(([k, v]) => `${k.replaceAll('_', ' ')} (${v})`).join(', ')}. Aids that need it are not offered.</p>}
+    {doc.actions.some(a => a.source_wording) && <><h3 className="cz-subhead">Source wording, step by step</h3>
+      <ul className="cz-textlist">{doc.actions.filter(a => a.source_wording).map(a => <li key={a.id}><b>{a.heading}</b><br />{(a.source_wording ?? '').split(/\n\s*\n/).filter(p => p.trim() && p.trim() !== doc.source_limit.trim()).join(' ')}</li>)}</ul></>}
     {doc.sources.length > 0 && <><h3 className="cz-subhead">Source passages</h3><ul className="cz-textlist">{doc.sources.map(s => <li key={s.evidence_id}>
       {/^https?:\/\//.test(s.source_url) ? <a href={s.source_url} target="_blank" rel="noreferrer" onClick={() => onSource(s.evidence_id)}>Open source</a> : <span>Source reference</span>}
       {s.retrieved_at ? ` · retrieved ${s.retrieved_at.slice(0, 10)}` : ' · authored fictional evidence'}<br />{s.text}</li>)}</ul></>}

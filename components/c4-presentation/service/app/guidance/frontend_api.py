@@ -26,7 +26,7 @@ def register_routes(app):
                 'personalized_selection_available':result.policy is not None,'encoder_status':result.policy.profile.encoder_schema if result.policy else 'approved_525_policy_disabled',
                 'policy':result.policy.status() if result.policy else None,'history_adjustment':'deferred_to_PP2',
                 'pp1_remaining_requirements':[] if result.policy else ['enable_isolated_PP1_policy'],
-                'visibility_policy':result.visibility_policy,'contracts':'/openapi.json'}
+                'visibility_policy':result.visibility_policy,'demo_provisional_content':[] if result.demo_accepted else sorted(result.provisional),'demo_accepted_content':sorted(result.provisional) if result.demo_accepted else [],'contracts':'/openapi.json'}
 
     @app.get('/workspace/guidance/research/learning',tags=['Revised Guidance'])
     def learning_report():
@@ -108,8 +108,8 @@ def register_routes(app):
         return api().runtime.update_settings(session_id,patch)
 
     @app.get('/workspace/guidance/procedures/{procedure_id}/availability',response_model=AvailabilityResponse,tags=['Revised Guidance'])
-    def availability(procedure_id:str,session_id:str,language:str='en'):
-        return api().availability(procedure_id,session_id,language)[0]
+    def availability(procedure_id:str,session_id:str,language:str='en',provisional:bool=False):
+        return api().availability(procedure_id,session_id,language,provisional=provisional)[0]
 
     @app.post('/workspace/guidance/requests',response_model=GuidanceResponse,tags=['Revised Guidance'])
     def request_guidance(body:StartGuidance):return api().start(body)

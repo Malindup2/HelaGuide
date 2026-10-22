@@ -80,7 +80,8 @@
           "evidence:collect_pack"
         ],
         "qualification": null,
-        "status": "draft"
+        "status": "draft",
+        "role": "bring"
       }
     ],
     "phases": [],
@@ -121,7 +122,7 @@
           ]
         },
         "detailed": {
-          "text": "After the token request is complete, present the fictional demo token to collect the demo pack. Collection depends on that earlier request.",
+          "text": "After the token request is complete, collect the demo pack by presenting the fictional demo token. This step depends on the earlier request.",
           "status": "draft",
           "claim_ids": [
             "action:collect_pack:essential:0"
@@ -189,7 +190,7 @@
           ]
         },
         "detailed": {
-          "text": "Request a fictional demo token. The collection step later asks you to present this token, so the two actions are linked.",
+          "text": "Request a fictional demo token. You will need to present it later to collect the pack, so the collection step cannot be done without this one.",
           "status": "draft",
           "claim_ids": [
             "action:request_token:essential:0"
@@ -302,7 +303,8 @@
           "evidence:collect_pack"
         ],
         "qualification": null,
-        "status": "reviewed"
+        "status": "reviewed",
+        "role": "bring"
       }
     ],
     "phases": [],
@@ -343,7 +345,7 @@
           ]
         },
         "detailed": {
-          "text": "After the token request is complete, present the fictional demo token to collect the demo pack. Collection depends on that earlier request.",
+          "text": "After the token request is complete, collect the demo pack by presenting the fictional demo token. This step depends on the earlier request.",
           "status": "reviewed",
           "claim_ids": [
             "action:collect_pack:essential:0"
@@ -411,7 +413,7 @@
           ]
         },
         "detailed": {
-          "text": "Request a fictional demo token. The collection step later asks you to present this token, so the two actions are linked.",
+          "text": "Request a fictional demo token. You will need to present it later to collect the pack, so the collection step cannot be done without this one.",
           "status": "reviewed",
           "claim_ids": [
             "action:request_token:essential:0"
@@ -451,7 +453,7 @@
       "reviewer": "Claude Sonnet 5.5 internal fictional author-review (AI-assisted; not human, external-expert or government review)",
       "reviewed_at": "2026-10-22T12:00:00Z",
       "scope_note": "Compared the 3.1 Concise, Detailed and supplement wording, plus headings, reminders and phase labels, to the supplied fictional Plan passages. Claim coverage and Concise/Detailed/supplement separation were also checked automatically. This is internal AI-assisted author review for isolated fictional demonstration only; it is not human, external expert, government or independent validation, and says nothing about whether any scaffold helps.",
-      "artifact_digest": "824f577d5ef8a7b328bea0d9d60b0158a60f1c0b84be3d5ddebe815e6890e613",
+      "artifact_digest": "e2e38516967d65b405f297eaf93d8a17fd69f79b1e88fed8b788cd6055849bca",
       "checks": [
         {
           "target": "actions.action:collect_pack.heading",
@@ -509,7 +511,7 @@
             "evidence:collect_pack"
           ],
           "result": "matched",
-          "note": "Internal AI-assisted fictional author-review only. Compared \"After the token request is complete, present the fictional demo token to collect the demo pack. Collection depends on that earlier request.\" with the fictional source passage \"After the token request is complete, present the fictional demo token to collect the demo pack.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+          "note": "Internal AI-assisted fictional author-review only. Compared \"After the token request is complete, collect the demo pack by presenting the fictional demo token. This step depends on the earlier request.\" with the fictional source passage. It restates the passage and adds plain clarifications of order, documents and places that the same fictional procedure states; no new requirement, fee or place. Not human or external expert review."
         },
         {
           "target": "actions.action:collect_pack.supplement",
@@ -540,7 +542,7 @@
             "evidence:request_token"
           ],
           "result": "matched",
-          "note": "Internal AI-assisted fictional author-review only. Compared \"Request a fictional demo token. The collection step later asks you to present this token, so the two actions are linked.\" with the fictional source passage \"Request a fictional demo token.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Request a fictional demo token. You will need to present it later to collect the pack, so the collection step cannot be done without this one.\" with the fictional source passage. It restates the passage and adds plain clarifications of order, documents and places that the same fictional procedure states; no new requirement, fee or place. Not human or external expert review."
         },
         {
           "target": "actions.action:request_token.supplement",

@@ -1,5 +1,6 @@
 """Prepared guidance with opt-in PP1 selection and atomic attributed rewards."""
 import copy
+import functools
 import hashlib
 import hmac
 import json
@@ -24,9 +25,10 @@ class ApiFailure(Exception):
         super().__init__(message)
 
 class GuidanceAPI:
-    def __init__(self,prepared,*,research_enabled=False,visibility_policy=None,policy_options=None,experiment_directory=None,flavour=None):
+    def __init__(self,prepared,*,research_enabled=False,visibility_policy=None,policy_options=None,experiment_directory=None,flavour=None,demo_provisional=False,demo_accepted=False):
         self.prepared=prepared;self.runtime=prepared.runtime;self.research_enabled=research_enabled
         self.flavour=flavour or FLAVOUR_30
+        self.demo_accepted=bool(demo_accepted);self.demo_provisional=bool(demo_provisional) or self.demo_accepted;self.provisional={}
         if self.flavour is not getattr(prepared,'flavour',FLAVOUR_30):raise ValueError('guidance API and prepared content must use the same content schema')
         self.store=JourneyStore(prepared.registry.directory/'frontend-api')
         self.policy = None
@@ -35,6 +37,10 @@ class GuidanceAPI:
             if not self.flavour.supports_policy:raise ValueError('no PP1 policy is compatible with content schema '+self.flavour.content_schema+'; a fresh policy with a matching manifest must be trained first')
             from app.guidance.policy import PolicyStore
             self.policy = PolicyStore(**policy_options,profile=self.flavour.policy_profile)
+        if self.demo_provisional:
+            if self.flavour is FLAVOUR_30:raise ValueError('demo provisional content needs content schema 3.1')
+            from app.guidance import provisional
+            self.provisional=provisional.load({pid:self.prepared.source(pid) for pid in self.runtime.procedures})
         self.visibility_policy=visibility_policy
         if visibility_policy is not None:
             if set(visibility_policy)!={'version','min_visible_ratio','min_dwell_ms'} or not visibility_policy['version'] or not 0<visibility_policy['min_visible_ratio']<=1 or visibility_policy['min_dwell_ms']<=0:
@@ -102,11 +108,28 @@ class GuidanceAPI:
             db.execute('INSERT INTO settings_requests VALUES (?,?,?)',(sid,patch.request_id,signature))
             return {'schema_version':'c4-settings-3.0','revision':{'identity':saved['settings_revision'],'revised':native['revision']},'settings':native,'duplicate':False}
 
-    def availability(self,pid,sid,language='en',overrides=None,*,enqueue_on_miss=False):
+    def _compose(self,provisional,relaxed=False):
+        return functools.partial(self.flavour.compose,assume=True,relax_map=relaxed) if provisional else self.flavour.compose
+
+    def _provisional_metadata(self,metadata,content):
+        from app.guidance import provisional
+        if self.demo_accepted:
+            return {**metadata,'content_state':'demo_accepted','preparation_state':'draft','artifact_id':None,'review_kind':'project_owner_demo_acceptance_automatic_checks','content_origin':content.origin,
+                    'source_review':{'reviewer':'LOCAL RESEARCH DEMO: accepted for demo use by the project owner. AI-assisted wording checked by automatic source-grounding checks only; no external expert, government or independent review.','reviewed_at':now(),
+                                     'scope_note':'Demo acceptance is a project-level authorisation for this local research demonstration. It is not external validation, and the original provenance (demo_mock, no review record) is unchanged.','independent_government_validation':False}}
+        return {**metadata,'content_state':'provisional_demo','preparation_state':'draft','artifact_id':None,'review_kind':'provisional_demo_automatic_checks_only','content_origin':content.origin,
+                'source_review':{'reviewer':'No human review. '+provisional.LABEL,'reviewed_at':now(),'scope_note':'Provisional wording shown only in an explicit research preview. It is not used for standard or personalised guidance and is not independently validated.','independent_government_validation':False}}
+
+    def availability(self,pid,sid,language='en',overrides=None,*,enqueue_on_miss=False,provisional=False):
         context=self.context(sid,pid,overrides)
         source,artifact,metadata=self.prepared.resolve(pid,language=language,enqueue_on_miss=enqueue_on_miss)
         content=artifact['content'] if artifact else None
-        results=self.flavour.evaluate(source,content,Constraints(**context['constraints']))
+        flags={}
+        if provisional and not self.demo_provisional:raise ApiFailure(422,'provisional_demo_disabled','Provisional demo wording is not enabled on this server.')
+        if provisional or self.demo_accepted:
+            if pid in self.provisional:
+                content=self.provisional[pid];metadata=self._provisional_metadata(metadata,content);flags={'assume_reviewed':True,'relax_map':bool(provisional)}
+        results=self.flavour.evaluate(source,content,Constraints(**context['constraints']),**flags)
         blocked=context['legacy']['hard_requirements_unresolved']
         candidates=[{'id':self.flavour.config_key(c.configuration),'configuration':c.configuration.model_dump(),'feasible':c.feasible and not blocked,
                      'reasons':list(c.reasons)+(['context:unresolved_legacy_hard_requirements'] if blocked else []),
@@ -160,8 +183,9 @@ class GuidanceAPI:
             raise ApiFailure(409,'context_revision_changed','Refresh the profile context before requesting guidance.')
         if not preview and body.mode=='personalized' and self.policy is None:
             raise ApiFailure(503,'revised_policy_unavailable','The compatible PP1 model is not enabled in this runtime. '+('A fresh policy trained for content schema '+self.flavour.content_schema+' is required; the 3.0 posterior is never reused.' if not self.flavour.supports_policy else 'Set an explicit isolated PP1 policy directory and enable C4_PP1_POLICY_ENABLED. The 515-feature V2 policy is never reused.'),action_schema=self.flavour.action_schema,encoder_status='approved_pp1_policy_disabled',pp2_history='deferred')
-        availability,source,content=self.availability(body.procedure_id,body.session_id,body.language,body.context,enqueue_on_miss=True)
-        context=availability.pop('context');metadata=availability.pop('preparation')
+        relaxed=preview and getattr(body,'allow_provisional',False)
+        availability,source,content=self.availability(body.procedure_id,body.session_id,body.language,body.context,enqueue_on_miss=True,provisional=relaxed)
+        context=availability.pop('context');metadata=availability.pop('preparation');using=metadata['content_state'] in ('provisional_demo','demo_accepted')
         if body.expected_context_revision and body.expected_context_revision.model_dump()!=context['revision']:
             raise ApiFailure(409,'context_revision_changed','Refresh the profile context before requesting guidance.')
         if context['legacy']['hard_requirements_unresolved']:raise ApiFailure(409,'legacy_hard_requirements_unresolved','Review changed-meaning hard requirements or use a separate guest session.')
@@ -177,10 +201,10 @@ class GuidanceAPI:
             if preview:
                 chosen=next(c for c in availability['candidates'] if c['configuration']==body.configuration.model_dump())
                 if not chosen['feasible']:raise ApiFailure(422,'infeasible_configuration','The requested research preview is unavailable.',reasons=chosen['reasons'],configuration=chosen['configuration'])
-                config=body.configuration;kind='research_preview';label='Research preview - not a learned selection'
+                config=body.configuration;kind='research_preview';label='Research preview - not a learned selection'+(' (provisional wording)' if using and not self.demo_accepted else '')
             elif learned:
                 config,decision=self.policy.select(db,measurements(source.graph,source.relationships),context,[Configuration(**c['configuration']) for c in feasible])
-                if self.flavour.feasibility_fingerprint:decision.update(content_schema=self.flavour.content_schema,action_schema=self.flavour.action_schema,feasibility_fingerprint=availability['feasibility_fingerprint'],content_fingerprint=doc_fingerprint(content))
+                if self.flavour.feasibility_fingerprint:decision.update(content_state=metadata['content_state'],content_schema=self.flavour.content_schema,action_schema=self.flavour.action_schema,feasibility_fingerprint=availability['feasibility_fingerprint'],content_fingerprint=doc_fingerprint(content))
                 kind='shared_gaussian_lints';label='Personalized guidance - Shared Gaussian LinTS'
             else:
                 config=Configuration(**feasible[0]['configuration']);kind='standard' if config==Configuration() else 'constraint_standard';label='Standard guidance'
@@ -188,7 +212,7 @@ class GuidanceAPI:
                 scoring_status='executed' if learned else 'not_run',policy=decision['policy'] if learned else None,
                 learning_eligible=learned,explanation='Maximum sampled score among feasible configurations; scores are not probabilities.' if learned else
                 ('Explicit researcher choice; no scoring or model update.' if preview else 'Fixed baseline within hard constraints; not a learned recommendation.')).model_dump(mode='json')
-            doc,reminders=render(source,content,config,Constraints(**context['constraints']),compose_fn=self.flavour.compose)
+            doc,reminders=render(source,content,config,Constraints(**context['constraints']),compose_fn=self._compose(using,bool(relaxed and using)))
             jid='guidance:'+uuid4().hex;vid='view:'+uuid4().hex
             interaction={'routes':{},'visited':{},'active_action_id':None,'viewport':None,'map_visible':config.relationships=='map',
                          'explanation_open':[],'displayed_views':[],'sequence':0}
@@ -197,7 +221,7 @@ class GuidanceAPI:
                      'origin':kind,'created_at':now(),'context':context,'hard_context_hash':self._hard_hash(context),
                      'overrides':body.context.model_dump(mode='json',exclude_unset=True),'preparation':metadata,'availability':availability,
                      'source':source.model_dump(mode='json'),'content':content.model_dump(mode='json') if content else None,
-                     'decision':decision,'ever_adjusted':False,
+                     'decision':decision,'ever_adjusted':False,'provisional':using,'relaxed_map':bool(relaxed and using),
                      'current_view_id':vid,'views':{vid:{'id':vid,'parent_view_id':None,'created_at':now(),'selection':selection,'document':doc,'reminders':reminders}},'interaction':interaction}
             self._check_context(journey,db)
             db.execute('INSERT INTO journeys VALUES (?,?,?,?,?,?,?)',(jid,body.session_id,body.request_id,signature,token_hash(body.capability_token),json.dumps(journey),digest(journey)))
@@ -292,9 +316,10 @@ class GuidanceAPI:
             if receipt:return self._response(j)
             if j['origin'] not in ('research_preview','shared_gaussian_lints'):raise ApiFailure(403,'standard_adjustment_unavailable','Standard guests do not receive personalized support controls.')
             self._view(j,body.parent_view_id);source=self._snapshot_source(j);content=self.flavour.content_model.model_validate(j['content']) if j['content'] else None
-            constraints=Constraints(**j['context']['constraints']);candidate=next(c for c in self.flavour.evaluate(source,content,constraints) if c.configuration==body.configuration)
+            constraints=Constraints(**j['context']['constraints']);using=bool(j.get('provisional'));relaxed=bool(j.get('relaxed_map'));flags={'assume_reviewed':True,'relax_map':relaxed} if using else {}
+            candidate=next(c for c in self.flavour.evaluate(source,content,constraints,**flags) if c.configuration==body.configuration)
             if not candidate.feasible:raise ApiFailure(422,'infeasible_configuration','Adjusted configuration is unavailable.',reasons=list(candidate.reasons))
-            doc,reminders=render(source,content,body.configuration,constraints,compose_fn=self.flavour.compose);vid='view:'+uuid4().hex
+            doc,reminders=render(source,content,body.configuration,constraints,compose_fn=self._compose(using,relaxed));vid='view:'+uuid4().hex
             selection=Selection(kind='manual_adjustment',configuration=body.configuration,action_schema=self.flavour.action_schema,label='Adjusted research preview - not a learned selection',explanation='Explicit child view; no policy scoring or reward update.').model_dump(mode='json')
             j['views'][vid]={'id':vid,'parent_view_id':body.parent_view_id,'created_at':now(),'selection':selection,'document':doc,'reminders':reminders}
             j['ever_adjusted']=True

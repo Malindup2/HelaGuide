@@ -29,7 +29,7 @@ export interface ScopedFact {
   id: string; fact_id: string; fact: FactBody; scope: 'action' | 'route' | 'stage' | 'service';
   action_id: string | null; stage_id: string | null; service_id: string | null; branch_id: string | null;
   option_ids: string[]; condition_ids: string[]; claim_ids: string[]; evidence_ids: string[];
-  qualification: string | null; conditions: string[]; status: 'draft' | 'reviewed' | 'source_fallback';
+  qualification: string | null; role?: string | null; conditions: string[]; status: 'draft' | 'reviewed' | 'source_fallback';
   source_context?: SourcePassage[]; applicability_status?: 'structured_conditions' | 'consult_source_context';
 }
 export interface RenderedAction {
@@ -103,6 +103,10 @@ export interface GuidanceResponse {
 }
 export interface Receipt { event_id: string; sequence: number; server_timestamp: string; reward: 0 | 1 | null; policy_updated: boolean; learning_eligible: boolean }
 export interface ApiStatus {
+  /** Procedures that have DEMO-ONLY provisional wording available in research previews (empty unless the server enables the mode). */
+  demo_provisional_content?: string[];
+  /** Procedures whose cached wording the project owner accepted for this local demonstration (ordinary journeys use it). */
+  demo_accepted_content?: string[];
   schema_version: string; action_schema: string; nominal_configuration_count: number; standard_guidance_available: boolean;
   research_previews_enabled: boolean; personalized_selection_available: boolean; encoder_status: string; policy: unknown;
   history_adjustment: string; pp1_remaining_requirements: string[];

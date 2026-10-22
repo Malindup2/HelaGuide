@@ -31,7 +31,7 @@ def main():
     runtime = WorkspaceRuntime(procedures=workspace_registry())
     options = {'directory': directory, 'demo_fixtures': True, 'flavour': FLAVOUR_31}
     try:
-        with TestClient(create_app(runtime=runtime, workspace=True, prepared_content_options=options, guidance_api_options={'research_enabled': True, 'flavour': FLAVOUR_31})) as client:
+        with TestClient(create_app(runtime=runtime, workspace=True, prepared_content_options=options, guidance_api_options={'research_enabled': True, 'flavour': FLAVOUR_31, 'demo_provisional': True})) as client:
             def save(name, method, path, body=None, token=False):
                 response = client.request(method, path, json=body, headers={'X-C4-Token': TOKEN} if token else {})
                 if response.status_code != 200:
@@ -40,10 +40,10 @@ def main():
                 return response.json()
             save('status', 'GET', ROOT + '/status')
             sid = save('guest', 'POST', ROOT + '/guests')['session_id']
-            def req(pid, config=None):
+            def req(pid, config=None, provisional=False):
                 body = {'request_id': str(uuid4()), 'session_id': sid, 'procedure_id': pid, 'capability_token': TOKEN}
                 if config is not None:
-                    body.update(mode='research_preview', configuration=config)
+                    body.update(mode='research_preview', configuration=config, allow_provisional=provisional)
                 return ROOT + ('/research/previews' if config is not None else '/requests'), body
             for name, pid, config in [('standard-synthetic-practice-v2', 'synthetic-practice-v2', None), ('standard-official-nic_amendment-v3', 'official-nic_amendment-v3', None),
                                       ('standard-official-birth_copy-v3', 'official-birth_copy-v3', None), ('standard-synthetic-parallel-v1', 'synthetic-parallel-v1', None),
@@ -53,6 +53,13 @@ def main():
                                       ('preview-rich', 'synthetic-practice-v2', RICH),
                                       ('preview-parallel-guided', 'synthetic-parallel-v1', {**BASE, 'navigation': 'guided', 'relationships': 'map', 'segmentation': 'on'})]:
                 path, body = req(pid, config)
+                save(name, 'POST', path, body)
+            COMPACT = {**BASE, 'disclosure': 'on', 'relationships': 'inline'}
+            for name, pid, config in [('provisional-nic-compact', 'official-nic_amendment-v3', COMPACT), ('provisional-nic-map', 'official-nic_amendment-v3', {**BASE, 'relationships': 'map'}),
+                                      ('provisional-nic-detailed-on', 'official-nic_amendment-v3', {**BASE, 'explanation': 'detailed', 'disclosure': 'on'}),
+                                      ('provisional-birth-compact', 'official-birth_copy-v3', COMPACT), ('provisional-birth-rich', 'official-birth_copy-v3', {**RICH, 'segmentation': 'off', 'relationships': 'inline'}),
+                                      ('provisional-company-rich', 'official-company_pack-v3', {**RICH, 'relationships': 'inline'}), ('provisional-company-compact', 'official-company_pack-v3', COMPACT)]:
+                path, body = req(pid, config, True)
                 save(name, 'POST', path, body)
             save('procedures', 'GET', ROOT + '/procedures')
             save('availability-practice', 'GET', ROOT + '/procedures/synthetic-practice-v2/availability?session_id=' + sid)

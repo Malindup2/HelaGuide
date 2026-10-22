@@ -135,7 +135,7 @@ describe('D2 x D3: explanation depth and disclosure', () => {
       const r = variant(explanation, 'off'), text = registerText(r).explanation_visible!;
       show(r);
       expect(screen.getByText(text.split('\n\n')[0])).toBeTruthy();
-      expect(screen.queryByRole('button', { name: 'More' })).toBeNull();
+      expect(screen.queryByRole('button', { name: /More guidance/ })).toBeNull();
       expect(screen.queryAllByText('In more detail').length > 0).toBe(explanation === 'detailed');
     });
 
@@ -147,12 +147,12 @@ describe('D2 x D3: explanation depth and disclosure', () => {
       expect(screen.getAllByText(/\S/).length).toBeGreaterThan(0);
       expect(texts.length).toBeGreaterThan(0);
       expect(shown()).toHaveLength(0);
-      fireEvent.click(screen.getAllByRole('button', { name: 'More' })[0]);
+      fireEvent.click(screen.getAllByRole('button', { name: /More guidance/ })[0]);
       expect(emit).toHaveBeenCalledWith({ type: 'explanation_open', action_id: expect.any(String) });
       const open = structuredClone(r); open.interaction.explanation_open_action_ids = r.document.actions.map(x => x.id);
       rerender(<GuidanceCard response={open} emit={emit} />);
       expect(shown().length).toBeGreaterThan(0);
-      expect(screen.getAllByRole('button', { name: 'Less' }).length).toBeGreaterThan(0);
+      expect(screen.getAllByRole('button', { name: /Less guidance/ }).length).toBeGreaterThan(0);
     });
   }
 

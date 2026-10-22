@@ -122,7 +122,7 @@ def render(source, content, config, constraints, compose_fn=compose):
         a['recap']=None
         a.update(service_id=original.service_id,agency=stages[original.service_id].agency,
                  condition_ids=list(original.applicability.condition_ids),source_content_ids=list(original.required_content_ids),
-                 disclosure_available=bool(a['explanation_hidden']),wording_status='published' if content else 'source_fallback')
+                 disclosure_available=bool(a['explanation_hidden']),wording_status=('provisional' if getattr(content,'origin',None)=='demo_mock' else 'published') if content else 'source_fallback')
         a['facts']=[facts[f['id']] for f in a['facts']]
     conditions={c.condition_id:c.text for c in g.conditions}
     doc['routes']=[{'branch_id':b.group_id,'selection':b.selection,'evidence_ids':list(b.evidence_ids),

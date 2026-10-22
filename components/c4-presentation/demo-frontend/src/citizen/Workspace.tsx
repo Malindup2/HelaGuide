@@ -31,16 +31,18 @@ function friendly(e: GuidanceError): string {
 
 function Stage({ active, procedure, status, research, onSession }: { active: ActiveIdentity; procedure: ProcedureSummary; status: ApiStatus | null; research: boolean; onSession: Parameters<typeof ProfileContext>[0]['onSession'] }) {
   const sessionId = active.session.session_id, journey = useJourney({ sessionId, procedureId: procedure.procedure_id, status });
-  const [compare, setCompare] = useState(false), [inspect, setInspect] = useState(false), [evidence, setEvidence] = useState(false), [fetched, setFetched] = useState<Availability | null>(null);
+  const [compare, setCompare] = useState(false), [inspect, setInspect] = useState(false), [evidence, setEvidence] = useState(false), [provisional, setProvisional] = useState(false), [fetched, setFetched] = useState<Availability | null>(null);
   const personalised = active.kind === 'profile' && active.profile.personalization_enabled;
   const { response } = journey, previewsOn = research && !!status?.research_previews_enabled;
+  const provisionalOffered = previewsOn && !!status?.demo_provisional_content?.includes(procedure.procedure_id);
+  const useProvisional = provisionalOffered && provisional;
   useEffect(() => {
-    if (!previewsOn || response) return;
+    if (!previewsOn || (response && !useProvisional)) return;
     let live = true;
-    guidanceApi.availability(procedure.procedure_id, sessionId).then(a => { if (live) setFetched(a); }).catch(() => undefined);
+    guidanceApi.availability(procedure.procedure_id, sessionId, undefined, useProvisional).then(a => { if (live) setFetched(a); }).catch(() => undefined);
     return () => { live = false; };
-  }, [previewsOn, response, procedure.procedure_id, sessionId]);
-  const availability = response?.availability ?? fetched;
+  }, [previewsOn, response, useProvisional, procedure.procedure_id, sessionId]);
+  const availability = useProvisional ? fetched : response?.availability ?? fetched;
   const lastConfig: Configuration | null = response && response.selection.kind !== 'standard' ? response.document.configuration : null;
 
   return <section className="cz-stage" aria-label="Guidance">
@@ -61,7 +63,8 @@ function Stage({ active, procedure, status, research, onSession }: { active: Act
       <h2>Research view</h2>
       {response && <p className="cz-fine">Selection: {response.selection.label} · scoring {response.selection.scoring_status.replaceAll('_', ' ')} · learning eligible: {response.selection.learning_eligible ? 'yes' : 'no'} · personalised selection available: {status?.personalized_selection_available ? 'yes' : 'no'}.</p>}
       {status?.personalized_selection_available && <p className="cz-fine"><a href={`${API_BASE}/workspace/guidance/research/learning/report.html`} target="_blank" rel="noreferrer">Synthetic learning report and checkpoint comparisons</a></p>}
-      <PreviewChooser availability={availability} busy={journey.busy} onStart={c => void journey.start({ kind: 'preview', configuration: c })} />
+      {provisionalOffered && <label className="cz-check"><input type="checkbox" checked={provisional} onChange={e => setProvisional(e.target.checked)} /> Use provisional demo wording for this official procedure. It is AI-assisted, checked only automatically and not reviewed by any person.</label>}
+      <PreviewChooser availability={availability} busy={journey.busy} onStart={c => void journey.start({ kind: 'preview', configuration: c, provisional: useProvisional })} />
       <div className="cz-fbrow">
         <button type="button" className="cz-chip" disabled={!response || !response.controls.research_inspection} onClick={() => setInspect(true)}>Open inspector</button>
         <button type="button" className="cz-chip" onClick={() => setCompare(true)}>Compare standard and preview</button>

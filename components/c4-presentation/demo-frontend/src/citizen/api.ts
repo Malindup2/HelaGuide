@@ -54,13 +54,13 @@ export class GuidanceApi {
   context(sessionId: string, procedureId: string, signal?: AbortSignal) {
     return this.request<EffectiveContext>(`/context/${encodeURIComponent(sessionId)}?procedure_id=${encodeURIComponent(procedureId)}`, 'GET', { signal });
   }
-  availability(procedureId: string, sessionId: string, signal?: AbortSignal) {
-    return this.request<Availability>(`/procedures/${encodeURIComponent(procedureId)}/availability?session_id=${encodeURIComponent(sessionId)}&language=en`, 'GET', { signal });
+  availability(procedureId: string, sessionId: string, signal?: AbortSignal, provisional = false) {
+    return this.request<Availability>(`/procedures/${encodeURIComponent(procedureId)}/availability?session_id=${encodeURIComponent(sessionId)}&language=en${provisional ? '&provisional=true' : ''}`, 'GET', { signal });
   }
   start(body: { request_id: string; session_id: string; procedure_id: string; capability_token: string; mode: 'standard' | 'personalized'; expected_context_revision?: { identity: number; revised: number } | null }) {
     return this.request<GuidanceResponse>('/requests', 'POST', { body });
   }
-  preview(body: { request_id: string; session_id: string; procedure_id: string; capability_token: string; mode: 'research_preview'; configuration: Configuration }) {
+  preview(body: { request_id: string; session_id: string; procedure_id: string; capability_token: string; mode: 'research_preview'; configuration: Configuration; allow_provisional?: boolean }) {
     return this.request<GuidanceResponse>('/research/previews', 'POST', { body });
   }
   journey(id: string, token: string, signal?: AbortSignal) { return this.request<GuidanceResponse>(`/journeys/${encodeURIComponent(id)}`, 'GET', { token, signal }); }

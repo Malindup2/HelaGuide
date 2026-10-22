@@ -154,11 +154,12 @@ def evaluate_for_runtime(source, content, constraints=None):
     return evaluate31(source, content, constraints)
 
 
-def compose31(source: ProcedureSource, content: GuidanceContent31 | None, config: Configuration, constraints: Constraints | None = None):
+def compose31(source: ProcedureSource, content: GuidanceContent31 | None, config: Configuration, constraints: Constraints | None = None, *, assume: bool = False, relax_map: bool = False):
     """Render plan under 3.1 meanings. `essential` is the selected primary explanation and is always visible;
     only the separate supplement can sit behind Disclosure; the exact source wording is carried alongside, never instead."""
-    candidates = evaluate31(source, content, constraints)
+    candidates = evaluate31(source, content, constraints, assume_reviewed=assume, relax_map=relax_map)
     candidate = next(c for c in candidates if c.configuration == config)
+    ok = lambda t: t is not None and (assume or t.status != "draft")   # assume = provisional research preview: drafts are shown, clearly labelled by the caller
     if not candidate.feasible:
         raise ValueError("infeasible guidance configuration: " + ", ".join(candidate.reasons))
     g = source.graph
@@ -168,16 +169,14 @@ def compose31(source: ProcedureSource, content: GuidanceContent31 | None, config
     facts = {f.fact_id: f.model_dump(mode="json") for f in g.facts}
     attachments, scoped = [], set()
     for f in content.attachments if content else ():
-        if f.status == "draft":
+        if f.status == "draft" and not assume:
             continue
         item = f.model_dump(mode="json", exclude={"qualification"})
         item["fact"] = facts[f.fact_id]
-        item["qualification"] = f.qualification.text if f.qualification and f.qualification.status != "draft" else None
+        item["qualification"] = f.qualification.text if ok(f.qualification) else None
         item["conditions"] = [conditions[c] for c in f.condition_ids]
         attachments.append(item)
-        # A document needed at one step stays in the whole-service list too (what to bring overall); a fee never appears twice.
-        if not (f.scope == "action" and facts[f.fact_id]["kind"] == "document"):
-            scoped.add(f.fact_id)
+        scoped.add(f.fact_id)   # a fact attributed to a step or route is not repeated in the whole-service list
     for stage in g.stages:
         for fid in (stage.fee_fact_id, *stage.document_fact_ids):
             if fid not in scoped:
@@ -188,21 +187,21 @@ def compose31(source: ProcedureSource, content: GuidanceContent31 | None, config
         a = prepared.get(action.action_id)
         raw = "\n\n".join(passages[c].text for c in action.required_content_ids)
         primary_field = getattr(a, config.explanation) if a else None
-        usable = bool(primary_field and primary_field.status == "reviewed")
+        usable = bool(primary_field and (primary_field.status == "reviewed" or (assume and primary_field.text)))
         essential = primary_field.text if usable else raw
-        heading = a.heading.text if a and a.heading.status != "draft" else raw.split(". ")[0]
-        supplement = a.supplement if a and usable and a.supplement and a.supplement.text.status == "reviewed" and a.supplement.adds_information else None
+        heading = a.heading.text if a and ok(a.heading) else raw.split(". ")[0]
+        supplement = a.supplement if a and usable and a.supplement and (assume or a.supplement.text.status == "reviewed") and (assume or a.supplement.adds_information) else None
         disclosable = action.action_id in candidate.disclosable_action_ids
         result.append({"id": action.action_id, "heading": heading, "essential": essential,
-            "source_wording": a.source_wording.text if usable and a.source_wording.status != "draft" else None,
+            "source_wording": a.source_wording.text if usable and ok(a.source_wording) else None,
             "conditions": [conditions[c] for c in action.applicability.condition_ids],
-            "actor": a.actor.text if a and a.actor and a.actor.status != "draft" else None,
-            "destination": a.destination.text if a and a.destination and a.destination.status != "draft" else None,
+            "actor": a.actor.text if a and ok(a.actor) else None,
+            "destination": a.destination.text if a and ok(a.destination) else None,
             "facts": [f for f in attachments if f["scope"] == "action" and f["action_id"] == action.action_id],
             "explanation_visible": None if disclosable or not supplement else supplement.text.text,
             "explanation_hidden": supplement.text.text if disclosable and supplement else None,
             "supplement_role": supplement.role if supplement else None,
-            "recap": a.recap.text if config.recap == "on" and a and a.recap else None,
+            "recap": a.recap.text if config.recap == "on" and a and ok(a.recap) else None,
             "branch": action.applicability.branch_group_id, "option": action.applicability.branch_option_id})
     rel = source.relationships
     return {"schema": RENDER_SCHEMA31, "content_schema": SCHEMA31, "configuration": config.model_dump(), "source_limit": g.disclaimer,

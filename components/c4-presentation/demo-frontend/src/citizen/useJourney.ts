@@ -4,7 +4,7 @@ import { GuidanceError, guidanceApi, newId, newToken } from './api';
 import type { GuidanceApi } from './api';
 import type { ApiStatus, Configuration, EventBody, GuidanceResponse, RatingReason, Receipt } from './types';
 
-export type StartMode = { kind: 'standard' } | { kind: 'personalized' } | { kind: 'preview'; configuration: Configuration };
+export type StartMode = { kind: 'standard' } | { kind: 'personalized' } | { kind: 'preview'; configuration: Configuration; provisional?: boolean };
 type Capability = { id: string; token: string };
 
 const storeKey = (sessionId: string, procedureId: string) => `c4-guidance:${API_BASE}:${sessionId}:${procedureId}`;
@@ -54,7 +54,7 @@ export function useJourney(opts: { sessionId: string; procedureId: string; statu
       if (mode.kind === 'personalized' && !opts.status?.personalized_selection_available) { setPolicyUnavailable(true); return; }
       const base = { request_id: retry.request_id, session_id: opts.sessionId, procedure_id: opts.procedureId, capability_token: retry.token };
       const r = mode.kind === 'preview'
-        ? await api.preview({ ...base, mode: 'research_preview', configuration: mode.configuration })
+        ? await api.preview({ ...base, mode: 'research_preview', configuration: mode.configuration, ...(mode.provisional ? { allow_provisional: true } : {}) })
         : await api.start({ ...base, mode: mode.kind });
       cap.current = { id: r.journey_id, token: retry.token }; writeCap(key, cap.current); pending.current.delete(signature); accept(r);
     } catch (e) {

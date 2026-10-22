@@ -88,13 +88,13 @@ def test_stage_fees_stay_stage_level_and_appear_once(api, pid):
 
 
 @pytest.mark.parametrize('pid', list(EXPECTED))
-def test_a_document_attached_to_a_step_is_also_listed_for_the_whole_service_but_a_fee_never_is_attached(api, pid):
+def test_a_fact_shown_at_a_step_is_not_repeated_in_the_whole_service_list(api, pid):
     client, entries = api
     doc = ask(client, pid)['document']
     attached = {f['fact_id'] for a in doc['actions'] for f in a['facts']}
     listed_stage = {f['fact_id'] for f in doc['requirements']['documents'] if f['scope'] == 'stage'}
-    assert attached <= listed_stage
-    assert {f.fact_id for f in entries[pid]['graph'].facts if f.kind == 'document'} == listed_stage
+    assert not attached & listed_stage
+    assert {f.fact_id for f in entries[pid]['graph'].facts if f.kind == 'document'} == attached | listed_stage
 
 
 def test_step_facts_do_not_depend_on_the_explanation_or_disclosure_choice(api):

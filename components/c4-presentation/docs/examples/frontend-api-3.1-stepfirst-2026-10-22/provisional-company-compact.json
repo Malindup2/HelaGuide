@@ -1,0 +1,2997 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/research/previews",
+  "request": {
+    "request_id": "8a9216d8-4ac2-4bab-b81d-c4489c7d6ac3",
+    "session_id": "guest:2537a0e6d95440ae9ad2b297a9c8d9c4",
+    "procedure_id": "official-company_pack-v3",
+    "capability_token": "documentation-sandbox-only-not-a-production-capability",
+    "mode": "research_preview",
+    "configuration": {
+      "navigation": "overview",
+      "explanation": "concise",
+      "disclosure": "on",
+      "relationships": "inline",
+      "recap": "off",
+      "segmentation": "off"
+    },
+    "allow_provisional": true
+  },
+  "status_code": 200,
+  "response": {
+    "schema_version": "c4-guidance-api-1.0",
+    "journey_id": "guidance:2a5e9dcf224e4be6abe6f73401430cdc",
+    "view_id": "view:95ba9c11762f4b35a6f5beb3c0b0e98b",
+    "parent_view_id": null,
+    "session_id": "guest:2537a0e6d95440ae9ad2b297a9c8d9c4",
+    "procedure_id": "official-company_pack-v3",
+    "procedure_title": "Private company: required incorporation document sets",
+    "created_at": "2026-10-22T03:52:11.994818Z",
+    "selection": {
+      "kind": "research_preview",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "action_schema": "c4-scaffolds-v3.1",
+      "label": "Research preview - not a learned selection (provisional wording)",
+      "scoring_status": "not_run",
+      "policy": null,
+      "learning_eligible": false,
+      "explanation": "Explicit researcher choice; no scoring or model update."
+    },
+    "preparation": {
+      "content_state": "provisional_demo",
+      "preparation_state": "draft",
+      "job_state": "queued",
+      "job_id": "2a747d958e97a5d0c43b9c8c238f6f0f9a5ff9c2514f27dec8c742a161a488ec",
+      "error_code": null,
+      "generation_enabled": false,
+      "mode": "demo",
+      "language": "en",
+      "fallback_language": "source_language",
+      "content_schema": "c4-guidance-content-3.1",
+      "artifact_id": null,
+      "review_kind": "provisional_demo_automatic_checks_only",
+      "source_kind": "bounded_official_source_snapshot",
+      "content_origin": "demo_mock",
+      "source_review": {
+        "reviewer": "No human review. Provisional demo wording. AI-assisted, checked only by automatic source-grounding checks. No human, expert or government review. Not independently validated guidance.",
+        "reviewed_at": "2026-10-22T03:52:11.992818Z",
+        "scope_note": "Provisional wording shown only in an explicit research preview. It is not used for standard or personalised guidance and is not independently validated.",
+        "independent_government_validation": false
+      }
+    },
+    "effective_context": {
+      "schema_version": "c4-effective-guidance-context-1.0",
+      "session_id": "guest:2537a0e6d95440ae9ad2b297a9c8d9c4",
+      "profile_id": null,
+      "personalization_enabled": false,
+      "service_id": "svc:company_pack",
+      "familiarity": null,
+      "confidence": null,
+      "preferences": {},
+      "constraints": {
+        "locks": {},
+        "no_guided": false,
+        "no_map": false,
+        "no_disclosure": false
+      },
+      "revision": {
+        "identity": 0,
+        "revised": 0
+      },
+      "sources": {
+        "familiarity": "saved_service_report",
+        "confidence": "saved_navigation_default",
+        "preferences": "explicit_revised_settings_or_request",
+        "accessibility": "saved_requirements_union_request"
+      },
+      "legacy": {
+        "preferences_not_imported": {},
+        "pending_preference_review": {},
+        "hard_requirements_unresolved": false,
+        "lock_fingerprint": null,
+        "raw_locks": {
+          "native_or_mapped": {},
+          "unresolved_legacy": {}
+        }
+      },
+      "scoring_use": "Familiarity, confidence and confirmed revised preferences enter the PP1 encoder; constraints filter candidates. Identity/history are not features."
+    },
+    "availability": {
+      "action_schema": "c4-scaffolds-v3.1",
+      "feasibility_fingerprint": "668314437de05fb150e6f8ba9da738cf754a51462051ede5d02ba7a1fd1cdfaa",
+      "nominal_count": 96,
+      "feasible_count": 96,
+      "candidates": [
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:company_articles",
+            "action:company_check",
+            "action:company_directors",
+            "action:company_form",
+            "action:company_secretary"
+          ]
+        }
+      ]
+    },
+    "document": {
+      "schema": "c4-render-plan-3.1",
+      "content_schema": "c4-guidance-content-3.1",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "on",
+        "relationships": "inline",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "synthetic": false,
+      "source_kind": "bounded_official_source_snapshot",
+      "source_limit": "Manually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+      "source_graph_fingerprint": "213071cb3b7ffff73c03745e760c988593deb2b1dc15e167794f092186c05436",
+      "relationship_fingerprint": "2b0cd24614b4e82abf19c940b9f182ba53988ed56af1ae09a19168118ebfdd6e",
+      "content_fingerprint": "f9330db32d7b9ef0dd1f9c6067d4a0fabfe6af1b88fada2bbdd58d56fac7d38b",
+      "actions": [
+        {
+          "id": "action:company_articles",
+          "heading": "Prepare the Articles of Association",
+          "essential": "Prepare two copies of the Articles of Association.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [
+            {
+              "id": "attachment:action:company_articles:svc:company_pack:document:4",
+              "fact_id": "svc:company_pack:document:4",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:company_pack:document:4",
+                "name": "Two copies of Articles of Association"
+              },
+              "scope": "action",
+              "action_id": "action:company_articles",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:company_articles:document:0"
+              ],
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "qualification": null,
+              "role": "prepare",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:company_articles",
+                  "text": "Prepare two copies of the Articles of Association for the manual application.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                },
+                {
+                  "content_id": "content:company_check",
+                  "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "A separate fee for this action is not supplied. This example covers document preparation only.",
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:company_pack",
+          "agency": "Department of the Registrar of Companies",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:company_articles",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Prepare two copies of the Articles of Association for the manual application.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:company_check",
+          "heading": "Submit the complete set for a format check",
+          "essential": "Submit all four prepared document sets and the approved name certificate.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [
+            {
+              "id": "attachment:action:company_check:svc:company_pack:document:0",
+              "fact_id": "svc:company_pack:document:0",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:company_pack:document:0",
+                "name": "Approved name certificate"
+              },
+              "scope": "action",
+              "action_id": "action:company_check",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:company_check:document:5"
+              ],
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "qualification": null,
+              "role": "submit",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:company_check",
+                  "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                },
+                {
+                  "content_id": "content:company_form",
+                  "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "All four preparation steps must precede this format check. This historical manual-route example stops here; it does not cover payment, completed incorporation or later obligations.",
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:company_pack",
+          "agency": "Department of the Registrar of Companies",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:company_check",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:company_directors",
+          "heading": "Prepare director consent — Form 18",
+          "essential": "Prepare the Form 18 director consent documentation.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [
+            {
+              "id": "attachment:action:company_directors:svc:company_pack:document:2",
+              "fact_id": "svc:company_pack:document:2",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:company_pack:document:2",
+                "name": "Form 18"
+              },
+              "scope": "action",
+              "action_id": "action:company_directors",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:company_directors:document:1"
+              ],
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "qualification": null,
+              "role": "prepare",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:company_check",
+                  "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                },
+                {
+                  "content_id": "content:company_directors",
+                  "text": "Prepare Form 18 director consent documentation for the application.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "This step concerns the director consent document. No separate fee for this action is supplied in the snapshot.",
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:company_pack",
+          "agency": "Department of the Registrar of Companies",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:company_directors",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Prepare Form 18 director consent documentation for the application.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:company_form",
+          "heading": "Prepare Form 1",
+          "essential": "After name approval, prepare Form 1.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [
+            {
+              "id": "attachment:action:company_form:svc:company_pack:document:1",
+              "fact_id": "svc:company_pack:document:1",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:company_pack:document:1",
+                "name": "Form 1"
+              },
+              "scope": "action",
+              "action_id": "action:company_form",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:company_form:document:3"
+              ],
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "qualification": null,
+              "role": "prepare",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:company_check",
+                  "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                },
+                {
+                  "content_id": "content:company_form",
+                  "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            },
+            {
+              "id": "attachment:action:company_form:svc:company_pack:fee",
+              "fact_id": "svc:company_pack:fee",
+              "fact": {
+                "kind": "fee",
+                "fact_id": "svc:company_pack:fee",
+                "value": 4000.0,
+                "currency": "LKR"
+              },
+              "scope": "action",
+              "action_id": "action:company_form",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:company_form:fee:4"
+              ],
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "qualification": "Excludes VAT and other charges. Payment is outside this step.",
+              "role": "charge",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:company_form",
+                  "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "Prepare Form 1 for the incorporation application. The fee reference beside this step identifies Form 1’s LKR 4000 base charge, not the total incorporation cost or a payment due during preparation. VAT and other charges are excluded. Payment is beyond this snapshot.",
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:company_pack",
+          "agency": "Department of the Registrar of Companies",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:company_form",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:company_secretary",
+          "heading": "Prepare secretary consent — Form 19",
+          "essential": "Prepare the Form 19 secretary consent documentation.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [
+            {
+              "id": "attachment:action:company_secretary:svc:company_pack:document:3",
+              "fact_id": "svc:company_pack:document:3",
+              "fact": {
+                "kind": "document",
+                "fact_id": "svc:company_pack:document:3",
+                "name": "Form 19"
+              },
+              "scope": "action",
+              "action_id": "action:company_secretary",
+              "stage_id": null,
+              "service_id": null,
+              "branch_id": null,
+              "option_ids": [],
+              "condition_ids": [],
+              "claim_ids": [
+                "action:company_secretary:document:2"
+              ],
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "qualification": null,
+              "role": "prepare",
+              "conditions": [],
+              "status": "draft",
+              "source_context": [
+                {
+                  "content_id": "content:company_check",
+                  "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                },
+                {
+                  "content_id": "content:company_secretary",
+                  "text": "Prepare Form 19 secretary consent documentation for the application.",
+                  "evidence_ids": [
+                    "evidence:company_docs"
+                  ]
+                }
+              ],
+              "applicability_status": "consult_source_context"
+            }
+          ],
+          "explanation_visible": null,
+          "explanation_hidden": "No separate fee for this action is supplied in the snapshot.",
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:company_pack",
+          "agency": "Department of the Registrar of Companies",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:company_secretary",
+            "content:scope"
+          ],
+          "disclosure_available": true,
+          "wording_status": "provisional",
+          "source_wording": "Prepare Form 19 secretary consent documentation for the application.\n\nManually curated official-source snapshot retrieved 19 October 2026; not independently validated, not live C2 output, and not an official application service. Scope: the government Trade Portal's manual document-preparation snapshot after name approval, for a domestic non-BOI private company. This is company incorporation, not sole-trader business-name registration. Recorded LKR 4000 is Form 1's base fee only, excluding VAT, name reservation, Articles, director/secretary forms and all other charges. The older portal's VAT rate and turnaround are not adopted. Current eROC steps and beneficial-ownership obligations are not modeled; consult DRC before using this historical manual route. Completeness covers only this bounded task, not the agency's entire procedure or current legal compliance. Verify current requirements with the agency.",
+          "supplement_role": "clarification"
+        }
+      ],
+      "facts": [
+        {
+          "id": "attachment:action:company_articles:svc:company_pack:document:4",
+          "fact_id": "svc:company_pack:document:4",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:company_pack:document:4",
+            "name": "Two copies of Articles of Association"
+          },
+          "scope": "action",
+          "action_id": "action:company_articles",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:company_articles:document:0"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "qualification": null,
+          "role": "prepare",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:company_articles",
+              "text": "Prepare two copies of the Articles of Association for the manual application.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            },
+            {
+              "content_id": "content:company_check",
+              "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:company_directors:svc:company_pack:document:2",
+          "fact_id": "svc:company_pack:document:2",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:company_pack:document:2",
+            "name": "Form 18"
+          },
+          "scope": "action",
+          "action_id": "action:company_directors",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:company_directors:document:1"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "qualification": null,
+          "role": "prepare",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:company_check",
+              "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            },
+            {
+              "content_id": "content:company_directors",
+              "text": "Prepare Form 18 director consent documentation for the application.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:company_secretary:svc:company_pack:document:3",
+          "fact_id": "svc:company_pack:document:3",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:company_pack:document:3",
+            "name": "Form 19"
+          },
+          "scope": "action",
+          "action_id": "action:company_secretary",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:company_secretary:document:2"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "qualification": null,
+          "role": "prepare",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:company_check",
+              "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            },
+            {
+              "content_id": "content:company_secretary",
+              "text": "Prepare Form 19 secretary consent documentation for the application.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:company_form:svc:company_pack:document:1",
+          "fact_id": "svc:company_pack:document:1",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:company_pack:document:1",
+            "name": "Form 1"
+          },
+          "scope": "action",
+          "action_id": "action:company_form",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:company_form:document:3"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "qualification": null,
+          "role": "prepare",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:company_check",
+              "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            },
+            {
+              "content_id": "content:company_form",
+              "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:company_form:svc:company_pack:fee",
+          "fact_id": "svc:company_pack:fee",
+          "fact": {
+            "kind": "fee",
+            "fact_id": "svc:company_pack:fee",
+            "value": 4000.0,
+            "currency": "LKR"
+          },
+          "scope": "action",
+          "action_id": "action:company_form",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:company_form:fee:4"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "qualification": "Excludes VAT and other charges. Payment is outside this step.",
+          "role": "charge",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:company_form",
+              "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "attachment:action:company_check:svc:company_pack:document:0",
+          "fact_id": "svc:company_pack:document:0",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:company_pack:document:0",
+            "name": "Approved name certificate"
+          },
+          "scope": "action",
+          "action_id": "action:company_check",
+          "stage_id": null,
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [
+            "action:company_check:document:5"
+          ],
+          "evidence_ids": [
+            "evidence:company_docs"
+          ],
+          "qualification": null,
+          "role": "submit",
+          "conditions": [],
+          "status": "draft",
+          "source_context": [
+            {
+              "content_id": "content:company_check",
+              "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            },
+            {
+              "content_id": "content:company_form",
+              "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        }
+      ],
+      "branches": [],
+      "stages": [
+        {
+          "service_id": "svc:company_pack",
+          "display_order": 1,
+          "name": "Private company: required incorporation document sets",
+          "agency": "Department of the Registrar of Companies",
+          "fee_fact_id": "svc:company_pack:fee",
+          "document_fact_ids": [
+            "svc:company_pack:document:0",
+            "svc:company_pack:document:1",
+            "svc:company_pack:document:2",
+            "svc:company_pack:document:3",
+            "svc:company_pack:document:4"
+          ]
+        }
+      ],
+      "stage_edges": [],
+      "edges": [
+        {
+          "edge_id": "prerequisite:0",
+          "kind": "requires_completion",
+          "source_id": "action:company_form",
+          "target_id": "action:company_check",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:1",
+          "kind": "requires_completion",
+          "source_id": "action:company_directors",
+          "target_id": "action:company_check",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:2",
+          "kind": "requires_completion",
+          "source_id": "action:company_secretary",
+          "target_id": "action:company_check",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:3",
+          "kind": "requires_completion",
+          "source_id": "action:company_articles",
+          "target_id": "action:company_check",
+          "evidence_ids": [
+            "evidence:company_docs"
+          ]
+        }
+      ],
+      "parallel": [],
+      "joins": [],
+      "parallel_areas": [],
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "unknown"
+      },
+      "sources": [
+        {
+          "evidence_id": "evidence:company_docs",
+          "kind": "source_passage",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "text": "Short source anchor: Submit the above mentioned documents to the information counter",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "evidence_id": "evidence:company_fee",
+          "kind": "source_passage",
+          "source_url": "https://drc.gov.lk/en/?p=3968",
+          "text": "Short source anchor: Form 01",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "conditions": [],
+      "provenance": [
+        {
+          "fact_id": "svc:company_pack:document:0",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:document:1",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:document:2",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:document:3",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:document:4",
+          "source_url": "https://srilankatradeportal.gov.lk/index.php?id=40&r=searchProcedure/view1",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        },
+        {
+          "fact_id": "svc:company_pack:fee",
+          "source_url": "https://drc.gov.lk/en/?p=3968",
+          "retrieved_at": "2026-10-19T14:19:11Z"
+        }
+      ],
+      "map_labels": {
+        "action:company_articles": "Prepare the Articles of Association",
+        "action:company_check": "Submit the complete set for a format check",
+        "action:company_directors": "Prepare director consent — Form 18",
+        "action:company_form": "Prepare Form 1",
+        "action:company_secretary": "Prepare secretary consent — Form 19"
+      },
+      "phases": [],
+      "phase_order": [],
+      "supplementary": [],
+      "required_source_notes": [],
+      "relationship_aid": {
+        "mode": "inline",
+        "inline_by_action": {
+          "action:company_articles": [],
+          "action:company_check": [
+            {
+              "kind": "before",
+              "text": "Before this: Prepare Form 1",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "relation_id": "prerequisite:0"
+            },
+            {
+              "kind": "before",
+              "text": "Before this: Prepare director consent — Form 18",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "relation_id": "prerequisite:1"
+            },
+            {
+              "kind": "before",
+              "text": "Before this: Prepare secretary consent — Form 19",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "relation_id": "prerequisite:2"
+            },
+            {
+              "kind": "before",
+              "text": "Before this: Prepare the Articles of Association",
+              "evidence_ids": [
+                "evidence:company_docs"
+              ],
+              "relation_id": "prerequisite:3"
+            }
+          ],
+          "action:company_directors": [],
+          "action:company_form": [],
+          "action:company_secretary": []
+        },
+        "map": null,
+        "essential_relationships_remain_in_instructions": true
+      },
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:company_articles",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:company_check",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:company_directors",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:company_form",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:company_secretary",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:company_articles",
+        "browsing_action_ids": [
+          "action:company_articles",
+          "action:company_directors",
+          "action:company_form",
+          "action:company_secretary",
+          "action:company_check"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:company_directors",
+        "browsing_position": 1,
+        "browsing_count": 5,
+        "unresolved_route_ids": [],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "routes": [],
+      "requirements": {
+        "documents": [
+          {
+            "id": "attachment:action:company_articles:svc:company_pack:document:4",
+            "fact_id": "svc:company_pack:document:4",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:company_pack:document:4",
+              "name": "Two copies of Articles of Association"
+            },
+            "scope": "action",
+            "action_id": "action:company_articles",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:company_articles:document:0"
+            ],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ],
+            "qualification": null,
+            "role": "prepare",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:company_articles",
+                "text": "Prepare two copies of the Articles of Association for the manual application.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              },
+              {
+                "content_id": "content:company_check",
+                "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:company_directors:svc:company_pack:document:2",
+            "fact_id": "svc:company_pack:document:2",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:company_pack:document:2",
+              "name": "Form 18"
+            },
+            "scope": "action",
+            "action_id": "action:company_directors",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:company_directors:document:1"
+            ],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ],
+            "qualification": null,
+            "role": "prepare",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:company_check",
+                "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              },
+              {
+                "content_id": "content:company_directors",
+                "text": "Prepare Form 18 director consent documentation for the application.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:company_secretary:svc:company_pack:document:3",
+            "fact_id": "svc:company_pack:document:3",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:company_pack:document:3",
+              "name": "Form 19"
+            },
+            "scope": "action",
+            "action_id": "action:company_secretary",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:company_secretary:document:2"
+            ],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ],
+            "qualification": null,
+            "role": "prepare",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:company_check",
+                "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              },
+              {
+                "content_id": "content:company_secretary",
+                "text": "Prepare Form 19 secretary consent documentation for the application.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:company_form:svc:company_pack:document:1",
+            "fact_id": "svc:company_pack:document:1",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:company_pack:document:1",
+              "name": "Form 1"
+            },
+            "scope": "action",
+            "action_id": "action:company_form",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:company_form:document:3"
+            ],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ],
+            "qualification": null,
+            "role": "prepare",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:company_check",
+                "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              },
+              {
+                "content_id": "content:company_form",
+                "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "attachment:action:company_check:svc:company_pack:document:0",
+            "fact_id": "svc:company_pack:document:0",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:company_pack:document:0",
+              "name": "Approved name certificate"
+            },
+            "scope": "action",
+            "action_id": "action:company_check",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:company_check:document:5"
+            ],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ],
+            "qualification": null,
+            "role": "submit",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:company_check",
+                "text": "After preparing the four document sets, submit them with the approved name certificate for the format check. All four sets are required. No order or independence between their preparation steps is asserted. This snapshot stops before payment, incorporation and later obligations.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              },
+              {
+                "content_id": "content:company_form",
+                "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "fees": [
+          {
+            "id": "attachment:action:company_form:svc:company_pack:fee",
+            "fact_id": "svc:company_pack:fee",
+            "fact": {
+              "kind": "fee",
+              "fact_id": "svc:company_pack:fee",
+              "value": 4000.0,
+              "currency": "LKR"
+            },
+            "scope": "action",
+            "action_id": "action:company_form",
+            "stage_id": null,
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [
+              "action:company_form:fee:4"
+            ],
+            "evidence_ids": [
+              "evidence:company_docs"
+            ],
+            "qualification": "Excludes VAT and other charges. Payment is outside this step.",
+            "role": "charge",
+            "conditions": [],
+            "status": "draft",
+            "source_context": [
+              {
+                "content_id": "content:company_form",
+                "text": "Prepare Form 1 for the incorporation application after name approval. The recorded Form 1 base charge is LKR 4000, excluding VAT and other charges; payment is outside this preparation step.",
+                "evidence_ids": [
+                  "evidence:company_docs"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "total": null,
+        "no_total_reason": "Charges are scoped source facts; no total or alternative-route sum is inferred.",
+        "placement": "Always available outside explanation disclosure; stage facts are not action payments."
+      }
+    },
+    "interaction": {
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:company_articles",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:company_check",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:company_directors",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:company_form",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:company_secretary",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:company_articles",
+        "browsing_action_ids": [
+          "action:company_articles",
+          "action:company_directors",
+          "action:company_form",
+          "action:company_secretary",
+          "action:company_check"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:company_directors",
+        "browsing_position": 1,
+        "browsing_count": 5,
+        "unresolved_route_ids": [],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "route_choices": {},
+      "map_visible": false,
+      "explanation_open_action_ids": [],
+      "display_acknowledged_view_ids": [],
+      "recap": {
+        "enabled": false,
+        "items": [],
+        "empty_reason": "recap_off",
+        "label": "Earlier guidance viewed, not confirmed as done"
+      },
+      "event_count": 0,
+      "completion_tracked": false
+    },
+    "controls": {
+      "configuration_adjustment": true,
+      "feedback": true,
+      "research_inspection": true
+    }
+  }
+}

@@ -144,7 +144,8 @@
           "evidence:collection_rules"
         ],
         "qualification": null,
-        "status": "draft"
+        "status": "draft",
+        "role": "bring"
       },
       {
         "id": "attachment:action:locker_collection:svc:demo_collection:document:reference",
@@ -163,7 +164,8 @@
           "evidence:collection_rules"
         ],
         "qualification": null,
-        "status": "draft"
+        "status": "draft",
+        "role": "bring"
       }
     ],
     "phases": [
@@ -248,7 +250,7 @@
           ]
         },
         "detailed": {
-          "text": "Only if counter collection is chosen: after registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+          "text": "Choose this route only if you picked counter collection. After registration, present your fictional registration reference at the fictional counter to collect the demo pack.",
           "status": "draft",
           "claim_ids": [
             "action:counter_collection:essential:0"
@@ -259,7 +261,7 @@
         },
         "supplement": {
           "text": {
-            "text": "The counter and locker instructions describe alternative ways to collect the same pack; the locker route is not an additional visit.",
+            "text": "The locker route is the alternative way to collect the same pack, not an additional visit.",
             "status": "draft",
             "claim_ids": [],
             "evidence_ids": [
@@ -327,7 +329,7 @@
           ]
         },
         "detailed": {
-          "text": "Only if locker collection is chosen: after registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+          "text": "Choose this route only if you picked locker collection. After registration, use your fictional registration reference at the fictional locker to collect the demo pack.",
           "status": "draft",
           "claim_ids": [
             "action:locker_collection:essential:0"
@@ -406,7 +408,7 @@
           ]
         },
         "detailed": {
-          "text": "Register a fictional collection request and obtain its fictional registration reference. Then choose exactly one collection method, counter or locker, and use the reference with it. Do not do both.",
+          "text": "Register a fictional collection request and obtain its fictional registration reference. Then choose exactly one collection method, counter or locker, and use the reference with it. You should not do both.",
           "status": "draft",
           "claim_ids": [
             "action:register_collection:essential:0"
@@ -583,7 +585,8 @@
           "evidence:collection_rules"
         ],
         "qualification": null,
-        "status": "reviewed"
+        "status": "reviewed",
+        "role": "bring"
       },
       {
         "id": "attachment:action:locker_collection:svc:demo_collection:document:reference",
@@ -602,7 +605,8 @@
           "evidence:collection_rules"
         ],
         "qualification": null,
-        "status": "reviewed"
+        "status": "reviewed",
+        "role": "bring"
       }
     ],
     "phases": [
@@ -687,7 +691,7 @@
           ]
         },
         "detailed": {
-          "text": "Only if counter collection is chosen: after registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+          "text": "Choose this route only if you picked counter collection. After registration, present your fictional registration reference at the fictional counter to collect the demo pack.",
           "status": "reviewed",
           "claim_ids": [
             "action:counter_collection:essential:0"
@@ -698,7 +702,7 @@
         },
         "supplement": {
           "text": {
-            "text": "The counter and locker instructions describe alternative ways to collect the same pack; the locker route is not an additional visit.",
+            "text": "The locker route is the alternative way to collect the same pack, not an additional visit.",
             "status": "reviewed",
             "claim_ids": [],
             "evidence_ids": [
@@ -766,7 +770,7 @@
           ]
         },
         "detailed": {
-          "text": "Only if locker collection is chosen: after registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+          "text": "Choose this route only if you picked locker collection. After registration, use your fictional registration reference at the fictional locker to collect the demo pack.",
           "status": "reviewed",
           "claim_ids": [
             "action:locker_collection:essential:0"
@@ -845,7 +849,7 @@
           ]
         },
         "detailed": {
-          "text": "Register a fictional collection request and obtain its fictional registration reference. Then choose exactly one collection method, counter or locker, and use the reference with it. Do not do both.",
+          "text": "Register a fictional collection request and obtain its fictional registration reference. Then choose exactly one collection method, counter or locker, and use the reference with it. You should not do both.",
           "status": "reviewed",
           "claim_ids": [
             "action:register_collection:essential:0"
@@ -885,7 +889,7 @@
       "reviewer": "Claude Sonnet 5.5 internal fictional author-review (AI-assisted; not human, external-expert or government review)",
       "reviewed_at": "2026-10-22T12:00:00Z",
       "scope_note": "Compared the 3.1 Concise, Detailed and supplement wording, plus headings, reminders and phase labels, to the supplied fictional Plan passages. Claim coverage and Concise/Detailed/supplement separation were also checked automatically. This is internal AI-assisted author review for isolated fictional demonstration only; it is not human, external expert, government or independent validation, and says nothing about whether any scaffold helps.",
-      "artifact_digest": "83abb9ea4eba83c8d91f680a72d06979402935e113497cc347ba11a1b619b583",
+      "artifact_digest": "52f9485a2372a4af9c703361f6c20cefd5d96d692d49bc1385f10254aaeb45f3",
       "checks": [
         {
           "target": "actions.action:counter_collection.heading",
@@ -997,7 +1001,7 @@
             "evidence:collection_rules"
           ],
           "result": "matched",
-          "note": "Internal AI-assisted fictional author-review only. Compared \"Only if counter collection is chosen: after registration, present the fictional registration reference at the fictional counter to collect the demo pa\" with the fictional source passage \"Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Choose this route only if you picked counter collection. After registration, present your fictional registration reference at the fictional counter to\" with the fictional source passage. It restates the passage and adds plain clarifications of order, documents and places that the same fictional procedure states; no new requirement, fee or place. Not human or external expert review."
         },
         {
           "target": "actions.action:counter_collection.supplement",
@@ -1028,7 +1032,7 @@
             "evidence:collection_rules"
           ],
           "result": "matched",
-          "note": "Internal AI-assisted fictional author-review only. Compared \"Only if locker collection is chosen: after registration, use the fictional registration reference at the fictional locker to collect the demo pack.\" with the fictional source passage \"Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Choose this route only if you picked locker collection. After registration, use your fictional registration reference at the fictional locker to colle\" with the fictional source passage. It restates the passage and adds plain clarifications of order, documents and places that the same fictional procedure states; no new requirement, fee or place. Not human or external expert review."
         },
         {
           "target": "actions.action:locker_collection.supplement",
@@ -1059,7 +1063,7 @@
             "evidence:collection_rules"
           ],
           "result": "matched",
-          "note": "Internal AI-assisted fictional author-review only. Compared \"Register a fictional collection request and obtain its fictional registration reference. Then choose exactly one collection method, counter or locker,\" with the fictional source passage \"Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference\". Every statement restates or directly follows from that passage or the Plan relationships; nothing added. Not human or external expert review."
+          "note": "Internal AI-assisted fictional author-review only. Compared \"Register a fictional collection request and obtain its fictional registration reference. Then choose exactly one collection method, counter or locker,\" with the fictional source passage. It restates the passage and adds plain clarifications of order, documents and places that the same fictional procedure states; no new requirement, fee or place. Not human or external expert review."
         },
         {
           "target": "actions.action:register_collection.supplement",

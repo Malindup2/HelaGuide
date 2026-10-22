@@ -19,14 +19,13 @@ describe('each step receives only the facts that belong to it', () => {
     const r = actionFacts('standard-synthetic-practice-v2');
     render(<GuidanceCard response={r} emit={vi.fn()} />);
     const submit = card('action:submit_application')!;
-    expect(submit.querySelector('.cz-atstep-h')?.textContent).toBe('At this step');
     expect(tags(submit).join(' ')).toContain('Fictional Submission Desk');
     expect(tags(submit).join(' ')).toContain('Fictional completed application form');
     expect(tags(submit).join(' ')).toContain('Fictional supporting copy');
-    expect(submit.textContent).toContain('Bring');
+    expect(submit.textContent).toContain('Submit');
     for (const id of ['action:register_application', 'action:prepare_form']) {
       const c = card(id);
-      expect(c?.textContent ?? '').not.toMatch(/Bring|Charge|LKR/);
+      expect(c?.textContent ?? '').not.toMatch(/Bring|Submit|Pay|Charge|LKR/);
     }
     expect(tags(card('action:register_application')).join(' ')).toContain('Fictional Registration Desk');
     expect(card('action:prepare_form')).toBeNull();
@@ -38,20 +37,21 @@ describe('each step receives only the facts that belong to it', () => {
       render(<GuidanceCard response={r} emit={vi.fn()} />);
       expect(document.querySelectorAll('.cz-atstep .cz-fee').length).toBe(0);
       expect(r.document.actions.every(a => a.facts.every(f => f.fact.kind !== 'fee'))).toBe(true);
-      expect(document.querySelectorAll('.cz-reqs .cz-fee').length).toBe(r.document.requirements.fees.length);
+      expect(document.querySelectorAll('.cz-service .cz-fee').length).toBe(r.document.requirements.fees.length);
       expect(new Set(r.document.requirements.fees.map(f => f.fact_id)).size).toBe(r.document.requirements.fees.length);
       cleanup();
     }
   });
 
-  it('documents appear once at their step and once in the whole-service list, never at steps that do not involve them', () => {
+  it('a document shown at its step is not repeated in the whole-service strip', () => {
     const r = actionFacts('standard-synthetic-parallel-v1');
     render(<GuidanceCard response={r} emit={vi.fn()} />);
-    const stepsWithBring = r.document.actions.filter(a => card(a.id)?.textContent?.includes('Bring')).map(a => a.id);
-    expect(stepsWithBring).toEqual(['action:submit_application']);
-    const panel = document.querySelector('.cz-reqs')!;
-    expect(panel.textContent).toContain('Fictional supporting copy');
-    expect(panel.textContent).toContain('Fictional completed application form');
+    const stepsWithRows = r.document.actions.filter(a => /Submit/.test(card(a.id)?.textContent ?? '')).map(a => a.id);
+    expect(stepsWithRows).toEqual(['action:submit_application']);
+    const strip = document.querySelector('.cz-service')!;
+    expect(strip.textContent).not.toContain('Fictional supporting copy');
+    expect(strip.textContent).not.toContain('Fictional completed application form');
+    expect(strip.textContent).toMatch(/LKR 0/);
   });
 
   it('official procedures carry no action-level facts, destinations or step cards (source fallback)', () => {
