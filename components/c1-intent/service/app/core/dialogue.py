@@ -60,6 +60,7 @@ class DialogueResult:
     conflicts: list[dict] = field(default_factory=list)
     rejections: list[dict] = field(default_factory=list)
     llm_proposed: int = 0           # LLM slot updates with a value (rejection-rate denominator)
+    llm_slots: list[str] = field(default_factory=list)     # slots whose LLM value passed the validator this turn
     latency_ms: float = 0.0
     nlu_ms: float = 0.0
     llm_ms: float = 0.0
@@ -140,7 +141,7 @@ class DialogueManager:
             dialogue_mode=self.settings.mode,
             conflicts=[asdict(c) for c in merge.conflicts] if merge else [],
             rejections=[asdict(r) for r in checks["rejections"]],
-            llm_proposed=merge.proposed if merge else 0,
+            llm_proposed=merge.proposed if merge else 0, llm_slots=sorted(merge.accepted) if merge else [],
             latency_ms=_ms(t0), nlu_ms=nlu_ms, llm_ms=llm_ms, llm_usage=asdict(out.usage), state=result)
 
     def _rules_turn(self, chat, text, rules, source, t0, nlu_ms, llm_ms=0.0, error=None) -> DialogueResult:

@@ -50,6 +50,7 @@ def test_several_slots_from_one_message(chat):
     # the rules tracker read "my" as self; applicant_for is not extractive, so the LLM's parent wins
     assert [(x["slot"], x["rules"], x["kept"]) for x in r.conflicts] == [("applicant_for", "self", "llm")]
     assert r.llm_usage["calls"] == 1 and r.llm_usage["prompt_tokens"] > 0
+    assert r.llm_slots == ["applicant_for", "district", "purpose"]
 
 
 def test_greeting_changes_no_slot(chat):
@@ -119,7 +120,7 @@ def test_invalid_intent_falls_back_to_xlmr(chat):
 def test_invalid_district_is_rejected(chat):
     c, _ = chat({"from Narnia": (BIRTH, 0.9)}, llm_reply(slots={"district": "Narnia"}))
     r = c.step("from Narnia")
-    assert "district" not in r.slots
+    assert "district" not in r.slots and r.llm_slots == []       # rejected values are not in llm_slots
     assert "district" in r.missing_slots
     assert ("district", "not_a_district") in {(x["field"], x["reason"]) for x in r.rejections}
 
