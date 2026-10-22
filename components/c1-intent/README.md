@@ -18,6 +18,7 @@ Turns a citizen's raw text (Sinhala, English or code-switched, multi-turn) into 
 | GET | `/health` | Liveness |
 | POST | `/v1/intent` | Raw text → `intent` (team contract) |
 | POST | `/v1/intent/details` | C1-only: same input plus optional `bot_text`; returns internal intent, route, slots, missing slots, language tags, latency and the projected `intent` |
+| POST | `/v1/chat` | C1-only: one chat turn with a natural reply, in the dialogue mode set by `C1_DIALOGUE_MODE` (see [LLM dialogue layer](#llm-dialogue-layer-v1chat)); its sessions are separate from `/v1/intent` |
 
 Routes in `/v1/intent/details`: core intents and `general_question` → `orchestration`, `feedback_complaint` →
 `trust_verification`, `unsupported_service` → `fallback`, `out_of_scope` / `unknown` → `none`.
@@ -137,3 +138,88 @@ middle of a passport request, **LOCK** (passport kept over misread follow-ups), 
 and **MULTI** (NIC, then passport). Click any of your messages to look at that turn again. The page is C1-only
 (`app/static/demo.html`), needs no build step and is not in the OpenAPI docs.
 
+## LLM dialogue layer (`/v1/chat`)
+
+`/v1/chat` makes C1 talk like a normal chatbot: natural replies, several slots from one message, small talk,
+unsupported services declined while the open request is kept. The engine (XLM-R + the rules tracker) still runs on
+every turn. An LLM writes the reply and proposes intent and slot updates, and a validator in C1's own code checks
+every update before it touches the state. `/v1/intent` and `/v1/intent/details` are not affected in any mode
+(`service/tests/test_compat_context_v2.py` checks them byte for byte against `c1/context-v2`). Design, validator
+rules and known limits: [`research/docs/llm_dialogue_design.md`](research/docs/llm_dialogue_design.md).
+
+| `C1_DIALOGUE_MODE` | Who replies | LLM sees |
+|---|---|---|
+| `rules` (default) | The engine's own reply, as on the demo page; no LLM is called | — |
+| `llm` | The LLM, checked by the validator | History, state, message (an ablation: no NLU hints) |
+| `hybrid` | The LLM, checked by the validator | The same plus NLU hints: XLM-R intent and confidence, the tracker's intent, slot changes and entities |
+
+If the LLM fails (timeout, quota, bad JSON), that turn is answered by the rules path and marked
+`dialogue_source: "rules_fallback"`; the conversation carries on.
+
+**Settings** (all optional; read on every request, so a change applies to the next turn):
+
+| Variable | Default | Meaning |
+|---|---|---|
+| `C1_DIALOGUE_MODE` | `rules` | `rules`, `llm` or `hybrid` |
+| `C1_LLM_BASE_URL` | `http://127.0.0.1:11434/v1` | Any OpenAI-compatible endpoint (default: a local Ollama) |
+| `C1_LLM_MODEL` | `gemma3` | Model name at that endpoint |
+| `C1_LLM_API_KEY` | empty | Not needed for Ollama. Never logged or printed |
+| `C1_LLM_TIMEOUT` | `30` | Seconds per LLM request |
+| `C1_LLM_HISTORY_TURNS` | `6` | Conversation turns (user + bot) sent to the LLM |
+| `C1_LLM_JSON_MODE` | `true` | Ask for `response_format: json_object`; `false` relies on the prompt. The client also drops it by itself when the provider rejects it |
+| `C1_LLM_REASONING_EFFORT` | empty (not sent) | `none`, `minimal`, `low`, `medium` or `high`, sent as `reasoning_effort` |
+| `C1_HINT_MIN_CONFIDENCE` | `0.0` (off) | `hybrid`: below this XLM-R confidence the intent hints are marked weak. Evaluation setting; calibration on gold found no useful gate |
+| `C1_PROTECT_APPLICANT_FOR` | `true` | In `llm`/`hybrid`, the rules tracker may not change a known `applicant_for` without a correction either (the LLM never may) |
+
+**Gemini** (free tier through Google's OpenAI-compatible endpoint; the model we use for development and the
+evaluation). Get a key in Google AI Studio and set it **only in the window**, with `set`; never put it in a file:
+
+```bat
+set C1_DIALOGUE_MODE=hybrid
+set C1_LLM_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai
+set C1_LLM_MODEL=gemini-3.5-flash-lite
+set C1_LLM_REASONING_EFFORT=low
+set C1_LLM_API_KEY=<your key>
+```
+
+Model names change and old ones are retired (a 404 from the endpoint): check the current list in AI Studio.
+Gemini 3 models reject `reasoning_effort` `none` and `minimal` (HTTP 400). The free tier may use prompts for
+training, so send fictional data only.
+
+**Ollama** (local, no key, no quota): install Ollama, then `ollama pull gemma3` and `ollama serve`. The defaults
+already point at it (`127.0.0.1`, not `localhost`: on Windows `localhost` tries IPv6 first). Only
+`C1_DIALOGUE_MODE` needs setting.
+
+**Try it** (service running in real mode, PowerShell):
+
+```powershell
+$body = @{ session_id = "anon-chat1"; text = "I need a birth certificate for my mom, she's from Kurunegala" } | ConvertTo-Json
+Invoke-RestMethod -Uri http://127.0.0.1:8001/v1/chat -Method Post -ContentType "application/json" -Body $body
+```
+
+The response has `reply`, `dialogue_source` (`llm`, `rules` or `rules_fallback`), the slots, `tasks` (open
+requests), what the validator rejected, latency split into NLU and LLM time, token usage and the contract `intent`.
+On the demo page (<http://127.0.0.1:8001/demo>), the **Endpoint** switch next to "New session" sends the chat to
+`/v1/chat` and shows who replied on every turn; `/v1/intent/details` stays the default.
+
+**Scripts** (Windows cmd, `nlp` env, real engine; LLM settings as above). Their outputs are git-ignored.
+
+```bat
+cd components\c1-intent\service
+rem quick check of one model: 5 turns of the rigid demo log, reply / usage / latency / errors per turn
+python scripts\llm_smoke_test.py --model gemini-3.5-flash-lite --effort low --timeout 60 > smoke_lite_low.txt
+rem regression replay: the rigid log in rules, llm and hybrid mode, checked against its expectations
+python scripts\replay_log.py --model gemini-3.5-flash-lite --effort low --timeout 60 --json-out replay_lite_low.json > replay_lite_low.txt
+python scripts\replay_log.py --modes rules
+
+cd ..\research
+rem the results-chapter evaluation on the fresh set: rules once, llm and hybrid 3 runs each (300 LLM calls)
+python experiments\dialogue_eval.py --model gemini-3.5-flash-lite --effort low --timeout 60 > dialogue_eval_run.txt
+rem the hint-gate calibration on gold (no LLM)
+python experiments\gate_calibration.py --model-dir models\c1\run_v2_seed1
+```
+
+`dialogue_eval.py` paces its calls (`--pause`, 4 s), retries slow failures, stops when the quota is used up and
+resumes from its checkpoint when run again with the same command. It writes
+`research/results/dialogue_eval_<setting>_<model>.json` (committed) and a per-turn checkpoint `.jsonl` (not
+committed).
