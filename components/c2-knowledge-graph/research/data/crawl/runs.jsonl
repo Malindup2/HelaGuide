@@ -8,3 +8,6 @@
 {"run_id": "e1950230ecc3", "started_at": "2026-10-11T14:33:49+00:00", "finished_at": "2026-10-11T14:44:20+00:00", "pages": 137, "counts": {"UNCHANGED": 60, "UNREACHABLE": 3, "NEW": 74}, "to_extract": 74}
 {"run_id": "67a7606f9c7b", "started_at": "2026-10-11T15:02:32+00:00", "finished_at": "2026-10-11T15:16:44+00:00", "pages": 236, "counts": {"UNCHANGED": 134, "UNREACHABLE": 3, "NEW": 99}, "to_extract": 99}
 {"run_id": "b5b8cc296ef1", "started_at": "2026-10-12T16:08:29+00:00", "finished_at": "2026-10-12T16:09:56+00:00", "pages": 43, "counts": {"NEW": 43}, "to_extract": 43}
+{"run_id": "6239d65c8b2e", "started_at": "2026-10-22T15:45:20+00:00", "finished_at": "2026-10-22T15:45:32+00:00", "pages": 2, "counts": {"STRUCTURE_CHANGED": 1, "UNCHANGED": 1}, "to_extract": 1}
+{"run_id": "c5a8e80affcd", "started_at": "2026-10-22T15:45:45+00:00", "finished_at": "2026-10-22T15:45:46+00:00", "pages": 1, "counts": {"NEW": 1}, "to_extract": 1}
+{"run_id": "2b23cd4ca376", "started_at": "2026-10-22T15:47:40+00:00", "finished_at": "2026-10-22T15:47:54+00:00", "pages": 3, "counts": {"NEW": 1, "UNCHANGED": 2}, "to_extract": 1}

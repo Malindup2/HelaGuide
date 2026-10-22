@@ -194,3 +194,10 @@ def test_a_trailing_country_name_still_matches_the_known_agency():
     assert canonical_agency("Inland Revenue Department Sri Lanka", known) == known[0]
     assert canonical_agency("Inland Revenue Department", ["Inland Revenue Department Sri Lanka"]) \
         == "Inland Revenue Department Sri Lanka"
+
+
+def test_a_known_duplicate_service_id_canonicalizes_to_its_real_one():
+    from app.core.graph.writer import canonical_service
+
+    assert canonical_service("svc:tourist_vat_refund_scheme_tvrs") == "svc:tourist_vat_refund_scheme"
+    assert canonical_service("svc:nic") == "svc:nic"  # untouched, no alias
