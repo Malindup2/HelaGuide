@@ -22,7 +22,7 @@ from dataclasses import dataclass, field
 DIALOGUE_MODES = ("rules", "llm", "hybrid")
 REASONING_EFFORTS = ("none", "minimal", "low", "medium", "high")
 DEFAULT_MODE = "rules"
-DEFAULT_BASE_URL = "http://localhost:11434/v1"
+DEFAULT_BASE_URL = "http://127.0.0.1:11434/v1"     # not localhost: on Windows that tries IPv6 ::1 first (~2 s)
 DEFAULT_MODEL = "gemma3"
 DEFAULT_TIMEOUT = 30.0
 DEFAULT_HISTORY_TURNS = 6

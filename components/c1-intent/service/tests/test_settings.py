@@ -17,7 +17,7 @@ def test_defaults_are_rules_mode_and_local_ollama():
     s = dialogue_settings()
     assert s == DialogueSettings()
     assert s.mode == "rules"
-    assert s.base_url == "http://localhost:11434/v1"
+    assert s.base_url == "http://127.0.0.1:11434/v1"
     assert s.api_key == ""
     assert s.json_mode is True
     assert s.protect_applicant_for is True
