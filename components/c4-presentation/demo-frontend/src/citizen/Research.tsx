@@ -95,6 +95,7 @@ function Record({ record }: { record: InspectorRecord }) {
     <table className="cz-matrix"><caption>Seven structural measurements</caption><thead><tr><th scope="col">Measure</th><th scope="col">Observed</th><th scope="col">Completeness</th></tr></thead>
       <tbody>{MEASURES.map(k => <tr key={k}><th scope="row">{k.replaceAll('_', ' ')}</th><td>{m[k]?.observed ?? '–'}{typeof m[k]?.normalized_observed === 'number' && <small> ({m[k]!.normalized_observed!.toFixed(2)})</small>}</td><td>{m[k]?.completeness ?? '–'}</td></tr>)}</tbody></table>
     <dl className="cz-dl">
+      <dt>Versions</dt><dd>Action meanings {av.action_schema}{av.feasibility_fingerprint && <>; feasible-set fingerprint {av.feasibility_fingerprint.slice(0, 12)}</>}</dd>
       <dt>Feasibility</dt><dd>{av.feasible_count} of {av.nominal_count} configurations feasible{grouped.size > 0 && <ul>{[...grouped].map(([r, n]) => <li key={r}>{n} excluded: {reasonText(r)}</li>)}</ul>}</dd>
       <dt>Encoder and scoring</dt><dd>{record.scoring_status === 'not_run' ? 'Scoring was not run for this journey' : `Scoring status: ${record.scoring_status}`}. Features: {record.features === null ? 'none recorded' : 'recorded'}. Sampled scores: {record.sampled_scores === null ? 'none recorded' : 'recorded'}. Policy: {record.policy === null ? 'none' : 'recorded'}. Posterior updates for this journey: {record.posterior_updates}.</dd>
       <dt>Selection</dt><dd>{selected ? `${selected.label} (${selected.kind.replaceAll('_', ' ')})` : 'unknown'}</dd>

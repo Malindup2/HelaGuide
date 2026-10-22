@@ -1,0 +1,207 @@
+{
+  "procedure_id": "synthetic-linear-v1",
+  "status": "candidate_pending_review",
+  "derived_from": "research/data/guidance/fictional/synthetic-linear-v1.json",
+  "note": "Not installed by install_fictional_content, not published, not used by the policy or checkpoint.",
+  "content": {
+    "procedure_id": "synthetic-linear-v1",
+    "language": "en",
+    "source_graph_fingerprint": "ecb70e62fd367383359307b2e405ec683243182c2cbeb69971817d01ce8261b3",
+    "relationship_fingerprint": "597e1b7e1bcca754558f3b8a6670d4edd6b2fbdf199e90a02cb6ddbf89d49844",
+    "content_version": "fictional-author-reviewed-2026-10-22.1+3.1-candidate",
+    "origin": "fictional_authored",
+    "source_limit": "Authored C4 research fixture. Not official guidance. Services, evidence, fees and relationships are fictional. Plan provenance timestamps are illustrative; no real source retrieval occurred.",
+    "claims": [
+      {
+        "id": "action:collect_pack:essential:0",
+        "source_kind": "content",
+        "source_id": "content:collect_pack",
+        "start": 0,
+        "end": 95,
+        "quote": "After the token request is complete, present the fictional demo token to collect the demo pack.",
+        "action_ids": [
+          "action:collect_pack"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collect_pack"
+        ]
+      },
+      {
+        "id": "action:request_token:essential:0",
+        "source_kind": "content",
+        "source_id": "content:request_token",
+        "start": 0,
+        "end": 31,
+        "quote": "Request a fictional demo token.",
+        "action_ids": [
+          "action:request_token"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:request_token"
+        ]
+      }
+    ],
+    "attachments": [],
+    "phases": [],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "schema_version": "c4-guidance-content-3.1",
+    "actions": [
+      {
+        "id": "action:collect_pack",
+        "heading": {
+          "text": "Present your token and collect the demo pack",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collect_pack"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "After the token request is complete, present the fictional demo token to collect the demo pack.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:collect_pack:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collect_pack"
+          ]
+        },
+        "concise": {
+          "text": "Once the token request is complete, present your demo token to collect the pack.",
+          "status": "draft",
+          "claim_ids": [
+            "action:collect_pack:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collect_pack"
+          ]
+        },
+        "detailed": {
+          "text": "After the token request is complete, present the fictional demo token to collect the demo pack. Collection depends on that earlier request.",
+          "status": "draft",
+          "claim_ids": [
+            "action:collect_pack:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collect_pack"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Moving to this guidance does not establish that the request is complete or that the token was presented.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collect_pack"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": false
+        },
+        "recap": {
+          "text": "Earlier collection guidance required a completed token request and presentation of the token.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collect_pack"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:request_token",
+        "heading": {
+          "text": "Request your fictional collection token",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:request_token"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Request a fictional demo token.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:request_token:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:request_token"
+          ]
+        },
+        "concise": {
+          "text": "Request a fictional demo token. You will present it later to collect the pack.",
+          "status": "draft",
+          "claim_ids": [
+            "action:request_token:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:request_token"
+          ]
+        },
+        "detailed": {
+          "text": "Request a fictional demo token. The collection step later asks you to present this token, so the two actions are linked.",
+          "status": "draft",
+          "claim_ids": [
+            "action:request_token:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:request_token"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The token request is the prerequisite for collection. Reading this guidance does not establish that it is complete.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:request_token"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": false
+        },
+        "recap": {
+          "text": "Earlier guidance asked you to request a fictional token for pack collection.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:request_token"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      }
+    ],
+    "review": {
+      "status": "draft",
+      "reviewer": "PENDING REVIEW: a named reviewer is required",
+      "reviewed_at": "2026-10-22T00:00:00Z",
+      "scope_note": "Candidate 3.1 wording drafted from the existing 3.0 source passages and earlier remainders. Nothing here is reviewed, published or used by any policy.",
+      "artifact_digest": "pending",
+      "checks": [
+        {
+          "target": "candidate",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collect_pack"
+          ],
+          "result": "rejected",
+          "note": "Not yet reviewed."
+        }
+      ]
+    }
+  }
+}

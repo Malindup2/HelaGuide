@@ -21,7 +21,7 @@ def register_routes(app):
     @app.get('/workspace/guidance/status',tags=['Revised Guidance'])
     def status():
         result=api()
-        return {'schema_version':API_SCHEMA,'action_schema':'c4-scaffolds-v3.0','nominal_configuration_count':96,
+        return {'schema_version':API_SCHEMA,'action_schema':result.flavour.action_schema,'content_schema':result.flavour.content_schema,'nominal_configuration_count':96,
                 'standard_guidance_available':True,'research_previews_enabled':result.research_enabled,
                 'personalized_selection_available':result.policy is not None,'encoder_status':'c4-features-pp1-1.0-525' if result.policy else 'approved_525_policy_disabled',
                 'policy':result.policy.status() if result.policy else None,'history_adjustment':'deferred_to_PP2',

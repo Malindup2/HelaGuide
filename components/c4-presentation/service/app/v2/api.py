@@ -65,8 +65,7 @@ def create_app(path=None, *, mode="simulation", seed=0, runtime=None, runtime_cl
             demo_fixtures = options.pop("demo_fixtures", False)
             prepared = ContentPreparation(app.state.runtime, **options)
             if demo_fixtures:
-                from app.guidance.demo import install_fictional_content
-                install_fictional_content(prepared)
+                prepared.flavour.install_demo(prepared)
             prepared.start()
             app.state.prepared_content = prepared
         app.state.guidance_api = None

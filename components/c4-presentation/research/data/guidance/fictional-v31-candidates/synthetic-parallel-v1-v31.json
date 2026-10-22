@@ -1,0 +1,436 @@
+{
+  "procedure_id": "synthetic-parallel-v1",
+  "status": "candidate_pending_review",
+  "derived_from": "research/data/guidance/fictional/synthetic-parallel-v1.json",
+  "note": "Not installed by install_fictional_content, not published, not used by the policy or checkpoint.",
+  "content": {
+    "procedure_id": "synthetic-parallel-v1",
+    "language": "en",
+    "source_graph_fingerprint": "cb8a5dd35d505dc83986a2b3e5ab7f3b1314577bc5b6ebbd85fdef1bd652eac9",
+    "relationship_fingerprint": "1c09777ee68a82365bad7f94bbbd3a378d835748f895851de84191cfd1926fb2",
+    "content_version": "fictional-author-reviewed-2026-10-22.1+3.1-candidate",
+    "origin": "fictional_authored",
+    "source_limit": "Entirely fictional C4 research scenario. This is not a government service or official advice. Example-domain URLs and Plan provenance timestamps are illustrative; no government source was retrieved. Completeness describes only this authored scenario.",
+    "claims": [
+      {
+        "id": "action:prepare_copy:essential:0",
+        "source_kind": "content",
+        "source_id": "content:prepare_copy",
+        "start": 0,
+        "end": 167,
+        "quote": "After registration, prepare the fictional supporting copy. This action does not require the application form to be prepared first. The copy is required for submission.",
+        "action_ids": [
+          "action:prepare_copy"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:prepare_form:essential:0",
+        "source_kind": "content",
+        "source_id": "content:prepare_form",
+        "start": 0,
+        "end": 177,
+        "quote": "After registration, prepare the fictional completed application form. This action does not require the supporting copy to be prepared first. The form is required for submission.",
+        "action_ids": [
+          "action:prepare_form"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:register_application:essential:0",
+        "source_kind": "content",
+        "source_id": "content:register_application",
+        "start": 0,
+        "end": 327,
+        "quote": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+        "action_ids": [
+          "action:register_application"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      },
+      {
+        "id": "action:submit_application:essential:0",
+        "source_kind": "content",
+        "source_id": "content:submit_application",
+        "start": 0,
+        "end": 222,
+        "quote": "Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.",
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:application_rules"
+        ]
+      }
+    ],
+    "attachments": [],
+    "phases": [
+      {
+        "id": "phase:1",
+        "label": {
+          "text": "Open the application journey",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "action_ids": [
+          "action:register_application"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Registration is the common prerequisite for the preparation work areas.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:2",
+        "label": {
+          "text": "Prepare the required items",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "action_ids": [
+          "action:prepare_copy",
+          "action:prepare_form"
+        ],
+        "basis": "purpose",
+        "why_grouped": "The form and applicable copy work belong to preparation; alternatives remain together and independence comes only from verified edges.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:3",
+        "label": {
+          "text": "Bring the required items together",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "action_ids": [
+          "action:submit_application"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Submission joins the required preparation work and documents.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:application_rules"
+        ],
+        "branch_split_note": null
+      }
+    ],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "schema_version": "c4-guidance-content-3.1",
+    "actions": [
+      {
+        "id": "action:prepare_copy",
+        "heading": {
+          "text": "Prepare the fictional supporting copy after registration",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "After registration, prepare the fictional supporting copy. This action does not require the application form to be prepared first. The copy is required for submission.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:prepare_copy:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "text": "After registration, prepare the supporting copy. It is required for submission.",
+          "status": "draft",
+          "claim_ids": [
+            "action:prepare_copy:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "detailed": {
+          "text": "After registration, prepare the fictional supporting copy. It does not require the form to be prepared first, and it is required for submission.",
+          "status": "draft",
+          "claim_ids": [
+            "action:prepare_copy:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Submission needs both items, so preparing the supporting copy does not remove the form requirement.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": false
+        },
+        "recap": {
+          "text": "Earlier copy guidance required a supporting copy for submission, separately from the form.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:prepare_form",
+        "heading": {
+          "text": "Prepare the fictional application form after registration",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "After registration, prepare the fictional completed application form. This action does not require the supporting copy to be prepared first. The form is required for submission.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:prepare_form:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "text": "After registration, prepare the application form. It is required for submission.",
+          "status": "draft",
+          "claim_ids": [
+            "action:prepare_form:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "detailed": {
+          "text": "After registration, prepare the fictional completed application form. It does not require the supporting copy to be prepared first, and it is required for submission.",
+          "status": "draft",
+          "claim_ids": [
+            "action:prepare_form:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Neither preparation work area has to wait for the other. Doing one does not replace the other.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": false
+        },
+        "recap": {
+          "text": "Earlier form guidance required the completed form as one of the items needed for submission.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:register_application",
+        "heading": {
+          "text": "Register the fictional application before preparation",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:register_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "text": "Register the application first. Preparation and submission follow.",
+          "status": "draft",
+          "claim_ids": [
+            "action:register_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "detailed": {
+          "text": "Register the fictional application before preparing its two required items. After registration, preparing the form and preparing the supporting copy can proceed independently, in either order or concurrently. Both must be done before submission.",
+          "status": "draft",
+          "claim_ids": [
+            "action:register_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The registration, preparation and submission fee mentions describe separate stages; they are not three charges payable at registration.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": false
+        },
+        "recap": {
+          "text": "Earlier registration guidance placed registration before the independent preparation work areas.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:submit_application",
+        "heading": {
+          "text": "Submit the application with both required items",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:submit_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "concise": {
+          "text": "Submit once both the form and the supporting copy are ready.",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "detailed": {
+          "text": "Submit the fictional application only after both preparation actions are complete. Include the completed form and the supporting copy; completing only one is insufficient.",
+          "status": "draft",
+          "claim_ids": [
+            "action:submit_application:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "This is an all-required dependency, not a choice between the two items.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:application_rules"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": false
+        },
+        "recap": {
+          "text": "Earlier submission guidance required the form and supporting copy before submission.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      }
+    ],
+    "review": {
+      "status": "draft",
+      "reviewer": "PENDING REVIEW: a named reviewer is required",
+      "reviewed_at": "2026-10-22T00:00:00Z",
+      "scope_note": "Candidate 3.1 wording drafted from the existing 3.0 source passages and earlier remainders. Nothing here is reviewed, published or used by any policy.",
+      "artifact_digest": "pending",
+      "checks": [
+        {
+          "target": "candidate",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ],
+          "result": "rejected",
+          "note": "Not yet reviewed."
+        }
+      ]
+    }
+  }
+}

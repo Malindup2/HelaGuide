@@ -1,0 +1,1 @@
+Real responses from the isolated c4-guidance-content-3.1 runtime (research/export_guidance_v31_examples.py). Fictional content is internally author-reviewed by an AI-assisted reviewer, not human or external expert. No policy was used.

@@ -1,0 +1,38 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/guests",
+  "request": null,
+  "status_code": 200,
+  "response": {
+    "schema_version": "1.0",
+    "session_id": "guest:c030f67dff7f44dd9f989712b5e41835",
+    "created_at": "2026-10-22T00:46:26.049467Z",
+    "updated_at": "2026-10-22T00:46:26.049467Z",
+    "revision": 0,
+    "settings": {
+      "schema_version": "1.0",
+      "familiarity": [],
+      "navigation_capability": null,
+      "navigation_source": "self_reported",
+      "preferences": {
+        "presentation_mode": null,
+        "progressive_disclosure": null,
+        "previous_context_recap": null,
+        "relationship_visual": null,
+        "prerequisite_cue": null
+      },
+      "locks": {
+        "presentation_mode": null,
+        "progressive_disclosure": null,
+        "previous_context_recap": null,
+        "relationship_visual": null,
+        "prerequisite_cue": null
+      },
+      "accessibility": {
+        "allow_relationship_visuals": true,
+        "allow_collapsed_content": true,
+        "allow_guided_navigation": true
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ export const DIMENSIONS: Dimension[] = ['navigation', 'explanation', 'disclosure
 export const DIMENSION_TEXT: Record<Dimension, { title: string; hint: string; values: Record<string, string> }> = {
   navigation: { title: 'Navigation', hint: 'See every step, or one at a time', values: { overview: 'Overview', guided: 'Guided' } },
   explanation: { title: 'Explanation', hint: 'Short instructions, or fuller reviewed explanation', values: { concise: 'Concise', detailed: 'Detailed' } },
-  disclosure: { title: 'Show/hide explanation', hint: 'Keep the explanation behind a small control', values: { off: 'Off', on: 'On' } },
+  disclosure: { title: 'Extra information', hint: 'Keep supplementary information behind a small control', values: { off: 'Off', on: 'On' } },
   relationships: { title: 'Connections', hint: 'How steps relate to one another', values: { none: 'Text only', inline: 'Inline', map: 'Map' } },
   recap: { title: 'Earlier steps', hint: 'Short reminders of steps you viewed', values: { off: 'Off', on: 'On' } },
   segmentation: { title: 'Phases', hint: 'Group steps into reviewed phases', values: { off: 'Off', on: 'On' } },
@@ -29,7 +29,10 @@ export function originOf(r: Pick<GuidanceResponse, 'selection' | 'parent_view_id
 
 /** Paragraphs of source text; a paragraph that is only the source limitation is shown once, in the notice. */
 export function paragraphs(text: string, sourceLimit?: string): string[] {
-  return text.split(/\n\s*\n/).map(p => p.trim()).filter(p => p && p !== sourceLimit?.trim());
+  const limit = sourceLimit?.trim() ?? '';
+  // A fallback paragraph can be the whole limitation or only its opening sentence; both are the notice, not guidance.
+  const isLimit = (p: string) => !!limit && (p === limit || (p.length >= 40 && limit.startsWith(p)));
+  return text.split(/\n\s*\n/).map(p => p.trim()).filter(p => p && !isLimit(p));
 }
 
 /** Fallback headings are whole source sentences; show the first paragraph only. */
@@ -51,9 +54,9 @@ export function stageName(doc: Doc, fact: ScopedFact): string | null {
 
 /** Where a fact came from, in words. A stage fee is never presented as payable at a particular step. */
 export function scopeNote(doc: Doc, fact: ScopedFact): string | null {
-  if (fact.scope === 'stage') { if (doc.stages.length <= 1) return null; const n = stageName(doc, fact); return n ? `Recorded for: ${n}` : 'Recorded for this part of the service'; }
-  if (fact.scope === 'service') return 'Recorded for this service';
-  if (fact.scope === 'route') return 'Applies on the matching route';
+  if (fact.scope === 'stage') { if (doc.stages.length <= 1) return null; const n = stageName(doc, fact); return n ? `For: ${n}` : 'For one part of the service'; }
+  if (fact.scope === 'service') return 'For the whole service';
+  if (fact.scope === 'route') return 'On the matching route';
   return null;
 }
 
@@ -125,8 +128,8 @@ export function cueView(cue: RelationCue): { label: string; body: string } {
   switch (cue.kind) {
     case 'before': return { label: 'Before this', body: after('Before this: ') };
     case 'join': return { label: 'Also required', body: cue.text.includes(': ') ? cue.text.slice(cue.text.indexOf(': ') + 2) : cue.text };
-    case 'parallel': return { label: 'Verified alongside', body: after('Verified parallel work: ') };
-    case 'parallel_area': return { label: 'Verified alongside', body: after('These verified work areas may proceed independently: ') };
+    case 'parallel': return { label: 'Can be done alongside', body: after('Verified parallel work: ') };
+    case 'parallel_area': return { label: 'Can be done alongside', body: after('These verified work areas may proceed independently: ') };
     default: return { label: 'Related', body: cue.text };
   }
 }
@@ -148,9 +151,19 @@ export function feasibleFor(availability: Availability, partial: Partial<Configu
 
 const REASONS: Record<string, string> = {
   'disclosure:no_reviewed_remainder_for_selected_depth': 'no reviewed explanation to collapse at this depth yet',
+  'disclosure:no_reviewed_supplement': 'no reviewed supplementary information yet',
   'explanation:reviewed_detailed_missing': 'no reviewed detailed explanation yet',
   'recap:reviewed_reminders_missing': 'no reviewed reminder wording yet',
   'relationships:incomplete_map_or_accessibility': 'a map needs complete verified structure and is off if restricted',
   'segmentation:reviewed_meaningful_groups_missing': 'no reviewed phase grouping yet',
 };
 export function reasonText(reason: string): string { return REASONS[reason] ?? reason.replace(':', ': ').replaceAll('_', ' '); }
+
+const LIMIT = { compact: 44, large: 90 } as const;
+/** Display only: long source-sentence labels are shortened with an ellipsis. The full text stays in the tooltip, the accessible name and the text version. */
+export function shortLabel(text: string, size: 'compact' | 'large'): string {
+  const first = text.split(/\n\s*\n/)[0].trim(), max = LIMIT[size];
+  if (first.length <= max) return first;
+  const cut = first.slice(0, max - 1), at = cut.lastIndexOf(' ');
+  return `${cut.slice(0, at > max * 0.6 ? at : cut.length).replace(/[\s,;:.]+$/, '')}…`;
+}

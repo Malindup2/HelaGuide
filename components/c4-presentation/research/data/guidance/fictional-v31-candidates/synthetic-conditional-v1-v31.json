@@ -1,0 +1,337 @@
+{
+  "procedure_id": "synthetic-conditional-v1",
+  "status": "candidate_pending_review",
+  "derived_from": "research/data/guidance/fictional/synthetic-conditional-v1.json",
+  "note": "Not installed by install_fictional_content, not published, not used by the policy or checkpoint.",
+  "content": {
+    "procedure_id": "synthetic-conditional-v1",
+    "language": "en",
+    "source_graph_fingerprint": "758afc30af4c906f782b14cee4416243c74d919d3dbfe41d3cd811ccead8ca74",
+    "relationship_fingerprint": "3696f32b77ebf76bcd4a15e925178a758f097c7f800f839cf6835c3fb98490c8",
+    "content_version": "fictional-author-reviewed-2026-10-22.1+3.1-candidate",
+    "origin": "fictional_authored",
+    "source_limit": "Entirely fictional C4 research scenario. This is not a government service or official advice. Example-domain URLs and Plan provenance timestamps are illustrative; no government source was retrieved. Completeness describes only this authored scenario.",
+    "claims": [
+      {
+        "id": "action:counter_collection:essential:0",
+        "source_kind": "content",
+        "source_id": "content:counter_collection",
+        "start": 0,
+        "end": 164,
+        "quote": "Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+        "action_ids": [
+          "action:counter_collection"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:locker_collection:essential:0",
+        "source_kind": "content",
+        "source_id": "content:locker_collection",
+        "start": 0,
+        "end": 158,
+        "quote": "Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+        "action_ids": [
+          "action:locker_collection"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      },
+      {
+        "id": "action:register_collection:essential:0",
+        "source_kind": "content",
+        "source_id": "content:register_collection",
+        "start": 0,
+        "end": 318,
+        "quote": "Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.",
+        "action_ids": [
+          "action:register_collection"
+        ],
+        "required": true,
+        "kind": "instruction",
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ]
+      }
+    ],
+    "attachments": [],
+    "phases": [
+      {
+        "id": "phase:1",
+        "label": {
+          "text": "Arrange your collection reference",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "action_ids": [
+          "action:register_collection"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Registration produces the reference for either collection route.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "branch_split_note": null
+      },
+      {
+        "id": "phase:2",
+        "label": {
+          "text": "Choose where to collect",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "action_ids": [
+          "action:counter_collection",
+          "action:locker_collection"
+        ],
+        "basis": "purpose",
+        "why_grouped": "Both actions belong to one alternative collection choice, not two visits.",
+        "adds_orientation": true,
+        "evidence_ids": [
+          "evidence:collection_rules"
+        ],
+        "branch_split_note": null
+      }
+    ],
+    "phase_order": [],
+    "phase_order_basis": "none",
+    "phase_order_evidence_ids": [],
+    "schema_version": "c4-guidance-content-3.1",
+    "actions": [
+      {
+        "id": "action:counter_collection",
+        "heading": {
+          "text": "Use the counter route with your registration reference",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Only if counter collection is chosen: after completing registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:counter_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "concise": {
+          "text": "If you chose the counter, present your registration reference there.",
+          "status": "draft",
+          "claim_ids": [
+            "action:counter_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "detailed": {
+          "text": "Only if counter collection is chosen: after registration, present the fictional registration reference at the fictional counter to collect the demo pack.",
+          "status": "draft",
+          "claim_ids": [
+            "action:counter_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "The counter and locker instructions describe alternative ways to collect the same pack; the locker route is not an additional visit.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": false
+        },
+        "recap": {
+          "text": "Earlier counter guidance applied only to the counter choice and required the registration reference.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:counter_chosen"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:locker_collection",
+        "heading": {
+          "text": "Use the locker route with your registration reference",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Only if locker collection is chosen: after completing registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:locker_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "concise": {
+          "text": "If you chose the locker, use your registration reference there.",
+          "status": "draft",
+          "claim_ids": [
+            "action:locker_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "detailed": {
+          "text": "Only if locker collection is chosen: after registration, use the fictional registration reference at the fictional locker to collect the demo pack.",
+          "status": "draft",
+          "claim_ids": [
+            "action:locker_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Counter collection is the other alternative, not another action required after this route.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": false
+        },
+        "recap": {
+          "text": "Earlier locker guidance applied only to the locker choice and required the registration reference.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [
+          "condition:locker_chosen"
+        ],
+        "visible_attachment_ids": []
+      },
+      {
+        "id": "action:register_collection",
+        "heading": {
+          "text": "Register your collection request and keep its reference",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "heading_actionable": true,
+        "source_wording": {
+          "text": "Register a fictional collection request and obtain its fictional registration reference. Registration and collection both have a fictional fee of LKR 0. After registration, choose exactly one collection method: counter or locker. Use the registration reference with the chosen method. Do not perform both alternatives.",
+          "status": "source_fallback",
+          "claim_ids": [
+            "action:register_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "concise": {
+          "text": "Register your request and keep its reference, then choose counter or locker.",
+          "status": "draft",
+          "claim_ids": [
+            "action:register_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "detailed": {
+          "text": "Register a fictional collection request and obtain its fictional registration reference. Then choose exactly one collection method, counter or locker, and use the reference with it. Do not do both.",
+          "status": "draft",
+          "claim_ids": [
+            "action:register_collection:essential:0"
+          ],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "supplement": {
+          "text": {
+            "text": "Counter and locker collection are alternatives, so the reference connects registration to your chosen method; it does not mean you must visit both.",
+            "status": "draft",
+            "claim_ids": [],
+            "evidence_ids": [
+              "evidence:collection_rules"
+            ]
+          },
+          "role": "clarification",
+          "adds_information": false
+        },
+        "recap": {
+          "text": "Earlier guidance asked you to register, obtain the reference and choose one collection method.",
+          "status": "draft",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ]
+        },
+        "actor": null,
+        "destination": null,
+        "visible_condition_ids": [],
+        "visible_attachment_ids": []
+      }
+    ],
+    "review": {
+      "status": "draft",
+      "reviewer": "PENDING REVIEW: a named reviewer is required",
+      "reviewed_at": "2026-10-22T00:00:00Z",
+      "scope_note": "Candidate 3.1 wording drafted from the existing 3.0 source passages and earlier remainders. Nothing here is reviewed, published or used by any policy.",
+      "artifact_digest": "pending",
+      "checks": [
+        {
+          "target": "candidate",
+          "claim_ids": [],
+          "evidence_ids": [
+            "evidence:collection_rules"
+          ],
+          "result": "rejected",
+          "note": "Not yet reviewed."
+        }
+      ]
+    }
+  }
+}

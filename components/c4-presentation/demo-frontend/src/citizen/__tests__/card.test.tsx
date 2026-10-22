@@ -3,7 +3,8 @@ import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import GuidanceCard from '../card/GuidanceCard';
 import type { Configuration, GuidanceResponse } from '../types';
-import { birthStandard, nicStandard, practiceRich, practiceStd, practiceWithRecap } from './examples';
+import { birthStandard, companyStandard, nicStandard, practiceRich, practiceStd, practiceWithRecap } from './examples';
+import { shortLabel } from '../model';
 
 beforeAll(() => {
   vi.stubGlobal('IntersectionObserver', class { observe() {} unobserve() {} disconnect() {} });
@@ -55,7 +56,7 @@ describe('standard guidance for a guest', () => {
   it('never shows a stage fee as a payment at a step', () => {
     show(practiceStd());
     expect(screen.getAllByText('LKR 0').length).toBeGreaterThanOrEqual(3);
-    expect(screen.getAllByText(/Recorded for: /).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^For: /).length).toBeGreaterThan(0);
     expect(screen.queryByText(/^Pay$/)).toBeNull();
   });
 
@@ -111,7 +112,7 @@ describe('D1 Navigation: guided', () => {
   it('shows one step with position, phase orientation and Back/Next that record navigation', () => {
     const r = practiceRich();
     const { emit } = show(r);
-    expect(screen.getByText(/Item 1 of 3 in browsing order/)).toBeTruthy();
+    expect(screen.getAllByText('1 of 3').length).toBeGreaterThan(0);
     expect(screen.getByText('Open the application journey')).toBeTruthy();
     expect(screen.queryByRole('heading', { name: /Prepare the fictional application form after registration/ })).toBeNull();
     expect((screen.getByRole('button', { name: 'Back' }) as HTMLButtonElement).disabled).toBe(true);
@@ -284,10 +285,52 @@ describe('read-only views', () => {
     const r = practiceRich(), emit = vi.fn();
     render(<GuidanceCard response={r} emit={emit} readOnly />);
     fireEvent.click(screen.getByRole('button', { name: 'Next' }));
-    expect(screen.getAllByText(/Item 2 of 3/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText('2 of 3').length).toBeGreaterThan(0);
     fireEvent.click(screen.getByRole('button', { name: 'Hide map' }));
     expect(emit).not.toHaveBeenCalled();
     expect(screen.queryByRole('button', { name: /Support/ })).toBeNull();
     expect(screen.queryByText(/Did this way of presenting/)).toBeNull();
+  });
+});
+
+describe('plain-language numbering and wording', () => {
+  it('labels peers in one layer 1a, 1b... with no fixed order, and a single step is just its number', () => {
+    show(companyStandard());
+    expect(screen.getByText('1a')).toBeTruthy();
+    expect(screen.getByText('1d')).toBeTruthy();
+    expect(screen.getByText(/no fixed order/)).toBeTruthy();
+    expect(screen.getByText('Step 2')).toBeTruthy();
+  });
+
+  it('keeps developer wording out of citizen guidance', () => {
+    for (const r of [practiceRich(), nicStandard(), practiceStd(), companyStandard()]) {
+      show(r);
+      expect(document.body.textContent).not.toMatch(/browsing order|peer layer|no order is stated|join|Verified (alongside|parallel)|order_semantics|encod/i);
+      cleanup();
+    }
+  });
+
+  it('shortens long map labels for display only, keeping the full first paragraph in the name and tooltip', () => {
+    expect(shortLabel('Short title', 'compact')).toBe('Short title');
+    const long = 'Submit the completed application to the Divisional Secretary together with every supporting document listed in the source.';
+    const short = shortLabel(long, 'compact');
+    expect(short.length).toBeLessThanOrEqual(44);
+    expect(short.endsWith('…')).toBe(true);
+    const r = nicStandard(); r.interaction.route_choices = {};
+    show(practiceRich());
+    const nodes = [...document.querySelectorAll('.cz-node-btn')] as HTMLElement[];
+    expect(nodes.length).toBeGreaterThan(0);
+    for (const n of nodes) expect(n.getAttribute('aria-label')).toBe(n.getAttribute('title'));
+  });
+
+  it('is visibly lighter for a compact configuration than for a rich one', () => {
+    const compact = practiceStd();
+    show(compact);
+    const lightControls = document.querySelectorAll('[data-support]').length;
+    cleanup();
+    show(practiceRich());
+    const richControls = document.querySelectorAll('[data-support]').length;
+    expect(lightControls).toBeLessThan(richControls);
+    expect(document.querySelector('.cz-map')).toBeTruthy();
   });
 });

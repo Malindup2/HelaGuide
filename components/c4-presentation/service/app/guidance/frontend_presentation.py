@@ -108,8 +108,8 @@ def relationship_aid(source, document):
             'essential_relationships_remain_in_instructions':True}
 
 
-def render(source, content, config, constraints):
-    doc=compose(source,content,config,constraints);g=source.graph
+def render(source, content, config, constraints, compose_fn=compose):
+    doc=compose_fn(source,content,config,constraints);g=source.graph
     stages={s.service_id:s for s in g.stages};actions={a.action_id:a for a in g.actions}
     for fact in doc['facts']:
         fact['source_context']=[{'content_id':c.content_id,'text':c.text,'evidence_ids':list(c.evidence_ids)} for c in g.content if fact['fact_id'] in c.fact_ids]

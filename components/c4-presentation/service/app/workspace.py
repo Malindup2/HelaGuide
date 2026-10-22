@@ -45,6 +45,11 @@ if prepared_flag == "true":
 if prepared_options is not None and content_mode == "prepare" and llm_enabled == "true":
     raise ValueError("set C4_WORKSPACE_CONTENT_MODE=demo: only one wording generation schema may be active")
 
+from app.guidance.flavours import by_content_schema
+flavour = by_content_schema(os.getenv("C4_GUIDANCE_CONTENT_SCHEMA"))
+if prepared_options is not None:
+    prepared_options["flavour"] = flavour
+
 guidance_options = None
 guidance_flag = os.getenv("C4_GUIDANCE_API_ENABLED", "false").lower()
 research_flag = os.getenv("C4_RESEARCH_PREVIEWS_ENABLED", "false").lower()
@@ -53,7 +58,7 @@ if guidance_flag not in ("true", "false") or research_flag not in ("true", "fals
 if guidance_flag == "true":
     if prepared_options is None:
         raise ValueError("C4_GUIDANCE_API_ENABLED requires C4_PREPARED_CONTENT_ENABLED=true")
-    guidance_options = {"research_enabled": research_flag == "true"}
+    guidance_options = {"research_enabled": research_flag == "true", "flavour": flavour}
 
 if guidance_options is not None and os.getenv("C4_PP1_POLICY_ENABLED", "false").lower() == "true":
     policy_directory = os.getenv("C4_PP1_POLICY_DIRECTORY")

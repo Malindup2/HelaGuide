@@ -21,7 +21,7 @@ def register_routes(app):
     def status():
         prepared = service()
         return {"mode": prepared.settings.mode, "generation_enabled": prepared.settings.generation_enabled,
-                "on_miss": prepared.settings.on_miss, "content_schema": "c4-guidance-content-3.0",
+                "on_miss": prepared.settings.on_miss, "content_schema": prepared.flavour.content_schema,
                 "selection_origin": "content_preview_no_learning", "review_required": True}
 
     @app.post("/workspace/content/guidance")

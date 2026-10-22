@@ -2,9 +2,9 @@ import type { ReactNode } from 'react';
 import type { Route, RouteOption } from '../types';
 
 const TEXT = {
-  XOR: { title: 'Which applies to you?', hint: 'Choosing a route only focuses the guidance. It does not check eligibility or show anything as done.' },
-  OR: { title: 'Which of these apply?', hint: 'More than one may apply. Choosing only focuses the guidance; it does not check eligibility.' },
-  AND: { title: 'All of these are needed', hint: 'These are joint requirements from the source.' },
+  XOR: { title: 'Which applies to you?', hint: 'Pick the route that matches your situation. This only changes what you see here; it does not check eligibility.' },
+  OR: { title: 'Which of these apply?', hint: 'More than one may apply. This only changes what you see here; it does not check eligibility.' },
+  AND: { title: 'All of these are needed', hint: 'The source lists these together.' },
 } as const;
 
 type Props = {

@@ -37,6 +37,13 @@ describe('layers come from verified prerequisites and never imply more than the 
 });
 
 describe('source text handling', () => {
+  it('also drops a paragraph that is only the opening sentence of the source limitation', () => {
+    const doc = nicStandard().document, gn = byId(doc, 'action:nic_gn')!;
+    const opening = doc.source_limit.split(/(?<=\.)\s/)[0];
+    expect(opening.length).toBeGreaterThan(40);
+    expect(paragraphs(`${gn.heading.split('\n\n')[0]}\n\n${opening}`, doc.source_limit)).toEqual([gn.heading.split('\n\n')[0]]);
+  });
+
   it('shows the source limitation once instead of repeating it inside an action', () => {
     const doc = nicStandard().document, ds = byId(doc, 'action:nic_ds')!;
     expect(paragraphs(ds.essential, doc.source_limit).join('\n')).not.toContain('Manually curated official-source snapshot');
@@ -56,7 +63,7 @@ describe('facts keep their backend scope', () => {
 
   it('names the stage for a stage fee only when the procedure has several stages', () => {
     const multi = practiceStd().document, single = birthStandard().document;
-    expect(scopeNote(multi, multi.requirements.fees[0])).toMatch(/^Recorded for: /);
+    expect(scopeNote(multi, multi.requirements.fees[0])).toMatch(/^For: /);
     expect(scopeNote(single, single.requirements.fees[0])).toBeNull();
   });
 });

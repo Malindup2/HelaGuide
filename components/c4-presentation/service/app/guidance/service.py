@@ -7,11 +7,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from uuid import uuid4
 from app.guidance.catalogue import Configuration
-from app.guidance.composition import compose
-from app.guidance.content import GuidanceContent
-from app.guidance.feasibility import evaluate
 from app.guidance.preparation import generate
-from app.guidance.registry import CONTENT_SCHEMA, ContentRegistry, cache_key
+from app.guidance.flavours import FLAVOUR_30
 from app.guidance.sources import ProcedureSource
 from app.v2.preparation_jobs import PreparationProcessor
 
@@ -42,13 +39,14 @@ class PreparationSettings:
 
 class ContentPreparation:
     """A handler for the EXISTING durable queue/worker, not another worker engine."""
-    def __init__(self, runtime, directory, *, settings=None, provider_factory=None):
+    def __init__(self, runtime, directory, *, settings=None, provider_factory=None, flavour=None):
         self.runtime = runtime
+        self.flavour = flavour or FLAVOUR_30
         self.settings = settings or PreparationSettings()
-        self.registry = ContentRegistry(directory)
+        self.registry = self.flavour.make_registry(directory)
         self.processor = PreparationProcessor(runtime, self.registry.directory / "v2" / "jobs",
             enabled=self.settings.generation_enabled, provider_factory=provider_factory,
-            handlers={CONTENT_SCHEMA: self})
+            handlers={self.flavour.content_schema: self})
 
     def source(self, procedure_id):
         with self.runtime.lock:
@@ -60,7 +58,7 @@ class ContentPreparation:
         return source
 
     def validate_job(self, payload):
-        if payload.get("content_schema") != CONTENT_SCHEMA:
+        if payload.get("content_schema") != self.flavour.content_schema:
             raise ValueError("unsupported preparation schema")
         source = ProcedureSource.model_validate_json(json.dumps(payload["source"]))
         source.validate()
@@ -74,7 +72,7 @@ class ContentPreparation:
 
     def key(self, payload):
         source = ProcedureSource.model_validate_json(json.dumps(payload["source"]))
-        return cache_key(source, payload["language"])
+        return self.flavour.cache_key(source, payload["language"])
 
     def published(self, payload):
         try:
@@ -87,21 +85,23 @@ class ContentPreparation:
         try:
             queued = self.validate_job(payload)
             source = self.source(payload["procedure_id"])
-            return cache_key(source, payload["language"]) == cache_key(queued, payload["language"]) and self.registry.get(source, payload["language"]) is None
+            return self.flavour.cache_key(source, payload["language"]) == self.flavour.cache_key(queued, payload["language"]) and self.registry.get(source, payload["language"]) is None
         except ValueError:
             return False
 
     def prepare(self, payload, provider):
         source = self.validate_job(payload)
+        if self.flavour.name != "3.0":
+            raise ValueError("content " + self.flavour.name + " is prepared offline and reviewed by name; no automatic generation")
         content, metadata = generate(source, payload["language"], provider)
         identifier = self.registry.draft(source, content)
         return {"status": "draft", "provisional": True, "artifact_id": identifier,
                 "content": content.model_dump(mode="json"), **metadata}
 
     def enqueue(self, source, language):
-        key = cache_key(source, language)
+        key = self.flavour.cache_key(source, language)
         payload = {"status": "pending_review_preparation", "job_id": key, "procedure_id": source.graph.plan_id,
-                   "graph_fingerprint": source.graph_fingerprint, "content_schema": CONTENT_SCHEMA,
+                   "graph_fingerprint": source.graph_fingerprint, "content_schema": self.flavour.content_schema,
                    "language": language, "source": source.model_dump(mode="json")}
         target = self.processor.directory / (key + ".json")
         temporary = self.processor.directory / ("." + uuid4().hex + ".tmp")
@@ -146,7 +146,7 @@ class ContentPreparation:
                     "job_state": job_state, "job_id": job, "error_code": error,
                     "generation_enabled": self.settings.generation_enabled, "mode": self.settings.mode,
                     "language": language, "fallback_language": "source_language" if not artifact else None,
-                    "content_schema": CONTENT_SCHEMA, "artifact_id": artifact["id"] if artifact else None,
+                    "content_schema": self.flavour.content_schema, "artifact_id": artifact["id"] if artifact else None,
                     "review_kind": artifact["review_kind"] if artifact else None}
         metadata['source_kind'] = 'fictional' if source.graph.synthetic else 'bounded_official_source_snapshot'
         metadata['content_origin'] = artifact['content'].origin if artifact else 'source_preserving'
@@ -157,7 +157,7 @@ class ContentPreparation:
     def request(self, procedure_id, *, language="en", configuration=None):
         source, artifact, metadata = self.resolve(procedure_id, language=language)
         content = artifact["content"] if artifact else None
-        candidates = evaluate(source, content)
+        candidates = self.flavour.evaluate(source, content)
         requested = configuration or Configuration()
         selected = next(c for c in candidates if c.configuration == requested)
         if not selected.feasible:
@@ -165,7 +165,7 @@ class ContentPreparation:
         return {**metadata, "selection_origin": "content_preview_no_learning",
                 "requested_configuration_feasible": selected.feasible, "unavailable_reasons": list(selected.reasons),
                 "capabilities": [{"configuration": c.configuration.model_dump(), "feasible": c.feasible, "reasons": list(c.reasons)} for c in candidates],
-                "document": compose(source, content, requested)}
+                "document": self.flavour.compose(source, content, requested)}
 
     def start(self):
         self.processor.start()

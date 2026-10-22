@@ -1,0 +1,2459 @@
+{
+  "method": "POST",
+  "path": "/workspace/guidance/requests",
+  "request": {
+    "request_id": "68363dcd-3468-4c23-8c31-25ec4cfec3cb",
+    "session_id": "guest:c030f67dff7f44dd9f989712b5e41835",
+    "procedure_id": "synthetic-parallel-v1",
+    "capability_token": "documentation-sandbox-only-not-a-production-capability"
+  },
+  "status_code": 200,
+  "response": {
+    "schema_version": "c4-guidance-api-1.0",
+    "journey_id": "guidance:54606b80be004d5395bccc10904f7288",
+    "view_id": "view:d76fe05b363049a48b8fc204aef4482e",
+    "parent_view_id": null,
+    "session_id": "guest:c030f67dff7f44dd9f989712b5e41835",
+    "procedure_id": "synthetic-parallel-v1",
+    "procedure_title": "Synthetic demo: submit a prepared application",
+    "created_at": "2026-10-22T00:46:26.151852Z",
+    "selection": {
+      "kind": "standard",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "action_schema": "c4-scaffolds-v3.1",
+      "label": "Standard guidance",
+      "scoring_status": "not_run",
+      "policy": null,
+      "learning_eligible": false,
+      "explanation": "Fixed baseline within hard constraints; not a learned recommendation."
+    },
+    "preparation": {
+      "content_state": "published",
+      "preparation_state": "published",
+      "job_state": null,
+      "job_id": null,
+      "error_code": null,
+      "generation_enabled": false,
+      "mode": "demo",
+      "language": "en",
+      "fallback_language": null,
+      "content_schema": "c4-guidance-content-3.1",
+      "artifact_id": "e6122ac21c251ff232377c609029e3d3682cf4039451930ad88c68e4d115b38b",
+      "review_kind": "internal_fictional_author",
+      "source_kind": "fictional",
+      "content_origin": "fictional_authored",
+      "source_review": {
+        "reviewer": "Claude Sonnet 5.5 internal fictional author-review (AI-assisted; not human, external-expert or government review)",
+        "reviewed_at": "2026-10-22T12:00:00Z",
+        "scope_note": "Compared the 3.1 Concise, Detailed and supplement wording, plus headings, reminders and phase labels, to the supplied fictional Plan passages. Claim coverage and Concise/Detailed/supplement separation were also checked automatically. This is internal AI-assisted author review for isolated fictional demonstration only; it is not human, external expert, government or independent validation, and says nothing about whether any scaffold helps.",
+        "independent_government_validation": false
+      }
+    },
+    "effective_context": {
+      "schema_version": "c4-effective-guidance-context-1.0",
+      "session_id": "guest:c030f67dff7f44dd9f989712b5e41835",
+      "profile_id": null,
+      "personalization_enabled": false,
+      "service_id": "svc:demo_submission",
+      "familiarity": null,
+      "confidence": null,
+      "preferences": {},
+      "constraints": {
+        "locks": {},
+        "no_guided": false,
+        "no_map": false,
+        "no_disclosure": false
+      },
+      "revision": {
+        "identity": 0,
+        "revised": 0
+      },
+      "sources": {
+        "familiarity": "saved_service_report",
+        "confidence": "saved_navigation_default",
+        "preferences": "explicit_revised_settings_or_request",
+        "accessibility": "saved_requirements_union_request"
+      },
+      "legacy": {
+        "preferences_not_imported": {},
+        "pending_preference_review": {},
+        "hard_requirements_unresolved": false,
+        "lock_fingerprint": null,
+        "raw_locks": {
+          "native_or_mapped": {},
+          "unresolved_legacy": {}
+        }
+      },
+      "scoring_use": "Familiarity, confidence and confirmed revised preferences enter the PP1 encoder; constraints filter candidates. Identity/history are not features."
+    },
+    "availability": {
+      "action_schema": "c4-scaffolds-v3.1",
+      "feasibility_fingerprint": "8fde2179748fcc1bf0e41435cd7fe3e724f8ccdc2568ced92f26b22ab0de544f",
+      "nominal_count": 96,
+      "feasible_count": 96,
+      "candidates": [
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:overview:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "overview",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:concise:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "concise",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:off:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "off",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": []
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:none:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "none",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:inline:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "inline",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:off:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "off",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:off",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "off"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        },
+        {
+          "id": "c4-scaffolds-v3.1:guided:detailed:on:map:on:on",
+          "configuration": {
+            "navigation": "guided",
+            "explanation": "detailed",
+            "disclosure": "on",
+            "relationships": "map",
+            "recap": "on",
+            "segmentation": "on"
+          },
+          "feasible": true,
+          "reasons": [],
+          "disclosable_action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form",
+            "action:register_application",
+            "action:submit_application"
+          ]
+        }
+      ]
+    },
+    "document": {
+      "schema": "c4-render-plan-3.1",
+      "content_schema": "c4-guidance-content-3.1",
+      "configuration": {
+        "navigation": "overview",
+        "explanation": "concise",
+        "disclosure": "off",
+        "relationships": "none",
+        "recap": "off",
+        "segmentation": "off"
+      },
+      "synthetic": true,
+      "source_kind": "fictional",
+      "source_limit": "Entirely fictional C4 research scenario. This is not a government service or official advice. Example-domain URLs and Plan provenance timestamps are illustrative; no government source was retrieved. Completeness describes only this authored scenario.",
+      "source_graph_fingerprint": "cb8a5dd35d505dc83986a2b3e5ab7f3b1314577bc5b6ebbd85fdef1bd652eac9",
+      "relationship_fingerprint": "1c09777ee68a82365bad7f94bbbd3a378d835748f895851de84191cfd1926fb2",
+      "content_fingerprint": "483a08a01ae40afac46913fbcf701eca2aeb57c90c85900a8375f8633a768cbd",
+      "actions": [
+        {
+          "id": "action:prepare_copy",
+          "heading": "Prepare the fictional supporting copy after registration",
+          "essential": "After registration, prepare the supporting copy. It is required for submission.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [],
+          "explanation_visible": "Submission needs both items, so preparing the supporting copy does not remove the form requirement.",
+          "explanation_hidden": null,
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:demo_preparation",
+          "agency": "Fictional C4 Demo Office",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:prepare_copy"
+          ],
+          "disclosure_available": false,
+          "wording_status": "published",
+          "source_wording": "After registration, prepare the fictional supporting copy. This action does not require the application form to be prepared first. The copy is required for submission.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:prepare_form",
+          "heading": "Prepare the fictional application form after registration",
+          "essential": "After registration, prepare the application form. It is required for submission.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [],
+          "explanation_visible": "Neither preparation work area has to wait for the other. Doing one does not replace the other.",
+          "explanation_hidden": null,
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:demo_preparation",
+          "agency": "Fictional C4 Demo Office",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:prepare_form"
+          ],
+          "disclosure_available": false,
+          "wording_status": "published",
+          "source_wording": "After registration, prepare the fictional completed application form. This action does not require the supporting copy to be prepared first. The form is required for submission.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:register_application",
+          "heading": "Register the fictional application before preparation",
+          "essential": "Register the application first. Preparation and submission follow.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [],
+          "explanation_visible": "The registration, preparation and submission fee mentions describe separate stages; they are not three charges payable at registration.",
+          "explanation_hidden": null,
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:demo_application",
+          "agency": "Fictional C4 Demo Office",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:register_application"
+          ],
+          "disclosure_available": false,
+          "wording_status": "published",
+          "source_wording": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+          "supplement_role": "clarification"
+        },
+        {
+          "id": "action:submit_application",
+          "heading": "Submit the application with both required items",
+          "essential": "Submit once both the form and the supporting copy are ready.",
+          "conditions": [],
+          "actor": null,
+          "destination": null,
+          "facts": [],
+          "explanation_visible": "This is an all-required dependency, not a choice between the two items.",
+          "explanation_hidden": null,
+          "recap": null,
+          "branch": null,
+          "option": null,
+          "service_id": "svc:demo_submission",
+          "agency": "Fictional C4 Demo Office",
+          "condition_ids": [],
+          "source_content_ids": [
+            "content:submit_application"
+          ],
+          "disclosure_available": false,
+          "wording_status": "published",
+          "source_wording": "Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.",
+          "supplement_role": "clarification"
+        }
+      ],
+      "facts": [
+        {
+          "id": "source:svc:demo_application:svc:demo_application:fee",
+          "fact_id": "svc:demo_application:fee",
+          "fact": {
+            "kind": "fee",
+            "fact_id": "svc:demo_application:fee",
+            "value": 0.0,
+            "currency": "LKR"
+          },
+          "scope": "stage",
+          "action_id": null,
+          "stage_id": "svc:demo_application",
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [],
+          "evidence_ids": [],
+          "qualification": null,
+          "conditions": [],
+          "status": "source_fallback",
+          "source_context": [
+            {
+              "content_id": "content:register_application",
+              "text": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+              "evidence_ids": [
+                "evidence:application_rules"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "source:svc:demo_preparation:svc:demo_preparation:fee",
+          "fact_id": "svc:demo_preparation:fee",
+          "fact": {
+            "kind": "fee",
+            "fact_id": "svc:demo_preparation:fee",
+            "value": 0.0,
+            "currency": "LKR"
+          },
+          "scope": "stage",
+          "action_id": null,
+          "stage_id": "svc:demo_preparation",
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [],
+          "evidence_ids": [],
+          "qualification": null,
+          "conditions": [],
+          "status": "source_fallback",
+          "source_context": [
+            {
+              "content_id": "content:register_application",
+              "text": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+              "evidence_ids": [
+                "evidence:application_rules"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "source:svc:demo_submission:svc:demo_submission:fee",
+          "fact_id": "svc:demo_submission:fee",
+          "fact": {
+            "kind": "fee",
+            "fact_id": "svc:demo_submission:fee",
+            "value": 0.0,
+            "currency": "LKR"
+          },
+          "scope": "stage",
+          "action_id": null,
+          "stage_id": "svc:demo_submission",
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [],
+          "evidence_ids": [],
+          "qualification": null,
+          "conditions": [],
+          "status": "source_fallback",
+          "source_context": [
+            {
+              "content_id": "content:register_application",
+              "text": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+              "evidence_ids": [
+                "evidence:application_rules"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "source:svc:demo_submission:svc:demo_submission:document:form",
+          "fact_id": "svc:demo_submission:document:form",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:demo_submission:document:form",
+            "name": "Fictional completed application form"
+          },
+          "scope": "stage",
+          "action_id": null,
+          "stage_id": "svc:demo_submission",
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [],
+          "evidence_ids": [],
+          "qualification": null,
+          "conditions": [],
+          "status": "source_fallback",
+          "source_context": [
+            {
+              "content_id": "content:prepare_form",
+              "text": "After registration, prepare the fictional completed application form. This action does not require the supporting copy to be prepared first. The form is required for submission.",
+              "evidence_ids": [
+                "evidence:application_rules"
+              ]
+            },
+            {
+              "content_id": "content:submit_application",
+              "text": "Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.",
+              "evidence_ids": [
+                "evidence:application_rules"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        },
+        {
+          "id": "source:svc:demo_submission:svc:demo_submission:document:copy",
+          "fact_id": "svc:demo_submission:document:copy",
+          "fact": {
+            "kind": "document",
+            "fact_id": "svc:demo_submission:document:copy",
+            "name": "Fictional supporting copy"
+          },
+          "scope": "stage",
+          "action_id": null,
+          "stage_id": "svc:demo_submission",
+          "service_id": null,
+          "branch_id": null,
+          "option_ids": [],
+          "condition_ids": [],
+          "claim_ids": [],
+          "evidence_ids": [],
+          "qualification": null,
+          "conditions": [],
+          "status": "source_fallback",
+          "source_context": [
+            {
+              "content_id": "content:prepare_copy",
+              "text": "After registration, prepare the fictional supporting copy. This action does not require the application form to be prepared first. The copy is required for submission.",
+              "evidence_ids": [
+                "evidence:application_rules"
+              ]
+            },
+            {
+              "content_id": "content:submit_application",
+              "text": "Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.",
+              "evidence_ids": [
+                "evidence:application_rules"
+              ]
+            }
+          ],
+          "applicability_status": "consult_source_context"
+        }
+      ],
+      "branches": [],
+      "stages": [
+        {
+          "service_id": "svc:demo_application",
+          "display_order": 1,
+          "name": "Synthetic demo: register an application",
+          "agency": "Fictional C4 Demo Office",
+          "fee_fact_id": "svc:demo_application:fee",
+          "document_fact_ids": []
+        },
+        {
+          "service_id": "svc:demo_preparation",
+          "display_order": 2,
+          "name": "Synthetic demo: prepare two required items",
+          "agency": "Fictional C4 Demo Office",
+          "fee_fact_id": "svc:demo_preparation:fee",
+          "document_fact_ids": []
+        },
+        {
+          "service_id": "svc:demo_submission",
+          "display_order": 3,
+          "name": "Synthetic demo: submit a prepared application",
+          "agency": "Fictional C4 Demo Office",
+          "fee_fact_id": "svc:demo_submission:fee",
+          "document_fact_ids": [
+            "svc:demo_submission:document:form",
+            "svc:demo_submission:document:copy"
+          ]
+        }
+      ],
+      "stage_edges": [
+        {
+          "edge_id": "stage_dependency:svc:demo_application->svc:demo_preparation",
+          "kind": "stage_dependency",
+          "source_id": "svc:demo_application",
+          "target_id": "svc:demo_preparation"
+        },
+        {
+          "edge_id": "stage_dependency:svc:demo_preparation->svc:demo_submission",
+          "kind": "stage_dependency",
+          "source_id": "svc:demo_preparation",
+          "target_id": "svc:demo_submission"
+        }
+      ],
+      "edges": [
+        {
+          "edge_id": "prerequisite:copy_before_submission",
+          "kind": "requires_completion",
+          "source_id": "action:prepare_copy",
+          "target_id": "action:submit_application",
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:form_before_submission",
+          "kind": "requires_completion",
+          "source_id": "action:prepare_form",
+          "target_id": "action:submit_application",
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:registration_before_copy",
+          "kind": "requires_completion",
+          "source_id": "action:register_application",
+          "target_id": "action:prepare_copy",
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        },
+        {
+          "edge_id": "prerequisite:registration_before_form",
+          "kind": "requires_completion",
+          "source_id": "action:register_application",
+          "target_id": "action:prepare_form",
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        }
+      ],
+      "parallel": [
+        {
+          "group_id": "parallel:application_preparation",
+          "service_id": "svc:demo_preparation",
+          "action_ids": [
+            "action:prepare_copy",
+            "action:prepare_form"
+          ],
+          "evidence_ids": [
+            "evidence:application_rules"
+          ]
+        }
+      ],
+      "joins": [],
+      "parallel_areas": [],
+      "completeness": {
+        "service_dependencies": "complete",
+        "actions": "complete",
+        "content": "complete",
+        "conditions": "complete",
+        "branch_groups": "complete",
+        "prerequisites": "complete",
+        "parallel_groups": "complete"
+      },
+      "sources": [
+        {
+          "evidence_id": "evidence:application_rules",
+          "kind": "synthetic_authored",
+          "source_url": "https://example.org/c4/fixtures/parallel",
+          "text": "Authored fictional scenario: the Fictional C4 Demo Office requires application registration, preparation and submission. Each stage costs LKR 0. Registration must finish before preparation starts. The two required preparation actions are preparing a fictional completed application form and preparing a fictional supporting copy. These actions are explicitly independent of each other after registration and may be performed in either order or concurrently. Both must finish before submission, which requires both documents. There are no alternative branches or applicability conditions within this complete fictional scenario. The preparation pair is the only explicit parallel group.",
+          "retrieved_at": null
+        }
+      ],
+      "conditions": [],
+      "provenance": [
+        {
+          "fact_id": "svc:demo_application:fee",
+          "source_url": "https://example.org/c4/fixtures/parallel",
+          "retrieved_at": "2026-10-15T00:00:00Z"
+        },
+        {
+          "fact_id": "svc:demo_preparation:fee",
+          "source_url": "https://example.org/c4/fixtures/parallel",
+          "retrieved_at": "2026-10-15T00:00:00Z"
+        },
+        {
+          "fact_id": "svc:demo_submission:document:copy",
+          "source_url": "https://example.org/c4/fixtures/parallel",
+          "retrieved_at": "2026-10-15T00:00:00Z"
+        },
+        {
+          "fact_id": "svc:demo_submission:document:form",
+          "source_url": "https://example.org/c4/fixtures/parallel",
+          "retrieved_at": "2026-10-15T00:00:00Z"
+        },
+        {
+          "fact_id": "svc:demo_submission:fee",
+          "source_url": "https://example.org/c4/fixtures/parallel",
+          "retrieved_at": "2026-10-15T00:00:00Z"
+        }
+      ],
+      "map_labels": {
+        "action:prepare_copy": "Prepare the fictional supporting copy after registration",
+        "action:prepare_form": "Prepare the fictional application form after registration",
+        "action:register_application": "Register the fictional application before preparation",
+        "action:submit_application": "Submit the application with both required items"
+      },
+      "phases": [],
+      "phase_order": [],
+      "supplementary": [],
+      "required_source_notes": [
+        "Think of preparation as two work areas that come together at submission. This is another way to describe the required preparation relationships."
+      ],
+      "relationship_aid": {
+        "mode": "none",
+        "inline_by_action": {},
+        "map": null,
+        "essential_relationships_remain_in_instructions": true
+      },
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:prepare_copy",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:prepare_form",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:register_application",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:submit_application",
+            "layer": 3,
+            "label": "Dependency layer 3",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:register_application",
+        "browsing_action_ids": [
+          "action:register_application",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:submit_application"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:prepare_copy",
+        "browsing_position": 1,
+        "browsing_count": 4,
+        "unresolved_route_ids": [],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "routes": [],
+      "requirements": {
+        "documents": [
+          {
+            "id": "source:svc:demo_submission:svc:demo_submission:document:form",
+            "fact_id": "svc:demo_submission:document:form",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:demo_submission:document:form",
+              "name": "Fictional completed application form"
+            },
+            "scope": "stage",
+            "action_id": null,
+            "stage_id": "svc:demo_submission",
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [],
+            "evidence_ids": [],
+            "qualification": null,
+            "conditions": [],
+            "status": "source_fallback",
+            "source_context": [
+              {
+                "content_id": "content:prepare_form",
+                "text": "After registration, prepare the fictional completed application form. This action does not require the supporting copy to be prepared first. The form is required for submission.",
+                "evidence_ids": [
+                  "evidence:application_rules"
+                ]
+              },
+              {
+                "content_id": "content:submit_application",
+                "text": "Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.",
+                "evidence_ids": [
+                  "evidence:application_rules"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "source:svc:demo_submission:svc:demo_submission:document:copy",
+            "fact_id": "svc:demo_submission:document:copy",
+            "fact": {
+              "kind": "document",
+              "fact_id": "svc:demo_submission:document:copy",
+              "name": "Fictional supporting copy"
+            },
+            "scope": "stage",
+            "action_id": null,
+            "stage_id": "svc:demo_submission",
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [],
+            "evidence_ids": [],
+            "qualification": null,
+            "conditions": [],
+            "status": "source_fallback",
+            "source_context": [
+              {
+                "content_id": "content:prepare_copy",
+                "text": "After registration, prepare the fictional supporting copy. This action does not require the application form to be prepared first. The copy is required for submission.",
+                "evidence_ids": [
+                  "evidence:application_rules"
+                ]
+              },
+              {
+                "content_id": "content:submit_application",
+                "text": "Submit the fictional application only after both preparation actions are complete. Include the fictional completed application form and the fictional supporting copy. Completing only one preparation action is insufficient.",
+                "evidence_ids": [
+                  "evidence:application_rules"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "fees": [
+          {
+            "id": "source:svc:demo_application:svc:demo_application:fee",
+            "fact_id": "svc:demo_application:fee",
+            "fact": {
+              "kind": "fee",
+              "fact_id": "svc:demo_application:fee",
+              "value": 0.0,
+              "currency": "LKR"
+            },
+            "scope": "stage",
+            "action_id": null,
+            "stage_id": "svc:demo_application",
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [],
+            "evidence_ids": [],
+            "qualification": null,
+            "conditions": [],
+            "status": "source_fallback",
+            "source_context": [
+              {
+                "content_id": "content:register_application",
+                "text": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+                "evidence_ids": [
+                  "evidence:application_rules"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "source:svc:demo_preparation:svc:demo_preparation:fee",
+            "fact_id": "svc:demo_preparation:fee",
+            "fact": {
+              "kind": "fee",
+              "fact_id": "svc:demo_preparation:fee",
+              "value": 0.0,
+              "currency": "LKR"
+            },
+            "scope": "stage",
+            "action_id": null,
+            "stage_id": "svc:demo_preparation",
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [],
+            "evidence_ids": [],
+            "qualification": null,
+            "conditions": [],
+            "status": "source_fallback",
+            "source_context": [
+              {
+                "content_id": "content:register_application",
+                "text": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+                "evidence_ids": [
+                  "evidence:application_rules"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          },
+          {
+            "id": "source:svc:demo_submission:svc:demo_submission:fee",
+            "fact_id": "svc:demo_submission:fee",
+            "fact": {
+              "kind": "fee",
+              "fact_id": "svc:demo_submission:fee",
+              "value": 0.0,
+              "currency": "LKR"
+            },
+            "scope": "stage",
+            "action_id": null,
+            "stage_id": "svc:demo_submission",
+            "service_id": null,
+            "branch_id": null,
+            "option_ids": [],
+            "condition_ids": [],
+            "claim_ids": [],
+            "evidence_ids": [],
+            "qualification": null,
+            "conditions": [],
+            "status": "source_fallback",
+            "source_context": [
+              {
+                "content_id": "content:register_application",
+                "text": "Register the fictional application before preparing its two required items. Registration, preparation and submission each have a fictional fee of LKR 0. After registration, preparing the form and preparing the supporting copy may proceed independently, in either order or concurrently. Both must be completed before submission.",
+                "evidence_ids": [
+                  "evidence:application_rules"
+                ]
+              }
+            ],
+            "applicability_status": "consult_source_context"
+          }
+        ],
+        "total": null,
+        "no_total_reason": "Charges are scoped source facts; no total or alternative-route sum is inferred.",
+        "placement": "Always available outside explanation disclosure; stage facts are not action payments."
+      }
+    },
+    "interaction": {
+      "navigation": {
+        "mode": "overview",
+        "entries": [
+          {
+            "action_id": "action:prepare_copy",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:prepare_form",
+            "layer": 2,
+            "label": "Dependency layer 2",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:register_application",
+            "layer": 1,
+            "label": "Dependency layer 1",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          },
+          {
+            "action_id": "action:submit_application",
+            "layer": 3,
+            "label": "Dependency layer 3",
+            "branch_id": null,
+            "option_id": null,
+            "route_layer": null,
+            "available_for_navigation": true,
+            "orientation_only": true
+          }
+        ],
+        "active_action_id": "action:register_application",
+        "browsing_action_ids": [
+          "action:register_application",
+          "action:prepare_copy",
+          "action:prepare_form",
+          "action:submit_application"
+        ],
+        "previous_action_id": null,
+        "next_action_id": "action:prepare_copy",
+        "browsing_position": 1,
+        "browsing_count": 4,
+        "unresolved_route_ids": [],
+        "numbering_enabled": true,
+        "order_semantics": "Browsing orientation only. Peer layers do not establish parallelism; raw joins preserve AND/OR/selected-route meaning. No completion is inferred."
+      },
+      "route_choices": {},
+      "map_visible": false,
+      "explanation_open_action_ids": [],
+      "display_acknowledged_view_ids": [],
+      "recap": {
+        "enabled": false,
+        "items": [],
+        "empty_reason": "recap_off",
+        "label": "Earlier guidance viewed, not confirmed as done"
+      },
+      "event_count": 0,
+      "completion_tracked": false
+    },
+    "controls": {
+      "configuration_adjustment": false,
+      "feedback": false,
+      "research_inspection": true
+    }
+  }
+}

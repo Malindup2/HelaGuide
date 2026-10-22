@@ -91,7 +91,7 @@ class Rating(DTO):
 class PolicyEvidence(DTO):
     """Real PP1 producer evidence; previews and standard guidance never populate it."""
     algorithm: Literal["shared_gaussian_lints"]
-    action_schema: Literal["c4-scaffolds-v3.0"]
+    action_schema: Literal["c4-scaffolds-v3.0","c4-scaffolds-v3.1"]
     encoder_schema: str
     model_manifest_fingerprint: str
     policy_run_id: str
@@ -102,7 +102,7 @@ class PolicyEvidence(DTO):
 class Selection(DTO):
     kind: Literal["standard","constraint_standard","research_preview","manual_adjustment","shared_gaussian_lints"]
     configuration: Configuration
-    action_schema: Literal["c4-scaffolds-v3.0"] = "c4-scaffolds-v3.0"
+    action_schema: Literal["c4-scaffolds-v3.0","c4-scaffolds-v3.1"] = "c4-scaffolds-v3.0"
     label: str
     scoring_status: Literal["not_run","executed"] = "not_run"
     policy: PolicyEvidence | None = None
@@ -154,7 +154,8 @@ class CandidateAvailability(DTO):
     disclosable_action_ids: list[str]
 
 class FrozenAvailability(DTO):
-    action_schema: Literal["c4-scaffolds-v3.0"]
+    action_schema: Literal["c4-scaffolds-v3.0","c4-scaffolds-v3.1"]
+    feasibility_fingerprint: str | None = None
     nominal_count: Literal[96]
     feasible_count: int = Field(ge=0,le=96)
     candidates: list[CandidateAvailability]
@@ -190,7 +191,7 @@ class PreparationMetadata(DTO):
     mode: Literal["demo","dynamic"]
     language: str
     fallback_language: str | None
-    content_schema: Literal["c4-guidance-content-3.0"]
+    content_schema: Literal["c4-guidance-content-3.0","c4-guidance-content-3.1"]
     artifact_id: str | None
     review_kind: str | None
     source_kind: Literal["fictional","bounded_official_source_snapshot"]
@@ -330,9 +331,12 @@ class RenderedAction(DTO):
     source_content_ids: list[str]
     disclosure_available: bool
     wording_status: str
+    source_wording: str | None = None
+    supplement_role: str | None = None
 
 class RenderedDocument(DTO):
-    schema_id: Literal["c4-render-plan-3.0"] = Field(alias="schema")
+    schema_id: Literal["c4-render-plan-3.0","c4-render-plan-3.1"] = Field(alias="schema")
+    content_schema: Literal["c4-guidance-content-3.0","c4-guidance-content-3.1"] = "c4-guidance-content-3.0"
     configuration: Configuration
     synthetic: bool
     source_kind: Literal["fictional","bounded_official_source_snapshot"]

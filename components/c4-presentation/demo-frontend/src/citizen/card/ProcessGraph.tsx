@@ -1,11 +1,11 @@
 import { useId } from 'react';
 import type { Doc, Expression, ProcessMap } from '../types';
-import { entryOf, layerMap } from '../model';
+import { entryOf, layerMap, shortLabel } from '../model';
 
 type Size = { w: number; h: number; gx: number; gy: number; pad: number; font: number };
 const SIZES: Record<'compact' | 'large', Size> = {
-  compact: { w: 104, h: 46, gx: 10, gy: 24, pad: 8, font: 11 },
-  large: { w: 220, h: 70, gx: 28, gy: 58, pad: 24, font: 14 },
+  compact: { w: 108, h: 48, gx: 12, gy: 28, pad: 8, font: 11 },
+  large: { w: 232, h: 76, gx: 36, gy: 64, pad: 24, font: 14 },
 };
 const BADGE = { XOR: 'Choose one', AND: 'All of these', OR: 'Some may apply' } as const;
 
@@ -53,12 +53,12 @@ export default function ProcessGraph({ doc, map, size, activeId, onSelect }: { d
     {map.edges.map((e, i) => { const s = pos.get(e.source_id), t = pos.get(e.target_id); if (!s || !t) return null;
       return <path key={i} className="cz-edge" d={`M ${s.x + z.w / 2} ${s.y + z.h} C ${s.x + z.w / 2} ${s.y + z.h + z.gy / 2},${t.x + z.w / 2} ${t.y - z.gy / 2},${t.x + z.w / 2} ${t.y}`} markerEnd={`url(#${marker})`} />; })}
     {map.joins.flatMap((j, ji) => leaves(j.requirement, map).map((src, si) => { const s = pos.get(src), t = pos.get(j.target); if (!s || !t) return null;
-      const word = j.requirement.kind === 'all_of' ? 'all of' : j.requirement.kind === 'any_of' ? 'one of' : null;
+      const word = j.requirement.kind === 'all_of' ? 'all of these' : j.requirement.kind === 'any_of' ? 'one of these' : null;
       return <g key={`j${ji}-${si}`}><path className="cz-join" d={`M ${s.x + z.w / 2} ${s.y + z.h} L ${t.x + z.w / 2} ${t.y}`} markerEnd={`url(#${marker})`} />
         {size === 'large' && word && si === 0 && <text className="cz-join-label" textAnchor="end" x={t.x - 8} y={t.y + z.h / 2}>needs {word}</text>}</g>; }))}
     {doc.actions.map(a => { const p = pos.get(a.id); if (!p) return null; const m = markerOf(doc, a.id), active = a.id === activeId;
       return <g key={a.id} transform={`translate(${p.x},${p.y})`}><rect className={`cz-node${active ? ' cz-node-active' : ''}`} width={z.w} height={z.h} rx="8" />
-        <foreignObject width={z.w} height={z.h}><button type="button" className="cz-node-btn" style={{ fontSize: z.font }} title={label(a.id)} aria-current={active ? 'step' : undefined} onClick={() => onSelect(a.id)}>
-          {m && <span className="cz-nodemark" aria-hidden="true">{m}</span>}<span className="cz-node-t">{label(a.id)}</span></button></foreignObject></g>; })}
+        <foreignObject width={z.w} height={z.h}><button type="button" className="cz-node-btn" style={{ fontSize: z.font }} title={label(a.id).split(/\n\s*\n/)[0]} aria-label={label(a.id).split(/\n\s*\n/)[0]} aria-current={active ? 'step' : undefined} onClick={() => onSelect(a.id)}>
+          {m && <span className="cz-nodemark" aria-hidden="true">{m}</span>}<span className="cz-node-t">{shortLabel(label(a.id), size)}</span></button></foreignObject></g>; })}
   </svg>;
 }

@@ -122,8 +122,8 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
   const layerList = (layers: Layer[]) => <ol className="cz-layers">{layers.map(l => {
     const many = l.peers.length + l.routes.length > 1;
     return <li key={String(l.layer)} className="cz-layer">
-      {numbered && l.layer != null && <p className="cz-layerhead"><b>Step {l.layer}</b>{many && <span> · no order is stated among these</span>}</p>}
-      {l.peers.map((a, i) => stepArticle(a, many ? letter(i) : ''))}
+      {numbered && l.layer != null && <p className="cz-layerhead"><b>Step {l.layer}</b>{many && <span> · no fixed order</span>}</p>}
+      {l.peers.map((a, i) => stepArticle(a, many ? `${l.layer ?? ''}${letter(i)}` : ''))}
       {l.routes.map(routeBlock)}
     </li>;
   })}</ol>;
@@ -145,7 +145,7 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
 
   const factsPanel = (procedure.documents.length + procedure.fees.length > 0) && <section className="cz-reqs" aria-label="Documents and charges">
     <Facts facts={[...procedure.documents, ...procedure.fees]} doc={doc} />
-    {procedure.fees.length > 1 && <p className="cz-fine">Charges are shown as recorded and are not added together.</p>}
+    {procedure.fees.length > 1 && <p className="cz-fine">Each charge is listed on its own. They are not added up.</p>}
     <SourceWording facts={[...procedure.documents, ...procedure.fees]} doc={doc} />
   </section>;
 
@@ -175,7 +175,7 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
       <nav className="cz-orient" aria-label="Where you are" data-support="navigation">
         <p>{phase && <span className="cz-phaselabel" data-support="segmentation">{phase.label.text}{doc.phase_order.length > 0 && ` (phase ${doc.phase_order.indexOf(phase.id) + 1} of ${doc.phase_order.length})`}</span>}
           {numbered && entry?.layer != null && <b>Step {entry.layer}</b>}
-          {position >= 0 && <span className="cz-fine"> Item {position + 1} of {browsing.length} in browsing order</span>}</p>
+          {position >= 0 && <span className="cz-fine">{position + 1} of {browsing.length}</span>}</p>
         {browsing.length > 1 && <details className="cz-steplist"><summary>Steps <ChevronIcon /></summary>
           <ol>{browsing.map(id => { const a = byId(doc, id)!; return <li key={id}><button type="button" aria-current={id === activeId ? 'step' : undefined} onClick={() => go(id)}>{headingOf(a, doc.source_limit)}</button></li>; })}</ol></details>}
       </nav>
@@ -191,10 +191,10 @@ export default function GuidanceCard({ response, emit, adjust, rate, busy = fals
         : unresolved.length > 0 && <p className="cz-fine">Choose the route that applies to continue.</p>}
       <nav className="cz-pager" aria-label="Browse guidance">
         <button type="button" className="cz-btn cz-btn-quiet" disabled={!prevId || busy} onClick={() => go(prevId)}>Back</button>
-        <p className="cz-fine" aria-live="polite">{position >= 0 ? `Item ${position + 1} of ${browsing.length}` : ''}</p>
+        <p className="cz-fine" aria-live="polite">{position >= 0 ? `${position + 1} of ${browsing.length}` : ''}</p>
         <button type="button" className="cz-btn" disabled={!nextId || busy} onClick={() => go(nextId)}>Next</button>
       </nav>
-      <p className="cz-fine">{doc.navigation.order_semantics}</p>
+      {research && <p className="cz-fine">{doc.navigation.order_semantics}</p>}
     </div> : phases
       ? <div className="cz-phases" data-support="segmentation">{phases.map(p => <section key={p.id} className="cz-phase" aria-labelledby={`cz-ph-${p.id}`}>
         <h3 id={`cz-ph-${p.id}`}>{p.ordered && <span>Phase {p.index + 1} · </span>}{p.label}</h3>{layerList(p.layers)}</section>)}</div>

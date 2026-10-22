@@ -37,6 +37,8 @@ export interface RenderedAction {
   facts: ScopedFact[]; explanation_visible: string | null; explanation_hidden: string | null; recap: null;
   branch: string | null; option: string | null; service_id: string; agency: string; condition_ids: string[];
   source_content_ids: string[]; disclosure_available: boolean; wording_status: string;
+  /** Content 3.1 only: the exact source text kept alongside the primary explanation, and the role of the separate supplement. */
+  source_wording?: string | null; supplement_role?: string | null;
 }
 export interface RouteOption { option_id: string; action_ids: string[]; condition_ids: string[]; conditions: string[]; label: string }
 export interface Route { branch_id: string; selection: 'AND' | 'OR' | 'XOR'; evidence_ids: string[]; choice_is_not_eligibility_or_completion: true; options: RouteOption[] }
@@ -76,7 +78,7 @@ export interface Interaction {
 }
 export interface Requirements { documents: ScopedFact[]; fees: ScopedFact[]; total: null; no_total_reason: string; placement: string }
 export interface Doc {
-  schema: string; configuration: Configuration; synthetic: boolean; source_kind: string; source_limit: string;
+  schema: string; content_schema?: string; configuration: Configuration; synthetic: boolean; source_kind: string; source_limit: string;
   actions: RenderedAction[]; facts: ScopedFact[]; branches: unknown[];
   stages: { service_id: string; display_order: number; name: string; agency: string; fee_fact_id: string; document_fact_ids: string[] }[];
   completeness: Record<string, string>; sources: { evidence_id: string; kind: string; source_url: string; text: string; retrieved_at: string | null }[];
@@ -85,7 +87,7 @@ export interface Doc {
   routes: Route[]; requirements: Requirements;
 }
 export interface Candidate { id: string; configuration: Configuration; feasible: boolean; reasons: string[]; disclosable_action_ids: string[] }
-export interface Availability { action_schema: string; nominal_count: number; feasible_count: number; candidates: Candidate[] }
+export interface Availability { action_schema: string; nominal_count: number; feasible_count: number; candidates: Candidate[]; feasibility_fingerprint?: string | null }
 export interface EffectiveContext {
   schema_version: string; session_id: string; profile_id: string | null; personalization_enabled: boolean; service_id: string;
   familiarity: number | null; confidence: number | null; preferences: Record<string, string>;

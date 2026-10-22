@@ -13,7 +13,7 @@ export function Facts({ facts, doc, label = true }: { facts: ScopedFact[]; doc: 
   };
   return <div className="cz-facts">
     {docs.length > 0 && <p>{label && <span className="cz-k">Documents</span>}{docs.map(f => tag(f, false))}</p>}
-    {fees.length > 0 && <p>{label && <span className="cz-k">{fees.every(f => f.scope === 'action' || f.scope === 'route') ? 'Charge' : 'Charges recorded'}</span>}{fees.map(f => tag(f, true))}</p>}
+    {fees.length > 0 && <p>{label && <span className="cz-k">{fees.every(f => f.scope === 'action' || f.scope === 'route') ? 'Charge' : 'Charges'}</span>}{fees.map(f => tag(f, true))}</p>}
   </div>;
 }
 
@@ -21,7 +21,7 @@ export function Facts({ facts, doc, label = true }: { facts: ScopedFact[]; doc: 
 export function SourceWording({ facts, doc }: { facts: ScopedFact[]; doc: Doc }) {
   const shown = facts.filter(f => (f.source_context?.length ?? 0) > 0);
   if (shown.length === 0) return null;
-  return <details className="cz-more"><summary>Source wording about these items</summary>
+  return <details className="cz-more"><summary>Source passages</summary>
     {shown.map(f => <div key={f.id} className="cz-passages"><b>{f.fact.kind === 'fee' ? formatAmount(f.fact) : f.fact.name}</b>
       {f.source_context!.map(p => <p key={p.content_id}>{paragraphs(p.text, doc.source_limit).join(' ')}</p>)}</div>)}
   </details>;
@@ -43,7 +43,10 @@ type BodyProps = {
 export function StepBody({ action, doc, config, open, onToggle, hideConditions = [], showFacts = true, heading }: BodyProps) {
   const conditions = action.conditions.filter(c => !hideConditions.includes(c));
   const cues = config.relationships === 'inline' ? doc.relationship_aid.inline_by_action[action.id] ?? [] : [];
-  const detailed = config.explanation === 'detailed';
+  // Content 3.1: `essential` is already the selected Concise or Detailed text, and the explanation block is a separate supplement.
+  const supplement = !!action.supplement_role;
+  const detailed = config.explanation === 'detailed' && !supplement;
+  const agencies = new Set(doc.actions.map(a => a.agency)).size > 1;
   // A fallback heading is the instruction's own first sentence; show it once rather than twice. Nothing is dropped.
   const essential = (() => {
     const ps = paragraphs(action.essential, doc.source_limit);
@@ -53,16 +56,20 @@ export function StepBody({ action, doc, config, open, onToggle, hideConditions =
   return <div className="cz-body" id={`cz-body-${action.id}`}>
     {conditions.length > 0 && <p className="cz-cond"><b>Applies when</b> {conditions.join(' and ')}</p>}
     {essential.map((p, i) => <p key={i} className="cz-essential">{p}</p>)}
-    {(action.destination || action.actor) && <p className="cz-where">{action.destination && <><b>Where</b> {action.destination} </>}{action.actor && <><b>Who</b> {action.actor}</>}</p>}
+    {(action.destination || action.actor || agencies) && <div className="cz-facts">
+      {agencies && <p><span className="cz-k">Agency</span><span className="cz-tag">{action.agency}</span></p>}
+      {action.destination && <p><span className="cz-k">Where</span><span className="cz-tag">{action.destination}</span></p>}
+      {action.actor && <p><span className="cz-k">Who</span><span className="cz-tag">{action.actor}</span></p>}</div>}
     {showFacts && <Facts facts={action.facts} doc={doc} />}
     {showFacts && <SourceWording facts={action.facts} doc={doc} />}
     {cues.length > 0 && <ul className="cz-cues" data-support="relationships">{cues.map(c => { const v = cueView(c); return <li key={c.relation_id + c.text}><b>{v.label}</b> {v.body}</li>; })}</ul>}
-    {action.explanation_visible && <div className="cz-expl" data-support="explanation">{detailed && <span className="cz-label">In more detail</span>}
+    {action.source_wording && <details className="cz-more cz-source"><summary>What the source says</summary>{paragraphs(action.source_wording, doc.source_limit).map((p, i) => <p key={i}>{p}</p>)}</details>}
+    {action.explanation_visible && <div className="cz-expl" data-support="explanation">{(detailed || supplement) && <span className="cz-label">{supplement ? 'More information' : 'In more detail'}</span>}
       {paragraphs(action.explanation_visible, doc.source_limit).map((p, i) => <p key={i}>{p}</p>)}</div>}
     {config.disclosure === 'on' && action.explanation_hidden && <div data-support="disclosure">
       <button type="button" className="cz-toggle" aria-expanded={open} aria-controls={`cz-expl-${action.id}`} onClick={() => onToggle(action.id, !open)}>
         {open ? 'Less' : 'More'}<ChevronIcon /></button>
-      {open && <div className="cz-expl" id={`cz-expl-${action.id}`}>{detailed && <span className="cz-label">In more detail</span>}
+      {open && <div className="cz-expl" id={`cz-expl-${action.id}`}>{(detailed || supplement) && <span className="cz-label">{supplement ? 'More information' : 'In more detail'}</span>}
         {paragraphs(action.explanation_hidden, doc.source_limit).map((p, i) => <p key={i}>{p}</p>)}</div>}
     </div>}
   </div>;
