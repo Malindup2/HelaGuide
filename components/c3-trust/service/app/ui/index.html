@@ -111,6 +111,10 @@ th{color:var(--muted);font-weight:600}
 .sample input{margin-top:4px;accent-color:var(--orange)}
 .s-note{color:var(--muted);font-size:12px;margin-top:2px}
 .err{color:var(--red);min-height:20px;font-size:13px}
+.pbtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pbtn{padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;font-weight:600;font-size:13px;color:var(--ink)}
+.pbtn:hover{background:var(--soft)}.pbtn.active{background:var(--black);color:#fff;border-color:var(--black)}
+.pbtn:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
 .hidden{display:none}
 .custom textarea{display:block;width:100%;padding:10px;border:1px solid #cfd4dc;border-radius:8px;font:inherit;font-weight:400;resize:vertical}
 .custom select{display:block;width:100%;margin-top:6px;padding:9px 10px;border:1px solid #cfd4dc;border-radius:8px;font:inherit;font-weight:400;background:#fff}
@@ -141,7 +145,7 @@ th{color:var(--muted);font-weight:600}
     <div class="tabs" role="tablist">
       <button class="tab active" id="tab-report" data-tab="report" role="tab">Last report</button>
       <button class="tab" id="tab-audit" data-tab="audit" role="tab">Audit trail</button>
-      <button class="tab" id="tab-citizens" data-tab="citizens" role="tab">Citizens</button>
+      <button class="tab" id="tab-citizens" data-tab="citizens" role="tab">Demo citizens</button>
     </div>
     <div id="side-body"></div>
   </aside>
@@ -151,7 +155,10 @@ th{color:var(--muted);font-weight:600}
   <div class="dialog">
     <div class="dialog-h"><h2 id="modal-title">Give feedback</h2><button class="x" id="modal-x" aria-label="Close">&times;</button></div>
     <p class="muted" style="margin:6px 0 0">Tell us what you experienced at the office. In this demo you choose a citizen first, then a pre-written message, or write your own in English. Live translation is switched off, so nothing depends on the internet.</p>
-    <label class="fld">1 · Who is giving this feedback?<select id="persona"></select></label>
+    <div class="fld">1 · Who is giving this feedback?
+      <div id="persona-buttons" class="pbtns" role="radiogroup" aria-label="Demo citizen"></div>
+      <select id="persona" class="hidden" aria-hidden="true" tabindex="-1"></select>
+    </div>
     <div class="fld">2 · Choose a message
       <div id="groups" class="groups"></div>
       <div id="samples" class="samples"></div>
@@ -177,7 +184,7 @@ const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&": "&am
 const pct = v => Math.round(v * 100);
 const LANG = {en: "English", si: "Sinhala", mixed: "Singlish"};
 const state = {samples: [], groups: [], personas: [], facts: [], shown: {}, last: null, lastFact: "svc:passport:fee:normal",
-               tab: "report", group: "english", picked: null, persona: null, busy: false};
+               tab: "report", group: "english", picked: null, persona: null, showHistory: false, busy: false};
 
 async function api(path, body) {
   const opt = body === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)};
@@ -190,6 +197,12 @@ async function api(path, body) {
     throw err;
   }
   return r.json();
+}
+
+/* ---------- names ---------- */
+function who(id) {                                   // "Demo citizen 3": no reputation numbers are shown by default
+  const i = state.personas.findIndex(p => p.id === id);
+  return i >= 0 ? "Demo citizen " + (i + 1) : id;
 }
 
 /* ---------- conversation ---------- */
@@ -222,11 +235,14 @@ function badge(f) {
   const official = f.warning_code === "VERIFIED_BY_SOURCE" ? ' <span class="tick">&#10003; official</span>' : "";
   return '<span class="badge ' + cls(f.warning_code) + '" title="Confidence in this fact">' + f.confidence_pct + "%</span>" + official;
 }
+const STATUS = {
+  LOW_CONFIDENCE: ["Reported by citizens (unverified)", "warn"],
+  VERIFY_BEFORE_VISIT: ["Strongly reported by citizens (unverified): please confirm before you visit", "bad"],
+  VERIFIED_BY_SOURCE: ["Verified: updated by the official source", "ok"]
+};
 function warnLine(code) {
-  if (code === "LOW_CONFIDENCE") return '<div class="note warn">Citizens report this may have changed.</div>';
-  if (code === "VERIFY_BEFORE_VISIT") return '<div class="note bad">Strong doubt: please confirm before you visit.</div>';
-  if (code === "VERIFIED_BY_SOURCE") return '<div class="note ok">Confirmed by the official source.</div>';
-  return "";
+  const st = STATUS[code];
+  return st ? '<div class="note ' + st[1] + '">' + st[0] + "</div>" : "";
 }
 function factRow(f) {
   const before = state.shown[f.fact_id];
@@ -242,8 +258,8 @@ function workflowCard(wf) {
     '</div><div class="agency">' + esc(s.agency) + "</div></div></div>" + s.facts.map(factRow).join("") + "</div>").join("");
   return '<div class="card"><h3>' + esc(wf.title) + "</h3>" + steps +
     '<div class="legend">The percentage shows how far citizens\' experience supports the published fact. ' +
-    '<span class="badge ok">green</span> reliable &middot; <span class="badge warn">amber</span> reported by citizens &middot; ' +
-    '<span class="badge bad">red</span> verify first</div></div>';
+    '<span class="badge ok">green</span> no warning &middot; <span class="badge warn">amber</span> reported by citizens (unverified) &middot; ' +
+    '<span class="badge bad">red</span> strongly reported by citizens (unverified)</div></div>';
 }
 function remember(wf) {
   state.facts = [];
@@ -293,7 +309,7 @@ async function submitTyped() {
   const persona = $("#persona").value, rel = $("#visit-rel").value;
   state.persona = persona;
   closeModal();
-  addUser("Citizen " + persona, '<span class="lang">English · typed</span><div class="said">' + esc(text) + "</div>");
+  addUser(who(persona), '<span class="lang">English · typed</span><div class="said">' + esc(text) + "</div>");
   const wait = addBubble("Checking your report&hellip;");
   try {
     const r = await api("/internal/demo/feedback", {text: text, persona_id: persona, visit_days_ago: rel === "" ? null : Number(rel)});
@@ -313,7 +329,7 @@ async function submit() {
   const persona = $("#persona").value, visit = $("#visit").value || null;
   state.persona = persona;
   closeModal();
-  addUser("Citizen " + persona, '<span class="lang">' + esc(LANG[s.language] || s.language) + '</span><div class="said ' + (s.language === "si" ? "si" : "") + '">' + esc(s.text) + "</div>");
+  addUser(who(persona), '<span class="lang">' + esc(LANG[s.language] || s.language) + '</span><div class="said ' + (s.language === "si" ? "si" : "") + '">' + esc(s.text) + "</div>");
   const wait = addBubble("Checking your report&hellip;");
   try {
     const r = await api("/internal/demo/feedback", {sample_id: s.id, persona_id: persona, visit_date: visit});
@@ -350,7 +366,7 @@ async function resetDemo() {
   try {
     await api("/internal/demo/reset", {});
     $("#thread").innerHTML = "";
-    state.shown = {}; state.last = null; state.lastFact = "svc:passport:fee:normal"; state.facts = []; state.picked = null; state.persona = null;
+    state.shown = {}; state.last = null; state.lastFact = "svc:passport:fee:normal"; state.facts = []; state.picked = null; state.persona = null; state.showHistory = false;
     greet(); await loadStatic(); showTab(state.tab);
   } catch (e) { fail(e); }
 }
@@ -358,12 +374,17 @@ async function resetDemo() {
 /* ---------- feedback dialog ---------- */
 function openModal() {
   $("#modal-err").textContent = "";
-  $("#persona").innerHTML = state.personas.map(p => '<option value="' + esc(p.id) + '">' + esc(p.id) + " · " + esc(p.note) + " · reputation " + p.reputation + "</option>").join("");
+  $("#persona").innerHTML = state.personas.map(p => '<option value="' + esc(p.id) + '">' + esc(who(p.id)) + "</option>").join("");
   if (state.persona && $$("#persona option").some(o => o.value === state.persona)) $("#persona").value = state.persona;   // keep the last citizen
   state.persona = $("#persona").value;
+  renderPersonaButtons();
   state.picked = null; $("#visit").value = ""; $("#custom-text").value = ""; $("#visit-rel").value = "";                                                                           // choose the message afresh
   renderGroups(); renderSamples();
   $("#modal").classList.remove("hidden");
+}
+function renderPersonaButtons() {
+  $("#persona-buttons").innerHTML = state.personas.map(p => '<button type="button" class="pbtn' + (p.id === $("#persona").value ? " active" : "") +
+    '" role="radio" aria-checked="' + (p.id === $("#persona").value) + '" data-id="' + esc(p.id) + '">' + esc(who(p.id)) + "</button>").join("");
 }
 function closeModal() { $("#modal").classList.add("hidden"); }
 function renderGroups() {
@@ -410,7 +431,7 @@ function reportDetail(r) {
   if (r.state !== "grounded") return out;
   const t = r.trust, i = r.independence, c = r.confidence, e = r.exposure;
   out += section(3, "Trust in the reporter &rarr; " + t.T.toFixed(2),
-    bar("Reputation", t.R, "reports later confirmed: " + t.a + ", contradicted: " + t.b) +
+    bar("Track record", t.R, "earned from verified outcomes; demo citizens start with a seeded history") +
     bar("Detail", t.S, "value, when, where, detail") +
     bar("Account", t.C, Math.round(t.age_days) + " days old") +
     bar("Recency", t.V, t.v_imputed ? "no visit date: neutral" : "how recent the visit was"));
@@ -418,7 +439,8 @@ function reportDetail(r) {
     '<div class="muted">One citizen counts once. A copy counts for less.</div>');
   out += section(5, "Confidence", '<div class="big">' + pct(c.old) + '% <span class="arrow">&rarr;</span> <span class="badge ' + cls(e.warning_code) + '" style="font-size:16px">' + c.pct + "%</span></div>" +
     '<div class="muted">evidence against ' + c.E_d + ", for " + c.E_s + ", net " + c.E + " &middot; status: " + esc(c.status) +
-    " &middot; drops so far: " + c.drop_events + "</div>" + warnLine(e.warning_code));
+    " &middot; drops so far: " + c.drop_events + "</div>" + warnLine(e.warning_code) +
+    (c.status === "flagged" ? '<div class="muted" style="margin-top:6px">Below 50% the fact is flagged for verification. In the full system this opens a review case. It is not a verdict.</div>' : ""));
   return out;
 }
 async function auditView() {
@@ -429,16 +451,21 @@ async function auditView() {
     '<div class="sec"><h4>' + esc(v.value) + " &middot; " + v.confidence_pct + "% &middot; " + esc(v.status) + '</h4><div class="b">' +
     '<div class="muted">version from ' + esc((v.from || "").slice(0, 10)) + (v.to ? " to " + esc(v.to.slice(0, 10)) : " (current)") + "</div>" +
     (v.reports.length ? "<table><tr><th>Citizen</th><th>Kind</th><th>Claim</th><th>T</th><th>I</th></tr>" +
-      v.reports.map(r => "<tr><td>" + esc(r.citizen) + "</td><td>" + esc(r.kind) + "</td><td>" + esc(r.claim || "-") + "</td><td>" + r.trust.toFixed(2) + "</td><td>" + r.independence.toFixed(2) + "</td></tr>").join("") + "</table>" : '<div class="muted">no reports</div>') +
+      v.reports.map(r => "<tr><td>" + esc(who(r.citizen)) + "</td><td>" + esc(r.kind) + "</td><td>" + esc(r.claim || "-") + "</td><td>" + r.trust.toFixed(2) + "</td><td>" + r.independence.toFixed(2) + "</td></tr>").join("") + "</table>" : '<div class="muted">no reports</div>') +
     "</div></div>").join("");
   const trail = a.audit.map(r => "<tr><td>" + (r.before == null ? "-" : Number(r.before).toFixed(3)) + "</td><td>" + Number(r.after).toFixed(3) + "</td><td>" + esc(r.reason) + "</td></tr>").join("");
   return '<label class="fld" style="margin-top:0">Fact<select id="audit-fact">' + opts + "</select></label>" + versions +
     '<div class="sec"><h4>Audit trail: every change, with its reason</h4><div class="b"><table><tr><th>Before</th><th>After</th><th>Reason</th></tr>' + trail + "</table></div></div>";
 }
 function citizensView() {
-  const rows = state.personas.map(p => "<tr><td>" + esc(p.id) + "</td><td>" + esc(p.note) + "</td><td>" + p.reputation + "</td><td>" + p.a + " / " + p.b + "</td><td>" + esc(p.since) + "</td></tr>").join("");
-  return '<div class="muted" style="margin-bottom:8px">Demo citizens with stable anonymous ids. Reputation = (a+1)/(a+b+2), where a = reports later confirmed by the official source and b = reports contradicted.</div>' +
-    "<table><tr><th>Id</th><th>Profile</th><th>Reputation</th><th>a / b</th><th>Since</th></tr>" + rows + "</table>";
+  const intro = '<div class="muted" style="margin-bottom:10px">These are <b>demo citizens</b>. So that the demo can show different kinds of citizen, each starts with a <b>seeded history</b>. ' +
+    "In the real system every citizen starts neutral, and reputation is <b>earned</b>: a claim later confirmed by the official source or a reviewer raises it, a contradicted claim lowers it. " +
+    "Reputation only decides how much a report counts while it waits to be verified. It never decides what is true.</div>" +
+    '<button class="btn small" id="toggle-history" style="margin:0 0 12px">' + (state.showHistory ? "Hide" : "Show") + " the seeded demo history</button>";
+  if (!state.showHistory) return intro + '<div class="muted">' + state.personas.length + " demo citizens: Demo citizen 1 to Demo citizen " + state.personas.length + ".</div>";
+  const rows = state.personas.map(p => "<tr><td>" + esc(who(p.id)) + "</td><td>" + esc(p.note) + "</td><td>" + p.reputation + "</td><td>" + p.a + " / " + p.b + "</td><td>" + esc(p.since) + "</td></tr>").join("");
+  return intro + '<div class="muted" style="margin-bottom:6px">Reputation = (a+1)/(a+b+2): a = claims later confirmed, b = claims contradicted. <b>Seeded for the demo only.</b></div>' +
+    "<table><tr><th>Citizen</th><th>Seeded profile</th><th>Reputation</th><th>a / b</th><th>Since</th></tr>" + rows + "</table>";
 }
 async function showTab(name) {
   state.tab = name;
@@ -446,7 +473,7 @@ async function showTab(name) {
   const body = $("#side-body");
   try {
     if (name === "report") body.innerHTML = reportDetail(state.last);
-    else if (name === "citizens") { state.personas = await api("/internal/demo/personas"); body.innerHTML = citizensView(); }
+    else if (name === "citizens") { state.personas = await api("/internal/demo/personas"); body.innerHTML = citizensView(); const tg = $("#toggle-history"); if (tg) tg.onclick = () => { state.showHistory = !state.showHistory; showTab("citizens"); }; }
     else { body.innerHTML = await auditView(); const sel = $("#audit-fact"); if (sel) sel.onchange = () => { state.lastFact = sel.value; showTab("audit"); }; }
   } catch (e) { body.innerHTML = '<div class="bubble err">' + esc(e.status === 409 ? "Start the console with: python -m app.cli.serve" : e.message) + "</div>"; }
 }
@@ -466,7 +493,11 @@ async function init() {
   $("#modal-cancel").onclick = closeModal;
   $("#modal-x").onclick = closeModal;
   $("#modal-submit").onclick = submit;
-  $("#persona").addEventListener("change", e => { state.persona = e.target.value; });
+  $("#persona").addEventListener("change", e => { state.persona = e.target.value; renderPersonaButtons(); });
+  $("#persona-buttons").addEventListener("click", e => {
+    const b = e.target.closest("[data-id]");
+    if (b) { $("#persona").value = b.dataset.id; $("#persona").dispatchEvent(new Event("change", {bubbles: true})); }
+  });
   $("#modal").addEventListener("click", e => { if (e.target.id === "modal") closeModal(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
   $("#thread").addEventListener("click", e => { const b = e.target.closest("[data-act]"); if (b && b.dataset.act === "ask") ask(); });

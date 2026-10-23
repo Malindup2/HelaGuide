@@ -267,3 +267,32 @@ def test_the_page_offers_the_typed_text_tab_and_keeps_the_samples(client):
     page = client.get("/ui").text
     for must in ("Write your own (English)", 'id="custom-text"', 'id="visit-rel"', "submitTyped", 'id="samples"', "How do I get a passport?"):
         assert must in page, must
+
+
+# ------------------------------------------- the panel's feedback: no assigned reputation on show, honest status words
+def test_the_page_shows_demo_citizens_as_plain_buttons_and_hides_the_seeded_reputation(client):
+    page = client.get("/ui").text
+    for must in ('id="persona-buttons"', "Demo citizen", "Demo citizens", "seeded demo history", "Seeded for the demo only",
+                 "earned from verified outcomes"):
+        assert must in page, must
+    assert '" · reputation "' not in page and "esc(p.note) +" not in page.split("function openModal")[1].split("function closeModal")[0]
+
+
+def test_the_page_shows_only_warning_labels_and_claims_no_review_that_does_not_exist(client):
+    page = client.get("/ui").text
+    for must in ("Reported by citizens (unverified)", "Strongly reported by citizens (unverified)",
+                 "Verified: updated by the official source", "green</span> no warning"):
+        assert must in page, must
+    for must_not in ("No concerns", "no disputes", "Disputed by", 'class="count"', "who dispute this fact"):   # no clutter
+        assert must_not not in page, must_not
+    for must_not in ("Under review", "Confirmed outdated", "Verified correct"):      # arrive with the review loop (next phase)
+        assert must_not not in page, must_not
+
+
+def test_the_api_still_counts_the_citizens_who_dispute_a_fact(client, real):
+    """The count stays in the contract message (report_count); the page simply does not show it."""
+    client.get("/internal/demo/workflow")
+    for s, p in STORY:
+        send(client, s, p)
+    f = facts(client)[FEE]
+    assert f["report_count"] == 5                  # six reports, one of them supportive: five citizens dispute
