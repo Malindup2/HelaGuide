@@ -1,46 +1,44 @@
 # C4 dependency and cleanup audit
 
-Method: import graphs were computed from the real entry points (frontend from `src/main.tsx`; backend from `app.workspace`), then cross-checked against tests, `Dockerfile`, `docker-compose.c4.yml` and the READMEs. **Nothing has been deleted.** Every removal below is a proposal that needs your approval, and all of it is recoverable from Git history.
+Method: import graphs were computed from the real entry points (frontend from `src/main.tsx`, resolved case-insensitively and including dynamic `import()`; backend from `app.workspace` and `app.v2.api`, including imports inside functions). They were then cross-checked against tests, research scripts, `service/Dockerfile`, `docker-compose.c4.yml`, CLI commands in the READMEs, and the LLM content-preparation pipeline. Backup of the state before cleanup: branch `c4/final-v31-backup` (`154b0c7`).
 
-Classes: **A** active and required, **B** historical research evidence or reproducibility dependency, **C** safe to remove once approved (no active dependency; only its own legacy tests), **D** uncertain, needs manual review.
+## Outcome (2026-10-23)
+Only earlier V1/V2 citizen-interface code that nothing imports from `main.tsx` was removed, together with the tests that covered nothing else. **No backend module was removed.**
 
-## Frontend (`demo-frontend/src`): 38 files reachable from `main.tsx`, 43 non-test files not reachable
-| Area | Files | Class | Evidence and remaining dependency |
-|---|---|---|---|
-| `citizen/` | the active interface (Workspace, GuidanceCard, Research, api, model, tests) | A | rendered by `App.tsx`; the only citizen workflow |
-| `api/`, `app/useWorkspace.ts`, `app/research.ts`, `profiles/ProfileOnboarding.tsx`, `profiles/profileDraft.ts`, `session/*` | identity workflow reused by `citizen/Workspace` | A | imported by the active app |
-| `guidance-v2/VersionRoute.tsx`, `V2App.tsx`, `workspaceClient.ts`, `presentation.ts`, `types.ts`, `v2.css` | hash routing and the old inspector routes | D | `VersionRoute` is the app root and still serves the legacy `#inspector` routes through `V2App` |
-| `guidance-v2/card/parts.tsx` | icons | A (relocate) | `citizen/ui.tsx` re-exports its icons; move them into `citizen/ui.tsx` before any removal of `guidance-v2/` |
-| `guidance-v2/card/*`, `compare/*`, `ProcessMap.tsx`, `WorkspaceGuidance.tsx`, `semantics.ts` and their 7 tests | previous Guidance Card, comparison and map | C after relocating `parts.tsx` | not reachable; only `guidance-v2/*.test.tsx` import them. Coverage is superseded by `citizen/__tests__` (card, card31, model, journey, workspace) |
-| `guidance/*` (V1 GuidanceWorkspace, rendering, scaffoldModel, wording, episode, RelationshipMap) | V1 citizen guidance | C | not reachable; used by `tests/guidance.test.tsx`, `scaffolds.test.tsx`, `wording-ui.test.tsx`, `source-layout.test.tsx` only. `guidance/scaffolds.css` is still imported by `main.tsx` and must be kept or relocated first |
-| `adjustments/*`, `feedback/*` (except `feedback/feedback.css`, imported by `main.tsx`) | V1 adjustment and feedback panels | C | tests only |
-| `inspector/*` | V1 pipeline inspector | D | reachable only through legacy `#inspector` routes of `V2App`; decide whether those routes are retired |
-| `profiles/ContextSummary.tsx`, `ProfileSettings.tsx` | old profile settings | C | not reachable; replaced by `citizen/ProfileContext.tsx` |
-| `App.css`, `index.css`, `shell/shell.css`, `styles.css` | old styles | D | `styles.css` is imported; the others are unreferenced |
-| `tests/*` (10 legacy files), `tests/fixtures/guidance.ts` | legacy tests | B/C | they protect code that is only reachable from legacy tests; delete together with that code, not before |
+Evidence the change is safe:
+- The production bundle built from `c4/final-v31-backup` and the bundle built after cleanup are **byte-identical** (`index-CZOl5PZW.js`, `index-DnHaVs5n.css`). The UI is unchanged.
+- Backend: 647 passed, 24 skipped, both before and after (backend untouched).
+- Frontend: `tsc -b`, `eslint .` and `vite build` pass. `vitest`: 18 files / 161 tests pass. Before cleanup it was 31 files / 325 tests; the difference is exactly the 13 removed legacy test files.
+- Policy checkpoint SHA-256 `71a7768f…ace43` unchanged. No `.env`, database, checkpoint or research evidence touched.
 
-## Backend (`service/app`): 64 of 108 modules reachable from `app.workspace`
-| Area | Class | Evidence |
+### Removed (`demo-frontend/src`)
+| Files | What it was | Evidence |
 |---|---|---|
-| `guidance/` (content, content_v31, feasibility, composition, v31_pipeline, flavours, features, policy, frontend_*, journey_store, registry, service, sources, preparation, demo, catalogue, api) | A | active runtime and 3.0 default |
-| `guidance/synthetic.py`, `experiment.py`, `replay.py`, `plots.py`, `decision.py` | B | the preserved 3.0 study, its replay and the 3.0 selection-record contract; tests depend on them. Keep: they reproduce `PP1-SYNTHETIC-RESULTS.json` |
-| `guidance/synthetic31.py`, `experiment31.py`, `procedures31.py` | A (research) | the 3.1 study |
-| `guidance/editor.py` | D | local review tool; tested but not used by the app |
-| `v2/` core (`api`, `identity`, `runtime`, `measurements`, `registration`, `catalogue`, `content`, `features`, `preparation*`, `workspace_api`) | A | active runtime foundations. Despite the V2 name this is the live host |
-| `v2/simulation.py`, `transfer.py` | B | historical V2 reproduction |
-| `v2/export_fixture.py`, `fixture.py`, `workspace_experiment.py` | D | no test or app import found; confirm they are not run by hand |
-| `core/` guidance, scaffolds, policy, prior, procedure_*, wording_*, user_context, state_store, official_procedures, demo_* | A | imported by the active runtime |
-| `core/adapter`, `adjustments`, `adjustment_store`, `corrections`, `guidance_access`, `navigation_migration`, `pipeline_trace`, `postgres_state_store`, `standard_guidance` and `api/*`, `models/adjustments`, `guidance`, `pipeline_trace`, `runtime_state_v1*` | A for `app.main` | `service/Dockerfile` and the root README start `app.main:app` on port 8004; the team's Docker setup depends on them. Not part of the citizen path, but not removable on this branch |
-| `dev_main.py` | B | the V1 research backend (port 8016); README documents it |
-| `content_artifacts.py`, `wording_artifacts.py`, `policy_runs.py` | D | CLI utilities; only `dev_main` and tests use them |
+| `adjustments/*` (incl. `adjustments.css`) | V1 presentation-adjustment panel | not reachable; css only imported by the removed panel |
+| `feedback/{FeedbackPanel,api,contracts,flow,types}` | V1 feedback panel | not reachable; `feedback.css` kept (imported by `main.tsx`) |
+| `guidance/{GuidanceWorkspace,RelationshipMap,api,contracts,episode,rendering,scaffoldModel,types,wording}` | V1 guidance workspace | not reachable; `scaffolds.css` kept (imported by `main.tsx`) |
+| `guidance-v2/{ProcessMap,WorkspaceGuidance,semantics}`, `guidance-v2/card/*` except `parts.tsx`, `guidance-v2/compare/*` | V2 guidance card, comparison sheet and map | not reachable; `card/parts.tsx` kept (icons re-exported by `citizen/ui.tsx`) |
+| `inspector/*` | V1 pipeline inspector UI | not reachable. The live `#c4-v2-inspector` / `#pipeline-inspector` hashes render `V2App`, which does not import it |
+| `profiles/{ContextSummary,ProfileSettings}` | old profile settings | replaced by `citizen/ProfileContext.tsx` |
+| Tests: `tests/{action-requirements,adjustments,feedback,guidance,pipeline-inspector,scaffolds,source-layout,wording-ui}`, `tests/fixtures/*`, `guidance-v2/{card,corrections,interaction,v2}.test.tsx`, `guidance-v2/compare/compare.test.ts` | tests of the removed code only | — |
+| `guidance-v2/unified.test.tsx` (edited) | kept the `VersionRoute` routing test; removed the cases that rendered the removed V2 card | — |
 
-## Findings that block a safe bulk removal
-1. `guidance/scaffolds.css`, `feedback/feedback.css` and `guidance-v2/card/parts.tsx` are still imported by active code.
-2. `app.main:app` (the team's original service) and `app.dev_main:app` still depend on the V1 backend modules.
-3. Legacy tests are the only coverage of legacy code. Removing code and its tests together is safe; removing tests alone is not.
+### Retained on purpose (category, reason)
+| Module(s) | Reason |
+|---|---|
+| `app.main`, `api/*`, `core/adapter.py`, the adjustments/corrections/pipeline_trace/guidance_access/standard_guidance/postgres store modules | `service/Dockerfile` starts `app.main:app` (team docker-compose, port 8004, C2 `Plan` render stub); `dev_main` and its tests use them |
+| `core/llm_provider`, `explanations`, `wording_service`, `wording_views`, `prepared_wording`, `explanation_store`, `presentation`, `v2/preparation*`, `guidance/{service,preparation,sources,editor,registry,content,content_v31,provisional}`, `wording_artifacts.py`, `content_artifacts.py`, `dev_main.py`, `openai` | LLM-assisted content preparation: provider and prompts, generation, grounding validation, operator CLIs and their tests |
+| `guidance/{synthetic,experiment,decision,replay,plots}` | reproduce the 3.0 evidence `PP1-SYNTHETIC-RESULTS.json` |
+| `guidance/{synthetic31,procedures31,experiment31}` | the 3.1 study |
+| `v2/simulation.py`, `transfer.py`, `workspace_experiment.py` | V2 experiment cited in research docs; documented reproduction CLIs; tested |
+| `policy_runs.py`, `core/navigation_migration.py`, `models/runtime_state_v1*.py` | expert-prior and state-migration CLI (`service/POLICY-PRIORS.md`); tested |
+| `v2/fixture.py`, `v2/export_fixture.py`, `guidance-v2/fixture.json` | generate `research/data/v2/practice` (a registered procedure) and the fixture used by `presentation.test.ts` |
+| `v2/*` core, `guidance-v2/{VersionRoute,V2App,parts,presentation,types,workspaceClient,v2.css}` | live host and routing despite the version names |
 
-## Proposed order (each step needs your approval)
-1. Move the icon components from `guidance-v2/card/parts.tsx` into `citizen/ui.tsx`; move or inline the two imported stylesheets.
-2. Remove `guidance-v2/card`, `compare`, `ProcessMap`, `WorkspaceGuidance`, `semantics` and their 7 tests; remove V1 `guidance/`, `adjustments/`, `feedback/` (keeping the css file) and their tests; remove `profiles/ContextSummary.tsx` and `ProfileSettings.tsx`. Evidence: unreachable from `main.tsx`; `citizen/__tests__` cover the replacing behaviour.
-3. Decide whether the legacy `#inspector` routes and `inspector/` stay.
-4. Leave the V1 backend and `app.main` in place until the team's Docker entry point is changed.
+## Remaining improvements (not done; each changes live code and needs separate approval)
+1. Extract `_GaussianPosterior` from `core/policy.py` (the V2 policy file) into its own module.
+2. Decouple `v2/registration.finalize` from the legacy wording pipeline.
+3. Rename the live `v2/*` and `guidance-v2/*` modules; move `VersionRoute` and the icons in `card/parts.tsx` into `citizen/`.
+4. Remove the unreferenced stylesheets `App.css`, `index.css`, `shell/shell.css`, and unused rules in `styles.css`.
+5. Retire the legacy `/v2/*` and `/dev/v1/*` routes and the V2 inspector hash once no demo or test needs them; then the V1 backend modules used only by `dev_main` can follow.
+6. Move the team Docker entry from `app.main:app` to the V3.1 app, which would free the C2 stub modules.
