@@ -1,5 +1,4 @@
 # secrets
-.env
 *.pem
 
 # python
@@ -29,7 +28,6 @@ dist/
 crawl_snapshots/
 
 # editors and OS
-.vscode/
 .idea/
 .DS_Store
 Thumbs.db
@@ -39,3 +37,4 @@ Thumbs.db
 # The run logs (changes.jsonl, runs.jsonl) and tree.json stay tracked.
 components/c2-knowledge-graph/research/data/crawl/archive/
 components/c2-knowledge-graph/research/data/crawl/state/
+config.bat
