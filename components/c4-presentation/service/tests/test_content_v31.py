@@ -7,7 +7,7 @@ from app.guidance.content import GuidanceContent, validate_content
 from app.guidance.content_v31 import GuidanceContent31, evaluate31, validate_content31
 from app.guidance.feasibility import evaluate
 from app.guidance.sources import ProcedureSource
-from app.v2.registration import workspace_registry
+from app.procedures.registration import workspace_registry
 
 C4 = Path(__file__).resolve().parents[2]
 CANDIDATES = C4 / "research" / "data" / "guidance" / "fictional-v31-candidates"
@@ -117,7 +117,8 @@ def test_existing_3_0_content_and_feasibility_are_untouched(entries):
 
 
 def test_3_0_modules_and_the_policy_never_import_the_3_1_code():
-    guidance = C4 / "service" / "app" / "guidance"
-    for name in ("content.py", "feasibility.py", "composition.py", "registry.py", "policy.py", "features.py", "catalogue.py", "decision.py"):
-        text = (guidance / name).read_text(encoding="utf-8")
+    app = C4 / "service" / "app"
+    for name in ("guidance/content.py", "guidance/feasibility.py", "guidance/composition.py", "guidance/registry.py", "learning/lints.py",
+                 "guidance/features.py", "guidance/catalogue.py", "studies/decision.py"):
+        text = (app / name).read_text(encoding="utf-8")
         assert "content_v31" not in text and "v31_pipeline" not in text and "flavours" not in text, name

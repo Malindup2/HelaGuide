@@ -10,7 +10,7 @@ from pathlib import Path
 from app.guidance import features
 from app.guidance.catalogue import CATALOGUE, Configuration, Constraints
 from app.guidance.content_v31 import SCHEMA31, GuidanceContent31, evaluate31, validate_content31
-from app.guidance.policy import PolicyProfile
+from app.learning.lints import PolicyProfile
 from app.guidance.sources import ProcedureSource, digest
 
 ACTION_SCHEMA31 = "c4-scaffolds-v3.1"
@@ -32,7 +32,7 @@ def feasibility_fingerprint(candidates) -> str:
 
 def manifest31(variant="525", *, exploration=1.0):
     """What a 3.1 PP1 policy checkpoint must declare. Same 525-feature structure; versions differ in action, content, feature schema and fingerprint."""
-    from app.guidance import policy
+    from app.learning import lints as policy
     return {**policy.manifest(variant, exploration=exploration), "action": ACTION_SCHEMA31, "features": FEATURE_SCHEMA31,
             "feature_fingerprint": FEATURE_FINGERPRINT31, "content": SCHEMA31}
 

@@ -6,18 +6,18 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 
-from app.core.demo_procedures import (
+from app.procedures.demo_procedures import (
     FIXTURES_ROOT,
     load_demo_procedures,
     reviewed_demo_safety,
 )
-from app.core.procedure_features import extract_structural_features
-from app.core.procedure_graph import build_procedure_graph
-from app.core.procedure_input import (
+from app.procedures.procedure_features import extract_structural_features
+from app.procedures.procedure_graph import build_procedure_graph
+from app.procedures.procedure_input import (
     load_procedure_input,
     parse_procedure_input,
 )
-from app.core.scaffolds import filter_scaffolds, graph_fingerprint
+from app.procedures.scaffolds import filter_scaffolds, graph_fingerprint
 from app.dev_main import create_app
 from tests.test_explanations import FakeProvider
 

@@ -3,11 +3,11 @@ import json
 import numpy as np
 import pytest
 from fastapi.testclient import TestClient
-from app.v2.api import create_app
-from app.v2.catalogue import CATALOGUE, Configuration, Context, evaluate
-from app.v2.content import registry, Overlay, validate_overlay, ROOT
-from app.v2.features import NAMES, encode, VARIANTS
-from app.v2.runtime import Runtime, Conflict
+from app.host.application import create_app
+from app.compat.v2_catalogue import CATALOGUE, Configuration, Context, evaluate
+from app.procedures.canonical import registry, Overlay, validate_overlay, ROOT
+from app.compat.v2_features import NAMES, encode, VARIANTS
+from app.compat.v2_runtime import Runtime, Conflict
 
 @pytest.fixture(scope="module")
 def procedures():
@@ -120,7 +120,7 @@ def test_journey_isolation_hard_locks_and_event_conflicts(procedures):
 
 
 def test_reviewed_content_integrity_and_structure(tmp_path, procedures):
-    from app.v2.preparation import approve, resolve
+    from app.preparation.overlay_drafts import approve, resolve
     entry=procedures["synthetic-practice-v2"]
     artifact={"status":"pending","origin":"human_authored","overlay":entry["overlay"].model_dump(mode="json")}
     path=tmp_path/"review.json"
@@ -162,7 +162,7 @@ def test_concurrent_runtime_fails_without_lost_update(tmp_path,procedures):
 
 
 def test_synthetic_reproducibility(tmp_path):
-    from app.v2.simulation import run
+    from app.studies.v2_simulation import run
     first=run(tmp_path/"v2"/"first",seed=91,train=2,evaluation=2)
     second=run(tmp_path/"v2"/"second",seed=91,train=2,evaluation=2)
     assert first["schedule_hash"]==second["schedule_hash"]
@@ -175,7 +175,7 @@ def test_synthetic_reproducibility(tmp_path):
 
 
 def test_offline_provider_preparation_keeps_review_pending(procedures):
-    from app.v2.preparation import prepare
+    from app.preparation.overlay_drafts import prepare
     from app.models.explanations import ProviderIdentity, ProviderReply, ProviderCall
     entry=procedures["synthetic-practice-v2"]
     class Provider:

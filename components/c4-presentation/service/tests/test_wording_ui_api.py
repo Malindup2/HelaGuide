@@ -5,10 +5,10 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 
-from app.core.demo_procedures import load_demo_procedures
-from app.core.explanation_store import ArtifactStoreError
-from app.core.prepared_wording import prepare_wording_packet
-from app.core.wording_service import PreparedWordingStore, make_human_artifact
+from app.procedures.demo_procedures import load_demo_procedures
+from app.preparation.explanation_store import ArtifactStoreError
+from app.preparation.prepared_wording import prepare_wording_packet
+from app.preparation.wording_service import PreparedWordingStore, make_human_artifact
 from app.dev_main import create_app
 from tests.test_explanations import FakeProvider
 from tests.test_feedback_persistence import feedback_body

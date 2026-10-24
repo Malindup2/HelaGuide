@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from app.core.procedure_input import (
+from app.procedures.procedure_input import (
     ProcedureInputError,
     load_procedure_input,
     parse_procedure_input,

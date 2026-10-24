@@ -7,12 +7,12 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
-from app.core.procedure_features import (
+from app.procedures.procedure_features import (
     extract_structural_features,
     lexical_units,
 )
-from app.core.procedure_graph import build_procedure_graph
-from app.core.procedure_input import parse_procedure_input
+from app.procedures.procedure_graph import build_procedure_graph
+from app.procedures.procedure_input import parse_procedure_input
 from app.models.procedure_features import (
     FEATURE_NAMES,
     FeatureMeasurement,

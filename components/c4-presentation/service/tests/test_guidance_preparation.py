@@ -13,11 +13,11 @@ from app.guidance.catalogue import Configuration
 from app.guidance.content import GuidanceContent
 from app.guidance.demo import FIXTURES, install_fictional_content
 from app.guidance.registry import ContentRegistry
-from app.guidance.service import ContentPreparation, PreparationSettings
+from app.preparation.content_service import ContentPreparation, PreparationSettings
 from app.models.explanations import ProviderIdentity, ProviderReply, ProviderCall
-from app.v2.api import create_app
-from app.v2.identity import WorkspaceRuntime
-from app.v2.registration import workspace_registry
+from app.host.application import create_app
+from app.host.identity import WorkspaceRuntime
+from app.procedures.registration import workspace_registry
 
 PID = "synthetic-practice-v2"
 
@@ -266,7 +266,7 @@ def test_changed_graph_job_abstains_from_generation(tmp_path,runtime):
 
 def test_dynamic_registration_api_to_worker_review_cli_publication(tmp_path,entries,monkeypatch,capsys):
     from tests.test_preparation_bridge import dynamic_packet
-    from app.guidance.editor import main
+    from app.preparation.review_cli import main
     r=WorkspaceRuntime(procedures=entries);before=r.status();Provider.calls=0
     directory=tmp_path/'prepared-content'
     options={'directory':directory,'settings':PreparationSettings('dynamic',True,True),'provider_factory':Provider}

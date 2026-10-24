@@ -1,6 +1,6 @@
 import copy
 import pytest
-from app.v2.registration import workspace_registry, finalize
+from app.procedures.registration import workspace_registry, finalize
 
 @pytest.mark.parametrize("category", ["actions", "conditions", "prerequisites", "branch_groups", "service_dependencies"])
 @pytest.mark.parametrize("value", ["partial", "unknown", None])
@@ -28,12 +28,12 @@ import sys
 import time
 from functools import lru_cache
 from fastapi.testclient import TestClient
-from app.v2.api import create_app
-from app.v2.identity import WorkspaceRuntime
-from app.v2.content import Overlay
-from app.v2.registration import ROOT, RegistrationPacket, register, queue_preparation
-from app.v2.preparation import approve, main, resolve_artifact
-from app.v2.preparation_jobs import PreparationProcessor
+from app.host.application import create_app
+from app.host.identity import WorkspaceRuntime
+from app.procedures.canonical import Overlay
+from app.procedures.registration import ROOT, RegistrationPacket, register, queue_preparation
+from app.preparation.overlay_drafts import approve, main, resolve_artifact
+from app.preparation.jobs import PreparationProcessor
 from app.models.explanations import ProviderIdentity, ProviderReply, ProviderCall
 
 @lru_cache
@@ -46,7 +46,7 @@ def dynamic_packet():
     enrichment=json.loads((folder/'enrichment.json').read_text());enrichment['plan_id']=plan['plan_id']
     packet=RegistrationPacket(plan=plan,enrichment=enrichment)
     graph=register(packet)['graph']
-    from app.core.scaffolds import graph_fingerprint
+    from app.procedures.scaffolds import graph_fingerprint
     overlay=registered_entries()['synthetic-practice-v2']['overlay'].model_copy(update={'graph_fingerprint':graph_fingerprint(graph),'variants':[]})
     return packet.model_copy(update={'relationships':overlay})
 

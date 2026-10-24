@@ -10,9 +10,9 @@ C4 = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(C4 / 'service'))
 from fastapi.testclient import TestClient  # noqa: E402
 from app.guidance.flavours import FLAVOUR_31  # noqa: E402
-from app.v2.api import create_app  # noqa: E402
-from app.v2.identity import WorkspaceRuntime  # noqa: E402
-from app.v2.registration import workspace_registry  # noqa: E402
+from app.host.application import create_app  # noqa: E402
+from app.host.identity import WorkspaceRuntime  # noqa: E402
+from app.procedures.registration import workspace_registry  # noqa: E402
 
 ROOT = '/workspace/guidance'
 TOKEN = 'documentation-sandbox-only-not-a-production-capability'

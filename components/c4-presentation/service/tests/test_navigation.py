@@ -12,14 +12,14 @@ from uuid import uuid4
 import pytest
 from fastapi.testclient import TestClient
 
-from app.core.navigation_migration import (
+from app.legacy.navigation_migration import (
     canonical,
     checksum,
     manifest_for,
     migrate_postgres,
     migrate_sqlite,
 )
-from app.core.state_store import StateCompatibilityError
+from app.legacy.state_store import StateCompatibilityError
 from app.dev_main import create_app
 from app.models.policy import PolicyConfig
 from app.models.runtime_state_v1 import RuntimeState as LegacyRuntimeState
