@@ -72,7 +72,7 @@ The existing policy selects a scaffold; the existing context-to-style rule still
 selects writing style. No new learning dimension or auxiliary reward is claimed.
 All essential instructions remain visible even with concise prepared wording.
 
-For real generation use the existing `app.wording_artifacts` CLI with `--plan`,
+For real generation use the existing `app.preparation.wording_cli` CLI with `--plan`,
 `--enrichment` and `--style`: plan the batches, generate using configured provider
 credentials, inspect the artifact, then explicitly review it after checking the
 sources. Save it in `C4_PREPARED_WORDING_DIR`. Fresh requests then use that reviewed

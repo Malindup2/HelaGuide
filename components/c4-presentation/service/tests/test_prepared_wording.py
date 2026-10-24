@@ -5,23 +5,23 @@ import json
 import pytest
 from pydantic import ValidationError
 
-from app.core.demo_procedures import load_demo_procedures, FIXTURES_ROOT
-from app.core.explanation_store import ArtifactStoreError
-from app.core.explanations import OutputRejected
-from app.core.llm_provider import ProviderFailure
-from app.core.prepared_wording import (
+from app.procedures.demo_procedures import load_demo_procedures, FIXTURES_ROOT
+from app.preparation.explanation_store import ArtifactStoreError
+from app.preparation.explanations import OutputRejected
+from app.preparation.llm_provider import ProviderFailure
+from app.preparation.prepared_wording import (
     prepare_wording_packet, ref, source_records, validate_wording_artifact,
     validate_wording_draft, wording_key,
 )
-from app.core.procedure_features import extract_structural_features
-from app.core.scaffolds import enumerate_scaffolds, filter_scaffolds
-from app.core.wording_service import (
+from app.procedures.procedure_features import extract_structural_features
+from app.procedures.scaffolds import enumerate_scaffolds, filter_scaffolds
+from app.preparation.wording_service import (
     PreparedWordingStore, generate_wording, human_template, make_human_artifact,
     preparation_batches, resolve_wording,
 )
 from app.models.explanations import ProviderCall, ProviderIdentity, ProviderReply
 from app.models.prepared_wording import WordingAssessment, WordingDraft
-from app.wording_artifacts import main
+from app.preparation.wording_cli import main
 
 
 @pytest.fixture
@@ -230,12 +230,12 @@ def test_source_style_and_recipe_invalidate_reuse(graphs, tmp_path, monkeypatch)
     assert resolve_wording(graph, store, writing_style="concise").artifact_digest is None
     changed = graph.model_copy(update={"disclaimer": graph.disclaimer + " Source changed."})
     assert resolve_wording(changed, store).artifact_digest is None
-    monkeypatch.setattr("app.core.prepared_wording.RECIPE_VERSION", "new-test-recipe")
+    monkeypatch.setattr("app.preparation.prepared_wording.RECIPE_VERSION", "new-test-recipe")
     assert resolve_wording(graph, store).artifact_digest is None
 
 
 def test_no_graph_feature_feasibility_or_policy_dimension_changes(graphs, tmp_path):
-    from app.core.policy import FEATURE_DIMENSION
+    from app.legacy.v1_policy import FEATURE_DIMENSION
     for graph in graphs:
         before = graph.model_dump_json()
         features = extract_structural_features(graph)
@@ -272,7 +272,7 @@ def test_budget_and_oversized_targets_fail_before_paid_calls(graphs, monkeypatch
     with pytest.raises(OutputRejected, match="budget"):
         generate_wording(packet, provider, max_batches=0)
     assert provider.calls == []
-    monkeypatch.setattr("app.core.wording_service.MAX_SOURCE_BYTES", 1)
+    monkeypatch.setattr("app.preparation.wording_service.MAX_SOURCE_BYTES", 1)
     with pytest.raises(OutputRejected, match="too_large"):
         generate_wording(packet, provider)
     assert provider.calls == []

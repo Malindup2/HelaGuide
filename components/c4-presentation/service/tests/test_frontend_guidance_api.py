@@ -3,9 +3,9 @@ import copy
 from uuid import uuid4
 import pytest
 from fastapi.testclient import TestClient
-from app.v2.api import create_app
-from app.v2.identity import WorkspaceRuntime
-from app.v2.registration import workspace_registry
+from app.host.application import create_app
+from app.host.identity import WorkspaceRuntime
+from app.procedures.registration import workspace_registry
 
 ROOT='/workspace/guidance'
 PID='synthetic-practice-v2'

@@ -66,9 +66,9 @@ One runtime owns the workspace store. `WorkspaceRuntime` subclasses the existing
 | Responsibility | C4-owned implementation |
 |---|---|
 | Main backend | `service/app/workspace.py` |
-| Existing identity/onboarding semantics | `service/app/core/demo_profiles.py`, `core/user_context.py`, existing typed models |
-| Integration and effective context | `service/app/v2/identity.py` |
-| Existing workspace API compatibility | `service/app/v2/workspace_api.py` |
+| Existing identity/onboarding semantics | `service/app/host/demo_profiles.py`, `core/user_context.py`, existing typed models |
+| Integration and effective context | `service/app/host/identity.py` |
+| Existing workspace API compatibility | `service/app/host/routes.py` |
 | Plan validation and canonical graph | Existing `core/procedure_input.py`, `core/procedure_graph.py`; `v2/registration.py` consolidates the validated extension |
 | Additional joins, owners, parallel areas | Existing `v2/content.py` typed overlay, embedded in one registration packet |
 | Registry, readable labels, preparation jobs | `v2/registration.py`, existing `core/wording_views.py`, `v2/preparation.py` |
@@ -79,8 +79,8 @@ One runtime owns the workspace store. `WorkspaceRuntime` subclasses the existing
 | Integrated request and recovery controller | `src/guidance-v2/WorkspaceGuidance.tsx`, `workspaceClient.ts` |
 | Six supports and process map | Existing `GuidanceMessage.tsx`, `ProcessMap.tsx`, `semantics.ts`, integrated styling |
 | Separate Inspector | `src/guidance-v2/V2App.tsx` now contains only the read-only Inspector |
-| Explicit state/profile copying | `service/app/v2/transfer.py` |
-| Unified synthetic experiment | `service/app/v2/workspace_experiment.py`, existing `simulation.py` |
+| Explicit state/profile copying | `service/app/studies/v2_transfer.py` |
+| Unified synthetic experiment | `service/app/studies/v2_workspace_experiment.py`, existing `simulation.py` |
 
 ### Profiles, context and preference semantics
 
@@ -123,14 +123,14 @@ Operator commands, from `service/`:
 
 ```powershell
 # Offline editable template; choose a new output filename.
-.\.venv\Scripts\python.exe -m app.v2.preparation template --procedure official-nic_amendment-v3 --output .local/v2/workspace/preparation/nic-template.json
+.\.venv\Scripts\python.exe -m app.preparation.overlay_drafts template --procedure official-nic_amendment-v3 --output .local/v2/workspace/preparation/nic-template.json
 
 # Optional live generation, only with configured provider credentials and explicit authorization.
 # Omit this in PP1. It cannot approve content.
-.\.venv\Scripts\python.exe -m app.v2.preparation generate --procedure official-nic_amendment-v3 --output .local/v2/workspace/preparation/nic-draft.json --confirm-live-request
+.\.venv\Scripts\python.exe -m app.preparation.overlay_drafts generate --procedure official-nic_amendment-v3 --output .local/v2/workspace/preparation/nic-draft.json --confirm-live-request
 
 # After a human checks every source and variant:
-.\.venv\Scripts\python.exe -m app.v2.preparation review --procedure official-nic_amendment-v3 --input .local/v2/workspace/preparation/nic-draft.json --output .local/v2/workspace/preparation/nic-reviewed.json --reviewer YOUR_REVIEWER_REFERENCE --confirm-source-check
+.\.venv\Scripts\python.exe -m app.preparation.overlay_drafts review --procedure official-nic_amendment-v3 --input .local/v2/workspace/preparation/nic-draft.json --output .local/v2/workspace/preparation/nic-reviewed.json --reviewer YOUR_REVIEWER_REFERENCE --confirm-source-check
 ```
 
 Publish after review, PowerShell:
@@ -164,11 +164,11 @@ Explicit copy tooling defaults to preview only:
 
 ```powershell
 # Existing V1 SQLite snapshot, or a validated exported RuntimeState JSON for PostgreSQL.
-.\.venv\Scripts\python.exe -m app.v2.transfer --source PATH_TO_V1_SNAPSHOT
+.\.venv\Scripts\python.exe -m app.studies.v2_transfer --source PATH_TO_V1_SNAPSHOT
 # Add --target .local/v2/workspace/simulation/profile-copy.sqlite3 --apply-copy only after reviewing the preview.
 
 # Compatible old V2 or integrated experiment state; empty target only.
-.\.venv\Scripts\python.exe -m app.v2.transfer --source .local/v2/simulation/state.sqlite3
+.\.venv\Scripts\python.exe -m app.studies.v2_transfer --source .local/v2/simulation/state.sqlite3
 ```
 
 The source SQLite connection uses mode=ro. V1 copies only profiles/context evidence; no V1 posterior is imported. Copied consent starts off. Compatible navigation/disclosure/accessibility are retained, changed meanings require review. Copying profile evidence across simulation/participant modes is rejected. PostgreSQL profile import needs a validated exported snapshot; the tool does not connect to or mutate the original PostgreSQL database.
@@ -180,7 +180,7 @@ No branch, commit, original database, or old posterior is automatically changed.
 From `service/`, choose an unused output directory:
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.v2.workspace_experiment --output .local/v2/workspace/experiments/pp1-seed17 --seed 17 --train 40 --evaluation 12
+.\.venv\Scripts\python.exe -m app.studies.v2_workspace_experiment --output .local/v2/workspace/experiments/pp1-seed17 --seed 17 --train 40 --evaluation 12
 ```
 
 This uses saved synthetic profiles, the resolver, actual Shared LinTS selection, display acknowledgements, feedback, updates, saved-model recovery and held-out evaluation. It reuses the original outcome generator. It writes traces and reports for 416/506/515 encoders. No scenario injects a chosen configuration.
@@ -201,7 +201,7 @@ The frontend and URL do not change. The running seed0 interactive store is separ
 To reproduce that copy into an unused target after training:
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.v2.transfer --source .local/v2/workspace/experiments/pp1-seed17/full.sqlite3 --target .local/v2/workspace/simulation/trained-demo-copy.sqlite3 --seed 17 --mode simulation --apply-copy
+.\.venv\Scripts\python.exe -m app.studies.v2_transfer --source .local/v2/workspace/experiments/pp1-seed17/full.sqlite3 --target .local/v2/workspace/simulation/trained-demo-copy.sqlite3 --seed 17 --mode simulation --apply-copy
 ```
 
 ## Reproducible 2.5-minute PP1 demonstration

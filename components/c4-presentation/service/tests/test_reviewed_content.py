@@ -6,14 +6,14 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
-from app.content_artifacts import main
-from app.core.explanation_store import (
+from app.preparation.content_cli import main
+from app.preparation.explanation_store import (
     ArtifactStoreError, ExplanationArtifactStore, parse_stored,
 )
-from app.core.explanations import ExplanationService, OutputRejected
-from app.core.llm_provider import OpenAIExplanationProvider
-from app.core.procedure_graph import build_procedure_graph
-from app.core.procedure_input import load_procedure_input
+from app.preparation.explanations import ExplanationService, OutputRejected
+from app.preparation.llm_provider import OpenAIExplanationProvider
+from app.procedures.procedure_graph import build_procedure_graph
+from app.procedures.procedure_input import load_procedure_input
 from app.dev_main import create_app
 from tests.test_dev_api import select, start
 from tests.test_explanations import FIXTURES, FakeProvider, setup
@@ -194,7 +194,7 @@ def test_real_adapter_off_gate_keeps_configured_identity(monkeypatch):
     monkeypatch.setenv("C4_LLM_ENABLED", "true")
     provider = OpenAIExplanationProvider.from_environment(allow_live=False)
     assert provider.identity.requested_model == "configured-model-test"
-    from app.core.llm_provider import ProviderFailure
+    from app.preparation.llm_provider import ProviderFailure
     with pytest.raises(ProviderFailure, match="provider_disabled"):
         provider._get_client()
 

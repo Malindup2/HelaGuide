@@ -7,7 +7,7 @@ import numpy as np
 import pytest
 from fastapi.testclient import TestClient
 
-from app.core.state_store import StateCompatibilityError, StateStoreError
+from app.legacy.state_store import StateCompatibilityError, StateStoreError
 from app.dev_main import create_app
 from app.models.policy import PolicyConfig
 

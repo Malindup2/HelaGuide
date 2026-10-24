@@ -12,7 +12,7 @@ Set-Location C:\Users\Lenovo\Desktop\HelaGuide\components\c4-presentation\servic
 $env:C4_V2_MODE = "simulation"
 $env:C4_V2_SEED = "0"
 $env:C4_V2_DATABASE = Join-Path (Get-Location) ".local/v2/simulation/state.sqlite3"
-.\.venv\Scripts\python.exe -m uvicorn app.v2.api:app --host 127.0.0.1 --port 8017
+.\.venv\Scripts\python.exe -m uvicorn app.host.application:app --host 127.0.0.1 --port 8017
 ```
 Frontend terminal:
 ```powershell
@@ -39,7 +39,7 @@ The shared Plan v1 is read without modification. `research/data/v2/<example>/` m
 
 The six existing procedures retain their bounded sources. The additional practice application is explicitly fictional and demonstrates all six supports, alternative copy routes, parallel preparation, a conditional join and several fictional desks. Existing official snapshots use source-preserving concise instructions until expanded wording has been explicitly reviewed. Their coverage limits remain visible. They are not full current government workflows or legal guidance.
 
-Content preparation is offline, never in the citizen selection request. `python -m app.v2.preparation --help` describes template, generate and review commands. Generation uses the existing structured provider interface and requires an explicit live-call flag. It produces pending content, never automatic approval. Review requires a named reviewer and explicit source-check flag. Put approved JSON artifacts in `research/data/v2/approved/`; registry loading checks the exact graph and artifact checksum. Structural metadata is retained when generating from an existing overlay. A checksum protects integrity, not factual entailment: human review must check every requirement, exclusion and explanation. No live LLM call is required for the demo.
+Content preparation is offline, never in the citizen selection request. `python -m app.preparation.overlay_drafts --help` describes template, generate and review commands. Generation uses the existing structured provider interface and requires an explicit live-call flag. It produces pending content, never automatic approval. Review requires a named reviewer and explicit source-check flag. Put approved JSON artifacts in `research/data/v2/approved/`; registry loading checks the exact graph and artifact checksum. Structural metadata is retained when generating from an existing overlay. A checksum protects integrity, not factual entailment: human review must check every requirement, exclusion and explanation. No live LLM call is required for the demo.
 
 ## Evidence and privacy
 
@@ -53,7 +53,7 @@ SQLite transactions atomically save feedback, posterior receipt and complete res
 
 From the service directory:
 ```powershell
-.\.venv\Scripts\python.exe -m app.v2.simulation --output .local/v2/experiments/pp1-seed17 --seed 17 --train 120 --evaluation 60
+.\.venv\Scripts\python.exe -m app.studies.v2_simulation --output .local/v2/experiments/pp1-seed17 --seed 17 --train 120 --evaluation 60
 ```
 The output directory must be new, inside C4 and contain a `v2` path component. Each encoder runs actual select → display → rating → posterior update. The seeded synthetic outcome generator is separate from selection. Records include configurations, contexts, outcome probabilities, sampled uniforms, receipts, held-out evaluation and reload evidence. Held-out procedure and familiarity/confidence ratings differ from training; null and burden regimes are included. Compare minimal, rich, uniform and encoder ablations. Oracle regret is defined only against the declared synthetic generator. These results do not validate benefit for real citizens. Repeating a seed in a new output directory reproduces selections/outcomes and posterior fingerprints; UUIDs and wall-clock timestamps intentionally differ.
 
@@ -61,7 +61,7 @@ To demonstrate a trained full model, stop only the V2 backend and set:
 ```powershell
 $env:C4_V2_SEED = "17"
 $env:C4_V2_DATABASE = Join-Path (Get-Location) ".local/v2/experiments/pp1-seed17/full.sqlite3"
-.\.venv\Scripts\python.exe -m uvicorn app.v2.api:app --host 127.0.0.1 --port 8017
+.\.venv\Scripts\python.exe -m uvicorn app.host.application:app --host 127.0.0.1 --port 8017
 ```
 Use a fresh browser session/journey because capability tokens belong to the previous store. For an immutable experiment record, copy the V2 experiment directory to a separate V2 demo directory while the process is stopped and run the copy. Never point this API at a V1 database.
 

@@ -5,12 +5,12 @@ import numpy as np
 import pytest
 from fastapi.testclient import TestClient
 from app.models.demo_profiles import CreateDemoProfileRequest, PersonalizationRequest
-from app.v2.api import create_app
-from app.v2.catalogue import Configuration, Context, evaluate
-from app.v2.identity import WorkspaceRuntime, SettingsPatch
-from app.v2.registration import workspace_registry, queue_preparation
-from app.v2.features import NAMES, encode
-from app.v2.runtime import Conflict, Runtime
+from app.host.application import create_app
+from app.compat.v2_catalogue import Configuration, Context, evaluate
+from app.host.identity import WorkspaceRuntime, SettingsPatch
+from app.procedures.registration import workspace_registry, queue_preparation
+from app.compat.v2_features import NAMES, encode
+from app.compat.v2_runtime import Conflict, Runtime
 
 @pytest.fixture(scope="module")
 def entries():
@@ -141,7 +141,7 @@ def test_native_only_revision_and_guidance_response_retry(entries):
 
 
 def test_explicit_v2_copy_does_not_write_source(entries,tmp_path):
-    from app.v2.transfer import read_source,copy_policy
+    from app.studies.v2_transfer import read_source,copy_policy
     import hashlib
     source=tmp_path/"v2"/"original.sqlite3"
     r=Runtime(source,procedures=entries)
@@ -158,7 +158,7 @@ def test_explicit_v2_copy_does_not_write_source(entries,tmp_path):
 
 def test_profile_copy_preserves_semantic_review_and_no_coefficients(entries):
     from types import SimpleNamespace
-    from app.v2.transfer import copy_profiles
+    from app.studies.v2_transfer import copy_profiles
     from app.models.demo_profiles import DemoProfile
     source=WorkspaceRuntime(procedures=entries);p=profile(source);sid=p["session"]["session_id"]
     from app.models.user_context import ContextUpdate
@@ -177,7 +177,7 @@ def test_profile_copy_preserves_semantic_review_and_no_coefficients(entries):
 
 
 def test_registration_packet_and_recovery(entries,tmp_path):
-    from app.v2.registration import ROOT,RegistrationPacket
+    from app.procedures.registration import ROOT,RegistrationPacket
     folder=ROOT/"v2"/"practice"
     plan=json.loads((folder/"plan.json").read_text())
     enrichment=json.loads((folder/"enrichment.json").read_text())
@@ -196,7 +196,7 @@ def test_registration_packet_and_recovery(entries,tmp_path):
 
 
 def test_reviewed_publication_freezes_views_and_survives_restart(entries,tmp_path):
-    from app.v2.preparation import approve
+    from app.preparation.overlay_drafts import approve
     path=tmp_path/"v2"/"workspace"/"wording.sqlite3"
     r=WorkspaceRuntime(path,procedures=entries);p=profile(r);j=start(r,p)
     old_document=copy.deepcopy(j["document"]);before=r.status()
@@ -248,8 +248,8 @@ def test_changed_hard_requirements_retire_old_views_and_learning(entries):
 
 
 def test_selected_option_join_cannot_turn_joint_requirements_into_alternatives(entries):
-    from app.v2.content import validate_overlay
-    from app.core.scaffolds import graph_fingerprint
+    from app.procedures.canonical import validate_overlay
+    from app.procedures.scaffolds import graph_fingerprint
     entry=entries["synthetic-practice-v2"]
     graph=entry["graph"].model_copy(update={"branch_groups":tuple(b.model_copy(update={"selection":"AND"}) for b in entry["graph"].branch_groups)})
     overlay=entry["overlay"].model_copy(update={"graph_fingerprint":graph_fingerprint(graph)})

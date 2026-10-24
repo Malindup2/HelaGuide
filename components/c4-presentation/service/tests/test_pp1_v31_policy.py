@@ -5,14 +5,15 @@ from uuid import uuid4
 import numpy as np
 import pytest
 from fastapi.testclient import TestClient
-from app.guidance import features, policy
+from app.guidance import features
+from app.learning import lints as policy
 from app.guidance.catalogue import CATALOGUE
 from app.guidance.flavours import FLAVOUR_31
-from app.guidance.policy import PROFILE_30, Model, PolicyStore
+from app.learning.lints import PROFILE_30, Model, PolicyStore
 from app.guidance.v31_pipeline import ACTION_SCHEMA31, FEATURE_FINGERPRINT31, FEATURE_SCHEMA31, PROFILE_31, manifest31
-from app.v2.api import create_app
-from app.v2.identity import WorkspaceRuntime
-from app.v2.registration import workspace_registry
+from app.host.application import create_app
+from app.host.identity import WorkspaceRuntime
+from app.procedures.registration import workspace_registry
 
 C4 = Path(__file__).resolve().parents[2]
 ROOT = '/workspace/guidance'
@@ -182,7 +183,7 @@ def test_ablation_variants_keep_working_under_3_1(variant):
     assert model.manifest['dimension'] == int(variant) and model.manifest['action'] == ACTION_SCHEMA31
     m = next(iter(workspace_registry().values()))
     from app.guidance.sources import ProcedureSource
-    from app.v2.measurements import measurements
+    from app.procedures.measurements import measurements
     meas = measurements(m['graph'], m.get('overlay'))
     matrix = np.array([features.encode(meas, {'familiarity': 2, 'confidence': 4}, c, variant) for c in CATALOGUE])
     index, scores, _, _ = model.score(matrix, 5)

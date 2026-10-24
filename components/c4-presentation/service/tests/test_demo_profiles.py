@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi.testclient import TestClient
 
-from app.core.navigation_migration import (
+from app.legacy.navigation_migration import (
     canonical,
     checksum,
     manifest_for,
 )
-from app.core.state_store import StateCompatibilityError, StateStoreError
+from app.legacy.state_store import StateCompatibilityError, StateStoreError
 from app.dev_main import create_app
 from app.models.policy import PolicyConfig
 from app.models.runtime_state_v1_2 import (
@@ -242,7 +242,7 @@ def test_profiles_keep_context_isolated_and_creation_retry_does_not_reset_it():
 
 
 def test_failed_creation_rolls_back_context_and_profile(monkeypatch):
-    import app.core.demo_profiles as profile_module
+    import app.host.demo_profiles as profile_module
 
     with TestClient(application()) as client:
         body = creation_body(client)

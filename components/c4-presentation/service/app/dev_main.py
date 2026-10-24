@@ -20,32 +20,32 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from fastapi.responses import JSONResponse
 
-from app.core.policy import (
+from app.legacy.v1_policy import (
     FEATURE_DIMENSION,
     FEATURE_SCHEMA_FINGERPRINT,
     FEATURE_SCHEMA_VERSION,
     FeedbackConflictError,
     PolicyError,
 )
-from app.core.state_store import SQLiteStateStore, StateStoreError
+from app.legacy.state_store import SQLiteStateStore, StateStoreError
 from app.models.policy import PolicyConfig, SupportFitFeedback
 from app.models.runtime_state import AcceptedFeedback, RuntimeState
 
-from app.core.explanations import ExplanationService
-from app.core.explanation_store import ExplanationArtifactStore
-from app.core.wording_views import WordingViews
+from app.preparation.explanations import ExplanationService
+from app.preparation.explanation_store import ExplanationArtifactStore
+from app.preparation.wording_views import WordingViews
 from app.models.prepared_wording import WordingResolution
-from app.core.llm_provider import OpenAIExplanationProvider
-from app.core.policy import NoFeasibleConfigurationError, SharedLinTSPolicy
-from app.core.presentation import (
+from app.preparation.llm_provider import OpenAIExplanationProvider
+from app.legacy.v1_policy import NoFeasibleConfigurationError, SharedLinTSPolicy
+from app.preparation.presentation import (
     action_navigation_order,
     build_presentation_spec,
 )
-from app.core.procedure_features import extract_structural_features
-from app.core.demo_procedures import load_demo_procedures
-from app.core.official_procedures import load_registered_procedures
-from app.core.scaffolds import graph_fingerprint
-from app.core.user_context import (
+from app.procedures.procedure_features import extract_structural_features
+from app.procedures.demo_procedures import load_demo_procedures
+from app.procedures.official_procedures import load_registered_procedures
+from app.procedures.scaffolds import graph_fingerprint
+from app.host.user_context import (
     ContextConflictError,
     ContextError,
     InMemoryContextService,
@@ -68,7 +68,7 @@ from app.models.user_context import (
 
 
 
-from app.core.corrections import (
+from app.legacy.corrections import (
     apply_correction,
     correction_options,
     record_correction,
@@ -82,18 +82,18 @@ from app.models.corrections import (
 )
 
 
-from app.api.demo_profiles import register_demo_profile_routes
-from app.api.guidance import register_guidance_routes
-from app.api.pipeline_trace import register_pipeline_trace_routes
-from app.api.adjustments import register_adjustment_routes
-from app.core.adjustment_store import AdjustmentStore
-from app.core.adjustments import require_original_feedback, require_original_display
-from app.core.guidance_access import (
+from app.legacy.api_demo_profiles import register_demo_profile_routes
+from app.legacy.api_guidance import register_guidance_routes
+from app.legacy.api_pipeline_trace import register_pipeline_trace_routes
+from app.legacy.api_adjustments import register_adjustment_routes
+from app.legacy.adjustment_store import AdjustmentStore
+from app.legacy.adjustments import require_original_feedback, require_original_display
+from app.legacy.guidance_access import (
     episode_is_active,
     require_active_episode,
     require_personalization,
 )
-from app.core.demo_profiles import restore_profiles
+from app.host.demo_profiles import restore_profiles
 from app.models.demo_profiles import DemoProfile
 
 
@@ -238,7 +238,7 @@ class DevRuntime:
             raise ValueError("choose either SQLite or PostgreSQL storage")
 
         if postgres_dsn is not None:
-            from app.core.postgres_state_store import PostgreSQLStateStore
+            from app.legacy.postgres_state_store import PostgreSQLStateStore
 
             self.store = PostgreSQLStateStore(
                 postgres_dsn, self.policy_config
@@ -1125,7 +1125,7 @@ def create_app(
     def policy_status():
         with runtime().lock:
             policy = runtime().policy
-            from app.core.prior import prior_digest
+            from app.legacy.prior import prior_digest
             return {
                 "policy_run_id": policy.policy_run_id,
                 "model_version": policy.config.model_version,
@@ -1171,7 +1171,7 @@ def _application_from_environment():
 
     # Explicit opt-in; an absent file setting is a neutral prior. A bad supplied
     # file fails closed instead of silently changing the model at startup.
-    from app.core.prior import load_prior
+    from app.legacy.prior import load_prior
     prior_path = os.getenv("C4_PRIOR_FILE")
     config = PolicyConfig(feedback_mode=mode, cold_start_updates=0,
                           prior=load_prior(prior_path) if prior_path else None)

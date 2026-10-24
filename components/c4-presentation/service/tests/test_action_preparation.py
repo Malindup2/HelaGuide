@@ -5,10 +5,10 @@ import pytest
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
 
-from app.core.official_procedures import load_official_procedures
-from app.core.prepared_wording import prepare_wording_packet, wording_key, validate_wording_artifact
-from app.core.wording_service import PreparedWordingStore, resolve_wording
-from app.core.wording_views import WordingViews
+from app.procedures.official_procedures import load_official_procedures
+from app.preparation.prepared_wording import prepare_wording_packet, wording_key, validate_wording_artifact
+from app.preparation.wording_service import PreparedWordingStore, resolve_wording
+from app.preparation.wording_views import WordingViews
 from app.dev_main import create_app
 from app.models.explanations import HumanReview
 from tests.test_explanations import FakeProvider

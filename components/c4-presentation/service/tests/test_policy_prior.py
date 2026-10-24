@@ -9,17 +9,17 @@ import pytest
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
 
-from app.core.policy import (FEATURE_DIMENSION, FEATURE_NAMES_SHARED, FEATURE_SCALE,
+from app.legacy.v1_policy import (FEATURE_DIMENSION, FEATURE_NAMES_SHARED, FEATURE_SCALE,
                              SharedLinTSPolicy, _GaussianPosterior, feature_vector)
-from app.core.prior import compile_prior, load_prior, prior_digest
-from app.core.procedure_features import extract_structural_features
-from app.core.demo_procedures import load_demo_procedures
-from app.core.state_store import StateCompatibilityError, StateStoreError
-from app.core.user_context import InMemoryContextService
+from app.legacy.prior import compile_prior, load_prior, prior_digest
+from app.procedures.procedure_features import extract_structural_features
+from app.procedures.demo_procedures import load_demo_procedures
+from app.legacy.state_store import StateCompatibilityError, StateStoreError
+from app.host.user_context import InMemoryContextService
 from app.dev_main import create_app
 from app.models.policy import PolicyConfig
 from app.models.user_context import ContextUpdate, FamiliarityReport
-from app.policy_runs import (LEGACY_SCHEMA, checksum, fresh_state, operate_sqlite, read_state)
+from app.legacy.policy_runs import (LEGACY_SCHEMA, checksum, fresh_state, operate_sqlite, read_state)
 from tests.test_explanations import FakeProvider
 from tests.test_feedback_persistence import feedback_body
 from tests.test_guidance_routing import (anonymous, profile, request_guidance,
@@ -64,7 +64,7 @@ def test_bounded_mean_has_no_pseudo_feedback_and_same_uncertainty():
     contexts = InMemoryContextService()
     session = contexts.create_session()
     snapshot = contexts.evaluate(session.session_id, graph, features).snapshot
-    from app.core.scaffolds import enumerate_scaffolds
+    from app.procedures.scaffolds import enumerate_scaffolds
     matrix = np.stack([feature_vector(features, snapshot, c) for c in enumerate_scaffolds()])
     means, std = seeded.moments(matrix)
     assert np.max(abs(means - 0.5)) <= 0.25
@@ -79,7 +79,7 @@ def test_low_and_high_familiarity_mean_contrasts_and_unknown():
     graph = load_demo_procedures()[0][0]
     features = extract_structural_features(graph)
     contexts = InMemoryContextService()
-    from app.core.scaffolds import enumerate_scaffolds
+    from app.procedures.scaffolds import enumerate_scaffolds
     overview = enumerate_scaffolds()[0]
     guided = next(c for c in enumerate_scaffolds() if c.presentation_mode == "GUIDED"
                   and not c.progressive_disclosure and not c.previous_context_recap

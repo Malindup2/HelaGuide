@@ -8,9 +8,9 @@ from uuid import uuid4
 C4=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(C4/'service'))
 from fastapi.testclient import TestClient
-from app.v2.api import create_app
-from app.v2.identity import WorkspaceRuntime
-from app.v2.registration import workspace_registry
+from app.host.application import create_app
+from app.host.identity import WorkspaceRuntime
+from app.procedures.registration import workspace_registry
 
 ROOT='/workspace/guidance'
 TOKEN='documentation-sandbox-only-not-a-production-capability'

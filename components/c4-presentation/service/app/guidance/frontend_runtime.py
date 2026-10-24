@@ -13,7 +13,7 @@ from app.guidance.frontend_presentation import render, navigation, interaction_p
 from app.guidance.inspector_summary import summarize
 from app.guidance.journey_store import JourneyStore
 from app.guidance.sources import ProcedureSource, digest
-from app.v2.measurements import measurements
+from app.procedures.measurements import measurements
 
 
 def now():return datetime.now(timezone.utc).isoformat()
@@ -36,7 +36,7 @@ class GuidanceAPI:
         self.experiment_directory = experiment_directory
         if policy_options is not None:
             if not self.flavour.supports_policy:raise ValueError('no PP1 policy is compatible with content schema '+self.flavour.content_schema+'; a fresh policy with a matching manifest must be trained first')
-            from app.guidance.policy import PolicyStore
+            from app.learning.lints import PolicyStore
             self.policy = PolicyStore(**policy_options,profile=self.flavour.policy_profile)
         if self.demo_provisional:
             if self.flavour is FLAVOUR_30:raise ValueError('demo provisional content needs content schema 3.1')

@@ -9,12 +9,12 @@ import pytest
 from fastapi.testclient import TestClient
 from app.guidance import features
 from app.guidance.catalogue import CATALOGUE, Configuration
-from app.guidance.experiment import dataset, run
-from app.guidance.policy import Model, PolicyStore
-from app.guidance.replay import replay
-from app.v2.api import create_app
-from app.v2.identity import WorkspaceRuntime
-from app.v2.registration import workspace_registry
+from app.studies.experiment import dataset, run
+from app.learning.lints import Model, PolicyStore
+from app.studies.replay import replay
+from app.host.application import create_app
+from app.host.identity import WorkspaceRuntime
+from app.procedures.registration import workspace_registry
 
 ROOT='/workspace/guidance';PID='synthetic-practice-v2';TOKEN='pp1-test-capability-'+('x'*40)
 

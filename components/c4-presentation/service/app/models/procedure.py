@@ -1,6 +1,6 @@
 """C4 procedure input vocabulary.
 
-Construct research inputs through app.core.procedure_input so both
+Construct research inputs through app.procedures.procedure_input so both
 typed and semantic validation are performed.
 """
 

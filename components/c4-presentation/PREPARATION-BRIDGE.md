@@ -59,7 +59,7 @@ The CLI accepts the exact queued graph even when the procedure exists only in wo
 
 ```powershell
 # Substitute actual queued JSON, draft and unused output paths.
-.\.venv\Scripts\python.exe -m app.v2.preparation review --job .local/v2/workspace/simulation/preparation/JOB_FILE.json --input .local/v2/workspace/review/draft.json --output .local/v2/workspace/review/reviewed.json --reviewer YOUR_SOURCE_REVIEWER --confirm-source-check
+.\.venv\Scripts\python.exe -m app.preparation.overlay_drafts review --job .local/v2/workspace/simulation/preparation/JOB_FILE.json --input .local/v2/workspace/review/draft.json --output .local/v2/workspace/review/reviewed.json --reviewer YOUR_SOURCE_REVIEWER --confirm-source-check
 ```
 
 `template` and explicitly confirmed `generate` also accept `--job` instead of `--procedure`. Templates preserve verified relationship structure. Review requires complete variant coverage, a matching source fingerprint and named non-pending reviewer. Mock artifacts cannot be relabelled reviewed. Automated reference validation does not establish semantic entailment: inspect all generated titles, diagram labels (shared action titles), explanations, qualifiers and source claims before approving.

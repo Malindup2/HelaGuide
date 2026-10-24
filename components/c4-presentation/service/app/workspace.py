@@ -1,13 +1,13 @@
 """Unified C4 application: V1 citizen identity, V2 policy and scaffolding.
 
-Run app.workspace:app. Historical app.dev_main and app.v2.api remain available
+Run app.workspace:app. Historical app.dev_main and app.host.application remain available
 for reproducing isolated baseline experiments, not competing citizen routes.
 """
 import os
 from pathlib import Path
-from app.v2.api import create_app
-from app.v2.identity import WorkspaceRuntime
-from app.v2.registration import workspace_registry, queue_preparation
+from app.host.application import create_app
+from app.host.identity import WorkspaceRuntime
+from app.procedures.registration import workspace_registry, queue_preparation
 
 class ActiveRuntime(WorkspaceRuntime):
     def __init__(self, path, **kwargs):
@@ -27,7 +27,7 @@ if llm_enabled not in ("true", "false"):
     raise ValueError("C4_LLM_ENABLED must be true or false")
 
 def provider_factory():
-    from app.core.llm_provider import OpenAIExplanationProvider
+    from app.preparation.llm_provider import OpenAIExplanationProvider
     return OpenAIExplanationProvider.from_environment()
 
 # Explicit controlled opt-in. Default startup preserves the checkpoint runtime.
@@ -36,7 +36,7 @@ prepared_flag = os.getenv("C4_PREPARED_CONTENT_ENABLED", "false").lower()
 if prepared_flag not in ("true", "false"):
     raise ValueError("C4_PREPARED_CONTENT_ENABLED must be true or false")
 if prepared_flag == "true":
-    from app.guidance.service import PreparationSettings
+    from app.preparation.content_service import PreparationSettings
     settings = PreparationSettings.from_environment()
     prepared_options = {
         "directory": os.getenv("C4_PREPARED_CONTENT_DIRECTORY") or Path(__file__).resolve().parents[1]/".local"/"prepared-content"/"workspace",

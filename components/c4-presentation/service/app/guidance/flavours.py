@@ -12,7 +12,7 @@ from app.guidance.content import GuidanceContent
 from app.guidance.content_v31 import SCHEMA31, GuidanceContent31, evaluate31
 from app.guidance.demo import install_fictional_content
 from app.guidance.feasibility import evaluate
-from app.guidance.policy import PROFILE_30
+from app.learning.lints import PROFILE_30
 from app.guidance.registry import CONTENT_SCHEMA, ContentRegistry, cache_key
 
 

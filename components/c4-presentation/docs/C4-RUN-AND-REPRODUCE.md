@@ -45,15 +45,15 @@ cd service
 $env:OPENBLAS_NUM_THREADS = "1"; $env:OMP_NUM_THREADS = "1"
 $out = ".local\pp1-learning\v31-study-NEW"
 # one process per seed, 4 encoder variants each, 5,000 observations (checkpoints at 0, 50, 200, 600, 2000, 5000)
-foreach ($s in 11,23,37,51,71) { Start-Process -NoNewWindow .\.venv\Scripts\python.exe "-m app.guidance.experiment31 train --output $out --seed $s --budget 5000" }
+foreach ($s in 11,23,37,51,71) { Start-Process -NoNewWindow .\.venv\Scripts\python.exe "-m app.studies.experiment31 train --output $out --seed $s --budget 5000" }
 # dev-selected exploration scale (525 only)
-foreach ($s in 11,23,37,51,71) { Start-Process -NoNewWindow .\.venv\Scripts\python.exe "-m app.guidance.experiment31 train --output $out --seed $s --budget 5000 --exploration 0.25 --variants 525" }
+foreach ($s in 11,23,37,51,71) { Start-Process -NoNewWindow .\.venv\Scripts\python.exe "-m app.studies.experiment31 train --output $out --seed $s --budget 5000 --exploration 0.25 --variants 525" }
 # matched-assumption runs (525 only)
-foreach ($a in "low_need","under_heavy","over_heavy","preference_led") { foreach ($s in 11,23,37) { Start-Process -NoNewWindow .\.venv\Scripts\python.exe "-m app.guidance.experiment31 train --output $out --seed $s --budget 2000 --assumption $a --variants 525" } }
+foreach ($a in "low_need","under_heavy","over_heavy","preference_led") { foreach ($s in 11,23,37) { Start-Process -NoNewWindow .\.venv\Scripts\python.exe "-m app.studies.experiment31 train --output $out --seed $s --budget 2000 --assumption $a --variants 525" } }
 # after every process has finished: re-assess the saved checkpoints (adds the diagnostic, verifies determinism), then report, plots and replay
-foreach ($f in Get-ChildItem $out\result-*.json) { $tag = $f.BaseName -replace "^result-",""; .\.venv\Scripts\python.exe -m app.guidance.experiment31 reassess --output $out --tag $tag }
-.\.venv\Scripts\python.exe -m app.guidance.experiment31 report --output $out
-.\.venv\Scripts\python.exe -m app.guidance.experiment31 plots --output $out
-.\.venv\Scripts\python.exe -m app.guidance.experiment31 replay --output $out --run seed-23-x0.25-525
+foreach ($f in Get-ChildItem $out\result-*.json) { $tag = $f.BaseName -replace "^result-",""; .\.venv\Scripts\python.exe -m app.studies.experiment31 reassess --output $out --tag $tag }
+.\.venv\Scripts\python.exe -m app.studies.experiment31 report --output $out
+.\.venv\Scripts\python.exe -m app.studies.experiment31 plots --output $out
+.\.venv\Scripts\python.exe -m app.studies.experiment31 replay --output $out --run seed-23-x0.25-525
 ```
 Runs are deterministic: the same seed reproduces the same numbers. The numbers in `docs\PP1-V31-RESULTS.md` came from `.local\pp1-learning\v31-study-20261022-a`; `research\v31_compatibility_dryrun.py` and `research\verify_pp1_v31_demo.py` produce the compatibility and demo records.
