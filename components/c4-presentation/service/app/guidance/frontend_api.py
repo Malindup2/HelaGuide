@@ -31,7 +31,7 @@ def register_routes(app):
     @app.get('/workspace/guidance/research/learning',tags=['Revised Guidance'])
     def learning_report():
         from pathlib import Path
-        from app.guidance.policy import C4_ROOT
+        from app.learning.lints import C4_ROOT
         result=api()
         if not result.research_enabled or not result.experiment_directory:
             raise HTTPException(404,{'code':'learning_report_unavailable','message':'Configure an explicit completed synthetic experiment.'})
@@ -99,7 +99,7 @@ def register_routes(app):
     @app.patch('/workspace/guidance/profile-context/{session_id}',tags=['Revised Guidance'])
     def edit_profile_context(session_id:str,body:ProfileContextPatch):
         from app.models.user_context import ContextUpdate
-        from app.v2.identity import SettingsPatch
+        from app.host.identity import SettingsPatch
         changes={}
         if 'confidence' in body.model_fields_set:changes['navigation_capability']=body.confidence
         if body.accessibility is not None:changes['accessibility']=body.accessibility.model_dump(exclude_unset=True)

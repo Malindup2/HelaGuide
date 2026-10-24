@@ -18,8 +18,8 @@ sys.path.insert(0, str(C4 / "service"))
 from app.guidance import provisional  # noqa: E402
 from app.guidance.content_v31 import GuidanceContent31  # noqa: E402
 from app.guidance.sources import ProcedureSource  # noqa: E402
-from app.core.procedure_graph import build_procedure_graph  # noqa: E402
-from app.core.procedure_input import load_procedure_input  # noqa: E402
+from app.procedures.procedure_graph import build_procedure_graph  # noqa: E402
+from app.procedures.procedure_input import load_procedure_input  # noqa: E402
 
 STAMP = "2026-10-22T09:00:00Z"
 OFFICIAL = C4 / "research" / "data" / "official"

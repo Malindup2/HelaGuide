@@ -18,9 +18,9 @@ New maintained modules:
 - service/app/guidance/journey_store.py
 
 Modified integration:
-- service/app/guidance/service.py
-- service/app/v2/api.py
-- service/app/v2/workspace_api.py
+- service/app/preparation/content_service.py
+- service/app/host/application.py
+- service/app/host/routes.py
 - service/app/workspace.py
 
 Tests/tools:

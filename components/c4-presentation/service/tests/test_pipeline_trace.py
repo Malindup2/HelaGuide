@@ -9,7 +9,7 @@ import numpy as np
 import pytest
 from fastapi.testclient import TestClient
 
-from app.core.prior import load_prior
+from app.legacy.prior import load_prior
 from app.dev_main import create_app
 from app.models.policy import PolicyConfig
 from app.models.runtime_state import RuntimeState
@@ -277,7 +277,7 @@ def test_standard_status_ownership_and_disabled_profile_historical_reads(tmp_pat
 
 
 def test_partial_measurements_do_not_become_exact_in_trace(tmp_path):
-    from app.core.demo_procedures import load_demo_procedures
+    from app.procedures.demo_procedures import load_demo_procedures
     graph = load_demo_procedures()[0][0]
     graph = graph.model_copy(update={"completeness": graph.completeness.model_copy(update={
         "actions": "partial", "content": "partial", "prerequisites": "unknown"})})

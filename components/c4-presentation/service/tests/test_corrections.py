@@ -5,12 +5,12 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 
-from app.core.navigation_migration import (
+from app.legacy.navigation_migration import (
     canonical,
     checksum,
     manifest_for,
 )
-from app.core.state_store import (
+from app.legacy.state_store import (
     StateCompatibilityError,
     StateStoreError,
 )

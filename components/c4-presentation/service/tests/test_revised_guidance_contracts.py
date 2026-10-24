@@ -6,15 +6,15 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 import pytest
-from app.core.procedure_input import load_procedure_input
-from app.core.procedure_graph import build_procedure_graph
+from app.procedures.procedure_input import load_procedure_input
+from app.procedures.procedure_graph import build_procedure_graph
 from app.guidance.sources import ProcedureSource
 from app.guidance.content import GuidanceContent, validate_content
 from app.guidance.catalogue import CATALOGUE, Configuration, Constraints
 from app.guidance.feasibility import evaluate
 from app.guidance.composition import compose
-from app.guidance.decision import BaseScore, HistoryAdjustment, SelectionRecord
-from app.v2.content import Overlay
+from app.studies.decision import BaseScore, HistoryAdjustment, SelectionRecord
+from app.procedures.canonical import Overlay
 
 ROOT=Path(__file__).resolve().parents[2]/'research'/'data'
 

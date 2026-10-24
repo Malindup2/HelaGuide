@@ -126,9 +126,9 @@ $env:MPLCONFIGDIR = Join-Path (Get-Location) '.local\pp1-learning\mpl-cache'
 # Optional first installation of declared research dependencies:
 .\.venv\Scripts\python.exe -m pip install -e '.[dev,research]'
 $c4Experiment = Join-Path (Get-Location) ('.local\pp1-learning\experiment-' + (Get-Date -Format 'yyyyMMdd-HHmmss'))
-.\.venv\Scripts\python.exe -B -m app.guidance.experiment --output $c4Experiment --train 600 --evaluation 70 --seeds 11 23 37 51 71
-.\.venv\Scripts\python.exe -B -m app.guidance.plots --directory $c4Experiment
-.\.venv\Scripts\python.exe -B -m app.guidance.replay --directory $c4Experiment --run seed-11-525
+.\.venv\Scripts\python.exe -B -m app.studies.experiment --output $c4Experiment --train 600 --evaluation 70 --seeds 11 23 37 51 71
+.\.venv\Scripts\python.exe -B -m app.studies.plots --directory $c4Experiment
+.\.venv\Scripts\python.exe -B -m app.studies.replay --directory $c4Experiment --run seed-11-525
 ```
 
 The training command refuses an existing output directory. Initialized and trained checkpoint comparisons are genuine n0 versus n600 evaluations on the same declared cases/seeds, available in report.json/report.html; they are not configuration previews. Keep final held-out cases out of tuning. Reuse this recorded protocol for replication, not for selecting favorable seeds.

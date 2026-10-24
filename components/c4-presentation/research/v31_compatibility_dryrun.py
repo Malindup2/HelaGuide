@@ -9,12 +9,12 @@ from pathlib import Path
 
 C4 = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(C4 / "service"))
-from app.guidance import policy  # noqa: E402
+from app.learning import lints as policy  # noqa: E402
 from app.guidance.content import GuidanceContent  # noqa: E402
 from app.guidance.content_v31 import GuidanceContent31, evaluate31  # noqa: E402
 from app.guidance.feasibility import evaluate  # noqa: E402
 from app.guidance.sources import ProcedureSource  # noqa: E402
-from app.v2.registration import workspace_registry  # noqa: E402
+from app.procedures.registration import workspace_registry  # noqa: E402
 
 CURRENT = C4 / "research/data/guidance/fictional"
 CANDIDATES = C4 / "research/data/guidance/fictional-v31-candidates"

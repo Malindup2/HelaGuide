@@ -5,16 +5,16 @@ import json
 import pytest
 from pydantic import ValidationError
 
-from app.core.explanations import ExplanationService
-from app.core.policy import SharedLinTSPolicy
-from app.core.presentation import (
+from app.preparation.explanations import ExplanationService
+from app.legacy.v1_policy import SharedLinTSPolicy
+from app.preparation.presentation import (
     PresentationError,
     action_navigation_order,
     build_presentation_spec,
 )
-from app.core.procedure_features import extract_structural_features
-from app.core.scaffolds import graph_fingerprint
-from app.core.user_context import InMemoryContextService
+from app.procedures.procedure_features import extract_structural_features
+from app.procedures.scaffolds import graph_fingerprint
+from app.host.user_context import InMemoryContextService
 from app.models.presentation import PresentationSpec
 from app.models.scaffolds import (
     ContentSafety,
