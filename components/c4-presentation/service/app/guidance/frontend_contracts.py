@@ -4,7 +4,7 @@ from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, model_validato
 from app.guidance.catalogue import Configuration, Constraints, DIMENSIONS
 from app.models.procedure_graph import (ProcedureFact, BranchGroupNode, StageNode, StageDependencyEdge,
     ActionPrerequisiteEdge, ParallelGroupNode, GraphCompleteness, EvidenceNode, ConditionNode, FactProvenance)
-from app.v2.content import Join, Expression
+from app.procedures.canonical import Join, Expression
 from app.guidance.content import Phase
 from app.models.user_context import FamiliarityReport
 from app.models.scaffolds import AccessibilityConstraints

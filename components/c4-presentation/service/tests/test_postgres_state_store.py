@@ -12,8 +12,8 @@ import os
 import pytest
 from fastapi.testclient import TestClient
 
-from app.core.postgres_state_store import PostgreSQLStateStore
-from app.core.state_store import StateCompatibilityError, StateStoreError
+from app.legacy.postgres_state_store import PostgreSQLStateStore
+from app.legacy.state_store import StateCompatibilityError, StateStoreError
 from app.dev_main import create_app
 from app.models.policy import PolicyConfig
 

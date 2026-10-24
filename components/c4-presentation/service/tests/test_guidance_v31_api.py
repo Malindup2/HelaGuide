@@ -5,14 +5,15 @@ from pathlib import Path
 from uuid import uuid4
 import pytest
 from fastapi.testclient import TestClient
-from app.guidance import features, policy
+from app.guidance import features
+from app.learning import lints as policy
 from app.guidance.content_v31 import GuidanceContent31
 from app.guidance.flavours import FLAVOUR_30, FLAVOUR_31
 from app.guidance.registry import ContentRegistry
 from app.guidance.v31_pipeline import ACTION_SCHEMA31, FEATURE_FINGERPRINT31, ContentRegistry31, config_key31, manifest31
-from app.v2.api import create_app
-from app.v2.identity import WorkspaceRuntime
-from app.v2.registration import workspace_registry
+from app.host.application import create_app
+from app.host.identity import WorkspaceRuntime
+from app.procedures.registration import workspace_registry
 
 C4 = Path(__file__).resolve().parents[2]
 ROOT = '/workspace/guidance'

@@ -2,7 +2,7 @@
 
 M2A adds a backend contract and local preparation tools. It does not yet change
 citizen rendering. M2B will consume the resolved slots. The existing M1
-`app.content_artifacts` command and store remain compatible and separate.
+`app.preparation.content_cli` command and store remain compatible and separate.
 
 ## Content contract and request order
 
@@ -52,23 +52,23 @@ Run these from `components/c4-presentation/service/`. They do not change citizen
 sessions or policy state. `plan` is a dry run and makes zero provider calls.
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.wording_artifacts plan --scenario linear
-.\.venv\Scripts\python.exe -m app.wording_artifacts list
-.\.venv\Scripts\python.exe -m app.wording_artifacts resolve --scenario linear
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli plan --scenario linear
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli list
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli resolve --scenario linear
 ```
 
 Initially expect `wording_not_prepared` and `source_fallback`. The frontend is
 expected to look the same until M2B. Check conditional and parallel as well:
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.wording_artifacts plan --scenario conditional
-.\.venv\Scripts\python.exe -m app.wording_artifacts plan --scenario parallel
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli plan --scenario conditional
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli plan --scenario parallel
 ```
 
 To prepare editorial input, choose a new filename outside Git or inside `.local`:
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.wording_artifacts template --scenario linear --author local-author-1 --output "$env:TEMP\c4-linear-wording.json"
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli template --scenario linear --author local-author-1 --output "$env:TEMP\c4-linear-wording.json"
 ```
 
 Open that file in VS Code. The source packet is the review reference. Fill each
@@ -78,9 +78,9 @@ prerequisite explanation 800. Empty text is intentionally invalid. Templates
 are not mock provider responses or usable approved content.
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.wording_artifacts validate-human --scenario linear --input "$env:TEMP\c4-linear-wording.json"
-.\.venv\Scripts\python.exe -m app.wording_artifacts import-human --scenario linear --input "$env:TEMP\c4-linear-wording.json"
-.\.venv\Scripts\python.exe -m app.wording_artifacts list
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli validate-human --scenario linear --input "$env:TEMP\c4-linear-wording.json"
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli import-human --scenario linear --input "$env:TEMP\c4-linear-wording.json"
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli list
 ```
 
 To submit only some slots, remove other items from `draft.items` and explicitly
@@ -92,9 +92,9 @@ be overwritten by generation/import. Changed source/style produces a new key.
 After actually checking every submitted item against the source:
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.wording_artifacts show KEY
-.\.venv\Scripts\python.exe -m app.wording_artifacts review KEY --reviewer local-review-1 --confirm-source-check
-.\.venv\Scripts\python.exe -m app.wording_artifacts resolve --scenario linear
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli show KEY
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli review KEY --reviewer local-review-1 --confirm-source-check
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli resolve --scenario linear
 ```
 
 The final command should report `human_prepared` for reviewed slots. Run it again
@@ -109,7 +109,7 @@ sharing it, and enable BOTH `C4_DEV_LLM_ENABLED=true` and `C4_LLM_ENABLED=true`.
 The CLI refuses live calls without the additional confirmation flag:
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.wording_artifacts generate --scenario linear --max-batches 8 --confirm-live-request
+.\.venv\Scripts\python.exe -m app.preparation.wording_cli generate --scenario linear --max-batches 8 --confirm-live-request
 ```
 
 Use `plan` first to see the batch count. Each batch contains at most eight

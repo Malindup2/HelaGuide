@@ -60,7 +60,7 @@ better layout after each individual rating.
 From `components/c4-presentation/service`:
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.policy_runs validate --prior .\priors\pp1-provisional-v1.json
+.\.venv\Scripts\python.exe -m app.legacy.policy_runs validate --prior .\priors\pp1-provisional-v1.json
 $env:C4_PRIOR_FILE = (Resolve-Path .\priors\pp1-provisional-v1.json).Path
 ```
 
@@ -82,9 +82,9 @@ create/reset participant state, shared team tables or source artifacts.
 
 ```powershell
 # Keep the existing C4_DATABASE_URL in this terminal.
-.\.venv\Scripts\python.exe -m app.policy_runs inspect --postgres
+.\.venv\Scripts\python.exe -m app.legacy.policy_runs inspect --postgres
 New-Item -ItemType Directory -Force .\.local\migration-backups | Out-Null
-.\.venv\Scripts\python.exe -m app.policy_runs start --postgres --prior .\priors\pp1-provisional-v1.json --backup .\.local\migration-backups\before-prior.json --expected-run POLICY_RUN_ID_FROM_INSPECT --confirm-fresh-simulation
+.\.venv\Scripts\python.exe -m app.legacy.policy_runs start --postgres --prior .\priors\pp1-provisional-v1.json --backup .\.local\migration-backups\before-prior.json --expected-run POLICY_RUN_ID_FROM_INSPECT --confirm-fresh-simulation
 ```
 
 For SQLite replace `--postgres` with `--sqlite PATH_TO_EXISTING_DATABASE`.

@@ -9,9 +9,9 @@ from app.guidance import provisional
 from app.guidance.content_v31 import GuidanceContent31, evaluate31
 from app.guidance.flavours import FLAVOUR_31
 from app.guidance.sources import ProcedureSource
-from app.v2.api import create_app
-from app.v2.identity import WorkspaceRuntime
-from app.v2.registration import workspace_registry
+from app.host.application import create_app
+from app.host.identity import WorkspaceRuntime
+from app.procedures.registration import workspace_registry
 
 C4 = Path(__file__).resolve().parents[2]
 ROOT = '/workspace/guidance'

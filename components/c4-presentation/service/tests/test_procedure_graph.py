@@ -7,11 +7,11 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
-from app.core.procedure_graph import (
+from app.procedures.procedure_graph import (
     build_procedure_graph,
     dependency_index,
 )
-from app.core.procedure_input import (
+from app.procedures.procedure_input import (
     ProcedureInputError,
     load_procedure_input,
     parse_procedure_input,

@@ -50,13 +50,13 @@ evidence.
 2. List the packages:
 
    ```powershell
-   .\.venv\Scripts\python.exe -m app.content_artifacts list
+   .\.venv\Scripts\python.exe -m app.preparation.content_cli list
    ```
 
 3. Inspect one package, replacing `KEY` with its full 64-character key:
 
    ```powershell
-   .\.venv\Scripts\python.exe -m app.content_artifacts show KEY
+   .\.venv\Scripts\python.exe -m app.preparation.content_cli show KEY
    ```
 
    Alternatively open the JSON in VS Code. Read every draft against the source
@@ -68,7 +68,7 @@ evidence.
 4. Only after that human check, attest to the exact artifact:
 
    ```powershell
-   .\.venv\Scripts\python.exe -m app.content_artifacts review KEY --reviewer local-review-1 --confirm-source-check
+   .\.venv\Scripts\python.exe -m app.preparation.content_cli review KEY --reviewer local-review-1 --confirm-source-check
    ```
 
    Use a non-personal reviewer reference. The command records an attestation;

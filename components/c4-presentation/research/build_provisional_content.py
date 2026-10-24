@@ -16,7 +16,7 @@ sys.path.insert(0, str(C4 / "service"))
 from app.guidance import provisional  # noqa: E402
 from app.guidance.content_v31 import GuidanceContent31  # noqa: E402
 from app.guidance.sources import ProcedureSource  # noqa: E402
-from app.v2.registration import workspace_registry  # noqa: E402
+from app.procedures.registration import workspace_registry  # noqa: E402
 
 OUT = provisional.PROVISIONAL_DIR
 OUT.mkdir(parents=True, exist_ok=True)

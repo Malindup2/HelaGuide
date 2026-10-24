@@ -17,7 +17,7 @@ C4 is the adaptive presentation component of HelaGuide. It studies which of six 
 ```
  official/fictional Plan + enrichment  ->  ProcedureSource (graph, verified relationships)       service/app/core, app/guidance/sources.py
              |                                      |
-             |                          measurements (7 structural values + completeness)       app/v2/measurements.py
+             |                          measurements (7 structural values + completeness)       app/procedures/measurements.py
              v                                      |
  prepared content 3.1 (reviewed)  ->  ContentRegistry31 (draft -> review -> publish)            app/guidance/content_v31.py, v31_pipeline.py
              |                                      |

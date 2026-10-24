@@ -5,17 +5,17 @@ from pathlib import Path
 
 import pytest
 
-from app.core.explanations import (
+from app.preparation.explanations import (
     ExplanationInputError,
     ExplanationService,
     OutputRejected,
 )
-from app.core.llm_provider import ProviderFailure
-from app.core.policy import SharedLinTSPolicy
-from app.core.procedure_features import extract_structural_features
-from app.core.procedure_graph import build_procedure_graph
-from app.core.procedure_input import load_procedure_input
-from app.core.user_context import InMemoryContextService
+from app.preparation.llm_provider import ProviderFailure
+from app.legacy.v1_policy import SharedLinTSPolicy
+from app.procedures.procedure_features import extract_structural_features
+from app.procedures.procedure_graph import build_procedure_graph
+from app.procedures.procedure_input import load_procedure_input
+from app.host.user_context import InMemoryContextService
 from app.models.explanations import (
     ExplanationDraft,
     ProviderCall,

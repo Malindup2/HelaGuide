@@ -1,6 +1,6 @@
 # C4 dependency and cleanup audit
 
-Method: import graphs were computed from the real entry points (frontend from `src/main.tsx`, resolved case-insensitively and including dynamic `import()`; backend from `app.workspace` and `app.v2.api`, including imports inside functions). They were then cross-checked against tests, research scripts, `service/Dockerfile`, `docker-compose.c4.yml`, CLI commands in the READMEs, and the LLM content-preparation pipeline. Backup of the state before cleanup: branch `c4/final-v31-backup` (`154b0c7`).
+Method: import graphs were computed from the real entry points (frontend from `src/main.tsx`, resolved case-insensitively and including dynamic `import()`; backend from `app.workspace` and `app.host.application`, including imports inside functions). They were then cross-checked against tests, research scripts, `service/Dockerfile`, `docker-compose.c4.yml`, CLI commands in the READMEs, and the LLM content-preparation pipeline. Backup of the state before cleanup: branch `c4/final-v31-backup` (`154b0c7`).
 
 ## Outcome (2026-10-23)
 Only earlier V1/V2 citizen-interface code that nothing imports from `main.tsx` was removed, together with the tests that covered nothing else. **No backend module was removed.**
@@ -23,22 +23,26 @@ Evidence the change is safe:
 | Tests: `tests/{action-requirements,adjustments,feedback,guidance,pipeline-inspector,scaffolds,source-layout,wording-ui}`, `tests/fixtures/*`, `guidance-v2/{card,corrections,interaction,v2}.test.tsx`, `guidance-v2/compare/compare.test.ts` | tests of the removed code only | — |
 | `guidance-v2/unified.test.tsx` (edited) | kept the `VersionRoute` routing test; removed the cases that rendered the removed V2 card | — |
 
-### Retained on purpose (category, reason)
-| Module(s) | Reason |
-|---|---|
-| `app.main`, `api/*`, `core/adapter.py`, the adjustments/corrections/pipeline_trace/guidance_access/standard_guidance/postgres store modules | `service/Dockerfile` starts `app.main:app` (team docker-compose, port 8004, C2 `Plan` render stub); `dev_main` and its tests use them |
-| `core/llm_provider`, `explanations`, `wording_service`, `wording_views`, `prepared_wording`, `explanation_store`, `presentation`, `v2/preparation*`, `guidance/{service,preparation,sources,editor,registry,content,content_v31,provisional}`, `wording_artifacts.py`, `content_artifacts.py`, `dev_main.py`, `openai` | LLM-assisted content preparation: provider and prompts, generation, grounding validation, operator CLIs and their tests |
-| `guidance/{synthetic,experiment,decision,replay,plots}` | reproduce the 3.0 evidence `PP1-SYNTHETIC-RESULTS.json` |
-| `guidance/{synthetic31,procedures31,experiment31}` | the 3.1 study |
-| `v2/simulation.py`, `transfer.py`, `workspace_experiment.py` | V2 experiment cited in research docs; documented reproduction CLIs; tested |
-| `policy_runs.py`, `core/navigation_migration.py`, `models/runtime_state_v1*.py` | expert-prior and state-migration CLI (`service/POLICY-PRIORS.md`); tested |
-| `v2/fixture.py`, `v2/export_fixture.py`, `guidance-v2/fixture.json` | generate `research/data/v2/practice` (a registered procedure) and the fixture used by `presentation.test.ts` |
-| `v2/*` core, `guidance-v2/{VersionRoute,V2App,parts,presentation,types,workspaceClient,v2.css}` | live host and routing despite the version names |
+## Backend consolidation (2026-10-24)
+The backend was reorganised into one readable V3.1 structure without changing behaviour. The full layout,
+old-to-new module map and remaining dependencies are in `service/ARCHITECTURE.md`.
 
-## Remaining improvements (not done; each changes live code and needs separate approval)
-1. Extract `_GaussianPosterior` from `core/policy.py` (the V2 policy file) into its own module.
-2. Decouple `v2/registration.finalize` from the legacy wording pipeline.
-3. Rename the live `v2/*` and `guidance-v2/*` modules; move `VersionRoute` and the icons in `card/parts.tsx` into `citizen/`.
-4. Remove the unreferenced stylesheets `App.css`, `index.css`, `shell/shell.css`, and unused rules in `styles.css`.
-5. Retire the legacy `/v2/*` and `/dev/v1/*` routes and the V2 inspector hash once no demo or test needs them; then the V1 backend modules used only by `dev_main` can follow.
-6. Move the team Docker entry from `app.main:app` to the V3.1 app, which would free the C2 stub modules.
+Stages, each validated before the next:
+0. Golden baseline `service/tests/architecture_golden.py` (+ fixture) captured from the unchanged backend: registry and
+   document fingerprints, 3.1 feasibility and composed documents, 525-feature vectors, bit-exact LinTS scores and updates
+   (fresh and from a copy of the trained checkpoint), the V1/V2 kernel users, OpenAPI of all apps, the stored workspace
+   record, and an end-to-end HTTP flow with feedback on isolated stores.
+1. Gaussian posterior extracted to `app/learning/posterior.py` (verbatim); the V1 policy keeps a subclass for its prior.
+2. `action_navigation_order` moved next to `dependency_index` in `procedures/procedure_graph.py`.
+3. `StateStoreError` moved to `app/errors.py`, so identity and wording no longer import the V1 store and V1 policy.
+4. 61 modules moved into `host/`, `procedures/`, `learning/`, `preparation/`, `studies/`, `legacy/`, `compat/`; all
+   imports, tests, research scripts and documented commands updated. The simulators that fingerprint their own source
+   were moved byte-for-byte. Two schema classes keep their published OpenAPI component names (`__module__` pin).
+5. V2 document finalisation moved to `compat/v2_documents.py`; registration keeps canonical registration only.
+6. Record persistence extracted to `host/store.py`; identity is `WorkspaceIdentity`; V2 journeys and V2 guidance are
+   `compat/v2_runtime.py` and `compat/v2_workspace.py`; `WorkspaceRuntime` is their explicit assembly.
+
+Result: golden baseline identical after every stage; backend suite 653 passed / 24 skipped after every stage (647 + 6
+golden); OpenAPI byte-identical to `c4/final-v31-backup`; checkpoint SHA-256 and simulator/encoder fingerprints unchanged.
+No module was deleted (each historical one is still used by the V1 server, the V2 contracts, research reproduction or
+the live database format); they are now separated by package instead of mixed into the live code.

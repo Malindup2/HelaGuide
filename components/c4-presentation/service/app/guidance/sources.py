@@ -7,8 +7,8 @@ import hashlib
 import json
 from pydantic import BaseModel, ConfigDict
 from app.models.procedure_graph import CanonicalProcedureGraph
-from app.core.scaffolds import graph_fingerprint
-from app.v2.content import Overlay, validate_overlay
+from app.procedures.scaffolds import graph_fingerprint
+from app.procedures.canonical import Overlay, validate_overlay
 
 
 def digest(value):

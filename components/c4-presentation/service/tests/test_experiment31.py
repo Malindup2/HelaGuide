@@ -5,13 +5,15 @@ from pathlib import Path
 from uuid import uuid4
 import numpy as np
 import pytest
-from app.guidance import features, procedures31, synthetic31 as syn
+from app.guidance import features
+from app.studies import procedures31
+from app.studies import synthetic31 as syn
 from app.guidance.catalogue import CATALOGUE, Configuration
 from app.guidance.content_v31 import evaluate31, validate_content31
-from app.guidance.experiment31 import DEV, TEST, TRAIN, dataset, feasible, make_cases, reassess, replay, report, train
-from app.guidance.policy import Model
+from app.studies.experiment31 import DEV, TEST, TRAIN, dataset, feasible, make_cases, reassess, replay, report, train
+from app.learning.lints import Model
 from app.guidance.v31_pipeline import PROFILE_31
-from app.v2.measurements import measurements
+from app.procedures.measurements import measurements
 
 C4 = Path(__file__).resolve().parents[2]
 
@@ -86,9 +88,9 @@ def test_scenarios_use_only_their_split_procedures_and_hard_constraints_are_resp
 
 
 def test_policy_and_encoder_never_import_the_simulator_or_study_code():
-    guidance = C4 / 'service' / 'app' / 'guidance'
-    for name in ('policy.py', 'features.py', 'catalogue.py', 'frontend_runtime.py', 'v31_pipeline.py'):
-        text = (guidance / name).read_text(encoding='utf-8')
+    app = C4 / 'service' / 'app'
+    for name in ('learning/lints.py', 'learning/posterior.py', 'guidance/features.py', 'guidance/catalogue.py', 'guidance/frontend_runtime.py', 'guidance/v31_pipeline.py'):
+        text = (app / name).read_text(encoding='utf-8')
         assert 'synthetic31' not in text and 'experiment31' not in text and 'procedures31' not in text, name
 
 

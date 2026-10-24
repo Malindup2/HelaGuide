@@ -7,7 +7,7 @@ import numpy as np
 import pytest
 from pydantic import ValidationError
 
-from app.core.policy import (
+from app.legacy.v1_policy import (
     ACTION_NAMES,
     FEATURE_DIMENSION,
     FEATURE_NAMES_SHARED,
@@ -21,11 +21,11 @@ from app.core.policy import (
     encode_context,
     feature_vector,
 )
-from app.core.procedure_features import extract_structural_features
-from app.core.procedure_graph import build_procedure_graph
-from app.core.procedure_input import load_procedure_input
-from app.core.scaffolds import enumerate_scaffolds
-from app.core.user_context import (
+from app.procedures.procedure_features import extract_structural_features
+from app.procedures.procedure_graph import build_procedure_graph
+from app.procedures.procedure_input import load_procedure_input
+from app.procedures.scaffolds import enumerate_scaffolds
+from app.host.user_context import (
     ContextConflictError,
     InMemoryContextService,
 )

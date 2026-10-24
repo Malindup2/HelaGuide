@@ -86,9 +86,9 @@ For dynamic preparation later, deliberately restart this sandbox with dynamic/tr
 Worker draft JSON includes artifact_id. Job source snapshot is <content-directory>/v2/jobs/<job-id>.json. A reviewer must inspect the complete source and draft, then prepare a reviewed-content JSON with field-level checks and reviewer/date/scope/evidence plus the exact GuidanceContent fingerprint. The CLI does not fill in review results on the reviewer's behalf:
 
 ```powershell
-.\.venv\Scripts\python.exe -m app.guidance.editor inspect --directory "$env:C4_PREPARED_CONTENT_DIRECTORY" --artifact DRAFT_ID
-.\.venv\Scripts\python.exe -m app.guidance.editor review --directory "$env:C4_PREPARED_CONTENT_DIRECTORY" --artifact DRAFT_ID --source-job JOB_JSON --reviewed-content REVIEWED_JSON --reviewer 'Actual reviewer name' --kind human_source_fidelity --confirm-source-review
-.\.venv\Scripts\python.exe -m app.guidance.editor publish --directory "$env:C4_PREPARED_CONTENT_DIRECTORY" --artifact REVIEWED_ID --source-job JOB_JSON
+.\.venv\Scripts\python.exe -m app.preparation.review_cli inspect --directory "$env:C4_PREPARED_CONTENT_DIRECTORY" --artifact DRAFT_ID
+.\.venv\Scripts\python.exe -m app.preparation.review_cli review --directory "$env:C4_PREPARED_CONTENT_DIRECTORY" --artifact DRAFT_ID --source-job JOB_JSON --reviewed-content REVIEWED_JSON --reviewer 'Actual reviewer name' --kind human_source_fidelity --confirm-source-review
+.\.venv\Scripts\python.exe -m app.preparation.review_cli publish --directory "$env:C4_PREPARED_CONTENT_DIRECTORY" --artifact REVIEWED_ID --source-job JOB_JSON
 ```
 
 Review returns a new REVIEWED_ID. Publication is separate. internal_fictional_author is accepted only for synthetic graphs. If text changes during review, save it as a new draft first; a review cannot silently change the stored draft's wording. The CLI can process dynamically registered procedures because it uses the durable source snapshot, not a hardcoded procedure list. These backend endpoints are local development/research interfaces, not a production authentication design.

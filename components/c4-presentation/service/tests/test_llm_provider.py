@@ -6,7 +6,7 @@ import pytest
 import httpx
 from openai import RateLimitError
 
-from app.core.llm_provider import (
+from app.preparation.llm_provider import (
     OpenAIExplanationProvider,
     ProviderFailure,
 )

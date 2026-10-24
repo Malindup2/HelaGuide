@@ -7,7 +7,7 @@
 - Original V1 branch remains at `e9b7e9cf7e604c4574dd4ed3afa11f8acbeec68e`.
 - No commits, pushes, merges, branch switches or history rewrites performed.
 - Tracked and untracked repository changes audited: all inside `components/c4-presentation/`.
-- `git diff --check` passed. `service/app/v2/features.py` has no diff: ordering, scaling and 515-feature meanings remain unchanged.
+- `git diff --check` passed. `service/app/compat/v2_features.py` has no diff: ordering, scaling and 515-feature meanings remain unchanged.
 - Active application: `app.workspace:app` on 8018; original citizen workspace on 5173; historical `#c4-v2` is an alias, not another citizen application.
 
 ## Executed automated checks
