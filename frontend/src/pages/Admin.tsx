@@ -12,7 +12,7 @@ import LanguageSwitch from "../components/LanguageSwitch";
 import {
   adminApi, departmentOf, DEPARTMENTS,
   type FileRow, type GraphData, type PendingFact, type Status, type BenchmarkKey,
-  type CrawlActivity,
+  type CrawlActivity, type AskResult, type PlanItem,
 } from "../lib/adminApi";
 
 type Key = "status" | "files" | "graph" | "pending";
@@ -391,6 +391,157 @@ function StatCard({
   );
 }
 
+function PlanItemGroup({
+  label,
+  color,
+  items,
+}: {
+  label: string;
+  color: string;
+  items: PlanItem[];
+}) {
+  if (items.length === 0) return null;
+  return (
+    <div className="mt-1.5 ml-7">
+      <div className={`text-[10px] font-black uppercase tracking-wide ${color}`}>
+        {label}
+        {items.length > 1 ? `s (${items.length})` : ""}
+      </div>
+      {items.slice(0, 4).map((f) => (
+        <div
+          key={f.fact_id}
+          className="text-xs text-ink-2 mt-1 pl-2 border-l-2 border-line"
+        >
+          <span className={`font-mono font-bold ${color}`}>{f.value}</span>
+          {f.qualifier && <span> -- {f.qualifier}</span>}
+          <a
+            href={f.source_url}
+            target="_blank"
+            rel="noreferrer"
+            className="block text-[10px] text-sky-600 truncate"
+          >
+            {f.source_url}
+          </a>
+        </div>
+      ))}
+      {items.length > 4 && (
+        <div className="text-[10px] text-ink-3 mt-1 pl-2">+ {items.length - 4} more</div>
+      )}
+    </div>
+  );
+}
+
+function AskTheGraph() {
+  const [q, setQ] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [result, setResult] = useState<AskResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  async function ask() {
+    if (!q.trim()) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const r = await adminApi.ask(q.trim());
+      setResult(r);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <section>
+      <div className="flex items-center gap-2 mb-4">
+        <span className="w-2 h-2 rounded-full bg-amber-500" />
+        <h2 className="text-base font-extrabold tracking-tight text-ink uppercase">
+          Ask the Graph (keyword demo)
+        </h2>
+      </div>
+      <div className="rounded-2xl border border-line bg-paper p-5 space-y-4 shadow-2xs">
+        <p className="text-xs text-ink-2 leading-relaxed">
+          Type a simple word or two -- e.g. <code className="font-mono text-ink">passport</code>,{" "}
+          <code className="font-mono text-ink">NIC</code>,{" "}
+          <code className="font-mono text-ink">birth certificate</code>. This box does plain
+          keyword matching against known service names -- it is{" "}
+          <span className="font-bold text-ink">not</span> C1's real intent classifier, no NLU, no
+          Sinhala/Singlish understanding. What comes back after the match is real: the graph's
+          actual dependency-ordered plan, with real fees and provenance, no model call.
+        </p>
+        <div className="flex gap-3">
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && ask()}
+            placeholder="e.g. passport"
+            className="flex-1 rounded-lg border border-line bg-paper px-3 py-2 text-sm text-ink"
+          />
+          <button
+            type="button"
+            onClick={ask}
+            disabled={busy || !q.trim()}
+            className="inline-flex items-center gap-1.5 rounded-xl bg-navy-900 hover:bg-navy-800 text-white px-4 py-2 text-xs font-black transition-all cursor-pointer border-none disabled:opacity-40"
+          >
+            {busy ? <Loader2 size={14} className="animate-spin" /> : <Search size={14} />}
+            <span>Ask</span>
+          </button>
+        </div>
+
+        {error && (
+          <div className="text-xs text-rose-600 dark:text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-xl px-3 py-2">
+            Failed: {error}
+          </div>
+        )}
+
+        {busy && (
+          <div className="flex items-center gap-2 text-xs text-ink-3 pt-2 border-t border-line">
+            <Loader2 size={13} className="animate-spin text-amber-500" />
+            <span>Matching a service and walking the real graph...</span>
+          </div>
+        )}
+
+        {!busy && result && (
+          <div className="space-y-3 pt-3 border-t border-line">
+            <div className="text-xs text-ink-2">
+              matched{" "}
+              <span className="font-mono font-bold text-ink">
+                {result.matched_service ?? "nothing"}
+              </span>{" "}
+              (score {result.matched_score}) -- <span className="italic">{result.note}</span>
+            </div>
+            {result.steps && result.steps.length > 0 && (
+              <ol className="space-y-3">
+                {result.steps.map((s) => (
+                  <li key={s.service_id} className="rounded-xl border border-line bg-paper-2 p-3">
+                    <div className="flex items-center gap-2 text-sm font-bold text-ink flex-wrap">
+                      <span className="w-5 h-5 shrink-0 rounded-full bg-amber-500 text-navy-950 text-[11px] font-black flex items-center justify-center">
+                        {s.order}
+                      </span>
+                      <span className="font-mono">{s.service_id}</span>
+                      <span className="text-ink-3 font-normal">-- {s.agency}</span>
+                    </div>
+                    {s.depends_on.length > 0 && (
+                      <div className="text-[11px] text-ink-3 mt-1 pl-7">
+                        depends on: {s.depends_on.join(", ")}
+                      </div>
+                    )}
+                    <PlanItemGroup label="Fee" color="text-emerald-700 dark:text-emerald-400" items={s.fees} />
+                    <PlanItemGroup label="Document" color="text-sky-700 dark:text-sky-400" items={s.documents} />
+                    <PlanItemGroup label="Prerequisite" color="text-amber-700 dark:text-amber-400" items={s.eligibility} />
+                    <PlanItemGroup label="Procedure step" color="text-violet-700 dark:text-violet-400" items={s.steps} />
+                    <PlanItemGroup label="Processing time" color="text-rose-700 dark:text-rose-400" items={s.times} />
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function Overview({
   graph,
   byDept,
@@ -401,6 +552,8 @@ function Overview({
   const g = graph?.summary;
   return (
     <div className="space-y-10">
+      <AskTheGraph />
+
       {/* ── Section: Knowledge Graph Metrics ── */}
       <section>
         <div className="flex items-center gap-2 mb-4">
@@ -1573,6 +1726,189 @@ function LiveCrawlDemo({ onDone }: { onDone?: () => void }) {
   );
 }
 
+type DiscoverEvent =
+  | { type: "visit"; url: string; level: number; queue_size: number }
+  | { type: "found"; url: string; label: string; from: string; queued_deeper: boolean }
+  | { type: "scored"; url: string; flags: string; score: number; chars: number }
+  | { type: "error"; error: string }
+  | { type: "done"; found: number };
+
+function DiscoverLogLine({ event: e }: { event: DiscoverEvent }) {
+  switch (e.type) {
+    case "visit":
+      return (
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-sky-600 shrink-0 font-bold">visit</span>
+          <span className="text-ink-2 break-all">{e.url}</span>
+          <span className="text-ink-3 shrink-0">
+            level {e.level} &middot; queue {e.queue_size}
+          </span>
+        </div>
+      );
+    case "found":
+      return (
+        <div className="pl-4 text-ink-2 break-all">
+          + found <span className="font-bold text-ink">{e.label || "(no label)"}</span> {e.url}
+          {e.queued_deeper && <span className="text-amber-600"> -&gt; queued deeper</span>}
+        </div>
+      );
+    case "scored":
+      return (
+        <div className="pl-4 break-all">
+          <span
+            className={
+              e.score > 0
+                ? "text-emerald-700 dark:text-emerald-400 font-bold"
+                : "text-ink-3"
+            }
+          >
+            scored [{e.flags}]
+          </span>{" "}
+          <span className="text-ink-3">
+            {e.chars} chars -- {e.url}
+          </span>
+        </div>
+      );
+    case "error":
+      return <div className="text-rose-600 dark:text-rose-400">error: {e.error}</div>;
+    case "done":
+      return (
+        <div className="text-ink font-bold border-t border-line/50 pt-1.5 mt-1.5">
+          done -- {e.found} candidate(s) found
+        </div>
+      );
+  }
+}
+
+function LiveDiscoverDemo() {
+  const [startUrl, setStartUrl] = useState("");
+  const [depth, setDepth] = useState(2);
+  const [limit, setLimit] = useState(10);
+  const [running, setRunning] = useState(false);
+  const [log, setLog] = useState<DiscoverEvent[]>([]);
+  const [queueSize, setQueueSize] = useState(0);
+  const esRef = useRef<EventSource | null>(null);
+  const logEndRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    logEndRef.current?.scrollIntoView({ block: "end" });
+  }, [log]);
+
+  useEffect(() => () => esRef.current?.close(), []);
+
+  function start() {
+    if (!startUrl.trim()) return;
+    setLog([]);
+    setQueueSize(0);
+    setRunning(true);
+    const params = new URLSearchParams({
+      start_url: startUrl.trim(),
+      depth: String(depth),
+      limit: String(limit),
+    });
+    const es = new EventSource(`/c2-api/api/discover/live?${params.toString()}`);
+    esRef.current = es;
+    es.onmessage = (ev) => {
+      const data = JSON.parse(ev.data) as DiscoverEvent;
+      setLog((prev) => [...prev, data]);
+      if (data.type === "visit") setQueueSize(data.queue_size);
+      if (data.type === "done" || data.type === "error") {
+        es.close();
+        setRunning(false);
+      }
+    };
+    es.onerror = () => {
+      es.close();
+      setRunning(false);
+    };
+  }
+
+  function stop() {
+    esRef.current?.close();
+    setRunning(false);
+  }
+
+  return (
+    <div className="rounded-2xl border border-line bg-paper overflow-hidden shadow-2xs">
+      <div className="px-5 py-4 bg-paper-2 border-b border-line">
+        <h3 className="text-sm font-bold text-ink">Discover New Pages (real BFS over the DOM)</h3>
+        <p className="text-xs text-ink-2 mt-1 leading-relaxed">
+          Starts at a real page, parses its actual HTML for &lt;a href&gt; links, and walks
+          outward breadth-first -- a real queue that grows as links are found and drains as each
+          is visited. Each candidate is scored against the real page text for fee, document and
+          prerequisite signals (the same rules used to decide if a page is worth monitoring).
+          Read-only: nothing here is added to the monitored set.
+        </p>
+      </div>
+      <div className="p-5 space-y-4">
+        <div className="flex flex-wrap items-end gap-3">
+          <input
+            value={startUrl}
+            onChange={(e) => setStartUrl(e.target.value)}
+            placeholder="https://www.ird.gov.lk/en/"
+            className="flex-1 min-w-[260px] rounded-lg border border-line bg-paper px-2.5 py-1.5 text-xs font-mono text-ink"
+          />
+          <label className="flex items-center gap-1.5 text-xs text-ink-2">
+            Depth
+            <input
+              type="number"
+              min={1}
+              max={4}
+              value={depth}
+              onChange={(e) => setDepth(Number(e.target.value) || 1)}
+              className="w-14 rounded-lg border border-line bg-paper px-2 py-1.5 text-xs font-mono text-ink"
+            />
+          </label>
+          <label className="flex items-center gap-1.5 text-xs text-ink-2">
+            Limit
+            <input
+              type="number"
+              min={1}
+              max={40}
+              value={limit}
+              onChange={(e) => setLimit(Number(e.target.value) || 1)}
+              className="w-14 rounded-lg border border-line bg-paper px-2 py-1.5 text-xs font-mono text-ink"
+            />
+          </label>
+          {!running ? (
+            <button
+              type="button"
+              onClick={start}
+              disabled={!startUrl.trim()}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-navy-900 hover:bg-navy-800 text-white px-4 py-2 text-xs font-black transition-all cursor-pointer border-none disabled:opacity-40"
+            >
+              <Terminal size={14} />
+              <span>Start discovery</span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={stop}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 text-xs font-black transition-all cursor-pointer border-none"
+            >
+              <span>Stop</span>
+            </button>
+          )}
+          {running && (
+            <span className="text-xs font-mono font-bold text-amber-600">queue: {queueSize}</span>
+          )}
+        </div>
+
+        <div className="rounded-xl border border-line bg-paper-2 p-3 h-72 overflow-y-auto font-mono text-[11px] space-y-1.5">
+          {log.length === 0 && !running && (
+            <div className="text-ink-3 italic">Nothing discovered yet in this session.</div>
+          )}
+          {log.map((e, i) => (
+            <DiscoverLogLine key={i} event={e} />
+          ))}
+          {running && <div className="text-amber-600 animate-pulse">searching...</div>}
+          <div ref={logEndRef} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CrawlActivityPanel() {
   const [data, setData] = useState<CrawlActivity | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -1628,6 +1964,8 @@ function CrawlActivityPanel() {
       </div>
 
       <LiveCrawlDemo onDone={load} />
+
+      <LiveDiscoverDemo />
 
       {error && (
         <div className="text-xs text-rose-600 dark:text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-xl px-3 py-2">

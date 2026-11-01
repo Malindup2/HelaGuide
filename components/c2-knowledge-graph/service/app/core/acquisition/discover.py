@@ -11,6 +11,7 @@ from __future__ import annotations
 import hashlib
 import re
 from collections import deque
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
 from urllib.parse import quote, urldefrag, urljoin, urlparse
@@ -187,12 +188,20 @@ async def discover(
     screen: bool = True,
     known: set[str] | None = None,
     extra_skip: tuple[re.Pattern, ...] = (),
+    on_step: Callable[[dict], None] | None = None,
 ) -> list[Candidate]:
     """Breadth-first from start_url, up to `depth` link levels and `limit` candidates.
 
     known: URLs already registered, which are skipped. With screen=False links are only
     listed; with screen=True each candidate is fetched and scored for fee, document and
     prerequisite signals.
+
+    on_step: an optional callback fired as the real BFS queue is worked, for a caller that
+    wants to show the search happening live (a demo UI) rather than only the final list.
+    Never changes what is returned; purely an observation hook. Events:
+      {"type": "visit", "url", "level", "queue_size"}        -- a queued URL is now being read
+      {"type": "found", "url", "label", "from", "queued_deeper"}  -- a new candidate link
+      {"type": "scored", "url", "flags", "score", "chars"}    -- screening scored a candidate
     """
     known = set(known or ())
     seen = {start_url} | known
@@ -208,6 +217,8 @@ async def discover(
 
     while queue and len(found) < limit:
         page_url, level = queue.popleft()
+        if on_step:
+            on_step({"type": "visit", "url": page_url, "level": level, "queue_size": len(queue)})
         page = await get(page_url)
         if not page.ok:
             if level == 0:
@@ -227,7 +238,11 @@ async def discover(
             cand = Candidate(link.url, link.text, page_url,
                              "pdf" if is_pdf_url(link.url) else "html")
             found.append(cand)
-            if level + 1 < depth and cand.source_type == "html":
+            queued_deeper = level + 1 < depth and cand.source_type == "html"
+            if on_step:
+                on_step({"type": "found", "url": cand.url, "label": cand.label,
+                         "from": page_url, "queued_deeper": queued_deeper})
+            if queued_deeper:
                 queue.append((link.url, level + 1))
             if len(found) >= limit:
                 break
@@ -245,4 +260,7 @@ async def discover(
                     cand.duplicate_of = seen_text[digest]
                 else:
                     seen_text.setdefault(digest, cand.url)
+            if on_step:
+                on_step({"type": "scored", "url": cand.url, "flags": cand.signals.flags,
+                         "score": cand.signals.score, "chars": cand.chars})
     return found

@@ -11,3 +11,11 @@
 {"run_id": "6239d65c8b2e", "started_at": "2026-10-22T15:45:20+00:00", "finished_at": "2026-10-22T15:45:32+00:00", "pages": 2, "counts": {"STRUCTURE_CHANGED": 1, "UNCHANGED": 1}, "to_extract": 1}
 {"run_id": "c5a8e80affcd", "started_at": "2026-10-22T15:45:45+00:00", "finished_at": "2026-10-22T15:45:46+00:00", "pages": 1, "counts": {"NEW": 1}, "to_extract": 1}
 {"run_id": "2b23cd4ca376", "started_at": "2026-10-22T15:47:40+00:00", "finished_at": "2026-10-22T15:47:54+00:00", "pages": 3, "counts": {"NEW": 1, "UNCHANGED": 2}, "to_extract": 1}
+{"run_id": "6551d577859e", "started_at": "2026-10-22T19:24:10+00:00", "finished_at": "2026-10-22T19:24:10+00:00", "pages": 1, "counts": {"NEW": 1}, "to_extract": 1}
+{"run_id": "436909b4c304", "started_at": "2026-10-22T19:25:53+00:00", "finished_at": "2026-10-22T19:25:54+00:00", "pages": 1, "counts": {"UNCHANGED": 1}, "to_extract": 0}
+{"run_id": "ca524a5e6465", "started_at": "2026-10-22T19:29:57+00:00", "finished_at": "2026-10-22T19:29:58+00:00", "pages": 1, "counts": {"NEW": 1}, "to_extract": 1}
+{"run_id": "c02928a6f46b", "started_at": "2026-10-22T19:31:55+00:00", "finished_at": "2026-10-22T19:31:55+00:00", "pages": 1, "counts": {"NEW": 1}, "to_extract": 1}
+{"run_id": "19609748293e", "started_at": "2026-10-22T19:41:06+00:00", "finished_at": "2026-10-22T19:41:15+00:00", "pages": 1, "counts": {"NEW": 1}, "to_extract": 1}
+{"run_id": "59631a2ad79f", "started_at": "2026-10-22T19:43:40+00:00", "finished_at": "2026-10-22T19:43:49+00:00", "pages": 1, "counts": {"NEW": 1}, "to_extract": 1}
+{"run_id": "52b3e12fc93b", "started_at": "2026-10-23T06:25:46+00:00", "finished_at": "2026-10-23T06:25:54+00:00", "pages": 1, "counts": {"UNCHANGED": 1}, "to_extract": 0}
+{"run_id": "611c186247b9", "started_at": "2026-10-23T06:26:12+00:00", "finished_at": "2026-10-23T06:26:14+00:00", "pages": 1, "counts": {"UNCHANGED": 1}, "to_extract": 0}
