@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Completed Requests</title>
+<!--
+  C1-only page, served by the C1 service at GET /demo/completed. Lists the requests the chatbot completed (saved by
+  app/core/completed.py) from GET /v1/requests/completed, newest first, and refreshes every few seconds.
+  No build step and no external files, so it works offline.
+-->
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --ink: #1b1f24; --muted: #5f6b7a; --line: #e2e6eb; --soft: #f0f2f5;
+  --accent: #2557d6; --accent-soft: #e6edfc; --ok: #2b7a4b; --ok-soft: #dff3e6;
+  --warn: #a15c00; --warn-soft: #fdf0d9; --bad: #b42318; --bad-soft: #fde4e1;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111418; --panel: #1a1e24; --ink: #e6e9ed; --muted: #98a2b0; --line: #2c323b; --soft: #222831;
+    --accent: #7aa2ff; --accent-soft: #1f2a44; --ok: #7fd3a0; --ok-soft: #17301f;
+    --warn: #f2c06b; --warn-soft: #382a10; --bad: #f59a90; --bad-soft: #3d1a17;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111418; --panel: #1a1e24; --ink: #e6e9ed; --muted: #98a2b0; --line: #2c323b; --soft: #222831;
+  --accent: #7aa2ff; --accent-soft: #1f2a44; --ok: #7fd3a0; --ok-soft: #17301f;
+  --warn: #f2c06b; --warn-soft: #382a10; --bad: #f59a90; --bad-soft: #3d1a17;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 15px/1.45 "Segoe UI", system-ui, -apple-system, "Nirmala UI", "Iskoola Pota", "Noto Sans Sinhala", sans-serif;
+}
+header {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--panel);
+}
+header h1 { font-size: 17px; margin: 0; font-weight: 600; }
+header .sub { color: var(--muted); font-size: 13px; }
+header a { color: var(--accent); font-size: 13px; }
+.spacer { flex: 1; }
+.badge { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--soft); color: var(--muted); white-space: nowrap; }
+.badge.ok { background: var(--ok-soft); color: var(--ok); }
+.badge.bad { background: var(--bad-soft); color: var(--bad); }
+button, input, select {
+  font: inherit; font-size: 13px; border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+  border-radius: 8px; padding: 5px 10px;
+}
+button { cursor: pointer; }
+button:hover { border-color: var(--accent); }
+main { padding: 18px 20px 40px; max-width: 1200px; margin: 0 auto; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+.filters input { min-width: 0; flex: 1 1 220px; }
+.stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; min-width: 140px; }
+.stat .k { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.stat .v { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+tr:last-child td { border-bottom: none; }
+tr.new td { background: var(--ok-soft); }
+.mono { font-family: var(--mono); font-size: 13px; }
+.muted { color: var(--muted); font-size: 12px; }
+.when { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.slots { display: flex; flex-wrap: wrap; gap: 4px; }
+.slot { background: var(--soft); border-radius: 6px; padding: 1px 6px; font-family: var(--mono); font-size: 12.5px; }
+.slot b { color: var(--muted); font-weight: 400; }
+.empty { color: var(--muted); padding: 30px; text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <h1>HelaGuide · Completed requests</h1>
+  <span class="sub">requests the chatbot finished: all slots filled and confirmed</span>
+  <span class="spacer"></span>
+  <span id="status" class="badge">loading…</span>
+  <a href="/demo">← chat demo</a>
+  <button id="theme" title="Toggle light / dark">◐</button>
+</header>
+
+<main>
+  <div class="filters">
+    <input type="text" id="session" placeholder="Filter by session id (e.g. anon-ui-1a2b3c)">
+    <select id="endpoint">
+      <option value="">all endpoints</option>
+      <option value="intent">/v1/intent · details</option>
+      <option value="chat">/v1/chat</option>
+    </select>
+    <button id="refresh" type="button">Refresh</button>
+  </div>
+  <div class="stats" id="stats"></div>
+  <div class="card" id="list"><div class="empty">Loading…</div></div>
+</main>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  for (const kid of kids.flat()) if (kid != null) n.append(kid instanceof Node ? kid : String(kid));
+  return n;
+};
+
+const params = new URLSearchParams(location.search);
+$("session").value = params.get("session_id") ?? "";
+let seen = null;    // ids shown by the last refresh; rows added since are highlighted
+
+const when = (iso) => new Date(iso).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "medium" });
+function ago(iso) {
+  const s = Math.max(0, Math.round((Date.now() - new Date(iso)) / 1000));
+  if (s < 60) return `${s}s ago`;
+  if (s < 3600) return `${Math.floor(s / 60)} min ago`;
+  if (s < 86400) return `${Math.floor(s / 3600)} h ago`;
+  return `${Math.floor(s / 86400)} d ago`;
+}
+
+async function load() {
+  const q = new URLSearchParams({ limit: "500" });
+  const sid = $("session").value.trim(), ep = $("endpoint").value;
+  if (sid) q.set("session_id", sid);
+  if (ep) q.set("endpoint", ep);
+  let rows;
+  try {
+    const r = await fetch(`/v1/requests/completed?${q}`);
+    const body = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(`${r.status}: ${body.detail ?? ""}`);
+    rows = body;
+  } catch (e) {
+    $("status").className = "badge bad";
+    $("status").textContent = `cannot load · ${e.message || e}`;
+    return;
+  }
+  $("status").className = "badge ok";
+  $("status").textContent = `updated ${new Date().toLocaleTimeString()}`;
+  render(rows);
+}
+
+function render(rows) {
+  const today = new Date().toDateString();
+  const sessions = new Set(rows.map((r) => r.session_id));
+  const byIntent = {};
+  for (const r of rows) byIntent[r.intent] = (byIntent[r.intent] ?? 0) + 1;
+  const top = Object.entries(byIntent).sort((a, b) => b[1] - a[1])[0];
+  const stat = (k, v) => el("div", { class: "stat" }, el("div", { class: "k" }, k), el("div", { class: "v" }, v));
+  $("stats").replaceChildren(
+    stat("Completed", rows.length),
+    stat("Today", rows.filter((r) => new Date(r.completed_at).toDateString() === today).length),
+    stat("Sessions", sessions.size),
+    stat("Most common", top ? top[0] : "—"),
+  );
+
+  if (!rows.length) {
+    $("list").replaceChildren(el("div", { class: "empty" },
+      "No completed requests yet. Finish a request in the chat demo (fill every slot) and it appears here."));
+    seen = new Set();
+    return;
+  }
+  const heads = ["Completed", "Request", "Details", "Session", "Turn", "Endpoint"];
+  $("list").replaceChildren(el("table", {},
+    el("tr", {}, heads.map((h) => el("th", {}, h))),
+    rows.map((r) => el("tr", { class: seen && !seen.has(r.id) ? "new" : "" },
+      el("td", { class: "when" }, when(r.completed_at), el("div", { class: "muted" }, ago(r.completed_at)),
+        r.updated_at !== r.completed_at ? el("div", { class: "muted" }, `changed ${when(r.updated_at)}`) : null),
+      el("td", {}, el("div", { class: "mono" }, r.intent), el("div", { class: "muted" }, r.service_id ?? "")),
+      el("td", {}, el("div", { class: "slots" },
+        Object.entries({ ...r.slots, ...r.conditions }).map(([k, v]) => el("span", { class: "slot" }, el("b", {}, `${k} `), String(v))))),
+      el("td", { class: "mono" }, r.session_id),
+      el("td", {}, r.turn_id),
+      el("td", { class: "mono" }, r.endpoint),
+    )),
+  ));
+  seen = new Set(rows.map((r) => r.id));
+}
+
+function initTheme() {
+  let saved = null;
+  try { saved = localStorage.getItem("c1-demo-theme"); } catch {}
+  if (saved) document.documentElement.dataset.theme = saved;
+  $("theme").addEventListener("click", () => {
+    const dark = document.documentElement.dataset.theme
+      ? document.documentElement.dataset.theme === "dark"
+      : matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = dark ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("c1-demo-theme", next); } catch {}
+  });
+}
+
+const reload = () => { seen = null; load(); };
+$("refresh").addEventListener("click", load);
+$("endpoint").addEventListener("change", reload);
+$("session").addEventListener("change", reload);
+initTheme();
+load();
+setInterval(load, 5000);
+</script>
+</body>
+</html>

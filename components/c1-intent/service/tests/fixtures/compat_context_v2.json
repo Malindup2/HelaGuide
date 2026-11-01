@@ -1,0 +1,883 @@
+{
+ "base": "c1/context-v2",
+ "stub": [
+  {
+   "path": "/v1/intent",
+   "status": 200,
+   "body": "{\"session_id\":\"anon-stub\",\"turn_id\":1,\"language\":\"mixed\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:passport\",\"district\":\"Colombo\"},\"confidence\":0.91}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "status": 200,
+   "body": "{\"session_id\":\"anon-stub\",\"turn_id\":1,\"state_version\":0,\"internal_intent\":\"passport_new\",\"intent_model_output\":\"passport_new\",\"confidence\":0.91,\"intent_source\":\"model\",\"active_intent\":\"passport_new\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Normal da urgent da?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"district\":\"Colombo\"},\"conditions\":{},\"missing_slots\":[\"applicant_for\",\"service_type\",\"travel_date\"],\"language\":\"mixed\",\"language_tags\":[],\"code_switched\":true,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":0,\"intent\":{\"session_id\":\"anon-stub\",\"turn_id\":1,\"language\":\"mixed\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:passport\",\"district\":\"Colombo\"},\"confidence\":0.91}}"
+  }
+ ],
+ "responses": [
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-rigid",
+    "text": "Hi"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-rigid\",\"turn_id\":0,\"state_version\":0,\"internal_intent\":\"unknown\",\"intent_model_output\":\"unknown\",\"confidence\":0.0,\"intent_source\":\"greeting\",\"active_intent\":null,\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Hello! How can I help you? I can help with NIC, passport and certificates.\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"none\",\"slots\":{},\"conditions\":{},\"missing_slots\":[],\"language\":\"en\",\"language_tags\":[{\"word\":\"Hi\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":0,\"intent\":{\"session_id\":\"anon-rigid\",\"turn_id\":0,\"language\":\"en\",\"intent\":\"unknown\",\"entities\":{\"service_id\":null,\"district\":null},\"confidence\":0.0}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-rigid",
+    "text": "I need a birth certificate",
+    "bot_text": null
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-rigid\",\"turn_id\":1,\"state_version\":1,\"internal_intent\":\"birth_cert_copy\",\"intent_model_output\":\"birth_cert_copy\",\"confidence\":0.95,\"intent_source\":\"model\",\"active_intent\":\"birth_cert_copy\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Who is it for?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{},\"conditions\":{},\"missing_slots\":[\"applicant_for\",\"district\",\"purpose\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"I\",\"tag\":\"EN\"},{\"word\":\"need\",\"tag\":\"EN\"},{\"word\":\"a\",\"tag\":\"EN\"},{\"word\":\"birth\",\"tag\":\"EN\"},{\"word\":\"certificate\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":7,\"intent\":{\"session_id\":\"anon-rigid\",\"turn_id\":1,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":null},\"confidence\":0.95}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-rigid",
+    "text": "my mom",
+    "bot_text": "Who is it for?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-rigid\",\"turn_id\":2,\"state_version\":2,\"internal_intent\":\"birth_cert_copy\",\"intent_model_output\":\"birth_cert_copy\",\"confidence\":0.95,\"intent_source\":\"model\",\"active_intent\":\"birth_cert_copy\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Which district are you in?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"parent\"},\"conditions\":{},\"missing_slots\":[\"district\",\"purpose\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"my\",\"tag\":\"EN\"},{\"word\":\"mom\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":11,\"intent\":{\"session_id\":\"anon-rigid\",\"turn_id\":2,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":null},\"confidence\":0.95}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-rigid",
+    "text": "kurunegala",
+    "bot_text": "Which district are you in?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-rigid\",\"turn_id\":3,\"state_version\":3,\"internal_intent\":\"birth_cert_copy\",\"intent_model_output\":\"birth_cert_copy\",\"confidence\":0.95,\"intent_source\":\"model\",\"active_intent\":\"birth_cert_copy\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"What is the purpose?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"parent\",\"district\":\"Kurunegala\"},\"conditions\":{},\"missing_slots\":[\"purpose\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"kurunegala\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":14,\"intent\":{\"session_id\":\"anon-rigid\",\"turn_id\":3,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":\"Kurunegala\"},\"confidence\":0.95}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-rigid",
+    "text": "business reg purpose",
+    "bot_text": "What is the purpose?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-rigid\",\"turn_id\":4,\"state_version\":3,\"internal_intent\":\"birth_cert_copy\",\"intent_model_output\":\"unsupported_service\",\"confidence\":0.61,\"intent_source\":\"active_intent\",\"active_intent\":\"birth_cert_copy\",\"intent_locked\":true,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"What is the purpose?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"parent\",\"district\":\"Kurunegala\"},\"conditions\":{},\"missing_slots\":[\"purpose\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"business\",\"tag\":\"EN\"},{\"word\":\"reg\",\"tag\":\"EN\"},{\"word\":\"purpose\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":12,\"intent\":{\"session_id\":\"anon-rigid\",\"turn_id\":4,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":\"Kurunegala\"},\"confidence\":0.61}}"
+  },
+  {
+   "path": "/v1/intent",
+   "request": {
+    "session_id": "anon-rigid",
+    "text": "school"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-rigid\",\"turn_id\":5,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":\"Kurunegala\"},\"confidence\":0.52}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-rigid",
+    "text": "also i need to get a driving licese"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-rigid\",\"turn_id\":6,\"state_version\":4,\"internal_intent\":\"birth_cert_copy\",\"intent_model_output\":\"birth_cert_copy\",\"confidence\":0.72,\"intent_source\":\"model\",\"active_intent\":\"birth_cert_copy\",\"intent_locked\":false,\"ready\":true,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Okay — birth certificate copy, for your parent, in Kurunegala, for school admission. I'll show you the documents you need.\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"parent\",\"district\":\"Kurunegala\",\"purpose\":\"school admission\"},\"conditions\":{},\"missing_slots\":[],\"language\":\"en\",\"language_tags\":[{\"word\":\"also\",\"tag\":\"EN\"},{\"word\":\"i\",\"tag\":\"EN\"},{\"word\":\"need\",\"tag\":\"EN\"},{\"word\":\"to\",\"tag\":\"EN\"},{\"word\":\"get\",\"tag\":\"EN\"},{\"word\":\"a\",\"tag\":\"EN\"},{\"word\":\"driving\",\"tag\":\"EN\"},{\"word\":\"licese\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":18,\"intent\":{\"session_id\":\"anon-rigid\",\"turn_id\":6,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":\"Kurunegala\"},\"confidence\":0.72}}"
+  },
+  {
+   "path": "/v1/intent",
+   "request": {
+    "session_id": "anon-rigid",
+    "text": "i need a driving license"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-rigid\",\"turn_id\":7,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":\"Kurunegala\"},\"confidence\":0.33}"
+  },
+  {
+   "path": "/v1/intent",
+   "request": {
+    "session_id": "anon-pp",
+    "text": "mata passport ekak ganna one"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-pp\",\"turn_id\":0,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:passport\",\"district\":null},\"confidence\":0.9}"
+  },
+  {
+   "path": "/v1/intent",
+   "request": {
+    "session_id": "anon-pp",
+    "text": "normal"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-pp\",\"turn_id\":1,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:passport\",\"district\":null},\"confidence\":0.8}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-nic",
+    "text": "mata ID eka nathi una"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-nic\",\"turn_id\":0,\"state_version\":1,\"internal_intent\":\"nic_replace_lost\",\"intent_model_output\":\"nic_replace_lost\",\"confidence\":0.9,\"intent_source\":\"model\",\"active_intent\":\"nic_replace_lost\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Which district are you in?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{},\"conditions\":{},\"missing_slots\":[\"district\",\"urgency\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"mata\",\"tag\":\"EN\"},{\"word\":\"ID\",\"tag\":\"EN\"},{\"word\":\"eka\",\"tag\":\"EN\"},{\"word\":\"nathi\",\"tag\":\"EN\"},{\"word\":\"una\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":7,\"intent\":{\"session_id\":\"anon-nic\",\"turn_id\":0,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:nic\",\"district\":null},\"confidence\":0.9}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-nic",
+    "text": "Matara",
+    "bot_text": "Koheda inne?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-nic\",\"turn_id\":1,\"state_version\":2,\"internal_intent\":\"nic_replace_lost\",\"intent_model_output\":\"nic_replace_lost\",\"confidence\":0.9,\"intent_source\":\"model\",\"active_intent\":\"nic_replace_lost\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Do you need it urgently?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"district\":\"Matara\"},\"conditions\":{},\"missing_slots\":[\"urgency\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"Matara\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":10,\"intent\":{\"session_id\":\"anon-nic\",\"turn_id\":1,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:nic\",\"district\":\"Matara\"},\"confidence\":0.9}}"
+  },
+  {
+   "path": "/v1/intent",
+   "request": {
+    "session_id": "anon-nic",
+    "text": "ne ne, Galle"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-nic\",\"turn_id\":2,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:nic\",\"district\":\"Galle\"},\"confidence\":0.9}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-cmp",
+    "text": "oya kiwwa office eka saturday open kiyala, mama giyama wahala thibbe"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-cmp\",\"turn_id\":0,\"state_version\":0,\"internal_intent\":\"feedback_complaint\",\"intent_model_output\":\"feedback_complaint\",\"confidence\":0.9,\"intent_source\":\"model\",\"active_intent\":null,\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Sorry about that, I'll check it.\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"trust_verification\",\"slots\":{\"issue\":\"office hours wrong\"},\"conditions\":{},\"missing_slots\":[\"service_mentioned\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"oya\",\"tag\":\"EN\"},{\"word\":\"kiwwa\",\"tag\":\"EN\"},{\"word\":\"office\",\"tag\":\"EN\"},{\"word\":\"eka\",\"tag\":\"EN\"},{\"word\":\"saturday\",\"tag\":\"EN\"},{\"word\":\"open\",\"tag\":\"EN\"},{\"word\":\"kiyala\",\"tag\":\"EN\"},{\"word\":\"mama\",\"tag\":\"EN\"},{\"word\":\"giyama\",\"tag\":\"EN\"},{\"word\":\"wahala\",\"tag\":\"EN\"},{\"word\":\"thibbe\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":13,\"intent\":{\"session_id\":\"anon-cmp\",\"turn_id\":0,\"language\":\"en\",\"intent\":\"unknown\",\"entities\":{\"service_id\":null,\"district\":null},\"confidence\":0.9}}"
+  },
+  {
+   "path": "/v1/intent",
+   "request": {
+    "session_id": "anon-uns",
+    "text": "driving licence ekak ganna one"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-uns\",\"turn_id\":0,\"language\":\"en\",\"intent\":\"unknown\",\"entities\":{\"service_id\":null,\"district\":null},\"confidence\":0.9}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-oos",
+    "text": "what is the weather today"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-oos\",\"turn_id\":0,\"state_version\":0,\"internal_intent\":\"out_of_scope\",\"intent_model_output\":\"out_of_scope\",\"confidence\":0.9,\"intent_source\":\"model\",\"active_intent\":null,\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"I can only help with government services like NIC, passport and certificates.\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"none\",\"slots\":{},\"conditions\":{},\"missing_slots\":[],\"language\":\"en\",\"language_tags\":[{\"word\":\"what\",\"tag\":\"EN\"},{\"word\":\"is\",\"tag\":\"EN\"},{\"word\":\"the\",\"tag\":\"EN\"},{\"word\":\"weather\",\"tag\":\"EN\"},{\"word\":\"today\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":7,\"intent\":{\"session_id\":\"anon-oos\",\"turn_id\":0,\"language\":\"en\",\"intent\":\"unknown\",\"entities\":{\"service_id\":null,\"district\":null},\"confidence\":0.9}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-low",
+    "text": "hmm"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-low\",\"turn_id\":0,\"state_version\":0,\"internal_intent\":\"unknown\",\"intent_model_output\":\"out_of_scope\",\"confidence\":0.2,\"intent_source\":\"unknown\",\"active_intent\":null,\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Do you need help with an NIC, a passport or a certificate?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"none\",\"slots\":{},\"conditions\":{},\"missing_slots\":[],\"language\":\"en\",\"language_tags\":[{\"word\":\"hmm\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":3,\"intent\":{\"session_id\":\"anon-low\",\"turn_id\":0,\"language\":\"en\",\"intent\":\"unknown\",\"entities\":{\"service_id\":null,\"district\":null},\"confidence\":0.2}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-si",
+    "text": "මට දුවගේ උප්පැන්න සහතිකයේ පිටපතක් ඕනේ"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-si\",\"turn_id\":0,\"state_version\":1,\"internal_intent\":\"birth_cert_copy\",\"intent_model_output\":\"birth_cert_copy\",\"confidence\":0.93,\"intent_source\":\"model\",\"active_intent\":\"birth_cert_copy\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"කොහෙද ඉන්නේ?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"child\"},\"conditions\":{},\"missing_slots\":[\"district\",\"purpose\"],\"language\":\"si\",\"language_tags\":[{\"word\":\"මට\",\"tag\":\"SI\"},{\"word\":\"දුවගේ\",\"tag\":\"SI\"},{\"word\":\"උප්පැන්න\",\"tag\":\"SI\"},{\"word\":\"සහතිකයේ\",\"tag\":\"SI\"},{\"word\":\"පිටපතක්\",\"tag\":\"SI\"},{\"word\":\"ඕනේ\",\"tag\":\"SI\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":8,\"intent\":{\"session_id\":\"anon-si\",\"turn_id\":0,\"language\":\"si\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":null},\"confidence\":0.93}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-si",
+    "text": "ගාල්ලේ",
+    "bot_text": "කොහෙද ලියාපදිංචි කළේ?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-si\",\"turn_id\":1,\"state_version\":2,\"internal_intent\":\"birth_cert_copy\",\"intent_model_output\":\"birth_cert_copy\",\"confidence\":0.9,\"intent_source\":\"model\",\"active_intent\":\"birth_cert_copy\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"මොකටද ඕනේ?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"child\",\"district\":\"Galle\"},\"conditions\":{},\"missing_slots\":[\"purpose\"],\"language\":\"si\",\"language_tags\":[{\"word\":\"ගාල්ලේ\",\"tag\":\"SI\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":11,\"intent\":{\"session_id\":\"anon-si\",\"turn_id\":1,\"language\":\"si\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":\"Galle\"},\"confidence\":0.9}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-si",
+    "text": "පාසලට දාන්න",
+    "bot_text": "මොකටද ඕනේ?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-si\",\"turn_id\":2,\"state_version\":3,\"internal_intent\":\"birth_cert_copy\",\"intent_model_output\":\"birth_cert_copy\",\"confidence\":0.9,\"intent_source\":\"model\",\"active_intent\":\"birth_cert_copy\",\"intent_locked\":false,\"ready\":true,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"හරි — උප්පැන්න සහතිකයේ පිටපතක්, දරුවාට, Galle, අරමුණ school admission. අවශ්‍ය ලේඛන පෙන්වන්නම්.\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"child\",\"district\":\"Galle\",\"purpose\":\"school admission\"},\"conditions\":{},\"missing_slots\":[],\"language\":\"si\",\"language_tags\":[{\"word\":\"පාසලට\",\"tag\":\"SI\"},{\"word\":\"දාන්න\",\"tag\":\"SI\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":15,\"intent\":{\"session_id\":\"anon-si\",\"turn_id\":2,\"language\":\"si\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:birth_certificate\",\"district\":\"Galle\"},\"confidence\":0.9}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-en",
+    "text": "I want to apply for a new passport"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-en\",\"turn_id\":0,\"state_version\":1,\"internal_intent\":\"passport_new\",\"intent_model_output\":\"passport_new\",\"confidence\":0.92,\"intent_source\":\"model\",\"active_intent\":\"passport_new\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Who is it for?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{},\"conditions\":{},\"missing_slots\":[\"applicant_for\",\"service_type\",\"travel_date\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"I\",\"tag\":\"EN\"},{\"word\":\"want\",\"tag\":\"EN\"},{\"word\":\"to\",\"tag\":\"EN\"},{\"word\":\"apply\",\"tag\":\"EN\"},{\"word\":\"for\",\"tag\":\"EN\"},{\"word\":\"a\",\"tag\":\"EN\"},{\"word\":\"new\",\"tag\":\"EN\"},{\"word\":\"passport\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":10,\"intent\":{\"session_id\":\"anon-en\",\"turn_id\":0,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:passport\",\"district\":null},\"confidence\":0.92}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-en",
+    "text": "It's for my daughter",
+    "bot_text": "Who is it for?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-en\",\"turn_id\":1,\"state_version\":2,\"internal_intent\":\"passport_new\",\"intent_model_output\":\"passport_new\",\"confidence\":0.88,\"intent_source\":\"model\",\"active_intent\":\"passport_new\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Normal or urgent service?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"child\"},\"conditions\":{},\"missing_slots\":[\"service_type\",\"travel_date\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"It's\",\"tag\":\"EN\"},{\"word\":\"for\",\"tag\":\"EN\"},{\"word\":\"my\",\"tag\":\"EN\"},{\"word\":\"daughter\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":16,\"intent\":{\"session_id\":\"anon-en\",\"turn_id\":1,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:passport\",\"district\":null},\"confidence\":0.88}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-en",
+    "text": "We are travelling in mid December",
+    "bot_text": "When are you travelling?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-en\",\"turn_id\":2,\"state_version\":3,\"internal_intent\":\"passport_new\",\"intent_model_output\":\"passport_new\",\"confidence\":0.9,\"intent_source\":\"model\",\"active_intent\":\"passport_new\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Normal or urgent service?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"child\",\"travel_date\":\"mid December\"},\"conditions\":{},\"missing_slots\":[\"service_type\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"We\",\"tag\":\"EN\"},{\"word\":\"are\",\"tag\":\"EN\"},{\"word\":\"travelling\",\"tag\":\"EN\"},{\"word\":\"in\",\"tag\":\"EN\"},{\"word\":\"mid\",\"tag\":\"EN\"},{\"word\":\"December\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":24,\"intent\":{\"session_id\":\"anon-en\",\"turn_id\":2,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:passport\",\"district\":null},\"confidence\":0.9}}"
+  },
+  {
+   "path": "/v1/intent",
+   "request": {
+    "session_id": "anon-en",
+    "text": "what documents do I need?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-en\",\"turn_id\":3,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:passport\",\"district\":null},\"confidence\":0.85}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-var",
+    "text": "i need a NIC"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-var\",\"turn_id\":0,\"state_version\":1,\"internal_intent\":\"nic_new\",\"intent_model_output\":\"nic_new\",\"confidence\":0.7,\"intent_source\":\"model\",\"active_intent\":\"nic_new\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":true,\"reply\":\"Is it a new NIC, a change to your NIC, or a lost NIC?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{},\"conditions\":{},\"missing_slots\":[\"applicant_for\",\"district\",\"date_of_birth\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"i\",\"tag\":\"EN\"},{\"word\":\"need\",\"tag\":\"EN\"},{\"word\":\"a\",\"tag\":\"EN\"},{\"word\":\"NIC\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":6,\"intent\":{\"session_id\":\"anon-var\",\"turn_id\":0,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:nic\",\"district\":null},\"confidence\":0.7}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-var",
+    "text": "aluth ekak",
+    "bot_text": "Aluth NIC ekak da, wenas karanna da, nathi una ekak da?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-var\",\"turn_id\":1,\"state_version\":2,\"internal_intent\":\"nic_new\",\"intent_model_output\":\"nic_new\",\"confidence\":0.8,\"intent_source\":\"variant_answer\",\"active_intent\":\"nic_new\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Who is it for?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{},\"conditions\":{},\"missing_slots\":[\"applicant_for\",\"district\",\"date_of_birth\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"aluth\",\"tag\":\"EN\"},{\"word\":\"ekak\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":10,\"intent\":{\"session_id\":\"anon-var\",\"turn_id\":1,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:nic\",\"district\":null},\"confidence\":0.8}}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-var",
+    "text": "danne na",
+    "bot_text": "Meka kaageda?"
+   },
+   "status": 200,
+   "body": "{\"session_id\":\"anon-var\",\"turn_id\":2,\"state_version\":3,\"internal_intent\":\"nic_new\",\"intent_model_output\":\"nic_new\",\"confidence\":0.4,\"intent_source\":\"model\",\"active_intent\":\"nic_new\",\"intent_locked\":false,\"ready\":false,\"assumed_slots\":[],\"variant_pending\":false,\"reply\":\"Which district are you in?\",\"completed_requests\":[],\"pending_requests\":[],\"route\":\"orchestration\",\"slots\":{\"applicant_for\":\"unknown\"},\"conditions\":{},\"missing_slots\":[\"district\",\"date_of_birth\"],\"language\":\"en\",\"language_tags\":[{\"word\":\"danne\",\"tag\":\"EN\"},{\"word\":\"na\",\"tag\":\"EN\"}],\"code_switched\":false,\"latency_ms\":0,\"context_strategy\":\"window_3\",\"context_tokens\":14,\"intent\":{\"session_id\":\"anon-var\",\"turn_id\":2,\"language\":\"en\",\"intent\":\"apply_service\",\"entities\":{\"service_id\":\"svc:nic\",\"district\":null},\"confidence\":0.4}}"
+  },
+  {
+   "path": "/v1/intent",
+   "request": {
+    "session_id": "anon-bad",
+    "text": ""
+   },
+   "status": 422,
+   "body": "{\"detail\":[{\"type\":\"string_too_short\",\"loc\":[\"body\",\"text\"],\"msg\":\"String should have at least 1 character\",\"input\":\"\",\"ctx\":{\"min_length\":1}}]}"
+  },
+  {
+   "path": "/v1/intent",
+   "request": {
+    "session_id": "anon-bad",
+    "text": "hi",
+    "user_name": "x"
+   },
+   "status": 422,
+   "body": "{\"detail\":[{\"type\":\"extra_forbidden\",\"loc\":[\"body\",\"user_name\"],\"msg\":\"Extra inputs are not permitted\",\"input\":\"x\"}]}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "session_id": "anon-bad",
+    "text": "hi",
+    "bot_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   },
+   "status": 422,
+   "body": "{\"detail\":[{\"type\":\"string_too_long\",\"loc\":[\"body\",\"bot_text\"],\"msg\":\"String should have at most 2000 characters\",\"input\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\"ctx\":{\"max_length\":2000}}]}"
+  },
+  {
+   "path": "/v1/intent/details",
+   "request": {
+    "text": "hi"
+   },
+   "status": 422,
+   "body": "{\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"session_id\"],\"msg\":\"Field required\",\"input\":{\"text\":\"hi\"}}]}"
+  }
+ ],
+ "openapi": {
+  "paths": {
+   "/v1/intent": {
+    "post": {
+     "tags": [
+      "intent"
+     ],
+     "summary": "Resolve Intent",
+     "description": "Raw citizen text in, identified service out.",
+     "operationId": "resolve_intent_v1_intent_post",
+     "requestBody": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UtteranceRequest"
+        }
+       }
+      },
+      "required": true
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/Intent"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/v1/intent/details": {
+    "post": {
+     "tags": [
+      "intent",
+      "c1-internal"
+     ],
+     "summary": "Resolve Intent Details",
+     "description": "C1-only: the full analysis (internal intent, route, slots, language tags). Not part of the contract.\nShares sessions with /v1/intent. bot_text is the bot's last question, if any.",
+     "operationId": "resolve_intent_details_v1_intent_details_post",
+     "requestBody": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/DetailsRequest"
+        }
+       }
+      },
+      "required": true
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/IntentDetails"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "schemas": {
+   "DetailsRequest": {
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "title": "Session Id"
+     },
+     "text": {
+      "type": "string",
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Text"
+     },
+     "bot_text": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 2000
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bot Text"
+     }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+     "session_id",
+     "text"
+    ],
+    "title": "DetailsRequest",
+    "description": "UtteranceRequest plus the bot's last question, which helps the tracker read short answers."
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "type": "array",
+      "title": "Detail"
+     }
+    },
+    "type": "object",
+    "title": "HTTPValidationError"
+   },
+   "Intent": {
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "title": "Session Id"
+     },
+     "turn_id": {
+      "type": "integer",
+      "minimum": 0.0,
+      "title": "Turn Id"
+     },
+     "language": {
+      "type": "string",
+      "enum": [
+       "si",
+       "en",
+       "ta",
+       "mixed"
+      ],
+      "title": "Language"
+     },
+     "intent": {
+      "type": "string",
+      "enum": [
+       "apply_service",
+       "service_info",
+       "check_requirements",
+       "unknown"
+      ],
+      "title": "Intent"
+     },
+     "entities": {
+      "$ref": "#/components/schemas/IntentEntities"
+     },
+     "confidence": {
+      "type": "number",
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence"
+     }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+     "session_id",
+     "turn_id",
+     "language",
+     "intent",
+     "entities",
+     "confidence"
+    ],
+    "title": "Intent"
+   },
+   "IntentDetails": {
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "title": "Session Id"
+     },
+     "turn_id": {
+      "type": "integer",
+      "minimum": 0.0,
+      "title": "Turn Id"
+     },
+     "state_version": {
+      "type": "integer",
+      "minimum": 0.0,
+      "title": "State Version",
+      "description": "Goes up when the active request's intent, slots, conditions or pending variant change; ask C2 again when it differs from the last one sent"
+     },
+     "internal_intent": {
+      "type": "string",
+      "title": "Internal Intent",
+      "description": "One of the 12 schema-v1.1 intents, or unknown"
+     },
+     "intent_model_output": {
+      "type": "string",
+      "title": "Intent Model Output",
+      "description": "What the classifier predicted before the confidence check"
+     },
+     "confidence": {
+      "type": "number",
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence"
+     },
+     "intent_source": {
+      "type": "string",
+      "enum": [
+       "model",
+       "keyword_fallback",
+       "previous_topic",
+       "active_intent",
+       "current_message_switch",
+       "pending_resume",
+       "variant_answer",
+       "service_keyword",
+       "greeting",
+       "unknown"
+      ],
+      "title": "Intent Source"
+     },
+     "active_intent": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Active Intent",
+      "description": "The core intent the conversation is about; kept across turns unless the user clearly switches service. None until one is confident"
+     },
+     "intent_locked": {
+      "type": "boolean",
+      "title": "Intent Locked",
+      "description": "True when this turn kept active_intent over the model's prediction"
+     },
+     "ready": {
+      "type": "boolean",
+      "title": "Ready",
+      "description": "All slots of active_intent are filled and confirmed; the request can go to orchestration"
+     },
+     "assumed_slots": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Assumed Slots",
+      "description": "Slots carried over from an earlier request that the citizen has not confirmed yet (only district); the bot asks before using them"
+     },
+     "variant_pending": {
+      "type": "boolean",
+      "title": "Variant Pending",
+      "description": "The citizen named the service but not which kind (\"i need a NIC\"); internal_intent is provisional and the reply asks",
+      "default": false
+     },
+     "reply": {
+      "type": "string",
+      "minLength": 1,
+      "title": "Reply",
+      "description": "What the bot says next: the next slot question, a confirmation, a clarifying question or a fallback"
+     },
+     "completed_requests": {
+      "items": {
+       "$ref": "#/components/schemas/RequestSummary"
+      },
+      "type": "array",
+      "title": "Completed Requests",
+      "description": "Requests finished earlier in the conversation (all slots filled when the citizen moved on)"
+     },
+     "pending_requests": {
+      "items": {
+       "$ref": "#/components/schemas/RequestSummary"
+      },
+      "type": "array",
+      "title": "Pending Requests",
+      "description": "Requests left unfinished by a switch; the bot offers to finish them once the active one is ready"
+     },
+     "route": {
+      "type": "string",
+      "enum": [
+       "orchestration",
+       "trust_verification",
+       "fallback",
+       "none"
+      ],
+      "title": "Route"
+     },
+     "slots": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "type": "object",
+      "title": "Slots"
+     },
+     "conditions": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "type": "object",
+      "title": "Conditions",
+      "description": "Facts about the applicant that are not slots, kept only when said and never asked for: applicant_age (int), applicant_minor (bool). C1 does not decide what they imply; C2 does"
+     },
+     "missing_slots": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Missing Slots"
+     },
+     "language": {
+      "type": "string",
+      "enum": [
+       "si",
+       "en",
+       "ta",
+       "mixed"
+      ],
+      "title": "Language"
+     },
+     "language_tags": {
+      "items": {
+       "$ref": "#/components/schemas/LanguageTag"
+      },
+      "type": "array",
+      "title": "Language Tags"
+     },
+     "code_switched": {
+      "type": "boolean",
+      "title": "Code Switched"
+     },
+     "latency_ms": {
+      "type": "number",
+      "minimum": 0.0,
+      "title": "Latency Ms"
+     },
+     "context_strategy": {
+      "type": "string",
+      "title": "Context Strategy",
+      "description": "How the intent model's input is built: window_3 = the last 3 user messages (the deployed setting, Observation 8)"
+     },
+     "context_tokens": {
+      "type": "integer",
+      "minimum": 0.0,
+      "title": "Context Tokens",
+      "description": "Tokens the intent model read this turn: the whole context window including the current message, XLM-R tokenizer with <s> and </s>, before truncation; 0 when the model did not run (a greeting)"
+     },
+     "intent": {
+      "$ref": "#/components/schemas/Intent",
+      "description": "The same projection /v1/intent returns"
+     }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+     "session_id",
+     "turn_id",
+     "state_version",
+     "internal_intent",
+     "intent_model_output",
+     "confidence",
+     "intent_source",
+     "active_intent",
+     "intent_locked",
+     "ready",
+     "assumed_slots",
+     "reply",
+     "completed_requests",
+     "pending_requests",
+     "route",
+     "slots",
+     "missing_slots",
+     "language",
+     "language_tags",
+     "code_switched",
+     "latency_ms",
+     "context_strategy",
+     "context_tokens",
+     "intent"
+    ],
+    "title": "IntentDetails"
+   },
+   "IntentEntities": {
+    "properties": {
+     "service_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "pattern": "^svc:[a-z0-9_]+$"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Service Id"
+     },
+     "district": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "District"
+     }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "title": "IntentEntities"
+   },
+   "LanguageTag": {
+    "properties": {
+     "word": {
+      "type": "string",
+      "title": "Word"
+     },
+     "tag": {
+      "type": "string",
+      "title": "Tag",
+      "description": "SI, EN, MIXED, NE or OTHER (O for words past the model's max length)"
+     }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+     "word",
+     "tag"
+    ],
+    "title": "LanguageTag"
+   },
+   "RequestSummary": {
+    "properties": {
+     "intent": {
+      "type": "string",
+      "title": "Intent"
+     },
+     "service_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Service Id"
+     },
+     "slots": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "type": "object",
+      "title": "Slots"
+     },
+     "conditions": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "boolean"
+        }
+       ]
+      },
+      "type": "object",
+      "title": "Conditions"
+     },
+     "variant_pending": {
+      "type": "boolean",
+      "title": "Variant Pending",
+      "default": false
+     }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+     "intent",
+     "service_id",
+     "slots"
+    ],
+    "title": "RequestSummary",
+    "description": "A service request in the conversation other than the active one."
+   },
+   "UtteranceRequest": {
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "title": "Session Id"
+     },
+     "text": {
+      "type": "string",
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Text"
+     }
+    },
+    "additionalProperties": false,
+    "type": "object",
+    "required": [
+     "session_id",
+     "text"
+    ],
+    "title": "UtteranceRequest",
+    "description": "What the frontend sends to the gateway, and the gateway to C1."
+   },
+   "ValidationError": {
+    "properties": {
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Location"
+     },
+     "msg": {
+      "type": "string",
+      "title": "Message"
+     },
+     "type": {
+      "type": "string",
+      "title": "Error Type"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "ctx": {
+      "type": "object",
+      "title": "Context"
+     }
+    },
+    "type": "object",
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError"
+   }
+  }
+ }
+}

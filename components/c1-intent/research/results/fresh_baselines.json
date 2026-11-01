@@ -1,0 +1,85 @@
+{
+  "turns": 50,
+  "tokens": 403,
+  "lang_tag_counts": {
+    "SI": 194,
+    "EN": 181,
+    "OTHER": 16,
+    "NE": 11,
+    "MIXED": 1
+  },
+  "entity_counts": {
+    "new_value": 2,
+    "travel_date": 1,
+    "date_of_birth": 2,
+    "district": 3,
+    "date": 3,
+    "purpose": 3
+  },
+  "scores_si_en": {
+    "heuristic": {
+      "ALL": {
+        "acc": 0.7733,
+        "n": 375
+      },
+      "all_tags": {
+        "acc": 0.7667,
+        "n": 403
+      },
+      "gold=EN": {
+        "acc": 0.5304,
+        "n": 181
+      },
+      "gold=SI": {
+        "acc": 1.0,
+        "n": 194
+      },
+      "mixed / romanized": {
+        "acc": 0.8293,
+        "n": 164
+      },
+      "mixed / sinhala": {
+        "acc": 0.9125,
+        "n": 80
+      },
+      "pure_en / romanized": {
+        "acc": 0.4949,
+        "n": 99
+      },
+      "pure_si / sinhala": {
+        "acc": 1.0,
+        "n": 32
+      }
+    },
+    "fasttext": {
+      "ALL": {
+        "acc": 0.5947,
+        "n": 375
+      },
+      "gold=EN": {
+        "acc": 0.7845,
+        "n": 181
+      },
+      "gold=SI": {
+        "acc": 0.4175,
+        "n": 194
+      },
+      "mixed / romanized": {
+        "acc": 0.2622,
+        "n": 164
+      },
+      "mixed / sinhala": {
+        "acc": 0.8875,
+        "n": 80
+      },
+      "pure_en / romanized": {
+        "acc": 0.8081,
+        "n": 99
+      },
+      "pure_si / sinhala": {
+        "acc": 0.9062,
+        "n": 32
+      }
+    }
+  }
+}

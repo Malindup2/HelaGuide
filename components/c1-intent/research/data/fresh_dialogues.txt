@@ -1,0 +1,119 @@
+# intent: nic_new
+U: ado mage putage ID eka hadanna one, eyata 16 una last week
+B: puthage birth cert eka thiyenawada?
+U: ow thiyenawa. school eken mokak hari form ekak ganna one da plz kiyannako
+
+# intent: nic_update
+U: hii ID eke address change krnna one
+B: aluth address eka mokakda?
+U: 45/2 Temple rd, Panadura
+B: hari, 45/2 Temple Road, Panadura da?
+U: ne ne sry 54/2. typo ekak
+
+# intent: nic_replace_lost
+U: bus eke yaddi wallet eka hora gaththa ID ekath ekka 😩
+B: police complaint ekak dammada?
+U: ow ada ude damma. ithin dan mokada krnne
+
+# intent: passport_new
+U: passport ekak ganna kiyak yanawada? first time eka
+B: normal service da one day da one?
+U: one day eka. next week flight eka thiyenne Dubai walata
+
+# intent: passport_renew
+U: mage passport eke pages iwarai bn, aluth ekak ganna one
+B: passport eka expire welada nathnam pages witharada?
+U(nic_update): pages witharai. aa ID eke surname eka bandala wenas una, eka mulin update krnna one da?
+
+# intent: birth_cert_copy
+U: birth cert copy ekak online gnna puluwanda plz help
+B: kageda birth cert eka?
+U: mage. 1999 Kandy General eke ipadune
+
+# intent: marriage_registration
+U: kasadeta registrar kenek book krnne kohomada
+B: wedding date eka kawadada?
+U: march 8 next yr. ehema nam dan book krnna puluwanda
+
+# intent: death_cert_copy
+U: seeyage death cert copy ekak one bank ekata
+B: maranaya una district eka mokakda?
+U: Matara. 2015 witara
+
+# intent: nic_new
+U: mata 1st time ID ekak ganna one, wayasa 17
+B: oyage GN division eka mokakda?
+U: Kottawa North
+U: ah ne meka Kottawa East. sry
+
+# intent: passport_renew
+U: pp eka expire wenna mase 2i thiyenne, dan renew krnna puluwanda?
+B: NIC eke details passport ekata match wenawada?
+U: ow okkoma same thx
+
+# intent: nic_update
+U: මගේ ID එකේ photo එක change කරන්න පුළුවන්ද? පරණ photo එකේ මාව මටවත් අඳුරගන්න බෑ 😂
+B: ඔයාගේ NIC number එක මොකක්ද?
+U: 200012345678
+
+# intent: passport_new
+U: දුවට passport එකක් ගන්න ඕන, එයාට අවුරුදු 5යි
+B: දෙමව්පියන් දෙන්නාම එන්න පුළුවන්ද?
+U: thaththa abroad. එයාගේ consent letter එකක් එව්වොත් ඇති ද?
+
+# intent: birth_cert_copy
+U: birth certificate එකේ copy එකක් ඕන
+B: කාගේ birth certificate එකද?
+U(nic_new): පුතාගේ. ඇත්තටම ඒක ඕන ID එක හදන්න. ID එකට තව මොනවද ඕන?
+
+# intent: death_cert_copy
+U: අම්මගේ death certificate එකේ certified copy එකක් ගන්න ඕන. pension office එකට
+B: මරණය ලියාපදිංචි කළේ කොහේද?
+U: Gampaha DS office එකේ, 2022
+
+# intent: nic_replace_lost
+U: ID එක රෙදි එක්ක washing machine එකට ගියා 🥲 දැන් කැඩිලා
+B: card එක තාම තියෙනවද?
+U: ow කෑලි දෙකක් වෙලා තියෙන්නෙ
+
+# intent: marriage_registration
+U: අපේ විවාහය ලියාපදිංචි කරන්න ඕනේ
+B: විවාහ දිනය කවදද?
+U: ජූනි 14
+U: නෑ නෑ සමාවෙන්න, ජූලි 14
+
+# intent: passport_renew
+U: මගේ ගමන් බලපත්‍රය නැති වුණා. අලුත් එකක් ගන්නේ කොහොමද?
+B: පොලිසියට පැමිණිල්ලක් දැම්මද?
+U: තාම නෑ. ඒක මුලින්ම කරන්න ඕනද?
+
+# intent: birth_cert_copy
+U: මගේ උප්පැන්න සහතිකයේ පිටපතක් ගන්න පුළුවන්ද?
+B: ඔබ උපන්නේ කොහේද?
+U: කුරුණෑගල රෝහලේ, 1988
+
+# intent: nic_new
+U: hi how do i get an NIC for my son, he just turned 15
+B: does he have his birth certificate?
+U: yes but its a bit torn, is that ok
+
+# intent: passport_renew
+U: my passport expired in jan, can i renew online or do i have to go to battaramulla
+B: are the details on your NIC up to date?
+U: yeah everythings the same
+
+# intent: death_cert_copy
+U: need a certified copy of my grandfathers death certificate
+B: where was the death registered?
+U: Negombo
+U: wait sorry it was Ja-Ela not negombo
+
+# intent: marriage_registration
+U: we want to register our marriage before the actual wedding, is that possible?
+B: when are you planning to register?
+U: sometime next month, weekdays only pls
+
+# intent: nic_replace_lost
+U: lost my id at the airport yesterday what do i do
+B: have you made a police report?
+U: not yet, do i need one even if it was just lost?
