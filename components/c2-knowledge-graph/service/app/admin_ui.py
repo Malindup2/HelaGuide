@@ -440,6 +440,54 @@ def plan(service: str, case: str | None = None) -> dict:
     return to_dict(result)
 
 
+@app.get("/api/ask")
+def ask(q: str) -> dict:
+    """A simple keyword-to-service lookup, for a quick demo query box only -- this is NOT
+    C1's real intent classifier (no NLU, no Sinhala/Singlish handling, just word overlap
+    against known service slugs). It exists so a free-text query can be typed somewhere and
+    still show the real ordered plan /api/plan returns, without pretending this layer
+    understands language the way C1 does."""
+    from neo4j import GraphDatabase
+
+    from app.core.graph.plan import build_plan, to_dict
+
+    stopwords = {
+        "a", "an", "the", "of", "for", "to", "in", "on", "at", "is", "are", "do", "does",
+        "i", "my", "me", "how", "much", "what", "get", "need", "want", "can", "please",
+        "and", "or", "with", "about", "from", "by", "this", "that",
+    }
+    services = _known_services()
+    q_words = set(re.findall(r"[a-z]+", q.lower())) - stopwords
+    best, best_score, best_len = None, 0, 0
+    for svc in services:
+        label_words = set(svc.removeprefix("svc:").split("_")) - stopwords
+        score = len(q_words & label_words)
+        # Tie-break on the shorter slug: "svc:nic" beats "svc:declaration_nic_not_obtained"
+        # for a query that only says "nic" -- the more specific/longer slug needs more of its
+        # own words actually matched to win, not just share one with a shorter core service.
+        svc_len = len(svc)
+        if score > best_score or (score == best_score and score > 0 and svc_len < best_len):
+            best, best_score, best_len = svc, score, svc_len
+    if not best:
+        return {"query": q, "matched_service": None, "matched_score": 0,
+                "note": "no known service shares a word with this query -- keyword match only, not NLU"}
+
+    uri, user, password = _neo4j()
+    driver = GraphDatabase.driver(uri, auth=(user, password))
+    try:
+        result = build_plan(driver, best, None)
+    finally:
+        driver.close()
+    if result is None:
+        return {"query": q, "matched_service": best, "matched_score": best_score,
+                "note": f"{best} matched but is not (yet) in the graph"}
+    return {
+        "query": q, "matched_service": best, "matched_score": best_score,
+        "note": "keyword match only, not C1's real intent classifier -- the plan below is real",
+        **to_dict(result),
+    }
+
+
 class AutoIn(BaseModel):
     apply: bool = False
 
@@ -792,6 +840,59 @@ async def crawl_live(url: str | None = None, department: str | None = None,
                         "new_pending": staged, "tokens_in": result.prompt_tokens,
                         "tokens_out": result.completion_tokens, "model": result.model,
                     })
+        finally:
+            await task
+
+    return StreamingResponse(gen(), media_type="text/event-stream",
+                             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+
+
+@app.get("/api/discover/live")
+async def discover_live(start_url: str, depth: int = 2, limit: int = 15):
+    """Runs the REAL link-discovery BFS (app.core.acquisition.discover.discover), live, over
+    Server-Sent Events -- the actual breadth-first search over a page's real DOM links that
+    decides which new candidate pages are worth a human's look, not a simulation of one. Every
+    `visit` event is a real queue pop; `queue_size` is the real len(queue) at that moment.
+    Read-only: this only screens candidates (scores fee/document/prerequisite signals against
+    the real page text) -- it never adds anything to seed_urls.yaml or the monitored set."""
+    import asyncio
+
+    from app.core.acquisition.discover import discover
+    from app.core.acquisition.fetch import USER_AGENT, Crawl4AIFetcher, PoliteFetcher
+    from app.core.acquisition.pdf import PdfAwareFetcher
+    from app.core.acquisition.ratelimit import HostRateLimiter
+    from app.core.acquisition.robots import RobotsPolicy
+    from app.core.acquisition.seeds import load_seeds
+
+    known = {s.url for s in load_seeds(SEEDS)}
+
+    async def gen():
+        queue: asyncio.Queue = asyncio.Queue()
+        inner = PdfAwareFetcher(Crawl4AIFetcher(http_only=True))
+        fetcher = PoliteFetcher(inner, RobotsPolicy(USER_AGENT), HostRateLimiter(1.5))
+
+        def on_step(event: dict) -> None:
+            queue.put_nowait(event)
+
+        async def runner():
+            try:
+                found = await discover(start_url, fetcher, depth=depth, limit=limit,
+                                       screen=True, known=known, on_step=on_step)
+            except Exception as e:  # noqa: BLE001 -- surface the real failure, keep the stream alive
+                await queue.put({"type": "error", "error": str(e)})
+                found = []
+            finally:
+                await inner.aclose()
+            await queue.put({"type": "done", "found": len(found)})
+
+        task = asyncio.create_task(runner())
+
+        try:
+            while True:
+                event = await queue.get()
+                yield f"data: {json.dumps(event)}\n\n"
+                if event["type"] in ("done", "error"):
+                    break
         finally:
             await task
 

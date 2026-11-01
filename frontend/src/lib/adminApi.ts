@@ -141,6 +141,44 @@ export interface CrawlActivity {
   extractions: CrawlExtraction[];
 }
 
+export interface PlanItem {
+  fact_id: string;
+  value: string;
+  qualifier: string;
+  unit: string | null;
+  amount: number | null;
+  source_url: string;
+  quote: string;
+  review: string;
+}
+
+export interface PlanStep {
+  order: number;
+  service_id: string;
+  agency: string;
+  depends_on: string[];
+  complete: boolean;
+  missing: string[];
+  fees: PlanItem[];
+  documents: PlanItem[];
+  steps: PlanItem[];
+  times: PlanItem[];
+  eligibility: PlanItem[];
+}
+
+export interface AskResult {
+  query: string;
+  matched_service: string | null;
+  matched_score: number;
+  note: string;
+  requested?: string;
+  cycle?: string | null;
+  incomplete?: string[];
+  cases?: string[];
+  case?: string | null;
+  steps?: PlanStep[];
+}
+
 async function call<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(BASE + path, {
     headers: { "Content-Type": "application/json" },
@@ -188,6 +226,10 @@ export const adminApi = {
   // extraction call cost in tokens -- read from Postgres, not a live feed (acquisition
   // runs as a one-shot batch script, not a server).
   crawlActivity: (limit = 50) => call<CrawlActivity>(`/api/crawl/activity?limit=${limit}`),
+  // A simple keyword-to-service lookup for a quick demo query box -- NOT C1's real intent
+  // classifier (no NLU). It picks the best-matching known service by word overlap, then
+  // returns the exact same real ordered plan /api/plan would for that service.
+  ask: (q: string) => call<AskResult>(`/api/ask?q=${encodeURIComponent(q)}`),
 };
 
 const DEPARTMENTS = [
