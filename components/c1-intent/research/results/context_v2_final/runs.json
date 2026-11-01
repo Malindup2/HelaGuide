@@ -1,0 +1,4267 @@
+{
+  "seed1/current_only": {
+    "train_examples": 695,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.507,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 2.48
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.4824,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 2.14
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.54,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 2.16
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.4859,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 8.88
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5528,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 8.55
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.6,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 9.05
+      },
+      "train_minutes": 2.4,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4867,
+          "dev": 0.0549
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4417,
+          "dev": 0.1038
+        },
+        {
+          "epoch": 3,
+          "loss": 2.2845,
+          "dev": 0.2767
+        },
+        {
+          "epoch": 4,
+          "loss": 1.9763,
+          "dev": 0.2709
+        },
+        {
+          "epoch": 5,
+          "loss": 1.6913,
+          "dev": 0.4475
+        },
+        {
+          "epoch": 6,
+          "loss": 1.4335,
+          "dev": 0.4499
+        },
+        {
+          "epoch": 7,
+          "loss": 1.26,
+          "dev": 0.5521
+        },
+        {
+          "epoch": 8,
+          "loss": 1.0757,
+          "dev": 0.5237
+        },
+        {
+          "epoch": 9,
+          "loss": 0.9298,
+          "dev": 0.5307
+        },
+        {
+          "epoch": 10,
+          "loss": 0.8249,
+          "dev": 0.5239
+        },
+        {
+          "epoch": 11,
+          "loss": 0.7491,
+          "dev": 0.5659
+        },
+        {
+          "epoch": 12,
+          "loss": 0.651,
+          "dev": 0.5068
+        },
+        {
+          "epoch": 13,
+          "loss": 0.6002,
+          "dev": 0.507
+        },
+        {
+          "epoch": 14,
+          "loss": 0.5543,
+          "dev": 0.5138
+        },
+        {
+          "epoch": 15,
+          "loss": 0.5667,
+          "dev": 0.5306
+        }
+      ]
+    }
+  },
+  "seed1/window_2": {
+    "train_examples": 695,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6901,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 2.64
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.598,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 2.31
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.84,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 2.4
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7394,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 8.77
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6332,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 8.97
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.9,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 8.78
+      },
+      "train_minutes": 2.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4734,
+          "dev": 0.0259
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4137,
+          "dev": 0.1978
+        },
+        {
+          "epoch": 3,
+          "loss": 2.0649,
+          "dev": 0.2936
+        },
+        {
+          "epoch": 4,
+          "loss": 1.6298,
+          "dev": 0.2926
+        },
+        {
+          "epoch": 5,
+          "loss": 1.2991,
+          "dev": 0.4492
+        },
+        {
+          "epoch": 6,
+          "loss": 1.0103,
+          "dev": 0.5132
+        },
+        {
+          "epoch": 7,
+          "loss": 0.7567,
+          "dev": 0.5545
+        },
+        {
+          "epoch": 8,
+          "loss": 0.6129,
+          "dev": 0.6425
+        },
+        {
+          "epoch": 9,
+          "loss": 0.4323,
+          "dev": 0.6807
+        },
+        {
+          "epoch": 10,
+          "loss": 0.3163,
+          "dev": 0.5988
+        },
+        {
+          "epoch": 11,
+          "loss": 0.2311,
+          "dev": 0.6903
+        },
+        {
+          "epoch": 12,
+          "loss": 0.1589,
+          "dev": 0.6585
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1334,
+          "dev": 0.66
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0984,
+          "dev": 0.6593
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0874,
+          "dev": 0.6479
+        }
+      ]
+    }
+  },
+  "seed1/window_3": {
+    "train_examples": 695,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6831,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 2.64
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6432,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 2.37
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 2.35
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.838,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 9.17
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6985,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 8.93
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.84,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 8.96
+      },
+      "train_minutes": 3.1,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.476,
+          "dev": 0.013
+        },
+        {
+          "epoch": 2,
+          "loss": 2.3974,
+          "dev": 0.3461
+        },
+        {
+          "epoch": 3,
+          "loss": 1.8937,
+          "dev": 0.4101
+        },
+        {
+          "epoch": 4,
+          "loss": 1.439,
+          "dev": 0.5295
+        },
+        {
+          "epoch": 5,
+          "loss": 1.046,
+          "dev": 0.5979
+        },
+        {
+          "epoch": 6,
+          "loss": 0.7616,
+          "dev": 0.5789
+        },
+        {
+          "epoch": 7,
+          "loss": 0.5301,
+          "dev": 0.6943
+        },
+        {
+          "epoch": 8,
+          "loss": 0.3594,
+          "dev": 0.7423
+        },
+        {
+          "epoch": 9,
+          "loss": 0.2559,
+          "dev": 0.6244
+        },
+        {
+          "epoch": 10,
+          "loss": 0.1482,
+          "dev": 0.6843
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1107,
+          "dev": 0.6711
+        },
+        {
+          "epoch": 12,
+          "loss": 0.0775,
+          "dev": 0.7105
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0522,
+          "dev": 0.683
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0433,
+          "dev": 0.7375
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0338,
+          "dev": 0.6812
+        }
+      ]
+    }
+  },
+  "seed1/keyword_summary": {
+    "train_examples": 695,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5282,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 2.64
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5377,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 2.37
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.78,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 2.26
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6761,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 8.59
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6382,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 8.62
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.82,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 9.33
+      },
+      "train_minutes": 2.8,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4771,
+          "dev": 0.0427
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4146,
+          "dev": 0.1775
+        },
+        {
+          "epoch": 3,
+          "loss": 1.9901,
+          "dev": 0.3578
+        },
+        {
+          "epoch": 4,
+          "loss": 1.6085,
+          "dev": 0.3551
+        },
+        {
+          "epoch": 5,
+          "loss": 1.278,
+          "dev": 0.5077
+        },
+        {
+          "epoch": 6,
+          "loss": 1.0427,
+          "dev": 0.5173
+        },
+        {
+          "epoch": 7,
+          "loss": 0.8468,
+          "dev": 0.5624
+        },
+        {
+          "epoch": 8,
+          "loss": 0.7101,
+          "dev": 0.5787
+        },
+        {
+          "epoch": 9,
+          "loss": 0.5598,
+          "dev": 0.5946
+        },
+        {
+          "epoch": 10,
+          "loss": 0.4188,
+          "dev": 0.588
+        },
+        {
+          "epoch": 11,
+          "loss": 0.3322,
+          "dev": 0.6275
+        },
+        {
+          "epoch": 12,
+          "loss": 0.2726,
+          "dev": 0.6319
+        },
+        {
+          "epoch": 13,
+          "loss": 0.2262,
+          "dev": 0.6298
+        },
+        {
+          "epoch": 14,
+          "loss": 0.1858,
+          "dev": 0.6057
+        },
+        {
+          "epoch": 15,
+          "loss": 0.1642,
+          "dev": 0.5988
+        }
+      ]
+    }
+  },
+  "seed1/structured_state": {
+    "train_examples": 695,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5493,
+        "tokens_xlmr_mean": 25.7,
+        "latency_ms_mean": 2.7
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.593,
+        "tokens_xlmr_mean": 33.9,
+        "latency_ms_mean": 2.46
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 24.8,
+        "latency_ms_mean": 2.37
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7887,
+        "tokens_xlmr_mean": 25.7,
+        "latency_ms_mean": 9.17
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7538,
+        "tokens_xlmr_mean": 33.9,
+        "latency_ms_mean": 8.82
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.9,
+        "tokens_xlmr_mean": 24.8,
+        "latency_ms_mean": 8.41
+      },
+      "train_minutes": 3.3,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4679,
+          "dev": 0.044
+        },
+        {
+          "epoch": 2,
+          "loss": 2.3629,
+          "dev": 0.2445
+        },
+        {
+          "epoch": 3,
+          "loss": 1.9211,
+          "dev": 0.3118
+        },
+        {
+          "epoch": 4,
+          "loss": 1.4982,
+          "dev": 0.3692
+        },
+        {
+          "epoch": 5,
+          "loss": 1.2096,
+          "dev": 0.6905
+        },
+        {
+          "epoch": 6,
+          "loss": 1.0133,
+          "dev": 0.6672
+        },
+        {
+          "epoch": 7,
+          "loss": 0.8175,
+          "dev": 0.7024
+        },
+        {
+          "epoch": 8,
+          "loss": 0.6553,
+          "dev": 0.7097
+        },
+        {
+          "epoch": 9,
+          "loss": 0.5205,
+          "dev": 0.6444
+        },
+        {
+          "epoch": 10,
+          "loss": 0.3921,
+          "dev": 0.7413
+        },
+        {
+          "epoch": 11,
+          "loss": 0.2957,
+          "dev": 0.621
+        },
+        {
+          "epoch": 12,
+          "loss": 0.2425,
+          "dev": 0.7346
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1949,
+          "dev": 0.6401
+        },
+        {
+          "epoch": 14,
+          "loss": 0.1541,
+          "dev": 0.7155
+        },
+        {
+          "epoch": 15,
+          "loss": 0.1419,
+          "dev": 0.7155
+        }
+      ]
+    }
+  },
+  "seed1/summary": {
+    "train_examples": 695,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6479,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 2.59
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5276,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 2.48
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 2.48
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.8239,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 9.0
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7337,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 9.08
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.88,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 8.83
+      },
+      "train_minutes": 3.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4727,
+          "dev": 0.0391
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4389,
+          "dev": 0.1204
+        },
+        {
+          "epoch": 3,
+          "loss": 2.1554,
+          "dev": 0.3536
+        },
+        {
+          "epoch": 4,
+          "loss": 1.577,
+          "dev": 0.3435
+        },
+        {
+          "epoch": 5,
+          "loss": 1.168,
+          "dev": 0.4772
+        },
+        {
+          "epoch": 6,
+          "loss": 0.86,
+          "dev": 0.5881
+        },
+        {
+          "epoch": 7,
+          "loss": 0.6647,
+          "dev": 0.7756
+        },
+        {
+          "epoch": 8,
+          "loss": 0.4941,
+          "dev": 0.7069
+        },
+        {
+          "epoch": 9,
+          "loss": 0.3499,
+          "dev": 0.7992
+        },
+        {
+          "epoch": 10,
+          "loss": 0.2403,
+          "dev": 0.7172
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1999,
+          "dev": 0.6956
+        },
+        {
+          "epoch": 12,
+          "loss": 0.1536,
+          "dev": 0.7046
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1097,
+          "dev": 0.6781
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0898,
+          "dev": 0.744
+        },
+        {
+          "epoch": 15,
+          "loss": 0.091,
+          "dev": 0.7245
+        }
+      ]
+    }
+  },
+  "seed1/full_history": {
+    "train_examples": 695,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5423,
+        "tokens_xlmr_mean": 42.5,
+        "latency_ms_mean": 2.92
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5377,
+        "tokens_xlmr_mean": 51.8,
+        "latency_ms_mean": 2.69
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.64,
+        "tokens_xlmr_mean": 55.3,
+        "latency_ms_mean": 2.83
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7254,
+        "tokens_xlmr_mean": 42.5,
+        "latency_ms_mean": 9.48
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7236,
+        "tokens_xlmr_mean": 51.8,
+        "latency_ms_mean": 8.95
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.9,
+        "tokens_xlmr_mean": 55.3,
+        "latency_ms_mean": 9.61
+      },
+      "train_minutes": 5.0,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4805,
+          "dev": 0.013
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4573,
+          "dev": 0.0306
+        },
+        {
+          "epoch": 3,
+          "loss": 2.4299,
+          "dev": 0.1007
+        },
+        {
+          "epoch": 4,
+          "loss": 2.1411,
+          "dev": 0.3273
+        },
+        {
+          "epoch": 5,
+          "loss": 1.7224,
+          "dev": 0.456
+        },
+        {
+          "epoch": 6,
+          "loss": 1.288,
+          "dev": 0.596
+        },
+        {
+          "epoch": 7,
+          "loss": 1.0344,
+          "dev": 0.5924
+        },
+        {
+          "epoch": 8,
+          "loss": 0.7787,
+          "dev": 0.5847
+        },
+        {
+          "epoch": 9,
+          "loss": 0.5501,
+          "dev": 0.6394
+        },
+        {
+          "epoch": 10,
+          "loss": 0.4284,
+          "dev": 0.6864
+        },
+        {
+          "epoch": 11,
+          "loss": 0.3168,
+          "dev": 0.7519
+        },
+        {
+          "epoch": 12,
+          "loss": 0.2432,
+          "dev": 0.679
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1792,
+          "dev": 0.7302
+        },
+        {
+          "epoch": 14,
+          "loss": 0.1467,
+          "dev": 0.7318
+        },
+        {
+          "epoch": 15,
+          "loss": 0.1199,
+          "dev": 0.715
+        }
+      ]
+    }
+  },
+  "seed2/current_only": {
+    "train_examples": 694,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5282,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 2.41
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5075,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 2.21
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.58,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 2.3
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.4859,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 9.03
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5075,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 8.62
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.62,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 9.11
+      },
+      "train_minutes": 2.2,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5162,
+          "dev": 0.0161
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4536,
+          "dev": 0.1544
+        },
+        {
+          "epoch": 3,
+          "loss": 2.3573,
+          "dev": 0.1389
+        },
+        {
+          "epoch": 4,
+          "loss": 2.1208,
+          "dev": 0.2873
+        },
+        {
+          "epoch": 5,
+          "loss": 1.8457,
+          "dev": 0.3858
+        },
+        {
+          "epoch": 6,
+          "loss": 1.6501,
+          "dev": 0.3878
+        },
+        {
+          "epoch": 7,
+          "loss": 1.4495,
+          "dev": 0.5316
+        },
+        {
+          "epoch": 8,
+          "loss": 1.2492,
+          "dev": 0.4845
+        },
+        {
+          "epoch": 9,
+          "loss": 1.1193,
+          "dev": 0.4621
+        },
+        {
+          "epoch": 10,
+          "loss": 0.9654,
+          "dev": 0.5003
+        },
+        {
+          "epoch": 11,
+          "loss": 0.8741,
+          "dev": 0.498
+        },
+        {
+          "epoch": 12,
+          "loss": 0.7359,
+          "dev": 0.5231
+        },
+        {
+          "epoch": 13,
+          "loss": 0.7081,
+          "dev": 0.5212
+        },
+        {
+          "epoch": 14,
+          "loss": 0.6399,
+          "dev": 0.5112
+        },
+        {
+          "epoch": 15,
+          "loss": 0.6512,
+          "dev": 0.5293
+        }
+      ]
+    }
+  },
+  "seed2/window_2": {
+    "train_examples": 694,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6901,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 2.96
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.603,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 2.28
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.86,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 2.48
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7042,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 8.95
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6734,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 9.25
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.84,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 8.77
+      },
+      "train_minutes": 2.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5052,
+          "dev": 0.0161
+        },
+        {
+          "epoch": 2,
+          "loss": 2.3706,
+          "dev": 0.3093
+        },
+        {
+          "epoch": 3,
+          "loss": 1.9482,
+          "dev": 0.2762
+        },
+        {
+          "epoch": 4,
+          "loss": 1.54,
+          "dev": 0.4505
+        },
+        {
+          "epoch": 5,
+          "loss": 1.1904,
+          "dev": 0.5265
+        },
+        {
+          "epoch": 6,
+          "loss": 0.9232,
+          "dev": 0.6256
+        },
+        {
+          "epoch": 7,
+          "loss": 0.695,
+          "dev": 0.6426
+        },
+        {
+          "epoch": 8,
+          "loss": 0.526,
+          "dev": 0.6382
+        },
+        {
+          "epoch": 9,
+          "loss": 0.3627,
+          "dev": 0.6117
+        },
+        {
+          "epoch": 10,
+          "loss": 0.2691,
+          "dev": 0.6339
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1775,
+          "dev": 0.6036
+        },
+        {
+          "epoch": 12,
+          "loss": 0.1283,
+          "dev": 0.6559
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0895,
+          "dev": 0.6352
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0725,
+          "dev": 0.6529
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0529,
+          "dev": 0.6461
+        }
+      ]
+    }
+  },
+  "seed2/window_3": {
+    "train_examples": 694,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6761,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 2.6
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6633,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 2.44
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 2.38
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7817,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 8.79
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7688,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 8.83
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.88,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 8.81
+      },
+      "train_minutes": 3.2,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5109,
+          "dev": 0.0375
+        },
+        {
+          "epoch": 2,
+          "loss": 2.3783,
+          "dev": 0.2853
+        },
+        {
+          "epoch": 3,
+          "loss": 1.8642,
+          "dev": 0.4217
+        },
+        {
+          "epoch": 4,
+          "loss": 1.3444,
+          "dev": 0.5846
+        },
+        {
+          "epoch": 5,
+          "loss": 0.9823,
+          "dev": 0.6575
+        },
+        {
+          "epoch": 6,
+          "loss": 0.7259,
+          "dev": 0.6706
+        },
+        {
+          "epoch": 7,
+          "loss": 0.5408,
+          "dev": 0.6777
+        },
+        {
+          "epoch": 8,
+          "loss": 0.3914,
+          "dev": 0.6512
+        },
+        {
+          "epoch": 9,
+          "loss": 0.277,
+          "dev": 0.6656
+        },
+        {
+          "epoch": 10,
+          "loss": 0.1748,
+          "dev": 0.6818
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1148,
+          "dev": 0.7054
+        },
+        {
+          "epoch": 12,
+          "loss": 0.0745,
+          "dev": 0.7082
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0537,
+          "dev": 0.7284
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0397,
+          "dev": 0.7218
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0286,
+          "dev": 0.719
+        }
+      ]
+    }
+  },
+  "seed2/keyword_summary": {
+    "train_examples": 694,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5493,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 2.67
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5779,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 2.62
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 2.33
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6127,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 9.2
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6131,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 8.7
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.88,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 8.61
+      },
+      "train_minutes": 2.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5157,
+          "dev": 0.0434
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4297,
+          "dev": 0.1602
+        },
+        {
+          "epoch": 3,
+          "loss": 2.0883,
+          "dev": 0.2267
+        },
+        {
+          "epoch": 4,
+          "loss": 1.7089,
+          "dev": 0.4294
+        },
+        {
+          "epoch": 5,
+          "loss": 1.3614,
+          "dev": 0.5367
+        },
+        {
+          "epoch": 6,
+          "loss": 1.0712,
+          "dev": 0.4726
+        },
+        {
+          "epoch": 7,
+          "loss": 0.7921,
+          "dev": 0.5936
+        },
+        {
+          "epoch": 8,
+          "loss": 0.5749,
+          "dev": 0.5355
+        },
+        {
+          "epoch": 9,
+          "loss": 0.4506,
+          "dev": 0.5636
+        },
+        {
+          "epoch": 10,
+          "loss": 0.3555,
+          "dev": 0.5769
+        },
+        {
+          "epoch": 11,
+          "loss": 0.2915,
+          "dev": 0.6271
+        },
+        {
+          "epoch": 12,
+          "loss": 0.2239,
+          "dev": 0.6062
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1717,
+          "dev": 0.5963
+        },
+        {
+          "epoch": 14,
+          "loss": 0.1489,
+          "dev": 0.6088
+        },
+        {
+          "epoch": 15,
+          "loss": 0.1366,
+          "dev": 0.6076
+        }
+      ]
+    }
+  },
+  "seed2/structured_state": {
+    "train_examples": 694,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5423,
+        "tokens_xlmr_mean": 25.6,
+        "latency_ms_mean": 2.78
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6181,
+        "tokens_xlmr_mean": 33.9,
+        "latency_ms_mean": 2.42
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 24.8,
+        "latency_ms_mean": 2.42
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7324,
+        "tokens_xlmr_mean": 25.6,
+        "latency_ms_mean": 9.19
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.794,
+        "tokens_xlmr_mean": 33.9,
+        "latency_ms_mean": 8.95
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.84,
+        "tokens_xlmr_mean": 24.8,
+        "latency_ms_mean": 8.63
+      },
+      "train_minutes": 3.3,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.493,
+          "dev": 0.0468
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4184,
+          "dev": 0.1782
+        },
+        {
+          "epoch": 3,
+          "loss": 1.9918,
+          "dev": 0.318
+        },
+        {
+          "epoch": 4,
+          "loss": 1.6469,
+          "dev": 0.4193
+        },
+        {
+          "epoch": 5,
+          "loss": 1.3076,
+          "dev": 0.7302
+        },
+        {
+          "epoch": 6,
+          "loss": 1.092,
+          "dev": 0.5954
+        },
+        {
+          "epoch": 7,
+          "loss": 0.8541,
+          "dev": 0.6504
+        },
+        {
+          "epoch": 8,
+          "loss": 0.7163,
+          "dev": 0.6773
+        },
+        {
+          "epoch": 9,
+          "loss": 0.5876,
+          "dev": 0.7367
+        },
+        {
+          "epoch": 10,
+          "loss": 0.4776,
+          "dev": 0.7442
+        },
+        {
+          "epoch": 11,
+          "loss": 0.3993,
+          "dev": 0.7311
+        },
+        {
+          "epoch": 12,
+          "loss": 0.3321,
+          "dev": 0.7203
+        },
+        {
+          "epoch": 13,
+          "loss": 0.2585,
+          "dev": 0.8119
+        },
+        {
+          "epoch": 14,
+          "loss": 0.216,
+          "dev": 0.7321
+        },
+        {
+          "epoch": 15,
+          "loss": 0.1973,
+          "dev": 0.7531
+        }
+      ]
+    }
+  },
+  "seed2/summary": {
+    "train_examples": 694,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5775,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 2.46
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5427,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 2.48
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.72,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 2.53
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.8028,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 8.94
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7437,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 8.92
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.94,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 8.83
+      },
+      "train_minutes": 3.8,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.506,
+          "dev": 0.0498
+        },
+        {
+          "epoch": 2,
+          "loss": 2.3788,
+          "dev": 0.2607
+        },
+        {
+          "epoch": 3,
+          "loss": 1.9333,
+          "dev": 0.3173
+        },
+        {
+          "epoch": 4,
+          "loss": 1.4242,
+          "dev": 0.567
+        },
+        {
+          "epoch": 5,
+          "loss": 1.0735,
+          "dev": 0.5626
+        },
+        {
+          "epoch": 6,
+          "loss": 0.8192,
+          "dev": 0.6932
+        },
+        {
+          "epoch": 7,
+          "loss": 0.6291,
+          "dev": 0.6929
+        },
+        {
+          "epoch": 8,
+          "loss": 0.4584,
+          "dev": 0.7376
+        },
+        {
+          "epoch": 9,
+          "loss": 0.3516,
+          "dev": 0.7525
+        },
+        {
+          "epoch": 10,
+          "loss": 0.2592,
+          "dev": 0.7594
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1927,
+          "dev": 0.7794
+        },
+        {
+          "epoch": 12,
+          "loss": 0.1534,
+          "dev": 0.7324
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1157,
+          "dev": 0.7598
+        },
+        {
+          "epoch": 14,
+          "loss": 0.091,
+          "dev": 0.7509
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0697,
+          "dev": 0.7509
+        }
+      ]
+    }
+  },
+  "seed2/full_history": {
+    "train_examples": 694,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5282,
+        "tokens_xlmr_mean": 42.5,
+        "latency_ms_mean": 2.89
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.4874,
+        "tokens_xlmr_mean": 51.8,
+        "latency_ms_mean": 2.62
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.64,
+        "tokens_xlmr_mean": 55.3,
+        "latency_ms_mean": 2.66
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7394,
+        "tokens_xlmr_mean": 42.5,
+        "latency_ms_mean": 9.09
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7236,
+        "tokens_xlmr_mean": 51.8,
+        "latency_ms_mean": 9.05
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.9,
+        "tokens_xlmr_mean": 55.3,
+        "latency_ms_mean": 9.14
+      },
+      "train_minutes": 4.9,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5194,
+          "dev": 0.0431
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4243,
+          "dev": 0.2457
+        },
+        {
+          "epoch": 3,
+          "loss": 2.01,
+          "dev": 0.2572
+        },
+        {
+          "epoch": 4,
+          "loss": 1.5099,
+          "dev": 0.5103
+        },
+        {
+          "epoch": 5,
+          "loss": 1.1709,
+          "dev": 0.5458
+        },
+        {
+          "epoch": 6,
+          "loss": 0.8788,
+          "dev": 0.5837
+        },
+        {
+          "epoch": 7,
+          "loss": 0.6177,
+          "dev": 0.7197
+        },
+        {
+          "epoch": 8,
+          "loss": 0.4266,
+          "dev": 0.7527
+        },
+        {
+          "epoch": 9,
+          "loss": 0.2924,
+          "dev": 0.7234
+        },
+        {
+          "epoch": 10,
+          "loss": 0.201,
+          "dev": 0.7311
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1474,
+          "dev": 0.6468
+        },
+        {
+          "epoch": 12,
+          "loss": 0.0931,
+          "dev": 0.7296
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0839,
+          "dev": 0.7104
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0558,
+          "dev": 0.7392
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0469,
+          "dev": 0.7392
+        }
+      ]
+    }
+  },
+  "seed3/current_only": {
+    "train_examples": 711,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.507,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 2.65
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.4874,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 2.23
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.58,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 2.18
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.4437,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 8.88
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5377,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 8.52
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.56,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 8.9
+      },
+      "train_minutes": 2.2,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5071,
+          "dev": 0.0585
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4465,
+          "dev": 0.0271
+        },
+        {
+          "epoch": 3,
+          "loss": 2.3848,
+          "dev": 0.0069
+        },
+        {
+          "epoch": 4,
+          "loss": 2.1896,
+          "dev": 0.1615
+        },
+        {
+          "epoch": 5,
+          "loss": 1.8947,
+          "dev": 0.3078
+        },
+        {
+          "epoch": 6,
+          "loss": 1.6337,
+          "dev": 0.3687
+        },
+        {
+          "epoch": 7,
+          "loss": 1.4297,
+          "dev": 0.4281
+        },
+        {
+          "epoch": 8,
+          "loss": 1.3009,
+          "dev": 0.4
+        },
+        {
+          "epoch": 9,
+          "loss": 1.1362,
+          "dev": 0.3829
+        },
+        {
+          "epoch": 10,
+          "loss": 1.0333,
+          "dev": 0.4216
+        },
+        {
+          "epoch": 11,
+          "loss": 0.9667,
+          "dev": 0.3862
+        },
+        {
+          "epoch": 12,
+          "loss": 0.8586,
+          "dev": 0.4567
+        },
+        {
+          "epoch": 13,
+          "loss": 0.7592,
+          "dev": 0.4282
+        },
+        {
+          "epoch": 14,
+          "loss": 0.7342,
+          "dev": 0.4134
+        },
+        {
+          "epoch": 15,
+          "loss": 0.6996,
+          "dev": 0.3909
+        }
+      ]
+    }
+  },
+  "seed3/window_2": {
+    "train_examples": 711,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6338,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 2.64
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6181,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 2.3
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.86,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 2.29
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.507,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 9.1
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5075,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 9.01
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.82,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 9.1
+      },
+      "train_minutes": 2.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5075,
+          "dev": 0.0388
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4285,
+          "dev": 0.0688
+        },
+        {
+          "epoch": 3,
+          "loss": 2.2794,
+          "dev": 0.1951
+        },
+        {
+          "epoch": 4,
+          "loss": 1.9649,
+          "dev": 0.1301
+        },
+        {
+          "epoch": 5,
+          "loss": 1.6271,
+          "dev": 0.2768
+        },
+        {
+          "epoch": 6,
+          "loss": 1.3509,
+          "dev": 0.2836
+        },
+        {
+          "epoch": 7,
+          "loss": 1.1565,
+          "dev": 0.3881
+        },
+        {
+          "epoch": 8,
+          "loss": 1.0034,
+          "dev": 0.3725
+        },
+        {
+          "epoch": 9,
+          "loss": 0.9167,
+          "dev": 0.3666
+        },
+        {
+          "epoch": 10,
+          "loss": 0.8955,
+          "dev": 0.395
+        },
+        {
+          "epoch": 11,
+          "loss": 0.7817,
+          "dev": 0.4577
+        },
+        {
+          "epoch": 12,
+          "loss": 0.7,
+          "dev": 0.4223
+        },
+        {
+          "epoch": 13,
+          "loss": 0.6046,
+          "dev": 0.441
+        },
+        {
+          "epoch": 14,
+          "loss": 0.5659,
+          "dev": 0.4539
+        },
+        {
+          "epoch": 15,
+          "loss": 0.5584,
+          "dev": 0.4576
+        }
+      ]
+    }
+  },
+  "seed3/window_3": {
+    "train_examples": 711,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6197,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 2.92
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6683,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 2.68
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.84,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 2.46
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7676,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 8.72
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7035,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 9.08
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.86,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 8.84
+      },
+      "train_minutes": 3.2,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5022,
+          "dev": 0.0328
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4601,
+          "dev": 0.0388
+        },
+        {
+          "epoch": 3,
+          "loss": 2.3538,
+          "dev": 0.1463
+        },
+        {
+          "epoch": 4,
+          "loss": 1.8275,
+          "dev": 0.3123
+        },
+        {
+          "epoch": 5,
+          "loss": 1.3154,
+          "dev": 0.3789
+        },
+        {
+          "epoch": 6,
+          "loss": 1.0186,
+          "dev": 0.4358
+        },
+        {
+          "epoch": 7,
+          "loss": 0.7657,
+          "dev": 0.4498
+        },
+        {
+          "epoch": 8,
+          "loss": 0.6221,
+          "dev": 0.6064
+        },
+        {
+          "epoch": 9,
+          "loss": 0.4482,
+          "dev": 0.5419
+        },
+        {
+          "epoch": 10,
+          "loss": 0.3478,
+          "dev": 0.6226
+        },
+        {
+          "epoch": 11,
+          "loss": 0.2671,
+          "dev": 0.606
+        },
+        {
+          "epoch": 12,
+          "loss": 0.2059,
+          "dev": 0.6383
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1625,
+          "dev": 0.6379
+        },
+        {
+          "epoch": 14,
+          "loss": 0.1273,
+          "dev": 0.6309
+        },
+        {
+          "epoch": 15,
+          "loss": 0.1095,
+          "dev": 0.6312
+        }
+      ]
+    }
+  },
+  "seed3/keyword_summary": {
+    "train_examples": 711,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5282,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 2.86
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5276,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 2.31
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 2.28
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5563,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 9.47
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.608,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 9.05
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.82,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 8.6
+      },
+      "train_minutes": 2.8,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5071,
+          "dev": 0.0694
+        },
+        {
+          "epoch": 2,
+          "loss": 2.468,
+          "dev": 0.0383
+        },
+        {
+          "epoch": 3,
+          "loss": 2.3346,
+          "dev": 0.1538
+        },
+        {
+          "epoch": 4,
+          "loss": 1.9517,
+          "dev": 0.2122
+        },
+        {
+          "epoch": 5,
+          "loss": 1.5624,
+          "dev": 0.2977
+        },
+        {
+          "epoch": 6,
+          "loss": 1.2757,
+          "dev": 0.2097
+        },
+        {
+          "epoch": 7,
+          "loss": 1.0301,
+          "dev": 0.3892
+        },
+        {
+          "epoch": 8,
+          "loss": 0.8269,
+          "dev": 0.5201
+        },
+        {
+          "epoch": 9,
+          "loss": 0.6687,
+          "dev": 0.5544
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5311,
+          "dev": 0.5617
+        },
+        {
+          "epoch": 11,
+          "loss": 0.4462,
+          "dev": 0.5318
+        },
+        {
+          "epoch": 12,
+          "loss": 0.3418,
+          "dev": 0.5937
+        },
+        {
+          "epoch": 13,
+          "loss": 0.2943,
+          "dev": 0.5836
+        },
+        {
+          "epoch": 14,
+          "loss": 0.2489,
+          "dev": 0.5722
+        },
+        {
+          "epoch": 15,
+          "loss": 0.2268,
+          "dev": 0.5961
+        }
+      ]
+    }
+  },
+  "seed3/structured_state": {
+    "train_examples": 711,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5493,
+        "tokens_xlmr_mean": 25.7,
+        "latency_ms_mean": 2.65
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6181,
+        "tokens_xlmr_mean": 33.9,
+        "latency_ms_mean": 2.43
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.84,
+        "tokens_xlmr_mean": 24.8,
+        "latency_ms_mean": 2.26
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7254,
+        "tokens_xlmr_mean": 25.7,
+        "latency_ms_mean": 8.79
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6834,
+        "tokens_xlmr_mean": 33.8,
+        "latency_ms_mean": 9.34
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.84,
+        "tokens_xlmr_mean": 24.7,
+        "latency_ms_mean": 8.85
+      },
+      "train_minutes": 3.5,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4974,
+          "dev": 0.0346
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4529,
+          "dev": 0.0747
+        },
+        {
+          "epoch": 3,
+          "loss": 2.2288,
+          "dev": 0.1446
+        },
+        {
+          "epoch": 4,
+          "loss": 1.7586,
+          "dev": 0.2382
+        },
+        {
+          "epoch": 5,
+          "loss": 1.3842,
+          "dev": 0.209
+        },
+        {
+          "epoch": 6,
+          "loss": 1.1609,
+          "dev": 0.3591
+        },
+        {
+          "epoch": 7,
+          "loss": 0.9519,
+          "dev": 0.3508
+        },
+        {
+          "epoch": 8,
+          "loss": 0.8101,
+          "dev": 0.4581
+        },
+        {
+          "epoch": 9,
+          "loss": 0.6526,
+          "dev": 0.4243
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5555,
+          "dev": 0.4626
+        },
+        {
+          "epoch": 11,
+          "loss": 0.4728,
+          "dev": 0.5077
+        },
+        {
+          "epoch": 12,
+          "loss": 0.3979,
+          "dev": 0.4934
+        },
+        {
+          "epoch": 13,
+          "loss": 0.3447,
+          "dev": 0.5239
+        },
+        {
+          "epoch": 14,
+          "loss": 0.2882,
+          "dev": 0.482
+        },
+        {
+          "epoch": 15,
+          "loss": 0.2727,
+          "dev": 0.4538
+        }
+      ]
+    }
+  },
+  "seed3/summary": {
+    "train_examples": 711,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5704,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 2.53
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5226,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 2.48
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.74,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 2.55
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6197,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 8.85
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6281,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 9.06
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.84,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 8.8
+      },
+      "train_minutes": 3.8,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.5029,
+          "dev": 0.0564
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4673,
+          "dev": 0.0076
+        },
+        {
+          "epoch": 3,
+          "loss": 2.4365,
+          "dev": 0.0383
+        },
+        {
+          "epoch": 4,
+          "loss": 2.4649,
+          "dev": 0.0
+        },
+        {
+          "epoch": 5,
+          "loss": 2.4608,
+          "dev": 0.0
+        },
+        {
+          "epoch": 6,
+          "loss": 2.4202,
+          "dev": 0.0121
+        },
+        {
+          "epoch": 7,
+          "loss": 2.2711,
+          "dev": 0.1613
+        },
+        {
+          "epoch": 8,
+          "loss": 1.7297,
+          "dev": 0.2816
+        },
+        {
+          "epoch": 9,
+          "loss": 1.378,
+          "dev": 0.2206
+        },
+        {
+          "epoch": 10,
+          "loss": 1.1368,
+          "dev": 0.3284
+        },
+        {
+          "epoch": 11,
+          "loss": 1.0023,
+          "dev": 0.4373
+        },
+        {
+          "epoch": 12,
+          "loss": 0.8661,
+          "dev": 0.4525
+        },
+        {
+          "epoch": 13,
+          "loss": 0.7398,
+          "dev": 0.45
+        },
+        {
+          "epoch": 14,
+          "loss": 0.6815,
+          "dev": 0.4694
+        },
+        {
+          "epoch": 15,
+          "loss": 0.6459,
+          "dev": 0.5039
+        }
+      ]
+    }
+  },
+  "seed3/full_history": {
+    "train_examples": 711,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5352,
+        "tokens_xlmr_mean": 42.5,
+        "latency_ms_mean": 2.96
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.4925,
+        "tokens_xlmr_mean": 51.8,
+        "latency_ms_mean": 2.62
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.72,
+        "tokens_xlmr_mean": 55.3,
+        "latency_ms_mean": 2.57
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7042,
+        "tokens_xlmr_mean": 42.5,
+        "latency_ms_mean": 9.3
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6985,
+        "tokens_xlmr_mean": 51.8,
+        "latency_ms_mean": 9.54
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.9,
+        "tokens_xlmr_mean": 55.3,
+        "latency_ms_mean": 9.26
+      },
+      "train_minutes": 5.1,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4873,
+          "dev": 0.0338
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4509,
+          "dev": 0.0386
+        },
+        {
+          "epoch": 3,
+          "loss": 2.3853,
+          "dev": 0.1504
+        },
+        {
+          "epoch": 4,
+          "loss": 2.1175,
+          "dev": 0.1865
+        },
+        {
+          "epoch": 5,
+          "loss": 1.6008,
+          "dev": 0.298
+        },
+        {
+          "epoch": 6,
+          "loss": 1.1404,
+          "dev": 0.2712
+        },
+        {
+          "epoch": 7,
+          "loss": 0.7952,
+          "dev": 0.5626
+        },
+        {
+          "epoch": 8,
+          "loss": 0.5944,
+          "dev": 0.5942
+        },
+        {
+          "epoch": 9,
+          "loss": 0.4366,
+          "dev": 0.5775
+        },
+        {
+          "epoch": 10,
+          "loss": 0.3037,
+          "dev": 0.6428
+        },
+        {
+          "epoch": 11,
+          "loss": 0.2333,
+          "dev": 0.6846
+        },
+        {
+          "epoch": 12,
+          "loss": 0.1702,
+          "dev": 0.7105
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1511,
+          "dev": 0.7135
+        },
+        {
+          "epoch": 14,
+          "loss": 0.099,
+          "dev": 0.6848
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0872,
+          "dev": 0.7291
+        }
+      ]
+    }
+  },
+  "seed4/current_only": {
+    "train_examples": 699,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.507,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 2.46
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5276,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 2.09
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.6,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 2.14
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5141,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 8.53
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5578,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 8.65
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.54,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 8.62
+      },
+      "train_minutes": 2.4,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4902,
+          "dev": 0.0516
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4458,
+          "dev": 0.0719
+        },
+        {
+          "epoch": 3,
+          "loss": 2.3988,
+          "dev": 0.1744
+        },
+        {
+          "epoch": 4,
+          "loss": 2.2157,
+          "dev": 0.1869
+        },
+        {
+          "epoch": 5,
+          "loss": 1.9239,
+          "dev": 0.3063
+        },
+        {
+          "epoch": 6,
+          "loss": 1.6886,
+          "dev": 0.3318
+        },
+        {
+          "epoch": 7,
+          "loss": 1.4949,
+          "dev": 0.359
+        },
+        {
+          "epoch": 8,
+          "loss": 1.3057,
+          "dev": 0.4524
+        },
+        {
+          "epoch": 9,
+          "loss": 1.1925,
+          "dev": 0.519
+        },
+        {
+          "epoch": 10,
+          "loss": 1.088,
+          "dev": 0.4785
+        },
+        {
+          "epoch": 11,
+          "loss": 0.9492,
+          "dev": 0.5139
+        },
+        {
+          "epoch": 12,
+          "loss": 0.8853,
+          "dev": 0.5011
+        },
+        {
+          "epoch": 13,
+          "loss": 0.8186,
+          "dev": 0.5405
+        },
+        {
+          "epoch": 14,
+          "loss": 0.74,
+          "dev": 0.5134
+        },
+        {
+          "epoch": 15,
+          "loss": 0.694,
+          "dev": 0.5547
+        }
+      ]
+    }
+  },
+  "seed4/window_2": {
+    "train_examples": 699,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6479,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 2.64
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6231,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 2.28
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.86,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 2.16
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7958,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 8.65
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6734,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 8.58
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.86,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 8.81
+      },
+      "train_minutes": 2.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4937,
+          "dev": 0.0185
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4131,
+          "dev": 0.1962
+        },
+        {
+          "epoch": 3,
+          "loss": 2.0374,
+          "dev": 0.3955
+        },
+        {
+          "epoch": 4,
+          "loss": 1.5942,
+          "dev": 0.4338
+        },
+        {
+          "epoch": 5,
+          "loss": 1.2102,
+          "dev": 0.5325
+        },
+        {
+          "epoch": 6,
+          "loss": 0.9208,
+          "dev": 0.4968
+        },
+        {
+          "epoch": 7,
+          "loss": 0.6735,
+          "dev": 0.5061
+        },
+        {
+          "epoch": 8,
+          "loss": 0.4949,
+          "dev": 0.567
+        },
+        {
+          "epoch": 9,
+          "loss": 0.341,
+          "dev": 0.616
+        },
+        {
+          "epoch": 10,
+          "loss": 0.2366,
+          "dev": 0.5785
+        },
+        {
+          "epoch": 11,
+          "loss": 0.184,
+          "dev": 0.5809
+        },
+        {
+          "epoch": 12,
+          "loss": 0.1249,
+          "dev": 0.658
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0865,
+          "dev": 0.5882
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0725,
+          "dev": 0.6434
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0571,
+          "dev": 0.6006
+        }
+      ]
+    }
+  },
+  "seed4/window_3": {
+    "train_examples": 699,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6197,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 2.66
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6482,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 2.44
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 2.3
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7958,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 8.49
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7186,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 8.54
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.88,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 9.55
+      },
+      "train_minutes": 3.2,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4986,
+          "dev": 0.0072
+        },
+        {
+          "epoch": 2,
+          "loss": 2.3954,
+          "dev": 0.1829
+        },
+        {
+          "epoch": 3,
+          "loss": 1.8529,
+          "dev": 0.2968
+        },
+        {
+          "epoch": 4,
+          "loss": 1.3975,
+          "dev": 0.4188
+        },
+        {
+          "epoch": 5,
+          "loss": 0.9888,
+          "dev": 0.5181
+        },
+        {
+          "epoch": 6,
+          "loss": 0.68,
+          "dev": 0.5481
+        },
+        {
+          "epoch": 7,
+          "loss": 0.48,
+          "dev": 0.5981
+        },
+        {
+          "epoch": 8,
+          "loss": 0.3216,
+          "dev": 0.5939
+        },
+        {
+          "epoch": 9,
+          "loss": 0.2263,
+          "dev": 0.691
+        },
+        {
+          "epoch": 10,
+          "loss": 0.1549,
+          "dev": 0.6564
+        },
+        {
+          "epoch": 11,
+          "loss": 0.0926,
+          "dev": 0.702
+        },
+        {
+          "epoch": 12,
+          "loss": 0.0681,
+          "dev": 0.6373
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0533,
+          "dev": 0.6384
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0381,
+          "dev": 0.6605
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0273,
+          "dev": 0.6332
+        }
+      ]
+    }
+  },
+  "seed4/keyword_summary": {
+    "train_examples": 699,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5563,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 2.68
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5779,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 2.27
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.76,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 2.26
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6901,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 9.12
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6382,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 8.93
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.84,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 8.58
+      },
+      "train_minutes": 2.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4895,
+          "dev": 0.0316
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4443,
+          "dev": 0.1445
+        },
+        {
+          "epoch": 3,
+          "loss": 2.1621,
+          "dev": 0.2801
+        },
+        {
+          "epoch": 4,
+          "loss": 1.6675,
+          "dev": 0.2689
+        },
+        {
+          "epoch": 5,
+          "loss": 1.2759,
+          "dev": 0.5201
+        },
+        {
+          "epoch": 6,
+          "loss": 0.9911,
+          "dev": 0.4639
+        },
+        {
+          "epoch": 7,
+          "loss": 0.8031,
+          "dev": 0.4942
+        },
+        {
+          "epoch": 8,
+          "loss": 0.6258,
+          "dev": 0.4936
+        },
+        {
+          "epoch": 9,
+          "loss": 0.4872,
+          "dev": 0.5528
+        },
+        {
+          "epoch": 10,
+          "loss": 0.3741,
+          "dev": 0.5774
+        },
+        {
+          "epoch": 11,
+          "loss": 0.2782,
+          "dev": 0.5694
+        },
+        {
+          "epoch": 12,
+          "loss": 0.2138,
+          "dev": 0.5712
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1684,
+          "dev": 0.5886
+        },
+        {
+          "epoch": 14,
+          "loss": 0.1665,
+          "dev": 0.5991
+        },
+        {
+          "epoch": 15,
+          "loss": 0.1319,
+          "dev": 0.5991
+        }
+      ]
+    }
+  },
+  "seed4/structured_state": {
+    "train_examples": 699,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5563,
+        "tokens_xlmr_mean": 25.7,
+        "latency_ms_mean": 2.59
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6281,
+        "tokens_xlmr_mean": 33.9,
+        "latency_ms_mean": 2.51
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 24.8,
+        "latency_ms_mean": 2.42
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6972,
+        "tokens_xlmr_mean": 25.6,
+        "latency_ms_mean": 8.85
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6734,
+        "tokens_xlmr_mean": 33.8,
+        "latency_ms_mean": 8.93
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.82,
+        "tokens_xlmr_mean": 24.7,
+        "latency_ms_mean": 9.19
+      },
+      "train_minutes": 3.4,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4788,
+          "dev": 0.0419
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4502,
+          "dev": 0.1322
+        },
+        {
+          "epoch": 3,
+          "loss": 2.0913,
+          "dev": 0.2418
+        },
+        {
+          "epoch": 4,
+          "loss": 1.7319,
+          "dev": 0.3187
+        },
+        {
+          "epoch": 5,
+          "loss": 1.478,
+          "dev": 0.3643
+        },
+        {
+          "epoch": 6,
+          "loss": 1.1927,
+          "dev": 0.4572
+        },
+        {
+          "epoch": 7,
+          "loss": 1.0323,
+          "dev": 0.5355
+        },
+        {
+          "epoch": 8,
+          "loss": 0.9046,
+          "dev": 0.5482
+        },
+        {
+          "epoch": 9,
+          "loss": 0.7415,
+          "dev": 0.5781
+        },
+        {
+          "epoch": 10,
+          "loss": 0.6237,
+          "dev": 0.5822
+        },
+        {
+          "epoch": 11,
+          "loss": 0.5475,
+          "dev": 0.6215
+        },
+        {
+          "epoch": 12,
+          "loss": 0.4558,
+          "dev": 0.5454
+        },
+        {
+          "epoch": 13,
+          "loss": 0.3924,
+          "dev": 0.5743
+        },
+        {
+          "epoch": 14,
+          "loss": 0.3516,
+          "dev": 0.5654
+        },
+        {
+          "epoch": 15,
+          "loss": 0.3227,
+          "dev": 0.5654
+        }
+      ]
+    }
+  },
+  "seed4/summary": {
+    "train_examples": 699,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5845,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 2.61
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5528,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 2.67
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.68,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 2.99
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7535,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 8.84
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7337,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 8.87
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.88,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 8.66
+      },
+      "train_minutes": 3.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4811,
+          "dev": 0.0519
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4179,
+          "dev": 0.1857
+        },
+        {
+          "epoch": 3,
+          "loss": 1.9212,
+          "dev": 0.2734
+        },
+        {
+          "epoch": 4,
+          "loss": 1.4211,
+          "dev": 0.3866
+        },
+        {
+          "epoch": 5,
+          "loss": 1.0746,
+          "dev": 0.5398
+        },
+        {
+          "epoch": 6,
+          "loss": 0.8451,
+          "dev": 0.5881
+        },
+        {
+          "epoch": 7,
+          "loss": 0.6074,
+          "dev": 0.6734
+        },
+        {
+          "epoch": 8,
+          "loss": 0.4505,
+          "dev": 0.6641
+        },
+        {
+          "epoch": 9,
+          "loss": 0.3296,
+          "dev": 0.7389
+        },
+        {
+          "epoch": 10,
+          "loss": 0.2422,
+          "dev": 0.7132
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1778,
+          "dev": 0.7213
+        },
+        {
+          "epoch": 12,
+          "loss": 0.1325,
+          "dev": 0.7092
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0917,
+          "dev": 0.7396
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0818,
+          "dev": 0.711
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0618,
+          "dev": 0.711
+        }
+      ]
+    }
+  },
+  "seed4/full_history": {
+    "train_examples": 699,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.507,
+        "tokens_xlmr_mean": 42.5,
+        "latency_ms_mean": 3.03
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5628,
+        "tokens_xlmr_mean": 51.8,
+        "latency_ms_mean": 2.53
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.62,
+        "tokens_xlmr_mean": 55.3,
+        "latency_ms_mean": 2.9
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7113,
+        "tokens_xlmr_mean": 42.5,
+        "latency_ms_mean": 8.85
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7286,
+        "tokens_xlmr_mean": 51.8,
+        "latency_ms_mean": 9.01
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.88,
+        "tokens_xlmr_mean": 55.3,
+        "latency_ms_mean": 9.3
+      },
+      "train_minutes": 5.0,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.48,
+          "dev": 0.0661
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4522,
+          "dev": 0.0647
+        },
+        {
+          "epoch": 3,
+          "loss": 2.1899,
+          "dev": 0.229
+        },
+        {
+          "epoch": 4,
+          "loss": 1.6152,
+          "dev": 0.3496
+        },
+        {
+          "epoch": 5,
+          "loss": 1.2076,
+          "dev": 0.4826
+        },
+        {
+          "epoch": 6,
+          "loss": 0.8974,
+          "dev": 0.5341
+        },
+        {
+          "epoch": 7,
+          "loss": 0.683,
+          "dev": 0.498
+        },
+        {
+          "epoch": 8,
+          "loss": 0.4528,
+          "dev": 0.5044
+        },
+        {
+          "epoch": 9,
+          "loss": 0.3161,
+          "dev": 0.6282
+        },
+        {
+          "epoch": 10,
+          "loss": 0.2237,
+          "dev": 0.6947
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1422,
+          "dev": 0.6749
+        },
+        {
+          "epoch": 12,
+          "loss": 0.1099,
+          "dev": 0.6642
+        },
+        {
+          "epoch": 13,
+          "loss": 0.069,
+          "dev": 0.7047
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0599,
+          "dev": 0.6928
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0545,
+          "dev": 0.6917
+        }
+      ]
+    }
+  },
+  "seed5/current_only": {
+    "train_examples": 698,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5211,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 2.66
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.4975,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 2.15
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.62,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 2.22
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5493,
+        "tokens_xlmr_mean": 11.5,
+        "latency_ms_mean": 8.86
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5477,
+        "tokens_xlmr_mean": 11.8,
+        "latency_ms_mean": 9.08
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.58,
+        "tokens_xlmr_mean": 14.6,
+        "latency_ms_mean": 8.6
+      },
+      "train_minutes": 2.2,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4931,
+          "dev": 0.0299
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4432,
+          "dev": 0.0629
+        },
+        {
+          "epoch": 3,
+          "loss": 2.2554,
+          "dev": 0.2986
+        },
+        {
+          "epoch": 4,
+          "loss": 1.9015,
+          "dev": 0.422
+        },
+        {
+          "epoch": 5,
+          "loss": 1.6372,
+          "dev": 0.4746
+        },
+        {
+          "epoch": 6,
+          "loss": 1.367,
+          "dev": 0.5044
+        },
+        {
+          "epoch": 7,
+          "loss": 1.1896,
+          "dev": 0.5285
+        },
+        {
+          "epoch": 8,
+          "loss": 1.0203,
+          "dev": 0.5905
+        },
+        {
+          "epoch": 9,
+          "loss": 0.9117,
+          "dev": 0.5053
+        },
+        {
+          "epoch": 10,
+          "loss": 0.814,
+          "dev": 0.5577
+        },
+        {
+          "epoch": 11,
+          "loss": 0.7258,
+          "dev": 0.4987
+        },
+        {
+          "epoch": 12,
+          "loss": 0.6656,
+          "dev": 0.4306
+        },
+        {
+          "epoch": 13,
+          "loss": 0.5975,
+          "dev": 0.5265
+        },
+        {
+          "epoch": 14,
+          "loss": 0.5385,
+          "dev": 0.512
+        },
+        {
+          "epoch": 15,
+          "loss": 0.4976,
+          "dev": 0.5233
+        }
+      ]
+    }
+  },
+  "seed5/window_2": {
+    "train_examples": 698,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6901,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 2.7
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6131,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 2.4
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.86,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 2.34
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.8028,
+        "tokens_xlmr_mean": 20.5,
+        "latency_ms_mean": 8.81
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6935,
+        "tokens_xlmr_mean": 21.1,
+        "latency_ms_mean": 8.54
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.86,
+        "tokens_xlmr_mean": 26.0,
+        "latency_ms_mean": 8.83
+      },
+      "train_minutes": 2.8,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4822,
+          "dev": 0.034
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4155,
+          "dev": 0.0827
+        },
+        {
+          "epoch": 3,
+          "loss": 2.0986,
+          "dev": 0.2948
+        },
+        {
+          "epoch": 4,
+          "loss": 1.6156,
+          "dev": 0.4134
+        },
+        {
+          "epoch": 5,
+          "loss": 1.2242,
+          "dev": 0.5314
+        },
+        {
+          "epoch": 6,
+          "loss": 0.9147,
+          "dev": 0.6182
+        },
+        {
+          "epoch": 7,
+          "loss": 0.6925,
+          "dev": 0.4848
+        },
+        {
+          "epoch": 8,
+          "loss": 0.5155,
+          "dev": 0.4925
+        },
+        {
+          "epoch": 9,
+          "loss": 0.3741,
+          "dev": 0.6556
+        },
+        {
+          "epoch": 10,
+          "loss": 0.321,
+          "dev": 0.6004
+        },
+        {
+          "epoch": 11,
+          "loss": 0.2373,
+          "dev": 0.6845
+        },
+        {
+          "epoch": 12,
+          "loss": 0.159,
+          "dev": 0.6636
+        },
+        {
+          "epoch": 13,
+          "loss": 0.1247,
+          "dev": 0.7033
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0967,
+          "dev": 0.6665
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0866,
+          "dev": 0.6838
+        }
+      ]
+    }
+  },
+  "seed5/window_3": {
+    "train_examples": 698,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7183,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 2.73
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.6633,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 2.27
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.76,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 2.51
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.8451,
+        "tokens_xlmr_mean": 27.5,
+        "latency_ms_mean": 8.64
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7739,
+        "tokens_xlmr_mean": 28.9,
+        "latency_ms_mean": 8.86
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.9,
+        "tokens_xlmr_mean": 35.2,
+        "latency_ms_mean": 8.97
+      },
+      "train_minutes": 3.2,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4822,
+          "dev": 0.0214
+        },
+        {
+          "epoch": 2,
+          "loss": 2.3971,
+          "dev": 0.1711
+        },
+        {
+          "epoch": 3,
+          "loss": 1.8503,
+          "dev": 0.3756
+        },
+        {
+          "epoch": 4,
+          "loss": 1.3594,
+          "dev": 0.523
+        },
+        {
+          "epoch": 5,
+          "loss": 0.9496,
+          "dev": 0.5778
+        },
+        {
+          "epoch": 6,
+          "loss": 0.701,
+          "dev": 0.6264
+        },
+        {
+          "epoch": 7,
+          "loss": 0.5317,
+          "dev": 0.7079
+        },
+        {
+          "epoch": 8,
+          "loss": 0.3395,
+          "dev": 0.6237
+        },
+        {
+          "epoch": 9,
+          "loss": 0.2379,
+          "dev": 0.6428
+        },
+        {
+          "epoch": 10,
+          "loss": 0.167,
+          "dev": 0.7108
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1012,
+          "dev": 0.7373
+        },
+        {
+          "epoch": 12,
+          "loss": 0.0752,
+          "dev": 0.6554
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0532,
+          "dev": 0.7618
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0455,
+          "dev": 0.7387
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0332,
+          "dev": 0.7387
+        }
+      ]
+    }
+  },
+  "seed5/keyword_summary": {
+    "train_examples": 698,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.5634,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 2.7
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5729,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 2.32
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.8,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 2.28
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6549,
+        "tokens_xlmr_mean": 21.2,
+        "latency_ms_mean": 8.64
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.608,
+        "tokens_xlmr_mean": 22.4,
+        "latency_ms_mean": 8.74
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.86,
+        "tokens_xlmr_mean": 26.2,
+        "latency_ms_mean": 8.61
+      },
+      "train_minutes": 2.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.49,
+          "dev": 0.0536
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4336,
+          "dev": 0.1198
+        },
+        {
+          "epoch": 3,
+          "loss": 2.1844,
+          "dev": 0.2088
+        },
+        {
+          "epoch": 4,
+          "loss": 1.7294,
+          "dev": 0.4383
+        },
+        {
+          "epoch": 5,
+          "loss": 1.406,
+          "dev": 0.4244
+        },
+        {
+          "epoch": 6,
+          "loss": 1.1298,
+          "dev": 0.4959
+        },
+        {
+          "epoch": 7,
+          "loss": 0.9414,
+          "dev": 0.5373
+        },
+        {
+          "epoch": 8,
+          "loss": 0.8142,
+          "dev": 0.54
+        },
+        {
+          "epoch": 9,
+          "loss": 0.6585,
+          "dev": 0.5941
+        },
+        {
+          "epoch": 10,
+          "loss": 0.5226,
+          "dev": 0.5574
+        },
+        {
+          "epoch": 11,
+          "loss": 0.4286,
+          "dev": 0.553
+        },
+        {
+          "epoch": 12,
+          "loss": 0.3716,
+          "dev": 0.5265
+        },
+        {
+          "epoch": 13,
+          "loss": 0.3134,
+          "dev": 0.5531
+        },
+        {
+          "epoch": 14,
+          "loss": 0.2826,
+          "dev": 0.5531
+        },
+        {
+          "epoch": 15,
+          "loss": 0.259,
+          "dev": 0.5531
+        }
+      ]
+    }
+  },
+  "seed5/structured_state": {
+    "train_examples": 698,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.7394,
+        "tokens_xlmr_mean": 25.6,
+        "latency_ms_mean": 8.79
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7136,
+        "tokens_xlmr_mean": 33.9,
+        "latency_ms_mean": 8.99
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.76,
+        "tokens_xlmr_mean": 24.9,
+        "latency_ms_mean": 8.99
+      },
+      "train_minutes": 3.4,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4863,
+          "dev": 0.0088
+        },
+        {
+          "epoch": 2,
+          "loss": 2.3644,
+          "dev": 0.2304
+        },
+        {
+          "epoch": 3,
+          "loss": 1.9059,
+          "dev": 0.2603
+        },
+        {
+          "epoch": 4,
+          "loss": 1.5709,
+          "dev": 0.3219
+        },
+        {
+          "epoch": 5,
+          "loss": 1.2572,
+          "dev": 0.4742
+        },
+        {
+          "epoch": 6,
+          "loss": 1.0382,
+          "dev": 0.7245
+        },
+        {
+          "epoch": 7,
+          "loss": 0.8504,
+          "dev": 0.7853
+        },
+        {
+          "epoch": 8,
+          "loss": 0.7091,
+          "dev": 0.7945
+        },
+        {
+          "epoch": 9,
+          "loss": 0.5867,
+          "dev": 0.769
+        },
+        {
+          "epoch": 10,
+          "loss": 0.4848,
+          "dev": 0.8526
+        },
+        {
+          "epoch": 11,
+          "loss": 0.3877,
+          "dev": 0.716
+        },
+        {
+          "epoch": 12,
+          "loss": 0.3414,
+          "dev": 0.7916
+        },
+        {
+          "epoch": 13,
+          "loss": 0.2712,
+          "dev": 0.6832
+        },
+        {
+          "epoch": 14,
+          "loss": 0.232,
+          "dev": 0.7769
+        },
+        {
+          "epoch": 15,
+          "loss": 0.2029,
+          "dev": 0.8156
+        }
+      ]
+    }
+  },
+  "seed5/summary": {
+    "train_examples": 698,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "tfidf": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.6268,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 2.4
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.5578,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 2.42
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.64,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 2.45
+      }
+    },
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.8239,
+        "tokens_xlmr_mean": 38.4,
+        "latency_ms_mean": 8.88
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7437,
+        "tokens_xlmr_mean": 40.4,
+        "latency_ms_mean": 9.03
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.96,
+        "tokens_xlmr_mean": 43.6,
+        "latency_ms_mean": 9.07
+      },
+      "train_minutes": 3.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4953,
+          "dev": 0.0208
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4152,
+          "dev": 0.2959
+        },
+        {
+          "epoch": 3,
+          "loss": 1.9407,
+          "dev": 0.5199
+        },
+        {
+          "epoch": 4,
+          "loss": 1.4621,
+          "dev": 0.4448
+        },
+        {
+          "epoch": 5,
+          "loss": 1.105,
+          "dev": 0.6158
+        },
+        {
+          "epoch": 6,
+          "loss": 0.8104,
+          "dev": 0.7158
+        },
+        {
+          "epoch": 7,
+          "loss": 0.6471,
+          "dev": 0.7236
+        },
+        {
+          "epoch": 8,
+          "loss": 0.4524,
+          "dev": 0.7122
+        },
+        {
+          "epoch": 9,
+          "loss": 0.3157,
+          "dev": 0.7662
+        },
+        {
+          "epoch": 10,
+          "loss": 0.2387,
+          "dev": 0.739
+        },
+        {
+          "epoch": 11,
+          "loss": 0.1479,
+          "dev": 0.74
+        },
+        {
+          "epoch": 12,
+          "loss": 0.1152,
+          "dev": 0.6638
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0839,
+          "dev": 0.6521
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0727,
+          "dev": 0.7486
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0591,
+          "dev": 0.7342
+        }
+      ]
+    }
+  },
+  "seed5/full_history": {
+    "train_examples": 698,
+    "train_dialogues": 283,
+    "dev_dialogues": 31,
+    "xlmr": {
+      "gold": {
+        "n": 142,
+        "intent_acc": 0.8592,
+        "tokens_xlmr_mean": 42.5,
+        "latency_ms_mean": 9.25
+      },
+      "synthetic": {
+        "n": 199,
+        "intent_acc": 0.7839,
+        "tokens_xlmr_mean": 51.8,
+        "latency_ms_mean": 8.81
+      },
+      "fresh": {
+        "n": 50,
+        "intent_acc": 0.96,
+        "tokens_xlmr_mean": 55.3,
+        "latency_ms_mean": 8.85
+      },
+      "train_minutes": 4.7,
+      "history": [
+        {
+          "epoch": 1,
+          "loss": 2.4891,
+          "dev": 0.0268
+        },
+        {
+          "epoch": 2,
+          "loss": 2.4133,
+          "dev": 0.047
+        },
+        {
+          "epoch": 3,
+          "loss": 2.063,
+          "dev": 0.3337
+        },
+        {
+          "epoch": 4,
+          "loss": 1.4742,
+          "dev": 0.5636
+        },
+        {
+          "epoch": 5,
+          "loss": 1.0062,
+          "dev": 0.7064
+        },
+        {
+          "epoch": 6,
+          "loss": 0.6304,
+          "dev": 0.7621
+        },
+        {
+          "epoch": 7,
+          "loss": 0.4198,
+          "dev": 0.7704
+        },
+        {
+          "epoch": 8,
+          "loss": 0.2947,
+          "dev": 0.7668
+        },
+        {
+          "epoch": 9,
+          "loss": 0.2091,
+          "dev": 0.8023
+        },
+        {
+          "epoch": 10,
+          "loss": 0.1171,
+          "dev": 0.8167
+        },
+        {
+          "epoch": 11,
+          "loss": 0.0781,
+          "dev": 0.8206
+        },
+        {
+          "epoch": 12,
+          "loss": 0.0434,
+          "dev": 0.8046
+        },
+        {
+          "epoch": 13,
+          "loss": 0.0384,
+          "dev": 0.816
+        },
+        {
+          "epoch": 14,
+          "loss": 0.0274,
+          "dev": 0.841
+        },
+        {
+          "epoch": 15,
+          "loss": 0.0242,
+          "dev": 0.8279
+        }
+      ]
+    }
+  }
+}

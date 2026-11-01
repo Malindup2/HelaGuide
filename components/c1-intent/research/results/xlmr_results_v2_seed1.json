@@ -1,0 +1,1075 @@
+{
+  "run_at": "2026-10-18 13:56",
+  "model": "xlm-roberta-base",
+  "models_saved_to": "/content/drive/MyDrive/c1_models/run_v2_seed1",
+  "settings": {
+    "epochs": 8,
+    "batch": 16,
+    "lr": 3e-05,
+    "max_len": 128,
+    "seed": 1,
+    "dev_share": 0.1,
+    "intent_window": 3,
+    "truncation_side": "left",
+    "run": "v2"
+  },
+  "data": {
+    "silver_train_turns": 878,
+    "silver_dev_turns": 99,
+    "gold_turns": 142,
+    "fresh_turns": 50
+  },
+  "language_id": {
+    "all_tags_accuracy": 0.9898,
+    "si_en_accuracy": 0.9887,
+    "si_en_by_group": {
+      "gold=EN": {
+        "acc": 0.99,
+        "n": 201
+      },
+      "gold=SI": {
+        "acc": 0.9882,
+        "n": 510
+      },
+      "mixed / romanized": {
+        "acc": 0.9857,
+        "n": 421
+      },
+      "mixed / sinhala_script": {
+        "acc": 0.992,
+        "n": 125
+      },
+      "pure_si / sinhala_script": {
+        "acc": 0.9939,
+        "n": 165
+      }
+    },
+    "confusion_gold_to_pred": {
+      "SI->NE": 4,
+      "EN->NE": 2,
+      "SI->EN": 1,
+      "SI->MIXED": 1
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 0.9219,
+        "dev": 0.9278
+      },
+      {
+        "epoch": 2,
+        "loss": 0.1618,
+        "dev": 0.9794
+      },
+      {
+        "epoch": 3,
+        "loss": 0.0681,
+        "dev": 0.9897
+      },
+      {
+        "epoch": 4,
+        "loss": 0.0332,
+        "dev": 0.9948
+      },
+      {
+        "epoch": 5,
+        "loss": 0.0354,
+        "dev": 0.9931
+      },
+      {
+        "epoch": 6,
+        "loss": 0.0157,
+        "dev": 0.9948
+      },
+      {
+        "epoch": 7,
+        "loss": 0.0123,
+        "dev": 0.9931
+      },
+      {
+        "epoch": 8,
+        "loss": 0.0108,
+        "dev": 0.9931
+      }
+    ],
+    "per_tag": {
+      "SI": {
+        "precision": 1.0,
+        "recall": 0.9882,
+        "f1": 0.9941,
+        "support": 510
+      },
+      "EN": {
+        "precision": 0.995,
+        "recall": 0.99,
+        "f1": 0.9925,
+        "support": 201
+      },
+      "MIXED": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "support": 1
+      },
+      "NE": {
+        "precision": 0.9155,
+        "recall": 1.0,
+        "f1": 0.9559,
+        "support": 65
+      },
+      "OTHER": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 11
+      },
+      "MACRO_F1": 0.9218
+    },
+    "switch_points": {
+      "at_switch": {
+        "acc": 0.993,
+        "n": 285
+      },
+      "inside_run": {
+        "acc": 0.9859,
+        "n": 426
+      }
+    }
+  },
+  "entities": {
+    "all_types": {
+      "date": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "district": {
+        "precision": 0.6875,
+        "recall": 0.8919,
+        "f1": 0.7765,
+        "support": 37
+      },
+      "issue": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 10
+      },
+      "new_value": {
+        "precision": 0.4286,
+        "recall": 0.6,
+        "f1": 0.5,
+        "support": 5
+      },
+      "purpose": {
+        "precision": 0.1429,
+        "recall": 0.25,
+        "f1": 0.1818,
+        "support": 4
+      },
+      "service_mentioned": {
+        "precision": 0.1739,
+        "recall": 0.6667,
+        "f1": 0.2759,
+        "support": 6
+      },
+      "travel_date": {
+        "precision": 0.3636,
+        "recall": 0.8,
+        "f1": 0.5,
+        "support": 5
+      },
+      "MICRO": {
+        "precision": 0.4412,
+        "recall": 0.6429,
+        "f1": 0.5233,
+        "support": 70
+      }
+    },
+    "learnable_types_only": {
+      "date": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "district": {
+        "precision": 0.6875,
+        "recall": 0.8919,
+        "f1": 0.7765,
+        "support": 37
+      },
+      "issue": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 10
+      },
+      "new_value": {
+        "precision": 0.4286,
+        "recall": 0.6,
+        "f1": 0.5,
+        "support": 5
+      },
+      "purpose": {
+        "precision": 0.1429,
+        "recall": 0.25,
+        "f1": 0.1818,
+        "support": 4
+      },
+      "service_mentioned": {
+        "precision": 0.1739,
+        "recall": 0.6667,
+        "f1": 0.2759,
+        "support": 6
+      },
+      "travel_date": {
+        "precision": 0.3636,
+        "recall": 0.8,
+        "f1": 0.5,
+        "support": 5
+      },
+      "MICRO": {
+        "precision": 0.4412,
+        "recall": 0.6429,
+        "f1": 0.5233,
+        "support": 70
+      }
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 1.7588,
+        "dev": 0.0
+      },
+      {
+        "epoch": 2,
+        "loss": 0.9137,
+        "dev": 0.2278
+      },
+      {
+        "epoch": 3,
+        "loss": 0.6526,
+        "dev": 0.4038
+      },
+      {
+        "epoch": 4,
+        "loss": 0.5095,
+        "dev": 0.3448
+      },
+      {
+        "epoch": 5,
+        "loss": 0.3953,
+        "dev": 0.5045
+      },
+      {
+        "epoch": 6,
+        "loss": 0.3,
+        "dev": 0.5091
+      },
+      {
+        "epoch": 7,
+        "loss": 0.2541,
+        "dev": 0.6078
+      },
+      {
+        "epoch": 8,
+        "loss": 0.2268,
+        "dev": 0.5794
+      }
+    ]
+  },
+  "intent": {
+    "accuracy": 0.8521,
+    "macro_f1": 0.7913,
+    "by_group": {
+      "mixed / romanized": {
+        "acc": 0.8493,
+        "n": 73
+      },
+      "mixed / sinhala_script": {
+        "acc": 0.8621,
+        "n": 29
+      },
+      "pure_si / sinhala_script": {
+        "acc": 0.85,
+        "n": 40
+      }
+    },
+    "errors": {
+      "unsupported_service->passport_renew": 5,
+      "unsupported_service->birth_cert_copy": 2,
+      "nic_new->birth_cert_copy": 2,
+      "feedback_complaint->passport_renew": 2,
+      "general_question->nic_update": 2,
+      "unsupported_service->nic_update": 1,
+      "passport_renew->passport_new": 1,
+      "nic_replace_lost->nic_update": 1,
+      "feedback_complaint->unsupported_service": 1,
+      "general_question->out_of_scope": 1
+    },
+    "gold_turns_scored": 142,
+    "gold_intents_not_covered": {},
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 2.4795,
+        "dev": 0.0167
+      },
+      {
+        "epoch": 2,
+        "loss": 2.4021,
+        "dev": 0.2582
+      },
+      {
+        "epoch": 3,
+        "loss": 1.7581,
+        "dev": 0.3857
+      },
+      {
+        "epoch": 4,
+        "loss": 1.193,
+        "dev": 0.5968
+      },
+      {
+        "epoch": 5,
+        "loss": 0.8896,
+        "dev": 0.6676
+      },
+      {
+        "epoch": 6,
+        "loss": 0.6497,
+        "dev": 0.6872
+      },
+      {
+        "epoch": 7,
+        "loss": 0.498,
+        "dev": 0.6793
+      },
+      {
+        "epoch": 8,
+        "loss": 0.4107,
+        "dev": 0.6627
+      }
+    ],
+    "per_intent": {
+      "birth_cert_copy": {
+        "precision": 0.7333,
+        "recall": 1.0,
+        "f1": 0.8462,
+        "support": 11
+      },
+      "death_cert_copy": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 5
+      },
+      "feedback_complaint": {
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support": 9
+      },
+      "general_question": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 5
+      },
+      "marriage_registration": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 6
+      },
+      "nic_new": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "support": 8
+      },
+      "nic_replace_lost": {
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1": 0.9333,
+        "support": 8
+      },
+      "nic_update": {
+        "precision": 0.7619,
+        "recall": 1.0,
+        "f1": 0.8649,
+        "support": 16
+      },
+      "out_of_scope": {
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "support": 4
+      },
+      "passport_new": {
+        "precision": 0.7778,
+        "recall": 1.0,
+        "f1": 0.875,
+        "support": 7
+      },
+      "passport_renew": {
+        "precision": 0.5333,
+        "recall": 0.8889,
+        "f1": 0.6667,
+        "support": 9
+      },
+      "unsupported_service": {
+        "precision": 0.9583,
+        "recall": 0.8519,
+        "f1": 0.902,
+        "support": 54
+      },
+      "MACRO_F1": 0.7913
+    },
+    "confusion": {
+      "birth_cert_copy": {
+        "birth_cert_copy": 11,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "death_cert_copy": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 5,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "feedback_complaint": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 6,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 2,
+        "unsupported_service": 1
+      },
+      "general_question": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 2,
+        "out_of_scope": 1,
+        "passport_new": 1,
+        "passport_renew": 0,
+        "unsupported_service": 1
+      },
+      "marriage_registration": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 6,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "nic_new": {
+        "birth_cert_copy": 2,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 6,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "nic_replace_lost": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 7,
+        "nic_update": 1,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "nic_update": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 16,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "out_of_scope": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 1,
+        "out_of_scope": 3,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "passport_new": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 7,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "passport_renew": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 1,
+        "passport_renew": 8,
+        "unsupported_service": 0
+      },
+      "unsupported_service": {
+        "birth_cert_copy": 2,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 1,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 5,
+        "unsupported_service": 46
+      }
+    },
+    "tfidf_baseline": {
+      "accuracy": 0.7817,
+      "macro_f1": 0.7723
+    }
+  },
+  "fresh_test": {
+    "language_id_si_en": {
+      "heuristic": {
+        "ALL": {
+          "acc": 0.7733,
+          "n": 375
+        },
+        "mixed / romanized": {
+          "acc": 0.8293,
+          "n": 164
+        },
+        "gold=SI": {
+          "acc": 1.0,
+          "n": 194
+        },
+        "gold=EN": {
+          "acc": 0.5304,
+          "n": 181
+        },
+        "mixed / sinhala_script": {
+          "acc": 0.9125,
+          "n": 80
+        },
+        "pure_si / sinhala_script": {
+          "acc": 1.0,
+          "n": 32
+        },
+        "pure_en / romanized": {
+          "acc": 0.4949,
+          "n": 99
+        }
+      },
+      "fastText": {
+        "ALL": {
+          "acc": 0.5947,
+          "n": 375
+        },
+        "mixed / romanized": {
+          "acc": 0.2622,
+          "n": 164
+        },
+        "gold=SI": {
+          "acc": 0.4175,
+          "n": 194
+        },
+        "gold=EN": {
+          "acc": 0.7845,
+          "n": 181
+        },
+        "mixed / sinhala_script": {
+          "acc": 0.8875,
+          "n": 80
+        },
+        "pure_si / sinhala_script": {
+          "acc": 0.9062,
+          "n": 32
+        },
+        "pure_en / romanized": {
+          "acc": 0.8081,
+          "n": 99
+        }
+      },
+      "XLM-R": {
+        "ALL": {
+          "acc": 0.9707,
+          "n": 375
+        },
+        "mixed / romanized": {
+          "acc": 0.9512,
+          "n": 164
+        },
+        "gold=SI": {
+          "acc": 0.9897,
+          "n": 194
+        },
+        "gold=EN": {
+          "acc": 0.9503,
+          "n": 181
+        },
+        "mixed / sinhala_script": {
+          "acc": 0.975,
+          "n": 80
+        },
+        "pure_si / sinhala_script": {
+          "acc": 1.0,
+          "n": 32
+        },
+        "pure_en / romanized": {
+          "acc": 0.9899,
+          "n": 99
+        }
+      }
+    },
+    "xlmr_all_tags_accuracy": 0.9653,
+    "xlmr_errors": {
+      "EN->NE": 6,
+      "OTHER->SI": 3,
+      "EN->SI": 2,
+      "SI->NE": 1,
+      "SI->EN": 1,
+      "EN->OTHER": 1
+    },
+    "entities": {
+      "date": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "date_of_birth": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      },
+      "district": {
+        "precision": 0.2857,
+        "recall": 0.6667,
+        "f1": 0.4,
+        "support": 3
+      },
+      "new_value": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "purpose": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "service_mentioned": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "travel_date": {
+        "precision": 0.125,
+        "recall": 1.0,
+        "f1": 0.2222,
+        "support": 1
+      },
+      "MICRO": {
+        "precision": 0.2174,
+        "recall": 0.3571,
+        "f1": 0.2703,
+        "support": 14
+      }
+    },
+    "intent_accuracy": 0.88,
+    "intent_n": 50,
+    "lang_switch_points": {
+      "heuristic": {
+        "at_switch": {
+          "acc": 0.8288,
+          "n": 146
+        },
+        "inside_run": {
+          "acc": 0.738,
+          "n": 229
+        }
+      },
+      "fastText": {
+        "at_switch": {
+          "acc": 0.5068,
+          "n": 146
+        },
+        "inside_run": {
+          "acc": 0.6507,
+          "n": 229
+        }
+      },
+      "XLM-R": {
+        "at_switch": {
+          "acc": 0.9726,
+          "n": 146
+        },
+        "inside_run": {
+          "acc": 0.9694,
+          "n": 229
+        }
+      }
+    },
+    "lang_per_tag": {
+      "SI": {
+        "precision": 0.9746,
+        "recall": 0.9897,
+        "f1": 0.9821,
+        "support": 194
+      },
+      "EN": {
+        "precision": 0.9942,
+        "recall": 0.9503,
+        "f1": 0.9718,
+        "support": 181
+      },
+      "MIXED": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1
+      },
+      "NE": {
+        "precision": 0.6111,
+        "recall": 1.0,
+        "f1": 0.7586,
+        "support": 11
+      },
+      "OTHER": {
+        "precision": 0.9286,
+        "recall": 0.8125,
+        "f1": 0.8667,
+        "support": 16
+      },
+      "MACRO_F1": 0.9158
+    },
+    "intent_per_intent": {
+      "birth_cert_copy": {
+        "precision": 0.8333,
+        "recall": 1.0,
+        "f1": 0.9091,
+        "support": 5
+      },
+      "death_cert_copy": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 7
+      },
+      "feedback_complaint": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "general_question": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "marriage_registration": {
+        "precision": 1.0,
+        "recall": 0.7143,
+        "f1": 0.8333,
+        "support": 7
+      },
+      "nic_new": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "support": 8
+      },
+      "nic_replace_lost": {
+        "precision": 0.8571,
+        "recall": 1.0,
+        "f1": 0.9231,
+        "support": 6
+      },
+      "nic_update": {
+        "precision": 1.0,
+        "recall": 0.8333,
+        "f1": 0.9091,
+        "support": 6
+      },
+      "out_of_scope": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "passport_new": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1": 0.8889,
+        "support": 4
+      },
+      "passport_renew": {
+        "precision": 0.8571,
+        "recall": 0.8571,
+        "f1": 0.8571,
+        "support": 7
+      },
+      "unsupported_service": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "MACRO_F1": 0.5981
+    },
+    "intent_confusion": {
+      "birth_cert_copy": {
+        "birth_cert_copy": 5,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "death_cert_copy": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 7,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "feedback_complaint": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "general_question": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "marriage_registration": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 5,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 2
+      },
+      "nic_new": {
+        "birth_cert_copy": 1,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 6,
+        "nic_replace_lost": 1,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "nic_replace_lost": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 6,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "nic_update": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 5,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 1,
+        "unsupported_service": 0
+      },
+      "out_of_scope": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "passport_new": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 4,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      },
+      "passport_renew": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 1,
+        "passport_renew": 6,
+        "unsupported_service": 0
+      },
+      "unsupported_service": {
+        "birth_cert_copy": 0,
+        "death_cert_copy": 0,
+        "feedback_complaint": 0,
+        "general_question": 0,
+        "marriage_registration": 0,
+        "nic_new": 0,
+        "nic_replace_lost": 0,
+        "nic_update": 0,
+        "out_of_scope": 0,
+        "passport_new": 0,
+        "passport_renew": 0,
+        "unsupported_service": 0
+      }
+    },
+    "intent_tfidf_baseline": {
+      "accuracy": 0.92,
+      "macro_f1": 0.6265
+    }
+  }
+}

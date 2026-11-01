@@ -1,0 +1,1356 @@
+[
+  {
+    "dialogue_id": "d011",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mata dan awurudu 16i, ID eka ganna one",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "self"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona district ekeda inne?"
+      },
+      {
+        "speaker": "user",
+        "text": "Ratnapura",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "self",
+            "district": "Ratnapura"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d012",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ පුතාට ID එකක් ගන්න ඕනේ. එයාට දැන් අවුරුදු 16යි",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කොයි district එකේද ඉන්නේ?"
+      },
+      {
+        "speaker": "user",
+        "text": "කළුතර",
+        "state": {
+          "intent": "nic_new",
+          "slots": {
+            "applicant_for": "child",
+            "district": "Kalutara"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d013",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "kasada bandapu nisa NIC eke nama wenas karanna one",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "name"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Aluth nama mokakda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Nimali Perera",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "name",
+            "new_value": "Nimali Perera"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "District eka?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kegalle",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "name",
+            "new_value": "Nimali Perera",
+            "district": "Kegalle"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d014",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "Can I change the photo in my NIC? Eka godak paranai",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "photo"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d015",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ ID එක නැති උනා, ඉක්මනට අලුත් එකක් ඕනේ",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "urgency": "urgent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කොයි district එකේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "මාතර",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "urgency": "urgent",
+            "district": "Matara"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d016",
+    "script": "romanized",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "bus eke purse eka hora gaththa, NIC ekath ehema nathi wuna",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Oya inne mona district ekeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Badulla",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Badulla"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, Badulla."
+      },
+      {
+        "speaker": "user",
+        "text": "ane sorry, dan inne Monaragala, Badulla parana address eka",
+        "state": {
+          "intent": "nic_replace_lost",
+          "slots": {
+            "district": "Monaragala"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d017",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mata first time passport ekak ganna one",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "self"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Ikmanata onada?"
+      },
+      {
+        "speaker": "user",
+        "text": "na hadissiyak na, normal speed eke athi",
+        "state": {
+          "intent": "passport_new",
+          "slots": {
+            "applicant_for": "self",
+            "service_type": "normal"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d018",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "My passport expires next month, can I renew it in one day?",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "service_type": "urgent"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "When are you travelling?"
+      },
+      {
+        "speaker": "user",
+        "text": "december mid eke",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "service_type": "urgent",
+            "travel_date": "mid December"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d019",
+    "script": "sinhala",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport එක renew කරන්න ඕනේ",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කවදද යන්නේ?"
+      },
+      {
+        "speaker": "user",
+        "text": "ලබන සතියේ... නෑ, ලබන මාසේ",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "next month"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "One day service එක ඕනෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "නෑ, normal එක ඇති",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {
+            "travel_date": "next month",
+            "service_type": "normal"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d020",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "puthage school admission ekata birth certificate copy ekak one",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "child",
+            "purpose": "school admission"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Upan district eka mokakda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Negombo hospital eke, Gampaha district",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "child",
+            "purpose": "school admission",
+            "district": "Gampaha"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d021",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ birth certificate එක නැති වෙලා, copy එකක් ගන්නේ කොහොමද?",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "self"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඉපදුනේ කොයි district එකේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "අනුරාධපුර",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "self",
+            "district": "Anuradhapura"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d022",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "marriage eka register karanne kohomada? wedding eka january 15",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "January 15"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona district ekeda register karanne?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kandy",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "January 15",
+            "district": "Kandy"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d023",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "අපි ලබන මාසේ කසාද බඳිනවා, register කරන්නේ කොහොමද?",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "next month"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කොයි district එකේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "කොළඹ",
+        "state": {
+          "intent": "marriage_registration",
+          "slots": {
+            "date": "next month",
+            "district": "Colombo"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d024",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "thaththa nathi una, idam transfer ekata death certificate eka one",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "purpose": "land transfer"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona district ekeda register kale?"
+      },
+      {
+        "speaker": "user",
+        "text": "Polonnaruwa",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "purpose": "land transfer",
+            "district": "Polonnaruwa"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d025",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "death certificate copy ekak Jaffna walin ganna puluwanda online?",
+        "state": {
+          "intent": "death_cert_copy",
+          "slots": {
+            "district": "Jaffna"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d026",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "bank account ekak open karanna grama niladhari certificate ekak one",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "residence certificate"
+          },
+          "original_intent": "residence_certificate",
+          "original_slots": {
+            "purpose": "bank account"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Oya inne koheda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kadawatha, Gampaha",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "residence certificate"
+          },
+          "original_intent": "residence_certificate",
+          "original_slots": {
+            "purpose": "bank account",
+            "address": "Kadawatha",
+            "district": "Gampaha"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d027",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ළමයව school එකට දාන්න GN certificate එකක් ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "residence certificate"
+          },
+          "original_intent": "residence_certificate",
+          "original_slots": {
+            "purpose": "school admission"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඔයා ඉන්නේ කොහෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "මහරගම, කොළඹ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "residence certificate"
+          },
+          "original_intent": "residence_certificate",
+          "original_slots": {
+            "purpose": "school admission",
+            "address": "Maharagama",
+            "district": "Colombo"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d028",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "රට යන්න police report එකක් ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "police clearance"
+          },
+          "original_intent": "police_clearance",
+          "original_slots": {
+            "purpose": "going abroad"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ඉක්මනට ඕනෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "ඔව්, සති දෙකක් ඇතුළත",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "police clearance"
+          },
+          "original_intent": "police_clearance",
+          "original_slots": {
+            "purpose": "going abroad",
+            "urgency": "urgent"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d029",
+    "script": "romanized",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "police clearance ekak ganna one Canada visa ekata",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "police clearance"
+          },
+          "original_intent": "police_clearance",
+          "original_slots": {
+            "purpose": "Canada visa"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, Canada visa ekata."
+      },
+      {
+        "speaker": "user",
+        "text": "ne ne, Australia, Canada nemei",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "police clearance"
+          },
+          "original_intent": "police_clearance",
+          "original_slots": {
+            "purpose": "Australia visa"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d030",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "heavy vehicle license ekak ganna one, lorry eka elawanna",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "driving license"
+          },
+          "original_intent": "driving_license",
+          "original_slots": {
+            "license_action": "new",
+            "vehicle_class": "heavy vehicle"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona district ekeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Hambantota",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "driving license"
+          },
+          "original_intent": "driving_license",
+          "original_slots": {
+            "license_action": "new",
+            "vehicle_class": "heavy vehicle",
+            "district": "Hambantota"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d031",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "මගේ license එක නැති උනා",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "driving license"
+          },
+          "original_intent": "driving_license",
+          "original_slots": {
+            "license_action": "replace"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කොයි district එකේද?"
+      },
+      {
+        "speaker": "user",
+        "text": "කුරුණෑගල",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "driving license"
+          },
+          "original_intent": "driving_license",
+          "original_slots": {
+            "license_action": "replace",
+            "district": "Kurunegala"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d032",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "car license eka thiyenawa, bike ekath add karaganna one",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "driving license"
+          },
+          "original_intent": "driving_license",
+          "original_slots": {
+            "license_action": "add_class",
+            "vehicle_class": "motorcycle"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d033",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "mama saha mage yaluwa ekka partnership business ekak patan ganna hadanne",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "business registration"
+          },
+          "original_intent": "business_register",
+          "original_slots": {
+            "business_type": "partnership"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona district ekeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Batticaloa",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "business registration"
+          },
+          "original_intent": "business_register",
+          "original_slots": {
+            "business_type": "partnership",
+            "district": "Batticaloa"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d034",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "How do I register a private limited company? Office eka Colombo",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "business registration"
+          },
+          "original_intent": "business_register",
+          "original_slots": {
+            "business_type": "company",
+            "district": "Colombo"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d035",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ගෙදරට උඩ තට්ටුවක් හදන්න permit එකක් ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "building permit"
+          },
+          "original_intent": "building_permit",
+          "original_slots": {
+            "building_type": "extension"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ගෙදර තියෙන්නේ කොහෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "නුගේගොඩ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "building permit"
+          },
+          "original_intent": "building_permit",
+          "original_slots": {
+            "building_type": "extension",
+            "address": "Nugegoda"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d036",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "kade ekak hadanna building permit eka ganne kohomada",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "building permit"
+          },
+          "original_intent": "building_permit",
+          "original_slots": {
+            "building_type": "commercial"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Idama thiyenne koheda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Dambulla town eke, Matale district",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "building permit"
+          },
+          "original_intent": "building_permit",
+          "original_slots": {
+            "building_type": "commercial",
+            "address": "Dambulla town",
+            "district": "Matale"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d037",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "gedarata water line ekak ganna one, pipe eka nathi",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {
+            "utility_type": "water"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Address eka mokakda?"
+      },
+      {
+        "speaker": "user",
+        "text": "No 12, Temple Road, Moratuwa",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {
+            "utility_type": "water",
+            "address": "No 12, Temple Road, Moratuwa"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d038",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "අලුත් ගෙදරට වතුර connection එකක් ගන්න ඕනේ",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {
+            "utility_type": "water"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "ගෙදර තියෙන්නේ කොහෙද?"
+      },
+      {
+        "speaker": "user",
+        "text": "හික්කඩුව, ගාල්ල",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {
+            "utility_type": "water",
+            "address": "Hikkaduwa",
+            "district": "Galle"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d039",
+    "script": "romanized",
+    "route": "trust_verification",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "oya kiwwa office eka saturday open kiyala, mama giyama wahala thibbe",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "office hours wrong"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona office ekada?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kandy DMT office eka",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "office hours wrong",
+            "service_mentioned": "Kandy DMT office"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d040",
+    "script": "sinhala",
+    "route": "trust_verification",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ඔයා කිව්ව fee එක වැරදියි, office එකේ වැඩියෙන් ගත්තා",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "fee different"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "කොයි service එකටද?"
+      },
+      {
+        "speaker": "user",
+        "text": "passport එකට",
+        "state": {
+          "intent": "feedback_complaint",
+          "slots": {
+            "issue": "fee different",
+            "service_mentioned": "passport"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d041",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "NIC ekak ganna kiyada yanne?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "NIC"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d042",
+    "script": "sinhala",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "Passport office එක තියෙන්නේ කොහෙද?",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "passport"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d043",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "what documents do I need for a building permit? list ekak denna puluwanda",
+        "state": {
+          "intent": "general_question",
+          "slots": {
+            "service_mentioned": "building permit"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d044",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "ada Colombo wahinawada?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d045",
+    "script": "romanized",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "Sri Lanka match eka kawadada?",
+        "state": {
+          "intent": "out_of_scope",
+          "slots": {}
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d046",
+    "script": "romanized",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "duwage birth certificate copy ekak one",
+        "state": {
+          "intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mokatada one?"
+      },
+      {
+        "speaker": "user",
+        "text": "eyata ID eka ganna. ID ekata apply karanne kohomada kiyala kiyannako",
+        "state": {
+          "intent": "nic_new",
+          "previous_intent": "birth_cert_copy",
+          "slots": {
+            "applicant_for": "child"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d047",
+    "script": "romanized",
+    "phenomena": [
+      "correction"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "aluth connection ekak ganna one gedarata",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Current connection ekakda?"
+      },
+      {
+        "speaker": "user",
+        "text": "ne ne, water. current eka thiyenawa",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {
+            "utility_type": "water"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Gedara koheda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Chilaw, Puttalam",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "utility connection"
+          },
+          "original_intent": "utility_connection",
+          "original_slots": {
+            "utility_type": "water",
+            "address": "Chilaw",
+            "district": "Puttalam"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d048",
+    "script": "romanized",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "bakery ekak patan ganna business eka register karanna one",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "business registration"
+          },
+          "original_intent": "business_register",
+          "original_slots": {
+            "business_type": "sole_proprietor"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Mona district ekeda?"
+      },
+      {
+        "speaker": "user",
+        "text": "Kegalle. eke building ekath hadanna one, permit ekath ganna one neda?",
+        "state": {
+          "intent": "unsupported_service",
+          "slots": {
+            "service_mentioned": "building permit"
+          },
+          "original_intent": "building_permit",
+          "original_slots": {
+            "district": "Kegalle",
+            "building_type": "commercial"
+          }
+        }
+      }
+    ],
+    "route": "fallback"
+  },
+  {
+    "dialogue_id": "d049",
+    "script": "romanized",
+    "phenomena": [
+      "intent_switch"
+    ],
+    "route": "trust_verification",
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "passport eka renew karanna one",
+        "state": {
+          "intent": "passport_renew",
+          "slots": {}
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Kawadada travel karanne?"
+      },
+      {
+        "speaker": "user",
+        "text": "eka nemei, kalin oya kiwwa photo deka athi kiyala, office eke hathara ekak illuwa",
+        "state": {
+          "intent": "feedback_complaint",
+          "previous_intent": "passport_renew",
+          "slots": {
+            "service_mentioned": "passport",
+            "issue": "photo count wrong"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "dialogue_id": "d050",
+    "script": "romanized",
+    "phenomena": [
+      "correction",
+      "long_dialogue"
+    ],
+    "turns": [
+      {
+        "speaker": "user",
+        "text": "NIC eke address eka update karanna one",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Aluth address eka?"
+      },
+      {
+        "speaker": "user",
+        "text": "No 8, Lake Road, Kurunegala",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address",
+            "new_value": "No 8, Lake Road, Kurunegala"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "District eka Kurunegala neda?"
+      },
+      {
+        "speaker": "user",
+        "text": "ow. ane wait, number eka 18, 8 nemei",
+        "state": {
+          "intent": "nic_update",
+          "slots": {
+            "change_field": "address",
+            "new_value": "No 18, Lake Road, Kurunegala",
+            "district": "Kurunegala"
+          }
+        }
+      },
+      {
+        "speaker": "bot",
+        "text": "Hari, No 18."
+      },
+      {
+        "speaker": "user",
+        "text": "ID eka ganna kiyada yanne?",
+        "state": {
+          "intent": "general_question",
+          "previous_intent": "nic_update",
+          "slots": {
+            "service_mentioned": "NIC",
+            "change_field": "address",
+            "new_value": "No 18, Lake Road, Kurunegala",
+            "district": "Kurunegala"
+          }
+        }
+      }
+    ]
+  }
+]

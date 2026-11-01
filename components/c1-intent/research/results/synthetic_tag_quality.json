@@ -1,0 +1,46 @@
+{
+  "checked_turns": 80,
+  "accuracy_vs_human": {
+    "heuristic:ALL": {
+      "acc": 0.9402,
+      "n": 418
+    },
+    "heuristic:written by claude-code / mixed": {
+      "acc": 0.8872,
+      "n": 133
+    },
+    "heuristic:written by claude-code / pure_si": {
+      "acc": 1.0,
+      "n": 118
+    },
+    "heuristic:written by gemini-3.5-flash-lite / mixed": {
+      "acc": 0.8864,
+      "n": 88
+    },
+    "heuristic:written by gemini-3.5-flash-lite / pure_si": {
+      "acc": 1.0,
+      "n": 79
+    },
+    "llm:ALL": {
+      "acc": 1.0,
+      "n": 418
+    },
+    "llm:written by claude-code / mixed": {
+      "acc": 1.0,
+      "n": 133
+    },
+    "llm:written by claude-code / pure_si": {
+      "acc": 1.0,
+      "n": 118
+    },
+    "llm:written by gemini-3.5-flash-lite / mixed": {
+      "acc": 1.0,
+      "n": 88
+    },
+    "llm:written by gemini-3.5-flash-lite / pure_si": {
+      "acc": 1.0,
+      "n": 79
+    }
+  },
+  "llm_error_types": {}
+}

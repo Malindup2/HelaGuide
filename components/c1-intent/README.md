@@ -16,7 +16,12 @@ Turns a citizen's raw text (Sinhala, English or code-switched, multi-turn) into 
 | Method | Path | Purpose |
 |---|---|---|
 | GET | `/health` | Liveness |
-| POST | `/v1/intent` | Raw text → `intent` |
+| POST | `/v1/intent` | Raw text → `intent` (team contract) |
+| POST | `/v1/intent/details` | C1-only: same input plus optional `bot_text`; returns internal intent, route, slots, missing slots, language tags, latency and the projected `intent` |
+| POST | `/v1/chat` | C1-only: one chat turn with a natural reply, in the dialogue mode set by `C1_DIALOGUE_MODE` (see [LLM dialogue layer](#llm-dialogue-layer-v1chat)); its sessions are separate from `/v1/intent` |
+
+Routes in `/v1/intent/details`: core intents and `general_question` → `orchestration`, `feedback_complaint` →
+`trust_verification`, `unsupported_service` → `fallback`, `out_of_scope` / `unknown` → `none`.
 
 Interactive docs at <http://localhost:8001/docs> when running.
 
@@ -48,3 +53,180 @@ pytest
 ```
 
 Run these from `components/c1-intent/service/`.
+
+## Run the real engine (laptop, `nlp` conda env)
+
+Stub mode (`STUB_MODE=true`) is the default and needs no models. To run the trained models instead,
+use the `nlp` env and the models in `research/models/c1/` (not in git; see `research/data/README.md`).
+
+The Docker image and CI use Python 3.11. Python 3.10 is only for running locally in the `nlp` env.
+
+**1. Install** (Windows cmd, from `components/c1-intent/`):
+
+```bat
+conda activate nlp
+pip install -e "service[research]"
+pip install --ignore-requires-python --no-deps -e ..\..\shared
+```
+
+`shared/` declares Python ≥ 3.11 but runs on 3.10; the flag goes on that package alone, with `--no-deps`,
+because on a full install it would let pip pick packages that really need 3.11.
+torch and transformers are already in `nlp`, so pip keeps them. Use `service[dev,research]` to run `pytest` too.
+
+**2. Settings** (same cmd window):
+
+```bat
+set STUB_MODE=false
+set C1_MODEL_DIR=research\models\c1\run_v2_seed1
+set C1_MIN_CONFIDENCE=0.35
+```
+
+| Variable | Default | Meaning |
+|---|---|---|
+| `STUB_MODE` | `true` | `false` runs the real engine |
+| `C1_MODEL_DIR` | `research/models/c1/run_v2_seed1` | Folder with `lid/`, `ner/`, `intent/`, `c1_config.json`. Absolute, or relative to the working directory or to `components/c1-intent/` |
+| `C1_MIN_CONFIDENCE` | `0.35` | Below this the intent is not trusted: a mention of an unsupported service gives `unsupported_service`, otherwise the previous topic is kept (or `unknown` on the first turn) |
+| `C1_COMPLETED_DB` | `var/completed_requests.sqlite3` | SQLite file for completed requests (relative to `components/c1-intent/` by default, or to the working directory when set); `off` turns saving off |
+
+If the model folder is missing the service answers 503 with a message saying how to set `C1_MODEL_DIR`.
+Sessions are kept in memory (30 minutes idle, at most 1,000) and are lost on restart.
+
+Completed requests are kept. When a request becomes ready (all slots filled and confirmed), or is finished and
+the citizen moves on to another service, C1 saves it with the time it completed. This works for `/v1/intent`,
+`/v1/intent/details` and `/v1/chat`. A later correction updates the slots and `updated_at`; `completed_at` stays
+the same. List them with `GET /v1/requests/completed` (filters: `session_id`, `endpoint`, `intent`, `limit`), or
+open <http://127.0.0.1:8001/demo/completed>. Slot values are saved as filled, so `var/` is git-ignored.
+
+**3. Start** (from `components/c1-intent/service/`):
+
+```bat
+cd service
+uvicorn app.main:app --port 8001
+```
+
+The models load on the first request (a few seconds); later turns take about 50–150 ms on CPU.
+
+**4. Try it.** PowerShell:
+
+```powershell
+$body = @{ session_id = "anon-demo1"; text = "mata ID eka nathi una, ikmanata aluth ekak one" } | ConvertTo-Json
+Invoke-RestMethod -Uri http://127.0.0.1:8001/v1/intent -Method Post -ContentType "application/json" -Body $body
+
+$body = @{ session_id = "anon-demo1"; text = "Matara"; bot_text = "Koheda inne?" } | ConvertTo-Json
+Invoke-RestMethod -Uri http://127.0.0.1:8001/v1/intent/details -Method Post -ContentType "application/json" -Body $body
+```
+
+cmd with `curl.exe`:
+
+```bat
+curl.exe -s -X POST http://127.0.0.1:8001/v1/intent -H "Content-Type: application/json" -d "{\"session_id\": \"anon-demo2\", \"text\": \"mata ID eka nathi una, ikmanata aluth ekak one\"}"
+curl.exe -s -X POST http://127.0.0.1:8001/v1/intent/details -H "Content-Type: application/json" -d "{\"session_id\": \"anon-demo2\", \"text\": \"Matara\", \"bot_text\": \"Koheda inne?\"}"
+```
+
+Use `127.0.0.1` rather than `localhost` on Windows; `localhost` tries IPv6 first and adds about 2 s per request.
+
+**5. Demo conversations** (second window, service running):
+
+```bat
+python scripts\demo_conversation.py
+python scripts\demo_conversation.py --only A B C
+```
+
+Sessions: **A** NIC lost (district memory, correction Matara → Galle, urgency), **B** complaint →
+`trust_verification`, **C** driving licence → `fallback`, **SI** Sinhala script (birth certificate copy),
+**EN** English (new passport).
+
+**6. Demo page** (service running): open <http://127.0.0.1:8001/demo>. A chat that calls
+`/v1/intent/details` and shows, per turn, the word-level language tags, the intent and confidence, the
+dialogue state (slots set or corrected this turn are highlighted), the route, and the v1 contract next to the
+full C1 state. Every bot message is C1's own `reply`, and the page sends it back as `bot_text` with the next
+message. The buttons replay demo sessions: **A**, **C**, **SI** and **EN** as above, **B** a complaint in the
+middle of a passport request, **LOCK** (passport kept over misread follow-ups), **SWITCH** (passport, then NIC)
+and **MULTI** (NIC, then passport). Click any of your messages to look at that turn again. The page is C1-only
+(`app/static/demo.html`), needs no build step and is not in the OpenAPI docs.
+
+## LLM dialogue layer (`/v1/chat`)
+
+`/v1/chat` makes C1 talk like a normal chatbot: natural replies, several slots from one message, small talk,
+unsupported services declined while the open request is kept. The engine (XLM-R + the rules tracker) still runs on
+every turn. An LLM writes the reply and proposes intent and slot updates, and a validator in C1's own code checks
+every update before it touches the state. `/v1/intent` and `/v1/intent/details` are not affected in any mode
+(`service/tests/test_compat_context_v2.py` checks them byte for byte against `c1/context-v2`). Design, validator
+rules and known limits: [`research/docs/llm_dialogue_design.md`](research/docs/llm_dialogue_design.md).
+
+| `C1_DIALOGUE_MODE` | Who replies | LLM sees |
+|---|---|---|
+| `rules` (default) | The engine's own reply, as on the demo page; no LLM is called | — |
+| `llm` | The LLM, checked by the validator | History, state, message (an ablation: no NLU hints) |
+| `hybrid` | The LLM, checked by the validator | The same plus NLU hints: XLM-R intent and confidence, the tracker's intent, slot changes and entities |
+
+If the LLM fails (timeout, quota, bad JSON), that turn is answered by the rules path and marked
+`dialogue_source: "rules_fallback"`; the conversation carries on.
+
+**Settings** (all optional; read on every request, so a change applies to the next turn):
+
+| Variable | Default | Meaning |
+|---|---|---|
+| `C1_DIALOGUE_MODE` | `rules` | `rules`, `llm` or `hybrid` |
+| `C1_LLM_BASE_URL` | `http://127.0.0.1:11434/v1` | Any OpenAI-compatible endpoint (default: a local Ollama) |
+| `C1_LLM_MODEL` | `gemma3` | Model name at that endpoint |
+| `C1_LLM_API_KEY` | empty | Not needed for Ollama. Never logged or printed |
+| `C1_LLM_TIMEOUT` | `30` | Seconds per LLM request |
+| `C1_LLM_HISTORY_TURNS` | `6` | Conversation turns (user + bot) sent to the LLM |
+| `C1_LLM_JSON_MODE` | `true` | Ask for `response_format: json_object`; `false` relies on the prompt. The client also drops it by itself when the provider rejects it |
+| `C1_LLM_REASONING_EFFORT` | empty (not sent) | `none`, `minimal`, `low`, `medium` or `high`, sent as `reasoning_effort` |
+| `C1_HINT_MIN_CONFIDENCE` | `0.0` (off) | `hybrid`: below this XLM-R confidence the intent hints are marked weak. Evaluation setting; calibration on gold found no useful gate |
+| `C1_PROTECT_APPLICANT_FOR` | `true` | In `llm`/`hybrid`, the rules tracker may not change a known `applicant_for` without a correction either (the LLM never may) |
+
+**Gemini** (free tier through Google's OpenAI-compatible endpoint; the model we use for development and the
+evaluation). Get a key in Google AI Studio and set it **only in the window**, with `set`; never put it in a file:
+
+```bat
+set C1_DIALOGUE_MODE=hybrid
+set C1_LLM_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai
+set C1_LLM_MODEL=gemini-3.5-flash-lite
+set C1_LLM_REASONING_EFFORT=low
+set C1_LLM_API_KEY=<your key>
+```
+
+Model names change and old ones are retired (a 404 from the endpoint): check the current list in AI Studio.
+Gemini 3 models reject `reasoning_effort` `none` and `minimal` (HTTP 400). The free tier may use prompts for
+training, so send fictional data only.
+
+**Ollama** (local, no key, no quota): install Ollama, then `ollama pull gemma3` and `ollama serve`. The defaults
+already point at it (`127.0.0.1`, not `localhost`: on Windows `localhost` tries IPv6 first). Only
+`C1_DIALOGUE_MODE` needs setting.
+
+**Try it** (service running in real mode, PowerShell):
+
+```powershell
+$body = @{ session_id = "anon-chat1"; text = "I need a birth certificate for my mom, she's from Kurunegala" } | ConvertTo-Json
+Invoke-RestMethod -Uri http://127.0.0.1:8001/v1/chat -Method Post -ContentType "application/json" -Body $body
+```
+
+The response has `reply`, `dialogue_source` (`llm`, `rules` or `rules_fallback`), the slots, `tasks` (open
+requests), what the validator rejected, latency split into NLU and LLM time, token usage and the contract `intent`.
+On the demo page (<http://127.0.0.1:8001/demo>), the **Endpoint** switch next to "New session" sends the chat to
+`/v1/chat` and shows who replied on every turn; `/v1/intent/details` stays the default.
+
+**Scripts** (Windows cmd, `nlp` env, real engine; LLM settings as above). Their outputs are git-ignored.
+
+```bat
+cd components\c1-intent\service
+rem quick check of one model: 5 turns of the rigid demo log, reply / usage / latency / errors per turn
+python scripts\llm_smoke_test.py --model gemini-3.5-flash-lite --effort low --timeout 60 > smoke_lite_low.txt
+rem regression replay: the rigid log in rules, llm and hybrid mode, checked against its expectations
+python scripts\replay_log.py --model gemini-3.5-flash-lite --effort low --timeout 60 --json-out replay_lite_low.json > replay_lite_low.txt
+python scripts\replay_log.py --modes rules
+
+cd ..\research
+rem the results-chapter evaluation on the fresh set: rules once, llm and hybrid 3 runs each (300 LLM calls)
+python experiments\dialogue_eval.py --model gemini-3.5-flash-lite --effort low --timeout 60 > dialogue_eval_run.txt
+rem the hint-gate calibration on gold (no LLM)
+python experiments\gate_calibration.py --model-dir models\c1\run_v2_seed1
+```
+
+`dialogue_eval.py` paces its calls (`--pause`, 4 s), retries slow failures, stops when the quota is used up and
+resumes from its checkpoint when run again with the same command. It writes
+`research/results/dialogue_eval_<setting>_<model>.json` (committed) and a per-turn checkpoint `.jsonl` (not
+committed).

@@ -1,0 +1,309 @@
+{
+  "run_at": "2026-10-15 15:55",
+  "model": "xlm-roberta-base",
+  "settings": {
+    "epochs": 8,
+    "batch": 16,
+    "lr": 3e-05,
+    "max_len": 128,
+    "seed": 42,
+    "dev_share": 0.1
+  },
+  "data": {
+    "silver_train_turns": 555,
+    "silver_dev_turns": 63,
+    "gold_turns": 142
+  },
+  "language_id": {
+    "all_tags_accuracy": 0.986,
+    "si_en_accuracy": 0.9873,
+    "si_en_by_group": {
+      "gold=EN": {
+        "acc": 0.9851,
+        "n": 201
+      },
+      "gold=SI": {
+        "acc": 0.9882,
+        "n": 510
+      },
+      "mixed / romanized": {
+        "acc": 0.9834,
+        "n": 421
+      },
+      "mixed / sinhala_script": {
+        "acc": 0.992,
+        "n": 125
+      },
+      "pure_si / sinhala_script": {
+        "acc": 0.9939,
+        "n": 165
+      }
+    },
+    "confusion_gold_to_pred": {
+      "SI->NE": 4,
+      "EN->SI": 2,
+      "EN->NE": 1,
+      "SI->EN": 1,
+      "MIXED->SI": 1,
+      "SI->OTHER": 1,
+      "NE->SI": 1
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 1.1158,
+        "dev": 0.8333
+      },
+      {
+        "epoch": 2,
+        "loss": 0.3261,
+        "dev": 0.9633
+      },
+      {
+        "epoch": 3,
+        "loss": 0.1048,
+        "dev": 0.9689
+      },
+      {
+        "epoch": 4,
+        "loss": 0.0557,
+        "dev": 0.9633
+      },
+      {
+        "epoch": 5,
+        "loss": 0.0716,
+        "dev": 0.9831
+      },
+      {
+        "epoch": 6,
+        "loss": 0.0337,
+        "dev": 0.9859
+      },
+      {
+        "epoch": 7,
+        "loss": 0.0256,
+        "dev": 0.9859
+      },
+      {
+        "epoch": 8,
+        "loss": 0.0231,
+        "dev": 0.9859
+      }
+    ]
+  },
+  "entities": {
+    "all_types": {
+      "date": {
+        "precision": 0.5,
+        "recall": 0.3333,
+        "f1": 0.4,
+        "support": 3
+      },
+      "date_of_birth": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "district": {
+        "precision": 0.6,
+        "recall": 0.973,
+        "f1": 0.7423,
+        "support": 37
+      },
+      "issue": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 10
+      },
+      "new_value": {
+        "precision": 0.2857,
+        "recall": 0.4,
+        "f1": 0.3333,
+        "support": 5
+      },
+      "purpose": {
+        "precision": 0.2,
+        "recall": 0.5,
+        "f1": 0.2857,
+        "support": 4
+      },
+      "service_mentioned": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      },
+      "travel_date": {
+        "precision": 0.3846,
+        "recall": 1.0,
+        "f1": 0.5556,
+        "support": 5
+      },
+      "MICRO": {
+        "precision": 0.4946,
+        "recall": 0.6571,
+        "f1": 0.5644,
+        "support": 70
+      }
+    },
+    "learnable_types_only": {
+      "date": {
+        "precision": 0.5,
+        "recall": 0.3333,
+        "f1": 0.4,
+        "support": 3
+      },
+      "date_of_birth": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "district": {
+        "precision": 0.6,
+        "recall": 0.973,
+        "f1": 0.7423,
+        "support": 37
+      },
+      "new_value": {
+        "precision": 0.2857,
+        "recall": 0.4,
+        "f1": 0.3333,
+        "support": 5
+      },
+      "purpose": {
+        "precision": 0.2,
+        "recall": 0.5,
+        "f1": 0.2857,
+        "support": 4
+      },
+      "travel_date": {
+        "precision": 0.3846,
+        "recall": 1.0,
+        "f1": 0.5556,
+        "support": 5
+      },
+      "MICRO": {
+        "precision": 0.4946,
+        "recall": 0.8519,
+        "f1": 0.6259,
+        "support": 54
+      }
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 1.7615,
+        "dev": 0.0
+      },
+      {
+        "epoch": 2,
+        "loss": 0.9171,
+        "dev": 0.0476
+      },
+      {
+        "epoch": 3,
+        "loss": 0.7816,
+        "dev": 0.3562
+      },
+      {
+        "epoch": 4,
+        "loss": 0.5946,
+        "dev": 0.4096
+      },
+      {
+        "epoch": 5,
+        "loss": 0.47,
+        "dev": 0.5843
+      },
+      {
+        "epoch": 6,
+        "loss": 0.3814,
+        "dev": 0.6364
+      },
+      {
+        "epoch": 7,
+        "loss": 0.3155,
+        "dev": 0.6
+      },
+      {
+        "epoch": 8,
+        "loss": 0.2924,
+        "dev": 0.6437
+      }
+    ]
+  },
+  "intent": {
+    "accuracy": 0.9571,
+    "macro_f1": 0.956,
+    "by_group": {
+      "mixed / romanized": {
+        "acc": 0.9412,
+        "n": 34
+      },
+      "mixed / sinhala_script": {
+        "acc": 1.0,
+        "n": 14
+      },
+      "pure_si / sinhala_script": {
+        "acc": 0.9545,
+        "n": 22
+      }
+    },
+    "errors": {
+      "nic_new->birth_cert_copy": 2,
+      "passport_renew->passport_new": 1
+    },
+    "gold_turns_scored": 70,
+    "gold_intents_not_covered": {
+      "unsupported_service": 54,
+      "feedback_complaint": 9,
+      "out_of_scope": 4,
+      "general_question": 5
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 2.0854,
+        "dev": 0.0701
+      },
+      {
+        "epoch": 2,
+        "loss": 1.6757,
+        "dev": 0.7925
+      },
+      {
+        "epoch": 3,
+        "loss": 0.8762,
+        "dev": 0.6439
+      },
+      {
+        "epoch": 4,
+        "loss": 0.4789,
+        "dev": 0.7891
+      },
+      {
+        "epoch": 5,
+        "loss": 0.23,
+        "dev": 0.8173
+      },
+      {
+        "epoch": 6,
+        "loss": 0.1477,
+        "dev": 0.8331
+      },
+      {
+        "epoch": 7,
+        "loss": 0.0832,
+        "dev": 0.8435
+      },
+      {
+        "epoch": 8,
+        "loss": 0.0693,
+        "dev": 0.8135
+      }
+    ]
+  }
+}

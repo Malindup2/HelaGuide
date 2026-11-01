@@ -1,0 +1,41 @@
+{
+  "id": "rigid_log",
+  "description": "The C1 demo conversation that showed the rules-only dialogue as rigid (sticky intent, slot answers sent to the intent classifier, keyword-only purpose, no natural replies). Fictional user; the text is as typed, typos included. Replayed by service/scripts/replay_log.py in rules, llm and hybrid mode; expect_hybrid is what the LLM dialogue layer must do.",
+  "source": "C1 demo page log, 2026-10-22",
+  "expect_keys": {
+    "internal_intent / route / active_intent": "equal to the value (null = none)",
+    "slots": "these slots have these values",
+    "slots_present": "these slots are filled (any value)",
+    "tasks_include": "these intents are in tasks (open requests)",
+    "reply": "\"nonempty\": the bot replied"
+  },
+  "turns": [
+    {"text": "Hi",
+     "expect_hybrid": {"reply": "nonempty", "active_intent": null, "route": "none"},
+     "why": "a greeting reply, no intent forced"},
+    {"text": "I need a birth certifcate",
+     "expect_hybrid": {"active_intent": "birth_cert_copy", "route": "orchestration"}},
+    {"text": "my mom",
+     "expect_hybrid": {"slots": {"applicant_for": "parent"}}},
+    {"text": "kurunegala",
+     "expect_hybrid": {"slots": {"applicant_for": "parent", "district": "Kurunegala"}}},
+    {"text": "business reg purpose",
+     "expect_hybrid": {"slots_present": ["purpose"], "active_intent": "birth_cert_copy", "route": "orchestration"},
+     "why": "purpose filled on the first try (business registration is not in the purpose list, so other + the user's words)"},
+    {"text": "business reg purpose",
+     "expect_hybrid": {"slots_present": ["purpose"], "active_intent": "birth_cert_copy"}},
+    {"text": "school",
+     "expect_hybrid": {"slots": {"purpose": "school admission"}, "active_intent": "birth_cert_copy"},
+     "why": "purpose corrected to school admission"},
+    {"text": "also i need to get a driving licese",
+     "expect_hybrid": {"internal_intent": "unsupported_service", "route": "fallback",
+                       "active_intent": "birth_cert_copy", "tasks_include": ["birth_cert_copy"]},
+     "why": "not a supported service: fallback, and the birth certificate stays open"},
+    {"text": "i need a driving license",
+     "expect_hybrid": {"internal_intent": "unsupported_service", "route": "fallback",
+                       "active_intent": "birth_cert_copy", "tasks_include": ["birth_cert_copy"]}},
+    {"text": "i need a driving license",
+     "expect_hybrid": {"internal_intent": "unsupported_service", "route": "fallback",
+                       "active_intent": "birth_cert_copy", "tasks_include": ["birth_cert_copy"]}}
+  ]
+}
