@@ -1,0 +1,100 @@
+{
+  "run_at": "2026-10-22 15:55",
+  "model_dir": "models/c1/run_v2_seed1",
+  "data": "data/seed_all.json",
+  "grid": [
+    0.35,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8
+  ],
+  "rule": "max over the grid of (wrong - right) among turns below the gate; ties: lower gate; 0.0 when no gate has a positive net",
+  "turns": 142,
+  "xlmr_accuracy": 0.8521,
+  "reliability": [
+    {
+      "bin": "[0.00, 0.35)",
+      "n": 6,
+      "accuracy": 0.833
+    },
+    {
+      "bin": "[0.35, 0.50)",
+      "n": 19,
+      "accuracy": 0.684
+    },
+    {
+      "bin": "[0.50, 0.60)",
+      "n": 14,
+      "accuracy": 0.857
+    },
+    {
+      "bin": "[0.60, 0.70)",
+      "n": 13,
+      "accuracy": 0.615
+    },
+    {
+      "bin": "[0.70, 0.80)",
+      "n": 17,
+      "accuracy": 0.882
+    },
+    {
+      "bin": "[0.80, 0.90)",
+      "n": 33,
+      "accuracy": 0.879
+    },
+    {
+      "bin": "[0.90, 1.00]",
+      "n": 40,
+      "accuracy": 0.975
+    }
+  ],
+  "gate_table": [
+    {
+      "gate": 0.35,
+      "below": 6,
+      "wrong_below": 1,
+      "right_below": 5,
+      "net": -4
+    },
+    {
+      "gate": 0.4,
+      "below": 14,
+      "wrong_below": 5,
+      "right_below": 9,
+      "net": -4
+    },
+    {
+      "gate": 0.5,
+      "below": 25,
+      "wrong_below": 7,
+      "right_below": 18,
+      "net": -11
+    },
+    {
+      "gate": 0.6,
+      "below": 39,
+      "wrong_below": 9,
+      "right_below": 30,
+      "net": -21
+    },
+    {
+      "gate": 0.7,
+      "below": 52,
+      "wrong_below": 14,
+      "right_below": 38,
+      "net": -24
+    },
+    {
+      "gate": 0.8,
+      "below": 69,
+      "wrong_below": 16,
+      "right_below": 53,
+      "net": -37
+    }
+  ],
+  "chosen_gate": 0.0,
+  "fresh_turns_below_gate": 0,
+  "fresh_turns": 50
+}

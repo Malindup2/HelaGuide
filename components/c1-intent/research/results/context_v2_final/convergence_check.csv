@@ -1,0 +1,71 @@
+model,strategy,seed,final_loss,best_dev_f1,median_other_final_loss,median_other_best_dev,loss_ratio,dev_gap,flagged,note
+tfidf,current_only,1,,,,,,,False,no training history (TF-IDF)
+tfidf,current_only,2,,,,,,,False,no training history (TF-IDF)
+tfidf,current_only,3,,,,,,,False,no training history (TF-IDF)
+tfidf,current_only,4,,,,,,,False,no training history (TF-IDF)
+tfidf,current_only,5,,,,,,,False,no training history (TF-IDF)
+tfidf,full_history,1,,,,,,,False,no training history (TF-IDF)
+tfidf,full_history,2,,,,,,,False,no training history (TF-IDF)
+tfidf,full_history,3,,,,,,,False,no training history (TF-IDF)
+tfidf,full_history,4,,,,,,,False,no training history (TF-IDF)
+tfidf,full_history,5,,,,,,,False,no training history (TF-IDF)
+tfidf,keyword_summary,1,,,,,,,False,no training history (TF-IDF)
+tfidf,keyword_summary,2,,,,,,,False,no training history (TF-IDF)
+tfidf,keyword_summary,3,,,,,,,False,no training history (TF-IDF)
+tfidf,keyword_summary,4,,,,,,,False,no training history (TF-IDF)
+tfidf,keyword_summary,5,,,,,,,False,no training history (TF-IDF)
+tfidf,structured_state,1,,,,,,,False,no training history (TF-IDF)
+tfidf,structured_state,2,,,,,,,False,no training history (TF-IDF)
+tfidf,structured_state,3,,,,,,,False,no training history (TF-IDF)
+tfidf,structured_state,4,,,,,,,False,no training history (TF-IDF)
+tfidf,structured_state,5,,,,,,,False,no training history (TF-IDF)
+tfidf,summary,1,,,,,,,False,no training history (TF-IDF)
+tfidf,summary,2,,,,,,,False,no training history (TF-IDF)
+tfidf,summary,3,,,,,,,False,no training history (TF-IDF)
+tfidf,summary,4,,,,,,,False,no training history (TF-IDF)
+tfidf,summary,5,,,,,,,False,no training history (TF-IDF)
+tfidf,window_2,1,,,,,,,False,no training history (TF-IDF)
+tfidf,window_2,2,,,,,,,False,no training history (TF-IDF)
+tfidf,window_2,3,,,,,,,False,no training history (TF-IDF)
+tfidf,window_2,4,,,,,,,False,no training history (TF-IDF)
+tfidf,window_2,5,,,,,,,False,no training history (TF-IDF)
+tfidf,window_3,1,,,,,,,False,no training history (TF-IDF)
+tfidf,window_3,2,,,,,,,False,no training history (TF-IDF)
+tfidf,window_3,3,,,,,,,False,no training history (TF-IDF)
+tfidf,window_3,4,,,,,,,False,no training history (TF-IDF)
+tfidf,window_3,5,,,,,,,False,no training history (TF-IDF)
+xlmr,current_only,1,0.5667,0.5659,0.6726,0.5432,0.84,-0.0227,False,
+xlmr,current_only,2,0.6512,0.5316,0.6303,0.5603,1.03,0.0287,False,
+xlmr,current_only,3,0.6996,0.4567,0.6089,0.5603,1.15,0.1036,False,
+xlmr,current_only,4,0.694,0.5547,0.6089,0.5487,1.14,-0.006,False,
+xlmr,current_only,5,0.4976,0.5905,0.6726,0.5432,0.74,-0.0474,False,
+xlmr,full_history,1,0.1199,0.7519,0.0507,0.7409,2.36,-0.011,False,
+xlmr,full_history,2,0.0469,0.7527,0.0708,0.7405,0.66,-0.0122,False,
+xlmr,full_history,3,0.0872,0.7291,0.0507,0.7523,1.72,0.0232,False,
+xlmr,full_history,4,0.0545,0.7047,0.067,0.7523,0.81,0.0476,False,
+xlmr,full_history,5,0.0242,0.841,0.0708,0.7405,0.34,-0.1005,False,
+xlmr,keyword_summary,1,0.1642,0.6319,0.1817,0.5976,0.9,-0.0343,False,
+xlmr,keyword_summary,2,0.1366,0.6271,0.1955,0.5976,0.7,-0.0295,False,
+xlmr,keyword_summary,3,0.2268,0.5961,0.1504,0.6131,1.51,0.017,False,
+xlmr,keyword_summary,4,0.1319,0.5991,0.1955,0.6116,0.67,0.0125,False,
+xlmr,keyword_summary,5,0.259,0.5941,0.1504,0.6131,1.72,0.019,False,
+xlmr,structured_state,1,0.1419,0.7413,0.2378,0.7167,0.6,-0.0246,False,
+xlmr,structured_state,2,0.1973,0.8119,0.2378,0.6814,0.83,-0.1305,False,
+xlmr,structured_state,3,0.2727,0.5239,0.2001,0.7766,1.36,0.2527,False,
+xlmr,structured_state,4,0.3227,0.6215,0.2001,0.7766,1.61,0.1551,False,
+xlmr,structured_state,5,0.2029,0.8526,0.235,0.6814,0.86,-0.1712,False,
+xlmr,summary,1,0.091,0.7992,0.0658,0.7529,1.38,-0.0463,False,
+xlmr,summary,2,0.0697,0.7794,0.0764,0.7529,0.91,-0.0265,False,
+xlmr,summary,3,0.6459,0.5039,0.0658,0.7728,9.82,0.2689,True,
+xlmr,summary,4,0.0618,0.7396,0.0804,0.7728,0.77,0.0332,False,
+xlmr,summary,5,0.0591,0.7662,0.0804,0.7595,0.74,-0.0067,False,
+xlmr,window_2,1,0.0874,0.6903,0.0718,0.657,1.22,-0.0333,False,
+xlmr,window_2,2,0.0529,0.6559,0.087,0.6742,0.61,0.0182,False,
+xlmr,window_2,3,0.5584,0.4577,0.0718,0.6742,7.77,0.2165,True,
+xlmr,window_2,4,0.0571,0.658,0.087,0.6731,0.66,0.0151,False,
+xlmr,window_2,5,0.0866,0.7033,0.0723,0.657,1.2,-0.0464,False,
+xlmr,window_3,1,0.0338,0.7423,0.0309,0.7152,1.09,-0.0271,False,
+xlmr,window_3,2,0.0286,0.7284,0.0335,0.7221,0.85,-0.0063,False,
+xlmr,window_3,3,0.1095,0.6383,0.0309,0.7353,3.54,0.097,False,
+xlmr,window_3,4,0.0273,0.702,0.0335,0.7353,0.81,0.0333,False,
+xlmr,window_3,5,0.0332,0.7618,0.0312,0.7152,1.06,-0.0466,False,

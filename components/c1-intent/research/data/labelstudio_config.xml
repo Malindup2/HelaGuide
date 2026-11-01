@@ -1,0 +1,28 @@
+<View>
+  <Header value="$info"/>
+  <Text name="context" value="$context"/>
+  <Text name="text" value="$text" granularity="word"/>
+
+  <Header value="Language (one per word)"/>
+  <Labels name="lang" toName="text" choice="single" showInline="true">
+    <Label value="SI" background="#2F80ED"/>
+    <Label value="EN" background="#F2994A"/>
+    <Label value="MIXED" background="#9B51E0"/>
+    <Label value="NE" background="#27AE60"/>
+    <Label value="OTHER" background="#828282"/>
+  </Labels>
+
+  <Header value="Entities (only text that appears in this turn)"/>
+  <Labels name="slot" toName="text" showInline="true">
+    <Label value="district" background="#EB5757"/>
+    <Label value="address" background="#F2C94C"/>
+    <Label value="new_value" background="#56CCF2"/>
+    <Label value="date" background="#6FCF97"/>
+    <Label value="travel_date" background="#BB6BD9"/>
+    <Label value="date_of_birth" background="#219653"/>
+    <Label value="purpose" background="#F2994A"/>
+    <Label value="vehicle_class" background="#2D9CDB"/>
+    <Label value="service_mentioned" background="#EB5757"/>
+    <Label value="issue" background="#828282"/>
+  </Labels>
+</View>

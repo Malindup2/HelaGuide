@@ -1,0 +1,320 @@
+{
+  "map_version": "0.1",
+  "built_on": "2026-10-14",
+  "schema": "schema_v1.json",
+  "how_built": "Read from the C2 files that are in git: research/data/agency_profile/*.json, crawl/tree.json, crawl/changes.jsonl, seed_urls.yaml, research/docs/drp_completion_log.md, extraction_design.md, service/app/core/extraction/vocabulary.py, contracts/naming.md. The extracted facts themselves (fee amounts, document lists) live in C2's Postgres (c2 schema) and Neo4j, and the page text in crawl/archive/ (gitignored). None of those were available, so attribute status below says where a value is, not what it is.",
+
+  "legend": {
+    "id_status": {
+      "confirmed": "The id is used by C2 in real (non-test) data or docs and the service has facts in the graph.",
+      "confirmed_no_facts": "The id is used by C2 in real data, but C2's log says no facts were written for it yet.",
+      "proposed": "No such service exists in the KG yet. The id follows contracts/naming.md and the C2 vocabulary, and must be agreed with C2 (C2 owns the service vocabulary)."
+    },
+    "attribute_status": {
+      "reported_in_graph": "C2's completion log reports approved facts of this kind written to Neo4j. Not checked against the database.",
+      "on_crawled_page": "A crawled and saved page for this service carries the discovery signal (F = fee, D = documents, P = prerequisites), or the C2 docs quote it. Not yet extracted into the graph.",
+      "form_links": "Form or document links are in the agency profile (PUBLISHES_FORM). The files are linked, not read.",
+      "agency_level": "Only agency-wide contacts or offices are known, not a per-service office list.",
+      "not_found": "Nothing in the scraped data."
+    }
+  },
+
+  "intents": {
+    "nic_new": {
+      "kg_service_id": "svc:nic",
+      "kg_variant": "first_issue",
+      "id_status": "confirmed",
+      "kg_service_name_en": "Obtaining NIC (National Identity Card)",
+      "kg_service_name_si": null,
+      "department": "registration_of_persons",
+      "department_name": "Department for Registration of Persons",
+      "attributes_available": {
+        "fee": "reported_in_graph",
+        "documents": "reported_in_graph",
+        "prerequisites": "reported_in_graph: svc:nic REQUIRES svc:birth_certificate",
+        "processing_time": "on_crawled_page",
+        "service_types": "normal and one_day (the one-day service has its own page; the C2 vocabulary keeps one_day as a qualifier separate from urgent)",
+        "eligibility": "not_found as a fact (free-text eligibility is held for human review)",
+        "offices": "agency_level: head office Battaramulla, 5 provincial offices (North West, East, North, Southern, Central), divisional secretariat route",
+        "forms": "form_links: Application for a National Identity card (application.pdf)"
+      },
+      "source_pages": [
+        "https://www.drp.gov.lk/en/normal.php",
+        "https://www.drp.gov.lk/en/oneday_branch.php",
+        "https://www.drp.gov.lk/en/faq.php",
+        "https://www.drp.gov.lk/en/divisional_office.php",
+        "https://www.drp.gov.lk/en/icao.php",
+        "https://www.drp.gov.lk/en/assets/formats/application.pdf",
+        "https://www.drp.gov.lk/en/assets/downloads/fees-english.pdf"
+      ],
+      "source_files": [
+        "components/c2-knowledge-graph/research/data/agency_profile/department_for_registration_of_persons.json",
+        "components/c2-knowledge-graph/research/data/seed_urls.yaml",
+        "components/c2-knowledge-graph/research/data/crawl/tree.json",
+        "components/c2-knowledge-graph/research/docs/drp_completion_log.md"
+      ],
+      "notes": "fees-english.pdf ('Notice on revision of fees charged') is saved but not read, so the revised NIC fees are not in the graph."
+    },
+
+    "nic_update": {
+      "kg_service_id": "svc:nic",
+      "kg_variant": "amended",
+      "id_status": "confirmed",
+      "kg_service_name_en": "Obtaining NIC (National Identity Card), amended card",
+      "kg_service_name_si": null,
+      "department": "registration_of_persons",
+      "department_name": "Department for Registration of Persons",
+      "attributes_available": {
+        "fee": "reported_in_graph (svc:nic, variant decides which fee applies)",
+        "documents": "reported_in_graph, partly: change-specific documents may be among the 6 case-dependent facts still waiting",
+        "prerequisites": "not_found for this case",
+        "processing_time": "on_crawled_page",
+        "service_types": "normal and one_day",
+        "eligibility": "not_found",
+        "offices": "agency_level (as nic_new)",
+        "forms": "form_links: Application for a National Identity card; Verification of Temporary Residential Address (0207.pdf); GN letters on GN.php"
+      },
+      "source_pages": [
+        "https://www.drp.gov.lk/en/normal.php",
+        "https://www.drp.gov.lk/en/GN.php",
+        "https://www.drp.gov.lk/en/faq.php"
+      ],
+      "source_files": [
+        "components/c2-knowledge-graph/research/data/agency_profile/department_for_registration_of_persons.json",
+        "components/c2-knowledge-graph/research/docs/drp_completion_log.md",
+        "components/c2-knowledge-graph/service/app/core/extraction/vocabulary.py"
+      ],
+      "notes": "Answer to schema_v1 open question 2: the KG has no separate update or replacement service. Both are variants of svc:nic (vocabulary.py: amended, lost, replacement, first_issue). The GN.php facts were not approved."
+    },
+
+    "nic_replace_lost": {
+      "kg_service_id": "svc:nic",
+      "kg_variant": "lost",
+      "id_status": "confirmed",
+      "kg_service_name_en": "Obtaining NIC (National Identity Card), lost or damaged card",
+      "kg_service_name_si": null,
+      "department": "registration_of_persons",
+      "department_name": "Department for Registration of Persons",
+      "attributes_available": {
+        "fee": "reported_in_graph (svc:nic)",
+        "documents": "on_crawled_page: the lost-card documents (police report etc.) were left waiting on purpose as case-dependent facts",
+        "prerequisites": "on_crawled_page: police report (letter template 'police report.pdf')",
+        "processing_time": "on_crawled_page",
+        "service_types": "normal and one_day",
+        "eligibility": "not_found",
+        "offices": "agency_level (as nic_new)",
+        "forms": "form_links: police report.pdf, application.pdf"
+      },
+      "source_pages": [
+        "https://www.drp.gov.lk/en/normal.php",
+        "https://www.drp.gov.lk/en/GN.php",
+        "https://www.drp.gov.lk/en/oneday_branch.php"
+      ],
+      "source_files": [
+        "components/c2-knowledge-graph/research/data/agency_profile/department_for_registration_of_persons.json",
+        "components/c2-knowledge-graph/research/docs/drp_completion_log.md"
+      ],
+      "notes": "Slot 'urgency' (normal/urgent) should be mapped to NIC service type normal/one_day."
+    },
+
+    "passport_new": {
+      "kg_service_id": "svc:passport",
+      "kg_variant": "ordinary (also minor, diplomatic, official)",
+      "id_status": "confirmed",
+      "kg_service_name_en": "Passport (Department of Immigration and Emigration)",
+      "kg_service_name_si": null,
+      "department": "immigration_emigration",
+      "department_name": "Department of Immigration and Emigration",
+      "attributes_available": {
+        "fee": "reported_in_graph: fee by variant and basis, e.g. svc:passport:fee:ordinary_normal, minor_normal_3y",
+        "documents": "reported_in_graph",
+        "prerequisites": "reported_in_graph: svc:passport REQUIRES svc:nic",
+        "processing_time": "reported_in_graph: normal and urgent",
+        "service_types": "normal and urgent. The KG has no 'one_day' qualifier for passports",
+        "eligibility": "on_crawled_page (conditions such as 'if parents do not have passports')",
+        "offices": "agency_level: head office numbers, hotline 1962, topic lines (passport delays, overseas missions); Location page saved, not parsed",
+        "forms": "form_links: Form K 35 A (passport_application.pdf), new_om_application_form.pdf, child_deletion_application.pdf, CourierSriLankanPassports.pdf"
+      },
+      "source_pages": [
+        "https://www.immigration.gov.lk/pages_e.php?id=8",
+        "https://www.immigration.gov.lk/pages_e.php?id=7",
+        "https://www.immigration.gov.lk/pages_e.php?id=9",
+        "https://www.immigration.gov.lk/pages_e.php?id=11",
+        "https://www.immigration.gov.lk/pages_e.php?id=24"
+      ],
+      "source_files": [
+        "components/c2-knowledge-graph/research/data/agency_profile/department_of_immigration_and_emigration.json",
+        "components/c2-knowledge-graph/research/data/seed_urls.yaml",
+        "components/c2-knowledge-graph/research/data/crawl/tree.json",
+        "components/c2-knowledge-graph/research/docs/extraction_design.md"
+      ],
+      "notes": "schema_v1 slot service_type is [normal, one_day], but the passport facts use normal/urgent. Either add 'urgent' to the enum or map one_day -> urgent for passports."
+    },
+
+    "passport_renew": {
+      "kg_service_id": "svc:passport",
+      "kg_variant": "replacement",
+      "id_status": "confirmed",
+      "kg_service_name_en": "Passport, replacement / renewal",
+      "kg_service_name_si": null,
+      "department": "immigration_emigration",
+      "department_name": "Department of Immigration and Emigration",
+      "attributes_available": {
+        "fee": "reported_in_graph (the passport page repeats Normal/Urgent fees for replacement passports)",
+        "documents": "reported_in_graph",
+        "prerequisites": "reported_in_graph: current passport, svc:nic",
+        "processing_time": "reported_in_graph",
+        "service_types": "normal and urgent",
+        "eligibility": "not_found",
+        "offices": "agency_level (as passport_new)",
+        "forms": "form_links: as passport_new; complaint form for stolen/lost passport"
+      },
+      "source_pages": [
+        "https://www.immigration.gov.lk/pages_e.php?id=8",
+        "https://www.immigration.gov.lk/pages_e.php?id=12"
+      ],
+      "source_files": [
+        "components/c2-knowledge-graph/research/data/agency_profile/department_of_immigration_and_emigration.json",
+        "components/c2-knowledge-graph/research/data/crawl/tree.json",
+        "components/c2-knowledge-graph/research/docs/extraction_design.md"
+      ],
+      "notes": "There is no separate renewal service. The lost/stolen passport page (id=12) was saved but has no F/D/P signal. Passport amendments (id=10) is a separate page; see unmapped svc:passport_alteration."
+    },
+
+    "birth_cert_copy": {
+      "kg_service_id": "svc:birth_certificate",
+      "kg_variant": null,
+      "id_status": "confirmed_no_facts",
+      "kg_service_name_en": "Birth certificate: obtain certified copies / translations",
+      "kg_service_name_si": null,
+      "department": "registrar_general",
+      "department_name": "Registrar General's Department",
+      "attributes_available": {
+        "fee": "on_crawled_page: birth/obtain-certified-copies-translations (FDP), birth/charges (F)",
+        "documents": "on_crawled_page",
+        "prerequisites": "on_crawled_page",
+        "processing_time": "not_found",
+        "service_types": "not_found (in person, plus online request through e-BMD)",
+        "eligibility": "not_found",
+        "offices": "on_crawled_page: directory of birth, death and marriage registrars (saved, not parsed); head office contacts in profile",
+        "forms": "form_links: B63-style application forms, bmd-translation.pdf"
+      },
+      "source_pages": [
+        "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/obtain-certified-copies-translations",
+        "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/birth/charges",
+        "https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online",
+        "https://www.rgd.gov.lk/web/index.php/en/component/other_registrar/?view=other_registrars&Itemid=336"
+      ],
+      "source_files": [
+        "components/c2-knowledge-graph/research/data/agency_profile/registrar_general_s_department.json",
+        "components/c2-knowledge-graph/research/data/seed_urls.yaml",
+        "components/c2-knowledge-graph/research/data/crawl/tree.json",
+        "components/c2-knowledge-graph/research/data/crawl/changes.jsonl"
+      ],
+      "notes": "svc:birth_certificate is the target of the NIC and passport REQUIRES links. The KG uses one id for the certificate, not separate ids for registration and copy. The RGD pages were crawled on 2026-10-11, after the last DRP log entry; whether they were read by the model is not recorded."
+    },
+
+    "marriage_registration": {
+      "kg_service_id": "svc:marriage_registration",
+      "kg_variant": null,
+      "id_status": "proposed",
+      "kg_service_name_en": "Marriage registration",
+      "kg_service_name_si": null,
+      "department": "registrar_general",
+      "department_name": "Registrar General's Department",
+      "attributes_available": {
+        "fee": "on_crawled_page: marriage/marriage-registration (FDP), marriage/charges (F)",
+        "documents": "on_crawled_page",
+        "prerequisites": "on_crawled_page (birth certificates of the parties)",
+        "processing_time": "not_found",
+        "service_types": "not_found (general and Kandyan marriage notices exist as forms)",
+        "eligibility": "on_crawled_page",
+        "offices": "on_crawled_page: BMD registrar directory (saved, not parsed)",
+        "forms": "form_links: Notice of Marriage (b100.pdf), Notice of Kandyan Marriage (C3), b121.pdf"
+      },
+      "source_pages": [
+        "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/marriage-registration",
+        "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage/charges",
+        "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/marriage"
+      ],
+      "source_files": [
+        "components/c2-knowledge-graph/research/data/agency_profile/registrar_general_s_department.json",
+        "components/c2-knowledge-graph/research/data/seed_urls.yaml",
+        "components/c2-knowledge-graph/research/data/crawl/tree.json"
+      ],
+      "notes": "The id appears only in a C2 test fixture (tests/test_autoreview.py), not in real data. Ask C2 to adopt it."
+    },
+
+    "death_cert_copy": {
+      "kg_service_id": "svc:death_certificate",
+      "kg_variant": null,
+      "id_status": "proposed",
+      "kg_service_name_en": "Death certificate: obtain copies / translations",
+      "kg_service_name_si": null,
+      "department": "registrar_general",
+      "department_name": "Registrar General's Department",
+      "attributes_available": {
+        "fee": "on_crawled_page: death/obtain-copies-translations (FDP), death/charges (F)",
+        "documents": "on_crawled_page",
+        "prerequisites": "on_crawled_page",
+        "processing_time": "not_found",
+        "service_types": "not_found (in person, plus online request through e-BMD)",
+        "eligibility": "not_found",
+        "offices": "on_crawled_page: BMD registrar directory (saved, not parsed)",
+        "forms": "form_links: Death Certificate and/or Search of registers (B63 a), b63a.pdf"
+      },
+      "source_pages": [
+        "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/obtain-copies-translations",
+        "https://www.rgd.gov.lk/web/index.php/en/services/civil-registration/death/charges",
+        "https://www.rgd.gov.lk/web/index.php/en/e-services/e-bmd/request-certified-copies-of-birth-marriage-and-death-certificates-online"
+      ],
+      "source_files": [
+        "components/c2-knowledge-graph/research/data/agency_profile/registrar_general_s_department.json",
+        "components/c2-knowledge-graph/research/data/seed_urls.yaml",
+        "components/c2-knowledge-graph/research/data/crawl/tree.json"
+      ],
+      "notes": "vocabulary.py has a 'death_certificate' document key but no service id for it. Name chosen to match svc:birth_certificate; agree with C2."
+    }
+  },
+
+  "sinhala_coverage": {
+    "summary": "No official Sinhala service names were scraped. Discovery drops the Sinhala and Tamil copies of pages by design, extraction reads English pages only, and the Sinhala/Tamil layer of the PDFs that were read came out garbled. All kg_service_name_si values are therefore null.",
+    "sinhala_in_scraped_data": [
+      {"text": "අනුමත ඡායාරූප ශාලා", "gloss": "approved photo studios", "url": "https://www.immigration.gov.lk/studio_s.php", "saved": false},
+      {"text": "මාර්ගගත ආකෘතිය", "gloss": "online form (RTI)", "url": "https://www.immigration.gov.lk/rtiForm_s.php", "saved": false},
+      {"text": "පැමිණිලි හා අදහස්", "gloss": "complaints and comments", "url": "https://www.immigration.gov.lk/con_head_s.php", "saved": false},
+      {"text": "හරි පාරෙන් රට යමු", "gloss": "awareness campaign PDF title (investigation unit)", "url": "https://www.immigration.gov.lk/content/files/investigation/", "saved": false},
+      {"text": "සිංහල", "gloss": "language switch link", "url": "https://www.immigration.gov.lk/index_s.php", "saved": false}
+    ],
+    "where_to_get_them": "The Sinhala copies exist and are linked from the crawled sites (immigration.gov.lk *_s.php, drp.gov.lk /si/ pages, rgd.gov.lk Sinhala menu). Getting official names needs C2 to crawl the Sinhala menu pages, or a manual pass."
+  },
+
+  "unmapped_kg_services": [
+    {"kg_service_id": "svc:nic_translation", "id_status": "confirmed", "name_en": "Translation of National Identity cards into English", "department": "registration_of_persons", "attributes": "fee reported_in_graph (Rs.2000 in fixtures); documents; GN letter is case-dependent and waiting", "suggestion": "Candidate new intent, or general_question"},
+    {"kg_service_id": "svc:nic_number_verification", "id_status": "confirmed", "name_en": "Verification of NIC information / confirmation of NIC numbers (incl. deceased persons)", "department": "registration_of_persons", "attributes": "fee reported_in_graph; online NIC portal link", "suggestion": "general_question"},
+    {"kg_service_id": "svc:surrender_nic_deceased", "id_status": "confirmed", "name_en": "Handing over the NIC of a deceased person", "department": "registration_of_persons", "attributes": "documents; form DRP/OP/01/3. Also seen as svc:nic_deceased_card_handover in fixtures; C2 has not settled one id", "suggestion": "general_question"},
+    {"kg_service_id": "svc:icao_studio_* / svc:studio_registration", "id_status": "confirmed (facts left waiting)", "name_en": "ICAO photo studio registration", "department": "registration_of_persons", "attributes": "fee, documents (business service, not citizen-facing); scope undecided by C2", "suggestion": "out_of_scope / unsupported_service"},
+    {"kg_service_id": "svc:passport_alteration", "id_status": "proposed (test fixture only)", "name_en": "Passport amendments", "department": "immigration_emigration", "attributes": "on_crawled_page: pages_e.php?id=10 (FD), amendment.pdf", "suggestion": "Could fold into passport_renew or become passport_update"},
+    {"kg_service_id": null, "id_status": "no id", "name_en": "Dual citizenship", "department": "immigration_emigration", "attributes": "on_crawled_page: pages_e.php?id=4 (FDP); forms DualCIT_Application.pdf, dual_instructions_english.pdf, declaration_english.pdf; DRP has dual-citizen NIC forms (0007.pdf, 104.pdf, dual.pdf)", "suggestion": "Answer to schema_v1 open question 4: yes, it is scraped. A dual_citizenship intent is supported by the data once C2 assigns an id (e.g. svc:dual_citizenship)"},
+    {"kg_service_id": null, "id_status": "no id", "name_en": "Overseas (consular) birth registration", "department": "immigration_emigration", "attributes": "on_crawled_page: pages_e.php?id=5 (FD); birthregistration.pdf", "suggestion": "unsupported_service for now"},
+    {"kg_service_id": null, "id_status": "no id", "name_en": "Renunciation of citizenship / citizenship by registration", "department": "immigration_emigration", "attributes": "on_crawled_page: pages_e.php?id=33, id=6 (D)", "suggestion": "unsupported_service"},
+    {"kg_service_id": null, "id_status": "no id", "name_en": "Visas (residence, tourist, transit, business, PRV, My Dream Home, Resident Guest, visa extension)", "department": "immigration_emigration", "attributes": "on_crawled_page: about 12 pages, most with fee signals", "suggestion": "unsupported_service (foreign nationals)"},
+    {"kg_service_id": null, "id_status": "no id (svc:birth_certificate covers the certificate only)", "name_en": "Birth registration (new) and registration of an unregistered birth", "department": "registrar_general", "attributes": "on_crawled_page: birth/birth-registration (FD), birth/registration-of-unregistered-birth (FD); forms B23, B61, B62", "suggestion": "New intent birth_registration if C2 splits it from svc:birth_certificate"},
+    {"kg_service_id": null, "id_status": "no id", "name_en": "Death registration and registration of an unregistered death", "department": "registrar_general", "attributes": "on_crawled_page: death/death-registration (FDP), death/registration-of-unregistered-death (FD); forms CR2, B18", "suggestion": "Candidate death_registration intent"},
+    {"kg_service_id": null, "id_status": "no id", "name_en": "Marriage certificate copies / translations", "department": "registrar_general", "attributes": "on_crawled_page: marriage/obtain-certified-copies-translation (FD)", "suggestion": "Candidate marriage_cert_copy intent"},
+    {"kg_service_id": null, "id_status": "no id", "name_en": "Correction of errors in marriage certificates; certificate of divorce", "department": "registrar_general", "attributes": "on_crawled_page (D)", "suggestion": "unsupported_service"},
+    {"kg_service_id": null, "id_status": "no id", "name_en": "Translation of birth / marriage / death certificates", "department": "registrar_general", "attributes": "on_crawled_page: translation/* (FD); bmd-translation.pdf", "suggestion": "Slot purpose='translation' on the *_cert_copy intents"},
+    {"kg_service_id": null, "id_status": "no id", "name_en": "Land, title, deed, notary and power of attorney registration", "department": "registrar_general", "attributes": "on_crawled_page: about 15 pages, most with fee signals", "suggestion": "unsupported_service"},
+    {"kg_service_id": "svc:police_clearance", "id_status": "seeded, not scraped", "name_en": "Police clearance report", "department": "Sri Lanka Police (outside the three departments)", "attributes": "not_found: police.lk blocked by robots.txt", "suggestion": "unsupported_service (as schema_v1 already says)"},
+    {"kg_service_id": "svc:business_registration", "id_status": "seeded, not scraped", "name_en": "Business registration", "department": "Registrar of Companies (outside the three departments)", "attributes": "not_found: drc.gov.lk blocked by anti-bot protection", "suggestion": "unsupported_service"}
+  ],
+
+  "open_questions_for_c2": [
+    "Confirm or assign ids: svc:marriage_registration, svc:death_certificate (proposed here).",
+    "Is the 'one id for registration and copy' rule (svc:birth_certificate) intended? If so, death and marriage should follow the same pattern.",
+    "Passport basis is normal/urgent in the KG; schema_v1 says normal/one_day. Which name does C4 show?",
+    "Settle svc:surrender_nic_deceased vs svc:nic_deceased_card_handover.",
+    "Plan to crawl the Sinhala pages, so that official Sinhala service names can be added?",
+    "Export the current service list (Neo4j Service nodes) to a file in git, so C1 can check its ids against it in CI."
+  ]
+}

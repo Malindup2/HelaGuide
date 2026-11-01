@@ -1,0 +1,67 @@
+{
+  "n_turns": 142,
+  "n_tokens": 788,
+  "lang_tag_counts": {
+    "SI": 510,
+    "EN": 201,
+    "OTHER": 11,
+    "NE": 65,
+    "MIXED": 1
+  },
+  "entity_counts": {
+    "new_value": 5,
+    "travel_date": 5,
+    "district": 37,
+    "purpose": 4,
+    "issue": 10,
+    "service_mentioned": 6,
+    "date": 3
+  },
+  "heuristic_prelabel_accuracy": 0.9848,
+  "heuristic_tags_corrected": 12,
+  "fasttext_token_accuracy": {
+    "ALL": {
+      "acc": 0.5738,
+      "n": 711
+    },
+    "gold=EN": {
+      "acc": 0.8557,
+      "n": 201
+    },
+    "gold=SI": {
+      "acc": 0.4627,
+      "n": 510
+    },
+    "mixed / romanized": {
+      "acc": 0.3515,
+      "n": 421
+    },
+    "mixed / sinhala_script": {
+      "acc": 0.904,
+      "n": 125
+    },
+    "pure_si / sinhala_script": {
+      "acc": 0.8909,
+      "n": 165
+    }
+  },
+  "fasttext_sentence_accuracy": {
+    "ALL": {
+      "acc": 0.6106,
+      "n": 113
+    },
+    "mixed / romanized": {
+      "acc": 0.2903,
+      "n": 62
+    },
+    "mixed / sinhala_script": {
+      "acc": 1.0,
+      "n": 21
+    },
+    "pure_si / sinhala_script": {
+      "acc": 1.0,
+      "n": 30
+    }
+  },
+  "turns_containing_both_SI_and_EN": 66
+}

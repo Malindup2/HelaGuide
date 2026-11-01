@@ -1,0 +1,309 @@
+import httpx
+import pytest
+
+from app.core.llm_client import (BODY_CHARS, REPAIR_MESSAGE, FakeLLM, LLMError, LLMResult, LLMUsage,
+                                 OpenAICompatClient, parse_json_object)
+from app.core.settings import DialogueSettings
+
+REQ = httpx.Request("POST", "http://llm.test/v1/chat/completions")
+KEY = "fake-key-123"
+
+
+def ok(content, prompt_tokens=10, completion_tokens=4, model="test-model:7b"):
+    return httpx.Response(200, request=REQ, json={
+        "model": model, "choices": [{"message": {"content": content}}],
+        "usage": {"prompt_tokens": prompt_tokens, "completion_tokens": completion_tokens}})
+
+
+def error(status, text):
+    return httpx.Response(status, text=text, request=REQ)
+
+
+class Transport:
+    """Stands in for httpx.post: returns (or raises) the scripted items in order, records each request."""
+
+    def __init__(self, *items):
+        self.items = list(items)
+        self.requests = []
+
+    def __call__(self, url, json, headers, timeout):
+        self.requests.append({"url": url, "json": json, "headers": headers, "timeout": timeout})
+        item = self.items.pop(0)
+        if isinstance(item, Exception):
+            raise item
+        return item
+
+
+def client(transport, sleep=None, **kw):
+    return OpenAICompatClient("http://llm.test/v1/", "test-model", post=transport,
+                              sleep=sleep if sleep is not None else (lambda s: None), **kw)
+
+
+class Sleeps(list):
+    """Records the waits instead of sleeping."""
+
+    def __call__(self, seconds):
+        self.append(seconds)
+
+
+GEMINI_QUOTA = ('{"error": {"code": 429, "message": "You exceeded your current quota, please check your plan and '
+                'billing details.", "status": "RESOURCE_EXHAUSTED"}}')
+GEMINI_RATE = ('{"error": {"code": 429, "message": "Too many requests", "status": "RESOURCE_EXHAUSTED", "details": '
+               '[{"@type": "type.googleapis.com/google.rpc.RetryInfo", "retryDelay": "%ss"}]}}')
+
+
+# ---------------------------------------------------------------- JSON and usage
+def test_valid_json_with_usage():
+    t = Transport(ok('{"reply": "Hello!", "slot_updates": {}}', 120, 15))
+    out = client(t).complete_json("sys", [{"role": "user", "content": "hi"}])
+    assert isinstance(out, LLMResult)
+    assert out.data == {"reply": "Hello!", "slot_updates": {}}
+    u = out.usage
+    assert (u.prompt_tokens, u.completion_tokens, u.total_tokens, u.model, u.calls) == \
+        (120, 15, 135, "test-model:7b", 1)
+    assert u.latency_ms >= 0
+    req = t.requests[0]
+    assert req["url"] == "http://llm.test/v1/chat/completions"
+    assert req["json"]["temperature"] == 0
+    assert req["json"]["response_format"] == {"type": "json_object"}
+    assert req["json"]["messages"][0] == {"role": "system", "content": "sys"}
+    assert req["headers"] == {}             # no key (Ollama): no Authorization header
+
+
+def test_missing_usage_counts_zero():
+    r = httpx.Response(200, request=REQ, json={"choices": [{"message": {"content": "{}"}}]})
+    u = client(Transport(r)).complete_json("sys", []).usage
+    assert (u.prompt_tokens, u.completion_tokens, u.model, u.calls) == (0, 0, "test-model", 1)
+
+
+def test_api_key_goes_in_header_only():
+    t = Transport(ok("{}"))
+    client(t, api_key=KEY).complete_json("sys", [])
+    assert t.requests[0]["headers"] == {"Authorization": f"Bearer {KEY}"}
+    assert KEY not in str(t.requests[0]["json"])
+
+
+def test_fenced_json_is_accepted():
+    assert parse_json_object('```json\n{"a": 1}\n```') == {"a": 1}
+
+
+def test_invalid_json_gets_one_repair_retry_and_usage_adds_up():
+    t = Transport(ok("Sure! here you go", 100, 5), ok('{"reply": "ok"}', 110, 6))
+    out = client(t).complete_json("sys", [{"role": "user", "content": "hi"}])
+    assert out.data == {"reply": "ok"}
+    assert (out.usage.prompt_tokens, out.usage.completion_tokens, out.usage.calls) == (210, 11, 2)
+    repair = t.requests[1]["json"]["messages"]
+    assert repair[-2] == {"role": "assistant", "content": "Sure! here you go"}
+    assert repair[-1] == {"role": "user", "content": REPAIR_MESSAGE}
+
+
+def test_invalid_json_twice_raises():
+    t = Transport(ok("nope"), ok("[1, 2]"))
+    with pytest.raises(LLMError, match="repair"):
+        client(t).complete_json("sys", [])
+    assert len(t.requests) == 2
+
+
+# ---------------------------------------------------------------- retries
+def test_429_quota_exceeded_fails_at_once():
+    sleeps = Sleeps()
+    t = Transport(error(429, GEMINI_QUOTA), ok('{"x": 1}'))
+    with pytest.raises(LLMError, match="429"):
+        client(t, sleep=sleeps).complete_json("sys", [])
+    assert len(t.requests) == 1 and sleeps == []
+
+
+def test_429_rate_limit_retried_once_with_default_wait():
+    sleeps = Sleeps()
+    t = Transport(error(429, "slow down"), ok('{"x": 1}'))
+    assert client(t, sleep=sleeps).complete_json("sys", []).data == {"x": 1}
+    assert len(t.requests) == 2 and sleeps == [1.0]
+
+
+def test_429_rate_limit_only_retried_once():
+    t = Transport(error(429, "slow down"), error(429, "slow down"), ok('{"x": 1}'))
+    with pytest.raises(LLMError, match="429"):
+        client(t).complete_json("sys", [])
+    assert len(t.requests) == 2
+
+
+@pytest.mark.parametrize("delay, waited", [("2", 2.0), ("2.5", 2.5), ("37", 5.0)])
+def test_429_uses_gemini_retry_delay_capped_at_5s(delay, waited):
+    sleeps = Sleeps()
+    t = Transport(error(429, GEMINI_RATE % delay), ok('{"x": 1}'))
+    client(t, sleep=sleeps).complete_json("sys", [])
+    assert sleeps == [waited]
+
+
+@pytest.mark.parametrize("header, waited", [("3", 3.0), ("120", 5.0), ("Wed, 21 Oct 2026 07:28:00 GMT", 1.0)])
+def test_429_uses_retry_after_header_capped_at_5s(header, waited):
+    sleeps = Sleeps()
+    r = httpx.Response(429, text="slow down", headers={"Retry-After": header}, request=REQ)
+    client(Transport(r, ok('{"x": 1}')), sleep=sleeps).complete_json("sys", [])
+    assert sleeps == [waited]
+
+
+@pytest.mark.parametrize("status", [500, 502, 503, 504])
+def test_5xx_retried_once_after_1s(status):
+    sleeps = Sleeps()
+    t = Transport(error(status, "busy"), ok('{"x": 1}'))
+    assert client(t, sleep=sleeps).complete_json("sys", []).data == {"x": 1}
+    assert len(t.requests) == 2 and sleeps == [1.0]
+
+
+def test_5xx_gives_up_after_2_attempts():
+    sleeps = Sleeps()
+    t = Transport(*[error(503, "high demand")] * 3)
+    with pytest.raises(LLMError, match="503"):
+        client(t, sleep=sleeps).complete_json("sys", [])
+    assert len(t.requests) == 2 and sleeps == [1.0]
+
+
+def test_no_retry_on_4xx():
+    t = Transport(error(401, "bad key"))
+    with pytest.raises(LLMError, match="401"):
+        client(t).complete_json("sys", [])
+    assert len(t.requests) == 1
+
+
+def test_timeout_raises_without_retry():
+    t = Transport(httpx.ReadTimeout("slow", request=REQ))
+    with pytest.raises(LLMError, match="timed out"):
+        client(t, timeout=5).complete_json("sys", [])
+    assert len(t.requests) == 1
+
+
+def test_refused_connection_fails_at_once():
+    t = Transport(httpx.ConnectError("refused", request=REQ), ok('{"x": 2}'))
+    with pytest.raises(LLMError, match="ConnectError"):
+        client(t).complete_json("sys", [])
+    assert len(t.requests) == 1
+
+
+def test_other_transport_errors_are_retried():
+    t = Transport(httpx.RemoteProtocolError("server hung up", request=REQ), ok('{"x": 2}'))
+    assert client(t).complete_json("sys", []).data == {"x": 2}
+    assert len(t.requests) == 2
+
+
+# ---------------------------------------------------------------- JSON mode
+def test_json_mode_rejected_retries_without_it_and_remembers():
+    t = Transport(error(400, '{"error": {"message": "response_format json_object is not supported by this model"}}'),
+                  ok('{"x": 1}'), ok('{"x": 2}'))
+    c = client(t)
+    assert c.complete_json("sys", []).data == {"x": 1}
+    assert "response_format" in t.requests[0]["json"]
+    assert "response_format" not in t.requests[1]["json"]
+    assert c.json_mode is False
+    assert c.complete_json("sys", []).data == {"x": 2}        # later calls skip it straight away
+    assert "response_format" not in t.requests[2]["json"]
+    assert len(t.requests) == 3
+
+
+def test_other_400_is_not_retried():
+    t = Transport(error(400, "model 'nope' not found"))
+    c = client(t)
+    with pytest.raises(LLMError, match="400"):
+        c.complete_json("sys", [])
+    assert len(t.requests) == 1
+    assert c.json_mode is True
+
+
+def test_json_mode_400_after_switching_off_is_an_error():
+    t = Transport(error(400, "json mode unsupported"), error(400, "json mode unsupported"))
+    with pytest.raises(LLMError, match="400"):
+        client(t).complete_json("sys", [])
+    assert len(t.requests) == 2        # one free retry without response_format, then stop
+
+
+def test_json_mode_off_by_setting():
+    t = Transport(ok("{}"))
+    c = OpenAICompatClient.from_settings(DialogueSettings(json_mode=False))
+    c._post, c._sleep = t, lambda s: None
+    c.complete_json("sys", [])
+    assert "response_format" not in t.requests[0]["json"]
+
+
+# ---------------------------------------------------------------- error messages
+def test_error_messages_truncate_body_and_never_show_headers():
+    t = Transport(error(401, f"invalid key {KEY} " + "x" * 1000))
+    with pytest.raises(LLMError) as e:
+        client(t, api_key=KEY).complete_json("sys", [])
+    msg = str(e.value)
+    assert len(msg) <= len("HTTP 401: ") + BODY_CHARS
+    assert "Bearer" not in msg and "Authorization" not in msg
+
+
+def test_long_transport_errors_are_truncated():
+    for error, name in ((httpx.ConnectError, "ConnectError"), (httpx.ReadError, "ReadError")):
+        t = Transport(*[error("y" * 1000, request=REQ)] * 3)
+        with pytest.raises(LLMError) as e:
+            client(t).complete_json("sys", [])
+        assert len(str(e.value)) <= len(name + ": ") + BODY_CHARS
+
+
+# ---------------------------------------------------------------- reasoning effort and tokens
+def test_reasoning_effort_not_sent_by_default():
+    t = Transport(ok("{}"))
+    client(t).complete_json("sys", [])
+    assert "reasoning_effort" not in t.requests[0]["json"]
+
+
+def test_reasoning_effort_sent_when_set():
+    t = Transport(ok("{}"))
+    client(t, reasoning_effort="low").complete_json("sys", [])
+    assert t.requests[0]["json"]["reasoning_effort"] == "low"
+
+
+def test_reasoning_effort_from_settings():
+    c = OpenAICompatClient.from_settings(DialogueSettings(reasoning_effort="none"))
+    assert c.reasoning_effort == "none"
+
+
+def test_reasoning_tokens_recorded_separately():
+    r = httpx.Response(200, request=REQ, json={"choices": [{"message": {"content": "{}"}}], "usage": {
+        "prompt_tokens": 50, "completion_tokens": 300, "completion_tokens_details": {"reasoning_tokens": 260}}})
+    u = client(Transport(r)).complete_json("sys", []).usage
+    assert (u.prompt_tokens, u.completion_tokens, u.reasoning_tokens, u.total_tokens) == (50, 300, 260, 350)
+
+
+def test_reasoning_tokens_top_level_and_summed_over_repair():
+    first = httpx.Response(200, request=REQ, json={"choices": [{"message": {"content": "oops"}}],
+                                                   "usage": {"completion_tokens": 10, "reasoning_tokens": 7}})
+    second = httpx.Response(200, request=REQ, json={"choices": [{"message": {"content": "{}"}}], "usage": {
+        "completion_tokens": 10, "completion_tokens_details": {"reasoning_tokens": 5}}})
+    assert client(Transport(first, second)).complete_json("sys", []).usage.reasoning_tokens == 12
+
+
+def test_no_reasoning_tokens_is_zero():
+    u = client(Transport(ok("{}"))).complete_json("sys", []).usage
+    assert (u.reasoning_tokens, u.provider_total_tokens) == (0, 0)
+
+
+def test_provider_total_tokens_kept_and_summed_over_repair():
+    def reply(content, total):
+        return httpx.Response(200, request=REQ, json={"choices": [{"message": {"content": content}}], "usage": {
+            "prompt_tokens": 100, "completion_tokens": 20, "total_tokens": total}})
+    u = client(Transport(reply("oops", 400), reply("{}", 150))).complete_json("sys", []).usage
+    assert (u.prompt_tokens, u.completion_tokens, u.total_tokens, u.provider_total_tokens) == (200, 40, 240, 550)
+
+
+# ---------------------------------------------------------------- settings and FakeLLM
+def test_from_settings():
+    c = OpenAICompatClient.from_settings(DialogueSettings(base_url="http://h/v1", model="m", timeout=7))
+    assert (c.base_url, c.model, c.timeout, c.json_mode) == ("http://h/v1", "m", 7, True)
+
+
+def test_fake_llm_scripts_replies_usage_and_errors():
+    scripted = LLMResult({"reply": "b"}, LLMUsage(1, 2, 0, "m", 3.0, 1))
+    fake = FakeLLM({"reply": "a"}, scripted, LLMError("down"))
+    out = fake.complete_json("one two", [{"role": "user", "content": "three four five"}])
+    assert out.data == {"reply": "a"}
+    assert (out.usage.prompt_tokens, out.usage.completion_tokens, out.usage.reasoning_tokens, out.usage.model,
+            out.usage.calls) == (5, 2, 0, "fake-llm", 1)
+    assert fake.complete_json("s", []) is scripted
+    with pytest.raises(LLMError):
+        fake.complete_json("s", [])
+    with pytest.raises(LLMError):
+        fake.complete_json("s", [])     # nothing left
+    assert len(fake.calls) == 4

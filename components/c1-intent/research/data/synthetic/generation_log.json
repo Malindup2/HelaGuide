@@ -1,0 +1,102 @@
+[
+  {
+    "run_at": "2026-10-15T00:20:41",
+    "mode": "ingest",
+    "model": "claude-code",
+    "prompt_version": "v2-kg-grounded",
+    "random_seed": 42,
+    "generated": 40,
+    "accepted": 40,
+    "acceptance_rate": 1.0,
+    "rejection_reasons": {},
+    "token_usage": {},
+    "total_synthetic": 40
+  },
+  {
+    "run_at": "2026-10-15T00:22:32",
+    "mode": "ingest",
+    "model": "claude-code",
+    "prompt_version": "v3-literal-examples",
+    "random_seed": 42,
+    "generated": 0,
+    "accepted": 0,
+    "acceptance_rate": 0,
+    "rejection_reasons": {},
+    "token_usage": {},
+    "total_synthetic": 40
+  },
+  {
+    "run_at": "2026-10-15T00:29:36",
+    "mode": "ingest",
+    "model": "claude-code",
+    "prompt_version": "v3-literal-examples",
+    "random_seed": 42,
+    "generated": 0,
+    "accepted": 0,
+    "acceptance_rate": 0,
+    "rejection_reasons": {},
+    "token_usage": {},
+    "total_synthetic": 40
+  },
+  {
+    "run_at": "2026-10-15T01:06:13",
+    "mode": "api:gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "v3-literal-examples",
+    "random_seed": 42,
+    "generated": 51,
+    "accepted": 40,
+    "acceptance_rate": 0.784,
+    "rejection_reasons": {
+      "duplicate": 2,
+      "call_failed_JSONDecodeError": 5,
+      "slot_not_allowed": 4
+    },
+    "token_usage": {
+      "input_tokens": 21012,
+      "output_tokens": 11818
+    },
+    "total_synthetic": 88
+  },
+  {
+    "run_at": "2026-10-15T01:17:35",
+    "mode": "ingest",
+    "model": "claude-code",
+    "prompt_version": "v3-literal-examples",
+    "random_seed": 42,
+    "generated": 160,
+    "accepted": 147,
+    "acceptance_rate": 0.919,
+    "rejection_reasons": {
+      "duplicate": 13
+    },
+    "token_usage": {},
+    "total_synthetic": 235
+  },
+  {
+    "run_at": "2026-10-16T00:09:21",
+    "mode": "ingest",
+    "model": "claude-code",
+    "prompt_version": "v4-five-styles",
+    "random_seed": 42,
+    "generated": 40,
+    "accepted": 40,
+    "acceptance_rate": 1.0,
+    "rejection_reasons": {},
+    "token_usage": {},
+    "total_synthetic": 273
+  },
+  {
+    "run_at": "2026-10-18T18:41:36",
+    "mode": "ingest",
+    "model": "claude-code",
+    "prompt_version": "v5-support-intents",
+    "random_seed": 42,
+    "generated": 120,
+    "accepted": 120,
+    "acceptance_rate": 1.0,
+    "rejection_reasons": {},
+    "token_usage": {},
+    "total_synthetic": 393
+  }
+]

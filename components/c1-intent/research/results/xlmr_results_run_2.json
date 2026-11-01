@@ -1,0 +1,447 @@
+{
+  "run_at": "2026-10-15 19:52",
+  "model": "xlm-roberta-base",
+  "settings": {
+    "epochs": 8,
+    "batch": 16,
+    "lr": 3e-05,
+    "max_len": 128,
+    "seed": 42,
+    "dev_share": 0.1
+  },
+  "data": {
+    "silver_train_turns": 655,
+    "silver_dev_turns": 71,
+    "gold_turns": 142,
+    "fresh_turns": 50
+  },
+  "language_id": {
+    "all_tags_accuracy": 0.9911,
+    "si_en_accuracy": 0.9902,
+    "si_en_by_group": {
+      "gold=EN": {
+        "acc": 0.99,
+        "n": 201
+      },
+      "gold=SI": {
+        "acc": 0.9902,
+        "n": 510
+      },
+      "mixed / romanized": {
+        "acc": 0.9857,
+        "n": 421
+      },
+      "mixed / sinhala_script": {
+        "acc": 0.992,
+        "n": 125
+      },
+      "pure_si / sinhala_script": {
+        "acc": 1.0,
+        "n": 165
+      }
+    },
+    "confusion_gold_to_pred": {
+      "SI->NE": 3,
+      "SI->EN": 1,
+      "EN->SI": 1,
+      "SI->OTHER": 1,
+      "EN->NE": 1
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 1.0846,
+        "dev": 0.8696
+      },
+      {
+        "epoch": 2,
+        "loss": 0.2975,
+        "dev": 0.9783
+      },
+      {
+        "epoch": 3,
+        "loss": 0.1148,
+        "dev": 0.9855
+      },
+      {
+        "epoch": 4,
+        "loss": 0.0452,
+        "dev": 0.9903
+      },
+      {
+        "epoch": 5,
+        "loss": 0.0294,
+        "dev": 0.9976
+      },
+      {
+        "epoch": 6,
+        "loss": 0.0193,
+        "dev": 0.9976
+      },
+      {
+        "epoch": 7,
+        "loss": 0.0141,
+        "dev": 1.0
+      },
+      {
+        "epoch": 8,
+        "loss": 0.0166,
+        "dev": 1.0
+      }
+    ]
+  },
+  "entities": {
+    "all_types": {
+      "date": {
+        "precision": 1.0,
+        "recall": 0.3333,
+        "f1": 0.5,
+        "support": 3
+      },
+      "district": {
+        "precision": 0.614,
+        "recall": 0.9459,
+        "f1": 0.7447,
+        "support": 37
+      },
+      "issue": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 10
+      },
+      "new_value": {
+        "precision": 0.4286,
+        "recall": 0.6,
+        "f1": 0.5,
+        "support": 5
+      },
+      "purpose": {
+        "precision": 0.1,
+        "recall": 0.25,
+        "f1": 0.1429,
+        "support": 4
+      },
+      "service_mentioned": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      },
+      "travel_date": {
+        "precision": 0.3571,
+        "recall": 1.0,
+        "f1": 0.5263,
+        "support": 5
+      },
+      "MICRO": {
+        "precision": 0.5056,
+        "recall": 0.6429,
+        "f1": 0.566,
+        "support": 70
+      }
+    },
+    "learnable_types_only": {
+      "date": {
+        "precision": 1.0,
+        "recall": 0.3333,
+        "f1": 0.5,
+        "support": 3
+      },
+      "district": {
+        "precision": 0.614,
+        "recall": 0.9459,
+        "f1": 0.7447,
+        "support": 37
+      },
+      "new_value": {
+        "precision": 0.4286,
+        "recall": 0.6,
+        "f1": 0.5,
+        "support": 5
+      },
+      "purpose": {
+        "precision": 0.1,
+        "recall": 0.25,
+        "f1": 0.1429,
+        "support": 4
+      },
+      "travel_date": {
+        "precision": 0.3571,
+        "recall": 1.0,
+        "f1": 0.5263,
+        "support": 5
+      },
+      "MICRO": {
+        "precision": 0.5056,
+        "recall": 0.8333,
+        "f1": 0.6294,
+        "support": 54
+      }
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 1.637,
+        "dev": 0.0
+      },
+      {
+        "epoch": 2,
+        "loss": 0.8841,
+        "dev": 0.2254
+      },
+      {
+        "epoch": 3,
+        "loss": 0.6576,
+        "dev": 0.3171
+      },
+      {
+        "epoch": 4,
+        "loss": 0.4847,
+        "dev": 0.5243
+      },
+      {
+        "epoch": 5,
+        "loss": 0.3596,
+        "dev": 0.6019
+      },
+      {
+        "epoch": 6,
+        "loss": 0.2858,
+        "dev": 0.6857
+      },
+      {
+        "epoch": 7,
+        "loss": 0.2311,
+        "dev": 0.6542
+      },
+      {
+        "epoch": 8,
+        "loss": 0.199,
+        "dev": 0.6667
+      }
+    ]
+  },
+  "intent": {
+    "accuracy": 0.9429,
+    "macro_f1": 0.9439,
+    "by_group": {
+      "mixed / romanized": {
+        "acc": 0.9118,
+        "n": 34
+      },
+      "mixed / sinhala_script": {
+        "acc": 1.0,
+        "n": 14
+      },
+      "pure_si / sinhala_script": {
+        "acc": 0.9545,
+        "n": 22
+      }
+    },
+    "errors": {
+      "nic_new->birth_cert_copy": 2,
+      "passport_renew->passport_new": 1,
+      "nic_replace_lost->nic_update": 1
+    },
+    "gold_turns_scored": 70,
+    "gold_intents_not_covered": {
+      "unsupported_service": 54,
+      "feedback_complaint": 9,
+      "out_of_scope": 4,
+      "general_question": 5
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 2.0811,
+        "dev": 0.0035
+      },
+      {
+        "epoch": 2,
+        "loss": 1.5505,
+        "dev": 0.5964
+      },
+      {
+        "epoch": 3,
+        "loss": 0.7949,
+        "dev": 0.7346
+      },
+      {
+        "epoch": 4,
+        "loss": 0.4314,
+        "dev": 0.8451
+      },
+      {
+        "epoch": 5,
+        "loss": 0.1713,
+        "dev": 0.946
+      },
+      {
+        "epoch": 6,
+        "loss": 0.0842,
+        "dev": 0.9562
+      },
+      {
+        "epoch": 7,
+        "loss": 0.0543,
+        "dev": 0.9562
+      },
+      {
+        "epoch": 8,
+        "loss": 0.0422,
+        "dev": 0.9562
+      }
+    ]
+  },
+  "fresh_test": {
+    "language_id_si_en": {
+      "heuristic": {
+        "ALL": {
+          "acc": 0.7733,
+          "n": 375
+        },
+        "mixed / romanized": {
+          "acc": 0.8293,
+          "n": 164
+        },
+        "gold=SI": {
+          "acc": 1.0,
+          "n": 194
+        },
+        "gold=EN": {
+          "acc": 0.5304,
+          "n": 181
+        },
+        "mixed / sinhala_script": {
+          "acc": 0.9125,
+          "n": 80
+        },
+        "pure_si / sinhala_script": {
+          "acc": 1.0,
+          "n": 32
+        },
+        "pure_en / romanized": {
+          "acc": 0.4949,
+          "n": 99
+        }
+      },
+      "fastText": {
+        "ALL": {
+          "acc": 0.5947,
+          "n": 375
+        },
+        "mixed / romanized": {
+          "acc": 0.2622,
+          "n": 164
+        },
+        "gold=SI": {
+          "acc": 0.4175,
+          "n": 194
+        },
+        "gold=EN": {
+          "acc": 0.7845,
+          "n": 181
+        },
+        "mixed / sinhala_script": {
+          "acc": 0.8875,
+          "n": 80
+        },
+        "pure_si / sinhala_script": {
+          "acc": 0.9062,
+          "n": 32
+        },
+        "pure_en / romanized": {
+          "acc": 0.8081,
+          "n": 99
+        }
+      },
+      "XLM-R": {
+        "ALL": {
+          "acc": 0.9707,
+          "n": 375
+        },
+        "mixed / romanized": {
+          "acc": 0.9451,
+          "n": 164
+        },
+        "gold=SI": {
+          "acc": 0.9845,
+          "n": 194
+        },
+        "gold=EN": {
+          "acc": 0.9558,
+          "n": 181
+        },
+        "mixed / sinhala_script": {
+          "acc": 0.9875,
+          "n": 80
+        },
+        "pure_si / sinhala_script": {
+          "acc": 1.0,
+          "n": 32
+        },
+        "pure_en / romanized": {
+          "acc": 0.9899,
+          "n": 99
+        }
+      }
+    },
+    "xlmr_all_tags_accuracy": 0.9628,
+    "xlmr_errors": {
+      "EN->SI": 4,
+      "OTHER->SI": 3,
+      "EN->NE": 3,
+      "SI->EN": 2,
+      "SI->NE": 1,
+      "MIXED->OTHER": 1,
+      "EN->OTHER": 1
+    },
+    "entities": {
+      "date": {
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support": 3
+      },
+      "date_of_birth": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      },
+      "district": {
+        "precision": 0.375,
+        "recall": 1.0,
+        "f1": 0.5455,
+        "support": 3
+      },
+      "new_value": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "purpose": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3
+      },
+      "travel_date": {
+        "precision": 0.25,
+        "recall": 1.0,
+        "f1": 0.4,
+        "support": 1
+      },
+      "MICRO": {
+        "precision": 0.4,
+        "recall": 0.5714,
+        "f1": 0.4706,
+        "support": 14
+      }
+    },
+    "intent_accuracy": 0.9,
+    "intent_n": 50
+  }
+}

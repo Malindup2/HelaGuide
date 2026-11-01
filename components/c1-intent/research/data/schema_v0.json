@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.1-draft",
+  "notes": "Draft intent/slot schema. Service names must be aligned with the Knowledge Graph ontology before labelling starts.",
+
+  "intents": {
+    "nic_new":               { "route": "orchestration", "slots": ["applicant_for", "district", "date_of_birth"] },
+    "nic_update":            { "route": "orchestration", "slots": ["change_field", "new_value", "district"] },
+    "nic_replace_lost":      { "route": "orchestration", "slots": ["district", "urgency"] },
+
+    "passport_new":          { "route": "orchestration", "slots": ["applicant_for", "service_type", "travel_date"] },
+    "passport_renew":        { "route": "orchestration", "slots": ["service_type", "travel_date"] },
+
+    "birth_cert_copy":       { "route": "orchestration", "slots": ["applicant_for", "district", "purpose"] },
+    "marriage_registration": { "route": "orchestration", "slots": ["district", "date"] },
+    "death_cert_copy":       { "route": "orchestration", "slots": ["district", "purpose"] },
+
+    "residence_certificate": { "route": "orchestration", "slots": ["address", "district", "purpose"] },
+    "police_clearance":      { "route": "orchestration", "slots": ["purpose", "urgency"] },
+
+    "driving_license":       { "route": "orchestration", "slots": ["license_action", "vehicle_class", "district"] },
+    "business_register":     { "route": "orchestration", "slots": ["business_type", "district"] },
+    "building_permit":       { "route": "orchestration", "slots": ["address", "district", "building_type"] },
+    "utility_connection":    { "route": "orchestration", "slots": ["utility_type", "address", "district"] },
+
+    "feedback_complaint":    { "route": "trust_verification", "slots": ["service_mentioned", "issue"] },
+    "general_question":      { "route": "orchestration", "slots": ["service_mentioned"] },
+    "out_of_scope":          { "route": "none", "slots": [] }
+  },
+
+  "slots": {
+    "applicant_for":    { "type": "enum", "values": ["self", "child", "parent", "spouse", "other"] },
+    "district":         { "type": "enum", "values": "25 districts of Sri Lanka" },
+    "address":          { "type": "text" },
+    "date_of_birth":    { "type": "date" },
+    "date":             { "type": "date" },
+    "travel_date":      { "type": "date" },
+    "change_field":     { "type": "enum", "values": ["address", "name", "civil_status", "photo", "other"] },
+    "new_value":        { "type": "text" },
+    "urgency":          { "type": "enum", "values": ["normal", "urgent"] },
+    "service_type":     { "type": "enum", "values": ["normal", "one_day"] },
+    "purpose":          { "type": "text" },
+    "license_action":   { "type": "enum", "values": ["new", "renew", "replace", "add_class"] },
+    "vehicle_class":    { "type": "text" },
+    "business_type":    { "type": "enum", "values": ["sole_proprietor", "partnership", "company"] },
+    "building_type":    { "type": "enum", "values": ["house", "extension", "commercial"] },
+    "utility_type":     { "type": "enum", "values": ["electricity", "water"] },
+    "service_mentioned":{ "type": "text" },
+    "issue":            { "type": "text" }
+  },
+
+  "token_language_tags": ["SI", "EN", "MIXED", "NE", "OTHER"],
+
+  "output_example": {
+    "turn": 2,
+    "intent": "nic_update",
+    "route": "orchestration",
+    "slots": { "change_field": "address", "new_value": "Colombo 7", "district": null },
+    "missing_slots": ["district"]
+  }
+}
